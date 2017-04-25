@@ -7,15 +7,23 @@ const app = express();
 const friends = [
 	{
 		name: 'Ben',
+		age: 30,
+		email: 'ben@lambdaschool.com',
 	},
 	{
 		name: 'Austen',
+		age: 45,
+		email: 'austen@lambdaschool.com',
 	},
 	{
 		name: 'Ryan',
+		age: 15,
+		email: 'ryan@lambdaschool.com',
 	},
 	{
 		name: 'Michelle',
+		age: 67,
+		email: 'michelle@gmail.com',
 	},
 ];
 
