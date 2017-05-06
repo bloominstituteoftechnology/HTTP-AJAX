@@ -50,6 +50,11 @@ body {
   color: red;
 }
 
+span.lbl {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
 @media all (min-width: 767px) {
   .Navbar {
     text-align: center;

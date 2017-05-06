@@ -24,7 +24,8 @@ class Friends extends Component {
               {friend.name}
             </div>
             <div className="panel-body">
-              {friend.email}
+              <div><span className="lbl">Email:</span>{friend.email}</div>
+              <div><span className="lbl">Age:</span>{friend.age}</div>
             </div>
           </div>
         </div>
