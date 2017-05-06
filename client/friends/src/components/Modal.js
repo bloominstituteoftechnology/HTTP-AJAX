@@ -7,7 +7,7 @@ class Modal extends Component {
         <div className="modalDialog" id="openModal">
           <div>
             <a href="#close" title="Close" className="close">X</a>
-            <h2>Modal Box</h2>
+            <h2>{this.props.title}</h2>
             {this.props.children}
           </div>
         </div>

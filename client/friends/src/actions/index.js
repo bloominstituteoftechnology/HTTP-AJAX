@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const GET_FRIENDS = 'GET_FRIENDS';
 export const ADD_FRIEND = 'ADD_FRIEND';
+export const ERROR = 'ERROR';
 
 const ROOT_URL = "http://localhost:5000";
 

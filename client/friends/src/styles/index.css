@@ -45,3 +45,17 @@ body {
     text-decoration: none;
     font-weight: bold;
 }
+
+.error {
+  color: red;
+}
+
+@media all (min-width: 767px) {
+  .Navbar {
+    text-align: center;
+  }
+
+  .Navbar button {
+    text-align: center;
+  }
+}

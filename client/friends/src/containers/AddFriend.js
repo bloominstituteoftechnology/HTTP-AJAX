@@ -42,7 +42,7 @@ class AddFriend extends Component {
     const { errors, friend } = this.validate(this.state.friend);
     e.preventDefault();
 
-    if (Object.keys(errors).length) return;
+    if (Object.keys(errors).length > 0) return;
 
     this.props.addFriend(friend, () => {
       this.resetState();
@@ -61,7 +61,7 @@ class AddFriend extends Component {
     this.setState({
       errors
     });
-
+    
     return { errors, friend };
   }
 
@@ -70,14 +70,16 @@ class AddFriend extends Component {
       <div>
         <label>{label}</label>
         <input name={name} value={this.state.friend[name]} onChange={this.handleChange} />
-        <div>{ this.state.errors && this.state.errors[name] ? this.state.errors[name] : '' }</div>
+        <div className="error">
+          { this.state.errors && this.state.errors[name] ? this.state.errors[name] : '' }
+        </div>
       </div>
     );
   }
 
   render() {
     return (
-      <Modal>
+      <Modal title="Add New Contact">
       <div className="AddFriend">
         <div>
           { this.renderField('Name', 'name') }
