@@ -1,8 +1,8 @@
-# Redux & React
+# HTTP/AJAX
 
 Topics:
 
- * `redux-promise` package
+ * `redux-thunk` package
  * `axios` package
  * AJAX
  * Promises
@@ -14,10 +14,10 @@ Topics:
 ### Initialize Project
   * Run `npm i` inside of the server folder to install its dependencies.  Run `node server.js` to start the server.
   * Run `create-react-app friends` in in a SEPARATE folder to create your starter application.
-  * `npm i --save redux react-redux redux-promise axios` This command will install the needed dependencies.
+  * `npm i --save redux react-redux redux-thunk axios` This command will install the needed dependencies.
   * You will create a list of your friends using React and Redux.
   * The general flow of steps will be to create your store, create your reducers, create your containers, and then create the action creators.
-  * You will need to use `ReduxPromise` as a middleware inside of `src/index.js`.
+  * You will need to use `Redux Thunk` as a middleware inside of `src/index.js`.
   * Create two actions.  One action will retrieve the friends list from the server.  The second action will add a new friend to the friends list on the server.
 
 
