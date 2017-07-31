@@ -1,13 +1,12 @@
-# Redux & React
+# HTTP/AJAX
 
 Topics:
 
- * `redux-promise` package
  * `axios` package
  * AJAX
  * Promises
  * Middleware
-
+ * `redux-promise` package
 
 ## Project Description
 
@@ -17,7 +16,7 @@ Topics:
   * `npm i --save redux react-redux redux-promise axios` This command will install the needed dependencies.
   * You will create a list of your friends using React and Redux.
   * The general flow of steps will be to create your store, create your reducers, create your containers, and then create the action creators.
-  * You will need to use `ReduxPromise` as a middleware inside of `src/index.js`.
+  * You will need to use `Redux Promise` as a middleware inside of `src/index.js`.
   * Create two actions.  One action will retrieve the friends list from the server.  The second action will add a new friend to the friends list on the server.
 
 
@@ -53,5 +52,6 @@ Topics:
 
 
 ## Extra Credit
+ * In the requirements for this project, we implemented a GET operation and a POST operation. Add two more actions, one for making a PUT request, and the other for making a DELETE request. 
  * Style the friends list and the input field and make everything look nice.
  * Expand the number of properties that you put on each friend object.  Feel free to remove the dummy data on the server or modify it in any way.
