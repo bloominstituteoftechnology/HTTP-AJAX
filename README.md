@@ -12,9 +12,9 @@ Topics:
 ## Project Description
 
 ### Initialize Project
-  * Run `npm i` inside of the server folder to install its dependencies.  Run `node server.js` to start the server.
-  * Run `create-react-app friends` in in a SEPARATE folder to create your starter application.
-  * `npm i --save redux react-redux redux-promise axios` This command will install the needed dependencies.
+  * Run `npm i` inside of the server folder to install its dependencies.  Run `node server.js` to start the server. - DONE √
+  * Run `create-react-app friends` in a SEPARATE folder to create your starter application. - I DID THIS IN THE TOP LEVEL AND NOW HAVE THE REACT APP FOLDER `~/LS-AJAX/friends/` WAS THIS NOT YOUR INTENTION? - DONE√
+  * `npm i --save redux react-redux redux-promise axios` This command will install the needed dependencies. FROM WITHIN `~/LS-AJAX/friends/` I RAN THIS COMMAND - DONE√
   * You will create a list of your friends using React and Redux.
   * The general flow of steps will be to create your store, create your reducers, create your containers, and then create the action creators.
   * You will need to use `ReduxPromise` as a middleware inside of `src/index.js`.
