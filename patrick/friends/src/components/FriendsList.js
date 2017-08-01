@@ -12,17 +12,19 @@ class FriendsList extends Component {
 
     render() {
         return (
-            <div className="friendlisttitle">
+            <div className="friendListTitle">
               Can Haz Frenz:
                 {/* <ul> */}
                 <ol>
                     {this.props.friends.map((friend, i) => {
                         return (
                             <li key={i}>
-                                <p>{`Friend ${i+1}`}</p>
-                                <p>{`Name: ${friend.name}`}</p>
-                                <p>{`Age: ${friend.age}`}</p>
-                                <p>{`Email: ${friend.email}`}</p>
+                                <p>{`Friend ${i + 1}`}</p>
+                                  <ul>
+                                    <li>{`Name: ${friend.name}`}</li>
+                                    <li>{`Age: ${friend.age}`}</li>
+                                    <li>{`Email: ${friend.email}`}</li>
+                                  </ul>
                             </li>
                         );
                     })}
