@@ -4,6 +4,7 @@ import frenz from '../art/frenz.png';
 import '../css/App.css';
 
 import FriendsList from '../components/FriendsList';
+// import AddFriend from '../components/AddFriend';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <p className="App-intro">
           Something <code>AMAZING</code> will go here.
         </p>
+        {/* <AddFriend /> */}
         <FriendsList />
       </div>
     );
