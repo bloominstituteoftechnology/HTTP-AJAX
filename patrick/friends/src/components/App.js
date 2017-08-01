@@ -3,6 +3,8 @@ import logo from '../art/logo.svg';
 import frenz from '../art/frenz.png';
 import '../css/App.css';
 
+import FriendsList from '../components/FriendsList';
+
 class App extends Component {
   render() {
     return (
@@ -15,6 +17,7 @@ class App extends Component {
         <p className="App-intro">
           Something <code>AMAZING</code> will go here.
         </p>
+        <FriendsList />
       </div>
     );
   }
