@@ -16,9 +16,15 @@ Topics:
   * Run `create-react-app friends` in a SEPARATE folder to create your starter application. - I DID THIS IN THE TOP LEVEL AND NOW HAVE THE REACT APP FOLDER `~/LS-AJAX/friends/` WAS THIS NOT YOUR INTENTION? - DONE√
   * `npm i --save redux react-redux redux-promise axios` This command will install the needed dependencies. FROM WITHIN `~/LS-AJAX/friends/` I RAN THIS COMMAND - DONE√
   * You will create a list of your friends using React and Redux.
-  * The general flow of steps will be to create your store, create your reducers, create your containers, and then create the action creators.
+  * The general flow of steps will be to:
+    1. create your store,
+    2. create your reducers,
+    3. create your containers,
+    4. and then create the action creators.
   * You will need to use `ReduxPromise` as a middleware inside of `src/index.js`.
-  * Create two actions.  One action will retrieve the friends list from the server.  The second action will add a new friend to the friends list on the server.
+  * Create two actions.
+    1. One action will retrieve the friends list from the server. - HTTP Mini Sprint, axios.get()
+    2. The second action will add a new friend to the friends list on the server. axios.post()
 
 
 ### State Tree
