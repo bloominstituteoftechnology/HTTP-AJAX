@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getFriends } from '../actions'; // <---- '../actions/index.js'
 // import axios from 'axios';  // <---- currently unused
+import '../css/FriendsList.css';
+
 
 class FriendsList extends Component {
     componentDidMount() {
@@ -10,8 +12,10 @@ class FriendsList extends Component {
 
     render() {
         return (
-            <div>
-                <ul>
+            <div className="friendlisttitle">
+              Can Haz Frenz:
+                {/* <ul> */}
+                <ol>
                     {this.props.friends.map((friend, i) => {
                         return (
                             <li key={i}>
@@ -22,7 +26,8 @@ class FriendsList extends Component {
                             </li>
                         );
                     })}
-                </ul>
+                  </ol>
+                {/* </ul> */}
             </div>
         );
     }
