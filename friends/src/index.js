@@ -1,8 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import friendsReducer from './reducers'; // <--- ./reducers/index.js
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+
+
+// import registerServiceWorker from './registerServiceWorker';
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+// registerServiceWorker();
+
+let STORAGE_WAREHOUSE = createStore(friendsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+
+ReactDOM.render(
+  <Provider store={STORAGE_WAREHOUSE}>
+    {/* <a href="https://youtu.be/v2f8kd1d278?t=7s">ROOT</a> */}
+    <App />
+  </Provider>,
+  document.getElementById('root'));
