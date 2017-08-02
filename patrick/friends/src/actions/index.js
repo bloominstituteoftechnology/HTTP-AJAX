@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-export const GET_FRIENDS = 'GET_FRIENDS';
-
-// Hint: The URL you want to be fetching from is http://localhost:5000/friends.
 export const getFriends = () => {
   const promise = axios.get('http://localhost:5000/friends');
   return {
@@ -11,17 +8,18 @@ export const getFriends = () => {
   };
 };
 
-export const POST_FRIEND = 'POST_FRIEND';
-
-export const postFriend = (input) => {
-  const promise = axios.post('http://localhost:5000/new-friend', input);
-  return {
-    type: POST_FRIEND,
-    payload: promise
-  }
-}
+export const GET_FRIENDS = 'GET_FRIENDS';
 
 
+// export const postFriend = (input) => {
+//   const promise = axios.post('http://localhost:5000/new-friend', input);
+//   return {
+//     type: POST_FRIEND,
+//     payload: promise
+//   }
+// }
+//
+// export const POST_FRIEND = 'POST_FRIEND';
 
 
 
@@ -29,7 +27,7 @@ export const postFriend = (input) => {
 // import axios from 'axios';
 //
 // export const GET_FRIENDS = 'GET_FRIENDS';
-// export const POST_FRIENDS = 'POST_FRIENDS';
+// export const POST_FRIEND = 'POST_FRIEND';
 //
 // export const getFriends = () => {
 //   const promise = axios.get('http://localhost:5000/friends');
@@ -52,7 +50,7 @@ export const postFriend = (input) => {
 //       console.log(error);
 //   });
 //   return {
-//     type: POST_FRIENDS,
+//     type: POST_FRIEND,
 //     payload: promise
 //   }
 // };
