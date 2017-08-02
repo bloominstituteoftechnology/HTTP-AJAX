@@ -4,7 +4,10 @@ ul {
 li {
   text-align: left;
 }
-.friendListTitle {
+.friendsList {
+  background-color: #f9f9f0;
+}
+.friendsListTitle {
   text-align: left;
   padding-left: 20px;
   font-style: italic;

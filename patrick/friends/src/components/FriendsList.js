@@ -12,7 +12,8 @@ class FriendsList extends Component {
 
     render() {
         return (
-            <div className="friendListTitle">
+          <div className="friendsList">
+            <div className="friendsListTitle">
               Can Haz Frenz:
                 {/* <ul> */}
                 <ol>
@@ -31,6 +32,7 @@ class FriendsList extends Component {
                   </ol>
                 {/* </ul> */}
             </div>
+          </div>
         );
     }
 }
