@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getFriends } from '../actions'; // <---- '../actions/index.js'
-import axios from 'axios';
+// import axios from 'axios';
 import '../css/FriendsList.css';
+import { bindActionCreators } from 'redux';
 
 // I THINK THIS IS A CONTAINER INSTEAD OF COMPONENT
 
 
 class FriendsList extends Component {
   componentDidMount() {
-    const promise = axios.get('http://localhost:5000/friends');
-    this.props.getFriends(promise);
+    // const promise = axios.get('http://localhost:5000/friends');
+    this.props.getAmigos();
   }
 
   render() {
@@ -44,4 +45,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getFriends })(FriendsList);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getAmigos: getFriends }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsList);

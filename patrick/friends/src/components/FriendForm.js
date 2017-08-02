@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { getFriends } from '../actions';
+// import axios from 'axios';
+import { addFriend } from '../actions';
 import '../css/FriendForm.css';
 
 class FriendForm extends Component {
@@ -43,8 +43,8 @@ class FriendForm extends Component {
       age: this.state.Age,
       email: this.state.Email
     };
-    const promise = axios.post('http://localhost:5000/new-friend', newFriend);
-    this.props.getFriends(promise);
+    // const promise = axios.post('http://localhost:5000/new-friend', newFriend);
+    this.props.addFriend(newFriend);
   }
 
   render() {
@@ -80,4 +80,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getFriends })(FriendForm);
+export default connect(mapStateToProps, { addFriend })(FriendForm);
