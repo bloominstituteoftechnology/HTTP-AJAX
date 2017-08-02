@@ -15,9 +15,6 @@ class App extends Component {
           <h2>Welcome to LS-AJAX Friends:</h2>
           <img src={frenz} alt='Friends'></img>
         </div>
-        {/* <p className="App-intro">
-          Something <code>AMAZING</code> will go here.
-        </p> */}
         <FriendForm />
         <FriendsList />
       </div>

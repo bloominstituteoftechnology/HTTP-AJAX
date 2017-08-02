@@ -10,10 +10,8 @@ import App from './components/App';
 import friendsReducer from './reducers'; // <--- ./reducers/index.js
 
 
-// You will need to use `ReduxPromise` as a middleware inside of `src/index.js`.
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
-// const or let?????????
 const STORAGE_WAREHOUSE = createStoreWithMiddleware(friendsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
