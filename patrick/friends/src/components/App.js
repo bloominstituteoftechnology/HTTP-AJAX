@@ -3,7 +3,7 @@ import logo from '../art/logo.svg';
 import frenz from '../art/frenz.png';
 import '../css/App.css';
 
-import FriendsList from '../components/FriendsList';
+import FriendsList from '../containers/FriendsList';
 import FriendForm from '../components/FriendForm';
 
 class App extends Component {
