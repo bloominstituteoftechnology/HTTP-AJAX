@@ -48,7 +48,7 @@ class FriendForm extends Component {
     };
     const promise = axios.post('http://localhost:5000/new-friend', newFriend);
     // this.props.postFriend(newFriend);
-    this.props.getFriends();
+    this.props.getFriends(promise);
   }
 
   render() {
