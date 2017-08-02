@@ -5,6 +5,7 @@ li {
   text-align: left;
 }
 .friendsList {
+  padding: 20px 0px;
   background-color: #f9f9f0;
 }
 .friendsListTitle {
