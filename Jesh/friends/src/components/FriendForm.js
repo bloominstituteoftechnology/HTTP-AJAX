@@ -13,6 +13,7 @@ class FriendForm extends Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeAge = this.handleChangeAge.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.addNewFriend = this.addNewFriend.bind(this);
   }
 
   handleChangeName(event) {
@@ -33,6 +34,16 @@ class FriendForm extends Component {
     })
   } 
 
+  addNewFriend(event) {
+    event.preventDefault();
+    const newFriend = {
+      name: this.state.Name,
+      age: this.state.Age,
+      email: this.state.Email
+    };
+    this.props.dispatch(postFriend(newFriend));
+  }
+
   render() {
     return (
       <form>
@@ -51,7 +62,7 @@ class FriendForm extends Component {
           value={this.state.Email}
           onChange={this.handleChangeEmail}
         />
-        <button>Submit Friend Request</button>
+        <button type="submit" onClick={this.addNewFriend}>Submit Friend Request</button>
       </form>
     )
   }
@@ -63,4 +74,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { postFriend })(FriendForm);
+export default connect(mapStateToProps, { postFriend })(FriendForm);  
