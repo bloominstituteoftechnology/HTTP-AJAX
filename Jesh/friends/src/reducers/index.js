@@ -14,7 +14,7 @@ const friendsReducer = (friends = [], action) => {
 const postFriendReducer = (postFriend = [], action) => {
   switch(action.type) {
     case POST_FRIEND:
-      return action.payload.data;
+      return action.payload;
     default:
       return postFriend;
   }
