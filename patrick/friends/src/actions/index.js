@@ -11,7 +11,7 @@ export const getFriends = () => {
   };
 }
 
-export const postFriends = (friendData) => {
+export const postFriend = (friendData) => {
   const promise = axios.post('http://localhost:5000/new-friend', {
     name: friendData.name,
     age: friendData.age,
