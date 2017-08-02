@@ -7,9 +7,9 @@ class FriendForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: '',
-      Age: '',
-      Email: '',
+      name: '',
+      age: '',
+      email: '',
     };
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeAge = this.handleChangeAge.bind(this);
@@ -39,21 +39,21 @@ class FriendForm extends Component {
       <div className="friendForm">
         <form>
           Name:<input
-            placeholder="Name"
+            placeholder='Your "friends" name?'
             value={this.state.Name}
             onChange={this.handleChangeName}
           />
           Age:<input
-            placeholder="Age"
+            placeholder="Their age?"
             value={this.state.Age}
             onChange={this.handleChangeAge}
           />
           Email:<input
-            placeholder="Email"
+            placeholder="Their e-mail?"
             value={this.state.Email}
             onChange={this.handleChangeEmail}
           />
-          <button>Submit Friend Request</button>
+          <button>Submit Your "friend"s info</button>
         </form>
     </div>
     )
