@@ -18,19 +18,19 @@ class FriendForm extends Component {
 
   handleChangeName(event) {
     this.setState({
-      Name: event.target.value
+      name: event.target.value
     })
   }
 
   handleChangeAge(event) {
     this.setState({
-      Age: event.target.value
+      age: event.target.value
     })
   }
 
   handleChangeEmail(event) {
     this.setState({
-      Email: event.target.value
+      email: event.target.value
     })
   }
 
