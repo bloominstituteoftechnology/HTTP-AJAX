@@ -4,7 +4,7 @@ import frenz from '../art/frenz.png';
 import '../css/App.css';
 
 import FriendsList from '../components/FriendsList';
-// import AddFriend from '../components/AddFriend';
+import FriendForm from '../components/FriendForm';
 
 class App extends Component {
   render() {
@@ -15,10 +15,10 @@ class App extends Component {
           <h2>Welcome to LS-AJAX Friends:</h2>
           <img src={frenz} alt='Friends'></img>
         </div>
-        <p className="App-intro">
+        {/* <p className="App-intro">
           Something <code>AMAZING</code> will go here.
-        </p>
-        {/* <AddFriend /> */}
+        </p> */}
+        <FriendForm />
         <FriendsList />
       </div>
     );
