@@ -55,7 +55,7 @@ Topics:
  * You will only need one reducer.  This reducer will control the `friends` array property on the state tree.
  * You will have several action creators.  One for adding a new friend and another for retrieving the friends list from the server.
  * Containers require `connect` and a `mapStateToProps(state)` function to read from the state tree.
- * Actions require you to create a `mapDispatchToProps(dispatch)` function that you'll also pass to the `connect` function.
+ * Actions require you to create a `mapDispatchToProps(dispatch)` function that you'll also pass to the `connect` function. - WE DIDN'T USE DISPATCH, WHY???????????
 
 
 ## Extra Credit
