@@ -52,22 +52,22 @@ class FriendForm extends Component {
       <div className="friendForm">
         <form>
           Name:<input
-            placeholder="Your 'friend's' name?"
+            placeholder="YOU have a friend?????"
             value={this.state.Name}
             onChange={this.handleChangeName}
           />
           Age:<input
-            placeholder="Their age?"
+            placeholder="What's their age?"
             value={this.state.Age}
             onChange={this.handleChangeAge}
           />
           Email:<input
-            placeholder="Their e-mail?"
+            placeholder="What's their e-mail?"
             value={this.state.Email}
             onChange={this.handleChangeEmail}
           />
           <button type="submit"
-                  onClick={this.addNewFriend}>Submit Your "friend's" Info</button>
+                  onClick={this.addNewFriend}>Submit your so-called "friends" Info</button>
         </form>
       </div>
     )
