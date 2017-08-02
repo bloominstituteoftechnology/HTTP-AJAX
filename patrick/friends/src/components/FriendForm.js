@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postFriend } from '../actions';
-import '../css/FriendForm.css';
 
 class FriendForm extends Component {
   constructor(props) {
@@ -14,6 +13,7 @@ class FriendForm extends Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeAge = this.handleChangeAge.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.addNewFriend = this.addNewFriend.bind(this);
   }
 
   handleChangeName(event) {
@@ -34,28 +34,36 @@ class FriendForm extends Component {
     })
   }
 
+  addNewFriend(event) {
+    event.preventDefault();
+    const newFriend = {
+      name: this.state.Name,
+      age: this.state.Age,
+      email: this.state.Email
+    };
+    this.props.dispatch(postFriend(newFriend));
+  }
+
   render() {
     return (
-      <div className="friendForm">
-        <form>
-          Name:<input
-            placeholder='Your "friends" name?'
-            value={this.state.Name}
-            onChange={this.handleChangeName}
-          />
-          Age:<input
-            placeholder="Their age?"
-            value={this.state.Age}
-            onChange={this.handleChangeAge}
-          />
-          Email:<input
-            placeholder="Their e-mail?"
-            value={this.state.Email}
-            onChange={this.handleChangeEmail}
-          />
-          <button>Submit Your "friend"s info</button>
-        </form>
-    </div>
+      <form>
+        Name:<input
+          placeholder="Name"
+          value={this.state.Name}
+          onChange={this.handleChangeName}
+        />
+        Age:<input
+          placeholder="Age"
+          value={this.state.Age}
+          onChange={this.handleChangeAge}
+        />
+        Email:<input
+          placeholder="Email"
+          value={this.state.Email}
+          onChange={this.handleChangeEmail}
+        />
+        <button type="submit" onClick={this.addNewFriend}>Submit Friend Request</button>
+      </form>
     )
   }
 }
@@ -66,4 +74,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { postFriend })(FriendForm);
+export default connect(mapStateToProps, { postFriend })(FriendForm);  
