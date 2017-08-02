@@ -1,7 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-export const getFriends = () => {
-  const promise = axios.get('http://localhost:5000/friends');
+export const getFriends = (promise) => {
+  // const promise = axios.get('http://localhost:5000/friends');
   return {
       type: GET_FRIENDS,
       payload: promise

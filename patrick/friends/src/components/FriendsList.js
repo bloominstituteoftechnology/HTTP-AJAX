@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getFriends } from '../actions'; // <---- '../actions/index.js'
-// import axios from 'axios';  // <---- currently unused
+import axios from 'axios';
 import '../css/FriendsList.css';
+
+// I THINK THIS IS A CONTAINER INSTEAD OF COMPONENT
 
 
 class FriendsList extends Component {
     componentDidMount() {
-        this.props.getFriends();
+        const promise = axios.get('http://localhost:5000/friends');
+        this.props.getFriends(promise);
     }
 
     render() {
