@@ -7,9 +7,9 @@ class FriendForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      age: '',
-      email: '',
+      Name: '',
+      Age: '',
+      Email: '',
     };
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeAge = this.handleChangeAge.bind(this);
@@ -18,19 +18,19 @@ class FriendForm extends Component {
 
   handleChangeName(event) {
     this.setState({
-      name: event.target.value
+      Name: event.target.value
     })
   }
 
   handleChangeAge(event) {
     this.setState({
-      age: event.target.value
+      Age: event.target.value
     })
   }
 
   handleChangeEmail(event) {
     this.setState({
-      email: event.target.value
+      Email: event.target.value
     })
   }
 
