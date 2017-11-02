@@ -25,6 +25,7 @@ class FriendsList extends Component {
     this.email = '';
     this.pet1 = {species:'', name:''};
     this.pet2 = {species:'', name:''};
+    this.pets = [this.pet1,this.pet2];
   }
   componentDidMount() {
     this.props.getFriends();
@@ -46,8 +47,9 @@ class FriendsList extends Component {
         Cell: props => <span className="email">{props.value}</span>
       },
       {
+        id: 'pet1',
         Header: 'Pet 1',
-        accessor: 'pet1',
+        accessor: d => d.pets[0],
         style: { float: 'left', width: '200px' },
         Cell: props => (
           <span>
@@ -56,8 +58,9 @@ class FriendsList extends Component {
         )
       },
       {
+        id: 'pet2',
         Header: 'Pet 2',
-        accessor: 'pet2',
+        accessor: d => d.pets[1],
         Cell: props => (
           <span>
             Species: {props.value.species} &nbsp;&nbsp; Name: {props.value.name}
@@ -71,16 +74,21 @@ class FriendsList extends Component {
         <form
           onSubmit={e => {
             e.preventDefault();
+            /*
             console.log(
               `name:${this.name.value}  age:${this.age.value} email:${this.email
                 .value}`
             );
+            */
             this.props.addFriend({
               name: this.name.value,
               age: this.age.value,
               email: this.email.value,    
-              pet1: {species: this.pet1.species.value, name: this.pet1.name.value},
-              pet2: {species: this.pet2.species.value, name: this.pet2.name.value}
+              pets: [
+              {species: this.pet1.species.value, name: this.pet1.name.value},
+              {species: this.pet2.species.value, name: this.pet2.name.value}
+              ]
+     
             });
             this.name = '';
             this.age = 0;

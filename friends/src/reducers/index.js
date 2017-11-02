@@ -2,21 +2,22 @@ import { combineReducers } from 'redux';
 import { GET_FRIENDS, ADD_FRIEND } from '../actions';
 
 const standerize = (props) => {
-    if (props.pets === undefined || props.pets.length === 0) {
-        console.log('standardizing')
+    props.forEach(friend => {
+      if (friend.pets === undefined || friend.pets.length === 0) {
+        console.log('standardizing:', friend)
         let pet = {species:'', name:''};
-        props.pets = [pet,pet]
+        friend.pets = [pet,pet]
     }
+    });
     return props
 }
 const friendsReducer = (friends = [], action) => {
   switch (action.type) {
     case GET_FRIENDS:
-      return action.payload.data;
     case ADD_FRIEND:
+      return standerize(action.payload.data);
       //console.log('add friend action', action);
-      return action.payload.data;
-      return friends
+     // return friends
     default:
       return friends;
   }
