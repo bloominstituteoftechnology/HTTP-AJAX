@@ -9,6 +9,7 @@ function CustomTextInput(props) {
   return (
     <input
       ref={props.inputRef}
+      name={props.name}
       className={props.className}
       size={props.size}
       placeholder={props.placeholder}
@@ -26,6 +27,7 @@ class FriendsList extends Component {
     this.pet1 = {species:'', name:''};
     this.pet2 = {species:'', name:''};
     this.pets = [this.pet1,this.pet2];
+    this.defaultPets = this.pets.slice(0)
   }
   componentDidMount() {
     this.props.getFriends();
@@ -50,11 +52,10 @@ class FriendsList extends Component {
         id: 'pet1',
         Header: 'Pet 1',
         accessor: d => d.pets[0],
-        style: { float: 'left', width: '200px' },
         Cell: props => (
           <span>
-            Species: {props.value.species} &nbsp;&nbsp; Name: {props.value.name}
-          </span>
+            <span className='pet_species'>Species: {props.value.species}</span><span className='pet_name'>Name: {props.value.name}</span>
+            </span>
         )
       },
       {
@@ -63,7 +64,7 @@ class FriendsList extends Component {
         accessor: d => d.pets[1],
         Cell: props => (
           <span>
-            Species: {props.value.species} &nbsp;&nbsp; Name: {props.value.name}
+            <span className='pet_species'>Species: {props.value.species}</span><span className='pet_name'>Name: {props.value.name}</span>
           </span>
         )
       }
@@ -93,6 +94,7 @@ class FriendsList extends Component {
             this.name = '';
             this.age = 0;
             this.email = '';
+            this.pets = this.defaultPets.slice(0)
           }}
         >
           <div style={{ height: '30px', display: 'inline' }}>

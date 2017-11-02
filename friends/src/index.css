@@ -14,3 +14,11 @@ body {
   text-decoration: underline;
   color: blue;
 }
+.pet_species {
+  float: left;
+  padding-left: 100;
+}
+.pet_name {
+  float: right;
+  margin: 0 0 10 0
+}

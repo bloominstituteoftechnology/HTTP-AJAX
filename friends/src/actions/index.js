@@ -7,6 +7,15 @@ export const ADD_FRIEND = 'ADD_FRIEND'
 export const getFriends = () => {
     // Add the code for this action
     const promise = axios.get('http://localhost:5000/friends'); 
+    /*
+    console.log('action promise:', promise)
+    promise.then(function (response) {
+        console.log('promise response:',response);
+      })
+      .catch(function (error) {
+        console.log('promise error:',error);
+    });
+    */
     return {
         type: GET_FRIENDS,
         payload: promise
