@@ -12,10 +12,10 @@ const standerize = (props) => {
 const friendsReducer = (friends = [], action) => {
   switch (action.type) {
     case GET_FRIENDS:
-      return standerize(action.payload.data);
+      return action.payload.data
     case ADD_FRIEND:
-      console.log('add friend action', action);
-      return friends
+     // console.log('add friend action', action);
+      return action.payload.data
     default:
       return friends;
   }

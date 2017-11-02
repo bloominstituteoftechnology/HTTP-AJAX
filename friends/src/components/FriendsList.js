@@ -23,9 +23,6 @@ class FriendsList extends Component {
     this.name = '';
     this.age = 0;
     this.email = '';
-    this.pet1 = {species:'', name:''};
-    this.pet2 = {species:'', name:''};
-    this.pets = [this.pet1,this.pet2];
   }
   componentDidMount() {
     this.props.getFriends();
@@ -45,27 +42,6 @@ class FriendsList extends Component {
         Header: 'Email',
         accessor: 'email',
         Cell: props => <span className="email">{props.value}</span>
-      },
-      {
-        id: 'pet1',
-        Header: 'Pet 1',
-        accessor: d => d.pets[0],
-        style: { float: 'left', width: '200px' },
-        Cell: props => (
-          <span>
-            Species: {props.value.species} &nbsp;&nbsp; Name: {props.value.name}
-          </span>
-        )
-      },
-      {
-        id: 'pet2',
-        Header: 'Pet 2',
-        accessor: d => d.pets[1],
-        Cell: props => (
-          <span>
-            Species: {props.value.species} &nbsp;&nbsp; Name: {props.value.name}
-          </span>
-        )
       }
     ];
 
@@ -74,19 +50,16 @@ class FriendsList extends Component {
         <form
           onSubmit={e => {
             e.preventDefault();
+            /*
             console.log(
               `name:${this.name.value}  age:${this.age.value} email:${this.email
                 .value}`
             );
+            */
             this.props.addFriend({
               name: this.name.value,
               age: this.age.value,
               email: this.email.value,    
-              pets: [
-              {species: this.pet1.species, name: this.pet1.name},
-              {species: this.pet2.species, name: this.pet2.name}
-              ]
-     
             });
             this.name = '';
             this.age = 0;
@@ -115,36 +88,7 @@ class FriendsList extends Component {
               type="email"
               placeholder="email"
               size="30"
-            />
-            <div />
-            <CustomTextInput
-              inputRef={el => (this.pet1.species = el)}
-              className="inputText"
-              type="text"
-              placeholder="Pet 1 Species"
-              size="20"
-            />
-            <CustomTextInput
-              inputRef={el => (this.pet1.name = el)}
-              className="inputText"
-              type="text"
-              placeholder="Pet 1 Name"
-              size="20"
-            />         
-            <CustomTextInput
-              inputRef={el => (this.pet2.species = el)}
-              className="inputText"
-              type="text"
-              placeholder="Pet 2 Species"
-              size="20"
-            />
-            <CustomTextInput
-              inputRef={el => (this.pet2.name = el)}
-              className="inputText"
-              type="text"
-              placeholder="Pet 2 Name"
-              size="20"
-            />                   
+            />               
           </div>
           <button type="submit">Submit</button>
         </form>
