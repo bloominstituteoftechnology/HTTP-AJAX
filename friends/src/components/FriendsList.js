@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getFriends, addFriend } from '../actions';
+import { getFriends, addFriend, deleteFriend } from '../actions';
 import '../index.css';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
@@ -67,7 +67,18 @@ class FriendsList extends Component {
             <span className='pet_species'>Species: {props.value.species}</span><span className='pet_name'>Name: {props.value.name}</span>
           </span>
         )
-      }
+      },
+      {
+        id: 'delete',
+        Header: 'Delete',
+        accessor: 'name', 
+        Cell: props => (
+            <button onClick={() => {
+              console.log('Delete props:', props.value)
+              this.props.deleteFriend(props.value)
+            }}>Delete</button>
+        )
+      }      
     ];
 
     return (
@@ -164,4 +175,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getFriends, addFriend })(FriendsList);
+export default connect(mapStateToProps, { getFriends, addFriend, deleteFriend })(FriendsList);
