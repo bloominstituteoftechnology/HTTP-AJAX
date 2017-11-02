@@ -74,7 +74,6 @@ class FriendsList extends Component {
         accessor: 'name', 
         Cell: props => (
             <button onClick={() => {
-              console.log('Delete props:', props.value)
               this.props.deleteFriend(props.value)
             }}>Delete</button>
         )

@@ -36,13 +36,6 @@ export const deleteFriend = (friendName) => {
     {
         params: { friendName: friendName }
     })
-    //console.log('deleteFriend friendName:', friendName)
-    promise.then(function (response) {
-        console.log('promise response:',response);
-      })
-      .catch(function (error) {
-        console.log('promise error:',error);
-    });
     return {
         type: DELETE_FRIEND,
         payload: promise
