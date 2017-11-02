@@ -9,37 +9,30 @@ const friends = [
 		name: 'Ben',
 		age: 30,
 		email: 'ben@lambdaschool.com',
-		pets: [
-			{species:'dog',name:'Fido'},
-			{species:'cat', name:'Tigger'}
-		]
+		pet1:{species:'dog',name:'Fido'},
+		pet2:{species:'cat', name:'Tigger'}
 	},
 	{
 		name: 'Austen',
 		age: 45,
 		email: 'austen@lambdaschool.com',
-		pets: [
-			{species:'bear',name:'Smokey'},
-			{species:'cat', name:'Garfield'}
-		],		
+		pet1:{species:'bear',name:'Smokey'},
+		pet2:{species:'cat', name:'Garfield'}
 	},
 	{
 		name: 'Ryan',
 		age: 15,
 		email: 'ryan@lambdaschool.com',
-		pets: [
-			{species:'dog',name:'Hairy Pawter'},
-			{species:'cat', name:'Simba'}
-		],		
+		pet1: {species:'dog',name:'Hairy Pawter'},
+		pet2: {species:'cat', name:'Simba'}
+			
 	},
 	{
 		name: 'Michelle',
 		age: 67,
 		email: 'michelle@gmail.com',
-		pets: [
-			{species:'dog',name:'Bluto'},
-			{species:'cat', name:'Sylvester'}
-		],		
+		pet1: {species:'dog',name:'Bluto'},
+		pet2: {species:'cat', name:'Sylvester'}	
 	},
 ];
 

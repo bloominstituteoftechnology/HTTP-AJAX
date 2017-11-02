@@ -12,8 +12,9 @@ export const getFriends = () => {
         payload: promise
     }
 };
-export const addFriend = (o) => {
-    const promise = axios.post('http://localhost:5000/new-friend',o); 
+export const addFriend = (friend) => {
+    console.log('friend:', friend)
+    const promise = axios.post('http://localhost:5000/new-friend',friend); 
     return {
         type: ADD_FRIEND,
         payload: promise

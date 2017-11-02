@@ -2198,7 +2198,7 @@ eslint-module-utils@^2.1.1:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-class-property@^1.0.6:
+eslint-plugin-class-property@1.0.6, eslint-plugin-class-property@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/eslint-plugin-class-property/-/eslint-plugin-class-property-1.0.6.tgz#c3bc3fc4207b283bf82e69e3dd1b6e2491a57623"
   dependencies:

@@ -6,7 +6,7 @@
     "axios": "^0.17.0",
     "eslint": "^4.0.0",
     "eslint-config-react-tools": "^1.0.10",
-    "eslint-plugin-class-property": "^1.0.6",
+    "eslint-plugin-class-property": "1.0.6",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
