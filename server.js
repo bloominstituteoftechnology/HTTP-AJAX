@@ -57,7 +57,6 @@ app.post('/new-friend', (req, res) => {
 	res.send(friends);
 });
 app.delete('/delete-friend', (req, res) => {
-	console.log('delete name query friendName', req.query.friendName)
 	let i = friends.findIndex(friend => friend.name === req.query.friendName)
 	if (i >= 0) {
 		friends.splice(i,1)
