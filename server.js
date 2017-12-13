@@ -10,6 +10,8 @@ const friends = [
 		age: 30,
 		email: 'ben@lambdaschool.com',
 	},
+
+	
 	{
 		name: 'Austen',
 		age: 45,
