@@ -8,6 +8,11 @@ const friendsReducer = (friends = [], action) => {
         default:
             return friends;
     }
+    switch(action.type) {
+        case ADD_FRIEND:
+            return 
+        
+    }
  
 };
 

@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './reducers'
-import registerServiceWorker from './registerServiceWorker';
-
-const middleware = []
-if ('somecondition') {
-  middleware.push(createLogger())
-}
-
-const store = createStore(
-  reducer,
-  applyMiddleware(...middleware) // <=promise ??
-)
+import reducers from './reducers'
+import ReduxPromise from 'redux-promise'
+// const middleware = []
+// if ('somecondition') {
+//   middleware.push(createLogger())
+// }
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStoreWithMiddleware(reducers);
+// const store = createStore(
+//   reducer,
+//   applyMiddleware(ReduxPromise) // <=promise ??
+// )
 
 ReactDOM.render(
 <Provider store={store}>
@@ -23,4 +23,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();
+
