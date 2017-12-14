@@ -33,10 +33,12 @@ class Friend extends Component {
         // }
     }
     handleDel = (event) => {
+        console.log(this.props.index)
         this.props.delFriend(this.props.index);
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className='Friend'>
                 <div className='Friend__Field'>

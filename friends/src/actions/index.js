@@ -25,8 +25,8 @@ export const addFriend = (friendToBeAdded) => {
     };
 };
 
-export const delFriend = (indexOfFriend) => {
-    const toDelete = { data: [ indexOfFriend ] };
+export const delFriend = (index) => {
+    const toDelete = { data: { index } };
     const delFriendPromise = axios.delete('http://localhost:5000/delete-friend', toDelete);
 
     return {
