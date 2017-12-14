@@ -1,23 +1,23 @@
-# Redux & React
+# HTTP/AJAX
 
 Topics:
 
- * `redux-promise` package
  * `axios` package
  * AJAX
  * Promises
  * Middleware
-
+ * `redux-promise` package
 
 ## Project Description
 
 ### Initialize Project
-  * Run `npm i` inside of the server folder to install its dependencies.  Run `node server.js` to start the server.
-  * Run `create-react-app friends` in in a SEPARATE folder to create your starter application.
-  * `npm i --save redux react-redux redux-promise axios` This command will install the needed dependencies.
+  * Run `npm i` inside the root directory of this project.  Run `node server.js` to start the server.
+  * Run `create-react-app friends` in in a separate terminal window in the root directory of the project to create your starter application.
+  * Run `npm i --save redux react-redux redux-promise axios`, which will install the needed dependencies.
   * You will create a list of your friends using React and Redux.
-  * The general flow of steps will be to create your store, create your reducers, create your containers, and then create the action creators.
-  * You will need to use `ReduxPromise` as a middleware inside of `src/index.js`.
+  * The general flow of steps will be to create your action creator functions, your reducers, then your React components.
+  * Don't forget to hook up the store using the `Provider` tag inside of `src/index.js`, passing it your root reducer.
+  * You will need to use `Redux Promise` as a middleware inside of `src/index.js`.
   * Create two actions.  One action will retrieve the friends list from the server.  The second action will add a new friend to the friends list on the server.
 
 
@@ -53,5 +53,6 @@ Topics:
 
 
 ## Extra Credit
+ * In the requirements for this project, we implemented a GET operation and a POST operation. Add two more actions, one for making a PUT request, and the other for making a DELETE request. 
  * Style the friends list and the input field and make everything look nice.
  * Expand the number of properties that you put on each friend object.  Feel free to remove the dummy data on the server or modify it in any way.

@@ -10,6 +10,8 @@ const friends = [
 		age: 30,
 		email: 'ben@lambdaschool.com',
 	},
+
+	
 	{
 		name: 'Austen',
 		age: 45,
@@ -19,6 +21,11 @@ const friends = [
 		name: 'Ryan',
 		age: 15,
 		email: 'ryan@lambdaschool.com',
+	},
+	{
+		name: 'Sean',
+		age: 35,
+		email: 'sean@lambdaschool.com',
 	},
 	{
 		name: 'Michelle',
@@ -37,6 +44,18 @@ app.get('/friends', (req, res) => {
 
 app.post('/new-friend', (req, res) => {
 	friends.push(req.body);
+	res.send(friends);
+});
+
+app.put('/update-friend', (req, res) => {
+	const index = req.body.index;
+	friends[index] = req.body.update;
+	res.send(friends);
+});
+
+app.delete('/delete-friend', (req, res) => {
+	const index = req.body.index;
+	friends.splice(index, 1);
 	res.send(friends);
 });
 
