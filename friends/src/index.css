@@ -4,6 +4,16 @@ body {
   font-family: sans-serif;
 }
 
-ul {
-  list-style-type:none;
+.friend-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.friend {
+  list-style-type: none;
+  margin: 10px 0;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
