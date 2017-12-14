@@ -4,14 +4,14 @@ import App from './App';
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import reducers from './reducers'
+import rootReducer from './reducers'
 import ReduxPromise from 'redux-promise'
 // const middleware = []
 // if ('somecondition') {
 //   middleware.push(createLogger())
 // }
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const store = createStoreWithMiddleware(rootReducer);
 // const store = createStore(
 //   reducer,
 //   applyMiddleware(ReduxPromise) // <=promise ??
