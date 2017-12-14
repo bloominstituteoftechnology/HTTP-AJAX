@@ -12,25 +12,25 @@ class Friend extends Component {
     }
 
     componentDidMount() {
-        switch (this.props.friend.name) {
-            case 'Ryan':
-                this.setState({ image: 'https://lambdaschool.com/assets/img/ryan.jpg' });
-                break;
-            case 'Sean':
-                this.setState({ image: 'https://lambdaschool.com/assets/img/sean.jpg' });
-                break;
-            case 'Ben':
-                this.setState({ image: 'https://lambdaschool.com/assets/img/ben.jpg' });
-                break;
-            // case 'Michelle':
-            //     this.setState({ image: 'http://www.streamwoodiucc.org/wp-content/uploads/2012/08/image-preview-2.jpg' });
-            //     break;
-            case 'Austen':
-                this.setState({ image: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/005/081/3ad/3c554d2.jpg' });
-                break;
-            default:
-                return;
-        }
+        // switch (this.props.friend.name) {
+        //     case 'Ryan':
+        //         this.setState({ image: 'https://lambdaschool.com/assets/img/ryan.jpg' });
+        //         break;
+        //     case 'Sean':
+        //         this.setState({ image: 'https://lambdaschool.com/assets/img/sean.jpg' });
+        //         break;
+        //     case 'Ben':
+        //         this.setState({ image: 'https://lambdaschool.com/assets/img/ben.jpg' });
+        //         break;
+        //     case 'Michelle':
+        //         this.setState({ image: 'http://www.streamwoodiucc.org/wp-content/uploads/2012/08/image-preview-2.jpg' });
+        //         break;
+        //     case 'Austen':
+        //         this.setState({ image: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/005/081/3ad/3c554d2.jpg' });
+        //         break;
+        //     default:
+        //         return;
+        // }
     }
     handleDel = (event) => {
         this.props.delFriend(this.props.index);

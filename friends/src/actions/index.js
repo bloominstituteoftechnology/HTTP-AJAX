@@ -10,6 +10,7 @@ const friendRequest = axios.get(apiUrl);
 
 
 export const getFriends = () => {
+    console.log(friendRequest)
     return {
         type: GET_FRIENDS,
         payload: friendRequest
@@ -25,7 +26,7 @@ export const addFriend = (friendToBeAdded) => {
 };
 
 export const delFriend = (indexOfFriend) => {
-    const toDelete = { data: { indexOfFriend } };
+    const toDelete = { data: [ indexOfFriend ] };
     const delFriendPromise = axios.delete('http://localhost:5000/delete-friend', toDelete);
 
     return {

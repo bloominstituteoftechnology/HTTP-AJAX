@@ -7,22 +7,22 @@ class FriendsField extends Component {
     constructor() {
         super();
         this.state = {
-            newName: 'Test',
-            newAge: '10',
-            newEmail: 'test@test.test'
+            name: '',
+            age: '',
+            email: ''
         }
         this.handleAddFriend = this.handleAddFriend.bind(this);
     }
-    handleName = () => {
-
+    handleName = (e) => {
+        this.setState({ name: e.target.value })
     }
 
-    handleAge = () => {
-
+    handleAge = (e) => {
+        this.setState({ age: e.target.value })
     }
 
-    handleEmail = () => {
-
+    handleEmail = (e) => {
+        this.setState({ email: e.target.value })
     }
 
     handleAddFriend(event) {
@@ -40,9 +40,9 @@ class FriendsField extends Component {
                     <h2>Add a new friend below</h2>
                 </div>
                 <div className='FriendsField'>
-                    <input type='text' placeholder='Name'></input>
-                    <input type='text' placeholder='Age'></input>
-                    <input type='text' placeholder='Email'></input>
+                    <input type='text' placeholder='Name' onChange={this.handleName}></input>
+                    <input type='text' placeholder='Age' onChange={this.handleAge}></input>
+                    <input type='text' placeholder='Email' onChange={this.handleEmail}></input>
                     <button onClick={this.handleAddFriend}>Submit</button>
                 </div>
             </div>
@@ -51,10 +51,4 @@ class FriendsField extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        friends: state.friends
-    };
-};
-
-export default connect(mapStateToProps, { addFriend })(FriendsField);
+export default connect(null, { addFriend })(FriendsField);
