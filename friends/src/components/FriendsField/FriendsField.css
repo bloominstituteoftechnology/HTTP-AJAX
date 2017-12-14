@@ -1,0 +1,16 @@
+.FriendsField {
+    margin: 0 auto;
+    width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1px solid #e9ebee;
+    padding: 14px;
+    background-color: #f6f7f9;
+}
+
+.FriendsField h2 {
+    width: 100%;
+}
+

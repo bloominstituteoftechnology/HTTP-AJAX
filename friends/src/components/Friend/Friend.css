@@ -1,0 +1,38 @@
+.Friend {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+    border: 2px solid #e9ebee;
+    padding: 10px;
+    background-color: white;
+}
+
+.Friend__Field {
+    display: inline-flex;
+    width: 100%;
+}
+
+.Friend__Field  img{
+    width: 90px;
+}
+
+.FieldDesc {
+    font-weight: bold;
+    color: #4b4f56;
+    width: 60px;
+    text-align: left;
+}
+
+.FieldValue {
+    text-align: left;
+    color: #3658bb;
+}
+
+.DelButton {
+    margin-left: 205px;
+    height: 30px;
+    width: 30px;
+}
+
