@@ -1,24 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addFriend } from '../../actions/friends';
+import { addFriend, updateFriend } from '../../actions/friends';
 
 class FriendsInput extends Component {
 
-  addNewFriend = (event) => {
+  processFriend = (event) => {
     event.preventDefault();
     const friend = {};
     Object.keys(this.refs).forEach((key) => {
       friend[key] = this.refs[key].value;
     });
+
+    const existingFriendIndex = this.props.friends.findIndex((f) => f.name === friend.name);
+    console.log(existingFriendIndex);
+    if (existingFriendIndex > -1 ) {
+      this.updateFriend(friend, existingFriendIndex);
+    } else {
+      this.addNewFriend(friend);
+      window.location.reload();
+    }
+    
+  }
+
+  addNewFriend = (friend) => {
     this.props.addFriend(friend);
-    window.location.reload();
+  }
+
+  updateFriend = (friend, index) => {
+    this.props.updateFriend(friend, index);
   }
 
   render() {
     return(
       <div>
-        <form onSubmit={this.addNewFriend}>
-          <h2>Add a friend</h2>
+        <form onSubmit={this.processFriend}>
+          <h2>Add/edit a friend</h2>
           <p>Name: <input ref="name" /></p>
           <p>Age: <input ref="age" /></p>
           <p>Email: <input ref="email" /></p>
@@ -30,4 +46,4 @@ class FriendsInput extends Component {
 }
 
 
-export default connect(null,  { addFriend })(FriendsInput);
+export default connect(null,  { addFriend, updateFriend })(FriendsInput);
