@@ -1,31 +1,44 @@
-.NavBar {
-	padding: 50px;
-
-	width: 100%;
-
-	background-color: grey;
+.AddFriendFormContainer {
+	margin: 20px;
 
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.AddFriendForm {
+	height: 100px;
+	width: 1000px;
+
+	display: inherit;
+	flex-direction: column;
+	align-items: center;
+}
+
+.AddFriendInputs {
+	display: inherit;
 	flex-direction: row;
 	justify-content: center;
 }
 
-.NavBar__item {
-	margin-left: 25px;
-	margin-right: 25px;
-	padding: 10px;
-
-	background-color: green;
-
-	text-align: center;
-	text-decoration: none;
-	color: white;
-
-	border-style: solid;
-	border-width: 1px;
+.AddFriendInput {
+	margin: 10px;
 }
 
-.NavBar__item:hover {
-	text-decoration: underline;
-	color: blue;
+.AddFriendInput--text {
+	display: inline;
+}
+
+.AddFriendInput input {
+	margin-left: 4px;
+
+	display: inline;
+}
+
+.AddFriendButton {
+	width: 100px;
+}
+
+.ServerResponseContainer {
+	text-align: center;
 }

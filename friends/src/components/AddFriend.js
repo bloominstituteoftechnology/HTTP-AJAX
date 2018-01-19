@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import './AddFriend.css';
 
@@ -11,6 +12,7 @@ class AddFriend extends React.Component {
       name: '',
       age: '',
       email: '',
+      serverResponse: '',
     };
 
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -19,30 +21,18 @@ class AddFriend extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    // const stream = 'http://localhost:5000/friends';
-    // axios
-    //   .get(stream)
-    //   .then(response => {
-    //     this.setState({ friends: response.data });
-    //   })
-    //   .catch(() => {
-    //     console.error('unknown error');
-    //   });
-  }
+  componentDidMount() {}
 
   handleChangeName(event) {
-    console.log(event.target.value);
-    console.log(this);
-    this.state.setState({ name: event.target.value });
+    this.setState({ name: event.target.value });
   }
 
   handleChangeAge(event) {
-    this.state.setState({ age: event.target.value });
+    this.setState({ age: event.target.value });
   }
 
   handleChangeEmail(event) {
-    this.state.setState({ email: event.target.value });
+    this.setState({ email: event.target.value });
   }
 
   handleSubmit(event) {
@@ -57,13 +47,13 @@ class AddFriend extends React.Component {
         email: this.state.email,
       })
       .then(response => {
-        console.log(response);
+        this.setState({ serverResponse: response });
       })
       .catch(error => {
         console.log(error);
       });
 
-    this.state.setState({
+    this.setState({
       name: '',
       age: '',
       email: '',
@@ -71,6 +61,7 @@ class AddFriend extends React.Component {
   }
 
   render() {
+    // console.log(this.state.serverResponse);
     return (
       <div className="AddFriendFormContainer">
         <form className="AddFriendForm" onSubmit={this.handleSubmit}>
@@ -84,6 +75,7 @@ class AddFriend extends React.Component {
                 placeholder="John Appleseed"
               />
             </label>
+
             <label className="AddFriendInput">
               <p className="AddFriendInput--text">Age:</p>
               <input
@@ -93,6 +85,7 @@ class AddFriend extends React.Component {
                 placeholder="27"
               />
             </label>
+
             <label className="AddFriendInput">
               <p className="AddFriendInput--text">Email:</p>
               <input
@@ -103,12 +96,24 @@ class AddFriend extends React.Component {
               />
             </label>
           </div>
-          <input
-            className="AddFriendButton"
-            type="submit"
-            value="Submit form"
-          />
+
+          <input className="AddFriendButton" type="submit" value="Add friend" />
         </form>
+
+        <div>
+          {this.state.serverResponse.status === 201 ? (
+            <div className="ServerResponseContainer">
+              {`Your friend ${
+                this.state.serverResponse.data[
+                  this.state.serverResponse.data.length - 1
+                ].name
+              } was added as a friend!`}
+              <br />
+              <br />
+              <NavLink to="/friends">View all your friends.</NavLink>
+            </div>
+          ) : null}
+        </div>
       </div>
     );
   }

@@ -4,21 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 import './FriendsList.css';
 
-class FriendsList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      friends: [],
-      name: '',
-      age: '',
-      email: '',
-    };
-
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeAge = this.handleChangeAge.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+export default class FriendsList extends Component {
+  state = {
+    friends: [],
+  };
 
   componentDidMount() {
     const stream = 'http://localhost:5000/friends';
@@ -33,54 +22,7 @@ class FriendsList extends Component {
       });
   }
 
-  handleChangeName(event) {
-    this.setState({ name: event.target.value });
-  }
-
-  handleChangeAge(event) {
-    this.setState({ age: event.target.value });
-  }
-
-  handleChangeEmail(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const stream = 'http://localhost:5000/friends';
-
-    axios
-      .post(stream, {
-        name: this.state.name,
-        age: Number(this.state.age),
-        email: this.state.email,
-      })
-      .then(response => {
-        this.setState({ friends: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    this.setState({
-      name: '',
-      age: '',
-      email: '',
-    });
-  }
-
   render() {
-    // const stream = 'http://localhost:5000/friends';
-
-    // axios
-    //   .get(stream)
-    //   .then(response => {
-    //     console.log(response);
-    //   })
-    //   .catch(() => {
-    //     console.error('unknown error');
-    //   });
     return (
       <div>
         <div className="friend-title">Lambda Friends</div>
@@ -101,4 +43,3 @@ class FriendsList extends Component {
   }
 }
 
-export default FriendsList;
