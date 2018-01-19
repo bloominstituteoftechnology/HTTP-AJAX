@@ -63,6 +63,18 @@ export default class Friend extends Component {
     this.setState({ email: event.target.value });
   }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    // this.setState({ [name]: value })
+    // const newFriend = { ...this.state.newFriend }
+  };
+
+  loadFriends = () => {
+    // use this function inside componentDidMount
+    // <FriendFrom refresh={this.loadFriends} />
+    // <button onClick={ () => props.delete(index) }>Delete</button>
+  };
+
   cancelButtonPressed(event) {
     this.setState({
       name: '',
@@ -133,10 +145,12 @@ export default class Friend extends Component {
               cancel
             </button>
 
-            <label>
+            <label htmlFor="name">
               <input
                 className="InputName"
                 type="text"
+                id="name"
+                name="name"
                 value={this.state.name}
                 onChange={this.handleChangeName.bind(this)}
                 placeholder={this.state.me.name}
@@ -147,10 +161,12 @@ export default class Friend extends Component {
               />
             </label>
 
-            <label>
+            <label htmlFor="age">
               <input
                 className="InputAge"
                 type="text"
+                id="age"
+                name="age"
                 value={this.state.age}
                 onChange={this.handleChangeAge.bind(this)}
                 placeholder={`Age: ${this.state.me.age}`}
@@ -158,10 +174,12 @@ export default class Friend extends Component {
               />
             </label>
 
-            <label>
+            <label htmlFor="email">
               <input
                 className="InputEmail"
                 type="text"
+                id="email"
+                name="email"
                 value={this.state.email}
                 onChange={this.handleChangeEmail.bind(this)}
                 placeholder={`Email: ${this.state.me.email}`}
