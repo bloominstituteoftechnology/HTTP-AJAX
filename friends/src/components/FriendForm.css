@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.name {
+  display: flex;
+}
+
+.age {
+  display: flex;
+}
+
+.email {
+  display: flex;
+}
+
+input {
+  margin-left: 10px;
+}
+
+.age > input {
+  margin-left: 24px;
+}
+
+.email > input {
+  margin-left: 13px;
+}
+
+.submit {
+  margin-left: 172px;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
