@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+//components
 import FriendsList from './components/FriendsList/FriendsList';
+import FriendPage from './components/FriendPage/FriendPage';
 import './App.css';
 
 class App extends Component {
@@ -7,9 +11,12 @@ class App extends Component {
     return (
       <div>
         <h1>navbar</h1>
-        <h1>App</h1>
-        <FriendsList />
-        <p>some stuff</p>
+        <Router>
+          <Switch>
+            <Route path='/friend/:id' component={FriendPage} />
+            <Route path='/' component={FriendsList} />
+          </Switch>
+        </Router>
       </div>
     )
   }

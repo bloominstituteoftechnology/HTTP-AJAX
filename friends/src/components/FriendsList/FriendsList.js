@@ -94,14 +94,15 @@ class FriendsList extends Component {
       .then(res => { this.setState({ friends: res.data })})
   }
 
+
   render() {
     return(
       <div>
         <h1>FriendsList</h1>
         <form onSubmit={this.addNewFriend}>
-          <input placeholder='Name' onChange={this.handleInputChange} name='name'></input>
-          <input placeholder='Age' onChange={this.handleInputChange} name="age"></input>
-          <input placeholder='Email' onChange={this.handleInputChange} name="email"></input>
+          <input type="string" placeholder='Name' onChange={this.handleInputChange} name='name' required></input>
+          <input type='number' placeholder='Age' onChange={this.handleInputChange} name="age" required></input>
+          <input type='email' placeholder='Email' onChange={this.handleInputChange} name="email" required></input>
           <button onClick={this.addNewFriend}>Add</button>
         </form>
         <Friend friends={this.state.friends} removeFriend={this.removeFriend}/>
