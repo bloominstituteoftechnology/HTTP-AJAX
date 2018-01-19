@@ -78,7 +78,7 @@ export default class Friend extends Component {
     me.age = Number(this.state.age);
     me.email = this.state.email;
 
-    console.log(this.props.match.params.id);
+    // console.log(this.props.match.params.id);
 
     axios
       .put(`http://localhost:5000/friends/${this.props.match.params.id}`, {
@@ -113,10 +113,10 @@ export default class Friend extends Component {
     axios
       .delete(`http://localhost:5000/friends/${this.props.match.params.id}`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
   }
 
