@@ -15,10 +15,11 @@ class FriendsList extends Component {
       }
     }
     this.addNewFriend = this.addNewFriend.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleAgeChange = this.handleAgeChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    // this.handleNameChange = this.handleNameChange.bind(this);
+    // this.handleAgeChange = this.handleAgeChange.bind(this);
+    // this.handleEmailChange = this.handleEmailChange.bind(this);
     this.removeFriend = this.removeFriend.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
@@ -28,45 +29,39 @@ class FriendsList extends Component {
       .catch(err => { console.log(err) })
   }
 
-  handleNameChange(event) {
-    const newFriendName = event.target.value;
-    this.setState({
-      newFriend: {
-        name: newFriendName,
-        age: this.state.newFriend.age,
-        email: this.state.newFriend.email,
-      }
-    })
-  }
-
-  handleAgeChange(event) {
-      const newFriendAge = event.target.value;
-      this.setState({
-        newFriend: {
-          name: this.state.newFriend.name,
-          age: newFriendAge,
-          email: this.state.newFriend.email,
-        }
-      })
-  }
-  removeFriend(event) {
-    const id = event.target.id;
-    const endpoint = 'http://localhost:5000/friends';
-    axios.delete(endpoint + '/' + id)
-      .then(res => { this.setState({ friends: res.data })})
-  }
-
-  handleEmailChange(event) {
-    const newFriendEmail = event.target.value;
-    this.setState({
-      newFriend: {
-        name: this.state.newFriend.name,
-        age: this.state.newFriend.age,
-        email: newFriendEmail,
-      }
-    })
-  }
-
+  // handleNameChange(event) {
+  //   const newFriendName = event.target.value;
+  //   this.setState({
+  //     newFriend: {
+  //       name: newFriendName,
+  //       age: this.state.newFriend.age,
+  //       email: this.state.newFriend.email,
+  //     }
+  //   })
+  // }
+  //
+  // handleAgeChange(event) {
+  //     const newFriendAge = event.target.value;
+  //     this.setState({
+  //       newFriend: {
+  //         name: this.state.newFriend.name,
+  //         age: newFriendAge,
+  //         email: this.state.newFriend.email,
+  //       }
+  //     })
+  // }
+  //
+  // handleEmailChange(event) {
+  //   const newFriendEmail = event.target.value;
+  //   this.setState({
+  //     newFriend: {
+  //       name: this.state.newFriend.name,
+  //       age: this.state.newFriend.age,
+  //       email: newFriendEmail,
+  //     }
+  //   })
+  // }
+  //
   addNewFriend(event) {
     event.preventDefault();
     const endpoint = 'http://localhost:5000/friends';
@@ -83,14 +78,30 @@ class FriendsList extends Component {
     });
   }
 
+  handleInputChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    const newFriend = this.state.newFriend;
+    newFriend[name] = value;
+    this.setState({ newFriend, })
+
+  }
+
+  removeFriend(event) {
+    const id = event.target.id;
+    const endpoint = 'http://localhost:5000/friends';
+    axios.delete(endpoint + '/' + id)
+      .then(res => { this.setState({ friends: res.data })})
+  }
+
   render() {
     return(
       <div>
         <h1>FriendsList</h1>
-        <form onSubmit={this.addNewFriend.bind(this)}>
-          <input placeholder='Name' onChange={this.handleNameChange}></input>
-          <input placeholder='Age' onChange={this.handleAgeChange}></input>
-          <input placeholder='Email' onChange={this.handleEmailChange}></input>
+        <form onSubmit={this.addNewFriend}>
+          <input placeholder='Name' onChange={this.handleInputChange} name='name'></input>
+          <input placeholder='Age' onChange={this.handleInputChange} name="age"></input>
+          <input placeholder='Email' onChange={this.handleInputChange} name="email"></input>
           <button onClick={this.addNewFriend}>Add</button>
         </form>
         <Friend friends={this.state.friends} removeFriend={this.removeFriend}/>

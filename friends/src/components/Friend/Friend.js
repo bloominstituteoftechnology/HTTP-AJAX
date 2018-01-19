@@ -6,7 +6,7 @@ const Friend = (props) => {
     <div>
       <h1>Friend Component</h1>
       <ul>
-        {props.friends.map((friend, i) => {
+        {props.friends.map(friend => {
           return <li key={friend.id}>
             <h3>{friend.name}</h3>
             <h4>{friend.age}</h4>
