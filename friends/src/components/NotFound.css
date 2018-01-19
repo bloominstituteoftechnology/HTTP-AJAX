@@ -1,0 +1,11 @@
+.NotFound__text {
+	text-align: center;
+}
+
+.GoHome {
+	text-decoration: none;
+	text-align: center;
+
+	display: flex;
+	justify-content: center;
+}

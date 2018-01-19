@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import './Friend.css';
@@ -11,6 +12,7 @@ export default class Friend extends Component {
     age: '',
     email: '',
     isEditing: false,
+    confirmDelete: false,
   };
 
   componentDidMount() {
@@ -29,11 +31,11 @@ export default class Friend extends Component {
 
   findMeAmong(friends) {
     friends.forEach(friend => {
-      console.log(friend.id);
-      console.log(this.props.match.params.id);
-      console.log(friend.id === Number(this.props.match.params.id));
+      // console.log(friend.id);
+      // console.log(this.props.match.params.id);
+      // console.log(friend.id === Number(this.props.match.params.id));
       if (friend.id === Number(this.props.match.params.id)) {
-        console.log(this.state.me);
+        // console.log(this.state.me);
         this.setState({ me: { ...friend } });
         // this.setState({
         //   name: friend.name,
@@ -97,6 +99,25 @@ export default class Friend extends Component {
       email: '',
       isEditing: false,
     });
+  }
+
+  deleteFriendButtonPressed() {
+    this.setState({ confirmDelete: true });
+  }
+
+  cancelDelete() {
+    this.setState({ confirmDelete: false });
+  }
+
+  deleteFriend(event) {
+    axios
+      .delete(`http://localhost:5000/friends/${this.props.match.params.id}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -171,6 +192,29 @@ export default class Friend extends Component {
               this.state.me.email
             }`}</div>
           </div>
+        )}
+
+        {this.state.confirmDelete ? (
+          <div className="DeleteButtons">
+            <button
+              className="CancelButton"
+              onClick={this.cancelDelete.bind(this)}
+            >
+              cancel
+            </button>
+
+            <br />
+
+            <NavLink to="/">
+              <button onClick={this.deleteFriend.bind(this)}>
+                confirm delete
+              </button>
+            </NavLink>
+          </div>
+        ) : (
+          <button onClick={this.deleteFriendButtonPressed.bind(this)}>
+            delete friend
+          </button>
         )}
       </div>
     );

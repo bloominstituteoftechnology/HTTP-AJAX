@@ -56,7 +56,11 @@
 	padding-top: 8px;
 }
 
-.EditButton {
-	/*	position: absolute;
-	top: 165px;*/
+.DeleteButtons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.CancelButton {
 }
