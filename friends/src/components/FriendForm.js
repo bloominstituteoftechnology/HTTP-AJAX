@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
-import './FriendForm.css'
+import './Friends.css';
 
-class NewFriend extends React.Component {
-  state = {
-    friends: [],
-    newName: '',
-    newAge: '',
-    newEmail: '',
-  };
+export default class FriendForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      friends: [],
+      newName: '',
+      newAge: null,
+      newEmail: '',
+    };
+  }
 
   componentDidMount() {
     const endpoint = 'http://localhost:5000/friends';
@@ -40,7 +44,7 @@ class NewFriend extends React.Component {
     const newFriend = {
       name: this.state.newName,
       age: this.state.newAge,
-      email: this.state.newEmail,
+      email: this.state.newEmail
     };
     this.setState({ newName: '', newAge: '', newEmail: '' });
     axios
@@ -55,40 +59,43 @@ class NewFriend extends React.Component {
 
   render() {
     return (
-    <div>
-    <div className="friend-title">Lambda Friends</div>
-    <div className="form">
-        <form>
-          <label className="name">
-            Name:
-            <input type="text" value={this.state.newName} onChange={this.handleNameChange} placeholder="Name" />
-          </label>
-          <label className="age">
-            Age:
-            <input type="text" value={this.state.newAge} onChange={this.handleAgeChange} placeholder="Age" />
-          </label>
-          <label className="email">
-            Email:
-            <input type="text" value={this.state.newEmail} onChange={this.handleEmailChange} placeholder="Email" />
-          </label>
-          <button className="submit" onClick={this.handleSubmit}>Submit</button>
-        </form>
-      </div>
       <div>
-        
-        
-        <ul className="friend-grid">
-          {this.state.friends.map(friend => {
-            return <li key={friend.id} className="friend">
-                <div className="friend-name">{friend.name}</div>
-                <div className="friend-age">{`Age: ${friend.age}`}</div>
-                <div className="friend-email">{`Email: ${friend.email}`}</div>
-              </li>;
-          })}
-        </ul>
+        <div className="friend-title">Lambda Friends</div>
+        <div className="form">
+          <form>
+            <label className="name">
+              Name:
+              <input
+                type="text"
+                value={this.state.newName}
+                onChange={this.handleNameChange}
+                placeholder="Name"
+              />
+            </label>
+            <label className="age">
+              Age:
+              <input
+                type="text"
+                value={this.state.newAge}
+                onChange={this.handleAgeChange}
+                placeholder="Age"
+              />
+            </label>
+            <label className="email">
+              Email:
+              <input
+                type="text"
+                value={this.state.newEmail}
+                onChange={this.handleEmailChange}
+                placeholder="Email"
+              />
+            </label>
+            <button className="submit" onClick={this.handleSubmit}>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-        </div>);
+    );
   }
 }
-
-export default NewFriend;
