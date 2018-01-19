@@ -22,11 +22,11 @@ input {
 }
 
 .age > input {
-  margin-left: 24px;
+  margin-left: 23px;
 }
 
 .email > input {
-  margin-left: 13px;
+  margin-left: 11px;
 }
 
 .submit {
