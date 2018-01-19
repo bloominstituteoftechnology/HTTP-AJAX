@@ -35,23 +35,21 @@ class FriendList extends Component {
 		const info = this.state.value;
 		const endpoint = 'http://localhost:5000/friends';
 
-		alert('Friend Added ' + info);
+		const infoArr = info.split(' ');
 		const data = {
-			name: info,
-			age: info,
-			email: info
+			name: infoArr[0],
+			age: infoArr[1],
+			email: infoArr[2]
 		};
 
 		axios
 			.post(endpoint, data)
 			.then(response => {
-				console.log("Post response", response);
+				alert('Friend Added ' + info);
 			})
 			.catch(() => {
 				console.log('There was an error posting');
 			});
-
-		event.preventDefault();
 	}
 
 	render() {
@@ -62,8 +60,9 @@ class FriendList extends Component {
 				<div className="friend-form">
 					<form onSubmit={this.handleSubmit}>
 						<label>
-							Name:
-							<input type="text" value={this.state.value} onChange={this.handleChange} />
+							Add Friend:
+							<input type="text" placeholder="Name Age Email" value={this.state.value}
+								onChange={this.handleChange} />
 						</label>
 						<input type="submit" value="Submit" />
 					</form>
