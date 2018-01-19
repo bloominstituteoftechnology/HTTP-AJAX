@@ -1,0 +1,8 @@
+li {
+  width: 33vh;
+  list-style-type: none;
+}
+ul {
+  display: flex;
+  flex-flow: row wrap;
+}
