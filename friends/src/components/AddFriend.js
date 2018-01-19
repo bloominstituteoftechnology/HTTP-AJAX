@@ -62,6 +62,11 @@ class AddFriend extends React.Component {
 
   render() {
     // console.log(this.state.serverResponse);
+    const friend = this.state.serverResponse.data
+      ? this.state.serverResponse.data[
+          this.state.serverResponse.data.length - 1
+        ]
+      : null;
     return (
       <div className="AddFriendFormContainer">
         <form className="AddFriendForm" onSubmit={this.handleSubmit}>
@@ -103,12 +108,17 @@ class AddFriend extends React.Component {
         <div>
           {this.state.serverResponse.status === 201 ? (
             <div className="ServerResponseContainer">
-              {`Your friend ${
-                this.state.serverResponse.data[
-                  this.state.serverResponse.data.length - 1
-                ].name
-              } was added as a friend!`}
+              {`Your friend ${friend.name} was added as a friend!`}
               <br />
+
+              <NavLink to={`/friend/${friend.id}`} className="FriendNavLink">
+                <li className="friend">
+                  <div className="friend-name">{friend.name}</div>
+                  <div className="friend-age">{`Age: ${friend.age}`}</div>
+                  <div className="friend-email">{`Email: ${friend.email}`}</div>
+                </li>
+              </NavLink>
+
               <br />
               <NavLink to="/friends">View all your friends.</NavLink>
             </div>

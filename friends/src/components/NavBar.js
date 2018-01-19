@@ -16,7 +16,7 @@ export default class NavBar extends React.Component {
         </NavLink>
 
         <NavLink to="/add-friend" className="NavBar__item">
-          Add friends
+          Add friend
         </NavLink>
       </div>
     );
