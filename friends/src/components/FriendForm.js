@@ -4,27 +4,28 @@ import axios from 'axios';
 export default class FriendForm extends React.Component {
 	state = {
 			name: '',
-			age: null,
-			email: ''
+			age: '',
+			email: '',
 	};
 
-	handleInputChange = (event) => {
+	handleInputChange = event => {
 		const { name, value } = event.target;
-		this.setSate = ({ [name]: value
-	}
+		this.setState({ [name]: value });
+	};
 
-	handleSubmit = (event) => {
+	handleSubmit = event => {
 		event.preventDefault();
 
 		axios
 			.post('http://localhost:5000/friends', this.state)
 			.then((response => {
+				this.props.refresh();
 				this.setState({ name: '', age: '', email: '' });
 			}))
 			.catch(() => {
 				console.error('Could not find the friend');
 			});
-	}
+	};
 
 	render () {
 		return (
@@ -49,7 +50,7 @@ export default class FriendForm extends React.Component {
 
 				<label htmlFor="email">Email</label>
 				<input
-					type="text"
+					type="email"
 					id="email"
 					name="email"
 					value={this.state.email}
