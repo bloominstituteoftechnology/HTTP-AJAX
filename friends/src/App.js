@@ -6,6 +6,7 @@ const StyledDiv = styled.div`
   max-width: 800px;
   min-width: 500px;
   margin: 0 auto;
+  padding: 20px;
   background-color: lightgray;
   text-align: center;
 `;

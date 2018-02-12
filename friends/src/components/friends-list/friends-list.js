@@ -3,6 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
+  h1 {
+    margin-top: 0;
+  }
   ul {
     padding-left: 0;
     list-style: none;
@@ -31,7 +34,31 @@ const StyledDiv = styled.div`
 class FriendsList extends Component {
   state = {
     friends: [],
-    length: 0,
+    name: 'name',
+    age: 100,
+    email: 'email',
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post('http://localhost:5000/friends', {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    })
+      .then(res => {
+      console.log('res');
+      this.setState({
+        name: '',
+        age: '',
+        email: '',
+      }, () => console.log(this.state));
+    })
+    .catch(error => {
+      alert('There was an error: ', error);
+    });
+
   };
 
   render() {
@@ -50,11 +77,11 @@ class FriendsList extends Component {
           )
         })}
         <h1>Post New Friend</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input className='field' type='text' placeholder='Name' />
           <input className='field' type='text' placeholder='Age' />
           <input className='field' type='text' placeholder='Email' />
-          <input className='submit' type='submit' value='Submit Request' />
+          <button className='submit' type='submit'>Submit</button>
         </form>
       </StyledDiv>
     );
@@ -65,8 +92,7 @@ class FriendsList extends Component {
       .get('http://localhost:5000/friends')
       .then(res => {
         const friends = res.data;
-        this.setState({ friends: friends, length: friends.length });
-        console.log(this.state);
+        this.setState({ friends: friends });
       })
       .catch(error => {
         alert('There was an error:', error);
@@ -74,4 +100,4 @@ class FriendsList extends Component {
   }
 }
 
-  export default FriendsList;
+export default FriendsList;
