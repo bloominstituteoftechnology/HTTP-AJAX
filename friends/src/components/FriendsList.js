@@ -24,7 +24,7 @@ class FriendsList extends Component {
               <li key={friend.id} className="friend">
                 <p className="friend-name">{friend.name}</p>
                 <p className="friend-age">{`Age: ${friend.age}`}</p>
-                <p className="friend-email">{`Email: ${friend.name}`}</p>
+                <p className="friend-email">{`Email: ${friend.email}`}</p>
               </li>
             );
           })}
