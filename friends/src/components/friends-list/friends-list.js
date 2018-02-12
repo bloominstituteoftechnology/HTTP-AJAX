@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
-  
+
 `;
 
 class FriendsList extends Component {
