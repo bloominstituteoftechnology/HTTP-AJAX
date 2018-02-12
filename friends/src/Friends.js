@@ -24,9 +24,9 @@ class Friends extends React.Component {
           })}
           <li>
             <form onSubmit={this.submitFriend}>
-              <input type="text" value={this.state.newFriendName} placeholder="Name"/>
-              <input type="text" value={this.state.newFriendAge} placeholder="Age"/>
-              <input type="text" value={this.state.newFriendEmail} placeholder="Email"/>
+              <input type="text" value={this.state.newFriendName} placeholder="Name" onChange={this.handleNameChange}/>
+              <input type="text" value={this.state.newFriendAge} placeholder="Age" onChange={this.handleAgeChange}/>
+              <input type="text" value={this.state.newFriendEmail} placeholder="Email" onChange={this.handleEmailChange}/>
               <button type="submit">Add Friend</button>
             </form>
           </li>
@@ -34,6 +34,10 @@ class Friends extends React.Component {
       </div>
     );
   }
+
+  handleEmailChange = event => {this.setState({ newFriendName: event.target.value })};
+  handleAgeChange = event => {this.setState({ newFriendAge: event.target.value })};
+  handleNameChange = event => {this.setState({ newFriendEmail: event.target.value })};
 
   submitFriend = event => {
     event.preventDefault();
