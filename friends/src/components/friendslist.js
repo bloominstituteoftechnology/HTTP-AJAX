@@ -4,21 +4,13 @@ import axios from 'axios';
 class FriendsList extends Component {
   state = {
     friends: [],
-    loading: false,
-    noData: true
   };
 
   render() {
-    if (this.state.loading && this.state.noData) {
-      //will this run
-    }
     
     return (
       <div>
         <div className="friend-title">Lambda Friends</div>
-        { this.state.loading && <div>Loading Friends...</div>}
-
-        { !this.state.loading && <ul className="friend-grid">
           {this.state.friends.map(friend => {
             return (
               <li key={friend.id} className="friend">
@@ -28,22 +20,21 @@ class FriendsList extends Component {
               </li>
             );
           })}
-        </ul>}
+
       </div>
     );
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
      axios
       .get('http://localhost:5000/friends')
       .then(response => {
-      this.setState({friends: response.data, loading: false});
+        console.log(response.data);
+      this.setState({friends: response.data});
       })
       .catch(error => {
-        this.setState({ loading: false});
-        console.log('there was error', error)
-      });
+        console.log('there was error', error);
+      })
   }
 }
 
