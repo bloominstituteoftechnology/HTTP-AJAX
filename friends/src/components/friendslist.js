@@ -11,7 +11,7 @@ class FriendsList extends Component {
     return (
       <div>
         <div className="friend-title">Lambda Friends</div>
-          {this.state.friends.map(friend => {
+          <ul>{this.state.friends.map(friend => {
             return (
               <li key={friend.id} className="friend">
                 <div className="friend-name">{friend.name}</div>
@@ -20,7 +20,7 @@ class FriendsList extends Component {
               </li>
             );
           })}
-
+          </ul>
       </div>
     );
   }
