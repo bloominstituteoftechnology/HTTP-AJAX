@@ -10,7 +10,6 @@ class FriendsList extends Component {
     friends: [],
     loading: true,
     noData: true,
-    newFriend: '',
   };
 
   componentDidMount() {
@@ -33,7 +32,8 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
-        <AddFriend />
+        <AddFriend
+        />
       <div>
         <div className="friend-title">Friends</div>
         {this.state.loading && <div>Loading Friends...</div>}
