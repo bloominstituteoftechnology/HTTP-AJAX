@@ -14,10 +14,22 @@ class FriendsList extends Component {
       console.log('there was an error', error);
     });
   }
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
   render() {
     return (
       <div>
         <h2 className="friend-title">Lambda Friends</h2>
+        <form className="friendForm" onSubmit={this.handleSubmit}>
+          <label htmlFor="input-name">Name</label>
+          <input type="text" id="input-name" />
+          <label htmlFor="input-age">Age</label>
+          <input type="number" id="input-age" />
+          <label htmlFor="input-email">Email</label>
+          <input type="email" id="input-email" />
+          <input type="submit" value="Submit" />
+        </form>
         <ul className="friend-card">
           {this.state.friends.map(friend => {
             return (
