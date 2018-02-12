@@ -12,7 +12,7 @@ class FriendsList extends Component {
     return (
       <ul className="friends__list">
         {this.state.friends.map(friend => {
-          return <Friend key={friend.name} friend={friend} />
+          return <Friend key={friend.id} friend={friend} />
         })}
       </ul>
     )
