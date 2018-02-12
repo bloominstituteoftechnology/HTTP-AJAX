@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Friend from '../Friend/Friend.js';
 
 class FriendsList extends Component {
   state = {
