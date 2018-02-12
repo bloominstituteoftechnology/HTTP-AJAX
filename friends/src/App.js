@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
   render() {
@@ -15,6 +16,16 @@ class App extends Component {
         </p>
       </div>
     );
+  }
+  componentWillMount() {
+    axios
+    .get('https://localhost:5000/friends')
+    .then(response => {
+      this.setState({friends: response.date})
+    })
+    .catch(error => {
+      console.log('There was an error', error)
+    })
   }
 }
 
