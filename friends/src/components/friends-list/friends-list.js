@@ -15,13 +15,15 @@ class FriendsList extends Component {
     return (
       <StyledDiv>
         <h1>Friends</h1>
-        {this.state.friends.map(val => {
+        {this.state.friends.map((val, index) => {
           return (
-            <ul>
-              <li>{val.name}</li>
-              <li>{val.age}</li>
-              <li>{val.email}</li>
-            </ul>
+            <div key={index}>
+              <ul>
+                <li>{val.name}</li>
+                <li>{val.age}</li>
+                <li>{val.email}</li>
+              </ul>
+            </div>
           )
         })}
       </StyledDiv>
@@ -43,4 +45,3 @@ class FriendsList extends Component {
 }
 
   export default FriendsList;
-  
