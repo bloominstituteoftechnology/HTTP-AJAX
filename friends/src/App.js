@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import AddFriend from './Components/AddFriend';
 import ListFriends from './Components/ListFriends';
 
 class App extends Component {
   state = {
     friends:[],
+    newFriend: {
+      id: 99,
+      name: '...',
+      age: '...',
+      email: '...',
+    },
   };
 
   render() {
     console.log(this.state);
     return (
       <div className="App">
-        <form>Add New Friends</form>
+        <AddFriend newFriend={this.state.newFriend}/>
         <ListFriends friends={this.state.friends}/>
       </div>
     );
