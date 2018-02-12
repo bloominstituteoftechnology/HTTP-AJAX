@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Friend from './Friend';
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -10,19 +11,33 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ul>
+        <div>
           {this.state.friends.map(friend => {
             return <Friend 
               friend={friend}
             />
           })}
-        </ul>
+        </div>
+        <form>
+          <input type='text' placeholder='Name' />
+          <input type='text' placeholder='Age' />
+          <input type='text' placeholder='Email' />
+          <button />
+        </form>
       </div>
     );
   }
 
   componentDidMount() {
-
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({ friends: response.data })
+        console.log(response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
   }
 }
 
