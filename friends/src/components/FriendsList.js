@@ -2,8 +2,26 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class FriendsList extends Component {
+  state = {
+    friends: []
+  };
   render() {
-    return <h1>FriendsList</h1>
+    return (
+      <div>
+        <h2 className="friend-title">Lambda Friends</h2>
+        <ul className="friend-card">
+          {this.state.friends.map(friend => {
+            return (
+              <li key={friend.id} className="friend">
+                <p className="friend-name">{friend.name}</p>
+                <p className="friend-age">{`Age: ${friend.age}`}</p>
+                <p className="friend-email">{`Email: ${friend.name}`}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
   }
 }
 
