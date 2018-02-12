@@ -5,6 +5,15 @@ class FriendsList extends Component {
   state = {
     friends: []
   };
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends')
+    .then((response) => {
+      this.setState({ friends: response.data });
+    })
+    .catch(error => {
+      console.log('there was an error', error);
+    });
+  }
   render() {
     return (
       <div>
