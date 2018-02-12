@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import Friend from './friend';
+import Friend from './friend';
+// import Form from './form';
 
 class FriendsList extends Component {
   state = {
@@ -13,15 +14,13 @@ class FriendsList extends Component {
      <ul>
        {this.state.friends.map((friend) => {
          return (
-           <li key={friend.id}>
-            <div>{friend.name}</div>
-            <div>{friend.age}</div>
-            <div>{friend.email}</div>
-           </li>
+           <div key={friend.id} style={{ border: '1px solid black'}}>
+           <Friend friend={friend}/>
+           </div>
          )
        })}
      </ul>
-
+     {/* <Form /> */}
    </div>
     )
   }
@@ -36,6 +35,7 @@ class FriendsList extends Component {
     .catch((error) => {
       console.log('Error: ${error}')
     })
+
   }
 }
 
