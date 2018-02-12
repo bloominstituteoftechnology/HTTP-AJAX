@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './FriendForm.css';
 
 class FriendForm extends Component {
   state = {
@@ -36,7 +37,7 @@ class FriendForm extends Component {
       <form type='submit' onSubmit={this.addFriend}>
         <input 
           type='text'
-          className='form__name-input' 
+          className='form__input' 
           value={this.state.name}
           placeholder='Name'
           onChange={this.updateFriend}
@@ -44,7 +45,7 @@ class FriendForm extends Component {
         />
         <input 
           type='text'
-          className='form__age-input' 
+          className='form__input' 
           value={this.state.age}
           placeholder='Age'
           onChange={this.updateFriend}
@@ -52,13 +53,13 @@ class FriendForm extends Component {
         />
         <input
           type='text'
-          className='form__email-input' 
+          className='form__input' 
           value={this.state.email}
           placeholder='Email'
           onChange={this.updateFriend}
           name='email'
         />
-        <input type='submit' value='submit' />
+        <input type='submit' value='submit' className='form__button' />
       </form>
     </div>
     )
