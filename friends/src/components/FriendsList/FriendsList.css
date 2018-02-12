@@ -1,0 +1,11 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.friends__list {
+  max-width: 1000px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}

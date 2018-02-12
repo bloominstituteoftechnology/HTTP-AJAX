@@ -1,0 +1,25 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.friend {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+  border: 1px solid black;
+  margin: 25px;
+  padding: 15px;
+  height: 100px;
+  width: 200px;
+}
+
+.friend__name {
+  font-weight: bold;
+}
+
+.friend__email {
+  font-style: italic;
+}
