@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import Friends from './Friends';
 
 class App extends Component {
   state = {
@@ -11,15 +10,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Friends name={this.state.friends.name} age={this.state.friends.name} eMail={this.state.friends.email}/>
+      <ul>
+        {this.state.friends.map(friend => { return(
+          <li key = {friend.email}>
+            <div>Name: {friend.name}</div>
+            <div>Age: {friend.age}</div>
+            <div>E-Mail: {friend.email}</div>
+          </li>
+      )  })}
+      </ul>
       </div>
     );
   }
   componentWillMount() {
     axios
-    .get('https://localhost:5000/friends')
+    .get('http://localhost:5000/friends')
     .then(response => {
-      this.setState({friends: response.date})
+      this.setState({friends: response.data})
     })
     .catch(error => {
       console.log('There was an error', error)
