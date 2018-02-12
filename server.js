@@ -46,6 +46,12 @@ let friends = [
     age: 47,
     email: 'luis@lambdaschool.com',
   },
+  {
+    id: 7,
+    name: 'Testcase',
+    age: 0,
+    email: 'nope',
+  },
 ];
 
 app.use(cors());
