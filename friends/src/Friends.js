@@ -51,6 +51,17 @@ class Friends extends React.Component {
 
     this.setState({ friendList: newFriend, newFriendName: '', newFriendAge: 0, newFriendEmail: ''});
   };
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({ friendList: response.data });
+      })
+      .catch(error => {
+        console.log("ahhhhh, the error is here!:", error);
+      });
+  }
 }
 
 export default Friends;
