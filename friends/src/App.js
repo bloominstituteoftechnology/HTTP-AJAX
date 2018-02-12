@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import AddFriend from './components/AddFriend.js';
 import axios from 'axios';
 
 class App extends Component {
@@ -18,6 +19,9 @@ class App extends Component {
             </li>
           )
         })}
+        <div>
+          <AddFriend />
+        </div>
       </div>
     );
   }
