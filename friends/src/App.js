@@ -6,6 +6,12 @@ import './App.css';
 class App extends Component {
   state = {
     friends: [],
+    newFriend: {
+      id: '',
+      name: '',
+      age: '',
+      email: '',
+    },
   }
   
   render() {
@@ -19,6 +25,12 @@ class App extends Component {
             />;
           })}
         </div>
+        <form>
+          <input type="text" onChange={this.handleNewFriend} name="Name Here" />
+          <input type="text" onChange={this.handleNewFriend} age="Age Here" />
+          <input type="text" onChange={this.handleNewFriend} email="Email Here" />
+          <input type="submit" value="Add Friend" />
+        </form>
       </div>
     );
   }
