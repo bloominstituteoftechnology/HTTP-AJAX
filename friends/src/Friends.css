@@ -1,0 +1,13 @@
+
+li {
+  background: slategray;
+  border: 1px solid slateblue;
+  height: 75px;
+  list-style: none;
+}
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
