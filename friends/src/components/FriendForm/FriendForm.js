@@ -35,6 +35,7 @@ class FriendForm extends Component {
     return (
       <div className='friend__form'>
       <form type='submit' onSubmit={this.addFriend}>
+        <div className='form__text'>Add a new Friend!</div>
         <input 
           type='text'
           className='form__input' 

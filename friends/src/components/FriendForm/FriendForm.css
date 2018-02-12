@@ -9,6 +9,10 @@ form {
   align-items: center;
 }
 
+.form__text {
+  padding-top: 15px;
+}
+
 .form__input {
   height: 30px;
   width: 200px;
