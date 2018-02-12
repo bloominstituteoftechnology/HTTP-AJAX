@@ -19,19 +19,24 @@ class App extends Component {
     };
 
     onSubmit = event => {
-        const { name, age, email } = this.state;
+        if (this.state.name && this.state.age && this.state.email) {
+            const { name, age, email } = this.state;
 
-        axios
-            .post('http://localhost:5000/friends', {
-                name,
-                age,
-                email,
-            })
-            .then(result => {
-                console.log('success', result);
-            }).catch(error => {
-              console.log('error', error);
-            });
+            axios
+                .post('http://localhost:5000/friends', {
+                    name,
+                    age,
+                    email,
+                })
+                .then(result => {
+                    console.log('success', result);
+                }).catch(error => {
+                    console.log('error', error);
+                });
+        } else {
+            alert('Please complete required fields'); // probably a better way to handle this without using an alert
+        }
+
     };
 
     getFriends = () => {
