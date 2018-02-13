@@ -16,15 +16,15 @@ class Friends extends React.Component {
         <ul className="list">
           <li className="list__input">
             <form onSubmit={this.submitFriend} className="list__form">
-              <input type="text" value={this.state.newFriendName} placeholder="Name" onChange={this.handleNameChange}/>
-              <input type="number" value={this.state.newFriendAge} placeholder="Age" onChange={this.handleAgeChange}/>
-              <input type="text" value={this.state.newFriendEmail} placeholder="Email" onChange={this.handleEmailChange}/>
+              <input type="text" name="newFriendName" value={this.state.newFriendName} placeholder="Name" onChange={this.handleChange}/>
+              <input type="number" name="newFriendAge" value={this.state.newFriendAge} placeholder="Age" onChange={this.handleChange}/>
+              <input type="email" name="newFriendEmail" value={this.state.newFriendEmail} placeholder="Email" onChange={this.handleChange}/>
               <button type="submit">Add Friend</button>
             </form>
           </li>
           {this.state.friendList.map((friend,i) => {
             return(
-              <li className="list__item" key={i+'b'}>
+              <li className="list__item" key={friend.id}>
                 <div><b>Name:</b> {friend.name}</div>
                 <div><b>Age:</b> {friend.age}</div>
                 <div><b>E-mail:</b> {friend.email}</div>
@@ -36,9 +36,9 @@ class Friends extends React.Component {
     );
   }
 
-  handleEmailChange = event => {this.setState({ newFriendEmail: event.target.value })};
-  handleAgeChange = event => {this.setState({ newFriendAge: event.target.value })};
-  handleNameChange = event => {this.setState({ newFriendName: event.target.value })};
+  handleChange = event => {
+    console.log('hello');
+    this.setState({ [event.target.name]: event.target.value })};
 
   submitFriend = event => {
     const newFriend = {
