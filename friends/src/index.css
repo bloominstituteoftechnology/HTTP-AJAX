@@ -55,3 +55,7 @@ li {
   font-size: 0.8rem;
   padding-top: 8px;
 }
+
+.input__field {
+  width: 100px;
+}
