@@ -19,8 +19,7 @@ class Friends extends Component {
     render() {
         return (
         <div>
-            <AddFriend
-            />
+            <AddFriend />
             <div>
                 <div className="friend-title">Friends</div>
                 {this.state.loading && <div>Loading Friends...</div>}
@@ -30,9 +29,9 @@ class Friends extends Component {
                     {this.state.friends.map(friend => {
                         return (
                         <li key={friend.id} className="friend">
-                        <div className="friend-name">{friend.name}</div>
-                        <div className="friend-age">{`Age: ${friend.age}`}</div>
-                        <div className="friend-email">{`Email: ${friend.email}`}</div>
+                        <div className="friend-name">Name: {friend.name}</div>
+                        <div className="friend-age">Age: {friend.age}</div>
+                        <div className="friend-email">Email: {friend.email}</div>
                         </li>
                         );
                     })}

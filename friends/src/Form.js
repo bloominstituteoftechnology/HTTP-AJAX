@@ -21,10 +21,13 @@ class Friend extends Component {
         e.preventDefault();
         // get our form data out of state
         const { name, age, email } = this.state;
-
-        axios.post('/', { name, age, email })
-          .then((result) => {
+        axios.post('http://localhost:5000/friends', { name, age, email })
+          .then(result => {
             //access the results here....
+ +          console.log('Result: ', result);
+          })
+          .catch(error => {
+            console.log('Error: ', error);
           });
       }
 
