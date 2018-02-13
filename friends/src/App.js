@@ -5,7 +5,7 @@ import FriendsList from './components/friends-list';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{margin: '50px'}}>
         <FriendsList />
       </div>
     );
