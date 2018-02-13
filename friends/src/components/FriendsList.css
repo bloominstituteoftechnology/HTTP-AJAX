@@ -1,0 +1,10 @@
+.friend-card {
+  list-style: none;
+}
+
+.friend-card li {
+  display: inline-block;
+  padding: 10px;
+  margin: 20px 10px;
+  border: 1px solid #000;
+}
