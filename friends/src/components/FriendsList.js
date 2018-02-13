@@ -8,7 +8,6 @@ class FriendsList extends Component {
   nextId = 8;
   state = {
     friends: [],
-    loading: true,
     noData: true,
   };
 
@@ -25,7 +24,7 @@ class FriendsList extends Component {
     axios
     .get('http://localhost:5000/friends')
     .then(response => {
-      this.setState({ friends: response.data, loading: false });
+      this.setState({ friends: response.data });
     })
     .catch(error => {
       this.setState({ loading: false });
@@ -48,9 +47,6 @@ class FriendsList extends Component {
         <AddFriend updateFriends={this.getFriends}/>
       <div>
         <div className="friend-title">Friends</div>
-        {this.state.loading && <div>Loading Friends...</div>}
-
-        {!this.state.loading && (
         <ul className="friend-grid">
           {this.state.friends.map(friend => {
             return (
@@ -63,7 +59,6 @@ class FriendsList extends Component {
             );
           })}
         </ul>
-        )}
       </div>
     </div>
     );
