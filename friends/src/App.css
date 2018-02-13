@@ -1,0 +1,46 @@
+.App {
+text-align: center;
+display: flex;
+flex-wrap: wrap;  
+}
+
+ .friend {
+  width: 200px;
+  height: 100px;
+  background: white;
+  border-radius: 3px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+div {
+  padding: 5px;
+}
+.friend-email {
+  font-size: 12px;
+}
+
+&:hover {
+  background: rgba(0, 0, 0, 0.2);
+ } 
+} 
+.add-friend {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+  form {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
+  } 
+}
+
+ 
