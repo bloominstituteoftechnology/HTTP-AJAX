@@ -23,7 +23,7 @@ class App extends Component {
     axios
       .post('http://localhost:5000/friends', newFriend)
       .then(res => {
-        this.setState({name:'',age:'',email:''});
+        this.setState({friends: res.data, name:'',age:'',email:''});
       })
       .catch(error => {
           console.log(error);

@@ -4,9 +4,9 @@ import React from 'react';
 function FriendList(props) {
   return( 
     <div> 
-      {props.obj.map(friend => {
+      {props.obj.map(friend=> {
     return( 
-      <div className="friend-list">
+      <div className="friend-list" key={friend.id}>
         <div className='friend-name'>{friend.name}</div>
         <div className='friend-age'>{`Age: ${friend.age}`}</div>
         <div className='friend-email'>{`Email: ${friend.email}`}</div>
