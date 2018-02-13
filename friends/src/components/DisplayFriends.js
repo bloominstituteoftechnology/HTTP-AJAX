@@ -1,34 +1,27 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class DisplayFriends extends Component {
-  state = {
-    friends: [],
-  }
-  render() {
-    return (
-      <div className="friends-list">
-        {this.state.friends.map(friend => {
+function DisplayFriends(props) {
+  return (
+    <div className="friends-list">
+      <ul>
+        {props.friends.map(friend => {
           return (
             <li key={friend.id} className="friend">
               <div className="friend-name">{friend.name}</div>
               <div className="friend-age">{friend.age}</div>
               <div className="friend-email">{friend.email}</div>
+              <button onClick={() => {props.onDelete(friend.id)}}>Delete</button>
             </li>
           )
         })}
-      </div>
-    )
-  }
-  componentDidMount(){
-    axios.get('http://localhost:5000/friends')
-    .then((response) => {
-      this.setState({ friends: response.data})
-    })
-    .catch((error) => {
-      console.log('there was an error', error);
-    });
-  }
+      </ul>
+    </div>
+  )
+}
+
+DisplayFriends.propTypes = {
+  friends: PropTypes.array.isRequired,
 }
 
 export default DisplayFriends;

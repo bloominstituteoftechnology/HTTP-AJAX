@@ -7,35 +7,40 @@ class AddFriend extends Component {
     age: '',
     email: '',
   }
-  nameChange = (event) => {
-    this.setState({name: event.target.value});
+  handleInputChange = (event) => {
+    // const { name, value } = event.target; // destructuring
+    const name = event.target.name;
+    let value = event.target.value;
+
+    if (event.target.type === 'number') {
+      value = Number(value);
+    }
+    this.setState({ [name] : value });
   }
-  ageChange = (event) => {
-    this.setState({age: event.target.value});
-  }
-  emailChange = (event) => {
-    this.setState({email: event.target.value});
-  }
+
   handleSubmit = (event) => {
-    axios.post('http://localhost:5000/friends',{ 
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email,
-    })
+    event.preventDefault();
+    axios.post('http://localhost:5000/friends', this.state)
     .then((response) => {
       console.log(response);
+      this.setState({
+        name: '',
+        age: '',
+        email: '',
+      })
+      this.props.onCreate();
     })
     .catch((error) => {
-      console.log(error);
+      console.error('Error saving data');
     })
   }
 
   render() {
     return(
         <form onSubmit={this.handleSubmit}>
-          <label>Name: <input type="text" placeholder="Name" value={this.state.name} onChange={this.nameChange} /></label>
-          <label>Age: <input type="text" placeholder="Age" value={this.state.age} onChange={this.ageChange} /></label>
-          <label>Email: <input type="text" placeholder="Email" value={this.state.email} onChange={this.emailChange} /></label>
+          <label>Name: <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleInputChange} /></label>
+          <label>Age: <input type="number" placeholder="Age" name="age" value={this.state.age} onChange={this.handleInputChange} /></label>
+          <label>Email: <input type="email" placeholder="Email" name="email" value={this.state.email} onChange={this.handleInputChange} /></label>
           <input type="submit" value="Submit" />
         </form>
     )
