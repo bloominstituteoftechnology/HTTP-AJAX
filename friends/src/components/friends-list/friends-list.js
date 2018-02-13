@@ -6,7 +6,8 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
 
   h1 {
-    margin-top: 0;
+    margin: 0 auto;
+    font-size: 3em;
   }
 
   .friend__container {
@@ -80,6 +81,20 @@ class FriendsList extends Component {
       });
   }
 
+  handleDelete = event => {
+    event.preventDefault();
+    console.log(event.target.value);
+    axios
+      .delete(`http://localhost:5000/friends/${event.target.value}`)
+      .then(res => {
+        console.log(res);
+        this.getData();
+      })
+      .catch(error => {
+        alert('There was an error: ', error);
+      });
+  }
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state.position));
   };
@@ -99,7 +114,7 @@ class FriendsList extends Component {
   render() {
     return (
       <StyledDiv>
-        <h1>Friends</h1>
+        <h1>Friends List</h1>
         <div className='friend__container'>
           {this.state.friends.map((val, index) => {
             return (
@@ -110,7 +125,12 @@ class FriendsList extends Component {
                   <li>{val.position}</li>
                   <li>{val.email}</li>
                 </ul>
-                <button className='friend__delete-button'>Remove</button>
+                <button 
+                  className='friend__delete-button'
+                  value={val.id}
+                  onClick={this.handleDelete}>
+                  Remove
+                </button>
               </div>
             )
           })}

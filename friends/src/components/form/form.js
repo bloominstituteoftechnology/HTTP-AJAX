@@ -38,9 +38,6 @@ const StyledDiv = styled.div`
 `;
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <StyledDiv>
