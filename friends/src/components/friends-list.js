@@ -10,17 +10,17 @@ class FriendsList extends Component {
 
   render() {
     return (
-   <div>
-     <ul className="FriendsList">
+   <div className="FriendsList" style={{display: 'flex', flexFlow: 'column', alignItems: 'center', width: 'auto'}}>
+     <ul className="FriendsList__current" style={{listStyleType: 'none', padding: '0'}}>
        {this.state.friends.map((friend) => {
          return (
-           <div key={friend.id} style={{ border: '1px solid black'}}>
+           <li key={friend.id} style={{'border': '3px solid black', marginTop: '-3px'}}>
             <Friend friend={friend}/>
-           </div>
+           </li>
          )
        })}
      </ul>
-     <Form />
+     <Form className="FriendsList__form" />
    </div>
     )
   }

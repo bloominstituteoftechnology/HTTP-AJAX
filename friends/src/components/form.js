@@ -28,11 +28,11 @@ class Form extends Component {
   render() {
     const { name, age, email } = this.state;
     return (
-      <div>
+      <div style={{border: '3px solid black', padding: '20px'}}>
         <form action="" onSubmit={this.onSubmit}>
-          Name: <input type="text" name="name" value={name} onChange={this.handleChange}/> <br/>
-          Age: <input type="text" name="age" value={age} onChange={this.handleChange}/> <br/>
-          Email: <input type="text" name="email" value={email} onChange={this.handleChange}/> <br/>
+          <input type="text" name="name" value={name} placeholder="Name" onChange={this.handleChange}/> <br/>
+          <input type="text" name="age" value={age} placeholder="Age"onChange={this.handleChange}/> <br/>
+          <input type="text" name="email" value={email} placeholder="Email"onChange={this.handleChange}/> <br/>
           <input type="submit" value="Add"/>
         </form>
       </div>
