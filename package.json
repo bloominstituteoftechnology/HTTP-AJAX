@@ -4,10 +4,14 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.14.11",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-promise": "^0.5.3"
   },
   "devDependencies": {},
   "scripts": {
