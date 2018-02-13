@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.grid {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.form {
+    display: flex;
+    padding: 20px;
+    align-content: center;
+    justify-content: center;
+    border: 2px solid black;
+}
