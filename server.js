@@ -56,6 +56,7 @@ app.get('/friends', (req, res) => {
 });
 
 app.post('/friends', (req, res) => {
+  console.log("Here in post");
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
   res.status(201).json(friends);
@@ -77,6 +78,7 @@ app.put('/friends/:id', (req, res) => {
 
 app.delete('/friends/:id', (req, res) => {
 	friends = friends.filter(friend => friend.id != req.params.id);
+  console.log(req.params);
 	res.status(200).json(friends);
 });
 

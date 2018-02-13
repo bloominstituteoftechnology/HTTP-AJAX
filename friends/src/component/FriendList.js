@@ -2,11 +2,6 @@ import React from 'react';
 
 
 function FriendList(props) {
-
-  let deleteFriend = (e) => { 
-    props.removeFriend(props.obj.id);
-  }
-
   return( 
     <div> 
       {props.obj.map(friend => {
@@ -15,7 +10,11 @@ function FriendList(props) {
         <div className='friend-name'>{friend.name}</div>
         <div className='friend-age'>{`Age: ${friend.age}`}</div>
         <div className='friend-email'>{`Email: ${friend.email}`}</div>
-        <button onClick={deleteFriend}>Delete</button>
+        <button onClick={(e) => { 
+
+          props.removeFriend(friend.id);
+          console.log(friend.id);
+          }}>Delete</button>
         </div>
       );
     })}

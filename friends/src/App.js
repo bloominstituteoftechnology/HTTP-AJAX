@@ -24,7 +24,6 @@ class App extends Component {
       .post('http://localhost:5000/friends', newFriend)
       .then(res => {
         this.setState({name:'',age:'',email:''});
-      
       })
       .catch(error => {
           console.log(error);
@@ -41,10 +40,22 @@ class App extends Component {
   };
   
   removeFriend = (id) => {
-    const newFriend = this.state.friends.filter(friend => {
-      return friend.id !== id
-    });
-    this.setState({ friends: newFriend });
+    // console.log(id);
+    // const newFriend = this.state.friends.filter(friend => {
+    //   return friend.id !== id
+    // });
+
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({ friends: res.data});
+        console.log(res.data);    
+      })
+      .catch(error => {
+          console.log(error);
+          
+      });
+   
   };
 
   render() {
