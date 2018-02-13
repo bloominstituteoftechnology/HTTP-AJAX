@@ -40,20 +40,23 @@ class AddFriend extends React.Component {
             type="text"
             value={name}
             onChange={this.handleInputChange}
+            required
           />
           <input
             name="age"
             placeholder="Age"
-            type="text"
+            type="number"
             value={age}
             onChange={this.handleInputChange}
+            required
           />
           <input
             name="email"
             placeholder="Email Address"
-            type="text"
+            type="email"
             value={email}
             onChange={this.handleInputChange}
+            required
           />
           <button type="submit">Add Friend</button>
         </form>
