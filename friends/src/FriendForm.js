@@ -33,7 +33,10 @@ class FriendForm extends React.Component {
 
     // const newFriendList = [...this.state.friendList, newFriend];
     axios.post('http://localhost:5000/friends', newFriend)
-      .then((response)=>{console.log('response', response)})
+      .then((response)=>{
+        console.log('response', response);
+        this.props.onCreate();
+      })
       .catch((error)=>{console.error('fail because', error)});
 
     // this.setState({ friendList: newFriendList, newFriendName: '', newFriendAge: 0, newFriendEmail: '' });
