@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import NewFriend from './NewFriend';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
+
 
 class App extends Component {
   state = {
@@ -10,6 +12,8 @@ class App extends Component {
       name: '',
       age: '',
       email: '',
+      phoneNumber: '',
+      favoriteColor: '',
     },
     updateIndex: null,
 	};		
@@ -29,6 +33,8 @@ class App extends Component {
                   <h2 className="friend-name" id={`friend-name-${friend.id}`}>{friend.name}</h2>
                   <div className="friend-age">{`Age: ${friend.age}`}</div>
                   <div className="friend-email">{`Email: ${friend.email}`}</div>
+                  <div className="friend-phone">{`Phone number: ${friend.phoneNumber}`}</div>
+                  <div className="friend-favorite-color">{`Favorite color: ${friend.favoriteColor}`}</div>
                   <div className="friend-buttons">
                     <button type="button" id={`update-${friend.id}`} onClick={this.toggleUpdate}>Update</button>
                     <button type="button" id={`delete-${friend.id}`} onClick={this.deleteFriend}>Delete</button>
@@ -38,13 +44,9 @@ class App extends Component {
             })}
           </div>
         </div>
-        <form onSubmit={this.submitRequest}>
-          <h2 id='form-header'>Add new friend:</h2>
-          <input type="text" id="name" placeholder="Name" onChange={this.updateName} />
-          <input type="text" id="age" placeholder="Age" onChange={this.updateAge} />
-          <input type="text" id="email" placeholder="Email" onChange={this.updateEmail} />
-          <input type="submit" value="Submit" />
-        </form>
+        <NewFriend updateName={this.updateName} updateAge={this.updateAge} updateEmail={this.updateEmail}
+          updatePhone={this.updatePhone} updateFavoriteColor={this.updateFavoriteColor}
+            onSubmit={this.submitRequest} />
       </div>
     );
   }
@@ -71,6 +73,8 @@ class App extends Component {
         name: event.target.value,
         age: this.state.newFriend.age,
         email: this.state.newFriend.email,
+        phoneNumber: this.state.newFriend.phoneNumber,
+        favoriteColor: this.state.newFriend.favoriteColor,
       },
       updateIndex: this.state.updateIndex,
     });
@@ -83,6 +87,8 @@ class App extends Component {
         name: this.state.newFriend.name,
         age: event.target.value,
         email: this.state.newFriend.email,
+        phoneNumber: this.state.newFriend.phoneNumber,
+        favoriteColor: this.state.newFriend.favoriteColor,
       },
       updateIndex: this.state.updateIndex,
     });
@@ -95,6 +101,36 @@ class App extends Component {
         name: this.state.newFriend.name,
         age: this.state.newFriend.age,
         email: event.target.value,
+        phoneNumber: this.state.newFriend.phoneNumber,
+        favoriteColor: this.state.newFriend.favoriteColor,
+      },
+      updateIndex: this.state.updateIndex,
+    });
+  };
+
+  updatePhone = (event) => {
+    this.setState({
+      friends: this.state.friends,
+      newFriend: {
+        name: this.state.newFriend.name,
+        age: this.state.newFriend.age,
+        email: this.state.newFriend.email,
+        phoneNumber: event.target.value,
+        favoriteColor: this.state.newFriend.favoriteColor,
+      },
+      updateIndex: this.state.updateIndex,
+    });
+  };
+
+  updateFavoriteColor = (event) => {
+    this.setState({
+      friends: this.state.friends,
+      newFriend: {
+        name: this.state.newFriend.name,
+        age: this.state.newFriend.age,
+        email: this.state.newFriend.email,
+        phoneNumber: this.state.newFriend.phoneNumber,
+        favoriteColor: event.target.value,
       },
       updateIndex: this.state.updateIndex,
     });
@@ -157,6 +193,20 @@ class App extends Component {
       }
       newFriend.email = this.state.friends.find(friend => friend.id === updateIndex).email;
     }
+    if (newFriend.phoneNumber.trim() === '') {
+      if (this.state.updateIndex === null) {
+        alert('Phone number cannot be blank!')
+        return;
+      }
+      newFriend.phoneNumber = this.state.friends.find(friend => friend.id === updateIndex).phoneNumber;
+    }
+    if (newFriend.favoriteColor.trim() === '') {
+      if (this.state.updateIndex === null) {
+        alert('Favorite color cannot be blank!')
+        return;
+      }
+      newFriend.favoriteColor = this.state.friends.find(friend => friend.id === updateIndex).favoriteColor;
+    }
     if (Number(newFriend.age.trim()) === NaN) {
       alert('Age must be a number!')
       return;
@@ -172,6 +222,8 @@ class App extends Component {
                   name: '',
                   age: '',
                   email: '',
+                  phoneNumber: '',
+                  favoriteColor: '',
                 },
                 updateIndex: null,
               });
@@ -192,6 +244,8 @@ class App extends Component {
               name: '',
               age: '',
               email: '',
+              phoneNumber: '',
+              favoriteColor: '',
             },
             updateIndex: null,
           });
@@ -207,6 +261,8 @@ class App extends Component {
                 name: '',
                 age: '',
                 email: '',
+                phoneNumber: '',
+                favoriteColor: '',
               },
               updateIndex: null,
             });
@@ -227,6 +283,8 @@ class App extends Component {
             name: '',
             age: '',
             email: '',
+            phoneNumber: '',
+            favoriteColor: '',
           },
           updateIndex: null,
         });
@@ -243,6 +301,8 @@ class App extends Component {
     document.getElementById('name').value = '';
     document.getElementById('age').value = '';
     document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('favorite-color').value = '';
   };
 
   deleteFriend = (event) => {
