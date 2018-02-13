@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Form from './FormComponent';
+// import Form from './FormComponent';
 
-class Friends extends Component {
+class FriendsList extends Component {
   state = {
     friends: [],
   };
@@ -13,7 +13,6 @@ class Friends extends Component {
     return (
       <div>
         <div className="friend-title">Lambda Friends</div>
-        <Form />
         <ul className="friend-grid">
           {this.state.friends.map(friend => {
             return (
@@ -42,5 +41,9 @@ class Friends extends Component {
   }
 }
 
+// client:3000 <==> api:5000 <==> <database
 
-export default Friends;
+// http://localhost:5000/friends
+
+
+export default FriendsList;
