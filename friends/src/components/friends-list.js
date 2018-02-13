@@ -6,12 +6,15 @@ import Form from './form';
 class FriendsList extends Component {
   state = {
     friends: [],
+    'name': '',
+    'age': '',
+    'email': ''
   }
 
   render() {
     return (
    <div className="FriendsList" style={{display: 'flex', flexFlow: 'row', width: '30%'}}>
-     <Form className="FriendsList__form" />
+     <Form className="FriendsList__form" handleChange={this.handleChange} onSubmit={this.onSubmit} />
      <ul className="FriendsList__current" style={{
        listStyleType: 'none', 
        margin: '0', 
@@ -33,6 +36,10 @@ class FriendsList extends Component {
   }
 
   componentDidMount() {
+    this.loadFriends();
+  }
+  
+  loadFriends = () => {
     axios
     .get(`http://localhost:5000/friends`)
     .then((response) => {
@@ -41,6 +48,24 @@ class FriendsList extends Component {
     .catch((error) => {
       console.log(`Error: ${error}`)
     })
+  }
+
+  handleChange = (event) => {
+    let {name, value} = event.target;
+    if (event.target.type === 'number') value = Number(value);
+    this.setState({ [name]: value });
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    let { name, age, email } = this.state;
+    axios
+    .post('http://localhost:5000/friends', {name, age, email})
+    .then((response) => {
+      console.log(`Response: ${response}`)
+      this.loadFriends()
+    })
+    .catch((error) => {console.log(`Error: ${error}`)});
   }
 } // FriendsList component
 
