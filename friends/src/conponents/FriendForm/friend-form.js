@@ -9,11 +9,11 @@ function FriendForm (props) {
 			<div className="friend-form">
 				<form onSubmit={props.handleNewFriend}>
 
-					<input name="name" value={props.newFriend.name} onChange={props.handleOnChange} type="text" />
+					<input name="name" value={props.name} onChange={props.handleOnChange} type="text" />
 
-					<input name="age" value={props.newFriend.age} onChange={props.handleOnChange} type="text"/>
+					<input name="age" value={props.age} onChange={props.handleOnChange} type="text"/>
 
-					<input name="email" value={props.newFriend.email} onChange={props.handleOnChange} type="text"/>
+					<input name="email" value={props.email} onChange={props.handleOnChange} type="text"/>
 
 					<button>Create friend</button>
 				</form>

@@ -6,28 +6,35 @@ import FriendForm from './conponents/FriendForm/friend-form';
 import axios from 'axios';
 
 class App extends Component {
-	state = {friends: [], newFriend: {
+	state = {friends: [],
 		name: '',
 		age: '',
 		email: '',
-	}}
+}
 	// when i do event.target.value its undefined
 	// yes but i'm not geting the value
 	handleNewFriend = (event) => {
+		let newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
 		event.preventDefault();
-		console.log(this.state.newFriend);
+		axios
+			.post("http://localhost:5000/friends", newFriend)
+			.then((res)=>{
+				this.setState({friends: res.data});
+  		}).catch((err)=>{
+  		
+  		});
 	}
 
 	handleOnChange = (event) => {
-
-
+		this.setState({[event.target.name]: event.target.value});
 	}
 
   	render() {
+  		console.log(this.state);
     return (
     	<div>
 	    	<FriendList friends={this.state.friends}/>
-	    	<FriendForm newFriend={this.state.newFriend} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />
+	    	<FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />
     	</div>
     );
   }
