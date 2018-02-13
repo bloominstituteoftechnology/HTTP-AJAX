@@ -35,15 +35,9 @@ class Friend extends Component {
             {/* <form onSubmit={this.handleSubmit}> */}
             <form onSubmit={this.onSubmit}>
                 <label htmlFor="title">Add Friend: </label>
-                {/* <input name="name" placeholder="Name" type="text" 
-                value={name} onChange={this.handleInputChange} />
-                <input name="age" placeholder="Age" type="text"
-                value={age} onChange={this.handleInputChange} />
-                <input name="email" placeholder="Email Address" type="text"
-                value={email} onChange={this.handleInputChange} /> */}
-                <input type="text" name="name" value={name} onChange={this.onChange} />
-                <input type="text" name="age" value={age} onChange={this.onChange} />
-                <input type="text" name="email" value={email} onChange={this.onChange} />
+                <input type="text" placeholder="Name" name="name" value={name} onChange={this.onChange} />
+                <input type="text" placeholder="Age" name="age" value={age} onChange={this.onChange} />
+                <input type="text" placeholder="Email Address" name="email" value={email} onChange={this.onChange} />
                 <button type="submit">Add Friend</button>
             </form>
         </div>
