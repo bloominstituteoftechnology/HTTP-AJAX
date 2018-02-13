@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Friends from './Friends.js'
+import Friend from './Friends.js'
 
 class App extends Component {
   render() {
@@ -12,9 +12,9 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {/* To get started, edit <code>src/App.js</code> and save to reload. */}
         </p>
-        <Friends />
+        <Friend />
       </div>
     );
   }

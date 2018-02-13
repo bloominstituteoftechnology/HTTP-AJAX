@@ -1,34 +1,60 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react';
+import AddFriend from "./Form.js";
 import axios from 'axios';
 
-class Friend extends Component {
+import "./Friends.css";
+
+class Friends extends Component {
+    nextId = 8;
     state = {
-        friends: []
-    }
-
-    render() {
-        return (
-            this.state.friends.map((friend) => {
-            return (
-                <ul key={friend.id}>
-                    <li>{friend.name}</li>
-                    <li>{friend.age}</li>
-                    <li>{friend.email}</li>
-                </ul>)
-            })
-        );
-    }
-
+        friends: [],
+        loading: true,
+        noData: true,
+    };
+    
     componentDidMount() {
+        this.setState({ loading: true });
         axios
         .get('http://localhost:5000/friends')
         .then(response => {
-            this.setState({friends: response.data})
+            this.setState({ friends: response.data, loading: false });
         })
         .catch(error => {
-            console.log(error);
+            this.setState({ loading:false });
+            console.log('Error: ', error);
         });
+    }
+    
+    getNextId = () => {
+        return this.nextId++;
+    };
+    
+    render() {
+        return (
+        <div>
+            <AddFriend
+            />
+            <div>
+                <div className="friend-title">Friends</div>
+                {this.state.loading && <div>Loading Friends...</div>}
+                
+                {!this.state.loading && (
+                <ul className="friend-grid">
+                    {this.state.friends.map(friend => {
+                        return (
+                        <li key={friend.id} className="friend">
+                        <div className="friend-name">{friend.name}</div>
+                        <div className="friend-age">{`Age: ${friend.age}`}</div>
+                        <div className="friend-email">{`Email: ${friend.email}`}</div>
+                        </li>
+                        );
+                    })}
+                </ul>
+            )}
+            </div>
+        </div>
+        );
     }
 }
 
-export default Friend;
+export default Friends;
