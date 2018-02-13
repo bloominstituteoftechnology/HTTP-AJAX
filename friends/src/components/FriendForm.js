@@ -65,6 +65,12 @@ class FriendForm extends React.Component {
         axios.post('http://localhost:5000/friends', this.state)
         .then((response) => {
             console.log('response form post', response);
+            this.setState({
+                    name: '',
+                    age: '',
+                    email: '',
+            });
+            this.props.onCreate();
         })
         .catch((error) => {
             console.error('error saving the data');
