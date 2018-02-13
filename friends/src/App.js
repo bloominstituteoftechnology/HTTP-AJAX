@@ -14,27 +14,54 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <form className="form" onSubmit={this.addNewFriend}>
+          <div className="header"> Add a Friend </div>
+          <label htmlFor="Name">Name</label>
+          <input className="form__items" label="Cody" type="text" onChange={this.handleNewName} placeholder="Name Here"  value={this.state.newName}/>
+          <label htmlFor="Name">Age</label>
+          <input className="form__items" type="text" onChange={this.handleNewAge} placeholder="Age Here" value={this.state.newAge}/>
+          <label htmlFor="Name">Email</label>
+          <input className="form__items" type="text" onChange={this.handleNewEmail} placeholder="Email Here" value={this.state.newEmail}/>
+          <input style={{marginTop:"15px", fontSize:"15px", background:'black', color:'pink', borderRadius:'75%'}} className="form__items" type="submit" value="Click to Add Friend" />
+        </form>
         <div className="header"> Your Friends </div>
         <div className="grid">
           {this.state.friends.map(friend => {
             return <Friend 
             key={friend.id} 
             friend={friend}
+            remove={this.removeFriend}
             />;
           })}
         </div>
-        <form className="form" onSubmit={this.addNewFriend}>
-          <h2> Add a Friend! </h2>
-          <label for="Name">Name</label>
-          <input className="form__items" label="Cody" type="text" onChange={this.handleNewName} placeholder="Name Here"  value={this.state.newName}/>
-          <label for="Name">Age</label>
-          <input className="form__items" type="text" onChange={this.handleNewAge} placeholder="Age Here" value={this.state.newAge}/>
-          <label for="Name">Email</label>
-          <input className="form__items" type="text" onChange={this.handleNewEmail} placeholder="Email Here" value={this.state.newEmail}/>
-          <input style={{marginTop:"15px", fontSize:"20px"}} className="form__items" type="submit" value="Add Friend" />
-        </form>
       </div>
     );
+  }
+
+  deleteFriend = (event) => {
+    event.preventDefault();
+      axios.delete('http://localhost:5000/friends', {
+        name: this.state.newName,
+        age: this.state.newAge,
+        email: this.state.newEmail,
+      })
+      .then(response => {
+        this.setState({ friends: response.data});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    }
+
+  removeFriend = id => {
+      const endpoint = `http://localhost:5000/friends/${id}`;
+      axios.delete(endpoint)
+      .then(response => {
+        this.setState({friends: response.data});
+      })
+      .catch(error  => {
+        console.log(error);
+      });
   }
 
   componentDidMount() {
@@ -45,6 +72,7 @@ class App extends Component {
       .catch(error => {
         console.log('there was error', error);
       });
+      
   }
 
   handleNewName = (event) => {
@@ -61,7 +89,9 @@ class App extends Component {
 
   addNewFriend = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:5000/friends', {
+    if (this.state.newName==='' || this.state.newAge==='' || this.state.newEmail==='') alert("Fill out the form fool!");
+    else {
+      axios.post('http://localhost:5000/friends', {
         name: this.state.newName,
         age: this.state.newAge,
         email: this.state.newEmail,
@@ -77,62 +107,8 @@ class App extends Component {
       newAge: '',
       newEmail: '',
     })
+    }
   }
 }
 
 export default App;
-
-/*
-state = {
-            todo: [
-                {
-                    id: 1,
-                    text: 'This',
-                },
-                { 
-                    id: 2,
-                    text: 'That',
-                },
-                {
-                    id: 3,
-                    text: 'Other',
-                }
-            ],
-            newToDo: '',
-    }
-
-    addNewToDo = (event) => {
-        event.preventDefault();
-        const todo = this.state.todo;
-        const newID = todo.length + 1;
-        const item = this.state.newToDo;
-        todo.push({id: newID, text: item});
-        this.setState({
-            newToDo: '',
-            todo: todo,
-        });
-    }
-
-    handleNewToDo = (event) => {
-        this.setState({newToDo: event.target.value});
-    }
-
-
-    render() {
-        return (
-            <div>
-                <ul>
-                    {this.state.todo.map(item => {
-                        return <Item key={item.id} item={item} />;
-                    })}
-                </ul>
-              
-                <form onSubmit={this.addNewToDo}>
-                    <input type="text" onChange={this.handleNewToDo} value={this.state.newToDo} />
-                    <input type="submit" value="Submit New To Do Item to List" />
-                </form>
-            </div>
-        )
-    }
-}
-*/

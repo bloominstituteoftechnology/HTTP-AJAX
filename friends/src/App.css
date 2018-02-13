@@ -3,7 +3,7 @@
 }
 
 html {
-    background: yellow;
+    background: brown;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -11,6 +11,7 @@ html {
 }
 
 .container {
+    min-width: 800px;
     max-width: 800px;
     width: 100%;
     background: green;
@@ -21,20 +22,18 @@ html {
     align-content: center;
     justify-content: center;
     align-items: center;
-    border: 2px 2px 0 2px;
-    border-style: solid;
-    border-color: black;
     font-size: 30px;
+    padding-top: 10px;
 }
 
 .grid {
     display: flex;
     flex-flow: wrap;
+    justify-content: space-around;
 }
 
 .form {
-    padding: 20px;
-    border: 2px solid black;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-content: center;
