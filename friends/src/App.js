@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import CreateFriend from './component/CreateFriend';
 import FriendList from './component/FriendList'
 import axios from 'axios';
 
@@ -14,67 +12,75 @@ class App extends Component {
   };
   getNextId = () => {
     return this.nextId++;
-  };
+  }
 
   addNewFriend = (e) => {
+
+    let newFriend ={ name: this.state.name, age: this.state.age, email: this.state.email };
+    
     e.preventDefault();
-    const newFriend = {
-      id: this.getNextId(),
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email,
-    }
-  };
 
-  const newFriend = [...this.state.friends,newFriend];
-  this.setState({friends: newFriend, name:'',age:'',email:''});
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(res => {
+        this.setState({name:'',age:'',email:''});
+      
+      })
+      .catch(error => {
+          console.log(error);
+          
+      });
+    
+  }
 
 
-  handleInputChange = e => {
-    this.setState({ [name: e.target.name]: e.target.value });
+
+  handleInputChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
     
   };
   
+  removeFriend = (id) => {
+    const newFriend = this.state.friends.filter(friend => {
+      return friend.id !== id
+    });
+    this.setState({ friends: newFriend });
+  };
 
   render() {
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Friends List</h1>
-        </header>
-        <p className="App-intro">
-          <FriendList obj={this.state.friends} />
-
-          <div className="friend-form">
+  
+        <div className="App-intro">
+          <FriendList obj={this.state.friends} removeFriend={this.removeFriend}/>
+          
+          <div className="friend">
             <form onSubmit={this.addNewFriend}>
-                <label>Name: </label>
-                <input type="text" placeholder = 'Name' name='Name' value={this.state.name} onChange={this.handleInputChange}/>
+              <label>Name: </label>
+              <input  name='name' value={this.state.name} onChange={this.handleInputChange} type="text"/>
 
-                <label>Age: </label>
-                <input type="text" placeholder = 'Age' name='Age' value={this.state.age} onChange={this.handleInputChange}/>
+              <label>Age: </label>
+              <input type="text" name='age' value={this.state.age} onChange={this.handleInputChange}/>
 
-                <label>Email:  </label> 
-                <input type="text" placeholder = 'Email' name='Email' value={this.state.email} onChange={this.handleInputChange}/>
+              <label>Email:  </label> 
+              <input type="text" name='email' value={this.state.email} onChange={this.handleInputChange}/>
 
-                <button type="submit">Add Friend</button>
+              <button type="submit" value="Submit">Add Friend</button>
             </form>
           </div>
-        </p>
-      </div>
-    );
-}
-    componentDidMount() {
-      axios.get('http://localhost:5000/friends')
-      .then(res => {
-        console.log(res.data);
-        this.setState({friends: res.data});
-      })
-      .catch(error => {
-        console.log('there was error', error);
-      });
-    }
+        </div>
+        )
+ }
+
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends')
+    .then(res => {
+      this.setState({friends: res.data});
+    })
+    .catch(error => {
+      console.log('there was error', error);
+    });
+  }
 }
 
 export default App;
