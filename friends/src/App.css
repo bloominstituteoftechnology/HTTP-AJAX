@@ -1,28 +1,26 @@
-.App {
-  text-align: center;
+.App{
+  display: flex;
+  margin: 1%;
+  padding: 1%;
+  background-color: burlywood;
+  border-style: solid;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.addBox {
+  font-size: 2rem;
+  width: 250px;
+  height: 250px;
+  padding: 1%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.cardDisplay{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.contactCard {
+  width: 32%;
+  border-style: solid;
+  font-size: 1.7rem;
 }
