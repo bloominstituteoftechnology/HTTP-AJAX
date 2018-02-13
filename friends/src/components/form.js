@@ -28,7 +28,7 @@ class Form extends Component {
       <div style={{border: '3px solid black', padding: '20px', height: '75px', margin: '-3px 0 0 0'}}>
         <form action="" onSubmit={this.onSubmit}>
           <input type="text" name="name" value={name} placeholder="Name" onChange={this.handleChange}/> <br/>
-          <input type="text" name="age" value={age} placeholder="Age"onChange={this.handleChange}/> <br/>
+          <input type="number" name="age" value={age} placeholder="Age"onChange={this.handleChange}/> <br/>
           <input type="text" name="email" value={email} placeholder="Email"onChange={this.handleChange}/> <br/>
           <input type="submit" value="Add"/>
         </form>
