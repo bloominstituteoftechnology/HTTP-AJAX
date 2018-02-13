@@ -49,6 +49,15 @@ class FriendsForm extends Component {
       </ul>
       )
     }
-  
+    componentDidMount() {
+      axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+          this.setState({ friends: response.data })
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
+    }
 }
   export default FriendsForm;

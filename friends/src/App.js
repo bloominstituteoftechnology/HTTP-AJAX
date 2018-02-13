@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Friends from './components/friends.js';
+import FriendsList from './components/friendsList.js';
 import FriendsForm from './components/friendsForm.js';
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
 
       <header className="App">
         <h1>Friends </h1>
-        <Friends />
+        <FriendsList />
         <FriendsForm />
       </header>
 
