@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Form from '../form/form.js';
+import PostForm from '../post-form/post-form.js';
+import UpdateForm from '../update-form/update-form.js';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -68,6 +69,10 @@ class FriendsList extends Component {
     age: '',
     position: '',
     email: '',
+    update_name: '',
+    update_age: '',
+    update_position: '',
+    update_email: '',
   };
 
   handleSubmit = event => {
@@ -80,7 +85,7 @@ class FriendsList extends Component {
         email: this.state.email,
       })
       .then(res => {
-        this.setState({ name: '', age: '', email: '' }, () => this.getData())
+        this.setState({ name: '', age: '', email: '', position: '', }, () => this.getData())
       })
       .catch(error => {
         alert('There was an error: ', error);
@@ -100,17 +105,17 @@ class FriendsList extends Component {
   }
 
   handleUpdate = event => {
-    event.preventDefault;
+    event.preventDefault();
     console.log(event);
     axios
     .put('http://localhost:5000/friends/1', {
-      name: 'Dickhead',
-      // age: this.state.age,
-      // position: this.state.position,
-      // email: this.state.email,
+      name: 'Test',
+      age: this.state.age,
+      position: this.state.position,
+      email: this.state.email,
     })
     .then(res => {
-      this.setState({ name: '', age: '', email: '' }, () => this.getData())
+      this.setState({ name: '', age: '', email: '', position: '', }, () => this.getData())
     })
     .catch(error => {
       alert('There was an error: ', error);
@@ -118,7 +123,7 @@ class FriendsList extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value },() => console.log(this.state));
   };
   
   getData = () => {
@@ -165,13 +170,21 @@ class FriendsList extends Component {
             )
           })}
         </div>
-        <Form
+        <PostForm
           handleChange={this.handleChange} 
           handleSubmit={this.handleSubmit} 
           name={this.state.name} 
           age={this.state.age} 
           position={this.state.position}
           email={this.state.email}
+        />
+        <UpdateForm
+          handleChange={this.handleChange} 
+          handleUpdate={this.handleUpdate} 
+          update_name={this.state.update_name} 
+          update_age={this.state.update_age} 
+          update_position={this.state.update_position}
+          update_email={this.state.update_email}
         />
       </StyledDiv>
     );

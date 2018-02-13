@@ -37,42 +37,39 @@ const StyledDiv = styled.div`
   }
 `;
 
-class Form extends Component {
+class UpdateForm extends Component {
   render() {
     return (
       <StyledDiv>
-        <h2>Post New Friend</h2>
-        <form onSubmit={this.props.handleSubmit}>
+        <h2>Update Friend</h2>
+        <form onSubmit={this.props.handleUpdate}>
           <input
-            type='text' name='name' 
-            placeholder='Name (required)' 
-            value={this.props.name} 
+            type='text' 
+            name='update_name' 
+            placeholder='Update Name' 
+            value={this.props.update_name} 
             onChange={this.props.handleChange} 
-            required 
           />
           <input 
             type='number' 
-            name='age' 
-            placeholder='Age (required)' 
-            value={this.props.age} 
+            name='update_age' 
+            placeholder='Update Age' 
+            value={this.props.update_age} 
             onChange={this.props.handleChange} 
-            required 
           />
           <input 
             type='text' 
-            name='position' 
-            placeholder='Position (required)' 
-            value={this.props.position} 
+            name='update_position' 
+            placeholder='Update Position' 
+            value={this.props.update_position} 
             onChange={this.props.handleChange} 
-            required 
           />
           <input 
             type='email' 
-            name='email' 
-            placeholder='Email (required)' 
-            value={this.props.email} 
+            name='update_email' 
+            placeholder='Update Email' 
+            value={this.props.update_email} 
             onChange={this.props.handleChange} 
-            required 
           />
           <button className='form__button' type='submit'>
             Submit
@@ -84,4 +81,4 @@ class Form extends Component {
 
 }
 
-export default Form;
+export default UpdateForm;
