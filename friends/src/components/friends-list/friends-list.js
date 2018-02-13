@@ -17,6 +17,9 @@ const StyledDiv = styled.div`
   }
 
   .friend__entry {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 250px;
     margin: 20px;
     background-color: #ffffff;    
@@ -35,7 +38,13 @@ const StyledDiv = styled.div`
     margin-top: 3px;
   }
 
-  .friend__delete-button {
+  .friend__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .friend__delete-button, .friend__update-button {
     width: 80px;
     margin: 10px 0;
     padding: 5px 10px 6px 10px;
@@ -50,8 +59,6 @@ const StyledDiv = styled.div`
       outline: 0;
     }
   }
-
-
 `;
 
 class FriendsList extends Component {
@@ -73,7 +80,6 @@ class FriendsList extends Component {
         email: this.state.email,
       })
       .then(res => {
-        console.log(res);
         this.setState({ name: '', age: '', email: '' }, () => this.getData())
       })
       .catch(error => {
@@ -83,11 +89,9 @@ class FriendsList extends Component {
 
   handleDelete = event => {
     event.preventDefault();
-    console.log(event.target.value);
     axios
       .delete(`http://localhost:5000/friends/${event.target.value}`)
       .then(res => {
-        console.log(res);
         this.getData();
       })
       .catch(error => {
@@ -95,8 +99,26 @@ class FriendsList extends Component {
       });
   }
 
+  handleUpdate = event => {
+    event.preventDefault;
+    console.log(event);
+    axios
+    .put('http://localhost:5000/friends/1', {
+      name: 'Dickhead',
+      // age: this.state.age,
+      // position: this.state.position,
+      // email: this.state.email,
+    })
+    .then(res => {
+      this.setState({ name: '', age: '', email: '' }, () => this.getData())
+    })
+    .catch(error => {
+      alert('There was an error: ', error);
+    });
+  }
+
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state.position));
+    this.setState({ [event.target.name]: event.target.value });
   };
   
   getData = () => {
@@ -125,12 +147,20 @@ class FriendsList extends Component {
                   <li>{val.position}</li>
                   <li>{val.email}</li>
                 </ul>
-                <button 
-                  className='friend__delete-button'
-                  value={val.id}
-                  onClick={this.handleDelete}>
-                  Remove
-                </button>
+                <div className='friend__buttons'>
+                  <button 
+                    className='friend__delete-button'
+                    value={val.id}
+                    onClick={this.handleDelete}>
+                    Remove
+                  </button>
+                  <button 
+                    className='friend__update-button'
+                    value={val.id}
+                    onClick={this.handleUpdate}>
+                    Update
+                  </button>
+                </div>
               </div>
             )
           })}
