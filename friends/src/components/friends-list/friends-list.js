@@ -34,33 +34,32 @@ const StyledDiv = styled.div`
 class FriendsList extends Component {
   state = {
     friends: [],
-    name: 'name',
-    age: 100,
-    email: 'email',
+    name: '',
+    age: '',
+    email: '',
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post('http://localhost:5000/friends', {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email,
-    })
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email,
+      })
       .then(res => {
-      console.log('res');
-      this.setState({
-        name: '',
-        age: '',
-        email: '',
-      }, () => console.log(this.state));
-    })
-    .catch(error => {
-      alert('There was an error: ', error);
-    });
+        console.log(res);
+        this.setState({ name: '', age: '', email: '' })
+      })
+      .catch(error => {
+        alert('There was an error: ', error);
+      });
+  }
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
-
+  
   render() {
     return (
       <StyledDiv>
@@ -78,9 +77,9 @@ class FriendsList extends Component {
         })}
         <h1>Post New Friend</h1>
         <form onSubmit={this.handleSubmit}>
-          <input className='field' type='text' placeholder='Name' />
-          <input className='field' type='text' placeholder='Age' />
-          <input className='field' type='text' placeholder='Email' />
+          <input className='field' type='text' name='name' placeholder='Name' value={this.state.name} onChange={this.handleChange} />
+          <input className='field' type='text' name='age' placeholder='Age' value={this.state.age} onChange={this.handleChange} />
+          <input className='field' type='text' name='email' placeholder='Email' value={this.state.email} onChange={this.handleChange} />
           <button className='submit' type='submit'>Submit</button>
         </form>
       </StyledDiv>
