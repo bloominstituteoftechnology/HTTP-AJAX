@@ -1,4 +1,4 @@
-/* .friend-grid {
+.friend-grid {
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
@@ -33,4 +33,4 @@
 .friend-email {
     font-size: 0.8rem;
     padding-top: 8px;
-} */
+}

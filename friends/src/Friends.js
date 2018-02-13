@@ -12,19 +12,6 @@ class Friends extends Component {
         noData: true,
     };
     
-    componentDidMount() {
-        this.setState({ loading: true });
-        axios
-        .get('http://localhost:5000/friends')
-        .then(response => {
-            this.setState({ friends: response.data, loading: false });
-        })
-        .catch(error => {
-            this.setState({ loading:false });
-            console.log('Error: ', error);
-        });
-    }
-    
     getNextId = () => {
         return this.nextId++;
     };
@@ -54,6 +41,19 @@ class Friends extends Component {
             </div>
         </div>
         );
+    }
+
+    componentDidMount() {
+        this.setState({ loading: true });
+        axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+            this.setState({ friends: response.data, loading: false });
+        })
+        .catch(error => {
+            this.setState({ loading:false });
+            console.log('Error: ', error);
+        });
     }
 }
 
