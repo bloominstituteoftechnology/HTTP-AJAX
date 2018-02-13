@@ -22,7 +22,8 @@ class FriendsList extends Component {
     render() {
         return (
             <div>
-                <div>Friends Proj</div>
+                <h1>Friends Proj</h1>
+                <div className = "forms">
                 <form onSubmit={this.handleSubmit}>
                   <label htmlFor="title">Name: </label>
                   <input 
@@ -45,10 +46,11 @@ class FriendsList extends Component {
                     onChange={this.handleInputChange}/>
                   <button type="submit"> Add Friend </button>
                 </form>
-                <ul>
+                </div>
+                <ul className="friend-grid">
                     {this.state.friends.map(friend => {
                         return (
-                            <li key={friend.id}>
+                            <li key={friend.id} className="friend">
                                 <div>{`Name: ${friend.name}`}</div>
                                 <div>{`Age: ${friend.age}`}</div>
                                 <div>{`Email: ${friend.email}`}</div>
