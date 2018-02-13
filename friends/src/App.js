@@ -32,6 +32,18 @@ class App extends Component {
         console.log("ahhhhh, the error is here!:", error);
       });
   }
+
+  deleteFriend = (id) => {
+    const endpoint = `http://localhost:5000/friends/${id}`;
+    axios
+      .delete(endpoint)
+      .then(response => {
+        this.setState({ friendList: response.data});
+      })
+      .catch(error => {
+        console.error('error', error);
+      });
+  };
 }
 
 export default App;
