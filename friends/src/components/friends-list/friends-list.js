@@ -4,9 +4,26 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
+
   h1 {
     margin-top: 0;
   }
+
+  .friend__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .friend__entry {
+    width: 250px;
+    margin: 20px;
+    background-color: #ffffff;    
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  }
+
   ul {
     padding-left: 0;
     list-style: none;
@@ -58,17 +75,19 @@ class FriendsList extends Component {
     return (
       <StyledDiv>
         <h1>Friends</h1>
-        {this.state.friends.map((val, index) => {
-          return (
-            <div key={index}>
-              <ul>
-                <li>{val.name}</li>
-                <li>{val.age}</li>
-                <li>{val.email}</li>
-              </ul>
-            </div>
-          )
-        })}
+        <div className='friend__container'>
+          {this.state.friends.map((val, index) => {
+            return (
+              <div key={index} className='friend__entry'>
+                <ul>
+                  <li>{val.name}</li>
+                  <li>{val.age}</li>
+                  <li>{val.email}</li>
+                </ul>
+              </div>
+            )
+          })}
+        </div>
         <Form
           handleChange={this.handleChange} 
           handleSubmit={this.handleSubmit} 

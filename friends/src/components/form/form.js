@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
 
-  h1 {
-    margin-top: 0;
+  h2 {
+    margin-top: 20px;
   }
+
   form {
     input {
       width: 200px;
@@ -13,12 +14,20 @@ const StyledDiv = styled.div`
       display: block;
       margin: 0 auto;    
       padding-left: 15px;
-      &:focus: {
+      border-radius: 2px;
+      &:focus {
         outline: 0;
       }
     }  
   }
   button {
+    width: 100px;
+    margin-top: 5px;
+    padding: 6px 20px 6px 20px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 20px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);    
     &:hover {
       cursor: pointer;
     }
@@ -35,7 +44,7 @@ class Form extends Component {
   render() {
     return (
       <StyledDiv>
-        <h1>Post New Friend</h1>
+        <h2>Post New Friend</h2>
         <form onSubmit={this.props.handleSubmit}>
           <input
             type='text' name='name' 

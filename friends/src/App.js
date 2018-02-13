@@ -5,9 +5,10 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
   max-width: 800px;
   min-width: 500px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   background-color: lightgray;
+  border-radius: 5px;
   text-align: center;
 `;
 
