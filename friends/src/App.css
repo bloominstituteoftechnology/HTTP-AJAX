@@ -1,14 +1,14 @@
 .App {
   text-align: center;
 }
-.friend-container {
+.friends-container {
   display: flex;
   flex-wrap: wrap;
 }
 .friend {
   width: 200px;
   height: 100px;
-  background: #e3e3e3;
+  background: white;
   border-radius: 3px;
   margin: 5px;
   display: flex;
