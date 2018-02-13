@@ -8,7 +8,6 @@ class Friends extends React.Component {
     newFriendName: '',
     newFriendAge: 0,
     newFriendEmail: '',
-    nextID: 7,
   };
 
   render() {
@@ -23,9 +22,9 @@ class Friends extends React.Component {
               <button type="submit">Add Friend</button>
             </form>
           </li>
-          {this.state.friendList.map(friend => {
+          {this.state.friendList.map((friend,i) => {
             return(
-              <li className="list__item">
+              <li className="list__item" key={i+'b'}>
                 <div><b>Name:</b> {friend.name}</div>
                 <div><b>Age:</b> {friend.age}</div>
                 <div><b>E-mail:</b> {friend.email}</div>
@@ -42,17 +41,22 @@ class Friends extends React.Component {
   handleNameChange = event => {this.setState({ newFriendName: event.target.value })};
 
   submitFriend = event => {
-    event.preventDefault();
     const newFriend = {
       name: this.state.newFriendName,
       age: this.state.newFriendAge,
       email: this.state.newFriendEmail,
-      id: this.state.nextID + 1,
     };
 
-    const newFriendList = [...this.state.friendList, newFriend];
+    // const newFriendList = [...this.state.friendList, newFriend];
+    axios.post('http://localhost:5000/friends', {
+      name: newFriend.name,
+      age: newFriend.age,
+      email: newFriend.email,
+    })
+      .then(()=>{console.log('success')})
+      .catch(()=>{console.log('fail')});
 
-    this.setState({ friendList: newFriendList, newFriendName: '', newFriendAge: 0, newFriendEmail: '', id: newFriend.id});
+    // this.setState({ friendList: newFriendList, newFriendName: '', newFriendAge: 0, newFriendEmail: '' });
   };
 
   componentDidMount() {
