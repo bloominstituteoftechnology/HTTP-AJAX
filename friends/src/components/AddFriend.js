@@ -16,22 +16,16 @@ class AddFriend extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const {name, age, email} = this.state;
+    const { name, age, email } = this.state;
       axios
       .post('http://localhost:5000/friends', { name, age, email })
       .then((result) => {
+        this.props.updateFriends();
         console.log(result);
       })
       .catch(error => {
         console.log('Error: ', error);
       });
-  };
-
-  removeFriend = id => {
-    const newMovies = this.state.movies.filter(movie => {
-      return movie.id !== id;
-    });
-    this.setState({ movies: newMovies });
   };
 
   render() {

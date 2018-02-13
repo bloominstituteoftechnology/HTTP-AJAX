@@ -13,6 +13,14 @@ class FriendsList extends Component {
   };
 
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getNextId = () => {
+    return this.nextId++;
+  };
+
+  getFriends = () => {
     this.setState({ loading: true });
     axios
     .get('http://localhost:5000/friends')
@@ -20,20 +28,18 @@ class FriendsList extends Component {
       this.setState({ friends: response.data, loading: false });
     })
     .catch(error => {
-      this.setState({ loading:false });
+      this.setState({ loading: false });
       console.log('Error: ', error);
     });
   }
 
-  getNextId = () => {
-    return this.nextId++;
-  };
+  removeFriend = id => {
+  }
 
   render() {
     return (
       <div>
-        <AddFriend
-        />
+        <AddFriend updateFriends={this.getFriends}/>
       <div>
         <div className="friend-title">Friends</div>
         {this.state.loading && <div>Loading Friends...</div>}
