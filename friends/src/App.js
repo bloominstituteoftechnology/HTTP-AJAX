@@ -11,28 +11,31 @@ class App extends Component {
     age: '',
     email: '',
   }
-  render() {
-    return (
-      <div className="App">
-        <AddFriend name={this.state.name} age={this.state.age} email={this.state.email}/>
-        <FriendsList friends={this.state.friends}/>
-      </div>
-    );
-  }
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
     .then(response => {this.setState({friends: response.data})})
     .catch(error => console.log('error message: ', error));
   }
   _friendChangeHandler = (fc) => {
-    this.setState({value: fc.target.value});
+    console.log('I am this in the _friendChangeHandler: ', this)
+    const state = this.props;
+    state[fc.target.name] = fc.target.value;
+    this.setState(state);
   }
-
   _friendSubmitHandler = (fc) => {
-    fc.preventDefault();
-    axios.post('http://localhost:5000/friends', { name: this.state.name, age: this.state.age, email: this.state.email })
-    .then(result => this.setState({friends: result.data, name: '', age: '', email: ''}))
-    .catch(error => console.log(error))
+      fc.preventDefault();
+      axios.post('http://localhost:5000/friends', { name: this.props.name, age: this.props.age, email: this.props.email })
+      .then(result => this.setState({friends: result.data, name: '', age: '', email: ''}))
+      .catch(error => console.log(error))
+  }
+  render() {
+  console.log('I am this in App: ', this)
+    return (
+      <div className="App">
+        <AddFriend name={this.state.name} age={this.state.age} email={this.state.email} friends={this.state.friends}/>
+        <FriendsList friends={this.state.friends}/>
+      </div>
+    );
   }
 }
 
