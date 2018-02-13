@@ -16,13 +16,10 @@ class FriendForm extends Component {
   }
   
   addFriend = (event) => {
-    const newFriend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email,
-    }
+    event.preventDefault();
     axios
-      .post('http://localhost:5000/friends', newFriend)
+      .post('http://localhost:5000/friends', this.state)
+      .then(response => this.props.refresh())
 
     this.setState({
       name: '',
@@ -45,7 +42,7 @@ class FriendForm extends Component {
           name='name'
         />
         <input 
-          type='text'
+          type='number'
           className='form__input' 
           value={this.state.age}
           placeholder='Age'
@@ -53,7 +50,7 @@ class FriendForm extends Component {
           name='age'
         />
         <input
-          type='text'
+          type='email'
           className='form__input' 
           value={this.state.email}
           placeholder='Email'
