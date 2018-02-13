@@ -1,11 +1,14 @@
 .App {
   text-align: center;
+  font-family: Work Sans;
+  font-size: 62.5%;
 }
 .friends-container {
   display: flex;
   flex-wrap: wrap;
 }
 .friend {
+  font-size: 1rem;
   width: 210px;
   height: 160px;
   background: white;
@@ -14,6 +17,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #b6b6b6;
+  box-shadow: 0px 1px 2px rgba(100, 100, 100, 0.2);
   padding: 5px;
   justify-content: center;
   align-items: center;
@@ -29,6 +33,8 @@
   background: rgba(200, 200, 200, 0.1);
 }
 .friend button {
+  font-size: 0.7rem;
+  font-family: inherit;
   cursor: pointer;
   margin-top: 10px;
   background: rgba(200, 200, 200, 0.1);
@@ -42,6 +48,7 @@
   background: rgba(100, 100, 100, 0.3);
 }
 .add-friend-form {
+  font-size: 1rem;
   margin-top: 50px;
   width: 100%;
   display: flex;
@@ -63,6 +70,7 @@
   margin: 2px;
 }
 .add-friend-form form .add-button {
+  font-family: inherit;
   cursor: pointer;
   margin-top: 10px;
   border: 1px solid #30547e;
@@ -73,4 +81,7 @@
   padding: 3px;
   border: 2px solid #30547e;
   background: rgba(100, 100, 100, 0.3);
+}
+.edit-friend-form {
+  width: 90%;
 }

@@ -33,7 +33,6 @@ class EditForm extends React.Component {
           .catch(error => {
               console.error(error);
           });
-      this.setState({ name: '', age: '', email: '' });
   };
 
     render() {
