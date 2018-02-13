@@ -1,0 +1,9 @@
+.friend-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+.friend {
+	border:1px solid blue;
+	width: 200px;
+	margin: 10px;
+}

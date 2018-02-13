@@ -10,37 +10,41 @@ class App extends Component {
 		name: '',
 		age: '',
 		email: '',
-}
-	// when i do event.target.value its undefined
-	// yes but i'm not geting the value
+	}
+
 	handleNewFriend = (event) => {
+		// new friend object to be passed to server
 		let newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
 		event.preventDefault();
+		
 		axios
 			.post("http://localhost:5000/friends", newFriend)
 			.then((res)=>{
+				// set state with new updated friend list
 				this.setState({friends: res.data});
   		}).catch((err)=>{
-  		
+  			console.log(err);
   		});
 	}
 
 	handleOnChange = (event) => {
+		// change input values
 		this.setState({[event.target.name]: event.target.value});
 	}
 
   	render() {
-  		console.log(this.state);
     return (
     	<div>
+    		<FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />
 	    	<FriendList friends={this.state.friends}/>
-	    	<FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />
     	</div>
     );
   }
 
    componentDidMount(){
+   	// get request to get friend list from server
   		axios.get("http://localhost:5000/friends").then((res)=>{
+  			// update state with friend list
   			this.setState({friends: res.data});
   		}).catch((err)=>{
   			console.log(err);
