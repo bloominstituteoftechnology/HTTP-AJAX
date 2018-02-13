@@ -9,7 +9,13 @@ class Friends extends React.Component {
 
 
 
+    handleSubmit = () => {
+        const nextId = this.getNextId();
+        const newFriendObj = {id:nextId, name: this.state.name, age: this.state.age, email: this.state.email};
+        let newFriendsList = [...this.state.friends, newFriendObj];
 
+        this.setState({friends: newFriendsList});
+    };
 
     handleChange(event) {
         const target = event.target;
