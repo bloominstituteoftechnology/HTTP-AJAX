@@ -47,7 +47,7 @@ class UpdateForm extends Component {
   render() {
     return (
       <StyledDiv>
-        <h2>Update Friend</h2>
+        <h2>Update Friend (enter info and click "update" above)</h2>
         <form onSubmit={this.props.handleUpdate}>
           <input
             type='text' 

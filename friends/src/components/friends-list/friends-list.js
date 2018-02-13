@@ -85,7 +85,13 @@ class FriendsList extends Component {
         email: this.state.email,
       })
       .then(res => {
-        this.setState({ name: '', age: '', email: '', position: '', friends: res.data });
+        this.setState({ 
+          name: '', 
+          age: '',
+          email: '',
+          position: '',
+          friends: res.data,
+        });
       })
       .catch(error => {
         alert('There was an error: ', error);
@@ -106,17 +112,27 @@ class FriendsList extends Component {
 
   handleUpdate = event => {
     event.preventDefault();
-    console.log(event);
-    axios
-    .put(`http://localhost:5000/friends/${event.target.value}`, {
+    let update = {
       name: this.state.update_name,
       age: this.state.update_age,
       position: this.state.update_position,
       email: this.state.update_email,
-    })
+    };
+    for (let prop in update) {
+      if (update[prop] === '') {
+        delete update[prop];
+      }
+    }
+    axios
+    .put(`http://localhost:5000/friends/${event.target.value}`, {...update})
     .then(res => {
-      console.log(res);
-      this.setState({ update_name: '', update_age: '', update_email: '', update_position: '', friends: res.data });
+      this.setState({ 
+        update_name: '',
+        update_age: '',
+        update_email: '',
+        update_position: '',
+        friends: res.data,
+      });
     })
     .catch(error => {
       alert('There was an error: ', error);
