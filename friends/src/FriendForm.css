@@ -1,0 +1,12 @@
+.form__box {
+  width: 100%;
+  list-style-type: none;
+  display:flex;
+  justify-content: center;
+}
+
+.form__box-inside {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+}
