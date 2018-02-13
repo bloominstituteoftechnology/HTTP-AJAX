@@ -1,39 +1,15 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import FriendsList, { state } from '../FriendsList/FriendsList';
+import React from 'react';
 
-class AddFriend extends Component {
-    state = {
-        name: '',
-        age: '',
-        email: '',
-    }
-
-    onChange = (fc) => {
-        const tempFriendslist = this.state;
-        tempFriendslist[fc.target.name] = fc.target.value;
-        this.setState(tempFriendslist);
-    }
-
-    onSubmit = (fc) => {
-        fc.preventDefault();
-        const { name, age, email } = this.state; 
-        axios.post('http://localhost:5000/friends', { name, age, email })
-        .then(result => this.setState({name: '', age: '', email: ''}))
-        .catch(error => console.log(error))
-    }
-
-    render() {
-        const { name, age, email } = this.state;
-        return (
-            <form onSubmit={this.onSubmit} className="af">
-                <input name="name" value={name} onChange={this.onChange} placeholder="name" label="name" />
-                <input name="age" value={age} onChange={this.onChange} placeholder="age" label="age" />
-                <input name="email" value={email} onChange={this.onChange} placeholder="email" label="email"/>
-                <button className="fs__button" >add friend</button>
-            </form>
-        )
-    }
+function AddFriend (props) {
+    console.log('AddFriend props: ', props);
+    return (
+        <form onSubmit={props._friendSubmitHandler} className="af">
+            <label> Name: </label><input type="text" name="name" value={props.name} onChange={props._friendChangeHandler} placeholder="name" />
+            <label> Age: </label><input type="text" name="age" value={props.age} onChange={props._friendChangeHandler} placeholder="age" />
+            <label> Email: </label><input type="text" name="email" value={props.email} onChange={props._friendChangeHandler} placeholder="email" />
+            <button type="submit" className="fs__button" >add friend</button>
+        </form>
+    )
 }
 
 
