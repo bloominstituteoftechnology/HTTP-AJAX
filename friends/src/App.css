@@ -6,13 +6,15 @@
   flex-wrap: wrap;
 }
 .friend {
-  width: 200px;
-  height: 100px;
+  width: 210px;
+  height: 130px;
   background: white;
   border-radius: 3px;
   margin: 5px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #b6b6b6;
+  padding: 5px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -24,7 +26,20 @@
   font-size: 12px;
 }
 .friend:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(200, 200, 200, 0.1);
+}
+.friend button {
+  cursor: pointer;
+  margin-top: 10px;
+  background: rgba(200, 200, 200, 0.1);
+  border: 1px solid #30547e;
+  border-radius: 4px;
+  padding: 4px;
+}
+.friend button:hover {
+  padding: 3px;
+  border: 2px solid #30547e;
+  background: rgba(100, 100, 100, 0.3);
 }
 .add-friend-form {
   margin-top: 50px;
@@ -40,4 +55,22 @@
   flex-direction: column;
   justify-content: center;
   margin: 5px;
+}
+.add-friend-form form input {
+  background: white;
+  border: 1px solid #b6b6b6;
+  border-radius: 3px;
+  margin: 2px;
+}
+.add-friend-form form .add-button {
+  cursor: pointer;
+  margin-top: 10px;
+  border: 1px solid #30547e;
+  border-radius: 4px;
+  padding: 4px;
+}
+.add-friend-form form .add-button:hover {
+  padding: 3px;
+  border: 2px solid #30547e;
+  background: rgba(100, 100, 100, 0.3);
 }
