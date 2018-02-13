@@ -59,6 +59,9 @@ const StyledDiv = styled.div`
     &:focus {
       outline: 0;
     }
+  .friend__update-button {
+    width: 125px;
+  }
   }
 `;
 
@@ -108,14 +111,14 @@ class FriendsList extends Component {
     event.preventDefault();
     console.log(event);
     axios
-    .put('http://localhost:5000/friends/1', {
-      name: 'Test',
-      age: this.state.age,
-      position: this.state.position,
-      email: this.state.email,
+    .put(`http://localhost:5000/friends/${event.target.value}`, {
+      name: this.state.update_name,
+      age: this.state.update_age,
+      position: this.state.update_position,
+      email: this.state.update_email,
     })
     .then(res => {
-      this.setState({ name: '', age: '', email: '', position: '', }, () => this.getData())
+      this.setState({ update_name: '', update_age: '', update_email: '', update_position: '', }, () => this.getData())
     })
     .catch(error => {
       alert('There was an error: ', error);

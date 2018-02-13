@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
     }  
   }
   .form__button {
-    width: 100px;
+    width: 125px;
     margin-top: 5px;
     padding: 6px 20px 6px 20px;
     border-radius: 3px;
