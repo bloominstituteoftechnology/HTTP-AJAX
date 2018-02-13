@@ -34,6 +34,12 @@ class FriendsList extends Component {
   }
 
   removeFriend = id => {
+    console.log(id);
+    axios
+    .delete('http://localhost:5000/friends/:', id)
+    .then(response => {
+      this.getFriends();
+    })
   }
 
   render() {
@@ -52,6 +58,7 @@ class FriendsList extends Component {
                 <div className="friend-name">{friend.name}</div>
                 <div className="friend-age">{`Age: ${friend.age}`}</div>
                 <div className="friend-email">{`Email: ${friend.email}`}</div>
+                <button onClick={() => {this.removeFriend(friend.id);}}>Delete</button>
               </li>
             );
           })}
