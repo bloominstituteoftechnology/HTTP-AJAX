@@ -62,6 +62,14 @@ class Form extends Component {
             required 
           />
           <input 
+            type='text' 
+            name='position' 
+            placeholder='Position' 
+            value={this.props.position} 
+            onChange={this.props.handleChange} 
+            required 
+          />
+          <input 
             type='email' 
             name='email' 
             placeholder='Email' 

@@ -35,6 +35,7 @@ class FriendsList extends Component {
     friends: [],
     name: '',
     age: '',
+    position: '',
     email: '',
   };
 
@@ -44,6 +45,7 @@ class FriendsList extends Component {
       .post('http://localhost:5000/friends', {
         name: this.state.name,
         age: this.state.age,
+        position: this.state.position,
         email: this.state.email,
       })
       .then(res => {
@@ -56,7 +58,7 @@ class FriendsList extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state.name));
+    this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state.position));
   };
   
   getData = () => {
@@ -82,6 +84,7 @@ class FriendsList extends Component {
                 <ul>
                   <li>{val.name}</li>
                   <li>{val.age}</li>
+                  <li>{val.position}</li>
                   <li>{val.email}</li>
                 </ul>
               </div>
@@ -93,6 +96,7 @@ class FriendsList extends Component {
           handleSubmit={this.handleSubmit} 
           name={this.state.name} 
           age={this.state.age} 
+          position={this.state.position}
           email={this.state.email}
         />
       </StyledDiv>
