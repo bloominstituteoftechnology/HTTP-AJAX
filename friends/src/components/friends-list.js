@@ -6,7 +6,6 @@ import Form from './form';
 class FriendsList extends Component {
   state = {
     friends: [],
-    // lastId: undefined,
   }
 
   render() {
@@ -14,15 +13,14 @@ class FriendsList extends Component {
    <div>
      <ul className="FriendsList">
        {this.state.friends.map((friend) => {
-         {/* this.lastId = friend.id; */}
          return (
            <div key={friend.id} style={{ border: '1px solid black'}}>
-           <Friend friend={friend}/>
+            <Friend friend={friend}/>
            </div>
          )
        })}
      </ul>
-     <Form /*id={this.state.lastId}*/ />
+     <Form />
    </div>
     )
   }
@@ -36,8 +34,7 @@ class FriendsList extends Component {
     .catch((error) => {
       console.log(`Error: ${error}`)
     })
-
   }
-}
+} // FriendsList component
 
 export default FriendsList

@@ -13,17 +13,11 @@ class Form extends Component {
 
   handleChange = (event) => {
     const newState = this.state;
-    if (event.target.name === 'age') {
-      newState[event.target.name] = Number(event.target.value)
-    } 
     newState[event.target.name] = event.target.value;
     this.setState(newState);
   }
 
   onSubmit = (event) => {
-    // event.preventDefault();
-
-    console.log(this.state)
     let { name, age, email } = this.state;
     axios
     .post('http://localhost:5000/friends', {name, age, email})
@@ -44,6 +38,6 @@ class Form extends Component {
       </div>
     )
   }
-}
+} // Form component
 
 export default Form;
