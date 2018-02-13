@@ -16,7 +16,7 @@ class App extends Component {
 		// new friend object to be passed to server
 		let newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
 		event.preventDefault();
-		
+
 		axios
 			.post("http://localhost:5000/friends", newFriend)
 			.then((res)=>{
@@ -32,11 +32,21 @@ class App extends Component {
 		this.setState({[event.target.name]: event.target.value});
 	}
 
+	onDelete = (id)=>{
+		axios
+			.delete(`http://localhost:5000/friends/${id}`)
+			.then((res)=>{
+				this.setState({friends: res.data});
+		}).catch((err)=>{
+
+		});
+	}
+
   	render() {
     return (
     	<div>
     		<FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />
-	    	<FriendList friends={this.state.friends}/>
+	    	<FriendList friends={this.state.friends} onDelete={this.onDelete}/>
     	</div>
     );
   }
