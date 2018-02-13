@@ -24,6 +24,7 @@ class FriendForm extends React.Component {
   handleChange = event => {this.setState({ [event.target.name]: event.target.value })};
 
   submitFriend = event => {
+    event.preventDefault();
     const newFriend = {
       name: this.state.newFriendName,
       age: this.state.newFriendAge,
@@ -31,13 +32,9 @@ class FriendForm extends React.Component {
     };
 
     // const newFriendList = [...this.state.friendList, newFriend];
-    axios.post('http://localhost:5000/friends', {
-      name: newFriend.name,
-      age: newFriend.age,
-      email: newFriend.email,
-    })
-      .then(()=>{console.log('success')})
-      .catch(()=>{console.log('fail')});
+    axios.post('http://localhost:5000/friends', newFriend)
+      .then((response)=>{console.log('response', response)})
+      .catch((error)=>{console.error('fail because', error)});
 
     // this.setState({ friendList: newFriendList, newFriendName: '', newFriendAge: 0, newFriendEmail: '' });
   };

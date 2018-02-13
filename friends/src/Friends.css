@@ -15,6 +15,7 @@
   border: 2px solid black;
   border-radius: 15%;
   color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
