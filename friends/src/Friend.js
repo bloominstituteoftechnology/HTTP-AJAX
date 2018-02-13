@@ -2,11 +2,13 @@ import React from 'react';
 
 function Friend(props) {
   return (
-    <ul>
-      <li>Name: {props.friend.name}</li>
-      <li>Age: {props.friend.age}</li>
-      <li>Email: {props.friend.email}</li>
-    </ul>
+    <form onSubmit={props.deleteFriend(props.friend.id)}>
+      <div>Name: {props.friend.name}</div>
+      <div>Age: {props.friend.age}</div>
+      <div>Email: {props.friend.email}</div>
+      <input type='submit' value='Delete' />
+      <br></br>
+    </form>
   )
 }
 

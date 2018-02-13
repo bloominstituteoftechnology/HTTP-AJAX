@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Friend from './Friend';
 import axios from 'axios';
+import Form from './Form';
 
 class App extends Component {
   state = {
@@ -15,20 +16,16 @@ class App extends Component {
           {this.state.friends.map(friend => {
             return <Friend 
               friend={friend}
+              deleteFriend={this.deleteFriend}
             />
           })}
         </div>
-        <form onSubmit={this.addFriend}>
-          <input type='text' id='name' placeholder='Name' />
-          <input type='text' id='age' placeholder='Age' />
-          <input type='text' id='email' placeholder='Email' />
-          <input type='submit' value='Submit' />
-        </form>
+        <Form addFriend={this.addNewFriend} />
       </div>
     );
   }
 
-  addFriend() {
+  addNewFriend() {
     axios
       .post('http://localhost:5000/friends', {
         name: document.getElementById('name').value,
@@ -37,6 +34,22 @@ class App extends Component {
       })
       .then(response => {
         console.log(response);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
+
+  // updateFriend() {
+
+  // }
+
+  deleteFriend(id) {
+    console.log(id);
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends: response.data })
       })
       .catch(error => {
         console.log('error', error);
