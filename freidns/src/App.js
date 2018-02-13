@@ -6,7 +6,7 @@ import './App.css';
   // let total = () => {
   //   total += this.state.friends.id[id.length-1];
   // } //trying to create an counterFunction called total that count the the total number of friends on you firendList
-class App extends Component {
+class friends extends Component {
   state = {
     friends : [],
     staticFriends: [{ // this was a test to see if the react app will work on static data
@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="component__title">your current friends()</h1>
+          <span className="component__title">your current friends()</span>
         </header>
           <div className="friendsList">
             {/* <ul> // **** this the static test friendsList working****
@@ -40,12 +40,12 @@ class App extends Component {
             })}
             </ul> */}
             <ul>
-            {this.state.friends.map((friends) => {
+            {this.state.friends.map((friend) => {
               return (
-              <li key={friends.id} className="friends">
-                  {/* <span className="friendsList">{serverFriends.name}</span>
-                  <span className="friendsList">{serverFriends.age}</span>
-                  <span className="friendsList">{serverFriends.email}</span> */}
+              <li key={friends.id} className="friend">
+                  <span className="friendsList">dadsda{friend.name}</span>
+                  <span className="friendsList">{friend.age}</span>
+                  <span className="friendsList">{friend.email}</span>
               </li> // <li> not working yet!
               )
             })}
@@ -54,17 +54,15 @@ class App extends Component {
       </div>
     );
   }
+  componentDidMoutn() {
+    axios.get( 'http://localhost:5000/friends' )
+    .then(response => this.setStates( { friends: response.data, } ))
+    .catch(error => {console.log(error);})
+    
+  }
 }
-  //componentWillmount() // used while page loading! guess
-  // componentDidMount() { // its the one shows the HTML!
-  //   axios
-  //     .get( 'http://localhost:5000/friends' )
-  //     .then((response) => {
-  //       this.setState({ friends : response.data }) // this is where we change the state of the empty serverFreinds array and call the data
 
-  //     })
-  // }
 
-export default App;
+export default friends;
 
 
