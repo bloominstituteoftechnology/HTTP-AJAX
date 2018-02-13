@@ -1,7 +1,11 @@
 *{
   box-sizing:border-box;
 }
-
+.App{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
 
 
 

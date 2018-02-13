@@ -13,8 +13,8 @@ class Friends extends Component {
         return (
           <ul key={friend.id} className="friend">
           <li className="friend-name">{friend.name}</li>
-          <li className="friend-age">{'Age: ${friend.age'}'}</li>
-          <li className="friend-email">{'Email:${friend.email'}</li>
+          <li className="friend-age">{'Age: friend.age'}</li>
+          <li className="friend-email">{'Email:friend.email'}</li>
         </ul>
         )
 

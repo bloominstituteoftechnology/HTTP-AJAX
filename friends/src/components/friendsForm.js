@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
- class FriendsForm extends Component {
-  constructor(props) {
-    super(props);
+class FriendsForm extends Component {
+  
 
-    this.state = {
+    state = {
       friends: [],
       newFriend: {
         id: '',
@@ -29,20 +28,27 @@ import axios from 'axios';
       }
       axios
         .post('http://localhost:5000/friends', newFriend)
-    }
-  }
-  render = () => {
-    return (
-      <ul className="friends_form">
 
-        <form type='submit' onSubmit={this.addFriend}>
-          <input type="text" name="name"
-          value={this.state.name}
-          onChange={this.updateFriend} />
-        </form>
-      
-        }/>
+      this.setState({
+        name: '',
+        age: '',
+        email: '',
+      })
+  }
+    render = () => {
+      return (
+        <ul className="friends_form">
+
+          <form type='submit' onSubmit={this.addFriend}>
+            <input type="text" name="name"
+              value={this.state.name}
+              onChange={this.updateFriend} />
+          </form>
+
+          
       </ul>
-    )
-  }}
+      )
+    }
+  
+}
   export default FriendsForm;
