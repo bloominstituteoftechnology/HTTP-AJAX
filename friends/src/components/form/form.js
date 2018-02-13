@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
       }
     }  
   }
-  button {
+  .form__button {
     width: 100px;
     margin-top: 5px;
     padding: 6px 20px 6px 20px;
@@ -48,7 +48,7 @@ class Form extends Component {
         <form onSubmit={this.props.handleSubmit}>
           <input
             type='text' name='name' 
-            placeholder='Name' 
+            placeholder='Name (required)' 
             value={this.props.name} 
             onChange={this.props.handleChange} 
             required 
@@ -56,7 +56,7 @@ class Form extends Component {
           <input 
             type='number' 
             name='age' 
-            placeholder='Age' 
+            placeholder='Age (required)' 
             value={this.props.age} 
             onChange={this.props.handleChange} 
             required 
@@ -64,7 +64,7 @@ class Form extends Component {
           <input 
             type='text' 
             name='position' 
-            placeholder='Position' 
+            placeholder='Position (required)' 
             value={this.props.position} 
             onChange={this.props.handleChange} 
             required 
@@ -72,12 +72,12 @@ class Form extends Component {
           <input 
             type='email' 
             name='email' 
-            placeholder='Email' 
+            placeholder='Email (required)' 
             value={this.props.email} 
             onChange={this.props.handleChange} 
             required 
           />
-          <button type='submit'>
+          <button className='form__button' type='submit'>
             Submit
           </button>
         </form>

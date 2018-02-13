@@ -25,9 +25,32 @@ const StyledDiv = styled.div`
   }
 
   ul {
+    margin-bottom: 7px;
     padding-left: 0;
     list-style: none;
   }
+
+  li {
+    margin-top: 3px;
+  }
+
+  .friend__delete-button {
+    width: 80px;
+    margin: 10px 0;
+    padding: 5px 10px 6px 10px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 13px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);    
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
+
+
 `;
 
 class FriendsList extends Component {
@@ -87,6 +110,7 @@ class FriendsList extends Component {
                   <li>{val.position}</li>
                   <li>{val.email}</li>
                 </ul>
+                <button className='friend__delete-button'>Remove</button>
               </div>
             )
           })}
