@@ -3,7 +3,18 @@ import axios from 'axios';
 // import FormComp from './FormComponent';
 
 class Friends extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            friends: [],
+            name:'',
+            age:'',
+            email:'',
+        };
 
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
     componentDidMount() {
         axios
