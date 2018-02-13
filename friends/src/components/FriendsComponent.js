@@ -5,7 +5,16 @@ import axios from 'axios';
 class Friends extends React.Component {
 
 
-
+    componentDidMount() {
+        axios
+            .get('http://localhost:5000/friends')
+            .then(response => {
+                this.setState({ friends: response.data});
+            })
+            .catch(error => {
+                console.log('error');
+            });
+    }
 
     getNextId = () => {
         let copyList = [...this.state.friends];
