@@ -52,6 +52,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/friends', (req, res) => {
+  console.log('requesting for friend list');
+  console.log(friends);
   res.status(200).json(friends);
 });
 

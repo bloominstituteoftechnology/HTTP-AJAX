@@ -1,5 +1,6 @@
 import React from 'react';
 import './friend-form.css';
+import {Link} from 'react-router-dom';
 
 function FriendForm (props) {
 	return (
@@ -10,6 +11,7 @@ function FriendForm (props) {
 				<input name="email" value={props.email} onChange={props.handleOnChange} type="text"/>
 				<button>Create Friend</button>
 			</form>
+			<Link to="/">Go to Friend List</Link>
 		</div>
 	);
 }

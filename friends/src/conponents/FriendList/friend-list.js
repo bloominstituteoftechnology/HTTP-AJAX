@@ -3,6 +3,7 @@ import './friend-list.css';
 import {Link} from 'react-router-dom';
 
 function FriendList(props) {
+	console.log(props.friends);
 	return (
 		<div>
 			<div className="friend-list">
@@ -18,7 +19,7 @@ function FriendList(props) {
 				})}
 
 			</div>
-			<button>Creat New Friend</button>
+			<Link to='/form'><button>Creat New Friend</button></Link>
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import FriendList from './conponents/FriendList/friend-list';
 import FriendForm from './conponents/FriendForm/friend-form';
 import axios from 'axios';
@@ -45,13 +45,14 @@ class App extends Component {
   	render() {
     return (
     	<div>
-    		<FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />
-	    	<FriendList friends={this.state.friends} onDelete={this.onDelete}/>
+    		<Route path="/form" render={(props)=> <FriendForm  name={this.state.name} age={this.state.age} email={this.state.email} handleNewFriend={this.handleNewFriend} handleOnChange={this.handleOnChange} />} />
+	    	<Route exact path="/" render={() => <FriendList friends={this.state.friends} onDelete={this.onDelete} />} />
     	</div>
     );
   }
 
    componentDidMount(){
+   	console.log('get initial data');
    	// get request to get friend list from server
   		axios.get("http://localhost:5000/friends").then((res)=>{
   			// update state with friend list
@@ -63,11 +64,3 @@ class App extends Component {
 }
 
 export default App;
-
-      // <BrowserRouter>
-      // 	<Switch>
-      // 	<Route path="/form" component={FriendForm} />
-      //   <Route path="/" component={FriendList} />
-
-      //   </Switch>
-      // </BrowserRouter>
