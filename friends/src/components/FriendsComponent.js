@@ -7,7 +7,11 @@ class Friends extends React.Component {
 
 
 
-
+    getNextId = () => {
+        let copyList = [...this.state.friends];
+        const nextId = copyList.pop().id + 2 ;
+        return nextId;
+    };
 
     handleSubmit = () => {
         const nextId = this.getNextId();
