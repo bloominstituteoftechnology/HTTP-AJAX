@@ -10,22 +10,25 @@ class FriendForm extends Component {
   };
 
   updateFriend = event => {
-    console.log('changing');
     const name = event.target.name;
     const value = event.target.value;
     this.setState({ [name]: value });
   };
 
   addFriend = event => {
+    event.preventDefault();
     const newFriend = {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email,
     };
-    axios.post('http://localhost:5000/friends', newFriend);
+
+    axios.post('http://localhost:5000/friends', newFriend).then(response => {
+      this.props.getFriends();
+    });
 
     this.setState({
-      name: 'DOOFUS',
+      name: '',
       age: '',
       email: '',
     });
