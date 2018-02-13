@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
-
+  /* display: none;
+  position: fixed;
+  top: 100px;
+  padding: 20px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  background-color: #ffffff; */
   h2 {
     margin-top: 20px;
   }
@@ -71,9 +77,9 @@ class UpdateForm extends Component {
             value={this.props.update_email} 
             onChange={this.props.handleChange} 
           />
-          <button className='form__button' type='submit'>
+          {/* <button className='form__button' type='submit'>
             Update
-          </button>
+          </button> */}
         </form>
       </StyledDiv>
     );

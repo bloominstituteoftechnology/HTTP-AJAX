@@ -59,9 +59,6 @@ const StyledDiv = styled.div`
     &:focus {
       outline: 0;
     }
-  .friend__update-button {
-    width: 125px;
-  }
   }
 `;
 
@@ -88,7 +85,7 @@ class FriendsList extends Component {
         email: this.state.email,
       })
       .then(res => {
-        this.setState({ name: '', age: '', email: '', position: '', }, () => this.getData())
+        this.setState({ name: '', age: '', email: '', position: '', friends: res.data });
       })
       .catch(error => {
         alert('There was an error: ', error);
@@ -100,7 +97,7 @@ class FriendsList extends Component {
     axios
       .delete(`http://localhost:5000/friends/${event.target.value}`)
       .then(res => {
-        this.getData();
+        this.setState({ friends: res.data });
       })
       .catch(error => {
         alert('There was an error: ', error);
@@ -118,7 +115,8 @@ class FriendsList extends Component {
       email: this.state.update_email,
     })
     .then(res => {
-      this.setState({ update_name: '', update_age: '', update_email: '', update_position: '', }, () => this.getData())
+      console.log(res);
+      this.setState({ update_name: '', update_age: '', update_email: '', update_position: '', friends: res.data });
     })
     .catch(error => {
       alert('There was an error: ', error);
@@ -126,15 +124,14 @@ class FriendsList extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value },() => console.log(this.state));
+    this.setState({ [event.target.name]: event.target.value });
   };
   
   getData = () => {
     axios
     .get('http://localhost:5000/friends')
     .then(res => {
-      const friends = res.data;
-      this.setState({ friends: friends });
+      this.setState({ friends: res.data });
     })
     .catch(error => {
       alert('There was an error:', error);
