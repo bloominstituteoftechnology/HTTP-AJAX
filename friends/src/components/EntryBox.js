@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class EntryBox extends Component {
   render() {
@@ -17,23 +16,13 @@ class EntryBox extends Component {
           Email:
           <input type="text" name="email" id="email"/>
         </label>
-        <input type="submit" value="Submit" onClick={this.SubmitForm()} />
+        <input type="submit" value="Submit" onClick={this.props.SubmitForm} />
       </form>
     )
-  }
-  SubmitForm() {
-  axios.post('http://localhost:5000/friends', {
-      name: document.getElementById('name').value,
-      age: document.getElementById('age').value,
-      email: document.getElementById('email').value,
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
 }
 
 export default EntryBox;
+
+// this.props refers to the arguments we pass in from App.js
+// If this was a function instead of a class we would have to specify the argument props in the function ()
