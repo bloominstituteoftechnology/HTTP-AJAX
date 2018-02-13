@@ -20,25 +20,27 @@ class App extends Component {
             />
           })}
         </div>
-        <Form addFriend={this.addNewFriend} />
+        <Form />
+        {/* <Form addFriend={this.addNewFriend} /> */}
       </div>
     );
   }
 
-  addNewFriend() {
-    axios
-      .post('http://localhost:5000/friends', {
-        name: document.getElementById('name').value,
-        age: document.getElementById('age').value,
-        email: document.getElementById('email').value,
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
-  }
+  // post, now in Form.js
+  // addNewFriend() {
+  //   axios
+  //     .post('http://localhost:5000/friends', {
+  //       name: document.getElementById('name').value,
+  //       age: document.getElementById('age').value,
+  //       email: document.getElementById('email').value,
+  //     })
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  //     .catch(error => {
+  //       console.log('error', error);
+  //     })
+  // }
 
   // updateFriend() {
 
