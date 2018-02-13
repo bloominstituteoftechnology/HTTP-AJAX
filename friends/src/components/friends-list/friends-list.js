@@ -16,17 +16,18 @@ const StyledDiv = styled.div`
       height: 20px;
       display: block;
       margin: 0 auto;    
-    }
-    .field {
       padding-left: 15px;
-    }  
-    .submit {
-      &:hover {
-        cursor: pointer;
-      }
-      &:focus {
+      &:focus: {
         outline: 0;
       }
+    }  
+  }
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      outline: 0;
     }
   }
 `;
@@ -39,7 +40,7 @@ class FriendsList extends Component {
     email: '',
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     axios
       .post('http://localhost:5000/friends', {
@@ -77,10 +78,32 @@ class FriendsList extends Component {
         })}
         <h1>Post New Friend</h1>
         <form onSubmit={this.handleSubmit}>
-          <input className='field' type='text' name='name' placeholder='Name' value={this.state.name} onChange={this.handleChange} />
-          <input className='field' type='text' name='age' placeholder='Age' value={this.state.age} onChange={this.handleChange} />
-          <input className='field' type='text' name='email' placeholder='Email' value={this.state.email} onChange={this.handleChange} />
-          <button className='submit' type='submit'>Submit</button>
+          <input
+            type='text' name='name' 
+            placeholder='Name' 
+            value={this.state.name} 
+            onChange={this.handleChange} 
+            required 
+          />
+          <input 
+            type='number' 
+            name='age' 
+            placeholder='Age' 
+            value={this.state.age} 
+            onChange={this.handleChange} 
+            required 
+          />
+          <input 
+            type='email' 
+            name='email' 
+            placeholder='Email' 
+            value={this.state.email} 
+            onChange={this.handleChange} 
+            required 
+          />
+          <button type='submit'>
+            Submit
+          </button>
         </form>
       </StyledDiv>
     );
