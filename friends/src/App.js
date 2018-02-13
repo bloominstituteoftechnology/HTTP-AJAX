@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FriendForm from "./FriendForm"
+
+
+
 
 class FriendsList extends Component {
   state = {
@@ -11,22 +15,33 @@ class FriendsList extends Component {
 
   render() {
     return (
+      
       <div>
+        
         <div className="friend-title">Lambda Friends</div>
+        
+        
         {this.state.loading && <div>Loading Friends...</div>}
 
         {!this.state.loading && (
           <ul className="friend-grid">
+          
             {this.state.friends.map(friend => {
               return (
                 <li key={friend.id} className="friend">
                   <div className="friend-name">{friend.name}</div>
                   <div className="friend-age">{`Age: ${friend.age}`}</div>
                   <div className="friend-email">{`Email: ${friend.email}`}</div>
+                   <FriendForm></FriendForm>    
                 </li>
+                   
               );
+              
+                 
+              
             })}
           </ul>
+          
         )}
       </div>
     );
@@ -45,8 +60,5 @@ class FriendsList extends Component {
       });
   }
 }
-<form ref="form" onSubmit={this.handleSubmit}>
-    <button type="submit">Do the thing</button>
-</form>
-
+  
 export default FriendsList;
