@@ -36,6 +36,11 @@ class FriendForm extends React.Component {
       .then((response)=>{
         console.log('response', response);
         this.props.onCreate();
+        this.setState({
+          newFriendName: '',
+          newFriendAge: 0,
+          newFriendEmail: '',
+        });
       })
       .catch((error)=>{console.error('fail because', error)});
 
