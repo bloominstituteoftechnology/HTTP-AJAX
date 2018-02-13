@@ -39,19 +39,6 @@ class Friends extends Component {
     .catch((error) => {
       console.log('there was an error', error);
     });
-
-    axios.post('http://localhost:5000/friends', {
-      name: '',
-      age: '',
-      email: ''
-    })
-    .then((newFriend) => {
-      newFriend = newFriend.data;
-      this.setState({friends: this.push(newFriend)});
-    })
-    .catch((error) => {
-      console.log('there was an error', error);
-    })
   }
 }
 
