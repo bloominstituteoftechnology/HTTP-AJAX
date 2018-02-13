@@ -7,7 +7,7 @@ class Form extends Component {
     this.state = {
       'name': '',
       'age': '',
-      'email': ''
+      'email': '',
     }
   }
 
@@ -21,8 +21,14 @@ class Form extends Component {
   }
 
   onSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
+
     console.log(this.state)
+    let { name, age, email } = this.state;
+    axios
+    .post('http://localhost:5000/friends', {name, age, email})
+    .then((response) => {console.log(`Response: ${response}`)})
+    .catch((error) => {console.log(`Error: ${error}`)})
   }
 
   render() {

@@ -6,7 +6,7 @@ import Form from './form';
 class FriendsList extends Component {
   state = {
     friends: [],
-    nextId: undefined,
+    // lastId: undefined,
   }
 
   render() {
@@ -14,7 +14,7 @@ class FriendsList extends Component {
    <div>
      <ul className="FriendsList">
        {this.state.friends.map((friend) => {
-         this.nextId = friend.id;
+         {/* this.lastId = friend.id; */}
          return (
            <div key={friend.id} style={{ border: '1px solid black'}}>
            <Friend friend={friend}/>
@@ -22,7 +22,7 @@ class FriendsList extends Component {
          )
        })}
      </ul>
-     <Form nextId={this.state.nextID}/>
+     <Form /*id={this.state.lastId}*/ />
    </div>
     )
   }
@@ -31,7 +31,6 @@ class FriendsList extends Component {
     axios
     .get(`http://localhost:5000/friends`)
     .then((response) => {
-      // console.log(response.data)
       this.setState({friends: response.data})
     })
     .catch((error) => {
