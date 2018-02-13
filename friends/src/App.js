@@ -6,7 +6,7 @@ import FriendForm from './components/FriendForm';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="app">
         <FriendForm />
         <FriendsList />
       </div>

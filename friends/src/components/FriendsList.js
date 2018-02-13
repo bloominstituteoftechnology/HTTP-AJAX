@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './FriendsList.css';
 
 // import Form from './FormComponent';
 
@@ -12,7 +13,7 @@ class FriendsList extends Component {
   render() {
     return (
       <div>
-        <div className="friend-title">Lambda Friends</div>
+        <div className="friend-title"><h1>Friends</h1></div>
         <ul className="friend-grid">
           {this.state.friends.map(friend => {
             return (
