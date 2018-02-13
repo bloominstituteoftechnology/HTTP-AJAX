@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Form from '../form/form.js';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -9,26 +10,6 @@ const StyledDiv = styled.div`
   ul {
     padding-left: 0;
     list-style: none;
-  }
-  form {
-    input {
-      width: 200px;
-      height: 20px;
-      display: block;
-      margin: 0 auto;    
-      padding-left: 15px;
-      &:focus: {
-        outline: 0;
-      }
-    }  
-  }
-  button {
-    &:hover {
-      cursor: pointer;
-    }
-    &:focus {
-      outline: 0;
-    }
   }
 `;
 
@@ -58,7 +39,7 @@ class FriendsList extends Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value }, () => console.log(this.state.name));
   };
   
   getData = () => {
@@ -88,35 +69,13 @@ class FriendsList extends Component {
             </div>
           )
         })}
-        <h1>Post New Friend</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text' name='name' 
-            placeholder='Name' 
-            value={this.state.name} 
-            onChange={this.handleChange} 
-            required 
-          />
-          <input 
-            type='number' 
-            name='age' 
-            placeholder='Age' 
-            value={this.state.age} 
-            onChange={this.handleChange} 
-            required 
-          />
-          <input 
-            type='email' 
-            name='email' 
-            placeholder='Email' 
-            value={this.state.email} 
-            onChange={this.handleChange} 
-            required 
-          />
-          <button type='submit'>
-            Submit
-          </button>
-        </form>
+        <Form
+          handleChange={this.handleChange} 
+          handleSubmit={this.handleSubmit} 
+          name={this.state.name} 
+          age={this.state.age} 
+          email={this.state.email}
+        />
       </StyledDiv>
     );
   }
