@@ -50,7 +50,7 @@ class FriendsList extends Component {
       })
       .then(res => {
         console.log(res);
-        this.setState({ name: '', age: '', email: '' })
+        this.setState({ name: '', age: '', email: '' }, () => this.getData())
       })
       .catch(error => {
         alert('There was an error: ', error);
@@ -60,6 +60,18 @@ class FriendsList extends Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+  
+  getData = () => {
+    axios
+    .get('http://localhost:5000/friends')
+    .then(res => {
+      const friends = res.data;
+      this.setState({ friends: friends });
+    })
+    .catch(error => {
+      alert('There was an error:', error);
+    });
+  }
   
   render() {
     return (
@@ -110,15 +122,7 @@ class FriendsList extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get('http://localhost:5000/friends')
-      .then(res => {
-        const friends = res.data;
-        this.setState({ friends: friends });
-      })
-      .catch(error => {
-        alert('There was an error:', error);
-      });
+    this.getData();
   }
 }
 
