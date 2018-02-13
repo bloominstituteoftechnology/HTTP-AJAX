@@ -1,6 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: yellow;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
-    width: 100%;
     max-width: 800px;
+    width: 100%;
+    background: green;
+}
+
+.header {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border: 2px 2px 0 2px;
+    border-style: solid;
+    border-color: black;
+    font-size: 30px;
 }
 
 .grid {
@@ -9,9 +33,22 @@
 }
 
 .form {
-    display: flex;
     padding: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
     align-content: center;
     justify-content: center;
-    border: 2px solid black;
+    align-items: center;
+    background: blueviolet;    
+}
+
+.form__items {
+    width: 50%;
+    text-align: center;
+    margin: 5px;
+}
+
+label {
+    font-size: 20px;
 }

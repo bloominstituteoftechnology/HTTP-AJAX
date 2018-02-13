@@ -7,13 +7,14 @@ class App extends Component {
   state = {
     friends: [],
     newName: '',
-    newAge: 0,
+    newAge: '',
     newEmail: '',
   }
   
   render() {
     return (
       <div className="container">
+        <div className="header"> Your Friends </div>
         <div className="grid">
           {this.state.friends.map(friend => {
             return <Friend 
@@ -23,10 +24,14 @@ class App extends Component {
           })}
         </div>
         <form className="form" onSubmit={this.addNewFriend}>
-          <input type="text" onChange={this.handleNewName} placeholder="Name Here"  value={this.state.newName}/>
-          <input type="text" onChange={this.handleNewAge} placeholder="Age Here" value={this.state.newAge}/>
-          <input type="text" onChange={this.handleNewEmail} placeholder="Email Here" value={this.state.newEmail}/>
-          <input type="submit" value="Add Friend" />
+          <h2> Add a Friend! </h2>
+          <label for="Name">Name</label>
+          <input className="form__items" label="Cody" type="text" onChange={this.handleNewName} placeholder="Name Here"  value={this.state.newName}/>
+          <label for="Name">Age</label>
+          <input className="form__items" type="text" onChange={this.handleNewAge} placeholder="Age Here" value={this.state.newAge}/>
+          <label for="Name">Email</label>
+          <input className="form__items" type="text" onChange={this.handleNewEmail} placeholder="Email Here" value={this.state.newEmail}/>
+          <input style={{marginTop:"15px", fontSize:"20px"}} className="form__items" type="submit" value="Add Friend" />
         </form>
       </div>
     );
@@ -67,6 +72,11 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
+    this.setState({
+      newName: '',
+      newAge: '',
+      newEmail: '',
+    })
   }
 }
 
