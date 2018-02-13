@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Friend from './friend';
-// import Form from './form';
+import Form from './form';
 
 class FriendsList extends Component {
   state = {
-    friends: []
+    friends: [],
+    nextId: undefined,
   }
 
   render() {
     return (
    <div>
-     <ul>
+     <ul className="FriendsList">
        {this.state.friends.map((friend) => {
+         this.nextId = friend.id;
          return (
            <div key={friend.id} style={{ border: '1px solid black'}}>
            <Friend friend={friend}/>
@@ -20,7 +22,7 @@ class FriendsList extends Component {
          )
        })}
      </ul>
-     {/* <Form /> */}
+     <Form nextId={this.state.nextID}/>
    </div>
     )
   }
@@ -33,7 +35,7 @@ class FriendsList extends Component {
       this.setState({friends: response.data})
     })
     .catch((error) => {
-      console.log('Error: ${error}')
+      console.log(`Error: ${error}`)
     })
 
   }
