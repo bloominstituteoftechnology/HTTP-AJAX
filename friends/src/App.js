@@ -17,10 +17,8 @@ class App extends Component {
     .catch(error => console.log('error message: ', error));
   }
   _friendChangeHandler = (fc) => {
-    console.log('I am this in the _friendChangeHandler: ', this)
-    const state = this.props;
-    state[fc.target.name] = fc.target.value;
-    this.setState(state);
+    console.log('I am state in the _friendChangeHandler: ', this.state)
+    this.setState({friends: [fc.target.name] = fc.target.value});
   }
   _friendSubmitHandler = (fc) => {
       fc.preventDefault();
