@@ -4,31 +4,33 @@ import axios from 'axios';
 class FriendsList extends Component {
   state = {
     friends: [],
+    name: '',
+    age: '',
+    email: ''
   };
 
   render() {
-
+  
     return (
       <div>
-        <div className="friend-title">Lambda Friends</div>
+        <div className="friend-title"><h1>Lambda Friends</h1></div>
 
-        <div>
-          <form>
+
+          <form onSubmit={this.handleSubmit}>
             <label>
               Name:
-          <input type="text" name="name" />
+              <input type="text" value={this.state.name} onChange={this.handleName} />
             </label><label>
               Age:
-          <input type="text" age="age" />
+              <input type="text" value={this.state.age} onChange={this.handleAge} />
             </label>
             <label>
               Email:
-          <input type="text" email="email" />
+              <input type="text" value={this.state.email} onChange={this.handleEmail} />
             </label>
             <input type="submit" value="Submit" />
           </form>
-        </div>
-
+      
         <ul>{this.state.friends.map(friend => {
           return (
             <li key={friend.id} className="friend">
@@ -43,6 +45,50 @@ class FriendsList extends Component {
     );
   }
 
+  handleName = (event) => {
+    event.preventDefault();
+    this.setState({
+        name: event.target.value });
+  }
+
+  handleAge = (event) => {
+    event.preventDefault();
+    this.setState({
+        age: event.target.value });
+  }
+
+  handleEmail = (event) => {
+    event.preventDefault();
+    this.setState({
+        email: event.target.value });
+  }
+
+handleSubmit = (event) => {
+  // this.setState({value: event.target.value});
+  event.preventDefault();
+  axios.post('http://localhost:5000/friends', {
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email
+  })
+  .then(response => {
+    this.setState({ friends: response.data});
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
+
+  // handleChange(event) {
+  //   console.log(this.state.value);
+  //   this.setState({value: event.target.value});
+  // }
+
+  // handleSubmit(event) {
+  //   alert('A name was submitted: ' + this.state.value);
+  //   event.preventDefault();
+  // }
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
@@ -53,6 +99,7 @@ class FriendsList extends Component {
       .catch(error => {
         console.log('there was error', error);
       })
+
   }
 }
 
