@@ -62,16 +62,17 @@ class FriendsList extends React.Component {
             );
           })}
           <form>
-            <div className="friend-name">Name:
+            <div className="friend-nameIN">Name:
               <input value={this.state.name} onChange={this.handleChange} name="name" type="text" placeholder="name" />
             </div>
-            <div className="friend-age">Age:
+            <div className="friend-ageIN">Age:
               <input value={this.state.age} onChange={this.handleChange} name="age" type="text" placeholder="age" />
             </div>
             <div className="friend-email">Email:
               <input value={this.state.email} onChange={this.handleChange} name="email" type="text" placeholder="email" />
             </div>
-            <input onClick={this.handleSubmit} type="button" value="Save" />
+            <div className="form-button">
+            <input onClick={this.handleSubmit} type="button" value="Save" /></div>
           </form> </ul>
       </div>
     
