@@ -1,57 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import axios from 'axios';
+
+import './App.css';
+import AllFriends from './components/AllFriends/AllFriends';
+import FriendForm from './components/FriendForm/FriendForm';
 
 class App extends Component {
   state = {
     friends: [],
-    loading: true,
-    noData: true,
   };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-        <div className="friend-title">Lambda Friends</div>
-        {this.state.loading && <div>Loading Friends...</div>}
-
-        {!this.state.loading && (
-          <ul className="friend-grid">
-            {this.state.friends.map(friend => {
-              return (
-                <li key={friend.id} className="friend">
-                  <div className="friend-name">{friend.name}</div>
-                  <div className="friend-age">{`Age: ${friend.age}`}</div>
-                  <div className="friend-email">{`Email: ${friend.email}`}</div>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        </p>
+        <FriendForm onCreate={this.loadFriends} />
+        <AllFriends friends={this.state.friends}
+          onDelete={this.removeFriend} />
       </div>
     );
   }
 
+    componentDidMount() {
+      this.loadFriends();
+    }
 
-componentDidMount() {
-  this.setState({ loading: true });
-  axios
-    .get('http://localhost:5000/friends')
-    .then(response => {
-      this.setState({ friends: response.data, loading: false });
-    })
-    .catch(error => {
-      this.setState({ loading: false });
-      console.log('there was error', error);
-    });
-  }
+    loadFriends = () => {
+      axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+          this.setState({
+            friends: response.data,
+          });
+        })
+        .catch(() => {
+          console.error('error getting data');
+        });
+    };
+
+    removeFriend = id => {
+      const endpoint = `http://localhost:5000/friends/${id}`;
+      axios
+        .delete(endpoint)
+        .then(response => {
+          console.log('response from delete', response);
+          this.setState({ friends: response.data });
+        })
+        .catch(() => {
+          console.error('error deleting');
+        });
+    };
 }
 
 export default App;
