@@ -207,10 +207,6 @@ class App extends Component {
       }
       newFriend.favoriteColor = this.state.friends.find(friend => friend.id === updateIndex).favoriteColor;
     }
-    if (Number(newFriend.age.trim()) === NaN) {
-      alert('Age must be a number!')
-      return;
-    }
     if (this.state.updateIndex === null) {
       axios.post('http://localhost:5000/friends', newFriend)
         .then(() => {
