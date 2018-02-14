@@ -302,6 +302,17 @@ class App extends Component {
         const formHeader = document.getElementById('form-header');
         formHeader.classList.remove('form-header-update');
         formHeader.innerHTML = 'Add new friend:';
+        this.setState({
+          friends: this.state.friends,
+          newFriend: {
+            name: '',
+            age: '',
+            email: '',
+            phoneNumber: '',
+            favoriteColor: '',
+          },
+          updateIndex: null,
+        });
       }
     }
     document.getElementById('name').value = '';
