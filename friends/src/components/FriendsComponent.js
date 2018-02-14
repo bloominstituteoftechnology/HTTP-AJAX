@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-// import FormComp from './FormComponent';
+import Form from './FormComponent';
+import styled  from 'styled-components';
+
 
 class Friends extends React.Component {
     constructor(props) {
@@ -11,12 +13,22 @@ class Friends extends React.Component {
             age:'',
             email:'',
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.loadFriend = this.loadFriend.bind(this);
     }
 
     componentDidMount() {
+        this.loadFriend();
+    }
+    handleChange = (event) => {
+        const {name, value} = event.target;
+
+        this.setState({
+            [name]: value
+        });
+
+    };
+
+    loadFriend = () => {
         axios
             .get('http://localhost:5000/friends')
             .then(response => {
@@ -25,66 +37,185 @@ class Friends extends React.Component {
             .catch(error => {
                 console.log('error');
             });
-    }
-
-    getNextId = () => {
-        let copyList = [...this.state.friends];
-        const nextId = copyList.pop().id + 2 ;
-        return nextId;
     };
 
-    handleSubmit = () => {
-        const nextId = this.getNextId();
-        const newFriendObj = {id:nextId, name: this.state.name, age: this.state.age, email: this.state.email};
-        let newFriendsList = [...this.state.friends, newFriendObj];
-
-        this.setState({friends: newFriendsList});
+    handleDelete(friendId) {
+        axios
+            .delete(`http://localhost:5000/friends/${friendId}`)
+            .then(response => {
+                console.log('response delete:' , response);
+                this.loadFriend();
+            })
+            .catch(error => {
+                console.log('error', error);
+            });
     };
 
-    handleChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+    handleShowHideBoxes = (friend) => {
+        
+        let infoElement = document.getElementById(friend.id + '-info');
+        infoElement.classList.remove('show-input');
+        infoElement.classList.add('hide-input');
+
+        let formElement = document.getElementById(friend.id + '-form');
+        formElement.classList.remove('hide-input');
+        formElement.classList.add('show-input');
 
         this.setState({
-            [name]: value
+            name: friend.name,
+            age:friend.age,
+            email:friend.email,
+        })
+
+    };
+
+    handleCancelUpdate = (friend) => {
+
+        let infoElement = document.getElementById(friend.id + '-info');
+        if(infoElement !== null) {
+            infoElement.classList.remove('hide-input');
+            infoElement.classList.add('show-input');
+        }
+
+        let formElement = document.getElementById(friend.id + '-form');
+        if(formElement !== null) {
+            formElement.classList.remove('show-input');
+            formElement.classList.add('hide-input');
+        }
+
+        this.setState({
+            name: friend.name,
+            age:friend.age,
+            email:friend.email,
         });
-    }
+
+    };
+
+    handleSaveUpdate = (event, friend) => {
+        event.preventDefault();
+
+        const updatedFriendObj = {name: this.state.name, age: this.state.age, email: this.state.email};
+
+        axios
+            .put(`http://localhost:5000/friends/${friend.id}`, updatedFriendObj)
+            .then(response => {
+                this.setState({ friends: response.data});
+            })
+            .catch(error => {
+                console.log('error');
+            });
+
+        this.loadFriend();
+        this.handleCancelUpdate(friend);
+        this.setState({
+            name:'',
+            age:'',
+            email:'',
+        })
+    };
 
     render() {
         return (
-            <div>
+            <FriendsContainer>
                 <ul className="friend-grid">
 
                     {this.state.friends.map(friend => {
                         return (
                             <li key={friend.id} className="friend">
-                                <div className="friend-name">{friend.name}</div>
-                                <div className="friend-age">{`Age: ${friend.age}`}</div>
-                                <div className="friend-email">{`Email: ${friend.email}`}</div>
+                                <div className="deleteIconContainer" onClick={() => {this.handleDelete(friend.id)} }>
+                                    <span className="xIcon">X</span>
+                                </div>
+
+                                <div id={friend.id + '-info'} className="show-input">
+                                    <div className="friend-name">{friend.name}</div>
+                                    <div className="friend-age">{`Age: ${friend.age}`}</div>
+                                    <div className="friend-email">{`Email: ${friend.email}`}</div>
+                                    <br/>
+                                    <button onClick={() => {this.handleShowHideBoxes(friend)}}>
+                                        Update
+                                    </button>
+                                </div>
+
+                                <div id={friend.id + '-form'} className="hide-input">
+                                    <form onSubmit={(e) => {this.handleSaveUpdate(e, friend)}}>
+                                        <div className='friend-name'>
+                                            Name: <input name="name" onChange={this.handleChange} value={this.state.name} type="text"/>
+                                        </div>
+                                        <div className='friend-age'>
+                                            Age: <input name="age" onChange={this.handleChange} value={this.state.age} type="number"/>
+                                        </div>
+                                        <div className='friend-email'>
+                                            Email: <input name="email" onChange={this.handleChange} value={this.state.email} type="email"/>
+                                        </div>
+                                        <br/>
+                                        <MenuBottomLnks>
+                                            <button onClick={() => {this.handleCancelUpdate(friend, friend.id)}}>
+                                                Cancel Update
+                                            </button>
+                                            <button type="submit" >
+                                                Save
+                                            </button>
+                                        </MenuBottomLnks>
+                                    </form>
+                                </div>
+
                             </li>
-                        );
+                        )
                     })}
-                    <li key="liKey" className="friend">
-                        <form>
-                            <div className="friend-name">Name:
-                                <input value={this.state.name} onChange={this.handleChange} name="name"  type="text" placeholder="name"/>
-                            </div>
-                            <div className="friend-age">Age:
-                                <input value={this.state.age} onChange={this.handleChange} name="age"  type="text" placeholder="age"/>
-                            </div>
-                            <div className="friend-email">Email:
-                                <input value={this.state.email} onChange={this.handleChange} name="email"  type="text" placeholder="email"/>
-                            </div>
-                            <input onClick={this.handleSubmit} type="button" value="Save" />
-                        </form>
-                    </li>
+                    <Form onCreate={this.loadFriend}  />
                 </ul>
                 <br/><br/><br/>
-            </div>
+            </FriendsContainer>
         );
     }
-
 }
+
+const MenuBottomLnks = styled.div`
+    display: flex;
+    justify-content:space-between;
+`;
+
+const FriendsContainer = styled.div`
+    
+    .hide-input {
+        display:none;
+    }
+    
+    .show-input {
+        display:inline;
+    }
+
+    .updateLnk {
+        font-size:12px;
+        color:blue;
+        margin-top:10px;
+        text-align:left;
+        
+        .updateLnk:hover {
+            cursor:auto;
+            
+        }
+    }
+    
+    .deleteIconContainer {
+        text-right:left;
+        position:relative;
+        right:0px;
+
+        .xIcon {
+            border:1px solid green;
+            position:absolute;
+            right:0px;
+            border-radius:40%;
+            padding-left:4px;
+            padding-right:4px;
+            
+        }
+        .xIcon:hover {
+            border:2px solid orange;
+            pointer:auto;
+        }
+    }  
+`;
 
 export default Friends;
