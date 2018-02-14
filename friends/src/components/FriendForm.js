@@ -78,7 +78,10 @@ class FriendForm extends React.Component {
       this.setState({ name; event.target.value }) //change the value of this.state.name to the value in target
 
     }
+    <button onClick={() => {props.deleteFriend(friend.id)}}>Delete</button>
+    <button onClick={props.deleteFriend(friend.id)}>Delete</button>
   }
+
 
 // controlled components get its value state
 
