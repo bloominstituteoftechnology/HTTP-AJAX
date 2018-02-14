@@ -43,7 +43,6 @@ class Form extends React.Component {
   handleInputChange = (event) => {
     let { name, value } = event.target; // ES6, destructuring
     if (event.target.type === 'number') value = Number(value);
-    console.log(this.state);
     this.setState( { [name]: value } ); // [can pass the value of it into an object]
   }
 
