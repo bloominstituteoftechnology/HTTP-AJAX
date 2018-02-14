@@ -149,6 +149,17 @@ class App extends Component {
       formHeader.classList.add('form-header-update');
       formHeader.innerHTML = `Update ${friendName.innerHTML}:`;
       event.target.innerHTML = 'Cancel';
+      const friend = this.state.friends.find(friend => friend.id === index);
+      this.setState({
+        friends: this.state.friends,
+        newFriend: friend,
+        updateIndex: index,
+      });
+      document.getElementById('name').value = friend.name;
+      document.getElementById('age').value = friend.age;
+      document.getElementById('email').value = friend.email;
+      document.getElementById('phone').value = friend.phoneNumber;
+      document.getElementById('favorite-color').value = friend.favoriteColor;
     } else if (this.state.updateIndex === index) {
       const updateIndex = this.state.updateIndex;
       this.setState({
@@ -175,6 +186,17 @@ class App extends Component {
       document.getElementById('form-header').innerHTML = `Update ${updateFriendName.innerHTML}:`;
       event.target.innerHTML = 'Cancel';
       document.getElementById(`update-${previousIndex}`).innerHTML = 'Update';
+      const friend = this.state.friends.find(friend => friend.id === index);
+      this.setState({
+        friends: this.state.friends,
+        newFriend: friend,
+        updateIndex: index,
+      });
+      document.getElementById('name').value = friend.name;
+      document.getElementById('age').value = friend.age;
+      document.getElementById('email').value = friend.email;
+      document.getElementById('phone').value = friend.phoneNumber;
+      document.getElementById('favorite-color').value = friend.favoriteColor;
     }
   };
 
@@ -188,13 +210,6 @@ class App extends Component {
         return;
       }
       newFriend.name = this.state.friends.find(friend => friend.id === updateIndex).name;
-    }
-    if (newFriend.age.trim() === '') {
-      if (this.state.updateIndex === null) {
-        alert('Age cannot be blank!')
-        return;
-      }
-      newFriend.age = this.state.friends.find(friend => friend.id === updateIndex).age;
     }
     if (newFriend.email.trim() === '') {
       if (this.state.updateIndex === null) {
