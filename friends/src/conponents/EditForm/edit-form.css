@@ -1,4 +1,4 @@
-.friend-form {
+.edit-form {
 	width: 800px;
 	margin: 20px 0px;
 }
@@ -8,20 +8,20 @@ form {
 	justify-content: space-between;
 }
 
-.friend-form input {
+.edit-form input {
 	font-size: 18px;
 	padding: 4px 8px;
 }
 
-.friend-form .age {
+.edit-form .age {
 	width: 40px;
 }
 
-.friend-form .email {
+.edit-form .email {
 	width: 300px;
 }
 
-.friend-form .button {
+.edit-form .button {
 	border: 1px solid green;
 	font-size: 20px;
 	width: 150px;

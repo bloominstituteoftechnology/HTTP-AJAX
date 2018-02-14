@@ -1,26 +1,30 @@
 import React from 'react';
 import './friend-list.css';
-import {Link} from 'react-router-dom';
 
 function FriendList(props) {
-	console.log(props.friends);
 	return (
-		<div>
-			<div className="friend-list">
-				{props.friends.map((friend)=>{
-					return (
-						<div key={friend.id} className="friend">
-							<div className="name">{friend.name}</div>
-							<div className="age">{friend.age}</div>
-							<div className="email">{friend.email}</div>
-							<button onClick={()=>{props.onDelete(friend.id)}}>Delete</button>
-						</div>
-					) 
-				})}
-
-			</div>
-			<Link to='/form'><button>Creat New Friend</button></Link>
-		</div>
+		<table>
+		<tbody>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Email</th>
+				<th>Edit</th>
+				<th>Remove</th>
+			</tr>
+			{props.friends.map((friend)=>{
+				return (
+					<tr key={friend.id}>
+						<td>{friend.name}</td>
+						<td>{friend.age}</td>
+						<td>{friend.email}</td>
+						<td><button className="edit-btn" onClick={()=>{props.onEdit({friend: friend, history: props.history})}}>Edit</button></td>
+						<td><button className="delete-btn" onClick={()=>{props.onDelete(friend.id)}}>Delete</button></td>
+					</tr>
+				) 
+			})}
+		</tbody>
+		</table>
 	);
 }
 
