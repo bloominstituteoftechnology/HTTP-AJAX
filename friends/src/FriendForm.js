@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class FriendForm extends Component {
     state = {
@@ -8,39 +9,41 @@ class FriendForm extends Component {
     }
     render() {
         return (
-            <form onSubmit = {this.submitNewFriend}>
-            <input type = 'text' value = {this.state.name} onChange = {this.handleNameChange} placeholder='Enter Name' />
-            <input type = 'text' value = {this.state.age} onChange = {this.handleAgeChange} placeholder = 'Enter Age' />
-            <input type = 'text' value = {this.state.email} onChange = {this.handleEmailChange} placeholder = 'Enter E-mail' />
-            <button onSubmit={this.submitNewFriend}>Save Friend</button>
+            <form onSubmit={this.submitNewFriend}>
+                <input type='text' name='name' value={this.state.name} onChange={this.handleChange} placeholder='Enter Name' />
+                <input type='number' name='age' value={this.state.age} onChange={this.handleChange} placeholder='Enter Age' />
+                <input type='email' name='email' value={this.state.email} onChange={this.handleChange} placeholder='Enter E-mail' />
+                <button onSubmit={this.submitNewFriend}>Save Friend</button>
             </form>
         )
     }
-    handleNameChange = (event) => {
+    handleChange = (event) => {
+        let {name, value} = event.target;
+        if (name === 'age') {
+            value = Number(value);
+        }
         this.setState({
-          newName: event.target.value,
+          [name]: value,
         })
       }
     
-      handleAgeChange = (event) => {
-        this.setState({
-          newAge: event.target.value,
-        })
-      }
-    
-      handleEmailChange = (event) => {
-        this.setState({
-          newEmail: event.target.value,
-        })
-      }
     
       submitNewFriend = (event) => {
         event.preventDefault();
-        const newFriend = {
-          name: this.state.name,
-          age: this.state.age,
-          email: this.state.email,
-        }
+      axios
+      .post('http://localhost:4000/friends', this.state)
+      .then(response =>{
+          console.log(response);
+      })
+      .catch(error => {
+          console.log('There was an error', error)
+      });
+
+      this.setState({
+        name: '',
+        age: '',
+        email: '',
+      })
     }
 }
 
