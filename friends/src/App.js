@@ -5,19 +5,48 @@ import './App.css'
 class FriendsList extends Component {
     state = {
         friends: [],
-        friendName: ''
+        friendData: {
+            name: "",
+            age: "",
+            email: ""
+        },
+        friendName: '',
+        friendAge: '',
+        friendEmail: ''
     };
 
-    handleSubmit(event) {
+    handleSubmit = event => {
       event.preventDefault();
-      const newFriend = {
-
-      };
-    }
+      // this.serverRequest = axios.post("http://localhost:5000/friends", {
+      //   : this.name.
+      // })
+      axios
+      .post('http://localhost:5000/friends', this.state.friendData)
+      .then(response => {
+        console.log('response from post', response);
+        this.setState({
+            name:'',
+            age: '',
+            email: '',
+        });
+        this.loadFriends();
+      })
+      .catch(error => {
+          console.error('error saving the data');
+      });
+    };
 
     handleInputChange = (event) => {
-      console.log('input value', event.target.value)
-      this.setState({ friendName: event.target.value })
+      console.log('input name:', event.target.name)
+    //   const { name, value } = event.target; >>>>>(same as 2 lines below)
+      const name = event.target.name;
+      let value = event.target.value;
+
+        if(event.target.type === 'number') {
+            value = Number(value);
+        }
+
+      this.setState({ [name] : value });
     }
     render() {
         return (
@@ -25,24 +54,27 @@ class FriendsList extends Component {
                 <h1>Friends Proj</h1>
                 <div className = "forms">
                 <form onSubmit={this.handleSubmit}>
-                  <label htmlFor="title">Name: </label>
+                  <label> Name:</label>
                   <input 
                     type="text" 
-                    value={this.state.friendName} 
+                    name="name"
+                    value={this.state.friendData.name} 
                     onChange={this.handleInputChange}/>
                 </form>
                 <form onSubmit={this.handleSubmit}>
-                  <label htmlFor="title">Age: </label>
+                  <label> Age:</label>
                   <input 
                     type="text" 
-                    value={this.state.friendName} 
+                    name="age"
+                    value={this.state.friendData.age} 
                     onChange={this.handleInputChange}/>
                 </form>
                 <form onSubmit={this.handleSubmit}>
-                  <label htmlFor="title">Email: </label>
+                  <label> Email:</label>
                   <input 
-                    type="text" 
-                    value={this.state.friendName} 
+                    type="text"
+                    name="email"
+                    value={this.state.friendData.email} 
                     onChange={this.handleInputChange}/>
                   <button type="submit"> Add Friend </button>
                 </form>
@@ -54,6 +86,7 @@ class FriendsList extends Component {
                                 <div>{`Name: ${friend.name}`}</div>
                                 <div>{`Age: ${friend.age}`}</div>
                                 <div>{`Email: ${friend.email}`}</div>
+                                <button onClick={() => {this.removeFriend(friend.id)}}>Delete</button>
                             </li>
                         );
                     })}
@@ -62,12 +95,25 @@ class FriendsList extends Component {
         );
     }
 
-    componentDidMount() {
+    removeFriend = (id) => {
+        const endpoint = `http://localhost:5000/friends/${id}`;
+        axios
+        .delete(endpoint)
+        .then((response) => {
+            console.log('response from delete', response);
+            this.setState({ friends: response.data })
+        })
+        .catch(() => {
+            console.error('error deleting');
+        });
+    }
+
+    loadFriends = () => {
         const data = axios
         .get('http://localhost:5000/friends')
         .then(response => {
             const friends = response.data;
-
+    
             this.setState({ friends: friends })
             console.log('data', response.data);
         })
@@ -75,6 +121,10 @@ class FriendsList extends Component {
             console.log('there was an error', error)
         });
             console.log('data',data);
+    }
+
+    componentDidMount() {
+        this.loadFriends();
     }
 }
 
