@@ -178,7 +178,6 @@ class App extends Component {
     }
   };
 
-
   submitRequest = (event) => {
     event.preventDefault();
     const newFriend = this.state.newFriend;
@@ -232,7 +231,7 @@ class App extends Component {
                   phoneNumber: '',
                   favoriteColor: '',
                 },
-                updateIndex: null,
+                updateIndex: this.state.updateIndex,
               });
             })
             .catch((error) => {
@@ -254,7 +253,7 @@ class App extends Component {
               phoneNumber: '',
               favoriteColor: '',
             },
-            updateIndex: null,
+            updateIndex: this.state.updateIndex,
           });
         });
     } else {
@@ -271,7 +270,7 @@ class App extends Component {
                 phoneNumber: '',
                 favoriteColor: '',
               },
-              updateIndex: null,
+              updateIndex: this.state.updateIndex,
             });
           })
           .catch((error) => {
@@ -293,26 +292,36 @@ class App extends Component {
             phoneNumber: '',
             favoriteColor: '',
           },
-          updateIndex: null,
+          updateIndex: this.state.updateIndex,
         });
       });
-    }    
-    if (this.state.updateIndex !== null) {
-      const index = this.state.updateIndex;
-      document.getElementById(`friend-name-${index}`).classList.remove('friend-name-update');
-      document.getElementById(`update-${index}`).innerHTML = 'Update';
-      const formHeader = document.getElementById('form-header');
-      formHeader.classList.remove('form-header-update');
-      formHeader.innerHTML = 'Add new friend:';
+      if (this.state.updateIndex !== null) {
+        const index = this.state.updateIndex;
+        document.getElementById(`friend-name-${index}`).classList.remove('friend-name-update');
+        document.getElementById(`update-${index}`).innerHTML = 'Update';
+        const formHeader = document.getElementById('form-header');
+        formHeader.classList.remove('form-header-update');
+        formHeader.innerHTML = 'Add new friend:';
+        this.setState({
+          friends: this.state.friends,
+          newFriend: {
+            name: '',
+            age: '',
+            email: '',
+            phoneNumber: '',
+            favoriteColor: '',
+          },
+          updateIndex: null,
+        });
+      }
     }
     document.getElementById('name').value = '';
     document.getElementById('age').value = '';
     document.getElementById('email').value = '';
     document.getElementById('phone').value = '';
     document.getElementById('favorite-color').value = '';
-  };
-
-  deleteFriend = (event) => {
+};
+   deleteFriend = (event) => {
     let index = Number(event.target.id.charAt(7));
     axios.delete(`http://localhost:5000/friends/${index}`)
       .then(() => {
