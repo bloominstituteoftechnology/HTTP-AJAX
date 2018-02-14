@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <FriendForm onCreate={this.loadFriends} />
-        <Friends friendList={this.state.friendList} />
+        <Friends friendList={this.state.friendList} onDelete={this.deleteFriend}/>
       </div>
     );
   }
