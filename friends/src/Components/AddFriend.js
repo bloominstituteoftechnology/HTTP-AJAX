@@ -2,23 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class AddFriend extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       name:'',
       age: '',
       email: '',
       }
-    this.oldState = props.state;
-
-    this.addNewFriend = this.addNewFriend.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     };
 
   render() {
     console.log(this.state);
     return (
-      <form>
+      <form onSubmit={this.addNewFriend}>
           <label>
             Name:
             <input
@@ -46,37 +42,37 @@ class AddFriend extends Component {
               onChange={this.handleChange}/>
           </label>
           <br />
-          <button onClick={this.addNewFriend}>Submit</button>
+          <button type='submit'>Submit</button>
         </form>
     );
   }
 
-  handleChange(event) {
+  handleChange = event => {
     const target = event.target;
 
     if (target.name === 'name') return this.setState({name: target.value});
     if (target.name === 'age') return this.setState({age: target.value});
     if (target.name === 'email') return this.setState({email: target.value});
-  }
+  };
 
-  addNewFriend(event) {
+  addNewFriend = event =>  {
+    event.preventDefault();
+
     axios
     .post('http://localhost:5000/friends', this.state )  
-    .then(function (response) {
+    .then(response => {
       console.log(response);
+      this.setState({
+        name: '',
+        age: '',
+        email: '',
+      });
+      this.props.onCreate();
     })
-    .catch(function (error) {
+    .catch(error => {
       console.log(error);
     });
-
-    // event.preventDefault();
-    // const target = event.target;
-
-    // if (target.name === 'name') return this.setState({newName: target.value});
-    // if (target.age === 'age') return this.setState({newAge: target.value});
-    // if (target.email === 'email') return this.setState({newEmail: target.value});
-
-  }
+  };
 
 }
 

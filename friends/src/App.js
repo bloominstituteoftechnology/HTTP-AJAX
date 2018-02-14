@@ -14,29 +14,45 @@ class App extends Component {
    }
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
-      <div className='addBox'>Add Friends!<AddFriend state={this.state}/></div>
+      <div className='addBox'>Add Friends!<AddFriend onCreate={this.loadFriends}/></div>
       <div className='cardDisplay'>
-        <ListFriends friends={this.state.friends}/>
+        <ListFriends friends={this.state.friends} onDelete={this.deleteFriend}/>
       </div>
       </div>
     );
   }
 
-  componentDidMount() {
-    console.log(this.og , this.state);
+  componentDidMount = () => {
+    this.loadFriends();
+  }
+
+ loadFriends = () => {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        this.setState({friends: response.data});
-        console.log('THIS IS YOUR OG STATE: ', this.state);
+        this.setState({
+          friends: response.data,
+        });
       })
       .catch(error => {
         console.log('EROOORRRRR');
       })
   }
+
+  deleteFriend = id => {
+    const friend = `http://localhost:5000/friends/${id}`;
+    axios
+      .delete(friend)
+      .then(response => {
+        console.log('response from delete', response);
+        this.setState({ friends: response.data });
+      })
+      .catch(() => {
+        console.error('error deleting');
+      });
+  };
 }
 
 
