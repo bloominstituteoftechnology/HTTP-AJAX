@@ -13,14 +13,12 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          {this.state.friends.map(friend => {
-            return <Friend 
-              friend={friend}
-              deleteFriend={this.deleteFriend}
-            />
-          })}
+          <Friend 
+            friend={this.state.friends}
+            deleteFriend={this.deleteFriend}
+          />
         </div>
-        <Form />
+        <Form onCreate={this.loadFriends}/>
         {/* <Form addFriend={this.addNewFriend} /> */}
       </div>
     );
@@ -42,23 +40,25 @@ class App extends Component {
   //     })
   // }
 
-  // updateFriend() {
-
-  // }
-
-  deleteFriend(id) {
-    console.log(id);
+  deleteFriend = (id) => {
+    const endpoint = `http://localhost:5000/friends/${id}`
     axios
-      .delete(`http://localhost:5000/friends/${id}`)
+      .delete(endpoint)
       .then(response => {
+        console.log('response from', response);
         this.setState({ friends: response.data })
       })
       .catch(error => {
-        console.log('error', error);
+        console.log('error deleting', error);
       })
   }
 
   componentDidMount() {
+    this.loadFriends();
+  }
+
+  // reloads the data
+  loadFriends = () => {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {

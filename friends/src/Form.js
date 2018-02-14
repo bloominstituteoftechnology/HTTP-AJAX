@@ -3,11 +3,9 @@ import axios from "axios";
 
 class Form extends React.Component {
   state = {
-    friend: {
-      name: "",
-      age: "",
-      email: ""
-    }
+    name: "",
+    age: "",
+    email: "",
   };
 
   render() {
@@ -42,10 +40,11 @@ class Form extends React.Component {
     );
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     let { name, value } = event.target; // ES6, destructuring
     if (event.target.type === 'number') value = Number(value);
-    this.setState({ [name]: value }); // [can pass the value of it into an object]
+    console.log(this.state);
+    this.setState( { [name]: value } ); // [can pass the value of it into an object]
   }
 
   submitHandler = event => {
@@ -56,6 +55,13 @@ class Form extends React.Component {
       .post('http://localhost:5000/friends', this.state)
       .then(response => {
         console.log('response from post', response);
+        // resets the form to empty
+        this.setState({
+          name: '',
+          age: '',
+          email: '',
+        });
+        this.props.onCreate();
       })
       .catch(error => {
         console.error('error saving the data', error);
