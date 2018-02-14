@@ -139,7 +139,11 @@ class App extends Component {
   toggleUpdate = (event) => {
     const index = Number(event.target.id.charAt(7));
     if (this.state.updateIndex === null) {
-      this.state.updateIndex = index;
+      this.setState({
+        friends: this.state.friends,
+        newFriend: this.state.newFriend,
+        updateIndex: index,
+      });
       const friendName = document.getElementById(`friend-name-${index}`);
       friendName.classList.add('friend-name-update');
       const formHeader = document.getElementById('form-header');
@@ -148,7 +152,11 @@ class App extends Component {
       event.target.innerHTML = 'Cancel';
     } else if (this.state.updateIndex === index) {
       const updateIndex = this.state.updateIndex;
-      this.state.updateIndex = null;
+      this.setState({
+        friends: this.state.friends,
+        newFriend: this.state.newFriend,
+        updateIndex: null,
+      });
       document.getElementById(`friend-name-${updateIndex}`).classList.remove('friend-name-update');
       const formHeader = document.getElementById('form-header');
       formHeader.classList.remove('form-header-update');
@@ -156,7 +164,11 @@ class App extends Component {
       event.target.innerHTML = 'Update';
     } else {
       const previousIndex = this.state.updateIndex;
-      this.state.updateIndex = index;
+      this.setState({
+        friends: this.state.friends,
+        newFriend: this.state.newFriend,
+        updateIndex: index,
+      });
       const friendName = document.getElementById(`friend-name-${previousIndex}`);
       friendName.classList.remove('friend-name-update');
       const updateFriendName = document.getElementById(`friend-name-${index}`);
@@ -323,7 +335,11 @@ class App extends Component {
         return;
       });
     if (this.state.updateIndex === index) {
-      this.state.updateIndex = null;
+      this.setState({
+        friends: this.state.friends,
+        newFriend: this.state.newFriend,
+        updateIndex: null,
+      });
       const formHeader = document.getElementById('form-header');
       formHeader.classList.remove('form-header-update');
       formHeader.innerHTML = 'Add new friend:';
