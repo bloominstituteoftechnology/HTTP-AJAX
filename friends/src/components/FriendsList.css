@@ -1,0 +1,17 @@
+.friend-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend {
+  min-width: 16rem;
+  border: 2px solid gray;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 7px;
+  background-color: lightskyblue;
+}
+
+li {
+  list-style: none;
+}
