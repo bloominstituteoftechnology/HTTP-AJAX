@@ -2,7 +2,7 @@
   display: flex;
   margin: 1%;
   padding: 1%;
-  background-color: burlywood;
+  background-color:	#CCCCDD;
   border-style: solid;
 
 }
@@ -19,8 +19,11 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .contactCard {
-  width: 32%;
+  margin: 1%;
+  padding: 1%;
+  width: 28%;
   border-style: solid;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
