@@ -4,7 +4,6 @@ import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
-
 class App extends Component {
   state = {
     friends: [],
