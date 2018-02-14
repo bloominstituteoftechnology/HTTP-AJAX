@@ -26,7 +26,7 @@ class App extends Component {
         </header>
         <div className="container">
           <div className="friend-grid">
-            {this.state.friends.map((friend, i) => {
+            {this.state.friends.map((friend) => {
               return (
                 <div key={friend.id} className="friend">
                   <h2 className="friend-name" id={`friend-name-${friend.id}`}>{friend.name}</h2>
