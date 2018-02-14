@@ -178,7 +178,6 @@ class App extends Component {
     }
   };
 
-
   submitRequest = (event) => {
     event.preventDefault();
     const newFriend = this.state.newFriend;
@@ -284,6 +283,12 @@ class App extends Component {
         return;
       })
       .finally(() => {
+        const index = this.state.updateIndex;
+        document.getElementById(`friend-name-${index}`).classList.remove('friend-name-update');
+        document.getElementById(`update-${index}`).innerHTML = 'Update';
+        const formHeader = document.getElementById('form-header');
+        formHeader.classList.remove('form-header-update');
+        formHeader.innerHTML = 'Add new friend:';
         this.setState({
           friends: this.state.friends,
           newFriend: {
@@ -296,14 +301,6 @@ class App extends Component {
           updateIndex: null,
         });
       });
-    }    
-    if (this.state.updateIndex !== null) {
-      const index = this.state.updateIndex;
-      document.getElementById(`friend-name-${index}`).classList.remove('friend-name-update');
-      document.getElementById(`update-${index}`).innerHTML = 'Update';
-      const formHeader = document.getElementById('form-header');
-      formHeader.classList.remove('form-header-update');
-      formHeader.innerHTML = 'Add new friend:';
     }
     document.getElementById('name').value = '';
     document.getElementById('age').value = '';
