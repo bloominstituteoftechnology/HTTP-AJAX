@@ -9,6 +9,7 @@ function Friend(props) {
           <div>Name: {friend.name}</div>
           <div>Age: {friend.age}</div>
           <div>Email: {friend.email}</div>
+          <button onClick={() => {props.passId(friend.id)}}>Update</button>
           <button onClick={() => {props.deleteFriend(friend.id)}}>Delete</button>
         </div>
       )})}

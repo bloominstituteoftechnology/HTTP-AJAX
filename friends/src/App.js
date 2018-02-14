@@ -1,57 +1,66 @@
-import React, { Component } from 'react';
-import './App.css';
-import Friend from './Friend';
-import axios from 'axios';
-import Form from './Form';
+import React, { Component } from "react";
+import "./App.css";
+import Friend from "./Friend";
+import axios from "axios";
+import Form from "./Form";
+import Update from "./Update";
 
 class App extends Component {
   state = {
     friends: [],
-  }
-  
+    updateId: '',
+  };
+
   render() {
     return (
       <div className="App">
         <div>
-          <Friend 
+          <Friend
             friend={this.state.friends}
             deleteFriend={this.deleteFriend}
+            passId={this.passId}
           />
         </div>
-        <Form onCreate={this.loadFriends}/>
-        {/* <Form addFriend={this.addNewFriend} /> */}
+        <Update 
+          friend={this.state.friends.filter(each => {
+            return each.id === this.state.updateId;
+          })}
+          update={this.updateFriend}
+        />
+        <Form onCreate={this.loadFriends} />
       </div>
     );
   }
 
-  // post, now in Form.js
-  // addNewFriend() {
-  //   axios
-  //     .post('http://localhost:5000/friends', {
-  //       name: document.getElementById('name').value,
-  //       age: document.getElementById('age').value,
-  //       email: document.getElementById('email').value,
-  //     })
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log('error', error);
-  //     })
-  // }
+  passId = id => {
+    this.setState( {updateId: id} );
+  }
 
-  deleteFriend = (id) => {
-    const endpoint = `http://localhost:5000/friends/${id}`
+  updateFriend = newState => {
+    const endpoint = `http://localhost:5000/friends/${this.state.updateId}`;
+    axios
+      .put(endpoint, newState)
+      .then(response => {
+        console.log('response is', response);
+        this.loadFriends();
+      })
+      .catch(error => {
+        console.log('error is', error);
+      })
+  }
+
+  deleteFriend = id => {
+    const endpoint = `http://localhost:5000/friends/${id}`;
     axios
       .delete(endpoint)
       .then(response => {
-        console.log('response from', response);
-        this.setState({ friends: response.data })
+        console.log("response from", response);
+        this.setState({ friends: response.data });
       })
       .catch(error => {
-        console.log('error deleting', error);
-      })
-  }
+        console.log("error deleting", error);
+      });
+  };
 
   componentDidMount() {
     this.loadFriends();
@@ -60,14 +69,14 @@ class App extends Component {
   // reloads the data
   loadFriends = () => {
     axios
-      .get('http://localhost:5000/friends')
+      .get("http://localhost:5000/friends")
       .then(response => {
-        this.setState({ friends: response.data })
+        this.setState({ friends: response.data });
       })
       .catch(error => {
-        console.log('error', error);
+        console.log("error", error);
       });
-  }
+  };
 }
 
 export default App;
