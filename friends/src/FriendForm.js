@@ -2,76 +2,88 @@ import React from 'react';
 import axios from 'axios';
 
 class FriendForm extends React.Component {
-  state = {
-    name: '',
-    age: '',
-    email: '',
-  };
+    constructor(props) {
+        super(props);
+        this.state = {
+            friends: [],
+            name:'',
+            age:'',
+            email:'',
+        };
 
-  render() {
-    return (
-      <form onSubmit={this.submitHandler}>
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={this.state.name}
-          onChange={this.handleInputChange}
-        />
-
-        <label>Age</label>
-        <input
-          type="number"
-          name="age"
-          value={this.state.age}
-          onChange={this.handleInputChange}
-        />
-
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
-        />
-
-        <button type="submit">Save Friend</button>
-      </form>
-    );
-  }
-
-  submitHandler = event => {
-    event.preventDefault();
-
-    axios
-      .post('http://localhost:5000/friends', this.state)
-      .then(response => {
-        console.log('response from post', response);
-      })
-      .catch(error => {
-        console.error('error saving the data');
-      });
-  };
-
-  handleInputChange = event => {
-    // const { name, value } = event.target; // destructuring
-
-    const name = event.target.name;
-    let value = event.target.value;
-
-    if(event.target.type === 'number') {
-      value = Number(value);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // const propName = 'age';
+    componentDidMount() {
+        axios
+            .get('http://localhost:5000/friends')
+            .then(response => {
+                this.setState({ friends: response.data});
+            })
+            .catch(error => {
+                console.log('error');
+            });
+    }
 
-    // const o = {
-    //   foo: 'bar',
-    //   [propName]: 7
-    // }
+    getNextId = () => {
+        let copyList = [...this.state.friends];
+        const nextId = copyList.pop().id + 2 ;
+        return nextId;
+    };
 
-    this.setState({ [name]: value });
-  };
+    handleSubmit = () => {
+        const nextId = this.getNextId();
+        const newFriendObj = {id:nextId, name: this.state.name, age: this.state.age, email: this.state.email};
+        let newFriendsList = [...this.state.friends, newFriendObj];
+
+        this.setState({friends: newFriendsList});
+    };
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <ul className="friend-grid">
+
+                    {this.state.friends.map(friend => {
+                        return (
+                            <li key={friend.id} className="friend">
+                                <div className="friend-name">{friend.name}</div>
+                                <div className="friend-age">{`Age: ${friend.age}`}</div>
+                                <div className="friend-email">{`Email: ${friend.email}`}</div>
+                            </li>
+                        );
+                    })}
+                    <li key="liKey" className="friend">
+                        <form>
+                            <div className="friend-name">Name:
+                                <input value={this.state.name} onChange={this.handleChange} name="name"  type="text" placeholder="name"/>
+                            </div>
+                            <div className="friend-age">Age:
+                                <input value={this.state.age} onChange={this.handleChange} name="age"  type="text" placeholder="age"/>
+                            </div>
+                            <div className="friend-email">Email:
+                                <input value={this.state.email} onChange={this.handleChange} name="email"  type="text" placeholder="email"/>
+                            </div>
+                            <input onClick={this.handleSubmit} type="button" value="Save" />
+                        </form>
+                    </li>
+                </ul>
+                <br/><br/><br/>
+            </div>
+        );
+    }
+
 }
 
 export default FriendForm;

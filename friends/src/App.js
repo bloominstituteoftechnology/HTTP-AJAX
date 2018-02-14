@@ -1,64 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import FriendForm from "./FriendForm"
+import './App.css';
+import Friends from './FriendForm';
 
-
-
-
-class FriendsList extends Component {
-  state = {
-    friends: [],
-    loading: true,
-    noData: true,
-  };
-
-
+class App extends Component {
   render() {
     return (
-      
-      <div>
-        
-        <div className="friend-title">Lambda Friends</div>
-        
-        
-        {this.state.loading && <div>Loading Friends...</div>}
-
-        {!this.state.loading && (
-          <ul className="friend-grid">
-          
-            {this.state.friends.map(friend => {
-              return (
-                <li key={friend.id} className="friend">
-                  <div className="friend-name">{friend.name}</div>
-                  <div className="friend-age">{`Age: ${friend.age}`}</div>
-                  <div className="friend-email">{`Email: ${friend.email}`}</div>
-                   <FriendForm></FriendForm>    
-                </li>
-                   
-              );
-              
-                 
-              
-            })}
-          </ul>
-          
-        )}
+      <div className="App">
+        <header className="App-header">
+          <h1>Lamda Friends</h1> 
+        </header>
+          <Friends />
       </div>
     );
   }
-
-  componentDidMount() {
-    this.setState({ loading: true });
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        this.setState({ friends: response.data, loading: false });
-      })
-      .catch(error => {
-        this.setState({ loading: false });
-        console.log('there was error', error);
-      });
-  }
 }
-  
-export default FriendsList;
+
+export default App;
