@@ -19,14 +19,14 @@ class FriendsList extends Component {
           <form onSubmit={this.handleSubmit}>
             <label>
               Name:
-              <input type="text" value={this.state.name} onChange={this.handleName} />
+              <input type="text" value={this.state.name} onChange={this.handleName} onDelete={this.handleDelete} />
             </label><label>
               Age:
-              <input type="text" value={this.state.age} onChange={this.handleAge} />
+              <input type="text" value={this.state.age} onChange={this.handleAge} onDelete={this.handleDelete}/>
             </label>
             <label>
               Email:
-              <input type="text" value={this.state.email} onChange={this.handleEmail} />
+              <input type="text" value={this.state.email} onChange={this.handleEmail} onDelete={this.handleDelete}/>
             </label>
             <input type="submit" value="Submit" />
           </form>
@@ -37,12 +37,17 @@ class FriendsList extends Component {
               <div className="friend-name">{friend.name}</div>
               <div className="friend-age">{`Age: ${friend.age}`}</div>
               <div className="friend-email">{`Email: ${friend.email}`}</div>
+              <button onClick={this.onDelete.bind(this, friend)}>Delete</button>
             </li>
           );
         })}
         </ul>
       </div>
     );
+  }
+ 
+  onDelete = (friend) => {
+    this.props.deleteFriends(friend);
   }
 
   handleName = (event) => {
