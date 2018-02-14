@@ -1,0 +1,32 @@
+.edit-form {
+	width: 800px;
+	margin: 20px 0px;
+}
+
+form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.edit-form input {
+	font-size: 18px;
+	padding: 4px 8px;
+}
+
+.edit-form .age {
+	width: 40px;
+}
+
+.edit-form .email {
+	width: 300px;
+}
+
+.edit-form .button {
+	border: 1px solid green;
+	font-size: 20px;
+	width: 150px;
+	padding: 7px 17px;
+	margin: 20px auto;
+	background: green;
+	color: white;
+}
