@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from "prop-types";
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
+`
+
+const ListItem = styled.li`
     background-color: #fff;
     color: rgba(0,0,0,0.7);
     box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
@@ -16,29 +19,29 @@ const Wrapper = styled.div`
 
 function FriendList(props) {
     return (
-        <ul>
+        <Wrapper>
         {props.friends.map(friend => {
           return (
-            <Wrapper key={friend.id}>
-                <li>
+            <div key={friend.id}>
+                <ListItem>
                 {friend.name}
-                </li>
-                <li>
+                </ListItem>
+                <ListItem>
                     {friend.age}
-                </li>
-                <li>
+                </ListItem>
+                <ListItem>
                     {friend.email}
-                </li>
+                </ListItem>
                 <button
                     onClick={() => {
                     props.onDelete(friend.id);
                     }}>
                     Delete
                 </button>
-            </Wrapper>
+            </div>
           );
         })}
-        </ul>
+        </Wrapper>
     );
 }
 

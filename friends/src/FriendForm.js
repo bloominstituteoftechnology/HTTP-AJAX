@@ -1,5 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import styled from 'styled-components';
+
+const DivWrapper = styled.div`
+    padding: 20px;
+`
 
 class FriendForm extends Component {
     state = {
@@ -10,21 +15,21 @@ class FriendForm extends Component {
 
     render() {
         return (
-        <div>
+        <DivWrapper>
             <div className="friend-title">Add new friend</div>
             {/* <form onSubmit={this.handleSubmit}> */}
             <form onSubmit={this.handleOnSubmit}>
                 <label htmlFor="name">Name: </label>
                 <input type="text" placeholder="SERGEY" name="name" value={this.state.name} onChange={this.handleOnChange} />
 
-                <label htmlFor="age">AGE: </label>
+                <label htmlFor="age">Age: </label>
                 <input type="text" placeholder="None of your..." name="age" value={this.state.age} onChange={this.handleOnChange} />
 
-                <label htmlFor="email">EMAIL: </label>
+                <label htmlFor="email">Email: </label>
                 <input type="text" placeholder="What's your email?" name="email" value={this.state.email} onChange={this.handleOnChange} />
-                <button type="submit">ADD</button>
+                <button type="submit">Add</button>
             </form>
-        </div>
+        </DivWrapper>
         )
     }
 

@@ -20,10 +20,10 @@ class App extends Component {
           <h1 className="App-title">HTTP-AJAX-REACT-WEEK6</h1>
         </header>
         <p className="App-intro">{/* To get started, edit <code>src/App.js</code> and save to reload. */}</p>
+        <FriendForm onCreate={this.loadFriends} />
         <FriendList 
           friends={this.state.friends} 
           onDelete={this.removeFriend} />
-        <FriendForm onCreate={this.loadFriends} />
       </div>
     );
   }
