@@ -26,14 +26,15 @@ class FriendsList extends Component {
        {this.state.friends.map((friend) => {
          return (
            <li key={friend.id} style={{'border': '3px solid black', margin: '-3px 0 0 -3px'}}>
-            <Friend friend={friend}/>
+            <Friend friend={friend} />
+             <button onClick={ () => {this.deleteFriend(friend.id)} }>Delete</button>
            </li>
          )
        })}
      </ul>
    </div>
-    )
-  }
+    ) // return
+  } // render()
 
   componentDidMount() {
     this.loadFriends();
@@ -65,7 +66,21 @@ class FriendsList extends Component {
       console.log(`Response: ${response}`)
       this.loadFriends()
     })
-    .catch((error) => {console.log(`Error: ${error}`)});
+    .catch((error) => {
+      console.log(`Error: ${error}`)});
+  }
+
+  deleteFriend = (id) => {
+    let friendUrl = `http://localhost:5000/friends/${id}`
+    axios
+    .delete(friendUrl)
+    .then((response) => {
+      console.log(`Reponse: ${response}`);
+      this.setState({friends: response.data});
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+    })
   }
 } // FriendsList component
 
