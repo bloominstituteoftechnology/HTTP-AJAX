@@ -1,6 +1,4 @@
 import React from 'react';
-import UpdateFriend from './UpdateFriend';
-import DeleteFriend from './DeleteFriend';
 
 const ListFriends = props => {
   return props.friends.map(friend => {
@@ -13,6 +11,10 @@ const ListFriends = props => {
                   props.onDelete(friend.id);
                 }}
               >Delete</button>
+        <button onClick={() => {
+                  props.onUpdate(friend);
+                }}
+              >Update</button>
       </div>
     )
   })

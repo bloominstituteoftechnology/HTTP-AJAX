@@ -18,7 +18,7 @@ class App extends Component {
       <div className="App">
       <div className='addBox'>Add Friends!<AddFriend onCreate={this.loadFriends}/></div>
       <div className='cardDisplay'>
-        <ListFriends friends={this.state.friends} onDelete={this.deleteFriend}/>
+        <ListFriends friends={this.state.friends} onDelete={this.deleteFriend} onUpdate={this.updateFriend}/>
       </div>
       </div>
     );
@@ -53,6 +53,10 @@ class App extends Component {
         console.error('error deleting');
       });
   };
+
+  updateFriend = event => {
+    return console.log(event);
+  }
 }
 
 
