@@ -10,6 +10,7 @@ class FriendForm extends Component {
   };
 
   updateFriend = event => {
+    // const { name, value } = event.target; // destructuring
     const name = event.target.name;
     const value = event.target.value;
     this.setState({ [name]: value });
@@ -48,7 +49,7 @@ class FriendForm extends Component {
             value={this.state.name}
           />
           <input
-            type="text"
+            type="number"
             className="form__input"
             placeholder="Age"
             onChange={this.updateFriend}
@@ -56,7 +57,7 @@ class FriendForm extends Component {
             value={this.state.age}
           />
           <input
-            type="text"
+            type="email"
             className="form__input"
             placeholder="Email"
             onChange={this.updateFriend}

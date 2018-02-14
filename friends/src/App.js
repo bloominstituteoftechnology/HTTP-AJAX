@@ -15,10 +15,10 @@ class App extends Component {
         <header className="app__header">
           <h1>Friends List</h1>
         </header>
-        <FriendForm getFriends={this.getFriends.bind(this)} />
+        <FriendForm getFriends={this.getFriends} />
         <FriendsList
           friends={this.state.friends}
-          deleteFriend={this.deleteFriend.bind(this)}
+          deleteFriend={this.deleteFriend}
         />
       </div>
     );
