@@ -21,7 +21,6 @@
   padding: 5px;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 .friend div {
   padding: 5px;
@@ -37,7 +36,7 @@
   font-family: inherit;
   cursor: pointer;
   margin-top: 10px;
-  background: rgba(200, 200, 200, 0.1);
+  background: rgba(228, 228, 228, 0.1);
   border: 1px solid #30547e;
   border-radius: 4px;
   padding: 4px;
@@ -45,7 +44,7 @@
 .friend button:hover {
   padding: 3px;
   border: 2px solid #30547e;
-  background: rgba(100, 100, 100, 0.3);
+  background: rgba(145, 145, 145, 0.3);
 }
 .add-friend-form {
   font-size: 1rem;
@@ -76,12 +75,28 @@
   border: 1px solid #30547e;
   border-radius: 4px;
   padding: 4px;
+  background: rgba(219, 219, 219, 0.1);
 }
 .add-friend-form form .add-button:hover {
   padding: 3px;
   border: 2px solid #30547e;
-  background: rgba(100, 100, 100, 0.3);
+  background: rgba(145, 145, 145, 0.3);
 }
 .edit-friend-form {
+  font-size: 1rem;
+  width: 210px;
+  height: 160px;
+  background: white;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #b6b6b6;
+  box-shadow: 0px 1px 15px rgba(100, 100, 100, 0.3);
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+}
+.edit-friend-form input {
   width: 90%;
 }

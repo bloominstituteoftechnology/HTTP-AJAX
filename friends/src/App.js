@@ -20,13 +20,17 @@ class App extends Component {
             });
     };
 
+    updateFriends = (response) => {
+        this.setState({ friends: response.data });
+    }
+
     deleteFriend = id => {
         console.log(id);
         axios
             .delete(`http://localhost:5000/friends/${id}`)
-            .then(result => {
-                console.log('sucessfully deleted', result);
-                this.getFriends();
+            .then(response => {
+                console.log('sucessfully deleted', response);
+                this.setState({ friends: response.data });
             })
             .catch(error => {
                 console.error(error);
@@ -39,10 +43,10 @@ class App extends Component {
                 <Friends
                     friends={this.state.friends}
                     deleteFriend={this.deleteFriend}
-                    updateFriend={this.updateFriend}
+                    updateFriends={this.updateFriends}
                     getFriends={this.getFriends}
                 />
-                <FriendForm getFriends={this.getFriends} />
+                <FriendForm updateFriends={this.updateFriends}/>
             </div>
         );
     }

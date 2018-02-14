@@ -26,9 +26,9 @@ class FriendForm extends React.Component {
                 age,
                 email,
             })
-            .then(result => {
-                console.log('success', result);
-                this.props.getFriends();
+            .then(response => {
+                console.log('success', response);
+                this.props.updateFriends(response);
             })
             .catch(error => {
                 console.error(error);

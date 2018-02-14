@@ -26,9 +26,10 @@ class EditForm extends React.Component {
               age,
               email,
           })
-          .then(result => {
-              console.log('success', result);
-              this.props.getFriends();
+          .then(response => {
+              console.log('success', response);
+              console.log(this.props)
+              this.props.updateFriends(response);
           })
           .catch(error => {
               console.error(error);
@@ -36,9 +37,10 @@ class EditForm extends React.Component {
   };
 
     render() {
-      const formToggle = this.props.editing ? { display: 'block' } : { display: 'none' } ;
+        const onEditToggle =
+        (this.props.editing && (this.props.friendID === this.props.beingEdited)) ? { display: 'block' } : { display: 'none' };
         return (
-            <div style={formToggle} className="edit-friend-form">
+            <div style={onEditToggle} className="edit-friend-form">
                 <form onSubmit={this.onSubmit}>
                     <label htmlFor="name">Name:</label>
                     <input
