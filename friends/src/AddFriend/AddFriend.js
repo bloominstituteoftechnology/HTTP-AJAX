@@ -43,6 +43,7 @@ class AddFriend extends React.Component {
       value = Number(value);
     }
     this.setState({ [name]: value });
+
   };
   postFriend = (e) => {
     e.preventDefault();
@@ -51,6 +52,7 @@ class AddFriend extends React.Component {
     .post('http://localhost:5000/friends', this.state)
     .then(response => {
       console.log('respone', response);
+      this.props.callBack();
     })
     .catch(error => {
       console.error('error', error);
