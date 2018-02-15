@@ -1,0 +1,29 @@
+.App{
+  display: flex;
+  margin: 1%;
+  padding: 1%;
+  background-color:	#CCCCDD;
+  border-style: solid;
+
+}
+
+.addBox {
+  font-size: 2rem;
+  width: 250px;
+  height: 250px;
+  padding: 1%;
+}
+
+.cardDisplay{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.contactCard {
+  margin: 1%;
+  padding: 1%;
+  width: 28%;
+  border-style: solid;
+  font-size: 1.5rem;
+}
