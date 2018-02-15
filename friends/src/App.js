@@ -19,6 +19,16 @@ class App extends Component {
         console.log('error', error);
       });
   }
+  updateFriends = (event) => {
+    axios
+    .get('http://localhost:5000/friends')
+    .then(response => {
+      this.setState({ friends: response.data });
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -26,7 +36,7 @@ class App extends Component {
           <h1 className="App-title">Friends List</h1>
         </header>
         <FriendsList friends={this.state.friends} />
-        <AddFriend />
+        <AddFriend callBack={this.updateFriends}/>
       </div>
     );
   }
