@@ -41,19 +41,18 @@ class FriendForm extends React.Component {
         );
     }
     submitHandler = (event) => {
-      event.preventDefault(); // prevents reload keeps your state on the page
-      const newFriend = { ...this.state, age: }  //makes copy of state then overrides the age property
-      axios.post('http://localhost:5000/friends', this.state)  // command to create data
+      event.preventDefault(); // prevents reload keeps your state on the page 
+/*      const newFriend = { ...this.state, age:'' }  //makes copy of state then overrides the age property */
+      axios .post('http://localhost:5000/friends', this.state)  // command to create data
       .then(response =>{
-          console.log('response from post', response);
+          console.log('response from post', response)
       })
-    } )
+    // })
       .catch(error => {
-          console.log('response from post', response);
-      });
-    
-    }
-
+          // console.log('response from post', response);
+          console.error('error saving the data');
+        });
+      };  // added to conform to instructor
 
     handleInputChange = event => {
       // event.target is an object that represents the input
@@ -62,7 +61,9 @@ class FriendForm extends React.Component {
       const name = event.target.name;
       let value = event.target.value;  // use let because it changes later
 
-      console.log('input name:', event.target.name) // see the value of the input when the change happens
+      if(event.target.type === 'number') {
+        value = Number(value)'
+        }
 
       // const propName = 'age';
 
@@ -75,16 +76,14 @@ class FriendForm extends React.Component {
 
       console.log('foo property', o)
 
-      this.setState({ name; event.target.value }) //change the value of this.state.name to the value in target
-
+      //this.setState({ name; event.target.value }) //change the value of this.state.name to the value in target
+      this.setState({ [name]: value });
     }
     <button onClick={() => {props.deleteFriend(friend.id)}}>Delete</button>
     <button onClick={props.deleteFriend(friend.id)}>Delete</button>
   }
 
-
 // controlled components get its value state
+// http://localhost:5000/friends', // endpoint
 
-
-
-http://localhost:5000/friends', // endpoint
+export default FriendForm;
