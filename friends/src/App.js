@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import FriendsList from './FriendsList/FriendsList';
+import AddFriend from './AddFriend/AddFriend';
 import './App.css';
 
 class App extends Component {
@@ -15,8 +16,8 @@ class App extends Component {
         this.setState({ friends: response.data });
       })
       .catch(error => {
-        console.log('error', error)
-      })
+        console.log('error', error);
+      });
   }
   render() {
     return (
@@ -25,6 +26,7 @@ class App extends Component {
           <h1 className="App-title">Friends List</h1>
         </header>
         <FriendsList friends={this.state.friends} />
+        <AddFriend />
       </div>
     );
   }
