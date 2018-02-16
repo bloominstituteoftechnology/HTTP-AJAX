@@ -1,59 +1,99 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class FriendsList extends Component {
-  state={
-    friends: []    
+class Friend extends React.Component {
+  state = {
+    editing: false,
+    friendName: '',
+  };
+
+  render() {
+    const friend = this.props.friend;
+    const editing = this.state.editing;
+
+    return (
+      <li>
+        <button
+          onClick={() => {
+            this.props.onDelete(friend.id);
+          }}
+        >
+          X
+        </button>
+        {editing === true ? (
+          <div>
+            <input
+              type="text"
+              value={this.state.friendName}
+              onChange={this.handleNameChange}
+            />
+            <button className="save-btn" onClick={this.updateFriend}>
+              Save
+            </button>
+          </div>
+        ) : (
+          <div onClick={this.toggleEditing} style={{ flex: '1' }}>
+            {friend.name}
+          </div>
+        )}
+      </li>
+    );
   }
 
-  render(){
-      return (
-        <ul>
-            {this.state.friends.map((friend) => {
-              return(
-              <li key={friend.id}>
-                  {friend.name}
-              </li>
-            );
-            })}
-        </ul>
-      );
-            
-  // return (
-  //   // <div>
-  //   //     <div className="friend-title">Lambda Friends</div>
-  //   //     {this.state.loading && <div>Loading Friends...</div>}
+  componentDidMount() {
+    this.setState({ friendName: this.props.friend.name });
+  }
 
-  //   //     {!this.state.loading && (
-  //   //     <ul className="friend-grid">
-  //   //     {this.state.friends.map(friend => {
-  //   //     return (
-  //   //         <li key={friend.id} className="friend">
-  //   //         <div className="friend-name">{friend.name}</div>
-  //   //         <div className="friend-age">{`Age: ${friend.age}`}</div>
-  //   //         <div className="friend-email">{`Email: ${friend.email}`}</div>
-  //   //         </li>
-  //   //       );
-  //   //       })}
-  //   //     </ul>
-  //   //   )} 
-  //   // </div>
-  // );
+  handleNameChange = event => {
+    const value = event.target.value;
+
+    this.setState({ friendName: value });
+  };
+
+  updateFriend = () => {
+    const newFriend = { ...this.props.friend, name: this.state.friendName };
+    this.props
+      .onUpdate(newFriend)
+      .then(() => {
+        this.setState({ editing: false });
+      })
+      .catch(() => {
+        console.error('update failed');
+      });
+  };
+
+  toggleEditing = () => {
+    this.setState(prevState => {
+      return {
+        editing: !prevState.editing,
+      };
+    });
+  };
 }
 
-componentDidMount() {
-	this.setState({ loading: true });
-	axios
-	.get('http://localhost:5000/friends')
-	.then(response => {
-	this.setState({ friends: response.data, loading: false});
-    })
-	.catch(error => {
-	this.SetState({loading: false});
-	console.log('there was an error', error);
-});
-}
+function FriendList(props) {
+  return (
+    <ul>
+      {props.friends.map(friend => {
+        return (
+          <Friend
+            key={friend.id}
+            friend={friend}
+            onDelete={props.onDelete}
+            onUpdate={props.onUpdate}
+          />
+        );
+      })}
+    </ul>
+  );
 }
 
-export default FriendsList;
-// http://localhost:5000/friends 6000 is reserved don't use change to 5000
+FriendList.propTypes = {
+  friends: PropTypes.array.isRequired,
+};
+
+FriendList.defaultProps = {
+  friends: [],
+};
+
+export default FriendList;

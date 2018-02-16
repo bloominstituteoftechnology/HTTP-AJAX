@@ -1,32 +1,68 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+
 import './App.css';
 import FriendList from './FriendList';
 import FriendForm from './FriendForm';
 
-
 class App extends Component {
+  state = {
+    friends: [],
+  };
+
   render() {
     return (
-      // see screenshot81
       <div className="App">
-        <FriendForm />
-        <FriendList />
+        <FriendForm onCreate={this.loadFriends} />
+        <FriendList
+          friends={this.state.friends}
+          onDelete={this.removeFriend}
+          onUpdate={this.updateFriend}
+        />
       </div>
-   
-      /* THIS IS ALL BOILERPLATE CREATED BY CREAT-REACT-APP DELETE IT 
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-      */
     );
   }
+
+  componentDidMount() {
+    this.loadFriends();
+  }
+
+  loadFriends = () => {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({
+          friends: response.data,
+        });
+      })
+      .catch(() => {
+        console.error('error getting data');
+      });
+  };
+
+  removeFriend = id => {
+    const endpoint = `http://localhost:5000/friends/${id}`;
+    axios
+      .delete(endpoint)
+      .then(response => {
+        console.log('response from delete', response);
+        this.setState({ friends: response.data });
+      })
+      .catch(() => {
+        console.error('error deleting');
+      });
+  };
+
+  updateFriend = friend => {
+    const endpoint = `http://localhost:5000/friends/${friend.id}`;
+    return axios
+      .put(endpoint, friend)
+      .then(response => {
+        console.log('response from update', response);
+        this.setState({ friends: response.data });
+      });
+      
+  };
 }
 
 export default App;
