@@ -3,10 +3,12 @@ import axios from 'axios';
 
 class FriendsList extends Component {
   state={
-    friends: []    
+    editing: false
+    // friends: []    
   }
 
   render(){
+    const friend = this.props.friend;
       return (
         <ul>
             {this.state.friends.map((friend) => {
@@ -40,7 +42,13 @@ class FriendsList extends Component {
   //   // </div>
   // );
 }
-
+toggleEditing = () => {
+  this.setState(prevState => {
+    return {
+      
+    }
+  })
+}
 componentDidMount() {
 	this.setState({ loading: true });
 	axios
