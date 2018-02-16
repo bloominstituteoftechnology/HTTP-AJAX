@@ -51,11 +51,11 @@ let friends = [
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/friends', (req, res) => {
+app.get('/friends', (req, res) => {  //returns json file of friends as an array
   res.status(200).json(friends);
 });
 
-app.post('/friends', (req, res) => {
+app.post('/friends', (req, res) => {  // send new friends to server
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
   res.status(201).json(friends);
