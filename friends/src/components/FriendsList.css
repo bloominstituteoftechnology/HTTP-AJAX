@@ -1,0 +1,22 @@
+.friend-title {
+    color: Navy;
+    font-size: 3rem;
+}
+
+.friend-grid {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.friend {
+    list-style-type: none;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px 0;
+    width: 800px;
+    background-color: silver;
+    color: black;
+}
+
