@@ -80,6 +80,9 @@ app.delete('/friends/:id', (req, res) => {
 	res.status(200).json(friends);
 });
 
-app.listen(5000, () => {
-  console.log('server listening on port 5000');
+const port = 5000;
+app.listen(port, () => {
+  console.log(`server listening on http://localhost:${port}/friends`);
 });
+
+// http://localhost:5000/friends
