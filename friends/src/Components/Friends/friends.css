@@ -1,0 +1,15 @@
+.card {
+    box-sizing: border-box;
+    width: 40%;
+    height: 125px;
+    border: 2px solid black;
+    list-style-type: none;
+    margin: 20px;
+    background: burlywood;
+    display:flex;
+    flex-direction: column;
+}
+
+.list {
+    list-style: none;
+}
