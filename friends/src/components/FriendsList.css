@@ -1,0 +1,7 @@
+.FriendNavLink {
+	text-decoration: none;
+}
+
+.FriendNavLink:hover {
+	text-decoration: underline;
+}

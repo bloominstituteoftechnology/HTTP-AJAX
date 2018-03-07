@@ -1,0 +1,66 @@
+.MeContainer {
+	text-align: center;
+}
+
+.FriendContainer {
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.7);
+	box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+		0 2px 4px rgba(0, 0, 0, 0.24);
+	margin: 1rem;
+	padding: 1rem;
+	min-width: 15rem;
+}
+
+.FriendEditContainer {
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.7);
+	box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+		0 2px 4px rgba(0, 0, 0, 0.24);
+	margin: 1rem;
+	padding: 1rem;
+	min-width: 15rem;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.FriendEditContainer button {
+	display: inherit;
+	align-self: center;
+}
+
+.InputName {
+	padding: 1rem;
+	text-align: center;
+	border: none;
+	outline: none;
+	width: 80%;
+	height: 69px;
+}
+
+.InputAge {
+	text-align: center;
+	border: none;
+	outline: none;
+	width: 80%;
+	height: 24px;
+}
+
+.InputEmail {
+	text-align: center;
+	border: none;
+	outline: none;
+	width: 80%;
+	/*font-size: 0.8rem;*/
+	padding-top: 8px;
+}
+
+.DeleteButtons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.CancelButton {
+}

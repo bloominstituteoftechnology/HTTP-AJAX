@@ -1,0 +1,25 @@
+.Home {
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.Home__text {
+	display: inherit;
+	align-self: center;
+}
+
+.HomeBox {
+	text-decoration: none;
+	width: 400px;
+
+	display: inherit;
+	align-self: center;
+	justify-content: center;
+}
+
+.HomeBox:hover {
+	text-decoration: underline;
+}
