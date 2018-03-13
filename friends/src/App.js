@@ -43,8 +43,11 @@ class App extends Component {
     
     axios.post('http://localhost:5000/friends', { friend })
     .then(response => {
-      
+      console.log(response);
     })
+    .catch(error => {
+      console.log(`error posting data to a server ${error}`);
+    });
   }
   
   render() {
