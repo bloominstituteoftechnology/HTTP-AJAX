@@ -15,19 +15,17 @@ render(){
         <div>
             {this.state.friends.map(friend => {
                 return(
+                <ul>
                 <li key={friend.id} className="friend">
                     <div className="friend-name">{friend.name} </div>
                     <div className="friend-age"> {'Age: ${friend.age}'} </div>
                     <div className="friend-email">{'Email: ${friend.email}'} </div>
                 </li>
+                </ul>
                 );
             })}
             </div>
     )
-    
- 
-
-
 }
 componentDidMount() {
 axios.get('http://localhost:5000/friends')
