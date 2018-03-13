@@ -31,7 +31,6 @@ class FriendsList extends Component {
       componentDidMount() {
         axios.get('http://localhost:5000/friends')
           .then(response => {
-            console.log(response);
             this.setState({ friends: response.data });
           })
           .then(response => response)
