@@ -8,17 +8,14 @@ export default class DisplayFriend extends Component {
     super()
     this.state = {
       friends: [],
-      
-      
-      
+    
     }
-
-    
-    
+   
   }
   componentDidMount() {
     this.getData();
   }
+  
   getData = () => {
     axios.get("http://localhost:5000/friends")
       .then(response => {

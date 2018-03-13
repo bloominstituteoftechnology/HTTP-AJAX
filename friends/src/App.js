@@ -15,7 +15,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path='/' component={Nav} />
+        <Nav />
+        {/* <Route path='/' component={Nav} /> */}
         <Route exact path='/' component={DisplayFriends}/>
         <Route path='/input/' component={UpdateFriend} />
 
