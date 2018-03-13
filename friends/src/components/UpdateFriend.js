@@ -67,13 +67,13 @@ export default class UpdateFriend extends Component {
   render() {
     return(
       <Form onSubmit={this.addFriend} >
-          <Input type="text" placeholder="Enter name" onChange={this.updateName} value={this.state.newName}/>
-        
-          <Input type="number" placeholder="Enter Age" onChange={this.updateAge} value={this.state.newAge}/>
-        
-          <Input type="text" placeholder="Enter Email" onChange={this.updateEmail} value={this.state.newEmail}/>
-          <Button>Add Friend</Button>
-        </Form>
+        <Input type="text" placeholder="Enter name" onChange={this.updateName} value={this.state.newName}/>
+      
+        <Input type="number" placeholder="Enter Age" onChange={this.updateAge} value={this.state.newAge}/>
+      
+        <Input type="text" placeholder="Enter Email" onChange={this.updateEmail} value={this.state.newEmail}/>
+        <Button>Add Friend</Button>
+      </Form>
     )
   }
 }
