@@ -5,7 +5,8 @@ import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 
-
+ 
+ 
 
 class App extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="App">
         {this.state.friends.map(friend => {
           return(
             <div>
@@ -33,7 +34,6 @@ class App extends Component {
     axios.get("http://localhost:5000/friends")
       .then(response => {
         this.setState({ friends: response.data });
-        console.log(response);
       })
       .catch(err => console.log(err))
   }
