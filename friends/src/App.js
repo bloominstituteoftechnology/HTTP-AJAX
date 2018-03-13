@@ -29,17 +29,21 @@ class App extends Component {
   }
 
   handleChange(event) {
+    event.preventDefault();
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
+    let newF= this.state.newFriend;
+    newF[name] = value;
     this.setState({
-      newFriend[name]: value
-    });
-  }
+      newFriend: newF
+  });
+}
 
   addFriend(event) {
-    console.log("Added Friend");
+    var newArr = this.state.friends;
+    newArr.push(this.state.newFriend);
+    this.setState({friends: newArr, newFriend: {name: '', age: '', email: ''}});
   }
 
   render() {
@@ -66,7 +70,7 @@ class App extends Component {
               <Col sm={10}>
                 <Input
                   type="text"
-                  name="friendName"
+                  name="name"
                   id="friendName"
                   placeholder="Type in your friend's name!"
                   value={this.state.newFriend.name}
@@ -80,7 +84,7 @@ class App extends Component {
               <Col sm={10}>
                 <Input
                   type="text"
-                  name="friendAge"
+                  name="age"
                   id="friendAge"
                   placeholder="Type in your friend's age!"
                 />
