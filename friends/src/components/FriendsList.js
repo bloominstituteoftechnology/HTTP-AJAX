@@ -9,24 +9,66 @@ class FriendsList extends Component {
         }
     }
 
-    render() {
-        return (
-          <div>
-            <div className='friend-title'>Lambda Friends</div>
-            <ul className='friend-grid'>
-              {this.state.friends.map(friend => {
-                return (
-                  <li key={friend.id} className='friend'>
-                    <div className='friend-name'>{friend.name}</div>
-                    <div className='friend-age'>{`Age: ${friend.age}`}</div>
-                    <div className='friend-email'>{`Email: ${friend.email}`}</div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      }
+    updatName = (e) =>{
+            this.setState({
+                name: e.target.value
+            });  
+        };
+    
+        updatAge = (e) =>{
+            this.setState({
+                age: e.target.value
+            });   
+        };
+    
+        updatEmail = (e) =>{
+            this.setState({
+                email: e.target.value
+            }); 
+        };
+    
+        submitFriend = () =>{
+            axios.post('http://localhost:5000/friends', {
+                name: this.state.name,
+                age: this.state.age,
+                email: this.state.email
+                })
+                .then(function (response) {
+                console.log(response.data);
+                })
+        };  
+    
+        submitForm =(e) =>{
+            //e.preventDefault();
+        };
+
+        render(){
+            return(
+                <div className = 'container'>
+                    <div className="friend-grid">
+                        {this.state.friends.map(friend => {
+                            return (
+                            <div key={friend.id} className="friend">
+                                <div className="friend-name">{friend.name}</div>
+                                <div className="friend-age">{`Age: ${friend.age}`}</div>
+                                <div className="friend-email">{`Email: ${friend.email}`}</div>
+                            </div>
+                            
+                            );
+                        })}
+                    </div>
+    
+                        <form className = 'form' onSubmit = {this.submitForm}>
+                            <input className = 'form-item' onChange = {this.updatName} placeholder = 'friends name' />
+                            <input className = 'form-item' onChange = {this.updatAge} placeholder = 'friends age' />
+                            <input className = 'form-item' onChange = {this.updatEmail} placeholder = 'friends email' />
+                            <button className = 'form-item' onClick = {this.submitFriend}>add friend</button>
+                        </form>
+    
+                    
+                </div>
+            );
+        }
 
       componentDidMount() {
         axios.get('http://localhost:5000/friends')
