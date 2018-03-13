@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Friends from '../Friends/Friends';
 
 class FriendForm extends Component {
   constructor() {
@@ -42,15 +41,6 @@ class FriendForm extends Component {
       })
       .catch(function(error) {
         console.log(error);
-      });
-
-    await axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        this.setState({ friends: response.data });
-      })
-      .catch(error => {
-        console.log(`There was an error getting friends: ${error}`);
       });
   }
 
