@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 60px 40px;
+  padding: 10px;
+  border: solid black 1px;
+  text-align: center;
+}
+
+.input {
+  display: inline-block;
+  padding: 20px 20px;
+  margin: 20px;
+  text-align: center;
+  border: solid black 1px;
+}
