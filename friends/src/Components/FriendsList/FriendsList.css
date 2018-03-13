@@ -1,0 +1,12 @@
+.Container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.FriendsList {
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px 0 30px 0;
+}
