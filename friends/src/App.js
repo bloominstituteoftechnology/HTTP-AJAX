@@ -18,46 +18,67 @@ class App extends Component {
       
     }
 
-    this.updateName = (event) => {
-      this.setState({ newName: event.target.value })
-      console.log(this.state);
-    }
-    this.updateAge = (event) => {
-      
-      this.setState({ newAge: Number(event.target.value) })
-      console.log(this.state);
-    }
-    this.updateEmail = (event) => {
-      this.setState({ newEmail: event.target.value })
-      console.log(this.state);
-    }
-    this.addFriend = (event) => {
-      event.preventDefault();
-      const newFriend = {
-        name: this.state.newName,
-        age: this.state.newAge,
-        email: this.state.email
-      }
-      
-      console.log('submitted');
-      axios.push("http://localhost:5000/friends", newFriend)
+    
+    
+  }
+  getData = () => {
+    axios.get("http://localhost:5000/friends")
       .then(response => {
-        console.log(response);
+        this.setState({ friends: response.data });
+        // console.log(response);
       })
-      .catch(error => {
-        console.log(error);
-      });
-      // axios({
-      //   method: 'post',
-      //   url: "http://localhost:5000/friends",
-      //   data: newFriend
-      // });
+      .catch(err => console.log(err))
+  }
+  updateName = (event) => {
+    this.setState({ newName: event.target.value })
+    console.log(this.state);
+  }
+  updateAge = (event) => {
+    
+    this.setState({ newAge: Number(event.target.value) })
+    console.log(this.state);
+  }
+  updateEmail = (event) => {
+    this.setState({ newEmail: event.target.value })
+    console.log(this.state);
+  }
+
+
+  addFriend = (event) => {
+    
+    event.preventDefault();  // NOT WORKING!!! WHY NOT!!?!?!?!?!?!?!?!
+    console.log(this.state.friends);
+    const newFriend = {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
+    }
+    
+    axios.post("http://localhost:5000/friends", newFriend)
+    .then(response => {
       this.setState({
         newName: '',
         newAge: '',
         newEmail: '',
       })
-    }
+      this.getData();
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    
+    console.log('submitted');
+
+    
+
+    // axios({
+    //   method: 'post',
+    //   url: "http://localhost:5000/friends",
+    //   data: newFriend
+    // });
+
     
   }
 
@@ -69,13 +90,13 @@ class App extends Component {
           <DisplayFriends key={friend.name} friend={friend} />
         )
       })}
-        <Form>
+        <Form onSubmit={this.addFriend} >
           <Input type="text" placeholder="Enter name" onChange={this.updateName} value={this.state.newName}/>
         
           <Input type="number" placeholder="Enter Age" onChange={this.updateAge} value={this.state.newAge}/>
         
           <Input type="text" placeholder="Enter Email" onChange={this.updateEmail} value={this.state.newEmail}/>
-          <Button onSubmit={this.addFriend} >Add Friend</Button>
+          <Button>Add Friend</Button>
         </Form>
         
       
@@ -84,12 +105,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/friends")
-      .then(response => {
-        this.setState({ friends: response.data });
-        console.log(response);
-      })
-      .catch(err => console.log(err))
+    this.getData();
   }
 }
 
