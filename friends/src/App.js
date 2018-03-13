@@ -25,6 +25,7 @@ class App extends Component {
         email: ""
       }
     };
+    //What does this do?
     this.handleChange = this.handleChange.bind(this);
   }
 
