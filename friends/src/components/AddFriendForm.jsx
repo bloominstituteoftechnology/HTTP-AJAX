@@ -39,7 +39,6 @@ class AddFriendForm extends Component {
          console.log(res);
          console.log(res.data);
       });
-
    }
    render() {
       return (

@@ -1,0 +1,22 @@
+body {
+   background-color: #8490B8;
+   color:white;
+}
+.friend-title {
+   color:white;
+   background-color: #0B1947;
+   padding:10px;
+}
+
+.card {
+   background-color: #1F2F65 ;
+   margin:10px 35px 10px 35px;
+}
+.card-header {
+   margin:0;
+   padding:2px;
+}
+.card-body {
+   padding:10px;
+   background-color:   #586799;
+}
