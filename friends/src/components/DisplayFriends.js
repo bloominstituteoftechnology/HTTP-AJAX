@@ -9,9 +9,7 @@ export default class DisplayFriend extends Component {
     this.state = {
       friends: [],
       
-      newName: '',
-      newAge: '',
-      newEmail: ''
+      
       
     }
 
@@ -29,58 +27,7 @@ export default class DisplayFriend extends Component {
       })
       .catch(err => console.log(err))
   }
-  updateName = (event) => {
-    this.setState({ newName: event.target.value })
-    console.log(this.state);
-  }
-  updateAge = (event) => {
-    
-    this.setState({ newAge: Number(event.target.value) })
-    console.log(this.state);
-  }
-  updateEmail = (event) => {
-    this.setState({ newEmail: event.target.value })
-    console.log(this.state);
-  }
-
-
-  addFriend = (event) => {
-    
-    event.preventDefault();  // NOT WORKING!!! WHY NOT!!?!?!?!?!?!?!?!
-    console.log(this.state.friends);
-    const newFriend = {
-      name: this.state.newName,
-      age: this.state.newAge,
-      email: this.state.newEmail
-    }
-    
-    axios.post("http://localhost:5000/friends", newFriend)
-    .then(response => {
-      this.setState({
-        newName: '',
-        newAge: '',
-        newEmail: '',
-      })
-      this.getData();
-      console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
-    
-    console.log('submitted');
-
-    
-
-    // axios({
-    //   method: 'post',
-    //   url: "http://localhost:5000/friends",
-    //   data: newFriend
-    // });
-
-    
-  }
+  
 
 
   render() {
