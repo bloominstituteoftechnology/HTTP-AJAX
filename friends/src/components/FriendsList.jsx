@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
+import {Card, CardBody, CardTitle, CardText} from 'reactstrap';
 
 class FriendsList extends Component {
    constructor() {
