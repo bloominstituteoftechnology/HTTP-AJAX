@@ -1,0 +1,15 @@
+.Friends {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.List__Friend {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 1px outset black;
+    margin: 1%;
+}
+
