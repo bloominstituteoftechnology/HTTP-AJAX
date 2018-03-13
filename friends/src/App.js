@@ -27,6 +27,7 @@ class App extends Component {
     };
     //What does this do?
     this.handleChange = this.handleChange.bind(this);
+    this.addFriend = this.addFriend.bind(this);
   }
 
   handleChange(event) {
@@ -34,17 +35,23 @@ class App extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    let newF= this.state.newFriend;
+    let newF = this.state.newFriend;
     newF[name] = value;
     this.setState({
       newFriend: newF
-  });
-}
+    });
+  }
 
   addFriend(event) {
+    event.preventDefault();
     var newArr = this.state.friends;
+    console.log("Add Friend new Arr: ", newArr);
+    console.log("Add Friend newFriend: ", this.state.newFriend);
     newArr.push(this.state.newFriend);
-    this.setState({friends: newArr, newFriend: {name: '', age: '', email: ''}});
+    this.setState({
+      friends: newArr,
+      newFriend: { name: "", age: "", email: "" }
+    });
   }
 
   render() {
@@ -88,6 +95,7 @@ class App extends Component {
                   name="age"
                   id="friendAge"
                   placeholder="Type in your friend's age!"
+                  value={this.state.newFriend.age}
                 />
               </Col>
             </FormGroup>
@@ -101,6 +109,7 @@ class App extends Component {
                   name="email"
                   id="friendEmail"
                   placeholder="Type in your friends e-mail!"
+                  value={this.state.newFriend.email}
                 />
               </Col>
             </FormGroup>
