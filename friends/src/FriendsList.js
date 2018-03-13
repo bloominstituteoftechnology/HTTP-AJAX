@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+let formBody = new FormData();
+
 class FriendsList extends Component {
 
   constructor() {
     super();
     this.state = {
       friends: [],
+      newFriend:  {
+          name: '',
+          age: '',
+          email: '',
+      }
       
     };
   };
 
-
+  handleFriendInput = event => {
+    this.setState({
+      newFriend:{
+           name: event.target.value,
+           age: event.target.value,
+           email: event.target.value, 
+      } 
+    });
+  };
 
   render() {
     return (
@@ -30,16 +45,18 @@ class FriendsList extends Component {
         </ul>
 
 
-  <form >
-    <input type='text' onChange= '' placeholder='Enter name' value=''/> <br /><br />
-    <input type='text' onChange= '' placeholder='Enter age' value=''/> <br /><br />
-    <input type='text' onChange= '' placeholder='Enter email' value=''/><br /><br />
+  <form action="http://localhost:5000/friends" method="post" enctype="">
+    <input type='text' onChange= '' placeholder='Enter name' value={this.state.newFriend.name}/> <br /><br />
+    <input type='text' onChange= '' placeholder='Enter age' value={this.state.newFriend.age}/> <br /><br />
+    <input type='text' onChange= '' placeholder='Enter email' value={this.state.newFriend.email}/><br /><br />
 
     <input type='submit' value='Submit'/>
     </form>
       </div>
     );
   }
+
+
 
   componentDidMount() {
     axios.get('http://localhost:5000/friends').then(response => {
@@ -52,6 +69,7 @@ class FriendsList extends Component {
         });
   }
 
+  
 
 }
 
