@@ -12,14 +12,14 @@ class FriendsList extends Component {
     render() {
         return (
           <div>
-            <div >Lambda Friends</div>
-            <ul>
+            <div className='friend-title'>Lambda Friends</div>
+            <ul className='friend-grid'>
               {this.state.friends.map(friend => {
                 return (
-                  <li key={friend.id}>
-                    <div>{friend.name}</div>
-                    <div>{`Age: ${friend.age}`}</div>
-                    <div>{`Email: ${friend.email}`}</div>
+                  <li key={friend.id} className='friend'>
+                    <div className='friend-name'>{friend.name}</div>
+                    <div className='friend-age'>{`Age: ${friend.age}`}</div>
+                    <div className='friend-email'>{`Email: ${friend.email}`}</div>
                   </li>
                 );
               })}
@@ -31,6 +31,7 @@ class FriendsList extends Component {
       componentDidMount() {
         axios.get('http://localhost:5000/friends')
           .then(response => {
+            console.log(response);
             this.setState({ friends: response.data });
           })
           .then(response => response)
