@@ -5,31 +5,41 @@ class FriendsList extends Component {
 
     state = {
         friends: [],
-        newFriend: {
-          name:'',
-          age:'',
-          email:''
-        }
+        name:'',
+        age:'',
+        email:''
     };
 
-    addFriend = (event) => {
-      event.PreventDefault();
-      const myFriendsList = this.state.friends;
-      myFriendsList.push(this.state.newFriend);
+    newName = (event) => {
       this.setState({
-        newFriend: {
-          name:'',
-          age:'',
-          email:''
-        },
-        friends: myFriendsList
-      });
+        name: event.target.value
+      })
+    }
+
+    newAge = (event) => {
+      this.setState({
+        age: event.target.value
+      })
+    }
+
+    newEmail = (event) => {
+      this.setState({
+        email: event.target.value
+      })
+    }
+    
+    addFriend = () => {
+      axios.post('http://localhost:5000/friends', {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(function (response) {
+        console.log(response.data);
+      })
     };
 
-    handleFriendInput = (event) => {
-      this.setState({ newFriend: event.target.value });
-    };
-
+    
     componentDidMount() {
         axios
         .get('http://localhost:5000/friends')
@@ -57,8 +67,11 @@ class FriendsList extends Component {
               })}
             </ul>
             <div>
-              <form onSubmit={this.addFriend}>
-              <input type="text" onChange={this.handleFriendInput} placeholder="Add New Friend Here" value={this.state.newFriend} />
+              <form className = 'form'>
+              <input className = 'form-item' type="text" onChange={this.newName} placeholder="Friends name" />
+              <input className = 'form-item' type="number" onChange={this.newAge} placeholder="Friends age" />
+              <input className = 'form-item' type="text" onChange={this.newEmail} placeholder="Friends email" />
+              <button className = 'form-item' onClick = {this.addFriend}> Add Friend </button>
               </form>
               </div>
           </div>
