@@ -9,12 +9,14 @@ class AddFriend extends Component {
             name: '',
             age: '',
             email: '',
+    
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeAge = this.handleChangeAge.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     handleChangeName(event) {
@@ -35,11 +37,14 @@ class AddFriend extends Component {
         })
     }
 
+  
+
     handleSubmit(event) {
         axios.post('http://localhost:5000/friends', {
             name: this.state.name,
             age: this.state.age,
-            email: this.state.email
+            email: this.state.email,
+           
         });
     }
 
@@ -61,6 +66,8 @@ class AddFriend extends Component {
                         <input type="text" value={this.state.email} onChange={this.handleChangeEmail} />
                     </label>
                     <input type="submit" value="Submit" />
+                    {/* <input type="button" value={this.state.value} onUpdate={this.handleUpdate} /> */}
+                    {/* <input type="button" value="Delete" /> */}
                 </form>
             </div>
         );

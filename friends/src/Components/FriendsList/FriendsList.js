@@ -13,7 +13,7 @@ class FriendsList extends Component {
         axios
         .get('http://localhost:5000/friends')
         .then(result => {this.setState({ friends: result.data})})
-        .catch( (reason: any) => console.log('You don\'t have any friends!'));
+        .catch( (reason) => console.log('You don\'t have any friends!'));
       }
 
     render() {
