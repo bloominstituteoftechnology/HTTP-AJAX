@@ -52,8 +52,8 @@ class FriendComponent extends Component {
           </Button>
           {this.state.showEdit ? (
             <FormComponent
-              handleChange={this.handleChange}
-              submit={this.editFriend}
+              handleChange={this.props.handleChange}
+              submit={() => this.props.editFriend(this.state.friend.id)}
               newFriend={this.props.newFriend}
             />
           ) : null}

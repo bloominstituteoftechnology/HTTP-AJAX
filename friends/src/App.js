@@ -59,10 +59,12 @@ class App extends Component {
   }
 
   editFriend(id) {
-    axios.put(`http://localhost:5000/friends/${id}`).then(response => {
-      // console.log(response);
-      this.getData();
-    });
+    axios
+      .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)
+      .then(response => {
+        console.log(response);
+        this.getData();
+      });
   }
 
   render() {
@@ -77,6 +79,8 @@ class App extends Component {
                 removeFriend={this.removeFriend}
                 editFriend={this.editFriend}
                 newFriend={this.state.newFriend}
+                handleChange={this.handleChange}
+                submit={this.addFriend}
               />
             </Col>
           ))}
