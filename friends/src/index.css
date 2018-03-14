@@ -66,3 +66,7 @@ li {
   font-size: 0.8rem;
   padding-top: 8px;
 }
+
+.addFriend input{
+  margin: 4px;
+}
