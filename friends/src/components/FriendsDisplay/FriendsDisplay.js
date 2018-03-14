@@ -17,9 +17,15 @@ class FriendsDisplay extends Component {
         <div>Age: {this.props.friend.age}</div>
         <p>Email: {this.props.friend.email}</p>
         <br/>
-        <button onClick={this.props.edit}>Edit</button>
+
+        <button type="button" 
+          onClick={this.props.edit.bind(this, this.props.friend.id)}>
+        Edit</button>
         <br/>
-        <button onClick={this.props.delete}>Delete</button>
+
+        <button type="button" 
+          onClick={this.props.delete.bind(this, this.props.friend.id)}>
+        Delete</button>
       </div>
     );
   }

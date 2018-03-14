@@ -8,6 +8,9 @@ class App extends Component {
   constructor() {
     
     super();
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    
     this.state = {
       friends: [],
       
@@ -30,8 +33,8 @@ class App extends Component {
   }
   
   handleInput = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+    // const name = event.target.name;
+    // const value = event.target.value;
     if ("name" === event.target.name){
       this.setState( {name: event.target.value} );
     } else if ("age" === event.target.name){
@@ -60,6 +63,25 @@ class App extends Component {
       console.log(`error posting data to a server ${error}`);
     });
   }
+  
+  handleEdit = (id) => {
+    console.log('edit with id :', id);
+    
+  }
+  
+  handleDelete = (id) => {
+    console.log('delete with id :', id);
+    let friends = this.state.friends;
+    console.log(friends);
+    let newFriends = friends.filter(friend => {
+      return friend.id !== id
+    });
+    console.log(newFriends);
+    
+    this.setState({ friends: newFriends });
+    
+  }
+  
 
   render() {
     return (
@@ -67,7 +89,8 @@ class App extends Component {
         <div className="App">
           {this.state.friends.map((friend, i) =>{
             return (
-              <FriendsDisplay key={i} friend={friend} />
+              <FriendsDisplay key={i} friend={friend} 
+                edit={this.handleEdit} delete={this.handleDelete} />
             )  
           })}
 
