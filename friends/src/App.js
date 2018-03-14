@@ -59,7 +59,7 @@ class App extends Component {
       .post(`http://localhost:5000/friends`, newFriend)
       .then(res => {
         this.setState({
-          friends: [...res.data],
+          friends: res.data,
           // newFriend: {
           //   name: '',
           //   age: '',
