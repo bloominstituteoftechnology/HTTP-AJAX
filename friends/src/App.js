@@ -48,7 +48,7 @@ class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    if( this.state.newName === '' || this.state.newAge === '' || this.state.newEmail === '') return alert('All fields required');
     const newFriend = {
       name: this.state.newName,
       age: this.state.newAge,
@@ -58,7 +58,6 @@ class App extends Component {
     axios
       .post(`http://localhost:5000/friends`, newFriend)
       .then(res => {
-        // console.log(res.data);
         this.setState({
           friends: [...res.data],
           // newFriend: {
@@ -94,19 +93,20 @@ class App extends Component {
 
           <FormGroup>
             <Label for="Name">Name: </Label>
-            <Input type="text" name="name" id="name" placeholder="Add name" autoComplete="name" onChange={this.handleChangeName} value={this.state.newName} />
+            <Input className="Input" type="text" name="name" id="name" placeholder="Add name" autoComplete="name" onChange={this.handleChangeName}  onSubmit={this.handleSubmit} value={this.state.newName} required/>
           </FormGroup>
           <FormGroup>
             <Label for="age">Age: </Label>
-            <Input type="number" name="age" id="age" placeholder="Add age" onChange={this.handleChangeAge} value={this.state.newAge} />
+            <Input className="Input" type="number" name="age" id="age" placeholder="Add age" onChange={this.handleChangeAge} onSubmit={this.handleSubmit} value={this.state.newAge} required />
           </FormGroup>
           <FormGroup>
             <Label for="email">Email: </Label>
-            <Input type="email" name="email" id="email" placeholder="Add email" autoComplete="email" onChange={this.handleChangeEmail} value={this.state.newEmail} />
+            <Input className="Input" type="email" name="email" id="email" placeholder="Add email" autoComplete="email" onChange={this.handleChangeEmail} onSubmit={this.handleSubmit} value={this.state.newEmail} required />
           </FormGroup>
-          <Button color="primary" className="btn-add" onClick={this.handleSubmit}>
+          <Button color="primary" type="submit" className="btn-add" onClick={this.handleSubmit}>
             Add Friend
           </Button>
+          <p className="InputWarning">All fields are required for input</p>
         </Form>
       </div>
     );

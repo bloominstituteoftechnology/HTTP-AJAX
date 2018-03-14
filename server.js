@@ -64,6 +64,8 @@ app.get('/friends/:id', (req, res) => {
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
+  console.log('friend: ', friend);
+  console.log('friends: ',friends)
   res.status(201).json(friends);
 });
 

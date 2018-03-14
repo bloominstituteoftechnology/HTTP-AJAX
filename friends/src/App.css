@@ -22,3 +22,18 @@
   width: 150px;
   align-self: center;
 }
+
+.Input:invalid {
+  border: 2px dashed red;
+}
+
+.Input:valid {
+  border: 2px solid black;
+}
+
+.InputWarning {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
