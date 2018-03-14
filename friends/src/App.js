@@ -68,7 +68,7 @@ class App extends Component {
           {this.state.friends.map((friend, i) =>{
             return (
               <FriendsDisplay key={i} friend={friend} />
-            )
+            )  
           })}
 
           <form onSubmit={this.handleSubmit} className="input">

@@ -16,6 +16,10 @@ class FriendsDisplay extends Component {
         <br/>
         <div>Age: {this.props.friend.age}</div>
         <p>Email: {this.props.friend.email}</p>
+        <br/>
+        <button onClick={this.props.Edit}>Edit</button>
+        <br/>
+        <button onClick={this.props.Delete}>Delete</button>
       </div>
     );
   }
