@@ -82,9 +82,7 @@ class DisplayFriends extends Component {
   }
 
   render() {
-    console.log(this.state.name);
-    console.log(this.state.age);
-    console.log(this.state.email);
+    console.log(typeof this.state.friends);
     return (
       <div>
         <ul>
