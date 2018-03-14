@@ -7,10 +7,50 @@ class FriendsList extends Component {
         super();
 
         this.state = {
-            friends: []
+            friends: [],
+            newName: '',
+            newAge: '',
+            newEmail: ''
         };
     };
     
+    handleName = (event) => {
+        this.setState({ newName: event.target.value})
+    };
+
+    handleAge = (event) => {
+        this.setState({ newAge: event.target.value})
+    };
+
+    handleEmail = (event) => {
+        this.setState({ newEmail: event.target.value})
+    };
+
+    addNewItem = (event) => {
+        event.preventDefault();
+
+        const newFriend = {
+            name: this.state.newName, 
+            age: this.state.newAge, 
+            email: this.state.newEmail
+        };
+
+        const tempFriends = this.state.friends;
+        tempFriends.push(newFriend);
+
+        axios.post('http://localhost:5000/friends', newFriend)
+        .catch(err => {
+            console.error('There was an error', err);
+        })
+        
+        this.setState({
+            friends: tempFriends,
+            newName: '',
+            newAge: '',
+            newEmail: ''
+        })
+
+    }
 
     componentDidMount() {
         axios.get('http://localhost:5000/friends')
@@ -30,32 +70,38 @@ class FriendsList extends Component {
         {this.state.friends.map(friend => {
             return (
                 <div className='card-box'>
-                <Card body>
+                <Card body className='friend-card'>
                     <CardTitle>{friend.name}</CardTitle>
                     <CardText>
                         {`Age: ${friend.age}`}<br/>
                         {`E-mail: ${friend.email}`}
                     </CardText>
-                    <Button>Go somewhere</Button>
                 </Card>
                 </div>
             );
         })}
     
-        <Form>
-        <FormGroup>
-          <Label for="exampleEmail">Name</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exampleEmail">Age</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword">E-mail</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-        </FormGroup>
-        </Form>
+    <form >
+    <input
+        type='text'
+        onChange={this.handleName}
+        placeholder='New Friend Name'
+        value={this.state.newName}
+    />
+    <input
+        type='text'
+        onChange={this.handleAge}
+        placeholder='New Friend Age'
+        value={this.state.newAge}
+    />
+    <input
+        type='text'
+        onChange={this.handleEmail}
+        placeholder='New Friend Email'
+        value={this.state.newEmail}
+    />
+    <button onClick={this.addNewItem}>Add Friend</button>
+    </form>
             
         </div>
     )

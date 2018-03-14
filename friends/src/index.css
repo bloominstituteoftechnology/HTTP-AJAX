@@ -6,8 +6,11 @@ body {
 
 .card-box {
   border: 1px solid grey;
-  max-width: 250px;
-  margin: 10px 0;
-  justify-content: center;
-  display: flex;
+  width: 20%;
+  margin: 10px 10%;
+  
+}
+
+.friend-card {
+  background-color: blue;
 }
