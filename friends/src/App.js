@@ -28,6 +28,7 @@ class App extends Component {
     //What does this do?
     this.handleChange = this.handleChange.bind(this);
     this.addFriend = this.addFriend.bind(this);
+    this.getData = this.getData.bind(this);
   }
 
   handleChange(event) {
@@ -44,16 +45,15 @@ class App extends Component {
 
   addFriend(event) {
     event.preventDefault();
-    var newArr = this.state.friends;
-    newArr.push(this.state.newFriend);
-    this.setState({
-      // friends: newArr,
-      newFriend: { name: "", age: "", email: "" }
-    });
+
     axios
       .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => {
         console.log(response);
+        this.setState({
+          newFriend: { name: "", age: "", email: "" }
+        });
+        this.getData();
       });
   }
 
@@ -126,12 +126,15 @@ class App extends Component {
       </Container>
     );
   }
-
-  componentDidMount() {
+  getData() {
+    console.log("Got Data");
     axios.get("http://localhost:5000/friends").then(response => {
       console.log(response);
       this.setState({ friends: response.data });
     });
+  }
+  componentDidMount() {
+    this.getData();
   }
 }
 
