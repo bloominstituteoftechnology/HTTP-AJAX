@@ -7,7 +7,7 @@ import Nav from './components/Nav'
 
 import './App.css';
 
-import UpdateFriend from './components/UpdateFriend';
+import AddFriend from './components/AddFriend';
 
 class App extends Component {
   
@@ -18,7 +18,7 @@ class App extends Component {
         <Nav />
         {/* <Route path='/' component={Nav} /> */}
         <Route exact path='/' component={DisplayFriends}/>
-        <Route path='/input/' component={UpdateFriend} />
+        <Route path='/input/' component={AddFriend} />
 
       </div>
     );

@@ -3,11 +3,10 @@ import { Form, Button, Input } from 'reactstrap';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class UpdateFriend extends Component {
-  constructor(props) {
-    super(props)
+export default class AddFriend extends Component {
+  constructor() {
+    super()
     this.state = {
-      friend: this.props.friend,
       newName: '',
       newAge: '',
       newEmail: ''

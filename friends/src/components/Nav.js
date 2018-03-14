@@ -4,11 +4,7 @@ import { Navbar } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-
-    
-  }
+  
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen

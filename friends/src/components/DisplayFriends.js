@@ -10,7 +10,7 @@ export default class DisplayFriend extends Component {
       friends: [],
     
     }
-   
+   this.deleteFriend = this.deleteFriend.bind(this);
   }
   componentDidMount() {
     this.getData();
@@ -24,6 +24,28 @@ export default class DisplayFriend extends Component {
       })
       .catch(err => console.log(err))
   }
+
+  deleteFriend(event) {
+    
+    console.log(event.target.id)
+    let remove = {};
+    console.log(this.state.friends, 'state friends')
+    this.state.friends.forEach(friend => {
+      console.log(friend.id)
+      console.log(event.target.id)
+      if (friend.id === Number(event.target.id)) remove = friend;
+    });
+    
+    console.log(remove);
+    axios.delete(`http://localhost:5000/friends/${remove.id}`)
+    .then(response => {
+      this.setState({ friends: response.data });
+      // console.log(response);
+    })
+    .catch(err => console.log(err))
+  }
+
+  
   
 
 
@@ -33,7 +55,7 @@ export default class DisplayFriend extends Component {
 
           this.state.friends.map(friend => {
         return(
-          <div key={friend.name}>
+          <div key={friend.id}>
             <Card inverse color="primary">
                 <CardTitle>{friend.name}</CardTitle>
                 <CardText>{`${friend.name} is ${friend.age} years old.`}</CardText>
@@ -42,7 +64,7 @@ export default class DisplayFriend extends Component {
                   <Col>
                     <ButtonGroup className="text-center">
                       <Button color="warning">Update Contact</Button>
-                      <Button color="danger">Delete contact</Button>
+                      <Button id={friend.id} onClick={this.deleteFriend} color="danger">Delete contact</Button>
                     </ButtonGroup>
                   </Col>
                 </Row>
