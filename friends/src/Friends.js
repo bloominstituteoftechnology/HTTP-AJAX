@@ -8,8 +8,24 @@ class Friends extends Component {
       super();
       this.state = {
         friends: [],
+        id: ''
       }
     }
+
+    handleChange = event => {
+        this.setState({ id: event.target.value });
+    }
+
+    handleDelete = event => {
+        axios.delete(`http://localhost:5000/friends/${event.target.value}`)
+        .then(response => {
+            this.setState({  Friends: response.data });
+        })
+        .catch(error => {
+            console.log(`there was an error deleting friends ${error}`)
+          });
+    }
+
     render() {
         return (
             <div>
@@ -21,6 +37,9 @@ class Friends extends Component {
                         <div className="friend-name">{friend.name}</div>
                         <div className="friend-age">{`Age: ${friend.age}`}</div>
                         <div className="friend-email">{`Email: ${friend.email}`}</div>
+                        <form onSubmit={this.handleDelete}>
+                        <button type = "submit" value = {friend.id} onClick = {this.handleDelete}>Delete</button>
+                        </form>
                     </li>
                     );
                     })}
