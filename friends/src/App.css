@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 5s linear;
+  animation: App-logo-spin infinite 3s linear;
   height: 80px;
 }
 
@@ -29,5 +29,20 @@
 
 .FriendsList__container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+.FriendsList__friend {
+  padding: 2rem;
+  margin: 0.3rem;
+  border: 1px solid lightgray;
+}
+
+.FriendsList__friendItem {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
