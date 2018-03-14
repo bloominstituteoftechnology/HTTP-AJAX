@@ -6,7 +6,6 @@ class FriendManager extends Component {
         super();
         this.state = {
             friends: [],
-            newFriend: [],
             newName: '',
             newAge:'',
             newEmail:'',
@@ -27,47 +26,51 @@ class FriendManager extends Component {
 
   addName = (event) => {
       event.preventDefault();
-      const newFriend = this.state.newFriend;
-      newFriend.push(this.state.newName);
+      const friends = this.state.friends;
+      friends.push(this.state.newName);
       this.setState({
         newName: '',
-        newFriend: newFriend
+        friends: friends
       });
   }
   addAge = (event) => {
       event.preventDefault();
-      const newFriend = this.state.newFriend;
+      const friends = this.state.friends;
       friends.push(this.state.newAge);
       this.setState({
         newAge:'',
-        newFriend: newFriend
+        friends: friends
       });
   }
   addEmail = (event) => {
       event.preventDefault();
-      const newFriend = this.state.newFriend;
-      newFriend.push(this.state.newEmail);
+      const friends = this.state.friends;
+      friends.push(this.state.newEmail);
       this.setState({
         newEmail:'',
-        newFriend: newFriend
+        friends: friends
       });
   }
 
-  handleNewNameInput = (event) => {
-      this.setState({ 
-          newName: event.target.value,
-         });
-  }
-  handleNewAgeInput = (event) => {
-      this.setState({ 
-          newAge: event.target.value,
-         });
-  }
-  handleNewEmailInput = (event) => {
-      this.setState({ 
-          newEmail: event.target.value,
-         });
-  }
+    handleChange (evt) {
+        
+    }
+
+//   handleNewNameInput = (event) => {
+//       this.setState({ 
+//           newName: event.target.value,
+//          });
+//   }
+//   handleNewAgeInput = (event) => {
+//       this.setState({ 
+//           newAge: event.target.value,
+//          });
+//   }
+//   handleNewEmailInput = (event) => {
+//       this.setState({ 
+//           newEmail: event.target.value,
+//          });
+//   }
 
 
 //   handleClick = () => 
@@ -75,13 +78,13 @@ class FriendManager extends Component {
 render(){
     return(
         <div>
-            <form onSubmit={this.addName}>
+            <form onSubmit={`${this.addName} ${this.addAge} ${this.addEmail}`}>
                 <input className="friend__textbox" type="text" onChange={this.handleNewNameInput} placeholder="-Enter A Name-" value={this.state.newName} />
-            </form>
-            <form onSubmit={this.addAge}>
+          
+
                 <input className="friend__textbox" type="text" onChange={this.handleNewAgeInput} placeholder="-Enter An Age-" value={this.state.newAge}/>
-            </form>
-            <form onSubmit={this.addEmail}>
+
+            
                 <input className="friend__textbox" type="text" onChange={this.handleNewEmailInput} placeholder="-Enter An Email-" value={this.state.newEmail}/>
             </form>
                 
