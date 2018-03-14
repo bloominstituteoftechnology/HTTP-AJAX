@@ -1,0 +1,35 @@
+.newFriendContainer {
+  display: flex;
+}
+
+.newFriendTitle {
+  margin: 15px;
+  font-size: 2.2rem;
+}
+
+
+#newFriendForm {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  border: 3px solid goldenrod;
+  box-shadow: 5px 10px 8px #888888;
+  
+}
+
+.formGroup {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.8rem;
+}
+
+Input {
+  font-size: 1.8rem;
+}
