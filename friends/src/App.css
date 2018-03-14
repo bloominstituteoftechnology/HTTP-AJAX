@@ -1,3 +1,24 @@
 .App {
-  text-align: center;
+  display:flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  /* border: 2px solid green; */
+}
+
+.FriendList {
+  /* border: 2px solid blue; */
+  margin: 30px;
+  width: 500px;
+}
+.FriendForm {
+  margin: 30px;
+  width: 300px;
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-add {
+  width: 150px;
+  align-self: center;
 }

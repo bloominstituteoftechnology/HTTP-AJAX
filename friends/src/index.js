@@ -5,6 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Friend from './components/Friend/Friend';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <Router>

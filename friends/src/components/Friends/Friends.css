@@ -1,0 +1,7 @@
+.Friends {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* border: 2px solid black; */
+  align-items: center;
+}
