@@ -47,10 +47,10 @@ class NewFriend extends Component {
                         <input name='name' type='text' onChange={this.ChangeName} placeholder='Name' />
                         </div>
                         <div className="friend-age">Age: 
-                        <input name='age' type='text' onChange={this.ChangeAge} placeholder='Age' />
+                        <input name='age' type='number' onChange={this.ChangeAge} placeholder='Age' />
                         </div>
                         <div className="friend-email">Email: 
-                        <input name='email' type='text' onChange={this.ChangeEmail} placeholder='Email' />
+                        <input name='email' type='email' onChange={this.ChangeEmail} placeholder='Email' />
                         </div>
                         <button type='submit'>Save</button>
                     </form>
