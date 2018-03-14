@@ -30,7 +30,7 @@ export default class AddFriend extends Component {
 
   addFriend = (event) => {
     
-    event.preventDefault();  // NOT WORKING!!! WHY NOT!!?!?!?!?!?!?!?!
+    event.preventDefault();
     
     const newFriend = {
       name: this.state.newName,
