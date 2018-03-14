@@ -5,9 +5,9 @@ import './Navigation.css';
 
 const Navigation = () => {
   return (
-    <div>
+    <div className="navDiv">
       <Nav className="appNav">
-        <Link to="/" className="addNavLinks">
+        <Link to="/" className="addNavLinks homeLink">
           Home
         </Link>
 
