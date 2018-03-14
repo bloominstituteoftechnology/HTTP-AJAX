@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import FriendsList from './FriendsList';
+import FriendsForm from './FriendsForm';
 
         
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div>
-          <Route exact path="/" component={FriendsList} />
+        <div className="app">
+          <Navigation/>
+          <Route exact path="/" component={ FriendsList } />
+          <Route path="/add" component={ FriendsForm }/>
         </div>
-      </Router>
-        
     );
   }
 }
+
+const Navigation = () => {
+  return (
+    <div>
+      <Link to="/">Home</Link>
+      <Link to="/add">Add New Friend</Link>
+    </div>
+  )
+}
+
 
 export default App;
