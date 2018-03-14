@@ -2,17 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import FriendComponent from "./components/FriendComponent";
-import {
-  Row,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Card
-} from "reactstrap";
+import FormComponent from "./components/FormComponent";
+
+import { Row, Col, Container } from "reactstrap";
 
 class App extends Component {
   constructor() {
@@ -29,6 +21,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.addFriend = this.addFriend.bind(this);
     this.getData = this.getData.bind(this);
+    this.removeFriend = this.removeFriend.bind(this);
+    this.editFriend = this.editFriend.bind(this);
   }
 
   handleChange(event) {
@@ -57,72 +51,41 @@ class App extends Component {
       });
   }
 
+  removeFriend(id) {
+    axios.delete(`http://localhost:5000/friends/${id}`).then(response => {
+      // console.log(response);
+      this.getData();
+    });
+  }
+
+  editFriend(id) {
+    axios.put(`http://localhost:5000/friends/${id}`).then(response => {
+      // console.log(response);
+      this.getData();
+    });
+  }
+
   render() {
     return (
       <Container>
         <Row>
           {this.state.friends.map(friend => (
             <Col sm={4}>
-              <FriendComponent key={friend.id} friend={friend} />
+              <FriendComponent
+                key={friend.id}
+                friend={friend}
+                removeFriend={this.removeFriend}
+                editFriend={this.editFriend}
+                newFriend={this.state.newFriend}
+              />
             </Col>
           ))}
         </Row>
-        <Row className="my-5">
-          <Form
-            className="mx-auto"
-            onSubmit={this.addFriend}
-            onChange={this.handleChange}
-          >
-            <FormGroup row>
-              <Label for="friendName" sm={2}>
-                Name
-              </Label>
-              <Col sm={10}>
-                <Input
-                  type="text"
-                  name="name"
-                  id="friendName"
-                  placeholder="Type in your friend's name!"
-                  value={this.state.newFriend.name}
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="friendAge" sm={2}>
-                Age
-              </Label>
-              <Col sm={10}>
-                <Input
-                  type="text"
-                  name="age"
-                  id="friendAge"
-                  placeholder="Type in your friend's age!"
-                  value={this.state.newFriend.age}
-                  pattern="[0-9]+"
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="friendEmail" sm={2}>
-                Email
-              </Label>
-              <Col sm={10}>
-                <Input
-                  type="email"
-                  name="email"
-                  id="friendEmail"
-                  placeholder="Type in your friends e-mail!"
-                  value={this.state.newFriend.email}
-                />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Col sm={3} className="mx-auto">
-                <Button type="submit">Submit</Button>
-              </Col>
-            </FormGroup>
-          </Form>
-        </Row>
+        <FormComponent
+          handleChange={this.handleChange}
+          submit={this.addFriend}
+          newFriend={this.state.newFriend}
+        />
       </Container>
     );
   }

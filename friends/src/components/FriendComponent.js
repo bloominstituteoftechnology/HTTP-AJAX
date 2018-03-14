@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import { Card, CardTitle, CardBody, CardText } from "reactstrap";
+import {
+  Row,
+  Col,
+  Card,
+  CardTitle,
+  CardBody,
+  CardText,
+  Button
+} from "reactstrap";
+import FormComponent from "./FormComponent";
 
 class FriendComponent extends Component {
   constructor() {
     super();
     this.state = {
-      friend: {}
+      friend: {},
+      showEdit: false
     };
   }
   componentDidMount() {
@@ -13,11 +23,40 @@ class FriendComponent extends Component {
   }
   render() {
     return (
-      <Card>
+      <Card className="my-1">
         <CardBody>
-          <CardTitle>{this.state.friend.name}</CardTitle>
+          <Row>
+            <Col sm={8}>
+              <CardTitle>{this.state.friend.name}</CardTitle>
+            </Col>
+          </Row>
           <CardText>Age: {this.state.friend.age}</CardText>
           <CardText>E-Mail: {this.state.friend.email}</CardText>
+        </CardBody>
+        <CardBody>
+          <Button
+            className="m-1"
+            onClick={() => {
+              this.setState({ showEdit: !this.state.showEdit });
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            className="m-1"
+            onClick={() => {
+              this.props.removeFriend(this.state.friend.id);
+            }}
+          >
+            Remove
+          </Button>
+          {this.state.showEdit ? (
+            <FormComponent
+              handleChange={this.handleChange}
+              submit={this.editFriend}
+              newFriend={this.props.newFriend}
+            />
+          ) : null}
         </CardBody>
       </Card>
     );
