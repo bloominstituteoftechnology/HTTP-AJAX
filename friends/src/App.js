@@ -6,14 +6,15 @@ import './App.css';
 
 class App extends Component {
   constructor() {
+    
     super();
     this.state = {
       friends: [],
-      newFriend: {
+      
         name: '',
         age: null,
         email: ''
-      },
+      
     }
   }
   
@@ -28,20 +29,43 @@ class App extends Component {
     });
   }
   
-  handleInput = (event) => {
-    this.setState({ newFriend: event.target.value });
+  handleInputName = (event) => {
+    this.setState( {name: event.target.value} );
+    
   }
   
+  handleInputAge = (event) => {
+    this.setState(  {age: event.target.value} );
+    
+  }
+  
+  handleInputEmail = (event) => {
+    this.setState( {email: event.target.value} );
+    
+  }
+  
+  
+  
   handleSubmit = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
+
+    // const { name, age, email } = this.state.newFriend
+    // 
+    // const friend = {
+    //   name,
+    //   age,
+    //   email,
+    // };
     
-    const friend = {
-      name: this.state.newFriend.name,
-      age: this.state.newFriend.age,
-      email: this.state.newFriend.email,
-    };
+    //console.log(friend);
     
-    axios.post('http://localhost:5000/friends', { friend })
+    const newFriend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    }
+  
+    axios.post('http://localhost:5000/friends', newFriend )
     .then(response => {
       console.log(response);
     })
@@ -54,19 +78,23 @@ class App extends Component {
     return (
       <div className="container">
         <div className="App">
-          {this.state.friends.map(friend =>{
+          {this.state.friends.map((friend, i) =>{
             return (
-              <FriendsDisplay key={friend.id} friend={friend} />
+              <FriendsDisplay key={i} friend={friend} />
             )
           })}
 
-          <form className="input" onSubmit={this.handleSubmit}>
-            <input onChange={handleInput} type="text" placeholder="name"
-              value={this.state}/>
+          <form onSubmit={this.handleSubmit} className="input">
+            <input type="text" onChange={this.handleInputName} placeholder="name"
+              value={this.state.name} />
             <br/>
-            <input type="text" placeholder="age" />
+            <input type="number" onChange={this.handleInputAge} placeholder="age" 
+              value={this.state.number} />
             <br/>
-            <input type="text" placeholder="email" />
+            <input type="text" onChange={this.handleInputEmail} placeholder="email"
+              value={this.state.email} />
+
+            <button type='submit'>submit</button>
           </form>
 
         </div>
