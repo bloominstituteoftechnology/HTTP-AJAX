@@ -85,7 +85,9 @@ class App extends Component {
           })}
 
           <form onSubmit={this.handleSubmit} className="input">
-            <input type="text" onChange={this.handleInputName} placeholder="name"
+            Add new friend:
+            <br/>
+          <input type="text" onChange={this.handleInputName} placeholder="name"
               value={this.state.name} />
             <br/>
             <input type="number" onChange={this.handleInputAge} placeholder="age" 
@@ -93,7 +95,7 @@ class App extends Component {
             <br/>
             <input type="text" onChange={this.handleInputEmail} placeholder="email"
               value={this.state.email} />
-
+            <br/>
             <button type='submit'>submit</button>
           </form>
 

@@ -10,8 +10,8 @@
 }
 
 .input {
-  display: inline-block;
-  padding: 20px 20px;
+  display: inline;
+  padding: 20px;
   margin: 20px;
   text-align: center;
   border: solid black 1px;
