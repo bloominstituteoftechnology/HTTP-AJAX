@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 
-import FriendsList from './FriendsList';
+import App from './App';
 
-ReactDOM.render(<FriendsList />, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
