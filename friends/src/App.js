@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import friendList from '.component/friendList.js'
+import friendList from './components/friendList.js'
 
 class App extends Component {
   render() {
