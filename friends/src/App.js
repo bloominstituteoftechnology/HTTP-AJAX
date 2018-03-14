@@ -60,7 +60,7 @@ class App extends Component {
       console.log(`error posting data to a server ${error}`);
     });
   }
-  
+
   render() {
     return (
       <div className="container">

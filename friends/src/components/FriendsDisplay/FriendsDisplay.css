@@ -1,5 +1,6 @@
 .friends {
   margin: 40px;
   padding: 10px;
-  border: solid black 1px;
+  border: solid darkSlateGray 2px;
+  border-radius: 10px;
 }
