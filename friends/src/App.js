@@ -45,17 +45,19 @@ class App extends Component {
   addFriend(event) {
     event.preventDefault();
     var newArr = this.state.friends;
-    console.log("Add Friend new Arr: ", newArr);
-    console.log("Add Friend newFriend: ", this.state.newFriend);
     newArr.push(this.state.newFriend);
     this.setState({
-      friends: newArr,
+      // friends: newArr,
       newFriend: { name: "", age: "", email: "" }
     });
+    axios
+      .post("http://localhost:5000/friends", this.state.newFriend)
+      .then(response => {
+        console.log(response);
+      });
   }
 
   render() {
-    console.log(this.state.friends);
     return (
       <Container>
         <Row>
@@ -96,6 +98,7 @@ class App extends Component {
                   id="friendAge"
                   placeholder="Type in your friend's age!"
                   value={this.state.newFriend.age}
+                  pattern="[0-9]+"
                 />
               </Col>
             </FormGroup>
