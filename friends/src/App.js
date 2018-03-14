@@ -29,35 +29,22 @@ class App extends Component {
     });
   }
   
-  handleInputName = (event) => {
-    this.setState( {name: event.target.value} );
+  handleInput = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    if ("name" === event.target.name){
+      this.setState( {name: event.target.value} );
+    } else if ("age" === event.target.name){
+      this.setState( {age: event.target.value} );
+    } else if ("email" === event.target.name){
+      this.setState( {email: event.target.value} );
+    }
+    
     
   }
-  
-  handleInputAge = (event) => {
-    this.setState(  {age: event.target.value} );
-    
-  }
-  
-  handleInputEmail = (event) => {
-    this.setState( {email: event.target.value} );
-    
-  }
-  
-  
   
   handleSubmit = (event) => {
     //event.preventDefault();
-
-    // const { name, age, email } = this.state.newFriend
-    // 
-    // const friend = {
-    //   name,
-    //   age,
-    //   email,
-    // };
-    
-    //console.log(friend);
     
     const newFriend = {
       name: this.state.name,
@@ -87,14 +74,14 @@ class App extends Component {
           <form onSubmit={this.handleSubmit} className="input">
             Add new friend:
             <br/>
-          <input type="text" onChange={this.handleInputName} placeholder="name"
-              value={this.state.name} />
+          <input type="text" onChange={this.handleInput} placeholder="name"
+              name="name" value={this.state.name} />
             <br/>
-            <input type="number" onChange={this.handleInputAge} placeholder="age" 
-              value={this.state.number} />
+            <input type="number" onChange={this.handleInput} placeholder="age" 
+              name="age" value={this.state.number} />
             <br/>
-            <input type="text" onChange={this.handleInputEmail} placeholder="email"
-              value={this.state.email} />
+            <input type="text" onChange={this.handleInput} placeholder="email"
+              name="email" value={this.state.email} />
             <br/>
             <button type='submit'>submit</button>
           </form>
