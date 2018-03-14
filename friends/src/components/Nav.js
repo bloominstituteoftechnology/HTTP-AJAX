@@ -15,7 +15,7 @@ export default class Nav extends React.Component {
       <div>
         <Navbar color="faded" light expand="md">
           <Link to='/'>Friends List</Link>
-          <Link to='/input/'>Add Friend</Link>
+          <Link to='/add/'>Add Friend</Link>
           
           
         </Navbar>

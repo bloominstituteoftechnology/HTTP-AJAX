@@ -8,6 +8,8 @@ import Nav from './components/Nav'
 import './App.css';
 
 import AddFriend from './components/AddFriend';
+import UpdateFriend from './components/UpdateFriend';
+
 
 class App extends Component {
   
@@ -18,7 +20,10 @@ class App extends Component {
         <Nav />
         {/* <Route path='/' component={Nav} /> */}
         <Route exact path='/' component={DisplayFriends}/>
-        <Route path='/input/' component={AddFriend} />
+        
+        <Route path='/add/' component={AddFriend} />
+        
+        <Route path='/update/:id' component={UpdateFriend}/>
 
       </div>
     );

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Card, CardText, CardTitle, Button, ButtonGroup, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
+
 
 export default class DisplayFriend extends Component {
   constructor() {
@@ -10,8 +12,29 @@ export default class DisplayFriend extends Component {
       friends: [],
     
     }
-   this.deleteFriend = this.deleteFriend.bind(this);
+  //  this.deleteFriend = this.deleteFriend.bind(this);
+   this.deleteFriend = (event) => {
+    
+    console.log(event.target.id)
+    let remove = {};
+    console.log(this.state.friends, 'state friends')
+    this.state.friends.forEach(friend => {
+      console.log(friend.id)
+      console.log(event.target.id)
+      if (friend.id === Number(event.target.id)) remove = friend;
+    });
+    
+    console.log(remove);
+
+    axios.delete(`http://localhost:5000/friends/${remove.id}`)
+    .then(response => {
+      this.setState({ friends: response.data });
+      // console.log(response);
+    })
+    .catch(err => console.log(err))
   }
+  }
+
   componentDidMount() {
     this.getData();
   }
@@ -25,25 +48,7 @@ export default class DisplayFriend extends Component {
       .catch(err => console.log(err))
   }
 
-  deleteFriend(event) {
-    
-    console.log(event.target.id)
-    let remove = {};
-    console.log(this.state.friends, 'state friends')
-    this.state.friends.forEach(friend => {
-      console.log(friend.id)
-      console.log(event.target.id)
-      if (friend.id === Number(event.target.id)) remove = friend;
-    });
-    
-    console.log(remove);
-    axios.delete(`http://localhost:5000/friends/${remove.id}`)
-    .then(response => {
-      this.setState({ friends: response.data });
-      // console.log(response);
-    })
-    .catch(err => console.log(err))
-  }
+  
 
   
   
@@ -63,12 +68,13 @@ export default class DisplayFriend extends Component {
                 <Row>
                   <Col>
                     <ButtonGroup className="text-center">
-                      <Button color="warning">Update Contact</Button>
+                      <Link to={`/update/${friend.id}`}><Button color="warning">Update Contact</Button></Link>
                       <Button id={friend.id} onClick={this.deleteFriend} color="danger">Delete contact</Button>
                     </ButtonGroup>
                   </Col>
                 </Row>
               </Card>
+              
             </div>
           )
         })
