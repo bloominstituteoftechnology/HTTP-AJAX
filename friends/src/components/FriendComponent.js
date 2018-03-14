@@ -37,6 +37,7 @@ class FriendComponent extends Component {
           <Button
             className="m-1"
             onClick={() => {
+              this.props.retrieveFriend(this.state.friend.id);
               this.setState({ showEdit: !this.state.showEdit });
             }}
           >

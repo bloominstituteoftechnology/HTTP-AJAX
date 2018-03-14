@@ -23,6 +23,7 @@ class App extends Component {
     this.getData = this.getData.bind(this);
     this.removeFriend = this.removeFriend.bind(this);
     this.editFriend = this.editFriend.bind(this);
+    this.retrieveFriend = this.retrieveFriend.bind(this);
   }
 
   handleChange(event) {
@@ -67,6 +68,10 @@ class App extends Component {
       });
   }
 
+  retrieveFriend(id) {
+    this.setState({ newFriend: this.state.friends[id - 1] });
+  }
+
   render() {
     return (
       <Container>
@@ -81,6 +86,7 @@ class App extends Component {
                 newFriend={this.state.newFriend}
                 handleChange={this.handleChange}
                 submit={this.addFriend}
+                retrieveFriend={this.retrieveFriend}
               />
             </Col>
           ))}
