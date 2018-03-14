@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './AddFriend.css';
 import axios from 'axios';
 
-class AddFriend extends Component {
+class Update extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,13 +35,19 @@ class AddFriend extends Component {
     }
 
     handleSubmit(event) {
-        const id = this.state.match.params.id;
+        const id = this.state.id;
+        axios({
+            method: 'DELETE',
+            url: `http://localhost:5000/friends/${id}`,
+            headers: { 'Content-Type': 'application/json' },
+          });
         axios.post('http://localhost:5000/friends/', {
-            id: id,
+            id: this.state.id,
             name: this.state.name,
             age: this.state.age,
             email: this.state.email
         });
+        this.props.history.push('/');
     }
 
     render() {
@@ -69,4 +74,4 @@ class AddFriend extends Component {
     }
 }
 
-export default AddFriend;
+export default Update;
