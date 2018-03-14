@@ -32,9 +32,23 @@ class FriendsList extends Component {
         this.setState({
             email: e.target.value
         }); 
-    };
+    }; 
 
-    submitFriend = () =>{
+    submitFriend = (e) =>{
+        e.preventDefault();
+
+        let newFriends = this.state.friends;
+        let newFriend = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email,
+        }
+
+        newFriends.push(newFriend);
+        this.setState({
+            friends: newFriends
+        })
+
         axios.post('http://localhost:5000/friends', {
             name: this.state.name,
             age: this.state.age,
@@ -43,11 +57,8 @@ class FriendsList extends Component {
           .then(function (response) {
             console.log(response.data);
           })
-    };  
-
-    submitForm =(e) =>{
-        //e.preventDefault();
     };
+
 
     render(){
         return(
@@ -66,25 +77,24 @@ class FriendsList extends Component {
                     })}
                 </div>
 
-                    <form className = 'form' onSubmit = {this.submitForm}>
+                    <form className = 'form'>
                         <input className = 'form-item' onChange = {this.updatName} placeholder = 'friends name' />
                         <input className = 'form-item' onChange = {this.updatAge} placeholder = 'friends age' />
                         <input className = 'form-item' onChange = {this.updatEmail} placeholder = 'friends email' />
                         <button className = 'form-item' onClick = {this.submitFriend}>add friend</button>
                     </form>
-
-                
             </div>
         );
     }
 
+    
     componentDidMount(){
         axios.get(`http://localhost:5000/friends`)
         .then(response => {this.setState({friends: response.data})})
         .catch(error => {console.log(error)})
     }
-
-
+    
+   
 }
 
 export default FriendsList;
