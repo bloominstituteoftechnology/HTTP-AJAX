@@ -70,6 +70,7 @@ app.post('/friends', (req, res) => {
 });
 
 app.put('/friends/:id', (req, res) => {
+  console.log(req.data)
   const { id } = req.params;
   let friendIndex = friends.findIndex(friend => friend.id == id);
 
