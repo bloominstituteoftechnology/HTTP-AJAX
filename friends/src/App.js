@@ -74,8 +74,12 @@ class App extends Component {
   }
 
   render() {
+    document.body.style = "background: rgba(23, 162, 184, 0.5)";
     return (
-      <Container>
+      <Container className="py-2">
+        <Row className="justify-content-center my-3">
+          <div className="header">Friend Face</div>
+        </Row>
         <Row>
           {this.state.friends.map(friend => (
             <Col sm={6} className="mx-auto">
@@ -92,7 +96,7 @@ class App extends Component {
             </Col>
           ))}
         </Row>
-        <Card>
+        <Card className="my-3">
           <CardBody>
             <CardTitle>Add A New Friend</CardTitle>
 
