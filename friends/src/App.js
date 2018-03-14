@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
-
- 
+import { Button } from 'reactstrap';
  
 
 class App extends Component {
@@ -18,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.friends.map(friend => {
+        {/* {this.state.friends.map(friend => {
           return(
             <div>
              <div>{friend.name}</div>
@@ -26,7 +24,8 @@ class App extends Component {
              <div>{friend.email}</div>
             </div>
           )
-        })}
+        })} */}
+        <FriendsList />
       </div>
     );
   }
