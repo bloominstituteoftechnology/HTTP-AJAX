@@ -24,6 +24,7 @@ class FriendsList extends Component {
                         return <Friend key={friend.id}friend={friend}/>
                     })}
                 </div>
+                <AddFriend />
             </div>
         );
     }
