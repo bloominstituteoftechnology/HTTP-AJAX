@@ -4,7 +4,7 @@ import "./App.css";
 import FriendComponent from "./components/FriendComponent";
 import FormComponent from "./components/FormComponent";
 
-import { Row, Col, Container } from "reactstrap";
+import { Card, CardTitle, CardBody, Row, Col, Container } from "reactstrap";
 
 class App extends Component {
   constructor() {
@@ -65,6 +65,7 @@ class App extends Component {
       .then(response => {
         console.log(response);
         this.getData();
+        this.setState({ newFriend: { name: "", age: "", email: "" } });
       });
   }
 
@@ -77,7 +78,7 @@ class App extends Component {
       <Container>
         <Row>
           {this.state.friends.map(friend => (
-            <Col sm={4}>
+            <Col sm={6} className="mx-auto">
               <FriendComponent
                 key={friend.id}
                 friend={friend}
@@ -91,11 +92,17 @@ class App extends Component {
             </Col>
           ))}
         </Row>
-        <FormComponent
-          handleChange={this.handleChange}
-          submit={this.addFriend}
-          newFriend={this.state.newFriend}
-        />
+        <Card>
+          <CardBody>
+            <CardTitle>Add A New Friend</CardTitle>
+
+            <FormComponent
+              handleChange={this.handleChange}
+              submit={this.addFriend}
+              newFriend={this.state.newFriend}
+            />
+          </CardBody>
+        </Card>
       </Container>
     );
   }
