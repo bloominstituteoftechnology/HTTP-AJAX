@@ -19,7 +19,7 @@ export default class NewFriend extends Component {
   // Only displays with hard refresh
   onSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+
     this.setState({
       name: '',
       age: '',
@@ -32,8 +32,7 @@ export default class NewFriend extends Component {
         email: this.state.email
       })
       .then(response => {
-        this.setState({ friends: response.data });
-        console.log(e);
+        this.props.onSubmit();
       })
       .catch(error => {
         console.log(`There was an error adding a new friend: ${error}`);

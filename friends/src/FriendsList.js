@@ -19,22 +19,15 @@ class FriendsList extends Component {
   }
 
   // Issue with this function
-  onSubmit = friends => {
-    this.setState(
-      axios
-        .post('http://localhost:5000/friends', {
-          name: this.state.name,
-          age: this.state.age,
-          email: this.state.email
-        })
-        .then(response => {
-          this.setState({ friends: response.data });
-          console.log('Friends did update');
-        })
-        .catch(error => {
-          console.log(`There was an error adding a new friend: ${error}`);
-        })
-    );
+  onSubmit = () => {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => {
+        console.log(`There was an error getting friends: ${error}`);
+      });
   };
 
   render() {
@@ -52,7 +45,7 @@ class FriendsList extends Component {
             );
           })}
         </ul>
-        <NewFriend onSubmit={friends => this.onSubmit(friends)} />
+        <NewFriend onSubmit={this.onSubmit} />
       </div>
     );
   }
