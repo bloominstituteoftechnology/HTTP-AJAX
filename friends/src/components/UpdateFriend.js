@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class UpdateFriend extends Component {
@@ -8,9 +8,11 @@ export default class UpdateFriend extends Component {
     super()
     this.state = {
       friend: {},
-      newName: '',
-      newAge: '',
-      newEmail: ''
+      newFriend: {
+        newName: '',
+        newAge: '',
+        newEmail: ''
+      }
     }
     this.updateForm = this.updateForm.bind(this);
     
@@ -20,15 +22,17 @@ export default class UpdateFriend extends Component {
       event.preventDefault();
         
       const newFriend = {
-        name: this.state.newName,
-        age: this.state.newAge,
-        email: this.state.newEmail
+        name: this.state.newFriend.newName,
+        age: this.state.newFriend.newAge,
+        email: this.state.newFriend.newEmail
       }
       
       axios.put(`http://localhost:5000/friends/${this.props.match.params.id}`, newFriend)
       .then(response => {
         // this.getData();
+        
         console.log(response, 'post');
+        console.log(this.context, 'context')
       })
       .catch(error => {
         console.log(error);
@@ -77,7 +81,7 @@ export default class UpdateFriend extends Component {
   //   console.log(this.state);
   // }
 
-  updateForm = event => {
+  updateForm = (event) => {
     let newFriend = this.state.newFriend;
 
     newFriend[event.target.name] = event.target.value;
@@ -127,12 +131,12 @@ export default class UpdateFriend extends Component {
   render() {
     return(
       <Form  onSubmit={this.updateFriend}>
-        <Input required name="newName" type="text" placeholder={this.state.name} onChange={this.updateForm} value={this.state.newName}/>
+        <Input required name="newName" type="text" onChange={this.updateForm} value={this.state.newFriend.newName}/>
       
-        <Input required name="newAge" type="number" placeholder={this.state.age} onChange={this.updateForm} value={this.state.newAge}/>
+        <Input required name="newAge" type="number" onChange={this.updateForm} value={this.state.newFriend.newAge}/>
       
-        <Input required name="newEmail" type="text" placeholder={this.state.email} onChange={this.updateForm} value={this.state.newEmail}/>
-        <Button><Link to='/'>Update Friend</Link></Button>
+        <Input required name="newEmail" type="text" onChange={this.updateForm} value={this.state.newFriend.newEmail}/>
+        <Button>Update Friend</Button>
       </Form>
     )
   }
