@@ -12,7 +12,7 @@ export default class UpdateFriend extends Component {
       newAge: '',
       newEmail: ''
     }
-
+    this.updateForm = this.updateForm.bind(this);
     
     
   }
@@ -51,9 +51,11 @@ export default class UpdateFriend extends Component {
 
         this.setState({ 
           friend: update,
+          newFriend: {
           newName: update.name,
           newAge: update.age,
           newEmail: update.email
+          }
         });
         console.log(response);
       })
@@ -61,18 +63,26 @@ export default class UpdateFriend extends Component {
   }
   
 
-  updateName = (event) => {
-    this.setState({ newName: event.target.value })
-    console.log(this.state);
-  }
-  updateAge = (event) => {
+  // updateName = (event) => {
+  //   this.setState({ newName: event.target.value })
+  //   console.log(this.state);
+  // }
+  // updateAge = (event) => {
     
-    this.setState({ newAge: Number(event.target.value) })
-    console.log(this.state);
-  }
-  updateEmail = (event) => {
-    this.setState({ newEmail: event.target.value })
-    console.log(this.state);
+  //   this.setState({ newAge: Number(event.target.value) })
+  //   console.log(this.state);
+  // }
+  // updateEmail = (event) => {
+  //   this.setState({ newEmail: event.target.value })
+  //   console.log(this.state);
+  // }
+
+  updateForm = event => {
+    let newFriend = this.state.newFriend;
+
+    newFriend[event.target.name] = event.target.value;
+
+    this.setState({ newFriend });
   }
 
   
@@ -117,11 +127,11 @@ export default class UpdateFriend extends Component {
   render() {
     return(
       <Form  onSubmit={this.updateFriend}>
-        <Input required type="text" placeholder={this.state.name} onChange={this.updateName} value={this.state.newName}/>
+        <Input required name="newName" type="text" placeholder={this.state.name} onChange={this.updateForm} value={this.state.newName}/>
       
-        <Input required type="number" placeholder={this.state.age} onChange={this.updateAge} value={this.state.newAge}/>
+        <Input required name="newAge" type="number" placeholder={this.state.age} onChange={this.updateForm} value={this.state.newAge}/>
       
-        <Input required type="text" placeholder={this.state.email} onChange={this.updateEmail} value={this.state.newEmail}/>
+        <Input required name="newEmail" type="text" placeholder={this.state.email} onChange={this.updateForm} value={this.state.newEmail}/>
         <Button><Link to='/'>Update Friend</Link></Button>
       </Form>
     )
