@@ -32,3 +32,9 @@ button .btn {
   font-family: "Raleway", sans-serif;
   font-size: 2rem;
 }
+
+.edit-card {
+  background: red;
+  width: 100%;
+  height: 100vh;
+}

@@ -18,14 +18,16 @@ class FriendComponent extends Component {
       showEdit: false
     };
   }
+
   componentDidMount() {
     this.setState({ friend: this.props.friend });
+    // this.state.showEdit ? enableOnClickOutside() : disableOnClickOutside();
   }
   render() {
     return (
       <div>
         {this.state.showEdit ? (
-          <Card className="m-3">
+          <Card className="m-3 edit-form">
             <CardBody>
               <FormComponent
                 handleChange={this.props.handleChange}
