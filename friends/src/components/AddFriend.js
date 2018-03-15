@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Input } from 'reactstrap';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -41,19 +41,20 @@ export default class AddFriend extends Component {
     }
     
     axios.post("http://localhost:5000/friends", newFriend)
-    .then(response => {
-      this.setState({
-        newName: '',
-        newAge: '',
-        newEmail: '',
+      .then(response => {
+        this.setState({
+          newName: '',
+          newAge: '',
+          newEmail: '',
+          redirect: true
+        })
+        // this.getData();
+        console.log(response, 'post');
+        
       })
-      // this.getData();
-      console.log(response, 'post');
-      this.setState({ redirect: true });
-    })
-    .catch(error => {
-      console.log(error);
-    });
+      .catch(error => {
+        console.log(error);
+      });
 
     
     console.log('submitted');
@@ -69,9 +70,11 @@ export default class AddFriend extends Component {
     
   }
   render() {
+
     if (this.state.redirect) {
       return <Redirect push to="/" />;
     }
+
     return(
       <Form onSubmit={this.addFriend} >
         <Input required type="text" placeholder="Enter name" onChange={this.updateName} value={this.state.newName}/>
