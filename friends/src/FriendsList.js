@@ -18,7 +18,6 @@ class FriendsList extends Component {
       });
   }
 
-  // Issue with this function
   onSubmit = () => {
     axios
       .get('http://localhost:5000/friends')
@@ -30,14 +29,32 @@ class FriendsList extends Component {
       });
   };
 
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends: response.data });
+        console.log(response);
+      })
+      .catch(error => console.log(error));
+  };
+
   render() {
     return (
       <div>
         <div className="friend-title">Lambda Friends</div>
+
+        <NewFriend onSubmit={this.onSubmit} />
         <ul className="friend-grid">
           {this.state.friends.map(friend => {
             return (
               <li key={friend.id} className="friend">
+                <button
+                  className="delete-btn"
+                  onClick={() => this.deleteFriend(friend.id)}
+                >
+                  Delete
+                </button>
                 <div className="friend-name">{friend.name}</div>
                 <div className="friend-age">{`Age: ${friend.age}`}</div>
                 <div className="friend-email">{`Email: ${friend.email}`}</div>
@@ -45,7 +62,6 @@ class FriendsList extends Component {
             );
           })}
         </ul>
-        <NewFriend onSubmit={this.onSubmit} />
       </div>
     );
   }

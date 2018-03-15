@@ -41,10 +41,16 @@ li {
   padding: 1rem;
   font-weight: 400;
   font-size: 2rem;
+  width: 17rem;
+  border: 3px solid black;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.24);
 }
 
 .friend-name {
-  font-weight: 300;
+  font-weight: 600;
   font-size: 1.2rem;
 }
 
@@ -58,6 +64,14 @@ li {
   padding-top: 8px;
 }
 
+.delete-btn {
+  margin-left: 75%;
+  height: 25px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  background: lightgrey;
+}
+
 .form {
   background-color: #fff;
   color: rgba(0, 0, 0, 0.7);
@@ -69,9 +83,10 @@ li {
   box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
     0 2px 4px rgba(0, 0, 0, 0.24);
   margin: 1rem;
+  margin-top: 2rem;
   padding: 1rem;
   width: 12rem;
-  height: 15rem;
+  height: 24rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,9 +97,11 @@ input {
   width: 100%;
   height: 30px;
   margin-bottom: 10px;
+  border-color: gainsboro;
+  box-shadow: 0 0 10px gainsboro;
 }
 
-button {
+.add-btn {
   height: 30px;
   border-radius: 10px;
   font-size: 1rem;
@@ -94,4 +111,8 @@ button {
 .form-container {
   display: flex;
   justify-content: center;
+}
+
+.logo {
+  border: 3px solid gainsboro;
 }

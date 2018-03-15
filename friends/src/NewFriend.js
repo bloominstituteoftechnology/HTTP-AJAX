@@ -16,15 +16,9 @@ export default class NewFriend extends Component {
     });
   };
 
-  // Only displays with hard refresh
   onSubmit = e => {
     e.preventDefault();
 
-    this.setState({
-      name: '',
-      age: '',
-      email: ''
-    });
     axios
       .post('http://localhost:5000/friends', {
         name: this.state.name,
@@ -32,6 +26,11 @@ export default class NewFriend extends Component {
         email: this.state.email
       })
       .then(response => {
+        this.setState({
+          name: '',
+          age: '',
+          email: ''
+        });
         this.props.onSubmit();
       })
       .catch(error => {
@@ -43,6 +42,11 @@ export default class NewFriend extends Component {
     return (
       <div className="form-container">
         <form className="form">
+          <img
+            className="logo"
+            src="https://pbs.twimg.com/profile_images/973277209644249089/0Te2jtBH_200x200.jpg"
+            alt="logo"
+          />
           <h4>Add A New Friend!</h4>
           <input
             name="name"
@@ -65,7 +69,9 @@ export default class NewFriend extends Component {
             onChange={e => this.change(e)}
           />
           <br />
-          <button onClick={e => this.onSubmit(e)}>Add</button>
+          <button className="add-btn" onClick={e => this.onSubmit(e)}>
+            Add
+          </button>
         </form>
       </div>
     );
