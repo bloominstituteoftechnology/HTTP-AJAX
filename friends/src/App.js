@@ -12,11 +12,6 @@ class App extends Component {
       newName: '',
       newAge: '',
       newEmail: '',
-      // newFriend: {
-      //   name: '',
-      //   age: '',
-      //   email: '',
-      // },
     };
   }
 
@@ -41,9 +36,6 @@ class App extends Component {
 
   handleChangeEmail = event => {
     this.setState({ newEmail: event.target.value });
-    // const email = this.state.newFriend.email;
-    // this.setState({ email: event.target.value });
-
   };
 
   handleSubmit = event => {
@@ -60,11 +52,6 @@ class App extends Component {
       .then(res => {
         this.setState({
           friends: res.data,
-          // newFriend: {
-          //   name: '',
-          //   age: '',
-          //   email: '',
-          // },
           newName: '',
           newAge: '',
           newEmail: '',
@@ -83,25 +70,20 @@ class App extends Component {
           <Friends friends={this.state.friends} />
         </div>
 
-        {/* {this.state.friends.map(friend => {
-          return <Friends friend={friend} key={friend.id} />;
-        })} */}
-        {/* <AddFriend name={this.state.newName} age={this.state.newAge}  email={this.state.newEmail} /> */}
-       
         <Form className="FriendForm">
           <h2>Friend Form:</h2>
 
           <FormGroup>
             <Label for="Name">Name: </Label>
-            <Input className="Input" type="text" name="name" id="name" placeholder="Add name" autoComplete="name" onChange={this.handleChangeName}  onSubmit={this.handleSubmit} value={this.state.newName} required/>
+            <Input required className="Input" type="text" name="name" id="name" placeholder="Add name" autoComplete="name" onChange={this.handleChangeName} value={this.state.newName} />
           </FormGroup>
           <FormGroup>
             <Label for="age">Age: </Label>
-            <Input className="Input" type="number" name="age" id="age" placeholder="Add age" onChange={this.handleChangeAge} onSubmit={this.handleSubmit} value={this.state.newAge} required />
+            <Input required className="Input" type="number" name="age" id="age" placeholder="Add age" onChange={this.handleChangeAge} value={this.state.newAge} />
           </FormGroup>
           <FormGroup>
             <Label for="email">Email: </Label>
-            <Input className="Input" type="email" name="email" id="email" placeholder="Add email" autoComplete="email" onChange={this.handleChangeEmail} onSubmit={this.handleSubmit} value={this.state.newEmail} required />
+            <Input required className="Input" type="email" name="email" id="email" placeholder="Add email" autoComplete="email" onChange={this.handleChangeEmail} value={this.state.newEmail}  />
           </FormGroup>
           <Button color="primary" type="submit" className="btn-add" onClick={this.handleSubmit}>
             Add Friend

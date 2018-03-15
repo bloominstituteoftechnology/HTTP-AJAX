@@ -18,10 +18,10 @@ const Friends = (props) => {
                 </thead>
                 <tbody>
                     {/* <Link to={`/friends/${props.friend.id}`}>{props.friend.name}</Link> */}
-                    {props.friends.map(friend => {
+                    {props.friends.map((friend, index) => {
                         return (
                             <tr key={friend.id}>
-                                <th scope="row">{friend.id}</th>
+                                <th scope="row">{index+1}</th>
                                 <td><NavLink to={`/friends/${friend.id}`}>{friend.name}</NavLink></td>
                                 <td><NavLink to={`/friends/${friend.id}`}>{friend.age}</NavLink></td>
                                 <td><NavLink to={`/friends/${friend.id}`}>{friend.email}</NavLink></td>

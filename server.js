@@ -64,13 +64,10 @@ app.get('/friends/:id', (req, res) => {
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
-  console.log('friend: ', friend);
-  console.log('friends: ',friends)
   res.status(201).json(friends);
 });
 
 app.put('/friends/:id', (req, res) => {
-  console.log(req.data)
   const { id } = req.params;
   let friendIndex = friends.findIndex(friend => friend.id == id);
 
@@ -85,8 +82,6 @@ app.put('/friends/:id', (req, res) => {
 });
 
 app.delete('/friends/:id', (req, res) => {
-  console.log(req.data);
-  console.log('in delete server')
 	friends = friends.filter(friend => friend.id != req.params.id);
 	res.status(200).json(friends);
 });
