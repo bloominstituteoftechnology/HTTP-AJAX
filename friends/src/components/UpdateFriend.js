@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Input } from 'reactstrap';
-// import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 
 export default class UpdateFriend extends Component {
@@ -8,6 +8,7 @@ export default class UpdateFriend extends Component {
     super()
     this.state = {
       friend: {},
+      redirect: false,
       newFriend: {
         newName: '',
         newAge: '',
@@ -33,6 +34,7 @@ export default class UpdateFriend extends Component {
         
         console.log(response, 'post');
         console.log(this.context, 'context')
+        this.setState({ redirect: true });
       })
       .catch(error => {
         console.log(error);
@@ -129,6 +131,9 @@ export default class UpdateFriend extends Component {
     
   // }
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/" />
+    }
     return(
       <Form  onSubmit={this.updateFriend}>
         <Input required name="newName" type="text" onChange={this.updateForm} value={this.state.newFriend.newName}/>
