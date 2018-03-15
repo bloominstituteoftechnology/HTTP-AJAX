@@ -19,9 +19,9 @@ class App extends Component {
 
 const Navigation = () => {
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <Link to="/add">Add New Friend</Link>
+    <div className="header d-flex">
+      <Link xs="6" to="/">Home</Link>
+      <Link xs="6" to="/add">Add New Friend</Link>
     </div>
   )
 }
