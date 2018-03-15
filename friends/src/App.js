@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'reactstrap';
 import FriendsList from './components/FriendsList';
+import AddFriends from './components/AddFriends';
 
 class App extends Component {
   constructor() {
@@ -30,6 +31,7 @@ class App extends Component {
         
         <Router>
         <Route path="/" component={FriendsList} />
+        
         </Router>
       </div>
       
@@ -42,6 +44,7 @@ class App extends Component {
       })
       .catch(err => console.log(err))
   }
+  
 }
 
 export default App;

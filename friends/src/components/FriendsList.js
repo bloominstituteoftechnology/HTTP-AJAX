@@ -18,13 +18,24 @@ class FriendsList extends Component {
           {this.state.friends.map(friend => {
             return (
               <li key={friend.id} className="friend">
-                <div className="friend-name">{friend.name}</div>
-                <div className="friend-age">{friend.age}</div>
-                <div className="friend-email">{friend.email}</div>
+                <div className="friend-name border-bottom">{friend.name}</div>
+                <div className="friend-age">{`Age: ${friend.age}`}</div>
+                <div className="friend-email">{`Email: ${friend.email}`}</div>
               </li>
             );
           })}
         </ul>
+        
+        <div>
+        <div>Add a New Friend:</div>
+        <form onSubmit={this.addFriend}>
+          <input type="text" name="name" placeholder="Name" />
+          <input type="text" name="age" placeholder="Age" />
+          <input type="text" name="email" placeholder="Email" />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+        
       </div>
     );
   }
