@@ -70,7 +70,11 @@ class App extends Component {
   }
 
   retrieveFriend(id) {
-    this.setState({ newFriend: this.state.friends[id - 1] });
+    this.getData();
+    console.log("Populate: ", id);
+    this.setState({
+      newFriend: this.state.friends.filter(friend => friend.id === id)[0]
+    });
   }
 
   render() {

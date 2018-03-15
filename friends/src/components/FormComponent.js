@@ -11,6 +11,7 @@ const FormComponent = props => {
       <FormGroup>
         <Label for="friendName">Name</Label>
         <Input
+          required
           type="text"
           name="name"
           id="friendName"
@@ -21,17 +22,19 @@ const FormComponent = props => {
       <FormGroup>
         <Label for="friendAge">Age</Label>
         <Input
+          required
           type="text"
           name="age"
           id="friendAge"
           placeholder="Type in your friend's age!"
           value={props.newFriend.age}
-          pattern="[0-9]+"
+          pattern="\d+"
         />
       </FormGroup>
       <FormGroup>
         <Label for="friendEmail">Email</Label>
         <Input
+          required
           type="email"
           name="email"
           id="friendEmail"

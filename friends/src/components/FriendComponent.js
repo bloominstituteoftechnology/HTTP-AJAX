@@ -23,17 +23,19 @@ class FriendComponent extends Component {
   }
   render() {
     return (
-      <Card className="my-1">
+      <div>
         {this.state.showEdit ? (
-          <CardBody>
-            <FormComponent
-              handleChange={this.props.handleChange}
-              submit={() => this.props.editFriend(this.state.friend.id)}
-              newFriend={this.props.newFriend}
-            />
-          </CardBody>
+          <Card className="m-3">
+            <CardBody>
+              <FormComponent
+                handleChange={this.props.handleChange}
+                submit={() => this.props.editFriend(this.state.friend.id)}
+                newFriend={this.props.newFriend}
+              />
+            </CardBody>
+          </Card>
         ) : (
-          <div>
+          <Card className="m-3 ">
             <CardBody>
               <Row>
                 <Col sm={8}>
@@ -47,8 +49,9 @@ class FriendComponent extends Component {
               <Button
                 className="m-1"
                 onClick={() => {
-                  this.props.retrieveFriend(this.state.friend.id);
+                  console.log("Clicked Edit: ", this.state.friend.id);
                   this.setState({ showEdit: !this.state.showEdit });
+                  this.props.retrieveFriend(this.state.friend.id);
                 }}
               >
                 Edit
@@ -62,9 +65,9 @@ class FriendComponent extends Component {
                 Remove
               </Button>
             </CardBody>
-          </div>
+          </Card>
         )}
-      </Card>
+      </div>
     );
   }
 }
