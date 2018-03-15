@@ -83,7 +83,7 @@ class App extends Component {
     return (
       <div className="App">
         {friends.map(friend => (
-          <div key={friend.id}>
+          <div key={friend.id} className="friend">
             <div>{friend.id}</div>
             <div>{friend.name}<span onClick={() => this.deleteFriend(friend.id)}>  ❌</span></div>
             <div>{friend.age}</div>
@@ -91,7 +91,7 @@ class App extends Component {
           </div>
         ))}
         <div> 
-        <Form>
+        <Form className="friend">
             <FormGroup>
               <Label for="id">ID</Label>
               <Input type="number" name="id" value={id} onChange={this.handleChange} placeholder="Enter ID"/>
