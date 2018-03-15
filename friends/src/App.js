@@ -13,6 +13,11 @@ class App extends Component {
       newAge: '',
       newEmail: '',
     };
+    // Damn this to hell.
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangeAge = this.handleChangeAge.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -48,7 +53,7 @@ class App extends Component {
     };
 
     axios
-      .post(`http://localhost:5000/friends`, newFriend)
+      .post(`http://localhost:5000/friends`, newFriend )
       .then(res => {
         this.setState({
           friends: res.data,

@@ -1,0 +1,28 @@
+.FriendPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ReturnToFriends {
+  margin-top: 20px;
+}
+.FriendCard {
+  width: 300px;
+  margin: 20px 0;
+}
+
+.Input:invalid {
+  border: 2px dashed red;
+}
+
+.Input:valid {
+  border: 2px solid black;
+}
+
+.InputWarning {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  text-transform: uppercase;
+}

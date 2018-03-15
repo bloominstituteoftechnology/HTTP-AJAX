@@ -3,7 +3,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
-import './Friends.css'
+import './Friend.css'
 
 class Friend extends Component {
   constructor() {
@@ -52,6 +52,7 @@ class Friend extends Component {
           <FormGroup>
             <Label for="Name">Name: </Label>
             <Input
+              required
               className="Input"
               type="text"
               name="name"
@@ -66,6 +67,7 @@ class Friend extends Component {
           <FormGroup>
             <Label for="age">Age: </Label>
             <Input
+              required
               className="Input"
               type="number"
               name="age"
@@ -79,6 +81,7 @@ class Friend extends Component {
           <FormGroup>
             <Label for="email">Email: </Label>
             <Input
+              required
               className="Input"
               type="email"
               name="email"
@@ -98,18 +101,24 @@ class Friend extends Component {
           >
             Update Friend
           </Button>
-          <p className="InputWarning">All fields are required for input</p>
+          <p className="InputWarning">At least one field must update</p>
         </Form>
       </div>
     );
   }
 
   handleDelete = event => {
-    event.preventDefault();
     const id = this.props.match.params.id;
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
+        this.setState({
+          friends: res.data,
+          newName: '',
+          newAge: '',
+          newEmail: '',
+        });
+        alert('Friends List has been updated. Please return home.')
       })
       .catch(error => console.error(error));
   };
@@ -124,13 +133,10 @@ class Friend extends Component {
 
   handleChangeEmail = event => {
     this.setState({ newEmail: event.target.value });
-    // const email = this.state.newFriend.email;
-    // this.setState({ email: event.target.value });
   };
 
   handleSubmit = event => {
-    event.preventDefault();
-    // if( this.state.newName === '' || this.state.newAge === '' || this.state.newEmail === '') return alert('All fields required');
+    if( this.state.newName === '' && this.state.newAge === '' && this.state.newEmail === '') return alert('At least one field must be updated.');
     const newFriend = {
       name: this.state.newName,
       age: this.state.newAge,
@@ -144,15 +150,11 @@ class Friend extends Component {
       .then(res => {
         this.setState({
           friends: res.data,
-          // newFriend: {
-          //   name: '',
-          //   age: '',
-          //   email: '',
-          // },
           newName: "",
           newAge: "",
           newEmail: ""
         });
+        alert('Friends List has been updated. Please return home.')
       })
       .catch(error => console.error(error));
   };

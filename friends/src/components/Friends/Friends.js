@@ -17,7 +17,6 @@ const Friends = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* <Link to={`/friends/${props.friend.id}`}>{props.friend.name}</Link> */}
                     {props.friends.map((friend, index) => {
                         return (
                             <tr key={friend.id}>
@@ -26,9 +25,6 @@ const Friends = (props) => {
                                 <td><NavLink to={`/friends/${friend.id}`}>{friend.age}</NavLink></td>
                                 <td><NavLink to={`/friends/${friend.id}`}>{friend.email}</NavLink></td>
                             </tr>
-                            // <NavLink to={`/friends/${friend.id}`} key={friend.id}>
-                            //     <h5>{friend.name}</h5>
-                            // </NavLink>
                         )
                     })
                     }
@@ -43,7 +39,7 @@ Friends.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     age: PropTypes.number,
-    email: PropTypes.string
+    email: PropTypes.string,
   })
 };
 
