@@ -90,7 +90,7 @@ class App extends Component {
             <div>{friend.email}</div>
           </div>
         ))}
-        <div> 
+      <div> 
         <Form className="friend">
             <FormGroup>
               <Label for="id">ID</Label>
