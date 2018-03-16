@@ -4,8 +4,8 @@ import { Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'reactstrap';
-import FriendsList from './components/FriendsList';
-import AddFriends from './components/AddFriends';
+// import FriendsList from './components/FriendsList';
+import Friends from './components/Friends';
 
 class App extends Component {
   constructor() {
@@ -17,22 +17,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          
-          /* {this.state.friends.map(friend => {
-          return(
-            <div>
-             <div>{friend.name}</div>
-             <div>{friend.age}</div>
-             <div>{friend.email}</div>
-            </div>
-          )
-        })} */}
-        
-        <Router>
-        <Route path="/" component={FriendsList} />
-        
-        </Router>
+        <Friends />
       </div>
       
     );
