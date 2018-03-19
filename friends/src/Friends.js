@@ -5,9 +5,45 @@ class Friends extends Component {
   constructor() {
     super();
     this.state = {
-    friends: []
+    friends: [],
+    name: '',
+    age: '',
+    email: ''
+}
+};
 
+componentDidMount() {
+axios.get('http://localhost:5000/friends')
+.then(response => {
+  this.setState({ friends: response.data });
+})
+.catch(error => {
+  console.log( `There was an error getting friends: ${error}`);
+});
+}
+
+addBestie = () => {
+  const newBestie = {
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email
   }
+  axios.post('http://localhost:5000/friends/', newBestie)
+  .then(response => {
+    this.setState({name: '', age: '', email: ''});
+  })
+  .catch(error => {
+    console.log( `There was an error getting your bestie: ${error}`);
+  });
+
+};
+
+handleInputChange = (event) => {
+
+}
+
+handleSubmit = (event) => {
+  
 }
 
   render() {
@@ -29,15 +65,7 @@ class Friends extends Component {
     );
   }
 
-  componentDidMount() {
-  axios.get('http://localhost:5000/friends')
-  .then(response => {
-    this.setState({ friends: response.data });
-  })
-  .catch(error => {
-    console.log( `There was an error getting friends: ${error}`);
-  });
 }
-}
+
 
  export default Friends;
