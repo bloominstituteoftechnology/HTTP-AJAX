@@ -39,17 +39,28 @@ addBestie = () => {
 };
 
 handleInputChange = (event) => {
-
-}
+const { name, value } = event.target;
+this.setState({ [name]: value });
+};
 
 handleSubmit = (event) => {
-  
-}
+  event.preventDefault();
+};
 
   render() {
     return (
       <div>
-      <div className="title">So Lonely</div>
+      <div className="title">So Lonely. Be My Friend.</div>
+      <form className='form' onSubmit={this.addBestie}>
+       <label> Name: <input type='text' name='name' placeholder='Name' onChange={this.handleInputChange} value={this.state.name} />
+       </label>
+       <label> Age: <input type='number' name='age' placeholder='Age' onChange={this.handleInputChange} value={this.state.age} />
+       </label>
+       <label> Email: <input type='text' name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email} />
+       </label>
+       <button className='button' type='submit'>Be My New BFF</button>
+
+      </form>
       <ul className="grid">
       {this.state.friends.map(friend => {
         return (
