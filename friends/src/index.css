@@ -3,3 +3,53 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.friend {
+  background-color: #fff;
+  color: rgba(0,0,0,0.7);
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+  margin: 1rem;
+  padding: 1rem;
+  min-width: 15rem;
+}
+
+.title {
+  color: rgba(0,0,0,0.7);
+  padding: 1rem;
+  font-weight: 300;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.name {
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.age {
+  font-size: 0.9rem;
+  padding-top: 8px;
+}
+
+.email {
+  font-size: 0.8rem;
+  padding-top: 8px;
+}
