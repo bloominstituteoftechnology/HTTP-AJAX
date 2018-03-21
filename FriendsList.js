@@ -3,7 +3,7 @@ import axios from 'axios';
 
 class FriendsList extends Component {
   state = {
-    friends: []
+    friends:[]
   };
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
