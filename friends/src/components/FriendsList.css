@@ -1,0 +1,13 @@
+.friend-card {
+  list-style: none;
+}
+
+.friend-card li {
+  width: 300px;
+  background: #546e7a;
+  color: #fff;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 20px 10px;
+}
