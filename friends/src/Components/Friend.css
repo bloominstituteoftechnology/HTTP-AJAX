@@ -1,0 +1,7 @@
+.Friend-Card {
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+    border: solid teal 2px;
+    margin: 10px 10px 0 10px;
+}
