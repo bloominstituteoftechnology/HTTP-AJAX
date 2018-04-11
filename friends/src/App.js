@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
+import axios from "axios";
 import logo from './logo.svg';
 import './App.css';
 import Friend from './components/Friend';
 import FriendList from './components/FriendList';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: []
+    };
+  }
   // fetch data here
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        console.log(response);
+      })
+      // fetch data and store it in state
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,7 +41,7 @@ class App extends Component {
         </p>
         {/* Routes Here */}
         <Route exact path="/" component={FriendList} />
-        <Route path="/friend/:id" component={Friend} />
+        <Route path="/friends/:id" component={Friend} />
       </div>
     );
   }
