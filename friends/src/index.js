@@ -12,8 +12,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
     <Router>
         <div>
-            <Router exact path='/' component={Friends} />
-            <Router path='friend' component={AddFriend} />
+            <Route exact path='/' component={Friends} />
+            <Route path='/friend' component={AddFriend} />
         </div>
     </Router>
 , document.getElementById('root'));
