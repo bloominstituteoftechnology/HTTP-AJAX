@@ -8,7 +8,7 @@ export default class Friends extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: []
+      friends: [],
     };
   }
 
@@ -26,18 +26,9 @@ export default class Friends extends Component {
   render() {
     return (
       <div className="friend-list">
-        {this.state.friends.map(friend => (
-          <FriendDetails key={friend.id} friend={friend} />
-        ))}
+
       </div>
     );
   }
 }
 
-function FriendDetails({ friend }) {
-  return (
-  <Link to={`/components/${friend.id}`}>
-    <FriendCard friend={friend} />
-  </Link>
-  );
-}
