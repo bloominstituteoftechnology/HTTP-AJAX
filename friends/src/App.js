@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import List from './Display'
 
 
 class App extends Component {
@@ -24,21 +25,21 @@ class App extends Component {
         console.log(err);
       });
     }
-    handleTextChange = e => {
-      this.setState({ [e.target.name]: e.target.value });
-    };
-    saveData = () => {
-      const poo = { name: this.state.name, age: this.state.age, email: this.state.email };
-      axios
-      .post(`http://localhost:5000/friends`, poo) //Poo is the perfect crux for my entire project hahahah
-      .then(savedData => {
-        console.log(savedData);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-      this.setState({ name: '', age: '', email: '' });
-    };
+    // handleTextChange = e => {
+    //   this.setState({ [e.target.name]: e.target.value });
+    // };
+    // saveData = () => {
+    //   const poo = { name: this.state.name, age: this.state.age, email: this.state.email };
+    //   axios
+    //   .post(`http://localhost:5000/friends`, poo) //Poo is the perfect crux for my entire project hahahah
+    //   .then(savedData => {
+    //     console.log(savedData);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+    //   this.setState({ name: '', age: '', email: '' });
+    // };
   render() {
     return (
       <div className="App">
@@ -58,8 +59,9 @@ class App extends Component {
         )
         
       })}
-        <div>
-        <div>  <form>
+        {/* <div>
+        <div className="columnCenter">  <form>
+          <div className="columnA">
               <label>
                 <input  type="text" name="name" onChange={this.handleTextChange} placeholder="Name Here" />
                 
@@ -68,9 +70,11 @@ class App extends Component {
                 
                 <input type="text" name="email" onChange={this.handleTextChange} placeholder="Email Here" />
               <button type="submit" value="Submit" onClick={this.saveData}> Press ME</button>
+            </div>
             </form>
             </div>
-      </div>
+      </div> */}
+      <List />
       </div>
     );
   }
