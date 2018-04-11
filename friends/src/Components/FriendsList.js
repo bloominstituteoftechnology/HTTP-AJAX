@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Friend from '/Friend';
+import Friend from './Friend';
 
 class FriendsList extends Component {
     state = {
@@ -12,7 +12,7 @@ class FriendsList extends Component {
         axios
         .get('http://localhost:5000/friends')
         .then(result => {this.setState({ friends: result.data })})
-        .catch( (reason: any) => console.log('You don\'t have any friends!'));
+        .catch( (err) => console.log('You don\'t have any friends!'));
     }
 
     render() {
