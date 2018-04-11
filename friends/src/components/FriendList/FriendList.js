@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 
 //should display a list of friends
 //might format into a card form later with a card component
