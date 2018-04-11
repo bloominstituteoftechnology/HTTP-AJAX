@@ -6,14 +6,7 @@ import FriendList from './components/FriendList';
 import Friend from './components/FriendList';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: []
-    };
-  }
   // fetch data here
-
   render() {
     return (
       <div className="App">
