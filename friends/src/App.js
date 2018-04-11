@@ -10,12 +10,19 @@ class App extends Component {
     super();
     this.state = {
       name: "",
-      age: null,
+      age: "",
       email: ""
     };
   }
-  // fetch data here
+  // handle new input as user types
+  handleNewInput =(event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   render() {
+    console.log('name', this.state.name);
+    console.log('age', this.state.age);
+    console.log('email', this.state.email);
     return (
       <div className="App">
         <header className="App-header">
@@ -24,9 +31,9 @@ class App extends Component {
         </header>
         {/* Add friend with this form */}
         <form>
-          <input type="text" onChange={this.handleNewName} name="name" value={this.state.name} />
-          <input type="text" onChange={this.handleNewName} name="age" value={this.state.age} />
-          <input type="text" onChange={this.handleNewName} name="email" value={this.state.email} />
+          <input type="text" onChange={this.handleNewInput} name="name" value={this.state.name} />
+          <input type="text" onChange={this.handleNewInput} name="age" value={this.state.age} />
+          <input type="text" onChange={this.handleNewInput} name="email" value={this.state.email} />
         </form>
         {/* Routes Here */}
         <Route exact path="/" component={FriendList} />
