@@ -16,10 +16,9 @@ class FriendsList extends Component {
   }
 }
 
-//grabs the data from server
+// grabs the data from server
 componentDidMount() {
-  axios
-  .get(`http://localhost:5000/friends/`)
+  axios.get(`http://localhost:5000/friends/`)
   .then(response => {
     this.setState({ friends: response.data});
   })
