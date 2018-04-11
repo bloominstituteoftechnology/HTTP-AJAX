@@ -31,7 +31,7 @@ handleTextChange = e => {
         <div>
         <div className="columnCenter">  <form>
           <div className="columnA">
-              <span> <b> New Friend </b> </span>
+              <span className="titleNew"> New Friend </span>
                 <input className="centerText" type="text" name="name" onChange={this.handleTextChange} placeholder="Name Here" />
                 
               

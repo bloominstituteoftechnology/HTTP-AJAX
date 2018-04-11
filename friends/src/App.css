@@ -46,9 +46,19 @@ form {
   width: 35%;
 }
 .centerText{
-  padding-left: 3px; 
+  padding-left: 3px;
+  font-weight: bolder;
 }
-
+.titleNew{
+  font-weight: bold;
+  font-family: "Orbitron";
+}
+.friend1{
+  padding-bottom: 5px;
+}
+.friend{
+  font-family: "Paytone One";
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -47,8 +47,8 @@ class App extends Component {
         return (
           <div className="friend-card" >
           <div key={friend.id} className="frenNotFood">
-          <div className="friend friendName"> Name: {friend.name} </div>
-          <div className="friend friendAge"> Age: {friend.age} </div>
+          <div className="friend friend1 friendName"> Name: {friend.name} </div>
+          <div className="friend friend1 friendAge"> Age: {friend.age} </div>
           <div className="friend friendEmail"> Email: {friend.email} </div>
         
           </div>
