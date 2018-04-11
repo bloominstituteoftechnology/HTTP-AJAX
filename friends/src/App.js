@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router} from 'react-router-dom';
 import FriendsList from './components/FriendsList';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Router>
         <FriendsList />
-      </div>
+      </Router>
     );
   }
 }

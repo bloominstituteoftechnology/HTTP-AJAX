@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import FriendCard from "./FriendCard";
 import AddFriend from "./AddFriend";
 import axios from "axios";
@@ -8,9 +9,9 @@ class FriendsList extends Component {
     super();
     this.state = {
       friendsData: [],
-      name: '',
-      age: '',
-      email: ''
+      name: "",
+      age: "",
+      email: ""
     };
   }
 
@@ -27,16 +28,14 @@ class FriendsList extends Component {
 
   handleAddFriendChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   handleSubmitFriend = () => {
     const friend = {};
     friend.name = this.state.name;
     friend.age = this.state.age;
     friend.email = this.state.email;
-    this.state.name = '';
-    this.state.age = '';
-    this.state.email = '';
+    this.setState({name: '', age: '', email: ''})
     axios
       .post("http://localhost:5000/friends", friend)
       .then(x => this.getData())
@@ -44,12 +43,27 @@ class FriendsList extends Component {
   };
 
   render() {
+    if (this.state.friendsData === []) {
+      return null;
+    }
     return (
       <div>
-        <AddFriend onChange={this.handleAddFriendChange} onClick={this.handleSubmitFriend}/>
+        <AddFriend
+          onChange={this.handleAddFriendChange}
+          onClick={this.handleSubmitFriend}
+        />
         {this.state.friendsData.map((data, i) => (
-          <FriendCard key={`friend${i}`} {...data} />
+          <Route key={`friend-route${i}`}
+            path={`/${data.name.replace(/ /g, "")}`}
+            render={() => <FriendCard {...data} />}
+          />
         ))}
+        <Route
+          exact path='/'
+          render={() => this.state.friendsData.map((data, i) => (
+            <FriendCard key={`friend${i}`} {...data} />
+          ))}
+        />
       </div>
     );
   }
