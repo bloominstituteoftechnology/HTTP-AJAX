@@ -13,12 +13,12 @@ class FriendsList extends Component {
     }
     return (
       <div>
-        {this.props.friends.data.map(friend => {
+        {this.props.friends.data.map(friend => (
           <div>
             <div> {friend.name}</div>
             <div> {friend.age}</div>
             <div> {friend.email}</div>
-          </div>})}
+          </div>))}
       </div>
       )
      
