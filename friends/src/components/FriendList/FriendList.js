@@ -1,31 +1,32 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 //should display a list of friends
 //might format into a card form later with a card component
 
 class FriendsList extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: '',
+      name: "",
+      age: "",
+      email: ""
     };
   }
-}
 
-// grabs the data from server
-componentDidMount() {
-  axios.get(`http://localhost:5000/friends/`)
-  .then(response => {
-    this.setState({ friends: response.data});
-  })
-  .catch(err => {
-    console.log(err);
-  });
-}
+  // grabs the data from server
+  componentDidMount() {
+    axios
+      .get(`http://localhost:5000/friends/`)
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
+}
 
 export default FriendList;
