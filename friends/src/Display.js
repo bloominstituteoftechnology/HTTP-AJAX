@@ -31,14 +31,14 @@ handleTextChange = e => {
         <div>
         <div className="columnCenter">  <form>
           <div className="columnA">
-              <label>
-                <input  type="text" name="name" onChange={this.handleTextChange} placeholder="Name Here" />
+              <span> <b> New Friend </b> </span>
+                <input className="centerText" type="text" name="name" onChange={this.handleTextChange} placeholder="Name Here" />
                 
-              </label>
-                <input type="number" name="age" onChange={this.handleTextChange} placeholder="Age Here" />
+              
+                <input className="centerText" type="number" name="age" onChange={this.handleTextChange} placeholder="Age Here" />
                 
-                <input type="text" name="email" onChange={this.handleTextChange} placeholder="Email Here" />
-              <button type="submit" value="Submit" onClick={this.saveData}> Press ME</button>
+                <input className="centerText" type="text" name="email" onChange={this.handleTextChange} placeholder="Email Here" />
+              <button type="submit" value="Submit" onClick={this.saveData}>Submit Friend</button>
             </div>
             </form>
             </div>

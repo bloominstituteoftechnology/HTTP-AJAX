@@ -35,10 +35,18 @@
 .columnA{
   display:flex;
   flex-direction: column;
+  width: 100%;
 }
 .columnCenter{
   display: flex;
   justify-content: center;
+}
+form {
+  display: flex;
+  width: 35%;
+}
+.centerText{
+  padding-left: 3px; 
 }
 
 @keyframes App-logo-spin {
