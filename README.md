@@ -8,8 +8,8 @@ Topics:
 
 ## Instructions
 
-1. Run `npm i` inside the root directory of this project.
-2. Run `npm start` to start the server.
+1. Run `yarn install or npm install` inside the root directory of this project.
+2. Run `yarn start or npm start` to start the server.
 3. The provided server returns a list of friends when a `GET` request is made to [`http://localhost:5000/friends`](http://localhost:5000/friends).
 4. In a separate terminal window, run `create-react-app friends` to create your starter React application.
 5. Inside your React application, create a component to display the list of friends coming from the server.
