@@ -13,29 +13,31 @@ class FriendList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
-      .then(response => {
-        console.log(response);
-      })
-      // fetch data and store it in state
+      .get(`http://localhost:5000/friends`)
+      //   .then(response => {
+      //     console.log(response);
+      //   })
+      //   fetch data and store it in state
       .then(response => {
         this.setState({ friends: response.data });
       })
       .catch(error => {
         console.error("Server Error", error);
       });
+    //   this.setState({ friends: response.data });
   }
 
   render() {
-      return (
-          <div>
-              {this.state.friends.map((friend, index) => (
-                //   <div >
-                    <Friend key={index}/>
-                //   </div>
-              ))}
-          </div>          
-      );
+    console.log(this.state.friends);
+    return (
+      <div>
+        {this.state.friends.map((friend, index) => (
+          //   <div >
+          <Friend key={index} friend={friend} />
+          //   </div>
+        ))}
+      </div>
+    );
   }
 }
 
