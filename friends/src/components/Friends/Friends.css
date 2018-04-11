@@ -1,1 +1,8 @@
 /*TODO*/
+.Friend {
+    font-size: 14px;
+}
+
+.Friend li {
+    list-style: none;
+}

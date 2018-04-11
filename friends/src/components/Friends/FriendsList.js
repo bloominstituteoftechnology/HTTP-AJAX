@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Friend from './Friend'
-
+import AddFriendForm from './AddFriendForm'
 class FriendsList extends React.Component {
     constructor() {
         super();
@@ -17,8 +17,8 @@ class FriendsList extends React.Component {
 
     getFriends = () => {
         axios.get('http://localhost:5000/friends')
-            .then(respone => {
-                this.setState({friends: respone.data})
+            .then(response => {
+                this.setState({friends: response.data})
             })
             .catch(error => {
                 console.log(`There was an error getting friends: ${error}`)
@@ -28,6 +28,7 @@ class FriendsList extends React.Component {
     render() {
         return (
             <div>
+                <AddFriendForm getFriends={this.getFriends}/>
                 <ul>
                     {this.state.friends.map(friend => {
                         return <Friend friend={friend}/>
