@@ -31,9 +31,18 @@ class App extends Component {
         </header>
         {/* Add friend with this form */}
         <form>
-          <input type="text" onChange={this.handleNewInput} name="name" value={this.state.name} />
-          <input type="text" onChange={this.handleNewInput} name="age" value={this.state.age} />
-          <input type="text" onChange={this.handleNewInput} name="email" value={this.state.email} />
+          <label>
+            Name:
+            <input type="text" onChange={this.handleNewInput} name="name" value={this.state.name} />
+          </label>
+          <label>
+            Age:
+            <input type="text" onChange={this.handleNewInput} name="age" value={this.state.age} />
+          </label>
+          <label>
+            Email:
+            <input type="text" onChange={this.handleNewInput} name="email" value={this.state.email} />
+          </label>
         </form>
         {/* Routes Here */}
         <Route exact path="/" component={FriendList} />
