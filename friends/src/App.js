@@ -30,7 +30,7 @@ class App extends Component {
     saveData = () => {
       const poo = { name: this.state.name, age: this.state.age, email: this.state.email };
       axios
-      .post(`http://localhost:5000/friends`, poo)
+      .post(`http://localhost:5000/friends`, poo) //Poo is the perfect crux for my entire project hahahah
       .then(savedData => {
         console.log(savedData);
       })
