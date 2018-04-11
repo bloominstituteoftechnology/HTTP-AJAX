@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { Card, CardHeader, CardBody, CardText } from 'react-strap'
+import { Container, Card, CardHeader, CardBody, CardText, Col, Row } from 'reactstrap'
 
 export default class Friend extends Component {
     constructor(props) {
@@ -23,16 +23,23 @@ export default class Friend extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.friends.map(friend => {
-                    const { id, name, age, email } = friend;
-                    return (
-                        <div>
-                            <div>{friend.name}</div>
-                            <div>{friend.age}</div>
-                        </div>
-                    )
-                })}
+            <div className="App mt-5">
+            <h1>Friendslist</h1>
+                <Container className="mt-5">
+                    {this.state.friends.map((friend, index) => {
+                        const { id, name, age, email } = friend;
+                        return (
+                            <Card key={index}>
+                                <CardHeader>{friend.name}</CardHeader>
+                                <CardBody className="text-left">
+                                    <CardText>Age: {friend.age}</CardText>
+                                    <CardText>Email: {friend.email}</CardText>
+                                    <CardText>Id: {friend.id}</CardText>
+                                </CardBody>
+                            </Card>
+                        )
+                    })}
+                </Container>
             </div>
         )
     }
