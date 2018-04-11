@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import {Route} from 'react-router-dom';
 import DisplayList from './components/DisplayList';
+import Friend from './components/Friend';
 class App extends Component {
   constructor(){
     super()
@@ -15,8 +16,9 @@ componentDidMount(){
   .get('http://localhost:5000/friends')
   
   .then(response => {
-    console.log(response.data)
-     this.setState({friends:response.data}) 
+    console.log(this.state.friends)
+     this.setState({friends:response.data})
+  
   })
   .catch(err =>{
     console.log(err);
@@ -24,9 +26,20 @@ componentDidMount(){
   })
 }
   render() {
+ 
     return (
       <div>
-        <DisplayList {...this.state}/>
+        
+        { <Route 
+        exact path ="/" 
+        render={props => <DisplayList {...this.state}{...props}/>}
+      /> }
+         
+         { <Route 
+         path ="/friend/:id" 
+        render={props => <Friend {...this.state.friends}{...props}/>}
+      /> }
+      
       </div>
  
     );

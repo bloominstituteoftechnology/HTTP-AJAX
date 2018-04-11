@@ -17,6 +17,23 @@ align-content: center;
  margin-bottom:6px;
   margin-top:6px;
   background: white;
+  text-decoration: none;
+  outline: 0px;
+  color:black;
+}
+.dataContainerTwo-style{
+  
+  border: 2px solid brown;
+display: flex;
+margin: 0 auto;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+ height: 150px;
+ width: 500px;
+ margin-bottom:6px;
+  margin-top:6px;
+  background: white;
 }
 .name-style{
   font-size: 50px;
