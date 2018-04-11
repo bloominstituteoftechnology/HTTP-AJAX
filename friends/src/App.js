@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import Friend from "./components/Friend";
@@ -18,11 +19,29 @@ class App extends Component {
   handleNewInput =(event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
+  // POST request handler
+  handleCreateFriend = () => {
+    const friend = { 
+      name: this.state.name, 
+      age: this.state.age, 
+      email: this.state.email 
+    }
+    // POST request
+    axios
+      .post("http://localhost:5000/friends", friend)
+      .then(savedFriend => {
+        console.log(friend);
+      })
+      . catch(err => {
+        console.log(err);
+      });
+    this.setState({ name: "", age: "", email: "" });
+  }
 
   render() {
-    console.log('name', this.state.name);
-    console.log('age', this.state.age);
-    console.log('email', this.state.email);
+    // console.log('name', this.state.name);
+    // console.log('age', this.state.age);
+    // console.log('email', this.state.email);
     return (
       <div className="App">
         <header className="App-header">
@@ -43,6 +62,7 @@ class App extends Component {
             Email:
             <input type="text" onChange={this.handleNewInput} name="email" value={this.state.email} />
           </label>
+          <button type="button" onClick={this.handleCreateFriend}>Create Friend</button>
         </form>
         {/* Routes Here */}
         <Route exact path="/" component={FriendList} />
