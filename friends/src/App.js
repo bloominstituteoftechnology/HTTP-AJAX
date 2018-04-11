@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Route from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 
 import Friends from './components/Friends';
@@ -11,10 +11,8 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Friends />
+        <Route exact path = "/" component={Friends} />
+        {/* <Route path="/friends/:id" render={} */}
       </div>
     );
   }
