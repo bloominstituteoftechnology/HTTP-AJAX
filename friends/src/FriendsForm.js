@@ -26,7 +26,7 @@ class FriendsForm extends Component {
     axios
       .post(`http://localhost:5000/friends`, friend)
       .then(friend => {
-        console.log(friend);
+        this.props.updateFriends();
       })
       .catch(err => {
         console.log(err);

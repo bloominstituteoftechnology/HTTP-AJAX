@@ -8,9 +8,11 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			friends: []
+      friends: [],
+      update: 0
 		};
-	}
+  }
+  
 	componentDidMount() {
 		axios
 			.get(`http://localhost:5000/friends`)
@@ -19,16 +21,14 @@ class App extends Component {
 			})
 			.catch((error) => {
 				console.error(error);
-			});
+      });
 	}
-
-	updateFriends() {}
 
 	render() {
 		return (
 			<div className="App">
 				<FriendsList friends={this.state.friends} />
-        <FriendsForm />
+        <FriendsForm updateFriends={() => this.componentDidMount()}/>
 			</div>
 		);
 	}
