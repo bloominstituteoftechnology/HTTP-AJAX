@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import FriendsList from './Components/FriendsList';
+import FriendsList from './Components/FriendsList'
 
 class App extends Component {
   render() {
     return (
-     < FriendsList />
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Friends</h1>
+        </header>
+        <FriendsList />
+      </div>
     );
   }
 }
