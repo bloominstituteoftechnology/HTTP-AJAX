@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Friend.css';
 
 class Friend extends React.Component {
     constructor(props) {

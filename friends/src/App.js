@@ -8,7 +8,7 @@ import Friend from "./Components/Friend";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App-Friend">
         <Route exact path="/" component={FriendsList} />
         <Route path="/addfriend" component={AddFriend} />
         <Route path="friends/:id" component={Friend} />

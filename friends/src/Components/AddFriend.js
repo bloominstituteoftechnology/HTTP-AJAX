@@ -46,7 +46,7 @@ class AddFriend extends Component {
 
     render() {
         return (
-            <div>
+            <div className="Form">
                 <h2>Add Friend!</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label>
