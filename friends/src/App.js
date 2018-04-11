@@ -13,6 +13,9 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        {/* Routes Here */}
+        <Route exact path="/" component={FriendList} />
+        <Route path="/friends/:id" component={} />
       </div>
     );
   }
