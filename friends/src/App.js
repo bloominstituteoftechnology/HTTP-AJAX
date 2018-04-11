@@ -8,9 +8,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: ''
+      newName: '',
+      newAge: '',
+      newEmail: ''
     };
   }
 
@@ -27,23 +27,33 @@ class App extends Component {
     });
   }
 
-handleChange = event => {
-  this.setState({ [event.target.name]: event.target.value });  }
+handleName = (event) => {
+  this.setState({ newName: event.target.value }) };
 
-handleSubmit = event => {
-    event.preventDefault();
+handleAge = (event) => {
+  this.setState({ newAge: event.target.value }) };
+
+handleEmail = (event) => {
+  this.setState({ newEmail: event.target.value }) };
+
+
+handleSubmit = event => {  
+    // event.preventDefault();
 
     const user = {
-      name: this.state.name, age: this.state.age, email: this.state.email
-    };
+      name: this.state.newName, age: this.state.newAge, email: this.state.newEmail };
+
     axios
     .post('http://localhost:5000/friends', user)
-      .then(response => {
+    
+    .then(response => {
         console.log(response);
-        // console.log(response.data);
-        this.setState( {name: '', age: '', email: ''} )
-      })
-
+        console.log(response.data);
+    })
+    .catch(err => {
+        console.error('Something went amiss', err);
+    })
+      this.setState( {newName: '', newAge: '', newEmail: ''} )
 }
 
   render() {
@@ -54,23 +64,24 @@ handleSubmit = event => {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          This is our friend list
         </p>
        
         <div>
           {this.state.friends.map(friend => {
           return (
             <div className="Friends">
-                <div> Name: {friend.name} </div>
-                <div> Age: {friend.age} </div>
-                <div> Email: {friend.email} </div>
+                <div> {`Name: ${friend.name}`} </div>
+                <div> {`Age: ${friend.age}`} </div>
+                <div> {`Email: ${friend.email}`} </div>
             </div>
-        )})}
-          
+        );
+        })}
+          </div>
        
 
         <div> 
-            <form >
+            <form onSubmit={this.handleSubmit}>
                 <label>
                   Add a new friend!
                     <ul>
@@ -78,7 +89,7 @@ handleSubmit = event => {
                         <input 
                           type="text"
                           placeholder="Name"
-                          onChange={(event) => {this.handleChange(event)}}
+                          onChange={this.handleName}
                         />
                     </ul>
                     <ul>
@@ -86,7 +97,7 @@ handleSubmit = event => {
                         <input 
                           type="number"
                           placeholder="Age"
-                          onChange={(event) => {this.handleChange(event)}}
+                          onChange={this.handleAge}
                         />
                     </ul>
                     <ul>
@@ -94,13 +105,12 @@ handleSubmit = event => {
                         <input 
                           type="text"
                           placeholder="Email"
-                          onChange={this.handleChange}
+                          onChange={this.handleEmail}
                         />
                     </ul>
                 </label>
-                <button onClick={this.handleSubmit} type="submit">Add Friend</button>
+                <button type="submit">Add Friend</button>
             </form>
-        </div>
         </div>
         
       </div>
