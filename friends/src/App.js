@@ -18,4 +18,12 @@ class App extends Component {
   }
 }
 
+// componentDidMount() {
+//   axios
+//   .get(`http://localhost:5000/friends`)
+//   .then(response => {
+//     this.setState({ });
+//   });
+// }
+
 export default App;
