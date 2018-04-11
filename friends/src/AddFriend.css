@@ -1,0 +1,20 @@
+.addFriend {
+    display: flex;
+    flex-direction: column;
+    max-width:35%
+}
+
+.listLink {
+    align-self: flex-end
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit {
+   margin-top: 25px;
+   max-width: 100px;
+   align-self: center;
+}

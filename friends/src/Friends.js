@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import axios from 'axios';
 
+import './Friends.css';
+
+
 class Friends extends Component {
   constructor () {
     super ()
@@ -34,13 +37,12 @@ class Friends extends Component {
 //     )})
 //  }
   render() {
-    console.log(this.state)
     return (
-      <div>
+      <div className='friendsList'>
         <h1> Friends List </h1>
         {this.state.friends.map((friends) => {
           return (
-            <div key={friends.id}>
+            <div className='friends' key={friends.id}>
               <ul> 
                 <li>
                   <h3> { friends.name } </h3>
@@ -50,7 +52,7 @@ class Friends extends Component {
               </ul>
             </div>
         )})}
-        <Link to={`/friend`}> <Button> Add Friend </Button> </Link>
+        <Link to={`/friend`} className='addFriendLink'> <Button color="success"> Add Friend </Button> </Link>
       </div>
     );
   }

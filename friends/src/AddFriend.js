@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button, Form, Input, Label } from 'reactstrap';
 import axios from 'axios';
 
+import './AddFriend.css';
+
 class AddFriend extends Component {
 
   addFriend(event) {
@@ -23,18 +25,18 @@ class AddFriend extends Component {
 
   render() {
     return (
-      <div>
+      <div className='addFriend'>
           <h1> Add Friend </h1>
-            <Form onSubmit={this.addFriend}>
+            <Form className='form' onSubmit={this.addFriend}>
                 <Label for="Name">Name</Label>
                 <Input type="text" name="name" id="Name" placeholder="Name" />
                 <Label for="Email">Email</Label>
                 <Input type="email" name="email" id="Email" placeholder="Email" />
                 <Label for="Age">Age</Label>
                 <Input type="number" name="age" id="Age" placeholder="Age" />
-                <Input type="submit" value='Submit'  />
+                <Input className='submit' type="submit" value='Submit'  />
             </Form>
-          <Link to={`/`}> <Button> Friends List </Button> </Link>
+          <Link to={`/`} className='listLink'> <Button color="warning"> Friends List </Button> </Link>
       </div>
     );
   }

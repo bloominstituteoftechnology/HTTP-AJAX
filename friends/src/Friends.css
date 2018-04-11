@@ -1,0 +1,19 @@
+.friendsList {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    margin-left: 35%;
+    margin-right: 25%;
+}
+
+.addFriendLink {
+    align-self: flex-end;
+}
+
+.friends {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+}
