@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.jpeg';
 import './App.css';
 import axios from 'axios';
 import Display from './display';
@@ -56,6 +56,7 @@ class App extends Component {
           placeholder="name"
           name="name"
           value={this.state.name}
+          className='input__general'
         />
         <input
           type="text"
@@ -63,6 +64,7 @@ class App extends Component {
           placeholder="email"
           name="email"
           value={this.state.email}
+          className='input__general'
         />
         <input
           type="text"
@@ -70,8 +72,9 @@ class App extends Component {
           placeholder="age"
           name="age"
           value={this.state.age}
+          className='input__general'
         />
-        <button onClick={this.saveNoteData}>Make Friend</button>
+        <button className='input__general' onClick={this.saveNoteData}>Make Friend</button>
         <Display friends={this.state.friends} />
       </div>
     );

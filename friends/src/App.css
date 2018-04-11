@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: black;
 }
 
 .App-logo {
@@ -8,10 +9,9 @@
 }
 
 .App-header {
-  background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
+  color: blue;
 }
 
 .App-title {
@@ -25,4 +25,10 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.input__general {
+  background-color: black;
+  border: 1px solid blue;
+  color: blue;
 }
