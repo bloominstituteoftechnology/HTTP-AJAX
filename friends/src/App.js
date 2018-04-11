@@ -13,7 +13,8 @@ class App extends Component {
       friends: [],
       name: '',
       age: '',
-      email: ''
+      email: '',
+      newFriend: []
     };
   }
 
@@ -39,7 +40,6 @@ class App extends Component {
     let result = true;
     
     if (name.trim() === "") result = false;
-    else if (name.split(' ').length <2) result = false;
     else if (age.trim() === "" || age > 120) result = false;
     else if (email.trim() === "") result = false;
     else if (email.indexOf('@') < 0) result = false;
@@ -50,17 +50,32 @@ class App extends Component {
 
   addInput = e => {
     e.preventDefault();
+    let id = this.state.friends.length + this.state.newFriend.length;
     if (this.emptyCheck()){
-      const { friends } = this.state;
-      friends.push({
-        id: this.state.friends.length,
+      const { newFriend } = this.state;
+      newFriend.push({
+        id: id,
         name: this.state.name,
         age: this.state.age,
         email: this.state.email
       });
-      this.setState({ friends, name: '', age: '', email: '' });
+      this.setState({ newFriend, name: '', age: '', email: '' });
     }
-  }
+  };
+
+  saveInput = () => {
+    const { newFriend } = this.state;
+    newFriend.forEach(friend=> {
+      axios
+        .post('http://localhost:5000/friends', friend)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.err(err);
+        });
+    })
+  };
 
   render() {
     return (
@@ -70,13 +85,17 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <form onSubmit={this.addInput} >
-          <input className="input" name='name' value={this.state.name} onChange={this.updateInput} type="text" placeholder="Friend Name Here" />
-          <input className="input" name='age' value={this.state.age} onChange={this.updateInput} type="number" placeholder="Friend Age Here" />
-          <input className="input" name='email' value={this.state.email} onChange={this.updateInput} type="text" placeholder="Friend Email Here" />
-          <button>Add Friend</button>
+          Name:
+          <input className="input" name='name' value={this.state.name} onChange={this.updateInput} type="text" placeholder="Friend's Name Here" />
+          Age:
+          <input className="input" name='age' value={this.state.age} onChange={this.updateInput} type="number" placeholder="Friend's Age Here" />
+          E-mail:
+          <input className="input" name='email' value={this.state.email} onChange={this.updateInput} type="email" placeholder="Friend's Email Here" />
         </form>
+        <button className="button button-add" onClick={this.addInput} > Add New Friend </button>
+        <button className="button button-save" onClick={this.saveInput} >Save New Friend(s)</button>
         <Route path="/" 
-        render={(props) => <FriendList {...props} friends={this.state.friends} onClick={this.addInput} /> } 
+        render={(props) => <FriendList {...props} friends={this.state.friends} newFriend={this.state.newFriend} onClick={this.addInput} /> } 
         />
       </div>
     );
