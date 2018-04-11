@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 //should display a list of friends
-//might format into a card form later with a card component
+//might format into a card form later with a card component later down the line
 
 class FriendsList extends Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class FriendsList extends Component {
   }
 
   // grabs the data from server
+
   componentDidMount() {
     axios
       .get(`http://localhost:5000/friends/`)
@@ -27,12 +28,13 @@ class FriendsList extends Component {
       });
   }
 
+  handleTextInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  
+
   render() {
-    return (
-      <div>
-        Hello World!
-      </div>
-    )
+    return <div />;
   }
 }
 
