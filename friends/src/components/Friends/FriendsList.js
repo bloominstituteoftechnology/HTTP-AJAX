@@ -31,7 +31,7 @@ class FriendsList extends React.Component {
                 <AddFriendForm getFriends={this.getFriends}/>
                 <ul>
                     {this.state.friends.map(friend => {
-                        return <Friend friend={friend}/>
+                        return <Friend friend={friend}  getFriends={this.getFriends}/>
                     })}
                 </ul>
             </div>
