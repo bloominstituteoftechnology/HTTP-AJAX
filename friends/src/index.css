@@ -2,4 +2,38 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: rgb(156, 189, 228);
+}
+.dataContainer-style{
+  
+  border: 2px solid brown;
+display: flex;
+margin: 0 auto;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+ height: 150px;
+ width: 500px;
+ margin-bottom:6px;
+  margin-top:6px;
+  background: white;
+}
+.name-style{
+  font-size: 50px;
+  color: rgb(214, 81, 19);
+display:flex;
+justify-content: center;
+
+}
+.age-style{
+  display:flex;
+justify-content: center;
+
+}
+.email-style{
+  display:flex;
+justify-content: center;
+text-decoration: underline;
+color:gray;
+font-weight:bold;
 }
