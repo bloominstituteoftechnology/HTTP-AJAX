@@ -4,6 +4,7 @@ export default class FriendsList extends Component {
     super(props)
   }
   render() {
-    return <div>{console.log(this.props)}</div>
+    const { friends } = this.props
+    return <div>{friends.map(person => <p>{person.name}</p>)}</div>
   }
 }

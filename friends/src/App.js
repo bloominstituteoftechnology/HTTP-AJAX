@@ -9,7 +9,7 @@ const serverUrl = "localhost:5000"
 const helper = async path =>
   await get(`http://${serverUrl}${path}`).then(data => data)
 
-const FriendsListWrapper = friends => <FriendsList friends={friends} />
+const FriendsListWrapper = props => <FriendsList friends={props.friends} />
 
 class App extends Component {
   constructor(props) {
@@ -34,8 +34,7 @@ class App extends Component {
       <div className="App">
         <Route
           path="/"
-          friends={this.state.friends}
-          render={props => <FriendsListWrapper {...props} />}
+          render={props => <FriendsListWrapper friends={this.state.friends} />}
         />
       </div>
     )
