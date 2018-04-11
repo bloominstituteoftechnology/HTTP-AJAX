@@ -1,13 +1,5 @@
 import React, { Component } from "react"
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from "reactstrap"
+import { Button, Form, FormGroup, Label, Input } from "reactstrap"
 import { makePost } from "../../utils"
 
 const post = makePost("http://localhost:5000")
@@ -46,8 +38,7 @@ export default class AddFriendForm extends Component {
 
   handleSubmit(e) {
     // clearly whatever the user inputs is valid. CLEARLY
-    post("/friends", this.state)
-    alert(JSON.stringify(this.state))
+    post("/friends", { ...this.state })
     e.preventDefault()
   }
 
