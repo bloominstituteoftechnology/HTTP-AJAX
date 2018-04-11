@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 
 class FriendsList extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    axios
-      .get(`http://localhost:5000/friends`)
-      .then(response => {
-        this.setState(() => ({ friends: response.data }));
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
-}
-
+  render() {
+    console.log(this.props.friends.data)
+    if (!this.props.friends.data) {
+      return <div>Loading friend information...</div>;
+    }
+    return (
+      <div>
+        {this.props.friends.data.map(friend => {
+          <div>
+            <div> {friend.name}</div>
+            <div> {friend.age}</div>
+            <div> {friend.email}</div>
+          </div>})}
+      </div>
+      )
+     
+      }}
+  
 export default FriendsList; 

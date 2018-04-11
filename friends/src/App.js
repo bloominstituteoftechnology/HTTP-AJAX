@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FriendsList from "./FriendsList";
-
+import axios from 'axios';
 
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: []
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(`http://localhost:5000/friends`)
+      .then(response => {
+        this.setState ({friends: response})
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
+updateFriends () {
+
+}
 
   render() {
     return (
       <div className="App">
-       <FriendsList />
+       <FriendsList friends={this.state.friends}/>
       </div>
     );
   }
