@@ -27,6 +27,13 @@ class FriendsList extends Component {
       });
   }
 
+  render() {
+    return (
+      <div>
+        Hello World!
+      </div>
+    )
+  }
 }
 
-export default FriendList;
+export default FriendsList;
