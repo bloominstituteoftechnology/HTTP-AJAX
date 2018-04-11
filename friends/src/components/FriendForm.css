@@ -1,0 +1,26 @@
+input {
+  width: 600px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border: 3px solid #ffc4;
+  border-radius: 5%;
+  background: rgba(255, 255, 255, 0.5);
+  color: purple;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.input::placeholder {
+  color: purple;
+  font-weight: bold;
+}
+
+form {
+  text-align: center;
+}
+
+button {
+  text-align: center;
+}

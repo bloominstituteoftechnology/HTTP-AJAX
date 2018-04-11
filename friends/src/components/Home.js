@@ -49,8 +49,8 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <h2>Friends Page</h2>
+      <div className="container">
+        <h2>Rainbow Friends Page</h2>
         <FriendForm
           addFriend={this.addFriend}
           handleInputChange={this.handleInputChange}

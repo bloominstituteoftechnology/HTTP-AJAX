@@ -1,4 +1,5 @@
 import React from "react";
+import "./FriendForm.css";
 
 const FriendForm = props => {
   return (
@@ -28,7 +29,7 @@ const FriendForm = props => {
         required
       />
       <button className="button" type="submit">
-        Add Friend
+        Add Rainbow Friend
       </button>
     </form>
   );
