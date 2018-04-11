@@ -52,6 +52,29 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <input
+        type= 'text'
+        onChange={this.handleTextInput}
+        placeholder= 'Name'
+        name= 'name'
+        value= {this.state.name}
+        />
+        <input
+        type= 'text'
+        onChange={this.handleTextInput}
+        placeholder= 'Age'
+        name= 'age'
+        value= {this.state.age}
+        />
+        <input
+        type= 'text'
+        onChange= {this.handleTextInput}
+        placeholder= 'Email'
+        name= 'email'
+        value= {this.state.email}
+        />
+        <button onClick={this.saveNoteData}>Make A Friend </button>
+
         <ListOfFriends friend={this.state.friend} />
       </div>
     );
