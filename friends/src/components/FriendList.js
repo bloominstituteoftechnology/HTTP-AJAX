@@ -10,13 +10,13 @@ class FriendList extends Component {
       friends: []
     };
   }
-
+  // fetch data from server
   componentDidMount() {
     axios
       .get(`http://localhost:5000/friends`)
-      //   .then(response => {
-      //     console.log(response);
-      //   })
+        // .then(response => {
+        //   console.log('response:', response);
+        // })
       //   fetch data and store it in state
       .then(response => {
         this.setState({ friends: response.data });
@@ -28,7 +28,7 @@ class FriendList extends Component {
   }
 
   render() {
-    console.log(this.state.friends);
+    // console.log('state:', this.state.friends);
     return (
       <div>
         {this.state.friends.map((friend, index) => (

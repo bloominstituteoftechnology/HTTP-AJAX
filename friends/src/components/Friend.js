@@ -7,7 +7,7 @@ class Friend extends Component {
       friend: []
     };
   }
-
+  // render data for each friend
   render() {
     return [
       <div>{this.props.friend.name}</div>,
