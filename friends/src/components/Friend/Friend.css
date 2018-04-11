@@ -1,0 +1,7 @@
+.Friend {
+  width: 100%;
+}
+
+.Friend:hover {
+  background-color: bisque;
+}

@@ -2,12 +2,9 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import "./App.css"
 import FriendsList from "./components/FriendsList"
-import { get } from "axios"
+import { makeFetch } from "./utils"
 
-const serverUrl = "localhost:5000"
-
-const helper = async path =>
-  await get(`http://${serverUrl}${path}`).then(data => data)
+const helper = makeFetch("http://localhost:5000")
 
 const FriendsListWrapper = props => <FriendsList friends={props.friends} />
 
@@ -18,7 +15,6 @@ class App extends Component {
       friends: []
     }
   }
-
   setInitialState() {
     helper("/friends").then(({ data }) =>
       this.setState(prevState => ({ friends: [...data] }))
