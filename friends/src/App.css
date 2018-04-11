@@ -26,3 +26,24 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.friends {
+  margin: 15%;
+}
+
+.friend {
+  display: flex;
+  justify-content: space-between;
+}
+
+.friend--name {
+
+}
+
+.friend--age {
+  align-self: center;
+}
+
+.frien--email {
+
+}
