@@ -17,14 +17,16 @@ class App extends Component {
 }
 
 //grabs the data from server
-componentDidMount() {
-  axios
-  .get(`http://localhost:5000/friends/get/all`)
-  .then(response => {
-    this.setState({ friends: response.data});
-  })
-  .catch(err => {
-    console.log(err);
-  })
-}
+// componentDidMount() {
+//   axios
+//   .get(`http://localhost:5000/friends/`)
+//   .then(response => {
+//     this.setState({ friends: response.data});
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+// }
+
+
 export default FriendList;
