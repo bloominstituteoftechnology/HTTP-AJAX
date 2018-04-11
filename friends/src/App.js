@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import "./App.css"
 import FriendsList from "./components/FriendsList"
-import { get, post } from "axios"
+import { get } from "axios"
 
 const serverUrl = "localhost:5000"
 
@@ -17,8 +17,7 @@ class App extends Component {
   }
 
   setInitialState() {
-    const friends = helper("/friends")
-    friends.then(({ data }) =>
+    helper("/friends").then(({ data }) =>
       this.setState(prevState => ({ friends: [...data] }))
     )
   }
