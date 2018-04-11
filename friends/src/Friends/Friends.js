@@ -58,7 +58,7 @@ handleSubmit = (event) => {
        </label>
        <label> Email: <input type='text' name='email' placeholder='Email' onChange={this.handleInputChange} value={this.state.email} />
        </label>
-       <button className='button' type='submit'>Friend Info</button>
+       <button className='button' type='submit'>Friend Addition</button>
 
       </form>
       <ul className="grid">
