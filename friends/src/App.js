@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
+import { Route } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import FriendList from './components/FriendList';
+import Friend from './components/FriendList';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: []
+    };
+  }
+  // fetch data here
+
   render() {
     return (
       <div className="App">
@@ -15,7 +26,7 @@ class App extends Component {
         </p>
         {/* Routes Here */}
         <Route exact path="/" component={FriendList} />
-        <Route path="/friends/:id" component={} />
+        <Route path="/friend/:id" component={Friend} />
       </div>
     );
   }
