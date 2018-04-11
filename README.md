@@ -29,7 +29,7 @@ Topics:
 
 ## Stretch Problems
 
-1. Separate the list of friends and the new friend form into different components, and use the appropriate client side routing to access them.
+1. Separate the list of friends and the new friend form into different components, and use the appropriate client side routing to access them. 
 2. Implement Update and Delete functionality.
     - for `update` pass the friend id as a URL paremeter, including the information about the friend inside the body.
     - for `delete` pass the friend id as a URL parameter.
