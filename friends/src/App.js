@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import "./App.css"
 import FriendsList from "./components/FriendsList"
 import { makeFetch } from "./utils"
+import AddFriendForm from "./components/AddFriendForm"
 
 const helper = makeFetch("http://localhost:5000")
 
@@ -30,7 +31,12 @@ class App extends Component {
       <div className="App">
         <Route
           path="/"
-          render={props => <FriendsListWrapper friends={this.state.friends} />}
+          render={props => (
+            <div>
+              <AddFriendForm />
+              <FriendsListWrapper friends={this.state.friends} />
+            </div>
+          )}
         />
       </div>
     )
