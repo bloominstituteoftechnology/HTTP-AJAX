@@ -28,7 +28,10 @@
 }
 
 .friends {
-  margin: 15%;
+  display: flex;
+  justify-content: space-around;
+  margin: 5%;
+  line-height: 30px;
 }
 
 .friend {
@@ -41,7 +44,7 @@
 }
 
 .friend--age {
-  align-self: center;
+  
 }
 
 .frien--email {

@@ -24,11 +24,33 @@ class App extends Component {
 
   names = () => {
     return (
-      <div className="friends">
+      <div>
         {this.state.friends.map(friend => (
           <div key={friend.id} className="friend">
             <div className="friend--name">{friend.name}</div>
-            <div className="friend--age">{friend.age}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  ages = () => {
+    return (
+      <div>
+      {this.state.friends.map(friend => (
+        <div key={friend.id} className="friend">
+          <div className="friend--age">{friend.age}</div>
+        </div>
+      ))}
+      </div>
+    )
+  }
+
+  emails = () => {
+    return (
+      <div>
+        {this.state.friends.map(friend => (
+          <div key={friend.id} className="friend">
             <div className="friend--email">{friend.email}</div>
           </div>
         ))}
@@ -44,8 +66,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        {this.names()}
-        {console.log(this.state.friends)}
+        <div className="friends">
+          {this.names()}
+          {this.ages()}
+          {this.emails()}
+          {console.log(this.state.friends)}
+        </div>
       </div>
     );
   }
