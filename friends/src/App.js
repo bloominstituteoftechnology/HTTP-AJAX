@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Friends from './Friends/Friends'
+import FriendsList from './Friends/FriendsList'
+
 class App extends Component {
   render() {
     return (
@@ -8,7 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Friends</h1>
         </header>
-        <Friends />
+        <FriendsList />
       </div>
     );
   }
