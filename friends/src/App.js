@@ -1,21 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
+import { Route } from "react-router-dom"
+import "./App.css"
+import FriendsList from "./components/FriendsList"
+import { get, post } from "axios"
 
+const serverUrl = "localhost:5000"
+
+const helper = async path =>
+  await get(`http://${serverUrl}${path}`).then(data => data)
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      friends: []
+    }
+  }
+
+  setInitialState() {
+    const friends = helper("/friends")
+    friends.then(({ data }) =>
+      this.setState(prevState => ({ friends: [...data] }))
+    )
+  }
+
+  componentDidMount() {
+    this.setInitialState()
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Route path="/" />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
