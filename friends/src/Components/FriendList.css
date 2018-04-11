@@ -1,0 +1,38 @@
+.friendList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.friends {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.friends:first-child {
+    margin-top: 5px;
+    border-top: 1px solid black;
+}
+
+.friends_name {
+    width: 10%;
+    margin: 0 40px;  
+}
+
+.friends_age {
+    width: 10%;
+    margin: 0 40px;
+}
+
+.friends_email {
+    width: 10%;
+    margin: 0 40px;
+}
