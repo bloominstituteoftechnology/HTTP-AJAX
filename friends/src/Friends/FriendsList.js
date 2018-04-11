@@ -12,18 +12,33 @@ class FriendsList extends Component {
   };
 
   componentDidMount() {
+    this.refreshFriends();
+  }
+
+  refreshFriends = () => {
     axios.get('http://localhost:5000/friends')
-    .then(response => {
-      this.setState({ friends: response.data });
-    })
-    .catch(error => {
-      console.log( `There was an error getting friends: ${error}`);
-    });
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => {
+        console.log(`There was an error getting friends: ${error}`);
+      });
   }
 
   selectFriend = (event) => {
     console.log(event.target.id);
     this.setState({ currentFriendId: event.target.id })
+  }
+
+  removeFriend = (event) => {
+    axios.delete(`http://localhost:5000/friends/${event.target.id}`)
+      .then((response) => {
+        console.log(`Successfully deleted. Response: ${response}`)
+        this.refreshFriends();
+      })
+      .catch((error) => {
+        console.log(`Error deleting friend: ${error}`)
+      })
   }
 
   clearSelection = () => {
@@ -34,7 +49,7 @@ class FriendsList extends Component {
     return (
       <div>
         <div className="title">Friends</div>
-        <FriendInput currentFriendId={this.state.currentFriendId} />
+        <FriendInput currentFriendId={this.state.currentFriendId} refreshFriends={this.refreshFriends} />
         <ul className="grid">
           <button className="clear-selection" onClick={this.clearSelection}>Clear Selection</button>
           {this.state.friends.map(friend => (

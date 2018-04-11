@@ -37,8 +37,8 @@ class FriendInput extends React.Component {
     if (this.props.currentFriendId > 0) {
       axios.put(`http://localhost:5000/friends/${this.props.currentFriendId}`, newFriend)
         .then((response) => {
-          console.log('Friend updated. Response:')
-          console.log(response);
+          console.log(`Friend updated. Response: ${response}`);
+          this.props.refreshFriends();
         })
         .catch((error) => {
           console.log(`There was an error updating Friend: ${error}`)
@@ -47,6 +47,7 @@ class FriendInput extends React.Component {
       axios.post('http://localhost:5000/friends/', newFriend)
         .then(response => {
           this.setState({ name: '', age: '', email: '' });
+          this.props.refreshFriends();
         })
         .catch(error => {
           console.log(`There was an error adding Friend: ${error}`);
