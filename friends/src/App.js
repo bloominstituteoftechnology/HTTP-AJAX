@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
-// import FriendList from './components/FriendList/FriendList.js';
+import FriendList from './components/FriendList/FriendList.js';
 import './App.css';
 
 class App extends Component {
