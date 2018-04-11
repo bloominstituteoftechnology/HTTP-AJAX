@@ -50,7 +50,7 @@ handleSubmit = (event) => {
   render() {
     return (
       <div>
-      <div className="title">Friends.</div>
+      <div className="title">Friends</div>
       <form className='form' onSubmit={this.addFriend}>
        <label> Name: <input type='text' name='name' placeholder='Name' onChange={this.handleInputChange} value={this.state.name} />
        </label>
