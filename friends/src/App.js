@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import FriendsList from './FriendsList';
 import axios from 'axios';
+import FriendAdd from './FriendAdd';
 
 class App extends Component {
   constructor () {
@@ -16,8 +17,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">UltimateFriends.com</h1>
         </header>
+        <FriendAdd />
         <FriendsList friendProp={this.state} />
       </div>
     );

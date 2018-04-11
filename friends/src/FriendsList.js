@@ -1,4 +1,5 @@
 import React from 'react';
+import './FriendsList.css';
 
 const FriendsList = props => {
     let friendList = [];
@@ -10,10 +11,10 @@ const FriendsList = props => {
                 {friendList.map( item => {
                     return (
                         <div className="friendCard">
-                        {item.id + ' '}
-                        {item.name + ' '}
-                        {item.age + ' '}
-                        {item.email + ' '}
+                        Id: {item.id + ' '} <br/>
+                        Name: {item.name + ' '} <br/>
+                        Age: {item.age + ' '} <br/>
+                        Email: {item.email + ' '}
                         </div>
                     );
                 })}
