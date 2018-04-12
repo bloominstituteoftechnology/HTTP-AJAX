@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
-import Friends from "./Friends/Friends.js";
-import FriendsList from "./Friends/FriendsList.js";
+import Friends from "./Components/Friends.js";
+import FriendsList from "./Components/FriendsList.js";
 
 export default class App extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class App extends Component {
     this.state = { friends: [] };
   }
 
-  componentDidMount() {
+  updateList() {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
@@ -22,6 +22,10 @@ export default class App extends Component {
       .catch(error => {
         console.error("Server Error", error);
       });
+  }
+
+  componentDidMount() {
+    this.updateList();
   }
   render() {
     return (

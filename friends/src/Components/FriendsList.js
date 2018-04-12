@@ -26,10 +26,6 @@ export default class FriendsList extends Component {
     });
   };
 
-  // updateList = newList => {
-  //   this.setState({ friends: { ...this.state.friends, newList } });
-  // };
-
   addFriend = e => {
     console.log("here it is");
     e.preventDefault();
@@ -43,7 +39,6 @@ export default class FriendsList extends Component {
       .then(newList => {
         console.log("friend list", this.state.friends);
         console.log("newList", newList);
-        // updateList(newList);
         this.setState({ friends: { ...this.state.friends, newList } });
         console.log("friends", this.state.friends);
       })
