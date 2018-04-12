@@ -24,13 +24,15 @@ export default class FriendsList extends Component {
         });
     }
 
+    
+
     render() {
         return (
             <div className="friend-wrapper">
                 {this.state.friends.map(friend => (
                     <Link to={`/friends/${friend.id}`}>
                         <div key={friend.id} className="friend">
-                            <div className="ame"> {friend.name} </div>
+                            <div className="name"> {friend.name} </div>
                             <div className="age"> {`age: ${friend.age}`} </div>
                             <div className="email"> {`email: ${friend.email}`} </div>
                         </div>
