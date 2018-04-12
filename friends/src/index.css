@@ -54,3 +54,20 @@ text-decoration: underline;
 color:gray;
 font-weight:bold;
 }
+.container-style{
+  display: flex;
+  margin:10px;
+  justify-content: space-around;
+}
+.input-style{
+  margin-right: 6px;
+  
+}
+.inputTwo-style{
+  margin-right: 6px;
+  
+}
+.inputThree-style{
+  margin-right: 6px;
+  
+}

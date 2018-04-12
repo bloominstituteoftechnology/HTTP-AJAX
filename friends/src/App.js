@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Route} from 'react-router-dom';
 import DisplayList from './components/DisplayList';
 import Friend from './components/Friend';
+import Header from './components/Header';
 class App extends Component {
   constructor(){
     super()
@@ -26,10 +27,13 @@ componentDidMount(){
   })
 }
   render() {
- 
+ console.log(this.state)
     return (
       <div>
-        
+           { <Route 
+        exact path ="/" 
+        render={props => <Header {...props} friends={this.state.friends}/>}
+      /> }
         { <Route 
         exact path ="/" 
         render={props => <DisplayList {...this.state}{...props}/>}
@@ -37,7 +41,7 @@ componentDidMount(){
          
          { <Route 
          path ="/friend/:id" 
-        render={props => <Friend {...this.state.friends}{...props}/>}
+        render={props => <Friend {...props} friends={this.state.friends}/>}
       /> }
       
       </div>
