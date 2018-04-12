@@ -76,7 +76,7 @@ class App extends Component {
               <button onClick={() => this.deleteFriend(friend.id)}>Delete me</button>
             </div>
           ))}
-        </div>
+        </div> 
         <input type="text" onChange={this.handleInput} placeholder="Name" name="name" value= {this.state.name}/>
         <input type="text" onChange={this.handleInput} placeholder="Age" name="age" value= {this.state.age}/>
         <input type="text" onChange={this.handleInput} placeholder="Email" name="email" value= {this.state.email}/>
