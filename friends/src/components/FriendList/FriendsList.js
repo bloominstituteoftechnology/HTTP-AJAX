@@ -38,52 +38,67 @@ class FriendsList extends Component {
   };
 
   saveFriendData = () => {
-    const friendData = {name: this.state.name, age: this.state.age, email: this.state.email };
+    const friendData = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
     axios
-    .post(`http://localhost:5000/friend`, friendData)
-    .then(savedData => {
-      console.log(savedData);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-    this.setState({ name: '', age: '', email: ''});
+      .post(`http://localhost:5000/friend`, friendData)
+      .then(savedData => {
+        console.log(savedData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    this.setState({ name: "", age: "", email: "" });
   };
 
   render() {
     return (
       <div>
         <h1>Friends</h1>
-        <input 
-        type="text"
-        onChange={this.handleTextInput}
-        placeholder="name"
-        name="name"
-        value={this.state.name}
+        <input
+          type="text"
+          onChange={this.handleTextInput}
+          placeholder="name"
+          name="name"
+          value={this.state.name}
         />
-        <input 
-        type="text"
-        onchange={this.handleTextInput}
-        placeholder="age"
-        name="age"
-        value={this.state.age}
+        <input
+          type="text"
+          onChange={this.handleTextInput}
+          placeholder="age"
+          name="age"
+          value={this.state.age}
         />
-        <input 
-        type="text"
-        onchange={this.handleTextInput}
-        placeholder="email"
-        name="email"
-        value={this.state.email}
+        <input
+          type="text"
+          onChange={this.handleTextInput}
+          placeholder="email"
+          name="email"
+          value={this.state.email}
         />
-        <button onClick={this.saveFriendData}>Save Friend</button>
+        <button
+          name="submit button"
+          type="submit"
+          onClick={this.saveFriendData}
+        >
+          Save Friend
+        </button>
         <div>
-          Your friends are: {this.state.friends.map((friend) => {
-            const {name, age, email} = friend;
-            return <h3>Name: {name} Age: {age} Email: {email}</h3>
+          Your friends are:{" "}
+          {this.state.friends.map(friend => {
+            const { name, age, email } = friend;
+            return (
+              <h3>
+                Name: {name} Age: {age} Email: {email}
+              </h3>
+            );
           })}
         </div>
       </div>
-    )
+    );
   }
 }
 
