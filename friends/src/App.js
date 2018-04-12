@@ -28,11 +28,21 @@ class App extends Component {
     this.setState({ friends: updatedFriendsList});
   }
 
+  deleteFromFriendsList = friendId => {
+    axios.delete(`http://localhost:5000/friends/${friendId}`)
+      .then(response => {
+        this.setState({friends: response.data}); 
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" render={ () => <FriendsList {...this.state}/>}/>
+          <Route exact path="/" render={ () => <FriendsList {...this.state} deleteFromFriendsList={this.deleteFromFriendsList}/>}/>
           <AddFriendForm updateFriendsList={this.updateFriendsList}/>
         </div>
       </Router>

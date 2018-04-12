@@ -12,10 +12,11 @@ const FriendsList = props => {
            <th>Name</th>
            <th>Age</th>
            <th>Email</th>
+           <th></th>
          </tr>
        </thead>
        <tbody>
-         {props.friends.map((friend, index) => <Friend key={index} friend={friend} />)}
+         {props.friends.map((friend, index) => <Friend deleteFromFriendsList={props.deleteFromFriendsList} key={index} friend={friend} />)}
       </tbody>
     </Table>
   ); 
