@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import FriendPage from "./FriendPage";
+import { Link } from "react-router-dom";
 import "./DisplayFriend.css";
 
 class DisplayFriend extends React.Component {
@@ -40,43 +42,54 @@ class DisplayFriend extends React.Component {
   render() {
     const { friend } = this.props;
     return (
-      <li className="friend">
-        <div className="name">{friend.name}</div>
-        <div className="age">{`Age:${friend.age}`}</div>
-        <div className="email">{`E-mail:${friend.email}`}</div>
-        <button className={friend.id} onClick={this.props.removeFriend}>
-          Remove Friend{" "}
-        </button>
-        <button onClick={this.showUpdateInput}>Update Friend</button>
-        {this.state.showUpdateInput ? (
-          <div className="innerInput">
-            <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              onChange={this.handleInputChange}
-              value={this.state.name}
-            />
-            <input
-              type="number"
-              placeholder="Age"
-              name="age"
-              onChange={this.handleInputChange}
-              value={this.state.age}
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              name="email"
-              onChange={this.handleInputChange}
-              value={this.state.email}
-            />
-            <button onClick={() => this.updateFriend(friend.id)}>
-              Save Changes
-            </button>
-          </div>
-        ) : null}
-      </li>
+      <Link
+        to={{
+          pathname: `/friends/${friend.id}`,
+          state: {
+            name: `${friend.name}`,
+            age: `${friend.age}`,
+            email: `${friend.email}`
+          }
+        }}
+      >
+        <li className="friend">
+          <div className="name">{friend.name}</div>
+          <div className="age">{`Age:${friend.age}`}</div>
+          <div className="email">{`E-mail:${friend.email}`}</div>
+          <button className={friend.id} onClick={this.props.removeFriend}>
+            Remove Friend{" "}
+          </button>
+          <button onClick={this.showUpdateInput}>Update Friend</button>
+          {this.state.showUpdateInput ? (
+            <div className="innerInput">
+              <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                onChange={this.handleInputChange}
+                value={this.state.name}
+              />
+              <input
+                type="number"
+                placeholder="Age"
+                name="age"
+                onChange={this.handleInputChange}
+                value={this.state.age}
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                onChange={this.handleInputChange}
+                value={this.state.email}
+              />
+              <button onClick={this.updateFriend(friend.id)}>
+                Save Changes
+              </button>
+            </div>
+          ) : null}
+        </li>
+      </Link>
     );
   }
 }
