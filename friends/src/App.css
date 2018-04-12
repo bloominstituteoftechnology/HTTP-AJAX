@@ -40,3 +40,15 @@
 .friend {
   margin-top: 25px;
 }
+
+.Form {
+  margin: 3% auto;
+}
+
+.formLabel {
+  float: left;
+}
+
+.Form--bottom {
+  margin: 25px auto;
+}

@@ -19,7 +19,7 @@ class Display extends Component {
       <div className="col-4 friend">
         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }} className="Card">
           <CardTitle>{this.state.friend.name}</CardTitle>
-          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>More...</Button>
+          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>More about {this.state.friend.name}</Button>
           <Collapse isOpen={this.state.collapse}>
             <CardBody>
               Age: {this.state.friend.age}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Display from './components/Display';
+import FriendApp from './components/Form';
 import axios from 'axios';
 import { Container } from 'reactstrap';
 
@@ -34,6 +35,7 @@ class App extends Component {
         <Container className="cardContainer">
           {friendsCopy.map((friend, index) => (<Display key={friend+index} friend={friend} />))}
         </Container>
+        <FriendApp />
       </div>
     );
   }
