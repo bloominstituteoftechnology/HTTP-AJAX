@@ -82,6 +82,8 @@ class App extends Component {
           console.err(err);
         });
     })
+    this.state.newFriend = [];  //bad practice but prevent re-render so that names dont disappear while being added
+    // this.setState({ newFriend: [] }); //better method but re-renders... hard choice......
   };
 
   render() {
