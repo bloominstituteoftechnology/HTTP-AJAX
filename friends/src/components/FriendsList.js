@@ -13,6 +13,7 @@ const FriendsList = props => {
            <th>Age</th>
            <th>Email</th>
            <th></th>
+           <th></th>
          </tr>
        </thead>
        <tbody>
