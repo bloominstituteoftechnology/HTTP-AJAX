@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Friend from "./Friend";
+import Friend from "./Friend"; 
 
 export default class FriendCard extends Component {
 	constructor(props) {

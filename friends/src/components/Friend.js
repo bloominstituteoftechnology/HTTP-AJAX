@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Card, 
+        CardImg, 
+        CardText, 
+        CardBody,
+        CardTitle, 
+        CardSubtitle, 
+        Button,
+        Row,
+        Col } from 'reactstrap';
 
 export default class Friend extends Component {
   constructor(props) {
@@ -53,15 +62,19 @@ export default class Friend extends Component {
   };
   // render data for each friend
   render() {
-    return [
-      <div>
-        <Link to={`/friend/${this.props.friend.id}`}>
-          {this.props.friend.name}
-        </Link>
-      </div>,
-      <div>{this.props.friend.age}</div>,
-      <div>{this.props.friend.email}</div>,
-      <form>
+    return (
+      <Row>
+      <Col sm={{ size: 6, offset: 3 }}>
+      <Card>
+      <CardBody>
+      <CardTitle>
+      <Link to={`/friend/${this.props.friend.id}`}>
+      {this.props.friend.name}
+    </Link>
+    </CardTitle>
+      <div>{this.props.friend.age}</div>
+      <div>{this.props.friend.email}</div>
+        <form>
         <input
           name="age"
           value={this.state.age}
@@ -72,8 +85,7 @@ export default class Friend extends Component {
           name="email"
           value={this.state.email}
           placeholder="Email"
-          onChange={this.handleNewInput}
-        />
+          onChange={this.handleNewInput} />
         {/* Save updates to a friend */}
         <button onClick={() => this.updateFriend(this.props.friend.id)}>
           Save Changes
@@ -82,6 +94,9 @@ export default class Friend extends Component {
           Delete Friend
         </button>
       </form>
-    ];
-  }
+      </CardBody>
+    </Card>
+    </Col>
+    </Row>
+    )};
 }
