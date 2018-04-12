@@ -35,12 +35,14 @@ class FriendsList extends Component {
     friend.name = this.state.name;
     friend.age = this.state.age;
     friend.email = this.state.email;
-    this.setState({name: '', age: '', email: ''})
+    this.setState({ name: "", age: "", email: "" });
     axios
       .post("http://localhost:5000/friends", friend)
       .then(x => this.getData())
       .catch(error => console.log(error));
   };
+
+  handleEditFriend = () => {};
 
   render() {
     if (this.state.friendsData === []) {
@@ -48,21 +50,32 @@ class FriendsList extends Component {
     }
     return (
       <div>
-        <AddFriend
-          onChange={this.handleAddFriendChange}
-          onClick={this.handleSubmitFriend}
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <AddFriend
+              fieldType="Add"
+              onChange={this.handleAddFriendChange}
+              onClick={this.handleSubmitFriend}
+            />
+          )}
         />
         {this.state.friendsData.map((data, i) => (
-          <Route key={`friend-route${i}`}
+          <Route
+            key={`friend-route${i}`}
             path={`/${data.name.replace(/ /g, "")}`}
             render={() => <FriendCard {...data} />}
           />
         ))}
         <Route
-          exact path='/'
-          render={() => this.state.friendsData.map((data, i) => (
-            <FriendCard key={`friend${i}`} {...data} />
-          ))}
+          exact
+          path="/"
+          render={() =>
+            this.state.friendsData.map((data, i) => (
+              <FriendCard key={`friend${i}`} {...data} />
+            ))
+          }
         />
       </div>
     );

@@ -4,3 +4,19 @@
   margin: 10px auto;
   border: 1px solid black;
 }
+
+.card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.card-button-container {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+.card-button-container button {
+  width: 120px;
+  height: 20px;
+}
