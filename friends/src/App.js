@@ -51,12 +51,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {/* <FriendForm friend={this.state.friend} /> */}
+        {/* <ListOfFriends friend={this.state.friend} /> */}
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <FriendForm friend={this.state.friend} />
-        <ListOfFriends friend={this.state.friend} />
+        <Navigation />
+        <Route exact path='/' render={(props) => (
+        <ListOfFriends {...props} friend={this.state.friend} />
+        )}/>
+        <Route path='/form' render={(props) => (
+        <FriendForm {...props} friend={this.state.friend} />
+        )}/>
       </div>
     );
   }
