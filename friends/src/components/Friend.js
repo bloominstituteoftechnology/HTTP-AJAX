@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Card, CardHeader, CardBody, CardText, Col, Row } from 'reactstrap'
+import { Container } from 'reactstrap'
 
 import FriendCard from './FriendCard';
 

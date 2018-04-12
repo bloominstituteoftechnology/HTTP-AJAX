@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
-import { Container, Card, CardHeader, CardBody, CardText, Col, Row } from 'reactstrap'
 
 import FriendsList from './components/FriendsList';
 import Friend from './components/Friend';
-
 
 class App extends Component {
   render() {
