@@ -3,12 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default class FriendsList extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       friends: []
-  //     };
-  //   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: []
+    };
+  }
 
   //   componentDidMount() {
   //     axios
@@ -25,8 +25,14 @@ export default class FriendsList extends Component {
       [e.target.name]: e.target.value
     });
   };
-  addFriend = () => {
+
+  // updateList = newList => {
+  //   this.setState({ friends: { ...this.state.friends, newList } });
+  // };
+
+  addFriend = e => {
     console.log("here it is");
+    e.preventDefault();
     const friend = {
       name: this.state.name,
       age: this.state.age,
@@ -34,8 +40,12 @@ export default class FriendsList extends Component {
     };
     axios
       .post(`http://localhost:5000/friends`, friend)
-      .then(savedFriend => {
-        console.log(savedFriend);
+      .then(newList => {
+        console.log("friend list", this.state.friends);
+        console.log("newList", newList);
+        // updateList(newList);
+        this.setState({ friends: { ...this.state.friends, newList } });
+        console.log("friends", this.state.friends);
       })
       .catch(err => {
         console.log("You done fucked up", err);
