@@ -84,7 +84,7 @@ class FriendCard extends Component {
           </button>
           <button onClick={this.showUpdateFriend}>Update friend</button>
 
-          <div className="friend-edit-container">
+          <div className="friend-edit-card">
             {/* if showUpdateFriend: show input field for edit, else don't display */}
             {this.state.showUpdateFriend ? (
               <div>
