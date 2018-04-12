@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import './FriendForm.css';
 
 const FriendForm = props => {
     console.log(props);
     return ( 
-        <Form onSubmit={props.addFriend} inline>
+        <Form onSubmit={props.addFriend} className="friendForm" inline>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                 <Label for="name" className="mr-sm-2">Name:</Label>
                 <Input type="text" id="name" onChange={props.handleNewFriend} placeholder="name" name="name" value={props.state.name} required />
