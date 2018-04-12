@@ -10,43 +10,66 @@ class UpdateFriend extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            friend: [],
+            // friend: [],
             name: '',
             email: '',
             age: '',
         }
     }
 
-    
-    componentDidMount() {
-    const id = this.props.match.params.id
-    console.log(id)
-    axios.get('http://localhost:5000/friends')
-      .then((response) => {
-        this.setState({ friend: response.data[1] })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+    // componentDidMount() {
+    // const id = this.props.match.params.id
+    // axios.put(`http://localhost:5000/friends{id}`)
+    //   .then((response) => {
+    //     this.setState({ friend: response.data })
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    // }
 
+    updateFriend = (event) => {
+            event.preventDefault();
+        
+            const friend = {
+              name: this.state.name,
+              email: this.state.email,
+              age: this.state.age,
+            }
+        const id = this.props.match.params.id
+        axios.put(`http://localhost:5000/friends/${id}`)
+        .then((res) => {
+            console.log(res);
+            console.log(res.data);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
+    handleNameChange = (event) => {
+        this.setState({ name: event.target.value});
+    }
+    handleEmailChange = (event) => {
+        this.setState({ email: event.target.value});
+    }
+    handleAgeChange = (event) => {
+        this.setState({ age: event.target.value});
+    }
 
   render() {
       console.log(this.state)
-      console.log(this.props)
-      console.log(this.props.match.params.id)
     return (
       <div className='updateFriend'>
           <h1> Update Friend </h1>
-            <Form className='form' onSubmit={this.UpdateFriend}>
+            <Form className='form' onSubmit={this.updateFriend}>
                 <Label for="Name">Name</Label>
-                <Input type="text" name="name" id="Name" placeholder={this.props.name} />
+                <Input type="text" name="name" id="Name" onChange={this.handleNameChange}  placeholder='Name'/>
                 <Label for="Email">Email</Label>
-                <Input type="email" name="email" id="Email" placeholder="Email" />
+                <Input type="email" name="email" id="Email" onChange={this.handleEmailChange}  placeholder="Email" />
                 <Label for="Age">Age</Label>
-                <Input type="number" name="age" id="Age" placeholder="Age" />
-                <Input className='submit' type="submit" value='Submit'  />
+                <Input type="number" name="age" id="Age" onChange={this.handleAgeChange} placeholder="Age" />
+                <Input className='submit' onChange={this.handleChange}  type="submit" value='Submit'  />
             </Form>
           <Link to={`/`} className='listLink'> <Button color="warning"> Friends List </Button> </Link>
           <Link to={`/friend`} className='listLink'> <Button color="danger"> Add Friend </Button> </Link>
