@@ -9,7 +9,7 @@ export default class FriendsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friends: [],
+            friends: null,
             newFriendId: null,
             newFriendName: '',
             newFriendAge: '',
@@ -28,11 +28,11 @@ export default class FriendsList extends Component {
             });
     }
 
-    handleAddFriend = e => {
+    handleNewFriendInput = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmitFriend = () => {
+    handleAddNewFriend = () => {
         const newFriend = { id: this.state.friends.length + 1, name: this.state.newFriendName, age: this.state.newFriendAge, email: this.state.newFriendEmail };
         if (newFriend.id != '' && newFriend.name != '' && newFriend.age != '' && newFriend.email != '') {
             axios
@@ -50,10 +50,13 @@ export default class FriendsList extends Component {
     }
 
     render() {
+        if(!this.state.friends) {
+            return <div>Loading friends...</div>;
+        }
         return (
             <div className="App mt-5">
                 <h1>Friendslist</h1>
-                <Container className="mt-5">
+                <Container className="mb-5">
                     {this.state.friends.map((friend, index) => {
                         return (
                             <Link to={`/friends/${friend.id}`}>
@@ -68,7 +71,7 @@ export default class FriendsList extends Component {
                                 name='newFriendName'
                                 value={this.state.newFriendName}
                                 placeholder="Add name..."
-                                onChange={this.handleAddFriend}
+                                onChange={this.handleNewFriendInput}
                             />
                         </CardHeader>
                         <CardBody className="text-left">
@@ -78,7 +81,7 @@ export default class FriendsList extends Component {
                                     name='newFriendAge'
                                     value={this.state.newFriendAge}
                                     placeholder="Add age..."
-                                    onChange={this.handleAddFriend}
+                                    onChange={this.handleNewFriendInput}
                                 />
                             </CardText>
                             <CardText>{`Email:  `}
@@ -87,12 +90,12 @@ export default class FriendsList extends Component {
                                     name='newFriendEmail'
                                     value={this.state.newFriendEmail}
                                     placeholder="Add email..."
-                                    onChange={this.handleAddFriend}
+                                    onChange={this.handleNewFriendInput}
                                 />
                             </CardText>
                             <CardText>{`Id:  `} {this.state.friends.length + 1}</CardText>
                         </CardBody>
-                        <button onClick={this.handleSubmitFriend}>Submit</button>
+                        <button onClick={this.handleAddNewFriend}>Submit</button>
                     </Card>
                 </Container>
             </div>

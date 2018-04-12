@@ -25,12 +25,11 @@ export default class Friend extends Component {
     }
 
     render() {
-        // const { id, name, age, email } = this.props.friend;
         if(!this.state.friend) {
             return <div>Loading friend...</div>;
         }
         return (
-            <Container className="mt-5">
+            <Container className="mt-5 mb-5">
                 <h1>Single Friend Display</h1>
                 <FriendCard friend={this.state.friend} />
             </Container>
