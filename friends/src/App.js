@@ -43,13 +43,13 @@ class App extends Component {
     });
     this.setState({ name: '', age: '', email: '' });
     };
-    
+
   render() {
     return (
       <div className="App">
-        {this.state.friends.map(friend => {
+        {this.state.friends.map((friend, index) => {
           return (
-            <div className="friend-card" >
+            <div className="friend-card" key={friend + index}>
             <div key={friend.id} className="friendId">
             <div className="friend friendName"> Name: {friend.name} </div>
             <div className="friend friendAge"> Age: {friend.age} </div>
