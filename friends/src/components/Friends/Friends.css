@@ -1,8 +1,17 @@
 /*TODO*/
 .Friend {
     font-size: 14px;
+    width: 225px;
+    height: 300px;
+    margin-right: 20px;
 }
 
-.Friend li {
-    list-style: none;
+.Friend Card {
+    background-color: aqua;
+}
+
+.Friend__cardlist {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
 }
