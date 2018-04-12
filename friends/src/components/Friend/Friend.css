@@ -1,7 +1,28 @@
 .Friend {
   width: 100%;
+  display: grid;
+  grid-template-areas:
+    ". name name ."
+    "avi avi . age"
+    "avi avi . email"
 }
 
 .Friend:hover {
   background-color: bisque;
+}
+
+.Friend--name {
+grid-area: name;
+}
+
+.Friend--age {
+ grid-area: age; 
+}
+
+.Friend--email {
+grid-area: email;  
+}
+
+.Friend--avi {
+ grid-area: avi; 
 }

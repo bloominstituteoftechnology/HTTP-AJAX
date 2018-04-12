@@ -1,8 +1,12 @@
-import { get, post } from 'axios'
+import Axios, { get, post } from 'axios'
+
 
 const makeFetch = pathBase => async pathEnd => get(`${pathBase}${pathEnd}`)
 
 const makePost = pathBase => async (pathEnd, body) =>
   post(`${pathBase}${pathEnd}`, body)
 
-export { makeFetch, makePost }
+const makeDelete = pathBase => async (pathEnd, body) =>
+  Axios.delete(`${pathBase}${pathEnd}`, {params:body})  
+
+  export { makeFetch, makePost, makeDelete }
