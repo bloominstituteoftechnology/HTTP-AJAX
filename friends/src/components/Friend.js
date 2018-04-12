@@ -9,7 +9,9 @@ import { Card,
         CardSubtitle, 
         Button,
         Row,
-        Col } from 'reactstrap';
+        Col,
+        Jumbotron,
+        Container } from 'reactstrap';
 
 export default class Friend extends Component {
   constructor(props) {

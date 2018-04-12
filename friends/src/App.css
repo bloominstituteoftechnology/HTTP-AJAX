@@ -22,6 +22,10 @@
   font-size: large;
 }
 
+.jumbotron {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://pbs.twimg.com/profile_images/907717498836885504/pptu4vBs_400x400.jpg);
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
