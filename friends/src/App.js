@@ -16,8 +16,11 @@ class App extends Component {
     }
   }
 componentDidMount(){
-  console.log('this is mounting')
-  axios
+console.log('this is mounting')
+this.updateGet()
+}
+updateGet(){
+ axios
   .get('http://localhost:5000/friends')
   
   .then(response => {
@@ -30,6 +33,9 @@ componentDidMount(){
 
   })
 }
+
+
+
 
 setInput = (element)=>{
   this.setState({[element.target.name]: element.target.value})
@@ -80,7 +86,7 @@ setInput = (element)=>{
          
          { <Route 
          path ="/friend/:id" 
-        render={props => <Friend {...props} deleteFriend={this.deleteFriend} friends={this.state.friends}/>}
+        render={props => <Friend {...props} updateGet={this.updateGet} deleteFriend={this.deleteFriend} friends={this.state.friends}/>}
       /> }
       
       </div>

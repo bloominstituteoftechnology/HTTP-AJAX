@@ -53,6 +53,7 @@ justify-content: center;
 text-decoration: underline;
 color:gray;
 font-weight:bold;
+padding-bottom:10px;
 }
 .container-style{
   display: flex;
@@ -70,4 +71,31 @@ font-weight:bold;
 .inputThree-style{
   margin-right: 6px;
   
+}
+.buttonFriends-style{
+ 
+  display:flex;
+  background:rgb(145, 240, 243);
+margin: 0 auto;
+justify-content: center;
+  width:150px;
+  height: 30px;
+  color:  rgb(214, 81, 19);
+  border: 2px solid brown;
+  border-radius: 20px;
+  font-size: 20px;
+  margin-right:5px;
+ 
+
+}
+.friendForm-style{
+  width: 500px;
+  margin:0 auto;
+  padding-bottom:30px;
+}
+.buttonContainer-style{
+  display: flex;
+  margin:0 auto;
+  width: 200px;
+  margin-top: 7px;
 }
