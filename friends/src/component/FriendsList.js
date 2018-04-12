@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import FriendCard from "./FriendCard";
 import "./FriendsList.css";
 
@@ -11,11 +10,16 @@ export default class FriendsList extends Component {
       frineds: [],
       name: "",
       age: "",
-      email: ""
+      email: "",
+      showUpdateFriend: false
     };
   }
   // mount the API, display error if error occurs
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getFriends = () => {
     axios
       .get(`http://localhost:5000/friends`)
       .then(response => {
@@ -24,7 +28,7 @@ export default class FriendsList extends Component {
       .catch(err => {
         console.log("Server Error", err);
       });
-  }
+  };
 
   // handle the text that is being typed in
   handleTextInput = e => {
@@ -38,21 +42,21 @@ export default class FriendsList extends Component {
   // reset field of name, age, and email
   // refresh the whole page to update the FriendsList
   saveFriendData = () => {
-    const friends = {
+    const friend = {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
     };
     axios
-      .post(`http://localhost:5000/friends/`, friends)
-      .then(savedFriends => {
-        console.log(savedFriends);
+      .post(`http://localhost:5000/friends`, friend)
+      .then(response => {
+        console.log(response);
+        this.getFriends();
       })
       .catch(err => {
         console.log(err);
       });
     this.setState({ name: "", age: "", email: "" });
-    window.location.reload();
   };
 
   render() {
@@ -63,9 +67,8 @@ export default class FriendsList extends Component {
     return (
       <div className="friend-list-container">
         <div className="input-container">
-
           <div className="input-items">
-          <h3>Add a new friend</h3>
+            <h3>Add a new friend</h3>
             <input
               type="text"
               onChange={this.handleTextInput}
@@ -93,20 +96,17 @@ export default class FriendsList extends Component {
             <button onClick={this.saveFriendData}>Save Friend</button>
           </div>
         </div>
+
         <div className="friends-list">
-          {this.state.friends.map(friends => (
-            <FriendDetails key={friends.id} friends={friends} />
+          {this.state.friends.map(friend => (
+            <FriendCard
+              key={friend.id}
+              friend={friend}
+              getFriends={this.getFriends}
+            />
           ))}
         </div>
       </div>
     );
   }
-}
-
-function FriendDetails({ friends }) {
-  return (
-    <Link to={`/friends/${friends.id}`}>
-      <FriendCard friends={friends} />
-    </Link>
-  );
 }
