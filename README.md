@@ -36,3 +36,7 @@ Topics:
 3. Style the friends list, the input field, and make everything look nice.
 4. Expand the number of properties that you put on each friend object.
 5. Feel free to remove the dummy data on the server or modify it in any way.
+
+
+* netstate -ano | finstr : 3000
+* netstate -ano | finstr : 5000
