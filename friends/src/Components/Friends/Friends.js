@@ -7,13 +7,13 @@ import FriendForm from '../FriendForm/FriendForm';
 const Friends = props => {
     console.log(props);
     return <div>
-        <h1>Friends List</h1>
+        <h1 className="friendsHeader">Friends List</h1>
         <FriendForm handleNewFriend={props.handleNewFriend} addFriend={props.addFriend} state={props.state} />
-        <Container className="FriendsContainer">
-          <Row>
+        <Container>
+          <Row className="friendsRow">
             {props.friends.map(friend => {
-              return <Link key={friend.id} to={`/friends/${friend.id}`} className="FriendCard">
-                  <Col sm="12" md="6">
+              return <Link key={friend.id} to={`/friends/${friend.id}`} className="friendCard">
+                  <Col sm="12">
                     <Card body>
                       <CardTitle>Name: {friend.name}</CardTitle>
                       <CardText>Email: {friend.email}</CardText>
