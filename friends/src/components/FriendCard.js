@@ -20,7 +20,7 @@ export default class FriendCard extends Component {
 		axios
 			.get(`http://localhost:5000/friends`)
 			.then(response => {
-				// console.log('response', response.data[id - 1]);
+				console.log('response', response.data[id - 1]);
 				this.setState({ friend: response.data[id - 1]});
 			})
 			.catch(error => {
