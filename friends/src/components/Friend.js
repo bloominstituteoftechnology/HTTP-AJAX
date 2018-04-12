@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Friend extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ export default class Friend extends Component {
   // render data for each friend
   render() {
     return [
-      <div>{this.props.friend.name}</div>,
+      <div><Link to={`/${this.props.friend.id}`}>
+        {this.props.friend.name}
+      </Link></div>,
       <div>{this.props.friend.age}</div>,
       <div>{this.props.friend.email}</div>
     ];

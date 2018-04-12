@@ -31,7 +31,7 @@ export default class FriendList extends Component {
       <div>
         <FriendForm addFriend={() => this.componentDidMount()} />
         {this.state.friends.map((friend, index) => (
-          <Friend key={friend.id} friend={friend} />
+          <Friend key={index} friend={friend} />
         ))}
       </div>
     );

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import axios from "axios";
+import Friend from "./Friend";
 
 export default class FriendCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			friends: null
+			friend: null
 		};
 	}
 
@@ -16,10 +18,10 @@ export default class FriendCard extends Component {
 	// fetch movies by the given id
 	fetchFriend = (id) => {
 		axios
-			.get(`http://localhost:5000/friends${id}`)
+			.get(`http://localhost:5000/api/friends.${id}`)
 			.then(response => {
-				console.log(`response: ${response}`);
-				this.setState(() => { movie: response.data });
+				// console.log(`response: ${response}`);
+				this.setState(() => ({ movie: response.data }));
 			})
 			.catch(error => {
 				console.error(error);
@@ -33,11 +35,11 @@ export default class FriendCard extends Component {
 	}
 
 	render() {
-		const { name, age, email } = this.state.friend;
+		// const { name, age, email } = this.state.friend;
 		return (
 			<div>
 				<Friend friend={this.state.friend} />
 			</div>
 		);
-	}	
+	}
 }
