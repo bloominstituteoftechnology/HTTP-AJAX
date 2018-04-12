@@ -1,17 +1,17 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\goez2\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js start
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\goez2\bin;C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\ia32\compiler;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Bitvise SSH Client;C:\Program Files (x86)\Skype\Phone;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\goez2\AppData\Local\Programs\Python\Python36-32;C:\Program Files\Calibre2;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\goez2\AppData\Roaming\npm;C:\Exercism
+  //anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin/
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  8.9.4
+  8.10.0
 
 Platform: 
-  win32 x64
+  darwin x64
 
 npm manifest: 
   {
@@ -22,10 +22,14 @@ npm manifest:
     "dependencies": {
       "axios": "^0.18.0",
       "body-parser": "^1.18.2",
+      "bootstrap": "^4.1.0",
       "cors": "^2.8.4",
       "express": "^4.16.2",
       "nodemon": "^1.14.11",
-      "react-router-dom": "^4.2.2"
+      "react": "^16.3.1",
+      "react-dom": "^16.3.1",
+      "react-router-dom": "^4.2.2",
+      "reactstrap": "^5.0.0-beta.3"
     },
     "devDependencies": {},
     "scripts": {
@@ -2219,15 +2223,15 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
-  Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c nodemon server.js
-  Directory: C:\Users\goez2\Documents\Git\LambdaSchool\HTTP-AJAX
+  Exit code: 127
+  Command: sh
+  Arguments: -c nodemon server.js
+  Directory: /Users/Juiced1/LambdaSchoolCS/HTTP-AJAX
   Output:
   
-      at ProcessTermError.MessageError (C:\Users\goez2\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Users\goez2\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Users\goez2\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
       at emitTwo (events.js:126:13)
       at ChildProcess.emit (events.js:214:7)
       at maybeClose (internal/child_process.js:925:16)
