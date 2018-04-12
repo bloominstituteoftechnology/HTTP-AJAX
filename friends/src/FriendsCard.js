@@ -7,10 +7,8 @@ class FriendsCard extends Component {
   }
 
   render() {
-  console.log(this.props);
     return (
       <NavLink to={`/friends/${this.props.friend.id}`} className="FriendsCard">
-        {/* {this.props.getFriendId(this.props.friend.id)} */}
         <div>{this.props.friend.name}</div>
         <div>{this.props.friend.age}</div>
         <div>{this.props.friend.email}</div>
