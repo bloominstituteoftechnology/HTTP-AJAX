@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Friend from "./Friend";
-// import Friend from "./components/Friend";
+import FriendForm from "./FriendForm";
 
 class FriendList extends Component {
   constructor() {
@@ -14,27 +14,25 @@ class FriendList extends Component {
   componentDidMount() {
     axios
       .get(`http://localhost:5000/friends`)
-        // .then(response => {
-        //   console.log('response:', response);
-        // })
+
       //   fetch data and store it in state
       .then(response => {
+        //   console.log('response:', response);
         this.setState({ friends: response.data });
       })
+
       .catch(error => {
         console.error("Server Error", error);
       });
-    //   this.setState({ friends: response.data });
   }
 
   render() {
     // console.log('state:', this.state.friends);
     return (
       <div>
+        <FriendForm addFriend={() => this.componentDidMount()} />
         {this.state.friends.map((friend, index) => (
-          //   <div >
           <Friend key={index} friend={friend} />
-          //   </div>
         ))}
       </div>
     );
