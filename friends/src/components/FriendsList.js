@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Container, Card, CardHeader, CardBody, CardText, Col, Row } from 'reactstrap'
 import { Link } from 'react-router-dom';
 
+import FriendCard from './FriendCard';
+
 export default class FriendsList extends Component {
     constructor(props) {
         super(props);
@@ -53,17 +55,9 @@ export default class FriendsList extends Component {
                 <h1>Friendslist</h1>
                 <Container className="mt-5">
                     {this.state.friends.map((friend, index) => {
-                        const { id, name, age, email } = friend;
                         return (
                             <Link to={`/friends/${friend.id}`}>
-                            <Card key={index}>
-                                <CardHeader>{friend.name}</CardHeader>
-                                <CardBody className="text-left">
-                                    <CardText>Age: {friend.age}</CardText>
-                                    <CardText>Email: {friend.email}</CardText>
-                                    <CardText>Id: {friend.id}</CardText>
-                                </CardBody>
-                            </Card>
+                                <FriendCard key={index} friend={friend} />
                             </Link>
                         )
                     })}
