@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { makePost } from '../../utils'
+import PropTypes from 'prop-types'
 
-const post = makePost('http://localhost:5000')
 export default class AddFriendForm extends Component {
   constructor (props) {
     super(props)
@@ -38,10 +37,8 @@ export default class AddFriendForm extends Component {
 
   handleSubmit (e) {
     // clearly whatever the user inputs is valid. CLEARLY
-    post('/friends', { ...this.state })
-    .then (response => this.props.onStateChange(response.data))
+    this.props.onStateChange({ ...this.state })
     e.preventDefault()
-    
   }
 
   render () {
@@ -91,4 +88,8 @@ export default class AddFriendForm extends Component {
       </Form>
     )
   }
+}
+
+AddFriendForm.propTypes = {
+  onStateChange: PropTypes.func.isRequired
 }

@@ -3,10 +3,11 @@ import { Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './App.css'
 import FriendsList from './components/FriendsList'
-import { makeFetch } from './utils'
+import { makeFetch, makePost } from './utils'
 import AddFriendForm from './components/AddFriendForm'
 
 const helper = makeFetch('http://localhost:5000')
+const post = makePost('http://localhost:5000')
 
 const FriendsListWrapper = props => <FriendsList friends={props.friends} />
 
@@ -21,18 +22,21 @@ class App extends Component {
       friends: []
     }
   }
-  setInitialState () {
+
+  getCurrentState () {
     helper('/friends').then(({ data }) =>
       this.setState(prevState => ({ friends: [...data] }))
     )
   }
 
   componentDidMount () {
-    this.setInitialState()
+    this.getCurrentState()
   }
 
   setNewState (newState) {
-    this.setState(previousState => Object.assign(previousState, newState))
+    post('/friends', { ...newState }).then(returnedState =>
+      this.getCurrentState()
+    )
   }
 
   render () {
@@ -42,7 +46,11 @@ class App extends Component {
           path='/'
           render={props => (
             <div>
-              <AddFriendForm onStateChange={(param)=>{this.setNewState(param)}}/>
+              <AddFriendForm
+                onStateChange={param => {
+                  this.setNewState(param)
+                }}
+              />
               <FriendsListWrapper friends={this.state.friends} />
             </div>
           )}
