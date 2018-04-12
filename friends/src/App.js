@@ -31,6 +31,10 @@ class App extends Component {
     this.setInitialState()
   }
 
+  setNewState (newState) {
+    this.setState(previousState => Object.assign(previousState, newState))
+  }
+
   render () {
     return (
       <div className='App'>
@@ -38,7 +42,7 @@ class App extends Component {
           path='/'
           render={props => (
             <div>
-              <AddFriendForm />
+              <AddFriendForm onStateChange={(param)=>{this.setNewState(param)}}/>
               <FriendsListWrapper friends={this.state.friends} />
             </div>
           )}

@@ -39,7 +39,9 @@ export default class AddFriendForm extends Component {
   handleSubmit (e) {
     // clearly whatever the user inputs is valid. CLEARLY
     post('/friends', { ...this.state })
+    .then (response => this.props.onStateChange(response.data))
     e.preventDefault()
+    
   }
 
   render () {

@@ -12,7 +12,7 @@ const Friend = ({ name, email, age }) => (
 Friend.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired
+  age: PropTypes.number.isRequired
 }
 
 export default Friend
