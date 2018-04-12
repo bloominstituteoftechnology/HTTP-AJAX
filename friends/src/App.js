@@ -21,6 +21,9 @@ class App extends Component {
     this.state = {
       friends: []
     }
+    document
+      .getElementById('root')
+      .addEventListener('stateChanged', () => this.getCurrentState())
   }
 
   getCurrentState () {
@@ -34,9 +37,7 @@ class App extends Component {
   }
 
   setNewState (newState) {
-    post('/friends', { ...newState }).then(returnedState =>
-      this.getCurrentState()
-    )
+    post('/friends', { ...newState }).then(() => this.getCurrentState())
   }
 
   render () {
