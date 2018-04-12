@@ -3,7 +3,7 @@ import axios from "axios";
 import Friend from "./Friend";
 import FriendForm from "./FriendForm";
 
-class FriendList extends Component {
+export default class FriendList extends Component {
   constructor() {
     super();
     this.state = {
@@ -11,16 +11,15 @@ class FriendList extends Component {
     };
   }
   // fetch data from server
+  // note: pass this to FriendForm (addFriend) to update FriendList
   componentDidMount() {
     axios
       .get(`http://localhost:5000/friends`)
-
       //   fetch data and store it in state
       .then(response => {
         //   console.log('response:', response);
         this.setState({ friends: response.data });
       })
-
       .catch(error => {
         console.error("Server Error", error);
       });
@@ -38,5 +37,3 @@ class FriendList extends Component {
     );
   }
 }
-
-export default FriendList;

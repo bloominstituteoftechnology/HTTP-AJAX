@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class FriendForm extends Component {
+export default class FriendForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       name: "",
       age: "",
@@ -30,6 +29,7 @@ class FriendForm extends Component {
       .post("http://localhost:5000/friends", friend)
       .then(savedFriend => {
         console.log(friend);
+        // componentDidMount to update FriendList
         this.props.addFriend();
       })
       .catch(err => {
@@ -40,7 +40,7 @@ class FriendForm extends Component {
 
   render() {
     return (
-      // Add friend with this form */
+      // Add new friend with this form
       <form>
         <div>
           <label>
@@ -85,5 +85,3 @@ class FriendForm extends Component {
     );
   }
 }
-
-export default FriendForm;

@@ -2,17 +2,13 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
-// import Friend from "./components/Friend";
 import FriendList from "./components/FriendList";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [],
-      name: "",
-      age: "",
-      email: ""
+      friends: []
     };
   }
 
