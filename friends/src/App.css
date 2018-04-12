@@ -22,6 +22,22 @@
   font-size: large;
 }
 
+li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+li div {
+  margin-right: 20px;
+}
+
+.friend-list-actions {
+  display: flex;
+  flex-direction: column;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

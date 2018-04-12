@@ -57,8 +57,10 @@ class FriendsList extends Component {
               <div className="name">{friend.name}</div>
               <div className="age">{`Age:${friend.age}`}</div>
               <div className="email">{`Email: ${friend.email}`}</div>
-              <button className="select-friend" id={friend.id} onClick={this.selectFriend}>Select</button>
-              <button className="remove-friend" id={friend.id} onClick={this.removeFriend}>Remove</button>
+              <div className="friend-list-actions">
+                <button className="select-friend" id={friend.id} onClick={this.selectFriend}>Select</button>
+                <button className="remove-friend" id={friend.id} onClick={this.removeFriend}>Remove</button>
+              </div>  
             </li>
           ))}
         </ul>
