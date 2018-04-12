@@ -31,6 +31,20 @@ export default class FriendsList extends Component {
         });
     }
 
+    handleDeleteFriend = (id) => {
+        console.log('hello');
+        console.log(id);
+        axios
+            .delete(`http://localhost:5000/friends/${id}`)
+            .then(response => {
+                   this.setState(() => ({ friends: response.data }));
+                })
+            .catch(error => {
+                console.log(error);
+            })
+        this.getFriends();
+    };
+
     handleNewFriendInput = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -62,9 +76,12 @@ export default class FriendsList extends Component {
                 <Container className="mb-5">
                     {this.state.friends.map((friend, index) => {
                         return (
+                            <div key={index}>
+                                <button onClick={() => this.handleDeleteFriend(friend.id)}>Remove Friend</button>
                             <FriendCard key={index} friend={friend} 
                             // getFriends={this.getFriends()} 
                             />
+                            </div>
                         )
                     })}
                     <Card>
