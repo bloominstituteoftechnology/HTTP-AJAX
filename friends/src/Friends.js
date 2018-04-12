@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Friends.css';
+import { Route } from 'react-router-dom';
 
 class Friends extends Component {
     constructor() {
@@ -50,7 +52,7 @@ class Friends extends Component {
             render() {
               return (
                 <div>
-                <div className="title">Welcome to my friends list!.</div>
+                <div className="title">Friend info below!</div>
                 <form className='form' onSubmit={this.addFriend}>
                  <label> Name: <input type='text' name='name' placeholder='Name' onChange={this.handleInputChange} value={this.state.name} />
                  </label>
@@ -64,11 +66,11 @@ class Friends extends Component {
                 <ul className="grid">
                 {this.state.friends.map(friend => {
                   return (
-                    <li key={friend.id} className="friend">
+                    <ol key={friend.id} className="friend">
                      <div className="name">{friend.name}</div>
                      <div className="age">{`Age:${friend.age}`}</div>
                      <div className="email">{`Email: ${friend.email}`}</div>
-                     </li>
+                     </ol>
                   );
                 })}
                 </ul>
