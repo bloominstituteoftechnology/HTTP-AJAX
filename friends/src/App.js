@@ -16,6 +16,7 @@ class App extends Component {
     }
   }
 componentDidMount(){
+  console.log('this is mounting')
   axios
   .get('http://localhost:5000/friends')
   
@@ -51,6 +52,19 @@ setInput = (element)=>{
  console.log(this)
  this.setState({name: "", age:"", email: ""})
  }
+  deleteFriend = (friendId, reset)=> {
+  console.log('clicked')
+  axios
+    .delete(`http://localhost:5000/friends/${friendId}`)
+    .then(response => {
+      this.componentDidMount();
+      return reset;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
   render() {
  console.log(this.state)
     return (
@@ -66,7 +80,7 @@ setInput = (element)=>{
          
          { <Route 
          path ="/friend/:id" 
-        render={props => <Friend {...props} friends={this.state.friends}/>}
+        render={props => <Friend {...props} deleteFriend={this.deleteFriend} friends={this.state.friends}/>}
       /> }
       
       </div>
