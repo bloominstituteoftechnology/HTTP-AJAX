@@ -30,7 +30,7 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  saveNoteData = () => {
+  saveFriendData = () => {
     const friend = { name: this.state.name, email: this.state.email, age: this.state.age };
     axios
       .post(`http://localhost:5000/friends`, friend)
@@ -73,8 +73,9 @@ class App extends Component {
           name="age"
           value={this.state.age}
           className='input__general'
+          onClik={this.componentDidMount()}
         />
-        <button className='input__general' onClick={this.saveNoteData}>Make Friend</button>
+        <button className='input__general' onClick={this.saveFriendData}>Make Friend</button>
         <Display friends={this.state.friends} />
       </div>
     );
