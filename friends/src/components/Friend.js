@@ -7,7 +7,6 @@ export default class Friend extends Component {
       friend: []
     };
   }
-
   // render data for each friend
   render() {
     return [

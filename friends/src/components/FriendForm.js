@@ -39,6 +39,9 @@ export default class FriendForm extends Component {
   };
 
   render() {
+    // console.log('name', this.state.name);
+    // console.log('age', this.state.age);
+    // console.log('email', this.state.email);
     return (
       // Add new friend with this form
       <form>
@@ -77,7 +80,7 @@ export default class FriendForm extends Component {
             />
           </label>
         </div>
-
+        {/* Submit a Friend's info here */}
         <button type="button" onClick={this.handleCreateFriend}>
           Create Friend
         </button>
