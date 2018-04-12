@@ -31,10 +31,38 @@ class FriendsList extends Component {
   handleTextInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  
+
+  handleTextSubmit = e => {
+    e.preventDefault();
+  };
 
   render() {
-    return <div />;
+    return (
+      <div>
+        <h1>Friends</h1>
+        <input 
+        type="text"
+        onChange={this.handleTextInput}
+        placeholder="name"
+        name="name"
+        value={this.state.name}
+        />
+        <input 
+        type="text"
+        onchange={this.handleTextInput}
+        placeholder="age"
+        name="age"
+        value={this.state.age}
+        />
+        <input 
+        type="text"
+        onchange={this.handleTextInput}
+        placeholder="email"
+        name="email"
+        value={this.state.email}
+        />
+      </div>
+    )
   }
 }
 

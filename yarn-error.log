@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-router-dom
 
 PATH: 
   C:\Users\Kevin\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Kevin\bin;C:\Program Files\Python36\Scripts;C:\Program Files\Python36;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\adb;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Steam;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Users\Kevin\AppData\Local\Microsoft\WindowsApps;C:\program files (x86)\steam;C:\Users\Kevin\AppData\Local\atom\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\Kevin\AppData\Roaming\npm;C:\Users\Kevin\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -20,6 +20,7 @@ npm manifest:
     "description": "",
     "main": "server.js",
     "dependencies": {
+      "axios": "^0.18.0",
       "body-parser": "^1.18.2",
       "cors": "^2.8.4",
       "express": "^4.16.2",
@@ -152,6 +153,13 @@ Lockfile:
   aws4@^1.2.1:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
+  
+  axios@^0.18.0:
+    version "0.18.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+    dependencies:
+      follow-redirects "^1.3.0"
+      is-buffer "^1.1.5"
   
   balanced-match@^1.0.0:
     version "1.0.0"
@@ -649,6 +657,12 @@ Lockfile:
       parseurl "~1.3.2"
       statuses "~1.3.1"
       unpipe "~1.0.0"
+  
+  follow-redirects@^1.3.0:
+    version "1.4.1"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.4.1.tgz#d8120f4518190f55aac65bb6fc7b85fcd666d6aa"
+    dependencies:
+      debug "^3.1.0"
   
   for-in@^1.0.2:
     version "1.0.2"
@@ -2050,17 +2064,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 3221225786
-  Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c nodemon server.js
-  Directory: F:\Lambda\HTTP-AJAX
-  Output:
-  
-      at ProcessTermError.MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Program Files (x86)\Yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+  Error: EPERM: operation not permitted, unlink 'F:\Lambda\HTTP-AJAX\node_modules\package-json\node_modules\.bin'
