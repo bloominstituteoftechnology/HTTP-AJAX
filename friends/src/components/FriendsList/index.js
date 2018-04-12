@@ -1,4 +1,4 @@
-import FriendsList from "./FriendsList"
-import "./FriendsList.css"
+import FriendsList from './FriendsList'
+import './FriendsList.css'
 
 export default FriendsList

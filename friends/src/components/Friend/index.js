@@ -1,4 +1,4 @@
-import Friend from "./Friend"
-import "./Friend.css"
+import Friend from './Friend'
+import './Friend.css'
 
 export default Friend

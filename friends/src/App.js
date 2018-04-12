@@ -1,36 +1,36 @@
-import React, { Component } from "react"
-import { Route } from "react-router-dom"
-import "./App.css"
-import FriendsList from "./components/FriendsList"
-import { makeFetch } from "./utils"
-import AddFriendForm from "./components/AddFriendForm"
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+import './App.css'
+import FriendsList from './components/FriendsList'
+import { makeFetch } from './utils'
+import AddFriendForm from './components/AddFriendForm'
 
-const helper = makeFetch("http://localhost:5000")
+const helper = makeFetch('http://localhost:5000')
 
 const FriendsListWrapper = props => <FriendsList friends={props.friends} />
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       friends: []
     }
   }
-  setInitialState() {
-    helper("/friends").then(({ data }) =>
+  setInitialState () {
+    helper('/friends').then(({ data }) =>
       this.setState(prevState => ({ friends: [...data] }))
     )
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setInitialState()
   }
 
-  render() {
+  render () {
     return (
-      <div className="App">
+      <div className='App'>
         <Route
-          path="/"
+          path='/'
           render={props => (
             <div>
               <AddFriendForm />
