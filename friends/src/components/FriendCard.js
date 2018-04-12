@@ -16,17 +16,22 @@ export default class FriendCard extends Component {
 		this.fetchFriend(id);
 	}
 	// fetch friend by the given id
-	fetchFriend = (id) => {
+	fetchFriend = id => {
 		axios
 			.get(`http://localhost:5000/friends`)
 			.then(response => {
-				console.log('response', response.data[id - 1]);
-				this.setState({ friend: response.data[id - 1]});
+				if (id > response.data.length) {
+					// return <h1>Invalid: Friend not found</h1>;
+					alert("Friend not found");
+				} else {
+					console.log("response", response.data[id - 1]);
+					this.setState({ friend: response.data[id - 1] });
+				}
 			})
 			.catch(error => {
 				console.error(error);
 			});
-	}
+	};
 	// only fetch new movies
 	componentWillReceiveProps(newProps) {
 		if (this.props.match.params.id !== newProps.match.params.id) {
