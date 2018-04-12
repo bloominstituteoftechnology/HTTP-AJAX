@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      update: 0
+      currentFriend: ''
     };
   }
 
@@ -26,6 +26,11 @@ class App extends Component {
       });
   }
 
+  getFriendId = id => {
+    this.setState({ currentFriend: id });
+    console.log(id);
+  }
+
   render() {
 	console.log(this.state.friends.data)
     return (
@@ -33,11 +38,11 @@ class App extends Component {
         {/* <FriendsList friends={this.state.friends} /> */}
         <Route
           exact path="/"
-          render={props => <FriendsList friends={this.state.friends} />}
+          render={props => <FriendsList friends={this.state.friends} getFriendId={this.getFriendId} />}
         />
         <Route
-		  path="/friends/:id"
-          render={props => <FriendsCard friend={this.state.friends.data[0]} />}
+		      path="/friends/:id"
+          render={props => <FriendsCard friend={this.state.friends.data[props.match.params.id - 1]}/>}
         />
         <FriendsForm updateFriends={() => this.componentDidMount()} />
       </div>

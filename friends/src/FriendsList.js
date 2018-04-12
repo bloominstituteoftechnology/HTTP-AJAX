@@ -13,7 +13,7 @@ class FriendsList extends Component {
 		return (
 			<div>
 				{this.props.friends.data.map((friend) => (
-					<FriendsCard friend={friend}/>
+					<FriendsCard friend={friend} onClick={() => this.props.getFriendId()} />
 				))}
 			</div>
 		);
