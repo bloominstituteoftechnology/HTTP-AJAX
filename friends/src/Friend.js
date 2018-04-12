@@ -1,72 +1,82 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
+import FriendList from "./FriendsList";
+import Home from './Home'
 
 class Friend extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          inputValue= '',
-          friends : []
-        }
-    }
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.state = {
+      friends: [],
+      name: "",
+      age: "",
+      email: ""
+    };
+  }
 
-    handleChange = (event) => {
-      this.setState({ inputValue: event.target.value });
-    }
-
-    handleSubmit = (event) => {
-      const todos = this.state.todos.concat({
-        text: this.state.inputValue,
-        completed: false
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(respone => {
+        this.setState({ friends: respone.data });
+      })
+      .catch(error => {
+        console.log(`There was an error getting friends: ${error}`);
       });
-      this.setState({ todos: todos, inputValue: "" }, this.updateLocalStorage);
-      event.preventDefault();
-    }
+  }
 
-    render() {
-        return (
-          <div className="friend-add">
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-            <form onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                value={this.state.inputValue}
-                onChange={this.handleChange} />
-              <input
-                type="submit"
-                value="Add Todo" />
-            </form>
-          </div>
+  handleSubmit = event => {
+    const newFriend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
+    axios
+      .post("http://localhost:5000/friends", newFriend)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err));
+  };
 
-        );
-    }
-}
-
-
-/////////////////////////////
-
-
-
-handleDelete = (event) => {
-  const todos = this.state.todos;
-  todos.splice(event.target.id, 1);
-  this.setState({ todos: todos }, this.updateLocalStorage);
-}
-
-componentWillUnmount = () => {
-  this.updateLocalStorage();
-}
-updateLocalStorage = () => {
-  window.localStorage.setItem("todos", JSON.stringify(this.state.todos));
-}
-
-
-
-
-
-render = () => {
+  render() {
     return (
 
+      <div>
+        <Home />
+        <div className="friend-form">
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+            <input
+              type="number"
+              name="age"
+              placeholder="Age"
+              value={this.state.age}
+              onChange={this.handleChange}
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <input type="submit" value="submit" />
+          </form>
+        </div>
+        <FriendList friendProp={this.state} />
+      </div>
     );
-  };
+  }
+}
 
 export default Friend;

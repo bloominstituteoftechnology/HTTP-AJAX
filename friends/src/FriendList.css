@@ -1,0 +1,16 @@
+.cards {
+
+  text-align: left;
+  margin: 5px auto;
+  width: 500px;
+  heigth: 300px;
+  border: 2px solid #8f9eb7;
+}
+
+.friend-form {
+  padding: 10px;
+  margin: 5px auto;
+  heigth: 200px;
+  width: 500px;
+
+}
