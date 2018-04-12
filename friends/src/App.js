@@ -10,7 +10,7 @@ import NewFriend from './NewFriend';
 const App = () => {
   return (
       <div>
-          <Route path='/' component={FriendList}/>
+          <Route exact path='/' component={FriendList}/>
           <Route path='/' component={NewFriend} />
       </div>
   );

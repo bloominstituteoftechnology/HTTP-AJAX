@@ -46,12 +46,13 @@ class NewFriend extends Component {
 
     handleSubmit = event => {
       console.log(this.state.newFriend);
-      // event.preventDefault()
-      axios.post('http://localhost:5000/friends', {
+      event.preventDefault();
+      const friend = {
         name: this.state.newFriend.name,
         age: this.state.newFriend.age,
         email: this.state.newFriend.email,
-      })
+      }
+      axios.post('http://localhost:5000/friends', { friend })
       .then((response) => { })
       this.setState({
         newFriend: {
@@ -79,3 +80,20 @@ class NewFriend extends Component {
 
 
 export default NewFriend;
+
+// handleSubmit = event => {
+//   console.log(this.state.newFriend);
+//   event.preventDefault();
+//   const friend = {
+//     name: this.state.newFriend.name,
+//     age: this.state.newFriend.age,
+//     email: this.state.newFriend.email,
+//   }
+//   axios.post('http://localhost:5000/friends', { friend })
+//     .then((response) => {
+//       console.log(response);
+//       window.location = '/';
+//     })
+//     .then(() => this.resetState())
+//     .catch((error) => console.log(error))
+// }
