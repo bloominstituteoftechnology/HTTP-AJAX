@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Display from './components/Display';
 import axios from 'axios';
-import { Alert } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -23,42 +23,6 @@ class App extends Component {
       })
   }
 
-  names = () => {
-    return (
-      <div>
-        {this.state.friends.map(friend => (
-          <div key={friend.id} className="friend">
-            <div className="friend--name">{friend.name}</div>
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  ages = () => {
-    return (
-      <div>
-      {this.state.friends.map(friend => (
-        <div key={friend.id} className="friend">
-          <div className="friend--age">{friend.age}</div>
-        </div>
-      ))}
-      </div>
-    )
-  }
-
-  emails = () => {
-    return (
-      <div>
-        {this.state.friends.map(friend => (
-          <div key={friend.id} className="friend">
-            <div className="friend--email">{friend.email}</div>
-          </div>
-        ))}
-      </div>
-    )
-  }
-
   render() {
     const friendsCopy = [...this.state.friends];
     return (
@@ -67,13 +31,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <div className="friends">
-          {this.names()}
-          {this.ages()}
-          {this.emails()}
-          {console.log(this.state.friends)}
-          <Alert>Reactstrap test</Alert>
-        </div>
+        <Container className="cardContainer">
+          {friendsCopy.map((friend, index) => (<Display key={friend+index} friend={friend} />))}
+        </Container>
       </div>
     );
   }

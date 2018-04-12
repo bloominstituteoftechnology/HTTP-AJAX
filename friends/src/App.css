@@ -27,26 +27,16 @@
   to { transform: rotate(360deg); }
 }
 
-.friends {
+.cardContainer {
   display: flex;
-  justify-content: space-around;
-  margin: 5%;
-  line-height: 30px;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.Card {
+  margin: 1%;
 }
 
 .friend {
-  display: flex;
-  justify-content: space-between;
-}
-
-.friend--name {
-
-}
-
-.friend--age {
-  
-}
-
-.frien--email {
-
+  margin-top: 25px;
 }
