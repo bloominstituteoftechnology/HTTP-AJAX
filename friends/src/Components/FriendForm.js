@@ -16,7 +16,7 @@ class FriendForm extends React.Component {
         const newObj = {
             id: this.props.id,
             name: name,
-            age: age,
+            age: Number(age),
             email: email
         }
         this.setState({ name: '', age: '', email: '' });

@@ -59,7 +59,7 @@
 }
 
 .button-add {
-  background-color: rgb(2, 138, 184);  
+  background-color: rgb(2, 138, 184);
 }
 
 .button-save {
@@ -67,5 +67,13 @@
 }
 
 .button-return {
-  background-color: rgb(30, 126, 43);  
+  background-color: rgb(30, 126, 43);
+}
+
+.button-update {
+  background-color: rgb(207, 143, 24);
+}
+
+.button-delete {
+  background-color: rgb(196, 58, 24);
 }

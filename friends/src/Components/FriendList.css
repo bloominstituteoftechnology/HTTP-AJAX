@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 75%;
     margin: 0 auto;
 }
 
@@ -32,6 +32,6 @@
 }
 
 .friends_email {
-    width: 10%;
+    width: 20%;
     margin: 0 40px;
 }
