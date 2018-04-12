@@ -23,7 +23,7 @@ class Friend extends React.Component {
     render() {
         return (
             <div className='Friend'>
-                <Card key={this.props.friend.id} className='Friend'>
+                <Card key={this.props.friend.id} className='Friend card border-primary mb-3'>
                     <CardHeader>
                         {this.props.friend.name}
                     </CardHeader>
