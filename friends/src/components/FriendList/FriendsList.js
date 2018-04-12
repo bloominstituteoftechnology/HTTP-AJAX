@@ -21,6 +21,7 @@ class FriendsList extends Component {
     axios
       .get(`http://localhost:5000/friends/`)
       .then(response => {
+        // console.log(response.data);
         this.setState({ friends: response.data });
       })
       .catch(err => {
@@ -75,6 +76,12 @@ class FriendsList extends Component {
         value={this.state.email}
         />
         <button onClick={this.saveFriendData}>Save Friend</button>
+        <div>
+          Your friends are: {this.state.friends.map((friend) => {
+            const {name, age, email} = friend;
+            return <h3>Name: {name} Age: {age} Email: {email}</h3>
+          })}
+        </div>
       </div>
     )
   }
