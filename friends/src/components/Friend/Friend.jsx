@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Friend = ({ name, email, age }) => (
   <div className='Friend'>
@@ -7,5 +8,11 @@ const Friend = ({ name, email, age }) => (
     </p>
   </div>
 )
+
+Friend.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired
+}
 
 export default Friend
