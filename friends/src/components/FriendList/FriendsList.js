@@ -39,9 +39,9 @@ class FriendsList extends Component {
   saveFriendData = () => {
     const friendData = {name: this.state.name, age: this.state.age, email: this.state.email };
     axios
-    .post(`http://localhost:5000/friend`, friend)
+    .post(`http://localhost:5000/friend`, friendData)
     .then(savedData => {
-      console.log(savedNote);
+      console.log(savedData);
     })
     .catch(err => {
       console.log(err);
@@ -74,7 +74,7 @@ class FriendsList extends Component {
         name="email"
         value={this.state.email}
         />
-        <button onClick={this.}
+        <button onClick={this.saveFriendData}>Save Friend</button>
       </div>
     )
   }
