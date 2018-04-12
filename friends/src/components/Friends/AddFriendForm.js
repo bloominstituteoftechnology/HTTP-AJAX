@@ -45,7 +45,7 @@ class AddFriendForm extends React.Component {
 
                 <FormGroup>
                     <label>Age</label>
-                    <Input type='text' placeholder='Age' name='age' onChange={this.handleInputChanges} value={this.state.age}/>
+                    <Input type='number' placeholder='Age' name='age' onChange={this.handleInputChanges} value={this.state.age}/>
                 </FormGroup
                 >
                 <FormGroup>
