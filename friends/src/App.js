@@ -8,40 +8,43 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      newName: '',
-      newAge: '',
-      newEmail: ''
+      name: '',
+      age: '',
+      email: '',
+      showUpdateFriend: false
     };
   }
 
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getFriends = () => {
     axios
     .get('http://localhost:5000/friends')
     .then(response => {
- 
       this.setState({ friends: response.data });
     })
-    
     .catch(error => {
       console.error('This did not work', error);
     });
   }
 
 handleName = (event) => {
-  this.setState({ newName: event.target.value }) };
+  this.setState({ name: event.target.value }) };
 
 handleAge = (event) => {
-  this.setState({ newAge: event.target.value }) };
+  this.setState({ age: event.target.value }) };
 
 handleEmail = (event) => {
-  this.setState({ newEmail: event.target.value }) };
+  this.setState({ email: event.target.value }) };
 
+showUpdateFriend = () => {
+    this.setState({ showUpdateFriend: !this.state.showUpdateFriend }); };
 
 handleSubmit = event => {  
-    // event.preventDefault();
-
     const user = {
-      name: this.state.newName, age: this.state.newAge, email: this.state.newEmail };
+      name: this.state.name, age: this.state.age, email: this.state.email };
 
     axios
     .post('http://localhost:5000/friends', user)
@@ -53,8 +56,42 @@ handleSubmit = event => {
     .catch(err => {
         console.error('Something went amiss', err);
     })
-      this.setState( {newName: '', newAge: '', newEmail: ''} )
+    this.setState( {name: '', age: '', email: ''} )
 }
+
+  deleteFriend = (friendId) => {
+    // alert(friendId);
+    axios
+    .delete(`http://localhost:5000/friends/${friendId}`)
+    .then(response => {
+      this.getFriends();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
+  updateFriend = (friendId) => {
+    const friend = {};
+    if (this.state.name !== '') {
+      friend.name = this.state.name;
+    }
+    if (this.state.age !== '') {
+      friend.age = this.state.age;
+    }
+    if (this.state.email !== '') {
+      friend.email = this.state.email;
+    }
+    axios
+    .put(`http://localhost:5000/friends/${friendId}`, friend)
+    .then(response => {
+      this.setState({ showUpdateFriend: false, name: '', age: '', email: ''})
+      this.getFriends();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
 
   render() {
     return (
@@ -68,12 +105,28 @@ handleSubmit = event => {
         </p>
        
         <div>
-          {this.state.friends.map(friend => {
+          {this.state.friends.map((friend, index) => {
           return (
-            <div className="Friends">
-                <div> {`Name: ${friend.name}`} </div>
+            <div key={friend.id} className="Friends">
+                <h3> {`Name: ${friend.name}`} </h3>
                 <div> {`Age: ${friend.age}`} </div>
                 <div> {`Email: ${friend.email}`} </div>
+                <button onClick={() => this.deleteFriend(friend.id)} type="submit">Delete Friend</button>
+                <button onClick={this.showUpdateFriend} type="submit">Update Friend Info</button>
+                  {this.state.showUpdateFriend ? (
+                    <div> 
+                      Name:
+                        <input type="text" placeholder="Name" onChange={this.handleName} />
+                      Age:
+                        <input 
+                          type="number" placeholder="Age" onChange={this.handleAge} />
+                      Email:
+                        <input type="text"  placeholder="Email"  onChange={this.handleEmail} />
+
+                      <button onClick={() => this.updateFriend(friend.id)}>Update Friend </button>
+                    </div>
+                
+               ) : null}
             </div>
         );
         })}
