@@ -30,7 +30,7 @@ export default class FriendForm extends Component {
       .then(savedFriend => {
         console.log(friend);
         // componentDidMount to update FriendList
-        this.props.addFriend();
+        this.props.getFriendList();
       })
       .catch(err => {
         console.log(err);

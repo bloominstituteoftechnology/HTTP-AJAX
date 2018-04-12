@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class Friend extends Component {
   constructor(props) {
@@ -18,7 +19,16 @@ export default class Friend extends Component {
   updateFriend = () => {};
 
   // delete friend's data from the server
-  deleteFriend = () => {};
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.props.getFriendList();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   // render data for each friend
   render() {
     console.log(this.state.value);
@@ -45,7 +55,7 @@ export default class Friend extends Component {
         />
         {/* Save updates to a friend */}
         <button onClick={this.updateFriend}>Save Changes</button>
-        <button onClick={this.deleteFriend}>Delete Friend</button>
+        <button onClick={() => this.deleteFriend(this.props.friend.id)}>Delete Friend</button>
       </form>
     ];
   }

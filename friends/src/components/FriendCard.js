@@ -32,7 +32,7 @@ export default class FriendCard extends Component {
 				console.error(error);
 			});
 	};
-	// only fetch new movies
+	// only fetch new friends
 	componentWillReceiveProps(newProps) {
 		if (this.props.match.params.id !== newProps.match.params.id) {
 			this.fetchFriend(newProps.match.params.id);
