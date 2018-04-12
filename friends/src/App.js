@@ -36,7 +36,7 @@ class App extends Component {
   saveNoteData = () => {
     const note = { name: this.state.name, age: this.state.age, email: this.state.email };
     axios
-      .post(`http://localhost:5000/friend`, friend)
+      .post(`http://localhost:5000/friend`)
       .then(savedNote => {
         console.log(savedNote);
       })
