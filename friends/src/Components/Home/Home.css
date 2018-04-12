@@ -1,0 +1,40 @@
+body {
+  /* margin: 0 auto;
+  height: 100%;
+  width: 100%; */
+  background-image: url("./img/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* display: flex;
+  justify-content: center; */
+}
+
+h1 {
+	font-family: Orbitron;
+	font-size: 70px;
+	font-style: italic;
+	font-variant: small-caps;
+	font-weight: 700;
+	line-height: 42px;
+}
+
+.FriendsDiv {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.FriendsDiv h1 {
+    margin: 0;
+}
+
+.FriendsLink {
+    color: #000;
+    margin-top: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
