@@ -1,37 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import FriendsList from './FriendsList';
-import axios from 'axios';
+import React, { Component } from "react";
+import Friend from "./Friend";
+import Home from "./Home";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
 
 class App extends Component {
-  constructor () {
-    super();
-    this.state = {
-      friends : []
-    }
-  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <FriendsList />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/friends/" component={Friend} />
+        </Switch>
       </div>
     );
   }
-  componentDidMount() {
-    axios
-    .get('http://localhost:5000/friends')
-    .then(response => {
-      this.setState(() => ({ friends: response.data }));
-    })
-    .catch(error => {
-      console.error('Server Error', error);
-    });
-  }
 }
-
 export default App;
