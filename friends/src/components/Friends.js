@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 import axios from 'axios';
 
 
@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: [],
+      friends: [],
+      name: '',
       age: '',
       email: ''
     };
@@ -19,9 +20,9 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8000/note/get/all`)
+      .get(`http://localhost:5000/friends`)
       .then(response => {
-        this.setState({ name: response.data });
+        this.setState({ friends: response.data });
       })
       .catch(err => {
         console.log(err);
@@ -37,16 +38,18 @@ class App extends Component {
 
 
   saveNameData = () => {
-    const name = { title: this.state.title, textBody: this.state.textBody };
+    const name = { name: this.state.name, age: this.state.age, email: this.state.email };
     axios
-      .post(`http://localhost:8000/note/create`, name)
+      .post(`http://localhost:5000/friends`, name)
       .then(savedName => {
         console.log(savedName);
+        this.setState({ name: '', age: '', email: '' });
+        this.componentDidMount();
       })
       .catch(err => {
         console.log(err);
       });
-    this.setState({ title: '', textBody: '' });
+    // this.setState({ name: '', age: '', email: '' });
   };
 
 
@@ -55,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Friends List</h1>
         </header>
 
@@ -81,8 +84,16 @@ class App extends Component {
             placeholder="email"
             name="email"
             value={this.state.email}
+            />
 
-        <button onClick={this.saveFriend}>Save Friend</button>
+        <button onClick={this.saveNameData}>Save Friend</button>
+
+        {this.state.friends.map((friend) => { 
+          return (
+           <div key={friend.id}>
+              { friend.name }
+           </div>)
+         } )}
 
       </div>
 
