@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Button, Card, CardText,
-    CardTitle, Col, Row} from 'reactstrap'
+    CardTitle, CardHeader, Col, Row} from 'reactstrap'
 import './Friends.css'
 class Friend extends React.Component {
     constructor(props) {
@@ -24,9 +24,9 @@ class Friend extends React.Component {
         return (
             <div className='Friend'>
                 <Card key={this.props.friend.id} className='Friend'>
-                    <CardTitle>
+                    <CardHeader>
                         {this.props.friend.name}
-                    </CardTitle>
+                    </CardHeader>
                     <CardText>
                         <Row>
                             <Col>
@@ -41,7 +41,8 @@ class Friend extends React.Component {
 
 
                     </CardText>
-                    <Button color='danger' onClick={this.removeFriend} id={this.props.friend.id}>Delete</Button>
+                    <Button color='primary'  id={this.props.friend.id} className='Friend_cardbutton'>Edit</Button>
+                    <Button color='danger' onClick={this.removeFriend} id={this.props.friend.id} className='Friend_cardbutton'>Delete</Button>
                 </Card>
             </div>
 
