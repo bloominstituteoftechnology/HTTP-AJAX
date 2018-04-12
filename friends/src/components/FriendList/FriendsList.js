@@ -44,12 +44,12 @@ class FriendsList extends Component {
       email: this.state.email
     };
     axios
-      .post(`http://localhost:5000/friend`, friendData)
+      .post(`http://localhost:5000/friend/create`, friendData)
       .then(savedData => {
-        console.log(savedData);
+        // console.log(savedData);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
     this.setState({ name: "", age: "", email: "" });
   };
@@ -79,13 +79,13 @@ class FriendsList extends Component {
           name="email"
           value={this.state.email}
         />
-        <button
+        {/* <button
           name="submit button"
           type="submit"
           onClick={this.saveFriendData}
         >
           Save Friend
-        </button>
+        </button> */}
         <div>
           Your friends are:{" "}
           {this.state.friends.map(friend => {
