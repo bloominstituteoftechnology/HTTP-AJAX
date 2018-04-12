@@ -2,24 +2,54 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
-}
+} */
 
-.App-title {
+/* .App-title {
   font-size: 1.5em;
-}
+} */
 
 .App-intro {
   font-size: large;
+}
+
+.friend-card {
+  font-family: arial;
+  font-size: 16px;
+  background-color: lightgray;
+  cursor: pointer;
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  margin: auto;
+  border: 1px dotted darkslategray;
+}
+
+form {
+  width: 100%;
+  margin-top: 15px;
+}
+
+input { 
+  box-shadow: 4px 4px 4px purple;
+  text-align: center;
+  border-radius: 5%;
+}
+
+button {
+  background-color: purple;
+  color: white;
+  margin-left: 15px;
+  font-weight: bold;
 }
 
 @keyframes App-logo-spin {

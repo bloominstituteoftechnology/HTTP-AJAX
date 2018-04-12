@@ -17,6 +17,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getFriends();
+  }
+    getFriends = () => {
+
+    
     axios //implementing axios
       .get(`http://localhost:5000/friends`) //fetching data from localhost:5000
       .then(response => {
@@ -44,6 +49,17 @@ class App extends Component {
     this.setState({ name: '', age: '', email: '' });
     };
 
+  deleteFriend = friendId => {
+    axios
+      .delete(`http://localhost:5000/friends/${friendId}`)
+      .then(response => {
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };  
+
   render() {
     return (
       <div className="App">
@@ -54,6 +70,7 @@ class App extends Component {
             <div className="friend friendName"> Name: {friend.name} </div>
             <div className="friend friendAge"> Age: {friend.age} </div>
             <div className="friend friendEmail"> Email: {friend.email} </div>
+            <button onClick={() => this.deleteFriend(friend.id)}>Delete</button>
             </div>
             </div>
 
