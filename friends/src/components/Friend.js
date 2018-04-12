@@ -14,6 +14,11 @@ export default class Friend extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // update a friend's data on a server
+  updateFriend = () => {};
+
+  // delete friend's data from the server
+  deleteFriend = () => {};
   // render data for each friend
   render() {
     console.log(this.state.value);
@@ -38,7 +43,9 @@ export default class Friend extends Component {
           placeholder="Email"
           onChange={this.handleNewInput}
         />
+        {/* Save updates to a friend */}
         <button onClick={this.updateFriend}>Save Changes</button>
+        <button onClick={this.deleteFriend}>Delete Friend</button>
       </form>
     ];
   }
