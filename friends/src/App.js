@@ -26,7 +26,9 @@ class App extends Component {
   handleNameChange = event => {
     const name = event.target.value;
     this.setState({ newFriend: { 
-      name: name
+      name: name,
+      age: this.state.newFriend.age,
+      email: this.state.newFriend.email
     } })
   }
 
@@ -34,7 +36,9 @@ class App extends Component {
     const age = event.target.value;
     this.setState({
       newFriend: {
-        age: age
+        name: this.state.newFriend.name,
+        age: age,
+        email: this.state.newFriend.email
       }
     })
   }
@@ -43,6 +47,8 @@ class App extends Component {
     const email = event.target.value;
     this.setState({
       newFriend: {
+        name: this.state.newFriend.name,
+        age: this.state.newFriend.age,
         email: email
       }
     })
@@ -50,13 +56,20 @@ class App extends Component {
 
     handleSubmit = event => {
       console.log(this.state.newFriend);
-    event.preventDefault()
+      // event.preventDefault()
       axios.post('http://localhost:5000/friends', {
-        name: 'test',
-        age: Number,
-        email: '',
+        name: this.state.newFriend.name,
+        age: this.state.newFriend.age,
+        email: this.state.newFriend.email,
       })
       .then((response) => { })
+      this.setState({
+        newFriend: {
+          name: '',
+          age: '',
+          email: ''
+        }
+      })
   }
 
 
@@ -76,12 +89,12 @@ class App extends Component {
               );
             })}
           </ul>
-          <form>
+          <form id="newFriendForm" onSubmit={this.handleSubmit}>
             <input className="newFriend-name" placeholder="Name" value={this.state.newFriend.name} onChange={this.handleNameChange}/>
             <input placeholder="Age" value={this.state.newFriend.age} onChange={this.handleAgeChange}/>
             <input placeholder="E-mail" value={this.state.newFriend.email} onChange={this.handleEmailChange}/>
-            <button onClick={this.handleSubmit} >Submit</button>
           </form>
+          <button type='submit' form='newFriendForm'>Submit</button>
         </div>
       );
     }
