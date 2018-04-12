@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component } from "react";
 
 const FriendCard = props => {
   return (
-      <div> {props.friends.map(f => <div key ={f.id} className ='Friends'>
-      <h2> {f.name} </h2>
-      <h3> {f.age} </h3>
-      <h3> {f.email} </h3>
-      </div>
-      )}
-      </div>
+    <div>
+      {props.friendProp.friends.map(friend => {
+        return (
+          <div className="cards">
+            <div>Name:{friend.name}</div>
+            <div>Age: {friend.age}</div>
+            <div>Email:{friend.email}</div>
+          </div>
+        );
+      })}
+    </div>
   );
 };
-
 export default FriendCard;
