@@ -20,13 +20,46 @@ export default class FriendsList extends Component {
   //         console.error("Server Error", error);
   //       });
   //   }
+  handleTextInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  addFriend = () => {
+    console.log("here it is");
+    const friend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
+    axios
+      .post(`http://localhost:5000/friends`, friend)
+      .then(savedFriend => {
+        console.log(savedFriend);
+      })
+      .catch(err => {
+        console.log("You done fucked up", err);
+      });
+    this.setState({ name: "", age: "", email: "" });
+  };
 
   render() {
     return (
-      <div className="friend-list">
-        {this.props.friends.map(friend => (
-          <FriendDetails key={friend.id} friend={friend} />
-        ))}
+      <div>
+        <form>
+          Name:{" "}
+          <input onChange={this.handleTextInput} type="text" name="name" />
+          Age: <input onChange={this.handleTextInput} type="text" name="age" />
+          Email:{" "}
+          <input onChange={this.handleTextInput} type="text" name="email" />
+          <button onClick={this.addFriend}> Submit </button>
+        </form>
+
+        <div className="friend-list">
+          {this.props.friends.map(friend => (
+            <FriendDetails key={friend.id} friend={friend} />
+          ))}
+        </div>
       </div>
     );
   }
