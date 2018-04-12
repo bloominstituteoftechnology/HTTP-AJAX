@@ -5,20 +5,35 @@ class FriendAdd extends Component {
     constructor () {
         super();
         this.state = {
-            newFriend: ['a','b']
-        }
+            friends: [],
+            inputValue: ""
+          };
     }
-    render () {
+      
+
+      handleChange = event => {
+        this.setState({ inputValue: event.target.value });
+      };
+      handleSubmit = event => {
+        const Friends = this.state.friends.concat({name: this.state.inputValue });
+        this.setState({ friends: Friends, inputValue: "" });
+        event.preventDefault();
+      };
+      render() {
         return (
-          <div className="inputField">
-              New Friend Name: <input type="text" /> 
-              New Friend Age: <input type="text"  /> 
+          <div className="friend-add">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                value={this.state.inputValue}
+                onChange={this.handleChange}
+              />
+              <input type="submit" value="Add a Name" />
+            </form>
           </div>
         );
-    }
-    // handleChangeName () {
-    //   this.setState({ newFriend[0]: event.target.value });
-    // }
+      }
+
     // handleChangeAge () {
     //   this.setState({ newFriend: event.target.value });
     // }

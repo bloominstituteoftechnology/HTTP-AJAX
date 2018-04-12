@@ -19,11 +19,20 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">UltimateFriends.com</h1>
         </header>
-        <FriendAdd />
+        <FriendAdd ref={(newData) => {this.friendData = newData}} />
+        {console.log(this.friendData)}
+          //Mangaged to setstate on friendadd on input + enter, now, here, we are trying to access the state of FriendAdd.js so we can add some of the
+          //information to the state here (friends)
         <FriendsList friendProp={this.state} />
       </div>
     );
   }
+
+//   <FieldEditor
+//   ref={(fieldEditor1) => {this.fieldEditor1 = fieldEditor1;}
+//   {...props}
+// />
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
