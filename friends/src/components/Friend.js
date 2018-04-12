@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek'
-import _ from 'lodash'
+import {  RIEInput } from 'riek'
 import axios from 'axios';
 
 class Friend extends Component{
-  constructor(props) {
-    super(props);
-  }
 
   updateFriend = data => {
     axios.put(`http://localhost:5000/friends/${this.props.friend.id}`, data)
@@ -31,9 +27,20 @@ class Friend extends Component{
             propName="name"
           />
         </td>
-        <td>{age}</td>
-        <td>{email}</td>
-        {/* <td><Button onClick={() => update(id)} color="warning" size="sm">Update</Button></td> */}
+        <td>
+          <RIEInput
+            value={age}
+            change={this.updateFriend}
+            propName="age"
+          />
+        </td>
+        <td>
+          <RIEInput
+            value={email}
+            change={this.updateFriend}
+            propName="email"
+          />
+        </td>
         <td><Button onClick={this.props.deleteFromFriendsList} color="danger" size="sm">Delete</Button></td>
       </tr>
     );

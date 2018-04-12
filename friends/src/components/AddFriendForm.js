@@ -23,6 +23,7 @@ class AddFriendForm extends Component {
     axios.post('http://localhost:5000/friends', this.state.newFriend)
       .then(response => {
         this.props.updateFriendsList(response.data);
+        this.props.toggle();
       })
       .catch(error => {
         console.log(error);
@@ -31,8 +32,7 @@ class AddFriendForm extends Component {
 
   render() {
     return (
-      <div>
-      <h3>Add a friend!</h3>
+      <div style={{margin: '9px'}}>
       <Form>
         <FormGroup row>
           <Label sm={2}>Name</Label>
