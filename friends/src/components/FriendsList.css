@@ -1,0 +1,19 @@
+
+.nameCard {
+    border: 1px solid black;
+    display: block;
+    width: 25%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.nameBox {
+    border-bottom: 1px dashed black;
+}
+
+.name {
+    font-size: 25px;
+    margin: 0;
+}

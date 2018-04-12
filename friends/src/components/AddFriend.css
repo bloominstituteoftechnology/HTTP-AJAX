@@ -1,0 +1,42 @@
+
+.formBox {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    width: 25%;
+    height: 160px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.inputField {
+    width: 65%;
+    margin: 5px auto;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+.inputField1 {
+    width: 65%;
+    margin: 5px auto;
+    margin-top: 10px;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+.friendTitle {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.submitButton {
+    width: 25%;
+    margin: 5px auto;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
