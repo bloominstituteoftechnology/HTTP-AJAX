@@ -14,6 +14,7 @@ class List extends Component {
 handleTextChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  
   saveData = () => {
     const poo = { name: this.state.name, age: this.state.age, email: this.state.email };
     axios
