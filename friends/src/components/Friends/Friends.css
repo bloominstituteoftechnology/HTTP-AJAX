@@ -4,6 +4,7 @@
     width: 225px;
     height: 300px;
     margin-right: 20px;
+    margin-top: 10px;
 }
 
 .Friend Card {
@@ -13,5 +14,7 @@
 .Friend__cardlist {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    width: 1000px;
 }
