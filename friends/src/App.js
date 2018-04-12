@@ -18,6 +18,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getFriends = () => {
     axios
       .get('http://localhost:5000/friends')
       .then(res => {
@@ -49,9 +53,9 @@ class App extends Component {
 
   render() {
     return <div className="App">
-          <Route exact path="/" component={Home} />
-          <Route exact path="/friends" render={props => <Friends {...props} friends={this.state.friends} handleNewFriend={this.handleNewFriend} addFriend={this.addFriend} state={this.state} />} />
-          <Route exact path="/friends/:id" component={Friend} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/friends" render={props => <Friends {...props} friends={this.state.friends} handleNewFriend={this.handleNewFriend} addFriend={this.addFriend} state={this.state} />} />
+        <Route exact path="/friends/:id" render={props => <Friend {...props} getFriends={this.getFriends} />} />
       </div>;
   }
 }
