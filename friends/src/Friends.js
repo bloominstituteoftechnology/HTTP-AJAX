@@ -45,7 +45,7 @@ class Friends extends Component {
             <div className='friends' key={friends.id}>
               <ul> 
                 <li>
-                  <h3> { friends.name } </h3>
+                  <Link to={`/friend/:${friends.id}`}> <h3> { friends.name } </h3> </Link>
                   <h4> email: { friends.email } </h4>
                   <h5> age: { friends.age } </h5>
                 </li>

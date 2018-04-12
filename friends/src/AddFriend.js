@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+// import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import { Button, Form, Input, Label } from 'reactstrap';
 import axios from 'axios';
 
@@ -14,12 +14,10 @@ class AddFriend extends Component {
           name: document.getElementById('Name').value,
           email: document.getElementById('Email').value,
           age: document.getElementById('Age').value,
-      };
-      axios.post('http://localhost:5000/friends', friend)
+        };
+        axios.post('http://localhost:5000/friends', friend)
         .then(() => {
-            return(
-        <Redirect to="/" />
-            )
+            window.location.href = '/';
         })
         .catch((error) => {
             console.log(error);
