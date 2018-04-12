@@ -4,7 +4,7 @@
     margin: 0 auto;
     flex-direction: column;
     width: 25%;
-    height: 160px;
+    height: 175px;
     margin-bottom: 15px;
     border: 1px solid black;
     border-radius: 5px;
@@ -26,17 +26,24 @@
 }
 
 .friendTitle {
+    width: 100%;
     display: flex;
-    margin: 0 auto;
-    margin-top: 5px;
+    margin: auto;
+    font-weight: bold;
+    font-size: 25px;
+    align-items: center;
+    border-bottom: 1px dashed black;
+    justify-content: space-around;
 }
 
 .submitButton {
-    width: 25%;
+    width: 20%;
     margin: 5px auto;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid black;
     background-color: black;
     color: white;
     font-weight: bold;
+    height: 25px;
 }
