@@ -4,7 +4,7 @@ export default class FriendCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			friends: []
+			friends: null
 		};
 	}
 
@@ -13,12 +13,13 @@ export default class FriendCard extends Component {
 		const id = this.props.match.params.id;
 		this.fetchFriend(id);
 	}
-	
+	// fetch movies by the given id
 	fetchFriend = (id) => {
 		axios
-			.get("http://localhost:5000/friends")
+			.get(`http://localhost:5000/friends${id}`)
 			.then(response => {
 				console.log(`response: ${response}`);
+				this.setState(() => { movie: response.data });
 			})
 			.catch(error => {
 				console.error(error);
@@ -26,6 +27,11 @@ export default class FriendCard extends Component {
 	}
 
 	render() {
-		return (<h1>Test</h1>);
+		const { name, age, email } = this.state.friend;
+		return (
+			<div>
+				<Friend friend={this.state.friend} />
+			</div>
+		);
 	}	
 }
