@@ -36,6 +36,19 @@ class FriendsList extends Component {
     e.preventDefault();
   };
 
+  saveFriendData = () => {
+    const friendData = {name: this.state.name, age: this.state.age, email: this.state.email };
+    axios
+    .post(`http://localhost:5000/friend`, friend)
+    .then(savedData => {
+      console.log(savedNote);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    this.setState({ name: '', age: '', email: ''});
+  };
+
   render() {
     return (
       <div>
@@ -61,6 +74,7 @@ class FriendsList extends Component {
         name="email"
         value={this.state.email}
         />
+        <button onClick={this.}
       </div>
     )
   }
