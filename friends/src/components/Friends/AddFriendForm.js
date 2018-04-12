@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-
+import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import './Friends.css'
 class AddFriendForm extends React.Component {
     constructor(props) {
         super(props);
@@ -36,17 +37,24 @@ class AddFriendForm extends React.Component {
     };
     render() {
         return (
-            <form onSubmit={this.addFriend}>
-                <label>Name</label>
-                <input type='text' placeholder='Name' name='name' onChange={this.handleInputChanges} value={this.state.name}/>
+            <Form onSubmit={this.addFriend} className='Friend__addform'>
+                <FormGroup>
+                    <label>Name</label>
+                    <Input type='text' placeholder='Name' name='name' onChange={this.handleInputChanges} value={this.state.name}/>
+                </FormGroup>
 
-                <label>Age</label>
-                <input type='text' placeholder='Age' name='age' onChange={this.handleInputChanges} value={this.state.age}/>
+                <FormGroup>
+                    <label>Age</label>
+                    <Input type='text' placeholder='Age' name='age' onChange={this.handleInputChanges} value={this.state.age}/>
+                </FormGroup
+                >
+                <FormGroup>
+                    <label>Email</label>
+                    <Input type='email' placeholder='Email' name='email' onChange={this.handleInputChanges} value={this.state.email}/>
+                </FormGroup>
 
-                <label>Email</label>
-                <input type='text' placeholder='Email' name='email' onChange={this.handleInputChanges} value={this.state.email}/>
-                <button type='submit'>Add Friend</button>
-            </form>
+                <Button color='primary' type='submit'>Add Friend</Button>
+            </Form>
         );
     }
 }
