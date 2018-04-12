@@ -37,10 +37,8 @@ export default class FriendsList extends Component {
     axios
       .post(`http://localhost:5000/friends`, friend)
       .then(newList => {
-        console.log("friend list", this.state.friends);
-        console.log("newList", newList);
-        this.setState({ friends: { ...this.state.friends, newList } });
-        console.log("friends", this.state.friends);
+        console.log(newList);
+        this.props.updateFriends(newList.data);
       })
       .catch(err => {
         console.log("You done fucked up", err);

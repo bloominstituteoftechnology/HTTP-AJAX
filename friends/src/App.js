@@ -24,16 +24,26 @@ export default class App extends Component {
       });
   }
 
+  updateFriends = arr => this.setState({ friends: arr });
+
   componentDidMount() {
     this.updateList();
   }
+
   render() {
     return (
       <div className="App">
         <Route
           exact
           path="/"
-          render={props => <FriendsList friends={this.state.friends} />}
+          render={props => {
+            return (
+              <FriendsList
+                updateFriends={this.updateFriends}
+                friends={this.state.friends}
+              />
+            );
+          }}
         />
         <Route
           path="/friends/:id"
