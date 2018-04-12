@@ -16,15 +16,16 @@ class App extends Component {
 
 
   componentDidMount() {
-    this.getNotes();
+    this.fetchData();
    };
 
-   getNotes = () => {
+   fetchData = () => {
     axios.get('http://localhost:5000/friends')
     .then(response => {
       this.setState({
         friends: response.data
       });
+      console.log(this.state.friends)
     })
     .catch(err => {
       console.log(err);
@@ -36,8 +37,6 @@ class App extends Component {
    }
 
    
-
-
    sendFriend = () => {
     const newFriend = {
       name: this.state.name,
@@ -47,7 +46,7 @@ class App extends Component {
     }
     axios.post(('http://localhost:5000/friends'), newFriend) 
       .then(friendSent => {
-        this.getNotes();
+        this.fetchData();
       })
       .catch(err => {
         console.log(err);
@@ -57,13 +56,25 @@ class App extends Component {
       })
    };
 
+   deleteFriend = (friendId) => {
+    axios.delete(`http://localhost:5000/friends/${friendId}`)
+    .then(response => {
+      this.fetchData()
+    }) .catch(err => {
+      console.log(err)
+    })
+   }
+
 
   render() {
     return (
       <div>
         <div className="friend__card">
           {this.state.friends.map(friend => (
-              <Friends key={friend.id} friend={friend}/>
+            <div className="friend_test">
+              <this.Friends key={friend.id} friend={friend}/>
+              <button onClick={() => this.deleteFriend(friend.id)}>Delete me</button>
+            </div>
           ))}
         </div>
         <input type="text" onChange={this.handleInput} placeholder="Name" name="name" value= {this.state.name}/>
@@ -71,22 +82,26 @@ class App extends Component {
         <input type="text" onChange={this.handleInput} placeholder="Email" name="email" value= {this.state.email}/>
         <button onClick={this.sendFriend }>New Friend</button>
       </div>
+
+      
     );
   }
-}
 
-function Friends({friend}) {
-  const{name, age, email, id} = friend;
-  return(
-      <div className="friend_test">
-        <div className="friend">{name}</div>
-        <div className="friend">{age}</div>
-        <div className="friend">{email}</div>
-        <div className="friend">{id}</div>
-        <button>Delete me</button>
-      </div>
-  )
+  Friends({friend}) {
+    const{name, age, email, id} = friend
+    return(
+        <div>
+          <div className="friend">{name}</div>
+          <div className="friend">{age}</div>
+          <div className="friend">{email}</div>
+          <div className="friend">{id}</div>
+        </div>
+    )
+  }
+  
 }
+//<button onClick={() => this.deleteFriend(id)}>Delete me</button>
+
 
 
 
