@@ -15,6 +15,7 @@ const SubmitNewFriend = (props) => {
         <input
           name='email'
           className='input'
+          type='email'
           value={props.email}
           placeholder='Email'
           onChange={props.updateValue}
@@ -22,6 +23,7 @@ const SubmitNewFriend = (props) => {
         <input
           name='age'
           className='input'
+          type='number'
           value={props.age}
           placeholder='Age'
           onChange={props.updateValue}

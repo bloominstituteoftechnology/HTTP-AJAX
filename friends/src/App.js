@@ -12,7 +12,7 @@ class App extends Component {
       friends:[],
       name: '',
       age: '',
-      email: ''
+      email: '',
     }
   }
   updateValue = (event) => {
@@ -22,22 +22,25 @@ class App extends Component {
     const friend = {name: this.state.name, age: this.state.age, email: this.state.email}
     axios.post(`http://localhost:5000/friends`, friend)
     .then(() => {
-      this.componentDidMount()
+      this.updateList();
     })
     this.setState({name: '', age: '', email: ''})
   }
-  componentDidMount(){
+  updateList = () => {
     axios.get('http://localhost:5000/friends')
     .then(response => {
       this.setState({friends: response.data});
     })
+  }
+  componentDidMount(){
+    this.updateList();
   }
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <Route exact path='/' render={(props) => <FriendsDisplay {...props} {...this.state}/>} />
-          <Route path='/:id' render={(props) => <Friend {...props} friends={this.state.friends}/>}/>
+          <Route path='/:id' render={(props) => <Friend {...props} updateList={this.updateList} friends={this.state.friends}/>}/>
         </header>
         <Route exact path='/' render={(props) => <SubmitNewFriend {...this.state} updateValue={this.updateValue} addNewFriend={this.addNewFriend}/>}/>
       </div>
