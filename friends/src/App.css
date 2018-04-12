@@ -26,3 +26,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.friend__card {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend_test {
+  border: 1px solid green;;
+  width: 30%;
+  display: block;
+  margin: 3% auto;
+}
+
+.friend {
+  text-align: center;
+}
