@@ -23,11 +23,9 @@ class DisplayFriends extends Component {
   }
   render() {
     return (
-      <div></div>
-    )
-  }
-} 
-
+    <div></div>
+    )}
+}
 
 
 export default DisplayFriends;
