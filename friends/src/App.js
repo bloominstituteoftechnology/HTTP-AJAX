@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Display from './components/Display';
 import axios from 'axios';
+import { Alert } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -71,6 +72,7 @@ class App extends Component {
           {this.ages()}
           {this.emails()}
           {console.log(this.state.friends)}
+          <Alert>Reactstrap test</Alert>
         </div>
       </div>
     );
