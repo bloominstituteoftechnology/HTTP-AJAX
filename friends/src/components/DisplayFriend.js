@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./DisplayFriend.css";
 
 class DisplayFriend extends React.Component {
@@ -41,7 +42,21 @@ class DisplayFriend extends React.Component {
     const { friend } = this.props;
     return (
       <li className="friend">
-        <div className="name">{friend.name}</div>
+        <Link
+          to={{
+            pathname: `/friends/${friend.id}`,
+
+            state: {
+              name: `${friend.name}`,
+
+              age: `${friend.age}`,
+
+              email: `${friend.email}`
+            }
+          }}
+        >
+          <div className="name">{friend.name}</div>
+        </Link>
         <div className="age">{`Age:${friend.age}`}</div>
         <div className="email">{`E-mail:${friend.email}`}</div>
         <button className={friend.id} onClick={this.props.removeFriend}>
@@ -71,7 +86,9 @@ class DisplayFriend extends React.Component {
               onChange={this.handleInputChange}
               value={this.state.email}
             />
-            <button onClick={this.updateFriend(friend.id)}>Save Changes</button>
+            <button onClick={() => this.updateFriend(friend.id)}>
+              Save Changes
+            </button>
           </div>
         ) : null}
       </li>
