@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Friends from './Components/Friends/Friends';
+import Friend from './Components/Friend/Friend';
+import Home from './Components/Home/Home';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +21,6 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(res => {
-        // console.log(res);
         this.setState({ friends: res.data });
       })
       .catch(err => {
@@ -39,23 +40,19 @@ class App extends Component {
     };
     axios.post('http://localhost:5000/friends', friend).then(savedFriend => {
       console.log(savedFriend);
+      this.setState({ name: '', email: '', age: '' });
     }).catch(err => {
       console.log(err);
     });
-    this.setState({ name: '', email: '', age: ''});
+
   };
 
   render() {
     return <div className="App">
-        <h1>List of Friends</h1>
-        <Route path="/" render={props => <Friends {...props} friends={this.state.friends} />} />
-        {/* <Route path='/friend:id' /> */}
-        <form onSubmit={this.addFriend}>
-          <input type="text" onChange={this.handleNewFriend} placeholder="name" name="name" value={this.state.name} />
-          <input type="text" onChange={this.handleNewFriend} placeholder="age" name="age" value={this.state.age} />
-          <input type="text" onChange={this.handleNewFriend} placeholder="email" name="email" value={this.state.email} />
-          <button type="submit">Add Friend</button>
-        </form>
+        <Route exact path="/" component={Home} />
+        <Route path="/friends" render={props => <Friends {...props} friends={this.state.friends} handleNewFriend={this.handleNewFriend} addFriend={this.addFriend} state={this.state}/>} />
+        <Route path="/friends/:id" render={props => <Friend {...props} friends={this.state.friends} />} />
+        {/* <Route path="/friend:id" component={Friend} /> */}
       </div>;
   }
 }
