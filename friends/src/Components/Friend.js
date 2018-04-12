@@ -12,6 +12,8 @@ class Friend extends React.Component {
             age: '',
             email: '',
         }
+
+        this.deleteFriend = this.deleteFriend.bind(this);
     }
 
     componentDidMount() {
@@ -21,16 +23,17 @@ class Friend extends React.Component {
             age: this.props.friend.age,
             email: this.props.friend.email
         });
-
-        deleteFriend() {
-            const id = this.state.id;
-            axios({
-                method: 'DELETE',
-                url: `http://localhost:5000/friends/${id}`,
-                headers: { 'Content-Type': 'application/json' },
-            });
-        }
     }
+
+    deleteFriend() {
+        const id = this.state.id;
+        axios({
+            method: 'DELETE',
+            url: `http://localhost:5000/friends/${id}`,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    }
+    
 
     render() {
         return (
@@ -39,7 +42,7 @@ class Friend extends React.Component {
                 <h4>Age: {this.state.age}</h4>
                 <h4>Email: {this.state.email}</h4>
                 <Link to={`friends/${this.state.id}/update`}>Update</Link>
-                <button> onClick={this.deleteFriend}>Delete</button>
+                <button onClick={this.deleteFriend}>Delete</button>
             </div>
         );
     }
