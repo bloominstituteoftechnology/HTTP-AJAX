@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 class App extends Component {
@@ -15,46 +14,46 @@ class App extends Component {
     }
   }
 
+
   componentDidMount() {
-  axios.get('http://localhost:5000/friends')
+    this.getNotes();
+   };
+
+   getNotes = () => {
+    axios.get('http://localhost:5000/friends')
     .then(response => {
-      this.setState({friends: response.data});
-      console.log(this.state.friends)
+      this.setState({
+        friends: response.data
+      });
     })
     .catch(err => {
       console.log(err);
     })
-   };
+  }
 
    handleInput = e => {
      this.setState({[e.target.name]: e.target.value});
    }
 
-   counterUp = () => {
-     this.setState( {
-       counter: this.state.counter+1
-     })
-   }
+   
+
 
    sendFriend = () => {
-     this.setState( {
-       counter: this.counterUp
-     })
     const newFriend = {
       name: this.state.name,
-      age: this.state.age,
+      age: Number(this.state.age),
       email: this.state.email,
-      id: this.state.counter
+      id: this.state.counter + 1
     }
     axios.post(('http://localhost:5000/friends'), newFriend) 
       .then(friendSent => {
-        console.log(friendSent);
+        this.getNotes();
       })
       .catch(err => {
         console.log(err);
       });
       this.setState( {
-        name: '', age: '', email: ''
+        name: '', age: '', email: '', counter: newFriend.id
       })
    };
 
@@ -70,7 +69,7 @@ class App extends Component {
         <input type="text" onChange={this.handleInput} placeholder="Name" name="name" value= {this.state.name}/>
         <input type="text" onChange={this.handleInput} placeholder="Age" name="age" value= {this.state.age}/>
         <input type="text" onChange={this.handleInput} placeholder="Email" name="email" value= {this.state.email}/>
-        <button onClick={this.sendFriend}>New Friend</button>
+        <button onClick={this.sendFriend }>New Friend</button>
       </div>
     );
   }
@@ -84,6 +83,7 @@ function Friends({friend}) {
         <div className="friend">{age}</div>
         <div className="friend">{email}</div>
         <div className="friend">{id}</div>
+        <button>Delete me</button>
       </div>
   )
 }
