@@ -1,8 +1,7 @@
 import React from 'react';
-
 const Friend = (props) => {
   const {friends} = props;
-  let friend = friends.find((friend) => friend.id === parseInt(props.match.params.id));
+  const friend = friends.find((friend) => friend.id === parseInt(props.match.params.id, 10));
   return (
     <div>
       <h1>Your Friend: </h1>
