@@ -8,7 +8,8 @@ import axios from 'axios';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { 
+      showUpdateFriend: false,  
       friends: [], //friends accpeting info as empty array
       name: "",
       age: "",
@@ -60,19 +61,61 @@ class App extends Component {
       });
   };  
 
+  showUpdateFriend = () => {
+    this.setState({ showUpdateFriend: !this.state.showUpdateFriend});
+  }
+
+
+  updateFriend = friendId => {
+    const friend = {};
+    if (this.state.name !== '') {
+      friend.name = this.state.name;
+    }
+    if (this.state.age !== '') {
+      friend.age = this.state.age;
+    }
+    if (this.state.email !== '') {
+      friend.email = this.state.email;
+    }
+    axios
+      .put(`http://localhost:5000/friends/${friendId}`, friend)
+      .then(response => {
+        this.setState({ showUpdateFriend: false, name: '', age: '', email: '' });
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="App">
-        {this.state.friends.map((friend, index) => {
+        {this.state.friends.map(friend => {
           return (
-            <div className="friend-card" key={friend + index}>
+            <div className="friend-card">
             <div key={friend.id} className="friendId">
             <div className="friend friendName"> Name: {friend.name} </div>
             <div className="friend friendAge"> Age: {friend.age} </div>
             <div className="friend friendEmail"> Email: {friend.email} </div>
             <button onClick={() => this.deleteFriend(friend.id)}>Delete</button>
+            <button onClick={this.showUpdateFriend}>Update</button>
+            
+            {this.state.showUpdateFriend ? (
+              <div>
+                <input className="TEST" type="text" name="name" onChange={this.handleTextChange} placeholder="What is your name?" />
+                <input type="number" name="age" onChange={this.handleTextChange} placeholder="Your Age?" />
+                <input type="text" name="email" onChange={this.handleTextChange} placeholder="Enter Email" />
+                <button onClick={() => this.updateFriend(friend.id)}>
+                Save Updates
+                </button>
+                </div>
+            ) : null}    
+
             </div>
             </div>
+
+
 
 )
 

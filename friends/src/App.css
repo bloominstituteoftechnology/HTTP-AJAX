@@ -22,16 +22,21 @@
   font-size: large;
 }
 
+.TEST{
+  color: black;
+}
+
 .friend-card {
   font-family: arial;
   font-size: 16px;
   background-color: lightgray;
   cursor: pointer;
-  width: 100%;
+  width: 65%;
   padding: 1rem;
   position: relative;
   margin: auto;
   border: 1px dotted darkslategray;
+  box-shadow: 4px 4px 4px purple;
 }
 
 form {
