@@ -7,6 +7,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+       name: '',
+       age: '',
+       email: '',
       friendsList: [],
      
     };    
@@ -32,14 +35,14 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value});
     console.log(this.state.name)
   };
-  handleAgeInput = e => {
-    this.setState({ [e.target.age]: e.target.value});
-    console.log(this.state.age)
-  };
-  handleEmailInput = e => {
-    this.setState({ [e.target.email]: e.target.value});
-    console.log(this.state.email)
-  };
+  // // handleAgeInput = e => {
+  // //   this.setState({ [e.target.age]: e.target.value});
+  // //   console.log(this.state.age)
+  // // };
+  // handleEmailInput = e => {
+  //   this.setState({ [e.target.email]: e.target.value});
+  //   console.log(this.state.email)
+  // };
 
   saveFriendData = () => {
     const newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
@@ -61,9 +64,10 @@ class App extends Component {
           <h1 className="App-title">Friends are</h1>
         </header>
         <h3> Enter a new friend below using Name, Age, and Email! </h3>
+        {console.log(this.state)}
         <input type="text" onChange={this.handleNameInput} placeholder= 'Name' name='name' value={this.state.name} />
-        <input type="number" onChange={this.handleAgeInput} placeholder= 'Age' age='age' value={this.state.age} />
-        <input type="text" onChange={this.handleEmailInput} placeholder= 'Email' email='email' value={this.state.email} />
+        <input type="number" onChange={this.handleNameInput} placeholder= 'Age' name='age' value={this.state.age} />
+        <input type="text" onChange={this.handleNameInput} placeholder= 'Email' name='email' value={this.state.email} />
         <button name="button" type="submit" onClick={this.saveFriendData}> Submit </button>
         <div> My Friends are {this.state.friendsList.map((friend) => {
             // {friend}
