@@ -3,7 +3,7 @@ import "./FriendForm.css";
 
 const FriendForm = props => {
   return (
-    <form className="form" onSubmit={props.addFriend}>
+    <form className="form" onSubmit={props.handleSubmit}>
       <input
         type="text"
         placeholder="Name"
@@ -28,7 +28,7 @@ const FriendForm = props => {
         value={props.email}
         required
       />
-      <button className="button" type="submit">
+      <button className="button" type="submit" onClick={props.addFriend}>
         Add Rainbow Friend
       </button>
     </form>

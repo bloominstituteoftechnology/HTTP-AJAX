@@ -16,6 +16,10 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getFriends = () => {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
@@ -24,18 +28,30 @@ class Home extends React.Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
-  addFriend = () => {
+  addFriend = event => {
     const friend = {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
     };
     axios.post("http://localhost:5000/friends/", friend).then(response => {
-      this.setState({ name: "", age: "", email: "" }).catch(err => {
+      this.getFriends().catch(err => {
         console.log(err);
       });
+    });
+    this.setState({ name: "", age: "", email: "" });
+  };
+
+  removeFriend = e => {
+    const id = e.target.className;
+    axios({
+      method: "DELETE",
+      url: `http://localhost:5000/friends/${id}`,
+      headers: { "Content-Type": "application/json" }
+    }).then(response => {
+      this.getFriends();
     });
   };
 
@@ -45,6 +61,7 @@ class Home extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    e.target.reset();
   };
 
   render() {
@@ -54,15 +71,46 @@ class Home extends React.Component {
         <FriendForm
           addFriend={this.addFriend}
           handleInputChange={this.handleInputChange}
+          handleSubmit={this.handleSubmit}
+          getFriends={this.getFriends}
         />
+        {/* <form className="form" onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            onChange={this.handleInputChange}
+            value={this.name}
+          />
+          <input
+            type="number"
+            placeholder="Age"
+            name="age"
+            onChange={this.handleInputChange}
+            value={this.age}
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            onChange={this.handleInputChange}
+            value={this.email}
+          />
+          <button className="button" type="submit" onClick={this.addFriend}>
+            Add Rainbow Friend
+          </button>
+        </form> */}
 
         <ul className="friendlist">
           {this.state.friends.map((friend, index) => {
             return (
-              <li key={index} className="friend">
+              <li key={friend.id} className="friend">
                 <div className="name">{friend.name}</div>
                 <div className="age">{`Age:${friend.age}`}</div>
                 <div className="email">{`E-mail:${friend.email}`}</div>
+                <button className={friend.id} onClick={this.removeFriend}>
+                  Remove Friend{" "}
+                </button>
               </li>
             );
           })}
