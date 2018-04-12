@@ -3,6 +3,8 @@ import { Route } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import FriendList from "./components/FriendList";
+import Friend from "./components/Friend";
+import FriendCard from "./components/Friend";
 
 export default class App extends Component {
   constructor() {
@@ -21,6 +23,7 @@ export default class App extends Component {
         </header>
         {/* Routes Here */}
         <Route exact path="/" component={FriendList} />
+        <Route path="/friends/:i" component={FriendCard} />
       </div>
     );
   }
