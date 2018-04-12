@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import FriendList from "./components/FriendList";
@@ -22,8 +22,11 @@ export default class App extends Component {
           <h1 className="App-title">Friends List</h1>
         </header>
         {/* Routes Here */}
-        <Route exact path="/" component={FriendList} />
-        <Route path="/friends/:i" component={FriendCard} />
+        <Switch>
+          <Route exact path="/" component={FriendList} />
+          <Route path="/friends/:i" component={FriendCard} />
+          <Route component={() => <h1>Invalid! URL GO BACK HOME</h1>} />
+        </Switch>
       </div>
     );
   }
