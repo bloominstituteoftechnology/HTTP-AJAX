@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import FriendForm from "./FriendForm";
+import DisplayFriend from "./DisplayFriend";
 import "./Home.css";
 
 class Home extends React.Component {
@@ -10,7 +11,8 @@ class Home extends React.Component {
       friends: [],
       name: "",
       age: "",
-      email: ""
+      email: "",
+      showUpdateInput: false
     };
   }
 
@@ -103,14 +105,21 @@ class Home extends React.Component {
         <ul className="friendlist">
           {this.state.friends.map((friend, index) => {
             return (
-              <li key={friend.id} className="friend">
-                <div className="name">{friend.name}</div>
-                <div className="age">{`Age:${friend.age}`}</div>
-                <div className="email">{`E-mail:${friend.email}`}</div>
-                <button className={friend.id} onClick={this.removeFriend}>
-                  Remove Friend{" "}
-                </button>
-              </li>
+              //   <li key={friend.id} className="friend">
+              //     <div className="name">{friend.name}</div>
+              //     <div className="age">{`Age:${friend.age}`}</div>
+              //     <div className="email">{`E-mail:${friend.email}`}</div>
+              //     <button className={friend.id} onClick={this.removeFriend}>
+              //       Remove Friend{" "}
+              //     </button>
+              //   </li>
+              // );
+              <DisplayFriend
+                friend={friend}
+                key={friend.id}
+                removeFriend={this.removeFriend}
+                getFriends={this.getFriends}
+              />
             );
           })}
         </ul>
