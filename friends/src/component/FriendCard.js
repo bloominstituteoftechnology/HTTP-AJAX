@@ -17,6 +17,7 @@ class FriendCard extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // un-false the showUpdateFriend
   showUpdateFriend = () => {
     this.setState({ showUpdateFriend: !this.state.showUpdateFriend });
   };
@@ -37,7 +38,7 @@ class FriendCard extends Component {
   updateFriend = friendId => {
     const friend = {};
     // if field is left blank, don't change anything
-    if (this.state.title !== "") {
+    if (this.state.name !== "") {
       friend.name = this.state.name;
     }
     if (this.state.age !== "") {
@@ -50,6 +51,7 @@ class FriendCard extends Component {
       .put(`http://localhost:5000/friends/${friendId}`, friend)
       .then(reponse => {
         this.setState({
+          //reset everything after request has gone thru
           showUpdateFriend: false,
           name: "",
           age: "",
@@ -81,40 +83,42 @@ class FriendCard extends Component {
             Unfriend / Delete
           </button>
           <button onClick={this.showUpdateFriend}>Update friend</button>
-        </div>
 
-        {/* if showUpdateFriend: show input field for edit, else don't display */}
-        {this.state.showUpdateNote ? (
-          <div>
-            <input
-              type="text"
-              onChange={this.handleTextInput}
-              placeholder="Name"
-              name="name"
-              value={this.state.name}
-            />
-            <input
-              type="number"
-              min="0"
-              step="1"
-              max="110"
-              onChange={this.handleTextInput}
-              placeholder="Age"
-              name="age"
-              value={this.state.age}
-            />
-            <input
-              type="text"
-              onChange={this.handleTextInput}
-              placeholder="email"
-              name="email"
-              value={this.state.email}
-            />
-            <button onClick={() => this.updateFriend(friend.id)}>
-              Save Update
-            </button>
+          <div className="friend-edit-container">
+            {/* if showUpdateFriend: show input field for edit, else don't display */}
+            {this.state.showUpdateFriend ? (
+              <div>
+                <input
+                  type="text"
+                  onChange={this.handleTextInput}
+                  placeholder="Name"
+                  name="name"
+                  value={this.state.name}
+                />
+                <input
+                  type="number"
+                  min="0"
+                  step="1"
+                  max="110"
+                  onChange={this.handleTextInput}
+                  placeholder="Age"
+                  name="age"
+                  value={this.state.age}
+                />
+                <input
+                  type="text"
+                  onChange={this.handleTextInput}
+                  placeholder="email"
+                  name="email"
+                  value={this.state.email}
+                />
+                <button onClick={() => this.updateFriend(friend.id)}>
+                  Save Update
+                </button>
+              </div>
+            ) : null}
           </div>
-        ) : null}
+        </div>
       </div>
     );
   }
