@@ -1,3 +1,12 @@
 .friendContainer {
     max-width: 600px;
 }
+
+.editFriend {
+    display: flex;
+    justify-content: center;
+}
+
+.editFriendButton {
+    margin-left: 10px;
+}
