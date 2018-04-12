@@ -16,8 +16,30 @@ export default class Friend extends Component {
   };
 
   // update a friend's data on a server
-  updateFriend = () => {};
-
+  updateFriend = id => {
+    const friend = {};
+    // check if there is anything to update
+    if (this.state.age !== "") {
+      friend.age = this.state.age;
+    }
+    if (this.state.email !== "") {
+      friend.email = this.state.email;
+    }
+    // put request by friend id
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friend)
+      // .then(response => {
+      //   console.log(response);
+      // })
+      .then(response => {
+        this.props.getFriendList();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    // update state
+    this.setState({ age: "", email: "" });
+  };
   // delete friend's data from the server
   deleteFriend = id => {
     axios
@@ -31,7 +53,6 @@ export default class Friend extends Component {
   };
   // render data for each friend
   render() {
-    console.log(this.state.value);
     return [
       <div>
         <Link to={`/friend/${this.props.friend.id}`}>
@@ -54,8 +75,12 @@ export default class Friend extends Component {
           onChange={this.handleNewInput}
         />
         {/* Save updates to a friend */}
-        <button onClick={this.updateFriend}>Save Changes</button>
-        <button onClick={() => this.deleteFriend(this.props.friend.id)}>Delete Friend</button>
+        <button onClick={() => this.updateFriend(this.props.friend.id)}>
+          Save Changes
+        </button>
+        <button onClick={() => this.deleteFriend(this.props.friend.id)}>
+          Delete Friend
+        </button>
       </form>
     ];
   }
