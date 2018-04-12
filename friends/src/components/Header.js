@@ -1,60 +1,38 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-class Header extends Component{
-  constructor(){
-    super()
+const Header =(props)=>{
 
-    }
-
-setInput = (element)=>{
- this.setState({[element.target.name]: element.target.value})
-}
-
-postData = ()=>{
-const newObj = {name: this.props.friends.name, age:this.props.friends.age, email: this.props.friends.email}
-axios
-.post('http://localhost:5000/friends',newObj)
-.then(postedData =>{
-    console.log("why?")
-})
-.catch(err =>{
-    console.log("i guess it broke")
-})
-this.setState({name: "", age:"", email: ""})
-}
-render(){
-
-console.log(this.props)
 return(<React.Fragment>
  <div class="container-style">
     <div class="form-style">
     <input class="input-style" 
         type="text" 
-        onChange={this.setInput}
+        onChange={props.setInput}
         placeholder="Enter name"
         name="name"
-        value={this.props.friends.name}
+        value={props.name}
     />
     <input class="inputTwo-style" 
         type="number" 
-        onChange={this.setInput}
+        onChange={props.setInput}
+        name="age"
         placeholder="Enter number"
-        value={this.props.friends.number}
+        value={props.age}
     />
     <input class="inputThree-style"
         type="text"
-        onChange={this.setInput}
+        onChange={props.setInput}
+        name="email"
         placeholder="Enter email"
-        value={this.props.friends.email}
+        value={props.email}
         />
-    <button OnClick={this.postData} class="button-style">Submit</button>
+    <button onClick={props.postData} class="button-style">Submit</button>
     </div>
     </div>
 
 
 </React.Fragment>)
 
-}
+
 }
 
 export default Header
