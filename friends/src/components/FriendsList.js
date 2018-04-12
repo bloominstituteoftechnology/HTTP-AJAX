@@ -32,8 +32,6 @@ export default class FriendsList extends Component {
     }
 
     handleDeleteFriend = (id) => {
-        console.log('hello');
-        console.log(id);
         axios
             .delete(`http://localhost:5000/friends/${id}`)
             .then(response => {
@@ -50,7 +48,7 @@ export default class FriendsList extends Component {
     }
 
     handleAddNewFriend = () => {
-        const newFriend = { id: this.state.friends.length + 1, name: this.state.newFriendName, age: this.state.newFriendAge, email: this.state.newFriendEmail };
+        const newFriend = { id: this.state.friends[this.state.friends.length - 1].id + 1, name: this.state.newFriendName, age: this.state.newFriendAge, email: this.state.newFriendEmail };
         if (newFriend.id !== '' && newFriend.name !== '' && newFriend.age !== '' && newFriend.email !== '') {
             axios
                 .post('http://localhost:5000/friends', newFriend)
@@ -74,11 +72,11 @@ export default class FriendsList extends Component {
             <div className="App mt-5">
                 <h1>Friendslist</h1>
                 <Container className="mb-5">
-                    {this.state.friends.map((friend, index) => {
+                    {this.state.friends.map((friend) => {
                         return (
-                            <div key={index}>
+                            <div key={friend.id}>
                                 <button onClick={() => this.handleDeleteFriend(friend.id)}>Remove Friend</button>
-                            <FriendCard key={index} friend={friend} 
+                            <FriendCard key={friend.id} friend={friend} 
                             // getFriends={this.getFriends()} 
                             />
                             </div>
@@ -113,7 +111,7 @@ export default class FriendsList extends Component {
                                 onChange={this.handleNewFriendInput}
                             />
                             </CardText>
-                            <CardText>{`Id:  `} {this.state.friends.length + 1}</CardText>
+                            <CardText>{`Id:  `} {this.state.friends[this.state.friends.length - 1].id + 1}</CardText>
                         </CardBody>
                         <button onClick={this.handleAddNewFriend}>Submit</button>
                     </Card>

@@ -26,7 +26,7 @@ export default class Friend extends Component {
 
     render() {
         if(!this.state.friend) {
-            return <div>Loading friend...</div>;
+            return <div className="mt-5 mb-5">Loading friend...</div>;
         }
         return (
             <Container className="mt-5 mb-5">
