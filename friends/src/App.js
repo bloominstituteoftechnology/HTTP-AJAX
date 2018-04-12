@@ -67,7 +67,7 @@ class App extends Component {
 
 
   updateFriend = friendId => {
-    const friend = {};
+    const friend = {}; 
     if (this.state.name !== '') {
       friend.name = this.state.name;
     }
@@ -103,7 +103,7 @@ class App extends Component {
             
             {this.state.showUpdateFriend ? (
               <div>
-                <input className="TEST" type="text" name="name" onChange={this.handleTextChange} placeholder="What is your name?" />
+                <input type="text" name="name" onChange={this.handleTextChange} placeholder="What is your name?" />
                 <input type="number" name="age" onChange={this.handleTextChange} placeholder="Your Age?" />
                 <input type="text" name="email" onChange={this.handleTextChange} placeholder="Enter Email" />
                 <button onClick={() => this.updateFriend(friend.id)}>
