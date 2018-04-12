@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Card, 
-        CardImg, 
-        CardText, 
-        CardBody,
-        CardTitle, 
-        CardSubtitle, 
-        Button,
-        Row,
-        Col,
-        Jumbotron,
-        Container } from 'reactstrap';
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Row,
+  Col,
+  Jumbotron,
+  Container
+} from "reactstrap";
 
 export default class Friend extends Component {
   constructor(props) {
@@ -66,39 +68,41 @@ export default class Friend extends Component {
   render() {
     return (
       <Row>
-      <Col sm={{ size: 6, offset: 3 }}>
-      <Card>
-      <CardBody>
-      <CardTitle>
-      <Link to={`/friend/${this.props.friend.id}`}>
-      {this.props.friend.name}
-    </Link>
-    </CardTitle>
-      <div>{this.props.friend.age}</div>
-      <div>{this.props.friend.email}</div>
-        <form>
-        <input
-          name="age"
-          value={this.state.age}
-          placeholder="Age"
-          onChange={this.handleNewInput}
-        />
-        <input
-          name="email"
-          value={this.state.email}
-          placeholder="Email"
-          onChange={this.handleNewInput} />
-        {/* Save updates to a friend */}
-        <button onClick={() => this.updateFriend(this.props.friend.id)}>
-          Save Changes
-        </button>
-        <button onClick={() => this.deleteFriend(this.props.friend.id)}>
-          Delete Friend
-        </button>
-      </form>
-      </CardBody>
-    </Card>
-    </Col>
-    </Row>
-    )};
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Card>
+            <CardBody>
+              <CardTitle>
+                <Link to={`/friend/${this.props.friend.id}`}>
+                  {this.props.friend.name}
+                </Link>
+              </CardTitle>
+              <div>{this.props.friend.age}</div>
+              <div>{this.props.friend.email}</div>
+              <form>
+                <input
+                  name="age"
+                  value={this.state.age}
+                  placeholder="Age"
+                  onChange={this.handleNewInput}
+                />
+                <input
+                  name="email"
+                  value={this.state.email}
+                  placeholder="Email"
+                  onChange={this.handleNewInput}
+                />
+                {/* Save updates to a friend */}
+                <button onClick={() => this.updateFriend(this.props.friend.id)}>
+                  Save Changes
+                </button>
+                <button onClick={() => this.deleteFriend(this.props.friend.id)}>
+                  Delete Friend
+                </button>
+              </form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    );
+  }
 }

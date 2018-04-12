@@ -14,7 +14,7 @@ export default class FriendList extends Component {
   // note: pass this to FriendForm (addFriend) to update FriendList
 
   componentDidMount() {
-    this.getFriendList();    
+    this.getFriendList();
   }
 
   getFriendList = () => {
@@ -28,15 +28,19 @@ export default class FriendList extends Component {
       .catch(error => {
         console.error("Server Error", error);
       });
-  }
+  };
 
   render() {
-  	// render friends here
+    // render friends here
     return (
       <div>
         <FriendForm getFriendList={() => this.componentDidMount()} />
         {this.state.friends.map((friend, index) => (
-          <Friend key={index} friend={friend} getFriendList={() => this.componentDidMount()}/>
+          <Friend
+            key={index}
+            friend={friend}
+            getFriendList={() => this.componentDidMount()}
+          />
         ))}
       </div>
     );

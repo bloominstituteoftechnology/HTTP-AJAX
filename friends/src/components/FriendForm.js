@@ -45,40 +45,35 @@ export default class FriendForm extends Component {
     return (
       // Add new friend with this form
       <form>
-        
-          <label>
-            <input
-              type="text"
-              onChange={this.handleNewInput}
-              name="name"
-              value={this.state.name}
-              placeholder="Name"
-            />
-          </label>
- 
+        <label>
+          <input
+            type="text"
+            onChange={this.handleNewInput}
+            name="name"
+            value={this.state.name}
+            placeholder="Name"
+          />
+        </label>
 
+        <label>
+          <input
+            type="text"
+            onChange={this.handleNewInput}
+            name="age"
+            value={this.state.age}
+            placeholder="Age"
+          />
+        </label>
 
-          <label>
-            <input
-              type="text"
-              onChange={this.handleNewInput}
-              name="age"
-              value={this.state.age}
-              placeholder="Age"
-            />
-          </label>
-
-
-
-          <label>
-            <input
-              type="text"
-              onChange={this.handleNewInput}
-              name="email"
-              value={this.state.email}
-              placeholder="E-mail"
-            />
-          </label>
+        <label>
+          <input
+            type="text"
+            onChange={this.handleNewInput}
+            name="email"
+            value={this.state.email}
+            placeholder="E-mail"
+          />
+        </label>
 
         {/* Submit a Friend's info here */}
         <button type="button" onClick={this.handleCreateFriend}>
