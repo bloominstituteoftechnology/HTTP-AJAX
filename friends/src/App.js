@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 import logo from './logo.svg';
 import './App.css';
 import ListOfFriends from './component/ListOfFriends';
 import FriendForm from './component/FriendForm';
+import Navigation from './component/Navigation';
 
 class App extends Component {
   constructor(props) {

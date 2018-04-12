@@ -9,7 +9,8 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "nodemon": "^1.14.11",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "reactstrap": "^5.0.0"
   },
   "devDependencies": {},
   "scripts": {
