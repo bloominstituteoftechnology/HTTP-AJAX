@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Card, CardTitle, CardText, Container, Row, Col, Button } from 'reactstrap';
+import PropTypes from 'prop-types';
 import './Friend.css';
 
 class Friend extends Component {
@@ -156,6 +157,10 @@ class Friend extends Component {
       </div>
     );
   }
+}
+
+Friend.propTypes = {
+  id: PropTypes.number
 }
 
 export default Friend;
