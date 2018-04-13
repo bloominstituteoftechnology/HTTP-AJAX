@@ -1,19 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  Row,
-  Col,
-  Jumbotron,
-  Container
-} from "reactstrap";
+import { Card, CardBody, CardTitle, Row, Col } from "reactstrap";
 
 export default class Friend extends Component {
   constructor(props) {
@@ -41,9 +29,6 @@ export default class Friend extends Component {
     // put request by friend id
     axios
       .put(`http://localhost:5000/friends/${id}`, friend)
-      // .then(response => {
-      //   console.log(response);
-      // })
       .then(response => {
         this.props.getFriendList();
       })

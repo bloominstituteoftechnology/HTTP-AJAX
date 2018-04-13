@@ -31,7 +31,6 @@ export default class FriendList extends Component {
   };
 
   render() {
-    // render friends here
     return (
       <div>
         <FriendForm getFriendList={() => this.componentDidMount()} />
