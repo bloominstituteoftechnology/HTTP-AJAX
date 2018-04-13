@@ -41,7 +41,7 @@ class Friend extends Component{
             propName="email"
           />
         </td>
-        <td><Button onClick={this.props.deleteFromFriendsList} color="danger" size="sm">Delete</Button></td>
+        <td><Button onClick={() => this.props.deleteFromFriendsList(id)} color="danger" size="sm">Delete</Button></td>
       </tr>
     );
   }
