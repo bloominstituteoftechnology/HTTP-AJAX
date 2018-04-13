@@ -28,7 +28,6 @@ export default class FriendForm extends Component {
     axios
       .post("http://localhost:5000/friends", friend)
       .then(savedFriend => {
-        console.log(friend);
         // componentDidMount to update FriendList
         this.props.getFriendList();
       })
@@ -39,11 +38,7 @@ export default class FriendForm extends Component {
   };
 
   render() {
-    // console.log('name', this.state.name);
-    // console.log('age', this.state.age);
-    // console.log('email', this.state.email);
     return (
-      // Add new friend with this form
       <form>
         <label>
           <input
@@ -54,7 +49,6 @@ export default class FriendForm extends Component {
             placeholder="Name"
           />
         </label>
-
         <label>
           <input
             type="text"
@@ -64,7 +58,6 @@ export default class FriendForm extends Component {
             placeholder="Age"
           />
         </label>
-
         <label>
           <input
             type="text"
@@ -74,7 +67,6 @@ export default class FriendForm extends Component {
             placeholder="E-mail"
           />
         </label>
-
         {/* Submit a Friend's info here */}
         <button type="button" onClick={this.handleCreateFriend}>
           Create Friend

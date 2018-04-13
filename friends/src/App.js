@@ -23,9 +23,7 @@ export default class App extends Component {
 				<Switch>
 					<Route exact path="/" component={FriendList} />
 					<Route path="/friend/:id" component={FriendCard} />
-					<Route
-						component={() => <h1>Invalid! URL GO BACK HOME</h1>}
-					/>
+					<Route component={() => <h1>Invalid! URL GO BACK HOME</h1>} />
 				</Switch>
 			</div>
 		);
