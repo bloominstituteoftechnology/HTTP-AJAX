@@ -21,6 +21,8 @@ ReactDOM.render(
             )} /> */}
             <Route path='/friend/:id' component={UpdateFriend} />
 
+            {/* <Route path="/friend/:id" render={()=><UpdateFriend friends={Friends} />}/> */}
+
         </div>
     </Router>
 , document.getElementById('root'));

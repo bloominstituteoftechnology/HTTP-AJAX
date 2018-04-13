@@ -29,15 +29,15 @@ class UpdateFriend extends Component {
     // }
 
     updateFriend = (event) => {
-            event.preventDefault();
-        
-            const friend = {
+        event.preventDefault();
+        const id  = this.props.match.params.id
+        console.log(this.props.match.params)
+        const updateFriend = {
               name: this.state.name,
               email: this.state.email,
               age: this.state.age,
             }
-        const id = this.props.match.params.id
-        axios.put(`http://localhost:5000/friends/${id}`)
+        axios.put(`http://localhost:5000/friends/${id}`, updateFriend)
         .then((res) => {
             console.log(res);
             console.log(res.data);
@@ -58,7 +58,8 @@ class UpdateFriend extends Component {
     }
 
   render() {
-      console.log(this.state)
+    //   console.log(this.state)
+    //   console.log(this.props.friends.state)
     return (
       <div className='updateFriend'>
           <h1> Update Friend </h1>
