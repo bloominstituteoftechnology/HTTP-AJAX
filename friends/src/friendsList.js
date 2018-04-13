@@ -79,14 +79,14 @@ return (
         />
         <SavedFriends saved={this.state} getFriends={this.getFriends} clearInput={this.clearInput} />
         
-        {this.state.friends.map( (f,index) => ( <div key={f.id}>
+        {this.state.friends.map( (f) => ( <div key={f.id}>
                                                   <div>{f.name}</div> 
                                                   <div>{f.age}</div>
                                                   <div>{ f.email}</div>
                                      <DeleteFriend id={f.id} getFriends={this.getFriends} /> 
-                          <UpdateFriend id={f.id}   saved={this.state} getFriends={this.getFriends}
+                          <UpdateFriend id={f.id} f={f}  saved={this.state} getFriends={this.getFriends}
                           
-                              clearInput ={this.clearInput}/>
+                             clearInput ={this.clearInput}/>
                                                 </div>
 ))}
     

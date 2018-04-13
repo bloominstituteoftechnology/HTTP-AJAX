@@ -13,7 +13,7 @@ class DeleteFriend extends Component {
     }
 deleteFriend = (id) => {
     // console.log(this.props)
-    alert(id)
+    // alert(id)
      axios.delete(`http://localhost:5000/friends/${id}`)
      .then(s =>{
          console.log(s);
