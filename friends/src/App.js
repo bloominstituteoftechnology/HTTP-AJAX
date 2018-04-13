@@ -68,7 +68,6 @@ class App extends Component {
     axios
       .post('http://localhost:5000/friends', obj)
       .then(response => {
-        console.log(response);
         this.getFriends();
       })
       .catch(err => {
@@ -113,7 +112,7 @@ class App extends Component {
             render={(props) => <FriendList {...props} saveInput={this.saveInput} deleteInput={this.deleteInput} friends={this.state.friends} newFriend={this.state.newFriend} onClick={this.addInput} />
             } />
           <Route path="/addFriend/:id"
-            render={(props) => <FriendEdit {...props} friends={this.state.friends} addInput={this.addInput} updateInput={this.updateInput} />
+            render={(props) => <FriendEdit {...props} getFriends={this.getFriends} friends={this.state.friends} addInput={this.addInput} updateInput={this.updateInput} />
             } />
           <Route path="/addFriend"
             render={(props) => <FriendForm addInput={this.addInput} id={this.state.id + 1} updateInput={this.updateInput} />
