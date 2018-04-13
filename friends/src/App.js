@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from "react-router-dom";
+
+import FriendsList from "./Components/FriendsList";
+import AddFriend from "./Components/AddFriend";
+import Friend from "./Components/Friend";
 import './App.css';
 
-class App extends Component {
+
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Switch>
+        <div className="App-Friend">
+          <Route exact path="/" component={FriendsList} />
+          <Route path="/addfriend" component={AddFriend} />
+          <Route path="friends/:id" component={Friend} />
+        </div>
+      </Switch>
     );
   }
 }
 
-export default App;
+// export default App;
