@@ -31,7 +31,7 @@ Topics:
 
 1. Separate the list of friends and the new friend form into different components, and use the appropriate client side routing to access them.
 2. Implement Update and Delete functionality.
-    - for `update` pass the friend id as a URL paremeter, including the information about the friend inside the body.
+    - for `update` pass the friend id as a URL parameter, including the information about the friend inside the body.
     - for `delete` pass the friend id as a URL parameter.
 3. Style the friends list, the input field, and make everything look nice.
 4. Expand the number of properties that you put on each friend object.
