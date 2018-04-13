@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import './App.css';
+import React, { Component } from "react";
+import { Route, Link } from "react-router-dom";
+import "./App.css";
 
-import FriendsList from './components/FriendsList';
-import Friend from './components/Friend';
+import FriendsList from "./components/FriendsList";
+import Friend from "./components/Friend";
 
 class App extends Component {
   render() {
@@ -12,18 +12,21 @@ class App extends Component {
         <Link to={`/`}>
           <div className="home-button mt-3">Home</div>
         </Link>
-        <Route exact path="/" render={
-          () => {
+        <Route
+          exact
+          path="/"
+          render={() => {
             return (
               <Link to={`/friends`}>
                 <div className="home-button mt-3">Friendslist</div>
               </Link>
-            )
+            );
           }}
         />
         <Route exact path="/friends" component={FriendsList} />
-        <Route path="/friends/:id" render={
-          (props) => {
+        <Route
+          path="/friends/:id"
+          render={props => {
             return (
               <div>
                 <Link to={`/friends`}>
@@ -31,7 +34,7 @@ class App extends Component {
                 </Link>
                 <Friend {...props} />
               </div>
-            )
+            );
           }}
         />
       </div>
