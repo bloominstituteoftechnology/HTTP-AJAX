@@ -2,35 +2,39 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Friends from './Friends.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: [],
-      name: '',
-      age: '',
-      email:'',
+      friends: [{name: "", age: "", email: "",}],
+      showUpdateFriends: false,
     };
   }
 
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getFriends = () => {
     axios
-      .get(`http://localhost:5000/friends/get/all`)
+      .get("http://localhost:3000/friends/get/all")
       .then(response => {
-        this.setState({ friends: response.data });
+        this.setState({ notes: response.data });
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   handleTextInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   saveFriendData = () => {
-    const friends = { name: this.state.name, age: this.state.age, email: this.state.email };
+    const friends = { name: this.state.friends.name, age: this.state.friends.age, email: this.state.friends.email };
     axios
       .post(`http://localhost:5000/friends`, friends)
       .then(savedFriend => {
