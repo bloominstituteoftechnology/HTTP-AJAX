@@ -23,7 +23,7 @@ class FriendApp extends Component {
     axios.post('http://localhost:5000/friends', addFriend)
       .then(response => {
         console.log(response);
-        <Display friend={response} />
+
       })
       .catch(err => {
         console.log(err);

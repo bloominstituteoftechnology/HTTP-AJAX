@@ -30,15 +30,6 @@ class App extends Component {
         console.log(err);
       })
   }
-  getFriends2 = () => {
-    axios.get('http://localhost:5000/friends')
-      .then(response => {
-        this.setState({ friends: response.data });
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
 
   handleFormInput = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -90,7 +81,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <Container className="cardContainer">
-          {friendsCopy.map((friend, index) => (<Display key={friend.id} friend={friend} getFriends2={this.getFriends2} />))}
+          {friendsCopy.map((friend, index) => (<Display key={friend.id}  friend={friend} getFriends={this.getFriends} />))}
         </Container>
         {this.friendForm()}
       </div>
