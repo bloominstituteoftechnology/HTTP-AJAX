@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './Friend.css';
 import axios from 'axios';
 import { Number } from 'core-js/library/web/timers';
 
@@ -17,63 +17,40 @@ class Friend extends Component {
       }
     }
 
-  // componentDidMount() {
-  //   // change this line to grab the id passed on the URL
-  //   const id = this.props.friend.match.params.id;
-  //   axios
-  //     .get(`http://localhost:5000/friends/${id}`)
-  //     .then(response => this.setState(() => ({ friend: response.data })))
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
-
     handleDelete = event => {
+      console.log('friendprops', this.props.friend)
       event.preventDefault();
-      const id = this.props.friend.id;
-      axios.delete('http://localhost:5000/friends/${id}', {
-        params: { friend: "id"}
-        // id: 'i'
-        // headers: {
-        //   'id': id,
-        //   'Content-Type': 'application/json'
-        // }
+      // const { name, age, email } = this.state;
+      axios.delete('http://localhost:5000/friends/:id',  this.state.friend)
+
+          // .then( (response) => {
+          // this.setState({ friend: response.data, name: '', age: '', email: '' })
+          .then((response) => {
+            console.log('state', this.state.friend)
+              console.log('data', response.data)
+            this.props.deleteFriendHandler(this.props.friend)
+            console.log('finaldata', response.data)
+            console.log('stateAfter', this.state.friend)
+            // })
+          // this.setState({ friend: this.props.friend.id, id: '', name: '', age: '', email: '' })
+          console.log('REALFINAL', this.props.friend)
       })
-        .then((res) => {
-          console.log('works', res);
-          console.log('id', res.data)
-          this.setState({ friend: null }) 
-        })
-          .catch(error => {
-            console.error('Server Error', error)
+      .catch(error => {
+          console.error('Server Error', error)
           });
       }
-  // const instance = axios.create({
-  //   baseURL: 'https://some-domain.com/api/',
-  //   timeout: 1000,
-  //   headers: { 'X-Custom-Header': 'foobar' }
-  // });
-    //     axios.delete('http://localhost:5000/friends/:id', {params: {
-    //       'id': friend.id}}
-    //     ).then((response) => { 
-    //       console.log('works', response);
-    //       console.log('id', friend);
-    //     })
-    //     .catch(error => {
-    //       console.error('Server Error', error)
-    //   });
-    // }
 
     render() {
         return (
-            <div>
+            <div className="friends">
                 <li key={this.props.id} className="friend">
-                    <div className="friend-name">{`Name: ${this.props.friend.name}`}</div>
-                    <div className="friend-age">{`Age: ${this.props.friend.age}`}</div>
-                    <div className="friend-email">{`Email: ${this.props.friend.email}`}</div>
+                    <p> Name: {this.props.friend.name}</p>
+                    <p> Age: {this.props.friend.age}</p>
+                    <p> Email: {this.props.friend.email}</p>
+              <button onClick={this.handleDelete}>Delete</button>
+              <button>Update</button>
                 </li>
-                <button onClick={this.handleDelete}>Delete</button>
-                <button>Update</button>
+
             </div>
         )
     }
