@@ -53,59 +53,64 @@ export default class FriendsList extends Component {
     }
 
     render() {
-        if(!this.state.friends) {
+        if (this.state.friends === null) {
             return <div>Loading friends...</div>;
         }
-        return (
-            <div className="App mt-5">
-                <h1>Friendslist</h1>
-                <Container className="mb-5">
-                    {this.state.friends.map((friend) => {
-                        return (
-                            <div key={friend.id}>
-                            <FriendCard
-                                key={friend.id}
-                                friend={friend}
-                                getFriends={this.getFriends}
-                            />
-                            </div>
-                        )
-                    })}
-                    <Card>
-                        <CardHeader>{`Name:  `}
-                            <input
-                                type="text"
-                                name='newFriendName'
-                                value={this.state.newFriendName}
-                                placeholder="Add name..."
-                                onChange={this.handleNewFriendInput}
-                            />
-                        </CardHeader>
-                        <CardBody className="text-left">
-                            <CardText>{`Age:  `}
-                            <input
-                                type="text"
-                                name='newFriendAge'
-                                value={this.state.newFriendAge}
-                                placeholder="Add age..."
-                                onChange={this.handleNewFriendInput}
-                            />
-                            </CardText>
-                            <CardText>{`Email:  `}
-                            <input
-                                type="text"
-                                name='newFriendEmail'
-                                value={this.state.newFriendEmail}
-                                placeholder="Add email..."
-                                onChange={this.handleNewFriendInput}
-                            />
-                            </CardText>
-                            <CardText>{`Id:  `} {this.state.friends[this.state.friends.length - 1].id + 1}</CardText>
-                        </CardBody>
-                        <button onClick={this.handleAddNewFriend}>Submit</button>
-                    </Card>
-                </Container>
-            </div>
-        )
+        if (this.state.friends === undefined || this.state.friends.length === 0) {
+            return <div>No friends left :(</div>
+        }
+        if (this.state.friends !== undefined && this.state.friends !== null) {
+            return (
+                <div className="App mt-5">
+                    <h1>Friendslist</h1>
+                    <Container className="mb-5">
+                        {this.state.friends.map((friend) => {
+                            return (
+                                <div key={friend.id}>
+                                <FriendCard
+                                    key={friend.id}
+                                    friend={friend}
+                                    getFriends={this.getFriends}
+                                />
+                                </div>
+                            )
+                        })}
+                        <Card>
+                            <CardHeader>{`Name:  `}
+                                <input
+                                    type="text"
+                                    name="newFriendName"
+                                    value={this.state.newFriendName}
+                                    placeholder="Add name..."
+                                    onChange={this.handleNewFriendInput}
+                                />
+                            </CardHeader>
+                            <CardBody className="text-left">
+                                <CardText>{`Age:  `}
+                                    <input
+                                        type="number"
+                                        name="newFriendAge"
+                                        value={this.state.newFriendAge}
+                                        placeholder="Add age..."
+                                        onChange={this.handleNewFriendInput}
+                                    />
+                                </CardText>
+                                <CardText>{`Email:  `}
+                                    <input
+                                        type="text"
+                                        name="newFriendEmail"
+                                        value={this.state.newFriendEmail}
+                                        placeholder="Add email..."
+                                        onChange={this.handleNewFriendInput}
+                                    />
+                                </CardText>
+                                <CardText>{`Id:  `} {this.state.friends[this.state.friends.length - 1].id + 1}</CardText>
+                            </CardBody>
+                            <button onClick={this.handleAddNewFriend}>Submit</button>
+                        </Card>
+                    </Container>
+                </div>
+            )
+        }
     }
 }

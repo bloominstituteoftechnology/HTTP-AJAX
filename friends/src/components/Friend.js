@@ -8,11 +8,15 @@ export default class Friend extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friend: null,
+            friend: undefined,
         }
     }
 
     componentDidMount = () => {
+        this.getFriends();
+    }
+
+    getFriends = () => {
         let id = this.props.match.params.id;
         axios
             .get(`http://localhost:5000/friends/${id}`)
@@ -25,14 +29,22 @@ export default class Friend extends Component {
     }
 
     render() {
-        if(!this.state.friend) {
+        if(this.state.friend === undefined) {
             return <div className="mt-5 mb-5">Loading friend...</div>;
         }
-        return (
-            <Container className="mt-5 mb-5">
-                <h1>Single Friend Display</h1>
-                <FriendCard friend={this.state.friend} />
-            </Container>
-        )
+        else if(this.state.friend === null) {
+            return <div>Loading friend...</div>
+        }
+        else if (this.state.friend !== null && this.state.friend !== undefined && this.state.friend) {
+            return (
+                <Container className="mt-5 mb-5">
+                    <h1>Single Friend Display</h1>
+                    <FriendCard 
+                        friend={this.state.friend}
+                        getFriends={this.getFriends}
+                    />
+                </Container>
+            )
+        } else return <div className="mt-5 mb-5">No friend with this id exists</div>
     }
 }
