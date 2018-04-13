@@ -10,7 +10,8 @@ class App extends Component {
       age: "",
       email: "",
       id: "",
-      counter: 6
+      counter: 6,
+      showUpdateFriend: false
     }
   }
 
@@ -65,6 +66,11 @@ class App extends Component {
     })
    }
 
+   showUpdateFriend = () => {
+     this.setState({
+       showUpdateFriend: !this.state.showUpdateFriend
+     })
+   }
 
   render() {
     return (
@@ -74,16 +80,24 @@ class App extends Component {
             <div className="friend_test">
               <this.Friends key={friend.id} friend={friend}/>
               <button onClick={() => this.deleteFriend(friend.id)}>Delete me</button>
+              <button onClick={this.showUpdateFriend}>Edit</button>
+              
+              {this.state.showUpdateFriend ? 
+              <div>
+                <input type="text" onChange={this.handleInput} placeholder="Name" name="name" value= {this.state.name}/>
+                <input type="text" onChange={this.handleInput} placeholder="Age" name="age" value= {this.state.age}/>
+                <input type="text" onChange={this.handleInput} placeholder="Email" name="email" value= {this.state.email}/>
+                <button>Update</button>
+              </div>: null}
+
             </div>
           ))}
         </div> 
         <input type="text" onChange={this.handleInput} placeholder="Name" name="name" value= {this.state.name}/>
         <input type="text" onChange={this.handleInput} placeholder="Age" name="age" value= {this.state.age}/>
         <input type="text" onChange={this.handleInput} placeholder="Email" name="email" value= {this.state.email}/>
-        <button onClick={this.sendFriend }>New Friend</button>
+        <button onClick={this.sendFriend }>New Friend</button>      
       </div>
-
-      
     );
   }
 
