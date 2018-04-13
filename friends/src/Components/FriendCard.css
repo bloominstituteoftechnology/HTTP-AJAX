@@ -1,0 +1,28 @@
+.FriendCard {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 750px;
+    min-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.FriendCard__Name {
+    background-color: #999999;
+    color: white;
+    border-bottom: 1px solid black;
+    border-radius: 10px 10px 0 0;
+}
+
+.FriendCard__Info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 75px;
+    color: black;
+    background-color: wheat;
+    border-radius: 0 0 10px 10px;
+}
