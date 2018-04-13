@@ -5,7 +5,7 @@ const Navigation = () => {
     return (
         <div>
             <Link to='/'> FriendsList </Link>
-            <Link to='/form'> New Friends </Link>
+            <Link to='/form'> New Friends </Link> 
         </div>  
     );
 };
