@@ -21,28 +21,15 @@ export default class FriendsList extends Component {
     }
 
     getFriends = () => {
-        console.log('friends gotten')
         axios
         .get('http://localhost:5000/friends')
         .then(response => {
             this.setState(() => ({ friends: response.data }));
         })
         .catch(error => {
-            console.error('Server Error', error);
+            console.error(error);
         });
     }
-
-    handleDeleteFriend = (id) => {
-        axios
-            .delete(`http://localhost:5000/friends/${id}`)
-            .then(response => {
-                   this.setState(() => ({ friends: response.data }));
-                })
-            .catch(error => {
-                console.log(error);
-            })
-        this.getFriends();
-    };
 
     handleNewFriendInput = e => {
         this.setState({ [e.target.name]: e.target.value })
@@ -65,12 +52,6 @@ export default class FriendsList extends Component {
         }
     }
 
-    // RemoveButton = (id) => {
-    //     return (
-    //         <button onClick={() => this.handleDeleteFriend(id)}>Remove Friend</button>
-    //     )
-    // }
-
     render() {
         if(!this.state.friends) {
             return <div>Loading friends...</div>;
@@ -82,11 +63,10 @@ export default class FriendsList extends Component {
                     {this.state.friends.map((friend) => {
                         return (
                             <div key={friend.id}>
-                            <button onClick={() => this.handleDeleteFriend(friend.id)}>Remove Friend</button>
-                            <FriendCard key={friend.id} friend={friend}
-                            // RemoveButton={() => this.RemoveButton(friend.id)}
-                            // haven't figured out how to transfer this function to FriendCard.js
-                            // getFriends={function getFriends(){this.getFriends}} 
+                            <FriendCard
+                                key={friend.id}
+                                friend={friend}
+                                getFriends={this.getFriends}
                             />
                             </div>
                         )

@@ -20,8 +20,8 @@ export default class Friend extends Component {
                 this.setState(() => ({ friend: response.data }));
             })
             .catch(error => {
-                console.error('Server Error', error);
-            });
+                console.error(error);
+            })
     }
 
     render() {

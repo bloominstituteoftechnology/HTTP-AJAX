@@ -3,12 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, CardText } from 'reactstrap'
 
-// const RemoveButton = (id) => {
-//     return (
-//         <button onClick={() => this.handleDeleteFriend(id)}>Remove Friend</button>
-//     )
-// }
-
 export default class FriendCard extends Component {
     constructor(props){
         super(props);
@@ -21,15 +15,19 @@ export default class FriendCard extends Component {
         axios
             .delete(`http://localhost:5000/friends/${id}`)
             .then(response => {
-                   this.setState(() => ({ friends: response.data }));
-                })
+                this.setState(() => ({ friends: response.data }));
+                this.props.getFriends();
+            })
             .catch(error => {
                 console.log(error);
             })
-            console.log(this.props);
-        // haven't figured out how to make a button inside friendCard update the state after deletion. Delete works but you have to refresh the page to see the effect of it.
-        // this.props.getFriends();
     };
+
+    // handleEditFriend = (id) => {
+    //     axios
+    //         .put(`http://localhost:5000/friends/${id}`)
+
+    // }
 
     render() {
         const { id, name, age, email } = this.state.friend;
@@ -40,9 +38,11 @@ export default class FriendCard extends Component {
                         {name}
                     </Link>
                     <br />
-                    {/* button for when I get it working */}
-                    {/* <button onClick={() => this.handleDeleteFriend(id)}>Remove Friend</button> */}
-                    {/* <RemoveButton id={id} /> */}
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        this.handleDeleteFriend(id)}}>
+                        Remove Friend
+                    </button>
                 </CardHeader>
                 <CardBody className="text-left">
                     <CardText>Age: {age}</CardText>
