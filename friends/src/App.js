@@ -20,6 +20,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getFriends();
+  }
+
+  getFriends = () => {
     axios.get('http://localhost:5000/friends')
     .then(response => {
       // console.log(response.data);
@@ -29,7 +33,7 @@ class App extends Component {
     .catch(err => {
       console.log(err);
     });
-  }
+  };
 
   handleNameInput = e => {
     this.setState({ [e.target.name]: e.target.value});
@@ -55,6 +59,29 @@ class App extends Component {
     });
   };
 
+  updateFriendData = () => {
+    const FriendtoUpdate = {name: this.state.name, age: this.state.age, email: this.state.email};
+    axios.post('http://localhost:5000/friends', FriendtoUpdate)
+    .then(updateFriend => {
+      console.log(updateFriend);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
+  deleteFriendData = friendId => {
+    console.log(friendId);
+    axios.delete(`http://localhost:5000/friends/${friendId}`)
+    .then(deleteFriend => {
+      this.getFriends();
+      //console.log(deleteFriend);
+    })
+    .catch(err => {
+      //console.log(err);
+    });
+  };
+
 
   render() {
     return (
@@ -69,6 +96,16 @@ class App extends Component {
         <input type="number" onChange={this.handleNameInput} placeholder= 'Age' name='age' value={this.state.age} />
         <input type="text" onChange={this.handleNameInput} placeholder= 'Email' name='email' value={this.state.email} />
         <button name="button" type="submit" onClick={this.saveFriendData}> Submit </button>
+        <button name="button" type="submit" onClick={this.updateFriendData}> Update </button>
+        {this.state.friendsList.map(friend => {
+          return (
+            <div key={friend.id}>
+            <h3>{friend.id}</h3>
+            <button onClick={() => this.deleteFriendData(friend.id)}> delete friend </button>
+            </div>
+          )
+        })}
+        {/* <button name="button" type="submit" onClick={this.deleteFriendData}> Delete </button> */}
         <div> My Friends are {this.state.friendsList.map((friend) => {
             // {friend}
             const {name, age, email } = friend;
