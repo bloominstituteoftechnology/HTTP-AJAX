@@ -21,14 +21,14 @@ const dbtn = {
 	padding: 8,
 	fontWeight: 'bold',
 	margin: 10
-}
+};
 const abtn = {
 	color: 'blue',
 	cursor: 'pointer',
 	padding: 8,
 	fontWeight: 'bold',
 	margin: 10
-}
+};
 
 class FriendList extends Component {
 	constructor(props) {
@@ -36,9 +36,9 @@ class FriendList extends Component {
 		this.state = {
 			friend: props.friend,
 			nlist: this.friend,
-			Name: '',
-			Email: '',
-			Age: '',
+			// Name: '',
+			// Email: '',
+			// Age: '',
 			showUpdateNote: false
 		};
 	}
@@ -60,15 +60,12 @@ class FriendList extends Component {
 			});
 	};
 	updateFriend = (FriendID) => {
-		
 		const friend = { name: this.state.Name, email: this.state.Email, age: this.state.Age };
 		axios
 			.put(`http://localhost:5000/friends/${FriendID}`, friend)
 			.then((response) => {
-				
-				this.setState({showUpdateNote: false, Name: '', Email: '', Age: '' });
 				this.props.getAJAX();
-				
+				this.setState({ showUpdateNote: false});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -97,7 +94,9 @@ class FriendList extends Component {
 						{email}
 					</li>
 
-					<button onClick={this.showUpdateNote} style={btnStyle}>Update Friend Details</button>
+					<button onClick={this.showUpdateNote} style={btnStyle}>
+						Update Friend Details
+					</button>
 
 					{this.state.showUpdateNote ? (
 						<div>
@@ -122,7 +121,9 @@ class FriendList extends Component {
 								name="Age"
 								value={this.state.Age}
 							/>
-							<button onClick={() => this.updateFriend(id)} style={abtn}>Save Friend Details</button>
+							<button onClick={() => this.updateFriend(id)} style={abtn}>
+								Save Friend Details
+							</button>
 							<button onClick={() => this.deleteFriend(id)} style={dbtn}>
 								Delete Friend
 							</button>
