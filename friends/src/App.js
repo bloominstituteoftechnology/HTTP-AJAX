@@ -37,18 +37,16 @@ class App extends Component {
         axios.post('http://localhost:5000/friends', { name, age, email})
         .then((result => { console.log("success")}))
         .catch((error =>
-           console.log(error);
-        })
-      } 
-    }
+           console.log(error)));
+        }
+      };
 
     handleSubmitChange = (event) => {
       console.log("This was invoked")
       event.preventDefault();
       const friends = this.state.friends;
       this.setState({ friends });
-
-    }
+    };
 
   
   render() {
@@ -62,7 +60,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <FriendsList friends={this.state.friends}/>
-        <FriendsForm onSubmit={this.handleSubmitChange} />
+        <FriendsForm onSubmit={this.handleSubmitChange} onChange={this.handleInputData}/>
       </div>
     );
   }

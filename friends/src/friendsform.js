@@ -10,20 +10,19 @@ class FriendsForm extends Component{
                 email: " "
             }
         }
+
     handleInputData = (event) => {
-        const target = event.target;
+        //const target = event.target;
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    // handleInputData = (event) => {
-    //     //const target = event.target;
-    //     this.setState({ [event.target.age]: event.target.value })
-    // }
+    handleSubmitChange = (event) => {
+        event.preventDefault();
+        console.log("This was invoked in form component")
+        const friends = this.state.friends;
+        this.setState({ friends });
+    };
 
-    // handleInputData = (event) => {
-    //     //const target = event.target;
-    //     this.setState({ [event.target.email]: event.target.value })
-    // }
 
     render(){
         return(
