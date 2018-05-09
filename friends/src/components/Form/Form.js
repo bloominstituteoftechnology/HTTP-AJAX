@@ -2,12 +2,13 @@ import React from "react";
 import './Form.css';
 
 const Form = props => {
+
     return (
-        <form className="form">
-            <input type="text" placeholder="name"/>
-            <input type="age" placeholder="age"/>
-            <input type="email" placeholder="email"/>
-            <button onSubmit={''}>Submit</button>
+        <form className="form" id="addFriend">
+            <input type="text" placeholder="name" name="text"required/>
+            <input type="age" placeholder="age" name="age"required/>
+            <input type="email" placeholder="email" name="email"required/>
+            <button type="submit" value="Submit" onSubmit={this.handleSubmit}>Submit</button>
         </form>
     );
 }

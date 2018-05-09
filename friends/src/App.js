@@ -17,11 +17,23 @@ class App extends Component {
     .catch(error => console.log(error))
   }
 
+  handleSubmit() {
+    let form = document.getElementById('addFriend');
+    const formData = new FormData(form);
+    axios.post('http://localhost:5000/friends', formData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
         <FriendsList data={this.state.data}/>
-        <Form />
+        <Form/>
       </div>
     );
   }
