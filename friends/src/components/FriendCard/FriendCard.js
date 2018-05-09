@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import {Row, Col, Table} from 'reactstrap';
 
 class FriendCard extends Component {
+    constructor(props) {
+        super(props),
+        this.state = {}
+    }
+    
     render() {
         return (
-            <div>
-                
-            </div>
+            <Row>
+                Hello From FriendCard.
+            </Row>
         );
     }
 }

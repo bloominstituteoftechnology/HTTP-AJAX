@@ -4,7 +4,7 @@ class Form extends Component {
     render() {
         return (
             <div>
-                
+                Hello from Form.
             </div>
         );
     }
