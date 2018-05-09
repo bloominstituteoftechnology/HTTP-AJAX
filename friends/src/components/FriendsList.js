@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import FriendCard from './FriendCard'
+import FriendCard from './FriendCard';
+import FriendAdd from './FriendAdd';
+
 
 class FriendsList extends Component {
   constructor() {
@@ -28,10 +30,15 @@ class FriendsList extends Component {
   render() {
     // console.log('state on friends', this.state)
     return(
-      <div className="row">
-        {this.state.friends.map(friend => (
-          <FriendCard key={friend.id} friend={friend}/>
-        ))}
+      <div>
+        <div className="row">
+          {this.state.friends.map(friend => (
+            <FriendCard key={friend.id} friend={friend}/>
+          ))}
+
+        <FriendAdd />
+        </div>
+        
       </div>
     )
   }
