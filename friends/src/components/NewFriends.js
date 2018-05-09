@@ -22,25 +22,30 @@ class NewFriends extends Component {
 
     return (
       <div>
-        <input
-          type="number"
-          name="age"
-          value={age}
-          onChange={x => this.handleChange(x)}
-        />
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={x => this.handleChange(x)}
-        />
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={x => this.handleChange(x)}
-        />
-        <button onClick={this.handleSubmit}>Submit!</button>
+        <form>
+          <input
+            type="number"
+            placeholder="age"
+            name="age"
+            value={age}
+            onChange={x => this.handleChange(x)}
+          />
+          <input
+            type="text"
+            placeholder="name"
+            name="name"
+            value={name}
+            onChange={x => this.handleChange(x)}
+          />
+          <input
+            type="email"
+            placeholder="email"
+            name="email"
+            value={email}
+            onChange={x => this.handleChange(x)}
+          />
+          <button onClick={this.handleSubmit}>Submit!</button>
+        </form>
       </div>
     );
   }

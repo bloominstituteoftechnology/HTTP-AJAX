@@ -1,0 +1,23 @@
+
+.Friends-List{
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    padding: 25px;
+    flex-grow: 1;
+    text-align: center; 
+    height: auto;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+    border: 2px solid #222;
+    box-shadow: 2px 2px 1px slategray;
+}
+.Friends-Title{
+    font-size: 40px;
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+
+}
