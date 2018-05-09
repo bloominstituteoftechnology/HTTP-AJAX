@@ -1,8 +1,9 @@
 import React from 'react';
 import {
     Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    CardTitle, Button
 } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 const FriendCard = (props) => {
     return (
@@ -14,8 +15,8 @@ const FriendCard = (props) => {
                         <CardTitle>{e.name}</CardTitle>
                         <CardText>{e.age} Years</CardText>
                         <CardText>{e.email}</CardText>
-                        <Button onClick={() => props.update(e.id)}>UPDATE!</Button>
-                        <Button onClick={() => props.delete(e.id)}>DELETE</Button>
+                        <Link to="/" className="btn btn-success" onClick={() => props.update(e.id)}>UPDATE!</Link>
+                        <Button className="btn-danger" onClick={() => props.delete(e.id)}>DELETE</Button>
                     </CardBody>
                 </Card>
                 );

@@ -19,7 +19,12 @@ class App extends Component {
 
   componentDidMount = () => {
     axios.get('http://localhost:5000/friends/')
-      .then(response => this.setState({ friends: response.data }))
+      .then(response => this.setState({
+        friends: response.data,
+        name: '',
+        age: '',
+        email: ''
+      }))
       .catch(err => console.log(err));
   }
 
@@ -28,14 +33,23 @@ class App extends Component {
   }
   updateFriend = id => {
     axios.put(`http://localhost:5000/friends/${id}`, { name: this.state.name, age: this.state.age, email: this.state.email })
-      .then((data) => this.setState({ friends: data.data }))
+      .then((data) => this.setState({
+        friends: data.data,
+        name: '',
+        age: '',
+        email: ''
+      }))
       .catch(err => console.log(err));
   }
 
   postNewFriend = e => {
-    e.preventDefault();
     axios.post('http://localhost:5000/friends', { name: this.state.name, age: this.state.age, email: this.state.email })
-      .then((data) => this.setState({ friends: data.data }))
+      .then((data) => this.setState({
+        friends: data.data,
+        name: '',
+        age: '',
+        email: ''
+      }))
       .catch(err => console.log(err));
   }
   deleteFriend = id => {
@@ -55,11 +69,6 @@ class App extends Component {
         <Route exact path="/addfriend" render={(props) => <AddFriend {...props} name={this.state.name} age={this.state.age} email={this.state.email} function={this.updateDataText} function2={this.postNewFriend} />} />
         <Link className="btn btn-secondary" to="/addfriend">Add a Friend</Link>
         <Link className="btn btn-secondary" to="/updatefriend">Update a Friend</Link>
-
-
-
-
-
       </div>
     );
   }

@@ -26,15 +26,13 @@
   font-size: large;
 }
 
-form {
-  margin-top: 20px;
-}
-
 .form-group {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .form-control {
   width: 200px;
+  align-self: center;
 }
