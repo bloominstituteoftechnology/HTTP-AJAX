@@ -14,7 +14,7 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        this.setState(() => ({ friends: response.data }));
+        this.setState(() => ({ friends: [...response.data] }));
       })
       .catch(err => {
         console.error("error:", err);
@@ -22,7 +22,7 @@ class App extends Component {
       
   }
   render() {
-    console.log("friends:", this.state.friends);
+    // console.log("friends:", this.state.friends);
     return (
       <div className="App">
         <Friends friendData={this.state.friends}/>
