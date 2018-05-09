@@ -30,10 +30,22 @@ class App extends Component {
         </header>
         <input 
           type='text' 
-          placeholder="title" 
-          name="title" 
-          value={this.state.title} 
+          placeholder="age" 
+          name="age" 
+          value={this.state.age} 
         />
+        <input 
+        type='text' 
+        placeholder="email" 
+        name="email" 
+        value={this.state.email} 
+      />
+      <input 
+      type='text' 
+      placeholder="name" 
+      name="name" 
+      value={this.state.name} 
+    />
       </div>
     );
   }
