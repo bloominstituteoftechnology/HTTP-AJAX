@@ -15,12 +15,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-	<Switch>
-      	  <Route path="/" component={FriendsList} />
-	</Switch>  
+	  <Route path="/" component={FriendsList} />  
       </div>
     );
   }
 }
 
 export default App;
+
+//I mostly left this alone except to Route into FriendsList and add to imports so that everything works

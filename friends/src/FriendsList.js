@@ -13,7 +13,8 @@ class FriendsList extends Component {
     };
   }
 
-
+  //set everything to blank
+  
 componentDidMount() {  
   axios
     .get(`http://localhost:5000/friends/`)
@@ -26,13 +27,7 @@ componentDidMount() {
      });
 
 }
-
-
-  handleInput = event => {
-    this.setState({ [event.target.name]: [event.target.value] });
-  }
-
-  saveFriend = () => {
+  newFriend = () => {
     const friend = {
       name: this.state.name,
       age: this.state.age,
@@ -40,38 +35,44 @@ componentDidMount() {
     };
     axios
       .post(`http://localhost:5000/friends`, friend)
-      .then(listUpdate => {
-	console.log(listUpdate);
+      .then(response => {
+	this.setState({name: "", age: "", email: ""});
       })
       .catch(err => {
 	console.log(err);
       });
-    this.setState({ name: "", age: "", email: ""});
-  }
+  };
  
+
+  //in class, Dan said that we should put our axios request in a componentDidMount. I got a lot of the syntax from the training kit. The setState part was pieced together from notes I took during class. I think this gets the friends data and puts it into state.
+
+  handleInput = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+//this or something like this has been in pretty much everything we've ever done in react. It takes user input and puts it into state.
+  
+
+  
 render() {
   return(
     <div>
       <h1>Friends</h1>
       <input onChange={this.handleInput} placeholder="name" name="name" value={this.state.name} />
-      <input onChange={this.handleInput} placeholder="age" age="age" value={this.state.age} />
-      <input onChange={this.handleInput} placeholder="email" email="email" value={this.state.email} />
-
+      <input onChange={this.handleInput} placeholder="age" name="age" value={this.state.age} />
+      <input onChange={this.handleInput} placeholder="email" name="email" value={this.state.email} />
+      <button>Add</button>
       <div>
-	<Container>
-	   {this.state.friends.map(friend => {
-	     const { name,age,email } = friend;
-	     return(
-	<Row>
-	  <Col xs="6" sm="4"><h3>Name: {name} </h3></Col>
-	  <Col xs="6" sm="4"><h4>Age: {age} </h4></Col>
-	  <Col sm="4"><h4>Email: {email} </h4></Col>
-	</Row>
+	 {this.state.friends.map(friend => {
+	      return(
+		<ul>
+		  <h3>Name: {friend.name} </h3>
+		  <h4>Age: {friend.age} </h4>
+		  <h4>Email: {friend.email} </h4>
+		</ul>
 	     );
-	   })}
-        </Container>
-      </div>
-
+	 })}
+       </div>
    </div>
     
   );
