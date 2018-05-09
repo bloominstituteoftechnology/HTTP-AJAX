@@ -4,7 +4,10 @@ import axios from 'axios';
 
 class Friends extends Component {
     state = {
-        friends: []
+        friends: [],
+        name: '',
+        age: '',
+        email: ''
     }
 
     componentDidMount() {
@@ -17,6 +20,14 @@ class Friends extends Component {
             })
     }
 
+    handleTextInput = event => {
+        this.setState({ 
+            [event.target.name]: event.target.value,
+            [event.target.age]: event.target.value,
+            [event.target.email]: event.target.value
+         })
+    }
+
     render() {
         return (
             <div>
@@ -27,24 +38,35 @@ class Friends extends Component {
                         )
                     })}
                 </div>
-                <input
-                    type= 'text'
-                    placeholder= 'Name'
-                    name= 'name'
-                    value={this.state.name} 
-                />
-                <input
-                    type='text'
-                    placeholder='Age'
-                    name='age'
-                    value={this.state.age}
-                />
-                <input
-                    type='text'
-                    placeholder='Email'
-                    name='email'
-                    value={this.state.email}
-                />
+                <form>
+                    <input
+                        type= 'text'
+                        placeholder= 'Name'
+                        name= 'name'
+                        value={this.state.name}
+                        onChange={this.handleTextInput} 
+                    />
+                    <input
+                        type='text'
+                        placeholder='Age'
+                        name='age'
+                        value={this.state.age}
+                        onChange={this.handleTextInput}
+                    />
+                    <input
+                        type='text'
+                        placeholder='Email'
+                        name='email'
+                        value={this.state.email}
+                        onChange={this.handleTextInput}
+                    />
+                    <button
+                        type='button'
+                        value='Submit'
+                        onclick={this.saveFriendsData}
+                        onChange={this.handleTextInput}
+                    >Save Friend</button>
+                </form>
             </div>
         );
     }
