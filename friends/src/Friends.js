@@ -28,6 +28,22 @@ class Friends extends Component {
          })
     }
 
+    saveFriendsData = () => {
+        const friendData = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        }
+        axios.post("http://localhost:5000/friends", friendData)
+            .then(savedFriend => {
+                console.log(savedFriend)
+            })
+            .catch(err => {
+                console.log(err)
+            });
+            this.setState({ name: '', age: '', email: ''})
+    }
+
     render() {
         return (
             <div>
@@ -61,10 +77,7 @@ class Friends extends Component {
                         onChange={this.handleTextInput}
                     />
                     <button
-                        type='button'
-                        value='Submit'
-                        onclick={this.saveFriendsData}
-                        onChange={this.handleTextInput}
+                        onClick={this.saveFriendsData}
                     >Save Friend</button>
                 </form>
             </div>
