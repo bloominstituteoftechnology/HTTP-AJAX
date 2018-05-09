@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import FriendsWrapper from './components/FriendsWrapper';
-// import FriendsForm from './components/FriendsForm';
+import FriendsForm from './components/FriendsForm';
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      name: "",
+      email: "",
+      age: 0
     }
   }
 
@@ -21,6 +24,15 @@ class App extends Component {
   }
 
 
+  handleInput (e) {
+
+    this.setState({
+      [e.target.name]: e.target.value
+    }) 
+    
+  }
+
+
   render() {
 
     const { friends } = this.state;
@@ -28,7 +40,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* <FriendsForm /> */}
+        <FriendsForm name={this.state.name} email={this.state.email} age={this.state.age}/>
         <FriendsWrapper friends={friends}/>
       </div>
     );
