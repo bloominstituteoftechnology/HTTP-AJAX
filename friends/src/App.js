@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FriendsView from './FriendsView.js';
+import NewFriendForm from './NewFriendForm.js';
 import './App.css';
 
 const axios = require("axios");
@@ -21,6 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NewFriendForm />
         <FriendsView data={this.state.data} />
       </div>
     );
