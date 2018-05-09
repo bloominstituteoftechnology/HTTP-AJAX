@@ -20,6 +20,14 @@ class Friends extends Component {
             }) 
     }
 
+    handleTextInput = event => {
+        this.setState({
+          [event.target.name]: event.target.value,
+          [event.target.age]: event.target.value,
+          [event.target.email]: event.target.value
+        });
+    }
+
     render() {
         console.log(this.state.friends)
         return <div>
@@ -28,9 +36,10 @@ class Friends extends Component {
                 return <div key={friend.id}>{friend.name}</div>;
               })}
             </div>
-            <input type="text" placeholder="Name" name="name" value={this.state.name} />
-            <input type="text" placeholder="Age" name="age" value={this.state.age} />
-            <input type="text" placeholder="Email" name="email" value={this.state.email} />
+            <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput}/>
+            <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput}/>
+            <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput}/>
+            <button onClick={this.saveFriendsData}>Save Friend</button>
           </div>;
     }
 
