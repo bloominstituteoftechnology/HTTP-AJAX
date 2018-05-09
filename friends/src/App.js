@@ -23,19 +23,19 @@ class App extends Component {
   }
 
   handleFormSubmit = () => {
-    let tempData = this.state.data.slice();
-    tempData.push({
-      id: tempData.length + 1,
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    });
-    this.setState({
-      data: tempData,
-      name: "",
-      age: "",
-      email: ""
-    });
+    axios
+      .post(`http://localhost:5000/friends`, {
+        id: this.state.data.length + 1,
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(response => {
+        this.setState({data: response.data});
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
   }
 
