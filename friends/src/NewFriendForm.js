@@ -3,25 +3,26 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './NewFriendForm.css';
 
 
-const NewFriendForm = () => {
+const NewFriendForm = (props) => {
   return (
     <div className="new-friend-form">
       <Form>
         <FormGroup>
           <Label>Name</Label>
-          <Input  placeholder="Name" />
+          <Input name="name" onChange={props.onForm} placeholder="Name" />
         </FormGroup>
         <FormGroup>
           <Label>Age</Label>
-          <Input placeholder="Age" />
+          <Input name="age" onChange={props.onForm} placeholder="Age" />
         </FormGroup>
         <FormGroup>
           <Label>Email</Label>
-          <Input placeholder="Email" />
+          <Input name="email" onChange={props.onForm} placeholder="Email" />
         </FormGroup>
-        <Button>Submit</Button>
-
+        <Button onClick={props.onButton} >Submit</Button>
       </Form>
+
+
     </div>
   );
 }

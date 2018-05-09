@@ -11,8 +11,32 @@ class App extends Component {
   constructor(params) {
     super(params);
     this.state = {
-      data: null
+      data: null,
+      name: "",
+      age: "",
+      email: ""
     }
+  }
+
+  handleFormType = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleFormSubmit = () => {
+    let tempData = this.state.data.slice();
+    tempData.push({
+      id: tempData.length + 1,
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    });
+    this.setState({
+      data: tempData,
+      name: "",
+      age: "",
+      email: ""
+    });
+
   }
 
   componentDidMount() {
@@ -22,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NewFriendForm />
+        <NewFriendForm onForm={this.handleFormType} onButton={this.handleFormSubmit} />
         <FriendsView data={this.state.data} />
       </div>
     );
