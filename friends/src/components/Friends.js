@@ -5,9 +5,9 @@ const Friends = ({ Friend }) => {
     <div>List Of Friends</div>
     {Friends.map(Friend => (
       <div key={friends.id}>
+        <div>{frineds.age}</div>
         <div>{friends.name}</div>
         <div>{friends.email}</div>
-        <div>{frineds.age}</div>
       </div>
     ))}
   </div>;
