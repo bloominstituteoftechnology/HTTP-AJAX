@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+//import './App.css';
+import NewFriend from './NewFriend';
 import axios from 'axios';
 
 class App extends Component {
@@ -26,6 +26,7 @@ class App extends Component {
           return <li key={index}>{friend.name}</li>;
         })}
       </ul>
+      <NewFriend />
       </div>
     );
   }
