@@ -7,14 +7,18 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      age: '',
+      email: ''
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios.get('http://localhost:5000/friends')
-      .then( response => this.setState({friends: response.data}));          
-  }
+      .then(response => this.setState({friends: response.data}))
+      .catch(err => {throw new Error(err)})
+}
 
   render() {
     return (
@@ -23,6 +27,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <FriendsList results={this.state.friends} />
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>                 
