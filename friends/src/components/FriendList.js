@@ -22,7 +22,7 @@ class FriendList extends Component {
   }
 
   render() { 
-    console.log('this.state', this.state)
+    // console.log('this.state', this.state)
     return (
       <ul>
         {this.state.friends.map(friend => (
