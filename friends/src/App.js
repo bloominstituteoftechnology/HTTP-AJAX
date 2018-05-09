@@ -7,8 +7,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [{name:"Cass"}]
+      friends: [],
+      name: '',
+      age: null,
+      email: ''
     }
+  }
+
+  handleInput = (e) => {
+    this.setState({[e.target.name]: e.target.value});
   }
 
   componentDidMount() {
@@ -22,12 +29,26 @@ class App extends Component {
       });
   }
 
+  addFriend = () => {
+    const newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
+    axios
+    .post(`http://localhost:5000/friends`, newFriend)
+      .then()
+    this.setState({name:'', age:null, email:''})
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Friends</h1>
-        {this.state.friends.map(friend => {
-          return <Friend friend={friend}/>
+        <form className="add-friend" onSubmit={this.addFriend}>
+          <input type="text" name="name" placeholder="name" onChange={this.handleInput}/>
+          <input type="number" name="age" placeholder="age" onChange={this.handleInput}/>
+          <input type="text" name="email" placeholder="email" onChange={this.handleInput}/>
+          <input type="submit" value="Add Friend"/>
+        </form>
+        {this.state.friends.map((friend, i) => {
+          return <Friend key={i} friend={friend}/>
         })}
       </div>
     );
