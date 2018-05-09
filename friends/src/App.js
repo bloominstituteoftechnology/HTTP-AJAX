@@ -31,7 +31,12 @@ class App extends Component {
         email: this.state.email
       })
       .then(response => {
-        this.setState({data: response.data});
+        this.setState({
+          data: response.data,
+          name: "",
+          age: "",
+          email: ""
+        });
       })
       .catch(err => {
         console.log(err);
@@ -46,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NewFriendForm onForm={this.handleFormType} onButton={this.handleFormSubmit} />
+        <NewFriendForm onForm={this.handleFormType} onButton={this.handleFormSubmit} ageValue={this.state.age} nameValue={this.state.name} emailValue={this.state.email} />
         <FriendsView data={this.state.data} />
       </div>
     );
