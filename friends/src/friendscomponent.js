@@ -11,6 +11,7 @@ class Friends extends Component {
         age: '',
         email: '',
         friends: []
+       
     }
 }
 handleFormType = event => {
