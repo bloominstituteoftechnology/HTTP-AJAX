@@ -25,8 +25,17 @@ componentDidMount() {
      });
 
 }
+
+
+render() {
+  return(
+    <div>
+    </div>
+    
+  );
 }
 
+}
 export default FriendsList;
 
 
