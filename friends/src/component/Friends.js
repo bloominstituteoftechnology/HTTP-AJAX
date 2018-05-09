@@ -6,7 +6,6 @@ const Friends => { //used example from react-friends project
     {friends.map(friend=> {
       return (
         <div key={friend.name + friend.age + friend.email}>
-        {friend.name} {friend.age} {friend.email}
         </div>
       );
     })}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Friends from './component/Friends.js';
-
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -10,8 +10,9 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-//something goes here
+  componentDidMount() { //found in help channel
+    axios.get('http://localhost:5000/friends')
+    then.(response => this.setState({friends.response.data}));
   }
 
 
