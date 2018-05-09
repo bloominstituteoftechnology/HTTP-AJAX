@@ -11,20 +11,21 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    axios.get('http://localhost:5000')
+    axios
+      .get('http://localhost:5000/friends')
       .then(response => {
         this.setState(() => ({ friends: response.data }));
       })
       .catch(err => {
-        console.error(err);
+        console.error("error:", err);
       });
       
   }
   render() {
+    console.log("friends:", this.state.friends);
     return (
       <div className="App">
-        {/* <ul>{friends=this.state.friends}</ul> */}
-        <Friends />
+        <Friends friendData={this.state.friends}/>
       </div>
     );
   }

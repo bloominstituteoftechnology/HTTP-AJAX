@@ -1,8 +1,16 @@
 import React from 'react';
 
-const Friends = () => {
+const Friends = (props) => {
     return(
-        <div>also whaddup</div>
+        <div>
+            {props.friendData.map((friendStuff, index)=>{
+                return(
+                    <div key={index[0]}>
+                        {friendStuff}
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
