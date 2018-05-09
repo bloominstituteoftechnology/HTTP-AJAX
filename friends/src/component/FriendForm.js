@@ -6,7 +6,8 @@ class FriendForm extends Component {
     input: {
       name: '',
       age: '',
-      email: ''
+      email: '',
+      color: '',
     }
   }
   componentDidMount = () => {    
@@ -57,13 +58,14 @@ class FriendForm extends Component {
     }
   }
   render() {
-    const {name, age, email} = this.state.input
+    const {name, age, email, color} = this.state.input
     console.log(this.state.input)
     return (
       <div>
           <input type='text' name='name' value={name} onChange={e => this.handleChange(e) } />
           <input type='number' name='age' value={age} onChange={e => this.handleChange(e)} />
           <input type='email' name='email' value={email} onChange={e => this.handleChange(e)} />
+          <input type='text' name='color' value={color} onChange={e => this.handleChange(e)} />
           <button onClick={this.handleSubmit}>Submit</button>
       </div>
     )
