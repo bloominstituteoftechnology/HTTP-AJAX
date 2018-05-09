@@ -37,6 +37,6 @@ export default class FriendsList extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/friends')
         .then(response => this.setState({friends: response.data}))
-        .catch(error => console.log(`You dun goofed: ${error}`))
+        .catch(error => console.log(`You slipped homie: ${error}`))
     }
 }
