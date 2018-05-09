@@ -5,6 +5,7 @@ export default class FriendsForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: null,
       name: '',
       age: '',
       email: '',
@@ -20,13 +21,39 @@ export default class FriendsForm extends Component {
 
   addNewFriend = e => {
     e.preventDefault();
+    
+    if (e.target.name === 'add') {
+      axios.post('http://localhost:5000/friends', {
+        name: this.state.name,
+        age:  this.state.age,
+        email:  this.state.email
+      })
+    }
+    // update friends information
+    else if (e.target.name === 'update') {
+      axios.get('http://localhost:5000/friends')
+        .then(({ data }) => {
+          for (let i = 0; i < data.length; i++) {
+            if (this.state.name.toLocaleLowerCase() === data[i].name.toLocaleLowerCase()) {
+              let { id } = data[i];
 
-    axios.post('http://localhost:5000/friends', {
-      name: this.state.name,
-      age:  this.state.age,
-      email:  this.state.email
-    })
-      .then(data => console.log(data));
+              axios.put(`http://localhost:5000/friends/${ id }`, {
+                name: this.state.name,
+                age: this.state.age,
+                email: this.state.email
+              })
+            }
+          }
+        })
+        .catch(err => console.log(err));
+    }
+    else if (e.target.name === 'delete') {
+      // axios.delete(`http://localhost:5000/friends/${ id }`, {
+      //   name: this.state.name,
+      //   age: this.state.age,
+      //   email: this.state.email
+      // })
+    }
   }
 
   render() {
@@ -57,10 +84,27 @@ export default class FriendsForm extends Component {
             onChange={ this.setInputVal }
           />
           
+          {/* add new friend */}
           <input
             type='submit'
-            name='submit'
-            value='Search'
+            name='add'
+            value='Add Friend'
+            onClick={ this.addNewFriend }
+          />
+
+          {/* update existing friend */}
+          <input
+            type='submit'
+            name='update'
+            value='Update Friend'
+            onClick={ this.addNewFriend }
+          />
+
+          {/* delete existing friend */}
+          <input
+            type='submit'
+            name='delete'
+            value='Delete Friend'
             onClick={ this.addNewFriend }
           />
         </form>
