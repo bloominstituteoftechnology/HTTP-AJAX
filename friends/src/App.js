@@ -40,16 +40,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Friends</h1>
+        <h1 className="heading">Friends</h1>
         <form className="add-friend" onSubmit={this.addFriend}>
           <input type="text" name="name" placeholder="name" onChange={this.handleInput}/>
           <input type="number" name="age" placeholder="age" onChange={this.handleInput}/>
           <input type="text" name="email" placeholder="email" onChange={this.handleInput}/>
           <input type="submit" value="Add Friend"/>
         </form>
-        {this.state.friends.map((friend, i) => {
-          return <Friend key={i} friend={friend}/>
-        })}
+        <div className="friends">
+          {this.state.friends.map((friend, i) => {
+            return <Friend key={i} friend={friend}/>
+          })}
+        </div>
       </div>
     );
   }
