@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
+import Form from './components/Form';
 
 class App extends Component {
     constructor() {
@@ -19,11 +19,18 @@ componentDidMount() {
     .catch(err => {console.log(err)});
 }
 
+componentDidUpdate() {
+  axios
+  .get(`http://localhost:5000/friends`)
+    .then(response => {this.setState({friends: response.data})})
+    .catch(err => {console.log(err)});
+}
 
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} /> 
+        <FriendsList friends={this.state.friends} />
+        <Form />
       </div>
     );
   }
