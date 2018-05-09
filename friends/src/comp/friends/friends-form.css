@@ -1,16 +1,16 @@
-.App {
+.friends-form-container {
   display: flex;
   align-items: center;
   height: 100vh;
 }
 
-.friends-form-wrapper {
+.friends-form-container__form-wrapper {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.friends-form-wrapper__form {
+.form-wrapper__form {
   background: #fdfdfd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;

@@ -69,62 +69,64 @@ export default class FriendsForm extends Component {
 
   render() {
     return (
-      <div className='friends-form-wrapper'>
-        <form className='friends-form-wrapper__form'>
-          <input
-            className='form__input'
-            name='name'
-            onChange={ this.setInputVal }
-            placeholder='name'
-            type='text'
-            value={ this.state.inputVal }
-          />
+      <div className='friends-form-container'>
+        <div className='friends-form-container__form-wrapper'>
+          <form className='form-wrapper__form'>
+            <input
+              className='form__input'
+              name='name'
+              onChange={ this.setInputVal }
+              placeholder='name'
+              type='text'
+              value={ this.state.inputVal }
+            />
 
-          <input
-            className='form__input'
-            name='age'
-            onChange={ this.setInputVal }
-            placeholder='age'
-            type='text'
-            value={ this.state.inputVal }
-          />
+            <input
+              className='form__input'
+              name='age'
+              onChange={ this.setInputVal }
+              placeholder='age'
+              type='text'
+              value={ this.state.inputVal }
+            />
 
-          <input
-            className='form__input'
-            name='email'
-            placeholder='email'
-            onChange={ this.setInputVal }
-            type='text'
-            value={ this.state.inputVal }
-          />
-          
-          {/* add new friend */}
-          <input
-            className='form__input-button add'
-            name='add'
-            onClick={ this.addNewFriend }
-            type='submit'
-            value='Add Friend'
-          />
+            <input
+              className='form__input'
+              name='email'
+              placeholder='email'
+              onChange={ this.setInputVal }
+              type='text'
+              value={ this.state.inputVal }
+            />
+            
+            {/* add new friend */}
+            <input
+              className='form__input-button add'
+              name='add'
+              onClick={ this.addNewFriend }
+              type='submit'
+              value='Add Friend'
+            />
 
-          {/* update existing friend */}
-          <input
-            className='form__input-button update'
-            name='update'
-            onClick={ this.addNewFriend }
-            type='submit'
-            value='Update Friend'
-          />
+            {/* update existing friend */}
+            <input
+              className='form__input-button update'
+              name='update'
+              onClick={ this.addNewFriend }
+              type='submit'
+              value='Update Friend'
+            />
 
-          {/* delete existing friend */}
-          <input
-            className='form__input-button delete'
-            name='delete'
-            onClick={ this.addNewFriend }
-            type='submit'
-            value='Delete Friend'
-          />
-        </form>
+            {/* delete existing friend */}
+            <input
+              className='form__input-button delete'
+              name='delete'
+              onClick={ this.addNewFriend }
+              type='submit'
+              value='Delete Friend'
+            />
+          </form>
+        </div>
       </div>
     )
   }
