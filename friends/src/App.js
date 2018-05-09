@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import FriendsWrapper from './components/FriendsWrapper';
 
-
 class App extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       friends: []
+    }
   }
 
-  this.componentDidMount () {
-
+  componentDidMount () {
+    axios.get('http://localhost:5000/friends')
+      .then(response => this.setState({friends:response.data}))
+      .then( () => { console.log(this.state)})
   }
 
   render() {
