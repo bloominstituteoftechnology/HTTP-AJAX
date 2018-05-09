@@ -1,14 +1,16 @@
 import React from "react";
 
-const Friends = ({ friends }) => {
+const Friends = ({ friends }) => (
   <div>
-    <div>List Of Friends</div>
-    {Friends.map(Friend => (
-      <div key={friends.id}>
-        <div>{friends.age}</div>
-        <div>{friends.name}</div>
-        <div>{friends.email}</div>
+    <div>Friends List:</div>
+    {friends.map(friend => (
+      <div key={friend.id}>
+        <div>{friend.name}</div>
+        <div>{friend.age}</div>
+        <div>{friend.email}</div>
       </div>
     ))}
-  </div>;
-};
+  </div>
+);
+
+export default Friends;

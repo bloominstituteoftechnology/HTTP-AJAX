@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 
 class NewFriends extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      age: "",
-      name: "",
-      email: ""
-    };
-  }
+  state = {
+    age: "",
+    name: "",
+    email: ""
+  };
 
   handleChange = x => {
     this.setState({
@@ -26,19 +23,19 @@ class NewFriends extends Component {
     return (
       <div>
         <input
-          type="text"
+          type="number"
           name="age"
           value={age}
           onChange={x => this.handleChange(x)}
         />
         <input
-          type="number"
+          type="text"
           name="name"
           value={name}
           onChange={x => this.handleChange(x)}
         />
         <input
-          type="text"
+          type="email"
           name="email"
           value={email}
           onChange={x => this.handleChange(x)}
