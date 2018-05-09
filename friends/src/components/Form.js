@@ -11,16 +11,8 @@ class Form extends Component {
       }
     }
 
-    handlenewFriendNameChange = (event) => {
-        this.setState({ name: event.target.value });
-    };
-
-    handlenewFriendAgeChange = (event) => {
-        this.setState({ age: event.target.value });
-    };
-
-    handlenewFriendEmailChange = (event) => {
-        this.setState({ email: event.target.value });
+    handlenewFriendChange = (event) => {
+        this.setState({ [event.target.id]: event.target.value });
     };
 
     handleSubmitNewFriend = () => {
@@ -37,35 +29,35 @@ class Form extends Component {
     };
 
   render() {
+    let flag = false;
+    if (this.state.name !== '' && this.state.age !== '' && this.state.email !== '') {
+        flag = true;
+    }
+        
     return (
       <div>
         <input className='nameInput'
+            id="name"
             value={this.state.name}
-            onChange={this.handlenewFriendNameChange}
+            onChange={this.handlenewFriendChange}
             placeholder='Add Name...'
         />
         <input className='ageInput'
-            name='age'
+            id='age'
             value={this.state.age}
-            onChange={this.handlenewFriendAgeChange}
+            onChange={this.handlenewFriendChange}
             placeholder='Add Age...'
         />
         <input className='emailInput'
-            name='email'
+            id='email'
             value={this.state.email}
-            onChange={this.handlenewFriendEmailChange}
+            onChange={this.handlenewFriendChange}
             placeholder='Add Email...'
         />
-        <button onClick={this.handleSubmitNewFriend}>Submit New Friend</button>        
+        { flag ? <button onClick={this.handleSubmitNewFriend}>Submit New Friend</button> : <button>Finish Filling Out Form</button>}
       </div>
     );
   }
 }
 
 export default Form;
-
-// {if (nameInput.length > 0 && ageInput.length > 0 && emailInput.length > 0) {
-//     return (
-//         <button onClick={this.handleSubmitNewFriend}>Submit New Friend</button>
-//     )
-// } }
