@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import FriendsList from './components/FriendsList';
-import Form from './components/Form';
+import FriendsList from './components/FriendsList/FriendsList.js';
+import Form from './components/Form/Form.js';
 
 class App extends Component {
     constructor() {
