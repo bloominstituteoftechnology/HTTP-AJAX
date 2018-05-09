@@ -23,9 +23,27 @@ class FriendsList extends Component {
         .catch(err => {
           console.log("Error: ", err)
         })
-  } 
+  }; 
 
-
+  handleSubmit = (newFriend) => {
+    // console.log(newFriend)
+    axios
+      .post(`http://localhost:5000/friends`,{
+        name: newFriend.name,
+        age: newFriend.age,
+        email: newFriend.email
+      })
+        .then(response => {
+          console.log("post response:",response)
+          const newFriends = response.data;
+          this.setState({
+              friends: newFriends
+          })
+        })
+        .catch(err => {
+          console.log("post err:",err)
+        }) 
+  }
 
   render() {
     // console.log('state on friends', this.state)
@@ -36,7 +54,7 @@ class FriendsList extends Component {
             <FriendCard key={friend.id} friend={friend}/>
           ))}
 
-        <FriendAdd />
+        <FriendAdd handleSubmit={this.handleSubmit}/>
         </div>
         
       </div>

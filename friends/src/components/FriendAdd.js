@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios';
+// import axios from 'axios';
 
 class FriendAdd extends Component {
   constructor() {
@@ -18,31 +18,32 @@ class FriendAdd extends Component {
 
   handleAddFriend = () => {
     const newFriend = this.state
-    console.log("onsubmit",newFriend)
+    // console.log("onsubmit",newFriend)
+    this.props.handleSubmit(newFriend)
     
-    axios
-      .post(`http://localhost:5000/friends`,{
-        name: newFriend.name,
-        age: newFriend.age,
-        email: newFriend.email
-      })
-        .then(response => {
-          console.log("post response:",response)
-          this.setState({
-            name: "",
-            age: "",
-            email: "",
-          })
-        })
-        .catch(err => {
-          console.log("post err:",err)
-        }) 
+    // axios
+    //   .post(`http://localhost:5000/friends`,{
+    //     name: newFriend.name,
+    //     age: newFriend.age,
+    //     email: newFriend.email
+    //   })
+    //     .then(response => {
+    //       console.log("post response:",response)
+    //       this.setState({
+    //         name: "",
+    //         age: "",
+    //         email: "",
+    //       })
+    //     })
+    //     .catch(err => {
+    //       console.log("post err:",err)
+    //     }) 
 
-    // this.setState({
-    //   name: "",
-    //   age: "",
-    //   email: "",
-    // })
+    this.setState({
+      name: "",
+      age: "",
+      email: "",
+    })
   }
 
   render() {
