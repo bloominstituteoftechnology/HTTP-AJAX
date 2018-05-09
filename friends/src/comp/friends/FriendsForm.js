@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import './friends-form.css';
+
 export default class FriendsForm extends Component {
   constructor(props) {
     super(props);
@@ -67,54 +69,60 @@ export default class FriendsForm extends Component {
 
   render() {
     return (
-      <div>
-        <form>
+      <div className='friends-form-wrapper'>
+        <form className='friends-form-wrapper__form'>
           <input
-            type='text'
+            className='form__input'
             name='name'
+            onChange={ this.setInputVal }
             placeholder='name'
+            type='text'
             value={ this.state.inputVal }
-            onChange={ this.setInputVal }
           />
 
           <input
-            type='text'
+            className='form__input'
             name='age'
-            placeholder='age'
-            value={ this.state.inputVal }
             onChange={ this.setInputVal }
+            placeholder='age'
+            type='text'
+            value={ this.state.inputVal }
           />
 
           <input
-            type='text'
+            className='form__input'
             name='email'
             placeholder='email'
-            value={ this.state.inputVal }
             onChange={ this.setInputVal }
+            type='text'
+            value={ this.state.inputVal }
           />
           
           {/* add new friend */}
           <input
-            type='submit'
+            className='form__input-button add'
             name='add'
-            value='Add Friend'
             onClick={ this.addNewFriend }
+            type='submit'
+            value='Add Friend'
           />
 
           {/* update existing friend */}
           <input
-            type='submit'
+            className='form__input-button update'
             name='update'
-            value='Update Friend'
             onClick={ this.addNewFriend }
+            type='submit'
+            value='Update Friend'
           />
 
           {/* delete existing friend */}
           <input
-            type='submit'
+            className='form__input-button delete'
             name='delete'
-            value='Delete Friend'
             onClick={ this.addNewFriend }
+            type='submit'
+            value='Delete Friend'
           />
         </form>
       </div>
