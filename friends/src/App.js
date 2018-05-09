@@ -5,37 +5,37 @@ import axios from 'axios';
 import FriendsList from "./components/FriendsList";
 import AddForm from "./components/AddForm";
 
-  
+
 export default class App extends Component {
-  
+
   constructor() {
     super();
     this.state = {
-      friends: [], 
+      friends: [],
       name: "",
       age: 0,
-      enail:""
+      enail: ""
     }
   }
 
   componentDidMount() {
     axios.get("http://localhost:5000/friends")
       .then(response => this.setState({ friends: response.data }));
-      
+
   }
 
   handleInput(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     let newFriend = {
       name: this.state.name,
       email: this.state.email,
       age: this.state.age
     }
-    axios.post("http://localhost:5000/friends",newFriend)
+    axios.post("http://localhost:5000/friends", newFriend)
       .then(response => console.logr(response));
   }
 
@@ -44,9 +44,9 @@ export default class App extends Component {
       <div>
         <h1> home</h1>
         <AddForm input={this.handleInput.bind(this)} />
-    <FriendsList friends={this.state.friends} />    
+        <FriendsList friends={this.state.friends} />
       </div>
     )
-  
+
   }
 }
