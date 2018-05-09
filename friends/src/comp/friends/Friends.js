@@ -25,11 +25,15 @@ export default class Friends extends Component {
     const { friends } = this.state;
 
     return (
-      friends.map(friend => {
-        return (
-          <Friend key={ friend.id } friend={ friend } />
-        )
-      })
+      <div className='friend-list-wrapper'>
+        {
+          friends.map(friend => {
+            return (
+              <Friend key={ friend.id } friend={ friend } />
+            )
+          })
+        }
+      </div>
     )
   }
 }
