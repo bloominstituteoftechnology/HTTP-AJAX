@@ -13,9 +13,6 @@ class CustomForm extends Component {
             // }
         }
     }
-    componentDidMount() {
-        
-    }
 
     handleInput = (e) => {
         // console.log(e);
@@ -28,14 +25,21 @@ class CustomForm extends Component {
     };
 
     onSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const {name, email, age} = this.state;
         // console.log(name, email, age)
         const newFriend = { "name": name, "email": email, "age": age};
         axios.post(
             'http://localhost:5000/friends',
             newFriend
-        ).then( response => console.log(response) );
+        )
+        .then( response => {
+            console.log('Axios POST response',response);
+            this.props.upDate()
+        });
+        
+        console.log(this.props);
+        // this.props.upDate();
     }
 
     
@@ -44,7 +48,7 @@ class CustomForm extends Component {
         return (
             <Row>
                 <Col sm="12" md={{size: 8, offset:2}}  >
-                    <p>Hello from Form.</p>
+                    {/* <p>Hello from Form.</p> */}
                     <Form>
                         <FormGroup>
                         <Label for="exampleSearch">Name</Label>

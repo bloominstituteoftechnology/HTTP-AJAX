@@ -3,11 +3,36 @@ import logo from './logo.svg';
 import './App.css';
 import {Route} from 'react-router-dom';
 import {Container} from 'reactstrap';
+import axios from 'axios';
 
 /** My custom components */
 import { FriendCard, CustomForm, FriendsList } from './components';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: []
+    }
+  }
+
+  upDate = () => {
+    console.log("Hello from this.upDate");
+    axios.get('http://localhost:5000/friends')
+    .then( ({data}) => {
+        // console.log("Axios response.data",data);
+        this.setState({ friends: data });
+        // console.log("this.state.friends",this.state.friends);
+        }
+    );
+    
+  }
+
+  componentDidMount() {
+    this.upDate();
+  }
+
+  
   render() {
     return (
       <div className="App">
@@ -16,13 +41,15 @@ class App extends Component {
           <h1 className="App-title">Jesuarva: an HTTP-based Friends API </h1>
         </header>
         <Container>
-          <Route path="/" component={CustomForm} />
+          {/* <Route path="/" component={CustomForm} /> */}
+          <Route path="/" render={ props => <CustomForm {...props} upDate={this.upDate} />} />
           <Route path="/:id" component={FriendCard} />
-          <Route path='/' component={FriendsList} />
+          {/* <Route path='/' component={FriendsList} /> */}
+          <Route path='/' render={ props => <FriendsList {...props} friends={this.state.friends} />} />
         </Container>
       </div>
     );
   }
 }
 
-export default App;
+export default App; 

@@ -4,24 +4,9 @@ import axios from 'axios';
 import TableRow from '../auxiliar/TableRow';
 
 class FriendsList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {friends:[]}
-    }
-
-    componentDidMount() {
-        axios.get('http://localhost:5000/friends')
-            .then( ({data}) => {
-                // console.log("Axios response.data",data);
-                this.setState({ friends: data });
-                // console.log("this.state.friends",this.state.friends);
-                }
-            );
-    }
-    
     /** <Col > is fully responsive : try risizing your viewport */
     render() {
-        const {friends} = this.state;
+        const {friends} = this.props;
         // console.log(friends);
         return (
             <Row className="">
