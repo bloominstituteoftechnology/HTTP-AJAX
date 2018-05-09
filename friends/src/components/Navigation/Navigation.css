@@ -1,0 +1,30 @@
+.nav-container {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    padding: 10px;
+    margin: 20px;
+    border-radius: 4px;
+    background: slategrey;
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+}
+
+.nav-link:hover {
+    background: white;
+    color: slategrey;
+    border: 1px solid slategrey;
+}
+
+.nav-active {
+    background: lightcoral;
+    color: white;
+}
+
+.nav-active:hover {
+    color: lightcoral;
+    border: 1px solid lightcoral;
+}

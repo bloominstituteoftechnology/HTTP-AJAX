@@ -2,9 +2,15 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 .App {
   text-align: center;
   display: flex;
+  flex-flow: column wrap;
   justify-content: space-evenly;
   align-items: center;
+  font-size: 1.4rem;
 }
