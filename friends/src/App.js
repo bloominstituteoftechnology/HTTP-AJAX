@@ -18,8 +18,8 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
       .then(response => this.setState({friends: response.data}))
-      .catch(err => {throw new Error(err);
-  })}
+      .catch(err => {throw new Error(err)})
+}
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
