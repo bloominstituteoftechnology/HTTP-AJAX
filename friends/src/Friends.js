@@ -19,12 +19,32 @@ class Friends extends Component {
 
     render() {
         return (
-            <div className="Friends">
-                {this.state.friends.map(friend => {
-                    return (
-                        <div key={friend.id}>{friend.name}</div>
-                    )
-                })}
+            <div>
+                <div className="Friends">
+                    {this.state.friends.map(friend => {
+                        return (
+                            <div key={friend.id}>{friend.name}</div>
+                        )
+                    })}
+                </div>
+                <input
+                    type= 'text'
+                    placeholder= 'Name'
+                    name= 'name'
+                    value={this.state.name} 
+                />
+                <input
+                    type='text'
+                    placeholder='Age'
+                    name='age'
+                    value={this.state.age}
+                />
+                <input
+                    type='text'
+                    placeholder='Email'
+                    name='email'
+                    value={this.state.email}
+                />
             </div>
         );
     }
