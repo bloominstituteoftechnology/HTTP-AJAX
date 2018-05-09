@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Friend from "./Friend";
 
 class Friends extends Component {
   state = {
@@ -9,7 +12,7 @@ class Friends extends Component {
     email: ""
   };
 
-  componentDidMount() {
+  updateAll = () => {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
@@ -20,6 +23,10 @@ class Friends extends Component {
       });
   }
 
+  componentDidMount() {
+    this.updateAll();
+  }
+
   handleTextInput = event => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -28,11 +35,12 @@ class Friends extends Component {
     });
   };
 
-  saveFriendsData = () => {
+  saveFriendsData = (e) => {
+    e.preventDefault();
     const friendData = { name: this.state.name, age: this.state.age, email: this.state.email }
     axios.post("http://localhost:5000/friends", friendData)
         .then(savedFriend => {
-            console.log(savedFriend)
+            this.updateAll();
         })
         .catch(err => {
             console.log(err)
@@ -46,7 +54,14 @@ class Friends extends Component {
       <div>
         <div>
           {this.state.friends.map(friend => {
-            return <div key={friend.id}>{friend.name}</div>;
+           return (
+             <div>
+               {/* <Friend friendsData={friend} /> */}
+               <Link to={`/friends/${friend.id}`}>
+                 {friend.name}
+               </Link>
+             </div>
+            )
           })}
         </div>
         <form>
