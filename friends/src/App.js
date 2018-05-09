@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
 
 import Friends from './component/Friends';
-import NewFriendForm from './component/NewFriendForm';
+import FriendForm from './component/FriendForm';
 
 class App extends Component {
   state = {
@@ -17,8 +17,24 @@ class App extends Component {
       })
       .catch(err => console.log(err)) // to do: notify user with error message
   }
-  handleSubmit = (newFriend) => {
+  handleAdd = (newFriend) => {
     axios.post("http://localhost:5000/friends", newFriend )
+    .then(res => {
+      const friends = res.data;
+      this.setState({ friends });
+    })
+    .catch(err => console.log(err)) // to do: notify user with error message
+  }
+  handleUpdate = (id, updatedFriend) => {
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriend )
+    .then(res => {
+      const friends = res.data;
+      this.setState({ friends });
+    })
+    .catch(err => console.log(err))
+  }
+  handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
         const friends = res.data;
         this.setState({ friends });
@@ -32,11 +48,14 @@ class App extends Component {
         <Link to='/'><button>Home</button></Link>
         <Link to='/new'><button>Add New Friend</button></Link>
         <Route exact path='/' render={props => 
-          <Friends {...props} friends={friends} />  } 
+          <Friends {...props} friends={friends} handleDelete={this.handleDelete}/>  } 
         />
         <Route path='/new' render={props => 
-          <NewFriendForm {...props} handleSubmit={this.handleSubmit} /> } 
-        />        
+          <FriendForm {...props} handleAdd={this.handleAdd} /> } 
+        />
+        <Route path='/edit/:id' render={props => 
+          <FriendForm {...props} friends={friends} handleUpdate={this.handleUpdate} /> } 
+        />
       </div>
     );
   }
