@@ -1,20 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import Friends from "./components/Friends";
+import NewFriends from "./components/NewFriends";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { friends: [] };
+  }
+  componentDidMount = () => {
+    axios.get("http://localhost:5000/friends").then(info => {
+      const friends = info.data;
+      this.setState({ friends });
+    });
+  };
+  handleSubmit = (nFriend) => {
+    axios.get("http://localhost:5000/friends/", nFriend).then(info => {
+      const friends = info.data;
+      this.setState({ friends });
+    });
+  };
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    return <div />;
   }
 }
 

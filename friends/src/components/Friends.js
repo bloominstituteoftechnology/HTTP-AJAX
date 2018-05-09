@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
-const Friends = ({ Friend }) => {
+const Friends = ({ friends }) => {
   <div>
     <div>List Of Friends</div>
     {Friends.map(Friend => (
       <div key={friends.id}>
-        <div>{frineds.age}</div>
+        <div>{friends.age}</div>
         <div>{friends.name}</div>
         <div>{friends.email}</div>
       </div>
