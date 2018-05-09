@@ -1,4 +1,5 @@
 .friends-form-container {
+  background: hsl(199, 100%, 41%);
   display: flex;
   align-items: center;
   height: 100vh;
@@ -11,7 +12,7 @@
 }
 
 .form-wrapper__form {
-  background: #fdfdfd;
+  background: hsl(199, 100%, 61%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
