@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import FriendsView from './FriendsView.js';
 import './App.css';
 const axios = require("axios");
@@ -15,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    axios.get("http://localhost:5000/friends").then((result) => this.setState({data: result.data}));
   }
 
   render() {
