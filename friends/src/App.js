@@ -12,8 +12,8 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path='/' component={ Home } />
+        <Route exact path='/friends' component={ FriendsForm } />
         <Route exact path='/friends/all' component={Friends} />
-        <Route exact path='/friends/add' component={ FriendsForm } />
       </div>
     );
   }
