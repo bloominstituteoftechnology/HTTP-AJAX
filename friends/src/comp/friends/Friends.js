@@ -3,7 +3,6 @@ import axios from 'axios';
 
 // components
 import Friend from './Friend';
-import FriendsForm from './FriendsForm';
 
 export default class Friends extends Component {
   constructor(props) {
@@ -26,17 +25,11 @@ export default class Friends extends Component {
     const { friends } = this.state;
 
     return (
-      <div>
-        <FriendsForm />
-        
-        {
-          friends.map(friend => {
-            return (
-              <Friend key={ friend.id } friend={ friend } />
-            )
-          })
-        }
-      </div>
+      friends.map(friend => {
+        return (
+          <Friend key={ friend.id } friend={ friend } />
+        )
+      })
     )
   }
 }
