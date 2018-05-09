@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsView />
+        <FriendsView data={this.state.friends} />
       </div>
     );
   }
