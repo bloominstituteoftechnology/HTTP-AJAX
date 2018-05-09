@@ -25,6 +25,7 @@ class App extends Component {
         {this.state.friends.map(function(friend, index){
           return <li key={index}>{friend.name}</li>;
         })}
+        <NewFriend friend={this.state.friends} />
       </ul>
       <NewFriend />
       </div>
