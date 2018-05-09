@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 const Friends = ({ friends }) => 
   <div>
+    <div>Friends List:</div>
     { friends.map(friend => 
       <div key={friend.id}>
         <div>{friend.name}</div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 
 import Friends from './component/Friends';
 import NewFriendForm from './component/NewFriendForm';
@@ -28,9 +29,14 @@ class App extends Component {
     const { friends }= this.state
     return (
       <div>
-        <NewFriendForm handleSubmit={this.handleSubmit} />
-        <Friends 
-          friends={friends} />
+        <Link to='/'><button>Home</button></Link>
+        <Link to='/new'><button>Add New Friend</button></Link>
+        <Route exact path='/' render={props => 
+          <Friends {...props} friends={friends} />  } 
+        />
+        <Route path='/new' render={props => 
+          <NewFriendForm {...props} handleSubmit={this.handleSubmit} /> } 
+        />        
       </div>
     );
   }
