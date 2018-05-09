@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class CustomForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
-            age: ''
+            // "newFriend": {
+                name: '',
+                email: '',
+                age: ''
+            // }
         }
     }
     componentDidMount() {
@@ -24,6 +27,19 @@ class CustomForm extends Component {
         // console.log(this.state);
     };
 
+    onSubmit = (e) => {
+        e.preventDefault();
+        const {name, email, age} = this.state;
+        // console.log(name, email, age)
+        const newFriend = { "name": name, "email": email, "age": age};
+        axios.post(
+            'http://localhost:5000/friends',
+            newFriend
+        ).then( response => console.log(response) );
+    }
+
+    
+
     render() {
         return (
             <Row>
@@ -32,17 +48,29 @@ class CustomForm extends Component {
                     <Form>
                         <FormGroup>
                         <Label for="exampleSearch">Name</Label>
-                        <Input value={this.state.name} onChange={this.handleInput} type="text" name="name" id="exampleSearch" placeholder="Add a new friend..." />
+
+                        {/* Two different manners to accomplish the same */}
+                        {/* <Input value={this.state.name} onChange={this.handleInput} type="text" name="name" id="exampleSearch" placeholder="Add a new friend..." /> */}
+                        <Input  onChange={this.handleInput} type="text" name="name" id="exampleSearch" placeholder="Add a new friend..." />
+                        
                         </FormGroup>
                         <FormGroup>
                         <Label for="exampleEmail">Email</Label>
-                        <Input value={this.state.email} onChange={this.handleInput} type="email" name="email" id="exampleEmail" placeholder="friend's email" />
+
+                        {/* Two different manners to accomplish the same */}
+                        {/* <Input value={this.state.email} onChange={this.handleInput} type="email" name="email" id="exampleEmail" placeholder="friend's email" /> */}
+                        <Input  onChange={this.handleInput} type="email" name="email" id="exampleEmail" placeholder="friend's email" />
+                        
                         </FormGroup>
                         <FormGroup>
                         <Label for="exampleNumber">Age</Label>
-                        <Input value={this.state.age} onChange={this.handleInput} type="number" name="age" id="exampleNumber" placeholder="friend's age" />
+
+                        {/* Two different manners to accomplish the same */}
+                        {/* <Input value={this.state.age} onChange={this.handleInput} type="number" name="age" id="exampleNumber" placeholder="friend's age" /> */}
+                        <Input  onChange={this.handleInput} type="number" name="age" id="exampleNumber" placeholder="friend's age" />
+                        
                         </FormGroup>
-                        <Button>Submit</Button>
+                        <Button onClick={this.onSubmit} >Submit</Button>
                     </Form>
                 </Col>
             </Row>
