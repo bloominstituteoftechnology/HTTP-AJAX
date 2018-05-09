@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 
+
 class App extends Component {
+  constructor() {
+    super();
+      this.state = {
+        name: '',
+        age: '',
+        email: '',
+        friends: []
+      }
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:5000/friends`)
+      .then ( list => this.setState({friends: list.data}))
+      .catch( error => console.log(error));
+  }
+
+
   render() {
     return (
       <div className="App">
