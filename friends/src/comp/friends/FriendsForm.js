@@ -22,6 +22,7 @@ export default class FriendsForm extends Component {
   addNewFriend = e => {
     e.preventDefault();
     
+    // add new friend
     if (e.target.name === 'add') {
       axios.post('http://localhost:5000/friends', {
         name: this.state.name,
@@ -47,12 +48,20 @@ export default class FriendsForm extends Component {
         })
         .catch(err => console.log(err));
     }
+    // delete friend
     else if (e.target.name === 'delete') {
-      // axios.delete(`http://localhost:5000/friends/${ id }`, {
-      //   name: this.state.name,
-      //   age: this.state.age,
-      //   email: this.state.email
-      // })
+      axios.get('http://localhost:5000/friends')
+        .then(({ data }) => {
+          for (let i = 0; i < data.length; i++) {
+            if (this.state.name.toLocaleLowerCase() === data[i].name.toLocaleLowerCase()) {
+              let { id } = data[i];
+              axios.delete(`http://localhost:5000/friends/${id}`)
+                .then(a => console.log('DELETE SUCCESS', a))
+                .catch(err => console.log(err))
+            }
+          }
+        })
+        .catch(err => console.log(err));
     }
   }
 
