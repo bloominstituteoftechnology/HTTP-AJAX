@@ -26,3 +26,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App-form {
+  text-align: left;
+  /* border: 2px solid black; */
+  margin: 50px;
+}

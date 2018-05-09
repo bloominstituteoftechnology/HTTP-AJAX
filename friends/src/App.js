@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friends: [],
       name: '',
-      age: '',
+      age: 0,
       email: '',
     }
   }
@@ -19,18 +19,11 @@ class App extends Component {
     axios.get('http://localhost:5000/friends')
     .then((response) => {
       this.setState({friends: response.data});
+    
     })
     .catch((err)=> {
       console.log(err);
     })
-
-    // axios.post('http://localhost:5000/friends', ({friends}))
-    // .then(response => {
-    //   this.setState({friends: response.data});
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
   }
 
   handleFormChange = event => {
@@ -39,10 +32,10 @@ class App extends Component {
 
   submitFormChange = () => {
     const friends = this.state.friends;
-    const info = {id: friends.length+1, name: this.state.name, age: this.state.age, email: this.state.email}
+    const info = {id: friends.length+1, name: this.state.name, age: Number(this.state.age), email: this.state.email}
     friends.push(info);
 
-    axios.post('http://localhost:5000/friends', {friends})
+    axios.post('http://localhost:5000/friends', info)
     .then(response => {
       this.state({friends: [], name: '', age: '', email: ''});
     })
@@ -57,22 +50,22 @@ class App extends Component {
         
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to My Friends List</h1>
         </header>
        
         <FriendsList friends={this.state.friends}/>
         
-        <div>
+        <div className="App-form">
           <form>
-            <p> Name:
+            <p> Name: <br/>
               <input name='name' value = {this.state.name} onChange = {this.handleFormChange}/>
             </p>
 
-            <p> Age:
-              <input name='age' value = {Number(this.state.age)} onChange = {this.handleFormChange}/>
+            <p> Age: <br/>
+              <input name='age' value = {this.state.age} onChange = {this.handleFormChange}/>
             </p>
 
-            <p> Email:
+            <p> Email: <br/>
               <input name='email' value = {this.state.email} onChange = {this.handleFormChange}/>
             </p>
 
