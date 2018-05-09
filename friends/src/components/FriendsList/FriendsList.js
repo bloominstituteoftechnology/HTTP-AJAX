@@ -22,11 +22,11 @@ class FriendsList extends Component {
     /** <Col > is fully responsive : try risizing your viewport */
     render() {
         const {friends} = this.state;
-        console.log(friends);
+        // console.log(friends);
         return (
             <Row className="">
                 <Col sm="12" md={{size: 8, offset:2}} >
-                Hello from FriendsList.
+                {/* Hello from FriendsList. */}
                 <Table>
                 <thead>
                     <tr>
@@ -38,7 +38,7 @@ class FriendsList extends Component {
                 </thead>
                 <tbody>
                     {friends.map(
-                        (friend, i) => <TableRow {...friend} />
+                        (friend, i) => <TableRow key={friend.id} {...friend} />
                     )}
                 </tbody>
                 </Table>

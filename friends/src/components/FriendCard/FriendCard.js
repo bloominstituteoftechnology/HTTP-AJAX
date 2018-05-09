@@ -10,7 +10,7 @@ class FriendCard extends Component {
     render() {
         return (
             <Row>
-                Hello From FriendCard.
+                <p>Hello From FriendCard.</p>
             </Row>
         );
     }

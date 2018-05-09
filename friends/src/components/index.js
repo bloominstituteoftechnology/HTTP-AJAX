@@ -1,5 +1,5 @@
 import FriendCard from './FriendCard/FriendCard';
-import Form from './Form/Form';
+import CustomForm from './CustomForm/CustomForm';
 import FriendsList from './FriendsList/FriendsList';
 
-export { FriendCard, Form, FriendsList }
+export { FriendCard, CustomForm, FriendsList }

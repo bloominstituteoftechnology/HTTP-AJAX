@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom';
 import {Container} from 'reactstrap';
 
 /** My custom components */
-import { FriendCard, Form, FriendsList } from './components';
+import { FriendCard, CustomForm, FriendsList } from './components';
 
 class App extends Component {
   render() {
@@ -16,8 +16,8 @@ class App extends Component {
           <h1 className="App-title">Jesuarva: an HTTP-based Friends API </h1>
         </header>
         <Container>
-          <Route path="/" component={Form} />
-          <Route path="/" component={FriendCard} />
+          <Route path="/" component={CustomForm} />
+          <Route path="/:id" component={FriendCard} />
           <Route path='/' component={FriendsList} />
         </Container>
       </div>
