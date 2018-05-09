@@ -7,8 +7,14 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      age: '',
+      email: ''
     }
+  }
+  handleOnChange = event => {
+    this.setState({ [event.target.name] : event.target.value});
   }
   componentDidMount(){
     axios.get('http://localhost:5000/friends')
@@ -16,7 +22,32 @@ class App extends Component {
   }
   render() {
     return (
-      <FriendsList friends={this.state.friends}/>
+      <div>
+        <FriendsList friends={this.state.friends} />
+        <form>
+          <input 
+            name='name'
+            type='text'
+            placeholder='Name'
+            value={this.state.name}
+            onChange={this.handleOnChange}
+          />
+          <input
+            name='age'
+            type='text'
+            placeholder='Age'
+            value={this.state.age}
+            onChange={this.handleOnChange}
+          />
+          <input
+            name='email'
+            type='text'
+            placeholder='Email Address'
+            value={this.state.email}
+            onChange={this.handleOnChange}
+          />
+        </form>
+      </div>
     );
   }
 }
