@@ -4,7 +4,10 @@ import axios from 'axios';
 
 class Friends extends Component {
     state = {
-        friends: []
+        friends: [],
+        name: '',
+        age: '',
+        email: ''
     }
 
     componentDidMount() {
@@ -19,17 +22,16 @@ class Friends extends Component {
 
     render() {
         console.log(this.state.friends)
-        return (
-            // <div></div>
+        return <div>
             <div>
-                {this.state.friends.map(friend => {
-                    return (
-                        <div key={friend.id}>{friend.name}</div>
-                    )
-                })}
+              {this.state.friends.map(friend => {
+                return <div key={friend.id}>{friend.name}</div>;
+              })}
             </div>
-            
-        )
+            <input type="text" placeholder="Name" name="name" value={this.state.name} />
+            <input type="text" placeholder="Age" name="age" value={this.state.age} />
+            <input type="text" placeholder="Email" name="email" value={this.state.email} />
+          </div>;
     }
 
 }
