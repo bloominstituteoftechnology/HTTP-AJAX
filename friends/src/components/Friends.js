@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Friend from './Friend'
+import { Table } from 'reactstrap';
+
 
 
 class Friends extends Component {
@@ -16,9 +19,23 @@ class Friends extends Component {
             .catch((err) => console.log(err))
     }
     render() {
+        const headerStyle = {
+            color: "blue",
+            display: "flex",
+            justifyContent: "space-around",
+            paddingRight: "80px",
+            margin: "30px 0px",
+            fontWeight: "bold"
+        }
+
         return (
             <div>
-                {this.state.friends.map((friend, index) => { return <div key={friend.name + index}>{friend.name}</div>})}
+                        <div style={headerStyle}>
+                            <div>Name</div>
+                            <div>Age</div>
+                            <div>Email</div>
+                        </div>
+                {this.state.friends.map((friend, index) => { return <Friend key={friend.name + index} friend={friend}/>})}
             </div>
         )
     }
