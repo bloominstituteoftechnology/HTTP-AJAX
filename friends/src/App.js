@@ -7,7 +7,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      notes: [],
+      age: '',
+      email: '',
+      name: '',
     };
   }
 
@@ -21,6 +24,22 @@ class App extends Component {
     });
   }
 
+  handleTextInput = e => {
+    this.setState({[e.target.name]: e.target.value});
+  };
+
+  saveNoteData = () => {
+    const note = { age: this.state.age, email: this.state.email, name: this.state.name };
+    axios.post('http://localhost:5000/friends', note)
+    .then(savedNote => {
+      console.log(savedNote);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    this.setState({age: '', email: '', name: ''});
+  };
+
   render() {
     return (
       <div className="App">
@@ -29,23 +48,27 @@ class App extends Component {
           <h1 className="App-title">React Friends Forever</h1>
         </header>
         <input 
-          type='text' 
+          type='number' 
+          onChange={this.handleTextInput}
           placeholder="age" 
           name="age" 
           value={this.state.age} 
         />
         <input 
-        type='text' 
-        placeholder="email" 
-        name="email" 
-        value={this.state.email} 
-      />
-      <input 
-      type='text' 
-      placeholder="name" 
-      name="name" 
-      value={this.state.name} 
-    />
+          type='email' 
+          onChange={this.handleTextInput}
+          placeholder="email" 
+          name="email" 
+          value={this.state.email} 
+        />
+        <input 
+          type='text' 
+          onChange={this.handleTextInput}
+          placeholder="name" 
+          name="name" 
+          value={this.state.name} 
+        />
+        <button onClick={this.saveNoteData}>add friend</button>
       </div>
     );
   }
