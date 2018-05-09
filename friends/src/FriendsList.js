@@ -1,4 +1,5 @@
 import axios from "axios";
+import React, { Component } from "react";
 
 class FriendsList extends Component {
   constructor() {
@@ -10,20 +11,24 @@ class FriendsList extends Component {
       email: ""
     };
   }
-}
 
-  componentDidMount() {  
+
+componentDidMount() {  
   axios
     .get(`http://localhost:5000/friends/`)
     .then(response => {
-      console.log(response.data);
-    }
+      this.setState({ friends: response.data });
+    })
 
     .catch(err => {
       console.log(err);
      });
 
- }
-
+}
+}
 
 export default FriendsList;
+
+
+
+
