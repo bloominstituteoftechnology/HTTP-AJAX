@@ -1,0 +1,19 @@
+.form-container{
+    display: flex;
+    justify-content: center;
+}
+
+.friend-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+    padding: 5px;
+    border: 1px solid black;
+    width: 300px;
+}
+
+.friend-form input{
+    width: 250px;
+    margin: 5px;
+}
