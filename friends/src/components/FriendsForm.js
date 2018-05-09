@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 
 export default class FriendsForm extends Component {
+
+    constructor (props) {
+        super(props);
+        this.state = {
+            friendsData: []
+        }
+    }
+
+    componentDidMount() {
+		this.setState({
+			friendsData: this.props
+		});
+}
+
   render() {
+
+    
+    console.log('What is THIS: ', friendsData);
+
     return (
        <div className="friends-form"> 
         <form>
-            <label>
-                ID:
-                <input type="text" name="id" />
-            </label>
             <label>
                 Name:
                 <input type="text" name="name" />
