@@ -7,16 +7,16 @@ const NewFriendForm = () => {
     <div className="new-friend-form">
       <Form>
         <FormGroup>
-          <Label for="name">Name</Label>
-          <Input type="name" name="name" id="name" placeholder="Name" />
+          <Label>Name</Label>
+          <Input  placeholder="Name" />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+          <Label>Age</Label>
+          <Input placeholder="Age" />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+          <Label>Email</Label>
+          <Input placeholder="Email" />
         </FormGroup>
         <Button>Submit</Button>
 
