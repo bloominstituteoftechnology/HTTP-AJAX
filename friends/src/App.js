@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FriendsView from './FriendsView.js';
 import './App.css';
+
 const axios = require("axios");
 
 
@@ -9,7 +10,7 @@ class App extends Component {
   constructor(params) {
     super(params);
     this.state = {
-      data: {}
+      data: null
     }
   }
 
@@ -20,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsView data={this.state.friends} />
+        <FriendsView data={this.state.data} />
       </div>
     );
   }
