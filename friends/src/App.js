@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import Friends from './Friends';
+import Friends from './Friends'
+import Form from './Form';
+import Button from './Button';
 
 class App extends Component {
   constructor(){
@@ -14,14 +16,18 @@ class App extends Component {
 
   componentWillMount(){
     axios.get('http://localhost:5000/friends')
-    .then(repsone => {this.setState(() => ({friends:Response.data}))})
-    .catch(err => {console.error(err)});
+    .then(response => {
+      this.setState(() => ({ friends: [...response.data] }));
+    })
+    .catch(err =>{console.error(err)});
   }
 
   render(){ 
     return (
       <div>
-        <Friends friendsData={this.state.friends}/>
+        <Friends friendData={this.state.friends}/>
+        <Form />      
+        <Button />  
       </div>
     )
   }
