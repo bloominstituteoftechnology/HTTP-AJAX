@@ -1,18 +1,19 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, CardText } from 'reactstrap';
+import { Card, CardBody, CardText } from 'reactstrap';
 
 const FriendList = (props) => {
+
     return (
-        <div>
+        <div className = 'card-container row'>
             {props.friends.map(person => (
                 <div key = {person.id}>                
                 <Card className =' friend-card'>
-                    <CardHeader>{person.name}</CardHeader>
-                    <CardBody>
-                        <CardText>{person.age}</CardText>
-                        <CardText>{person.email}</CardText>
-                    </CardBody>
-                </Card>                
+                <CardBody>
+                    <CardText>{person.name}</CardText>
+                    <CardText>{person.age}</CardText>
+                    <CardText>{person.email}</CardText>
+                </CardBody>  
+                </Card>             
                 </div>
             ))}
        </div>

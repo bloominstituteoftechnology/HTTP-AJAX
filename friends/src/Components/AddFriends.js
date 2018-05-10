@@ -4,41 +4,23 @@ import { Button, Form, FormGroup, Label } from 'reactstrap';
 
 class AddFriends extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            age: '',
-            email: '' 
-        }
+        super(props);        
     }
-
-    handleInput = ( event ) => {
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    addNewFriend = ( event ) => {
-        event.preventDefault();
-        const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
-        axios.post(`http://localhost:5000/friends`, newFriend)
-        .then( response => { this.setState({ list: response.data, name: '', age: '', email: ''})
-        })
-        .catch (error => console.log(error)); 
-    }
-
+   
     render() {
         return (
-            <Form onSubmit = {this.addNewFriend} inline>
+            <Form onSubmit = {this.props.addNewFriend} inline>
                 <FormGroup className = 'mb-2 mr-sm-2 mb-sm-0'>
-                <Label for='Add Friend!' className = 'mr-sm-2'>Name</Label>
-                    <input type = 'text' onChange = {this.handleInput} name = 'name' value = {this.state.name} placeholder = 'name' />
+                <Label for='name' className = 'mr-sm-2'>Name</Label>
+                    <input type = 'text' onChange = {this.props.handleInput} name = 'name' value = {this.props.name} placeholder = 'name' />
                 </FormGroup>
                 <FormGroup className = 'mb-2 mr-sm-2 mb-sm-0'>
-                <Label for='Add Friend!' className = 'mr-sm-2'>Age</Label>
-                    <input type = 'number' onChange = {this.handleInput} name = 'age' value = {this.state.age} placeholder = 'age' />
+                <Label for='age' className = 'mr-sm-2'>Age</Label>
+                    <input type = 'number' onChange = {this.props.handleInput} name = 'age' value = {this.props.age} placeholder = 'age' />
                 </FormGroup>
                 <FormGroup className = 'mb-2 mr-sm-2 mb-sm-0'>
-                <Label for='Add Friend!' className = 'mr-sm-2'>Email</Label>
-                    <input type = 'email' onChange = {this.handleInput} name = 'email' value = {this.state.email} placeholder = 'email' />
+                <Label for='email' className = 'mr-sm-2'>Email</Label>
+                    <input type = 'email' onChange = {this.props.handleInput} name = 'email' value = {this.props.email} placeholder = 'email' />
                 </FormGroup>                
                 <Button>Submit</Button>
             </Form>
