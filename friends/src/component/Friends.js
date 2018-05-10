@@ -5,6 +5,7 @@ const Friends = ({friends}) =>  //used example from react-friends project,but al
     {friends.map(friend=>
         <div key={friend.id}>
         <div>{friend.name}</div>
+        <div>{friend.age}</div>
         <div>{friend.email}</div>
         </div>
     )}

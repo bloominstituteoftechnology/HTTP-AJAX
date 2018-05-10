@@ -6,7 +6,7 @@ class Form extends Component {
     age: '',
     email:''
   }
-}
+
 //looked up forms
 handlechange = (event) => {
 this.setState({
@@ -14,16 +14,28 @@ this.setState({
 })
 }
 
+handleSubmit (event) {
+this.props.handleSubmit(this.state)
+}
+
 render() {
+  const {
+    name,
+    age,
+    email
+  } = this.state
   return (
-    <div className='App'>
-    <form>
-    <label>Name</label>
-    <input type='text' value={this.state.inputvalue} onChange={this.handleChange}/>
+     <form onSubmit={this.handleSubmit.bind(this)}>
+     <label>Name: </label>
+    <input type='text' name='name' value={name} onChange={this.handleChange}/>
+    <label>Age: </label>
+    <input type='number' name='age' value={age} onChange={this.handleChange}/>
+    <label>Email: </label>
+    <input type='email' name='email' value={email} onChange={this.handleChange}/>
+    <button onClick={this.handleSubmit}>Submit</button>
     </form>
-    </div>
+
   );
 }
 }
-
 export default Form;

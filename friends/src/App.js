@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Friends from './component/Friends.js';
 import axios from 'axios';
+import Form from './component/Form.js'
 
 class App extends Component {
   constructor() {
@@ -25,6 +26,7 @@ class App extends Component {
     return (
       <div>
       <Friends friends={this.state.friends} />
+      <Form handleSubmit={this.handleSubmit} />
       </div>
     );
   }
