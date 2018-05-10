@@ -8,14 +8,14 @@ export default class FriendsList extends Component {
   constructor(){
     super()
     this.state = {
-      friends: [],
+       friends: [],
       // name: '',
       // age: '',
       // email: ''
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     // this.fetchUsers()
     axios.get('http://localhost:5000/friends')
     .then(response => {
