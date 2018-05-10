@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import DisplayList from './Component/DisplayList'
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import FormIn from './Component/FormIn'
 
 class App extends Component {
   render() {
@@ -14,7 +16,11 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        < DisplayList/ >
+
+        <DisplayList />
+        <FormIn />
+      
+
       </div>
       
     );
