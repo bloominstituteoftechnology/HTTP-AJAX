@@ -13,6 +13,7 @@ const FriendsComponent = ({ friends }) =>
                         <CardTitle>{friend.name}</CardTitle>
                         <CardBody>{friend.age}</CardBody>
                         <CardSubtitle>{friend.email}</CardSubtitle>
+                        <button>Delete</button>
                     </CardBody>
                 </Card>
             </div>
