@@ -1,6 +1,8 @@
 import React, { Component} from 'react';
 import {Card, CardTitle, CardText, Button} from 'reactstrap';
 import axios from 'axios'
+import UpdateForm from './UpdateForm'
+import {Link } from "react-router-dom";
 
 class FriendCard extends Component {
     constructor(props){
@@ -25,7 +27,10 @@ class FriendCard extends Component {
                            });
                         
                     }}> Delete </Button>
-                    
+                    {/* <Button onClick = {() => <UpdateForm id=item.id> Update </Button> */}
+                    <Link to = {`/updateform/${item.id}`}>
+                        <Button> Update </Button>
+                    </Link>
                     </Card>
                 ) )}
             </div>

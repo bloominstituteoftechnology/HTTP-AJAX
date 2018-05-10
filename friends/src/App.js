@@ -5,6 +5,7 @@ import DisplayList from './Component/DisplayList'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import FormIn from './Component/FormIn'
+import UpdateForm from './Component/UpdateForm'
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
         </Link>
         <Route exact path="/form" component={FormIn} />
         <Route exact path="/" component={DisplayList } />
+        <Route exact path="/updateform/:id" component={UpdateForm } />
 
       </div>
       
