@@ -50,48 +50,33 @@ class Friends extends Component {
 
 
   render() {
-    return (
-      <div>
+    return <div>
         <div>
           {this.state.friends.map(friend => {
-           return (
-             <div>
-               {/* <Friend friendsData={friend} /> */}
-               <Link to={`/friends/${friend.id}`}>
-                 {friend.name}
-               </Link>
-             </div>
-            )
+            return <div>
+                <Link onClick={() => {this.props.updateFriend(friend)}} to={`/friends/${friend.id}`} >
+                  {friend.name}
+                </Link>
+              </div>;
           })}
         </div>
         <form>
-            <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleTextInput}
-            />
-            <input
-                type="text"
-                placeholder="Age"
-                name="age"
-                value={this.state.age}
-                onChange={this.handleTextInput}
-            />
-            <input
-                type="text"
-                placeholder="Email"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleTextInput}
-            />
-            <button onClick={this.saveFriendsData}>Save Friend</button>
+          <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput} />
+          <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput} />
+          <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />
+          <button onClick={this.saveFriendsData}>Save Friend</button>
         </form>
-      </div>
-    );
+        {/*   */}
+      </div>;
   }
 }
 
-
+function FriendsDeatils({friend}) {
+    const {name, age, email} = friend;
+    return (
+        <div>
+            {name}
+        </div>
+    )
+}
 export default Friends;
