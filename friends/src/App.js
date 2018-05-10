@@ -19,18 +19,11 @@ componentDidMount() {
     .catch(err => {console.log(err)});
 }
 
-componentDidUpdate() {
-  axios
-  .get(`http://localhost:5000/friends`)
-    .then(response => {this.setState({friends: response.data})})
-    .catch(err => {console.log(err)});
-}
-
   render() {
     return (
       <div className="App">
         <FriendsList friends={this.state.friends} />
-        <Form />
+        <Form friends={this.state.friends} />
       </div>
     );
   }

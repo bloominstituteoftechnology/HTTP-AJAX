@@ -3,12 +3,13 @@ import axios from 'axios';
 import './FormStyle.css';
 
 class Form extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         name: '',
         age: '',
-        email: ''
+        email: '',
+        idee: ''
       }
     }
 
@@ -27,7 +28,18 @@ class Form extends Component {
                 })
 
         this.setState({ name: '', age: '', email: '' });
+        window.location.reload();
     };
+
+    handleDeleteFriend = () => {
+        axios
+            .delete(`http://localhost:5000/friends/${this.state.idee}`)
+                .then(response => {console.log(response.status)})
+                .catch(err => {console.log(err)})
+
+        this.setState({ id: '' });
+        window.location.reload();
+    }
 
   render() {
     let flag = false;
@@ -58,6 +70,14 @@ class Form extends Component {
             />
         </div>
         { flag ? <button className='submitbutton' onClick={this.handleSubmitNewFriend}>Submit New Friend</button> : <button className='notdonebutton'>Finish Filling Out Form</button>}
+        <div>
+            <input className='delete'
+            id='idee'
+            value={this.state.idee}
+            onChange={this.handlenewFriendChange}
+            placeholder='ID of friend to delete'/>
+            <button onClick={this.handleDeleteFriend}>Delete Friend</button>
+        </div>
       </div>
     );
   }
