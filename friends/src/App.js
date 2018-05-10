@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import FriendDetails from './FriendDetails';
-import FriendCard from './FriendCard';
+
 
 
 const App = () =>{
@@ -9,7 +9,7 @@ const App = () =>{
     <div className="App">
       <h1>Welcome my Friends!</h1>
       <FriendDetails />
-      <FriendCard />
+   
     </div>
   );
 }
