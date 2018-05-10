@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+// import { Redirect } from 'react-router-dom';
 // import axios from 'axios';
 
 class FriendAdd extends Component {
@@ -19,7 +20,7 @@ class FriendAdd extends Component {
   handleAddFriend = () => {
     const newFriend = this.state
     // console.log("onsubmit",newFriend)
-    this.props.handleSubmit(newFriend)
+    this.props.handleSubmits(newFriend)
     
     // axios
     //   .post(`http://localhost:5000/friends`,{
@@ -38,15 +39,19 @@ class FriendAdd extends Component {
     //     .catch(err => {
     //       console.log("post err:",err)
     //     }) 
+    this.props.history.push('/');
+    console.log("looking for history",this.props.history)
 
     this.setState({
       name: "",
       age: "",
       email: "",
+      fireRedirect: true,
     })
   }
 
   render() {
+
     return(
       <div className="col-12 row">
         {/* <div></div> */}
@@ -65,6 +70,7 @@ class FriendAdd extends Component {
             </FormGroup>
             <Button onClick={this.handleAddFriend}>Submit</Button>
           </Form>
+      
       </div>
     )
   }

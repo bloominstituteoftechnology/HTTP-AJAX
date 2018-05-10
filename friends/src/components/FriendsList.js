@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import FriendCard from './FriendCard';
 import FriendAdd from './FriendAdd';
@@ -49,12 +50,15 @@ class FriendsList extends Component {
     // console.log('state on friends', this.state)
     return(
       <div>
-        <div className="row">
-          {this.state.friends.map(friend => (
+        <div>
+          {/* {this.state.friends.map(friend => (
             <FriendCard key={friend.id} friend={friend}/>
-          ))}
+          ))} */}
 
-        <FriendAdd handleSubmit={this.handleSubmit}/>
+        <Route exact path="/"render={() => <FriendCard passedFriends={this.state.friends}/> }/>
+        {/* <FriendCard passedFriends={this.state.friends}/>  */}
+        <Route path="/add"render={(props) => <FriendAdd {...props} handleSubmits={this.handleSubmit}/> }/>
+        {/* <FriendAdd handleSubmits={this.handleSubmit}/> */}
         </div>
         
       </div>
