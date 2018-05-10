@@ -11,7 +11,7 @@ class App extends Component {
       friends: [],
       name: ' ',
       age: ' ',
-      email: ' '
+      email: ' '      
     }
   }
   componentDidMount() {
@@ -29,6 +29,25 @@ class App extends Component {
     state[event.target.name] = event.target.value;
     this.setState(this.state);    
   };
+  Delete = id => {
+      axios.delete(`http://localhost:5000/friends/${id}`)
+   .then((response) =>{
+     this.setState({friends: response.data});   
+   })
+   .catch((error) => {
+     console.error(error);
+   })   
+  };
+
+  Update = id => {    
+    axios.put(`http://localhost:5000/friends/${id}`
+      )
+      .then((result) => {
+       this.setState({friends: result.data, name: '', age: '', email: ''});
+      }).catch((error) => {
+        console.log('error', error);           
+      });
+  }
 
   Submit = event => {
     event.preventDefault();
@@ -63,7 +82,7 @@ class App extends Component {
          
           <h1 className="App-title">Welcome to React</h1>
         </header>        
-        <FriendList friends={this.state.friends} />      
+        <FriendList friends={this.state.friends} delete={this.Delete} update={this.Update} />      
         <FriendForm name={this.state.name} age={this.state.age} email={this.state.email} onChange={this.onChange} onClick={this.Submit} />        
       </div>
     );

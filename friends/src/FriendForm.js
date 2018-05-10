@@ -6,7 +6,6 @@ const FriendForm = props => {
     return (
         <div>
             <form className="form">
-
                 <label> Name:</label>
             <input type="text" name="name" value={props.name} onChange={props.onChange} />           
 
