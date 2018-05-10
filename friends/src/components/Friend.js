@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendCard from './FriendCard';
+import { Redirect } from 'react-router-dom';
 
 class Friend extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friend: {}
+            friend: {},
+            deleted: false
         }
     }
 
@@ -15,18 +17,34 @@ class Friend extends Component {
         this.fetchFriend(id)
     }
 
+    deleteFriend = () => {
+        const id = this.state.friend.id;
+        axios
+            .delete(`http://localhost:5000/friend/${id}`)
+            .then(resp => this.setState({deleted: true}))
+            .catch(err => console.log(err))
+    }
+
     fetchFriend = (id) => {
         axios
             .get(`http://localhost:5000/friend/${id}`)
             .then(resp => {
                 this.setState(() => ({friend: resp.data}))
+                console.log(this.state)
             })
             .catch(err => console.log(err))
     }
 
     render() { 
-        return (
-            <FriendCard friend={this.state.friend}/>
+        return this.state.deleted ? (
+            <Redirect to="/"/>
+        ) : (
+            <div className="card">
+                <FriendCard friend={this.state.friend}/>
+                <button className="delete" 
+                    onClick={this.deleteFriend}>Delete from Friends
+                </button>
+            </div>
         )
     }
 }

@@ -70,6 +70,8 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  text-decoration: none;
+  color: black;
 }
 
 .friend-card {
@@ -87,4 +89,13 @@ body {
   border-bottom: 1px solid gray;
   padding-bottom: 10px;
   width: 80%;
+}
+
+.delete {
+  color: tomato;
+  background-color: white;
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 1em;
 }
