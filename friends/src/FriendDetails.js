@@ -81,18 +81,14 @@ export default class FriendDetails extends Component {
                         <FormGroup className="formgroup">
                         <Label for="Name" className="mr-sm-2">Name  </Label>
                         <Input type="text" name="name" id="name" placeholder="Name" />
-                        </FormGroup>
-                        <FormGroup className="formgroup">
                         <Label for="Age" className="mr-sm-2">Age   </Label>
                         <Input type="number" name="age" id="age" placeholder="it's just a number!" />
-                        </FormGroup>
-                        <FormGroup className="formgroup">
                         <Label for="Email" className="mr-sm-2">Email</Label>
                         <Input type = "text" name = "email" id="emailAddress" placeholder="something@idk.cool"  />
-                        </FormGroup>
                         <Button type="onSubmit" className = "button" onClick = {this.handleSubmit}>Submit Now!</Button>
                         <Button type="onSubmit" className = "button" onClick= {this.handleSubmit}>Remove Now!</Button>
                         <Button type="onSubmit" className = "button" onClick= {this.handleSubmit}> Update Now! </Button>
+                        </FormGroup>
                     </Form>
                    <br/>
                    <br/>
