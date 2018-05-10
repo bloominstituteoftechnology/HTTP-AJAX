@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Friends.css';
 
 
@@ -24,7 +24,7 @@ export default class Friends extends Component {
     }
 
     render() {
-        console.log(this.state.friends)
+        // console.log(this.state.friends)
         return (
             <div>
                 {this.state.friends.map(friend => (
@@ -38,8 +38,7 @@ export default class Friends extends Component {
 
 function FriendDetails({ friend }) {
     const { name, age, email } = friend;
-
-    console.log(friend)
+    // console.log(friend)
 
     return(
         <div className="container">
