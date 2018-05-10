@@ -2,26 +2,13 @@ import React, { Component } from 'react';
 
 
 class FriendsForm extends Component{
-    constructor(){
-        super()
-            this.state = {
-                name: " ",
-                age: " ",
-                email: " "
-            }
-        }
 
     handleInputData = (event) => {
         //const target = event.target;
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleSubmitChange = (event) => {
-        event.preventDefault();
-        console.log("This was invoked in form component")
-        const friends = this.state.friends;
-        this.setState({ friends });
-    };
+    
 
 
     render(){
@@ -35,7 +22,7 @@ class FriendsForm extends Component{
                     email:
             <input type="text" name="email" value={this.state.email} onChange={this.handleInputData} />
                 </label>
-                <button type="submit" onSubmit={this.handleSubmitChange}>Submit</button>
+                <button type="submit" onSubmit={this.props.onSubmit}>Submit</button>
             </form>
         )
     }
