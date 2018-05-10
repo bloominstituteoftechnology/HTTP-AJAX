@@ -18,9 +18,12 @@ class Friends extends Component {
     }
 
     componentDidMount() {
+        this.updateInfo(); 
+    }
+    updateInfo = () => { //by putting GET request in a separate function, you have more control over it
         axios.get("http://localhost:5000/friends")
-            .then((response => this.setState({ friends: response.data })))
-            .catch((err) => this.setState({ errCode: err }))
+        .then((response => this.setState({ friends: response.data })))
+        .catch((err) => this.setState({ errCode: err }))
     }
 
 
@@ -28,7 +31,8 @@ class Friends extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmitFriend = () => { 
+    handleSubmitFriend = (e) => { 
+        e.preventDefault(); // without this the whole page refreshes once you enter new friend and you never get to see POST request in network tab of dev tools. More importantly it allows you to have CONTROL over GET requests!!! 
         const newFriend = {  
             name: this.state.name,
             age: this.state.age,
@@ -36,12 +40,17 @@ class Friends extends Component {
         }
        
         axios.post("http://localhost:5000/friends", newFriend) 
-            .then((res) => { console.log(res.data)})
+            .then((res) => { 
+                console.log(res.data)
+                // this.updateInfo(); //this is another way of achieving same result as below method. It fetches updated friends array
+                this.setState({friends: res.data})
+            })
             .catch((err) => {console.log(err)})
         this.setState({ name: "", age: "", email: "" })  
     }
 
     render() {
+        console.log(this.props)
         const headerStyle = {
             color: "blue",
             display: "flex",
@@ -76,7 +85,7 @@ class Friends extends Component {
                     <div>Email</div>
                 </div>
                 <div>
-                    {this.state.friends.map((friend, index) => { return <Friend key={friend.name + index} friend={friend} /> })}
+                    {this.state.friends.map((friend, index) => { return <Friend  updateFriends={this.updateInfo} key={friend.name + index} friend={friend} /> })}
                 </div>
             </div>
         )
