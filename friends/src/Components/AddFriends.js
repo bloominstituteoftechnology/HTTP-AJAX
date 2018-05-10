@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label } from 'reactstrap';
 
 class AddFriends extends Component {
     constructor() {
@@ -19,7 +19,7 @@ class AddFriends extends Component {
     addNewFriend = () => {
         const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
         axios.post(`http://localhost:5000/friends`, newFriend)
-        .then( response => { this.setState({ name: '', age: '', email: ''})
+        .then( response => { this.setState({ list: response.data, name: '', age: '', email: ''})
         })
         .catch (error => console.log(error)); 
     }
@@ -39,7 +39,7 @@ class AddFriends extends Component {
                 <Label for='Add Friend!' className = 'mr-sm-2'>Email</Label>
                     <input type = 'email' onChange = {this.handleInput} name = 'email' value = {this.state.email} placeholder = 'email' />
                 </FormGroup>                
-                <Button>Submit</Button>
+                <Button onClick = {this.addNewFriend}>Submit</Button>
             </Form>
         )
     }
