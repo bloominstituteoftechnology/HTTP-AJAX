@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Friend from "./Friend";
+import "./Friends.css";
 
 class Friends extends Component {
   state = {
@@ -51,15 +52,73 @@ class Friends extends Component {
 
   render() {
     return <div>
-        <div>
-          {this.state.friends.map(friend => {
-            return <div>
-                <Link onClick={() => {this.props.updateFriend(friend)}} to={`/friends/${friend.id}`} >
-                  {friend.name}
-                </Link>
+        <div class="container">
+        <h5 class="section-title h1">FRIENDS</h5>
+        <div class="row">
+            {/* <section id="team" class="pb-5"> */}
+            {this.state.friends.map(friend => {
+            return <div class="col-sm-4 friend-card">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                  <div class="mainflip">
+                    <div class="frontside">
+                      <div class="card">
+                        <div class="card-body text-center">
+                          <p>
+                            <img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png" alt="card image" />
+                          </p>
+                          <h4 class="card-title">{friend.name}</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="backside">
+                      <div class="card">
+                        <div class="card-body text-center mt-4">
+                          <p class="card-title">
+                            Age: {friend.age}
+                          </p>
+                          <p class="card-title">
+                            Email: {friend.email}
+                          </p>
+                          <Link onClick={() => {
+                              this.props.updateFriend(friend);
+                            }} to={`/friends/${friend.id}`}>
+                            <p class="card-text">
+                              Visit {friend.name}'s card
+                            </p>
+                          </Link>
+                          <ul class="list-inline">
+                            <li class="list-inline-item">
+                              <a class="social-icon text-xs-center" target="_blank" href="#">
+                                <i class="fa fa-facebook">*</i>
+                              </a>
+                            </li>
+                            <li class="list-inline-item">
+                              <a class="social-icon text-xs-center" target="_blank" href="#">
+                                <i class="fa fa-twitter">~</i>
+                              </a>
+                            </li>
+                            <li class="list-inline-item">
+                              <a class="social-icon text-xs-center" target="_blank" href="#">
+                                <i class="fa fa-skype">)</i>
+                              </a>
+                            </li>
+                            <li class="list-inline-item">
+                              <a class="social-icon text-xs-center" target="_blank" href="#">
+                                <i class="fa fa-google" />
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>;
-          })}
+            })}
+            {/* </section> */}
         </div>
+    </div>
+
         <form>
           <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput} />
           <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput} />
@@ -80,3 +139,15 @@ function FriendsDeatils({friend}) {
     )
 }
 export default Friends;
+
+
+
+{/* <Link
+  onClick={() => {
+    this.props.updateFriend(friend);
+  }}
+  to={`/friends/${friend.id}`}
+>
+   {friend.name}
+
+</Link>; */}
