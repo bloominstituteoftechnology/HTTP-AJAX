@@ -1,57 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
+import FriendsList from './components/FriendsList';
 import Friend from './components/Friend';
+import NewFriend from './components/NewFriend';
+import { Route, Link } from 'react-router-dom';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: [],
-      name: '',
-      age: null,
-      email: ''
-    }
-  }
-
-  handleInput = (e) => {
-    this.setState({[e.target.name]: e.target.value});
-  }
-
-  componentDidMount() {
-    axios     
-    .get(`http://localhost:5000/friends`)
-      .then(response => {
-        this.setState({friends:response.data})
-      })
-      .catch(err => {
-         //if something goes wrong, we handle any errors here
-      });
-  }
-
-  addFriend = () => {
-    const newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
-    axios
-    .post(`http://localhost:5000/friends`, newFriend)
-      .then()
-    this.setState({name:'', age:null, email:''})
-  }
 
   render() {
     return (
       <div className="App">
-        <h1 className="heading">Friends</h1>
-        <form className="add-friend" onSubmit={this.addFriend}>
-          <input type="text" name="name" placeholder="name" onChange={this.handleInput}/>
-          <input type="number" name="age" placeholder="age" onChange={this.handleInput}/>
-          <input type="text" name="email" placeholder="email" onChange={this.handleInput}/>
-          <input type="submit" value="Add Friend"/>
-        </form>
-        <div className="friends">
-          {this.state.friends.map((friend, i) => {
-            return <Friend key={i} friend={friend}/>
-          })}
-        </div>
+        <h1 className="heading">My Friends</h1>
+        <Link to="/addfriend" className="add-link">Add a new friend</Link>
+        <Route path="/addfriend" component={NewFriend}/>
+        <Route path="/friend/:id" component={Friend}/>
+        <Route exact path="/" component={FriendsList}/>
       </div>
     );
   }

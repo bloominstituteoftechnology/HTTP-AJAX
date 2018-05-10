@@ -3,12 +3,14 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-family: 'Raleway', sans-serif;
+  box-sizing: border-box;
 }
 
 .App {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .heading {
@@ -19,6 +21,17 @@ body {
   font-family: 'Lobster', cursive;
   font-size: 3em;
   width: 100%;
+}
+
+.add-link {
+  width: 200px;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 10px;
+  margin: 15px;
+  border: 1px solid gray;
+  cursor: pointer;
+  color: darkslategrey;
 }
 
 .add-friend {
@@ -38,14 +51,10 @@ body {
   padding-left: 5px;
 }
 
-.submit-button {
-  height: 30px;
-  width: 50px;
-}
-
 .friends {
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
   width: 50%;
 }
 
