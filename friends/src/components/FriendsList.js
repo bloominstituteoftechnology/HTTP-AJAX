@@ -1,38 +1,38 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
 import axios from 'axios';
+export default class FriendList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friend: [],
+      // name: "",
+      // id: null,
+      // age: null,
+      // email: "",
+    }
+  }
 
-class FriendsList extends Component {
-        constructor(props){
-          super(props)
-          this.state = {
-            firends: []
-          }
-        }
-            componentDidMount() {
-              axios.get(`http://localhost:5000/friends`)
-                .then( response => this.setState({ friends: response.data }))
-                .then( () => {console.log(this.state)})
-                
-              }
-              
-          
-        
-        render() {
-          return (
-            <div className="App">
-            {this.state.friends.map(friend => (
-              <FriendDetails key={friend.id} friend={friend} />
-            ))}
-            </div>
+  componentDidMount(){
+    axios.get('http://localhost:5000/friends')
+    .then(response => this.setState({friend: response.data}))
+    .catch( error => console.log(`${error}`))
+  }
+
+  render() {
+    return(
+      <div>
+      <ul>
+        {this.state.friend.map((data, id) => {
+          return(
+            <li key={id}>
+            {data.name}
+            {data.email}
+            {}
+            </li>
           );
-        }
-      }
-      
-      function FriendDetails({ friend }) {
-        return(
-            <Link to={`/`}>{friend.name}</Link>
-        )
-      }
- 
-export default FriendsList;
+        })}
+      </ul>
+      </div>
+    );
+  }
+}
