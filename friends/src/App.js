@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import DisplayList from './Component/DisplayList'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import FormIn from './Component/FormIn'
 
 class App extends Component {
@@ -16,10 +17,11 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-
-        <DisplayList />
-        <FormIn />
-      
+        <Link to = "/form">
+          <Button>form</Button>
+        </Link>
+        <Route exact path="/form" component={FormIn} />
+        <Route exact path="/" component={DisplayList } />
 
       </div>
       

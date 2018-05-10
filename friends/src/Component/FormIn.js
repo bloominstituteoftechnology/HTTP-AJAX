@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from 'axios';
 import DisplayList from './DisplayList'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class FormIn extends React.Component {
     constructor(){
@@ -49,6 +50,9 @@ export default class FormIn extends React.Component {
             <Input type="email" name="email" id="exampleEmail"  onChange={this.handleTaskChange} placeholder="email" value= {this.state.email} />
           </FormGroup>
           <Button type="submit" >Submit</Button>
+          <Link to ="/">
+            <Button>Back</Button>
+          </Link>
           {/* <Button onClick= {this.handleRequest} >Submit</Button> */}
         </Form>
       </div>
