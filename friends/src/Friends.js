@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'; 
 import { Card, Button, CardTitle,
     CardText, CardGroup, CardBody } from 'reactstrap';
-import './Friends.css';
+
+// import './Friends.css';
 
 const Friends = ({ friends }) => {
     return (

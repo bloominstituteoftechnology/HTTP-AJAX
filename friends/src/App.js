@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'; 
+import FriendsList from './FriendsList';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
       .then(response => this.setState({friends: response.data}))
-      .catch(err => {throw new Error(err)})
+      .catch(err => console.log(err))
 }
 
   render() {
