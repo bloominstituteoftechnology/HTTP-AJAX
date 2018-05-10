@@ -9,7 +9,7 @@ export default class NewFriend extends Component {
             friend: [],
             name: '',
             age: '',
-            email: ''
+            email: '',
         }
     }
     

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
 import './Friends.css';
 
 
@@ -13,6 +12,10 @@ export default class Friends extends Component {
     }
 
     componentDidMount() {
+        this.getFriends();
+    }
+
+    getFriends = () => {
         axios
             .get('http://localhost:5000/friends/')
             .then(response => {
@@ -37,8 +40,28 @@ export default class Friends extends Component {
 
 
 function FriendDetails({ friend }) {
-    const { name, age, email } = friend;
-    // console.log(friend)
+    const { name, age, email, id } = friend;
+    console.log(id)
+
+    function deleteFriend(friendID) {
+        alert(friendID);
+        axios.delete(`http://localhost:5000/friends/${friendID}`)
+        // .then(response => {
+        //     axios
+        //     .get('http://localhost:5000/friends/')
+        //     .then(response => {
+        //        friend.setState(() => ({ friends: response.data }));
+        //     })
+        //     .catch(error => {
+        //         console.error('Server Error', error);
+        //     });
+        // })
+        // .catch(err => {
+        //     console.log(err); 
+        // })
+    }
+
+   
 
     return(
         <div className="container">
@@ -46,6 +69,9 @@ function FriendDetails({ friend }) {
                 <h2>{ name }</h2>
                 <h3>{ age }</h3>
                 <h3>{ email }</h3>
+                <button onClick={() => deleteFriend(id) }>
+                    Delete Friend
+                </button>
             </div>
         </div>
     )
