@@ -24,9 +24,9 @@ class App extends Component {
       .catch(err => console.log(err)); 
   };
 
-  handleUpdate = (id, updatedFriend) => {
+  handleUpdate = (id, uf) => {
     axios
-      .put(`http://localhost:5000/friends/${id}`, updatedFriend)
+      .put(`http://localhost:5000/friends/${id}`, uf)
       .then(info => {
         const friends = info.data;
         this.setState({ friends });
