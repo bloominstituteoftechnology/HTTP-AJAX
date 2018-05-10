@@ -8,7 +8,6 @@ export default class Friends extends Component {
         this.state = {
             friends: [],
             newFriend: [],
-                id: '',
                 name: '',
                 email: '',
                 age: '',
@@ -21,7 +20,6 @@ export default class Friends extends Component {
             
         })
         let inputFriend = {
-            id: this.state.id,
             name: this.state.name, 
             email: this.state.email,
             age: this.state.age,
@@ -37,7 +35,6 @@ export default class Friends extends Component {
         inputFriend.push(this.state.newFriend);
         this.setState({
             friends: inputFriend,
-            id: '',
             name: '',
             email: '',
             age: '',
@@ -61,25 +58,14 @@ export default class Friends extends Component {
                 {this.state.friends.map(friend => {
                     return  (
                         <div className="row" key={friend.name + friend.age}>
-                            <div className="col-3"> {friend.id} </div>
-                            <div className="col-3"> {friend.name} </div>
-                            <div className="col-3"> {friend.email} </div>
-                            <div className="col-3"> {friend.age} </div>
+                            <div className="col-4"> {friend.name} </div>
+                            <div className="col-4"> {friend.email} </div>
+                            <div className="col-4"> {friend.age} </div>
                         </div>
                         
             )})}
-            <Form className="row">
-                    <FormGroup className="col-3" onSubmit={this.handleSubmit}>
-                        <Input 
-                            type="text" 
-                            name="id" 
-                            id="id" 
-                            placeholder="ID" 
-                            onChange={this.handleChange}
-                            value={this.state.id}
-                            autoComplete='id'/>
-                    </FormGroup>
-                    <FormGroup className="col-3" onSubmit={this.handleSubmit}>
+                <Form className="row">
+                    <FormGroup className="col-4" onSubmit={this.handleSubmit}>
                         <Input 
                             type="text" 
                             name="name" 
@@ -89,7 +75,7 @@ export default class Friends extends Component {
                             value={this.state.name}
                             autoComplete='name'/>
                     </FormGroup>
-                    <FormGroup className="col-3" onSubmit={this.handleSubmit}>
+                    <FormGroup className="col-4" onSubmit={this.handleSubmit}>
                         <Input 
                             type="text" 
                             name="email" 
@@ -99,7 +85,7 @@ export default class Friends extends Component {
                             value={this.state.email}
                             autoComplete='email'/>
                     </FormGroup>
-                    <FormGroup className="col-3" onSubmit={this.handleSubmit}>
+                    <FormGroup className="col-4" onSubmit={this.handleSubmit}>
                         <Input 
                             type="text" 
                             name="age" 
