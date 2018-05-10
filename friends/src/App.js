@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-// import Friends from './Friends.js';
-// import Form from './Form.js';
 import Button from './Button.js';
 import './App.css';
 
@@ -39,8 +36,9 @@ class App extends Component {
       });
   }
   buttonUpdate = (id) => {
+    const updatedFriend = { name:this.state.name, age:this.state.age, email:this.state.email }
     axios
-      .put(`http://localhost:5000/friends/${id}`, {name:'', age: '', email: ''})
+      .put(`http://localhost:5000/friends/${id}`, updatedFriend)
       .then( (response) => {
         this.setState({ friends: response.data })
       })
@@ -61,15 +59,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Friends friendData={this.state.friends}/>
-        <Form /> */}
-          <Link to="/"><Button /></Link>
           <input type="text" placeholder=" Name " name="name" onChange={this.handleChange} value={this.state.name} />
           <input type="number" placeholder=" Age " name="age" onChange={this.handleChange} value={this.state.age} />
           <input type="text" placeholder=" Email " name="email" onChange={this.handleChange} value={this.state.email} />
           <button onClick={this.buttonSubmit}>Submit</button>
-          {/* <button onClick={this.buttonUpdate}>Update</button>
-          <button onClick={this.buttonDelete}>Delete</button> */}
           <ul className="friends">
             {this.state.friends.map(friend => {
               return (
@@ -78,7 +71,7 @@ class App extends Component {
                         <p>Age: {friend.age}</p>
                         <p>Email: {friend.email}</p>
                         <button onClick={()=>this.buttonDelete(friend.id)}>Delete</button>
-                        <button onClick={()=>this.buttonSubmit(friend.id)}>Update</button>
+                        <button onClick={()=>this.buttonUpdate(friend.id)}>Update</button>
                   </li>
               )
             })}
