@@ -53,11 +53,11 @@ class Friends extends Component {
   render() {
     return <div>
         <div class="container">
-        <h5 class="section-title h1">FRIENDS</h5>
+        <h5 class="section-title h1 mt-sm-4">FRIENDS</h5>
         <div class="row">
             {/* <section id="team" class="pb-5"> */}
             {this.state.friends.map(friend => {
-            return <div class="col-sm-4 friend-card">
+            return <div class="col-sm-4 friend-card mt-sm-4">
                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                   <div class="mainflip">
                     <div class="frontside">
@@ -72,7 +72,10 @@ class Friends extends Component {
                     </div>
                     <div class="backside">
                       <div class="card">
-                        <div class="card-body text-center mt-4">
+                        <div class="card-body text-center">
+                         <p class="card-title">
+                            Name: {friend.name}
+                          </p>
                           <p class="card-title">
                             Age: {friend.age}
                           </p>
@@ -119,7 +122,7 @@ class Friends extends Component {
         </div>
     </div>
 
-        <form>
+        <form class='mt-sm-4'>
           <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput} />
           <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput} />
           <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />
