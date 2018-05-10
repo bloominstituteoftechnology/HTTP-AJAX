@@ -27,7 +27,7 @@ class App extends Component {
   handleChange = (e) => { this.setState({ [e.target.name]: e.target.value }) };
   buttonSubmit = () => {
     const { name, age, email } = this.state;
-    axios.post('http://localhost5000/friends', { name, age, email })
+    axios.post('http://localhost:5000/friends', { name, age, email })
       .then((response) => {
         this.setState({ friends: response.data, name: '', age: '', email: '' })
       })
@@ -40,31 +40,33 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React, Friends!</h1>
         </header>
+        <h3>Add Friend</h3>
+        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={this.state.name} />
+        <input type="number" placeholder="Age" name="name" onChange={this.handleChange} value={this.state.age} />
+        <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.email} />
+        <button onClick={this.buttonSubmit}>Submit</button>
         <h1 className="App-intro">
+          
           List of Cool Friends
         </h1>
         <FriendsList results={this.state.friends} />
       </div>
     );
-    return <div>
-      {/* user*/}
-      <h3>Add Friend</h3>
-      <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={this.state.name} />
-      <input type="number" placeholder="Age" name="name" onChange={this.handleChange} value={this.state.age} />
-      <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.email} />
-      <button onClick={this.buttonSubmit}>Submit</button>
-      {/*remove above*/}
-      <h1>Friends:</h1>
-      <ul className="friends">
-        {this.state.friends.map(friend => {
-          return <li key={friend.id} className="friend">
-            <p>Name:{friend.name}</p>
-            <p>Age: {friend.age}</p>
-            <p>Email: {friend.email}</p>
-          </li>;
-        })}
-      </ul>
-    </div>;
+    //  <div>
+    //   {/* user*/}
+      
+    //   {/*remove above*/}
+    //   <h1>Friends:</h1>
+    //   <ul className="friends">
+    //     {this.state.friends.map(friend => {
+    //       return <li key={friend.id} className="friend">
+    //         <p>Name:{friend.name}</p>
+    //         <p>Age: {friend.age}</p>
+    //         <p>Email: {friend.email}</p>
+    //       </li>;
+    //     })}
+    //   </ul>
+    // </div>;
   }
   
 }
