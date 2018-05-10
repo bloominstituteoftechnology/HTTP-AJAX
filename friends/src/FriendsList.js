@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
 
 class FriendsList extends Component {
   constructor(props) {
@@ -27,41 +26,54 @@ componentDidMount() {
      });
 
 }
-  newFriend = () => {
-    const friend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    };
+
+// this part gets the friends data that's already in the api
+  
+addNewFriend = () => {
+  const newFriend = {
+      name: this.state.newName, //changed this to new
+      age: this.state.newAge,
+      email: this.state.newEmail
+  };
+
+  const queue = this.state.friends; //made a queue to hold new info in
+  queue.push(newFriend);
+  
     axios
-      .post(`http://localhost:5000/friends`, friend)
-      .then(response => {
-	this.setState({name: "", age: "", email: ""});
-      })
+      .post(`http://localhost:5000/friends`, newFriend)
       .catch(err => {
 	console.log(err);
       });
-  };
- 
 
-  //in class, Dan said that we should put our axios request in a componentDidMount. I got a lot of the syntax from the training kit. The setState part was pieced together from notes I took during class. I think this gets the friends data and puts it into state.
+    this.setState({ friends: queue, newName:"", newAge:"", newEmail:""});
 
-  handleInput = event => {
-    this.setState({ [event.target.name]: event.target.value });
+}
+
+// I redid this whole part. I changed the names of variables so I could finally stop confusing myself and separated the new inputs from the existing information entirely, again so I could stop confusing myself. There might be a more efficient way to do this but I was confusing myself trying to do it, and this works fine.
+	 
+  handleName = (event) => {
+    this.setState({ newName: event.target.value });
   }
 
-//this or something like this has been in pretty much everything we've ever done in react. It takes user input and puts it into state.
-  
+  handleAge = (event) => {
+    this.setState({ newAge: event.target.value });
+  }
 
+  handleEmail = (event) => {
+    this.setState({ newEmail: event.target.value });
+  }
+  
+// I redid the whole handleInput thing and separated it out into the three different types of inputs we are receiving. I couldn't get it to work the other way.
   
 render() {
   return(
     <div>
       <h1>Friends</h1>
-      <input onChange={this.handleInput} placeholder="name" name="name" value={this.state.name} />
-      <input onChange={this.handleInput} placeholder="age" name="age" value={this.state.age} />
-      <input onChange={this.handleInput} placeholder="email" name="email" value={this.state.email} />
-      <button>Add</button>
+      <input onChange={this.handleName} placeholder="name" name="name" value={this.state.newName} />
+      <input onChange={this.handleAge} placeholder="age" name="age" value={this.state.newAge} />
+      <input onChange={this.handleEmail} placeholder="email" name="email" value={this.state.newEmail} />
+      <button onClick={this.addNewFriend}>Add</button>
+// The part above gets all the inputs and when you click the button, it adds it all to the bottom of your existing friends list.
       <div>
 	 {this.state.friends.map(friend => {
 	      return(
@@ -74,13 +86,9 @@ render() {
 	 })}
        </div>
    </div>
-    
+// The part above displays the data pulled from the api. I figured this part out early on - it was the inputs that were killing me.    
   );
 }
 
 }
 export default FriendsList;
-
-
-
-
