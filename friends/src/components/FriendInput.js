@@ -52,12 +52,7 @@ class FriendInput extends Component {
       })
       .catch(err => console.log(err))
   }
-
-  handleDelete = event => {
-    axios
-      .delete(`http://localhost:5000/friends/${this.state.id}`)
-  }
-
+  
   render() { 
     return (
       <form onSubmit={this.handleSubmit}>

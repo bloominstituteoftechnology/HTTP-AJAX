@@ -23,13 +23,29 @@ class FriendList extends Component {
       .catch(err => console.log(err));
   }
 
+  handleDelete = id => {
+    //console.log('id', id);
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log('deleted id', response)
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(err => console.log('error deleting ', err)) 
+  }
+
   render() { 
     console.log('Friend List State', this.state.friends)
     return (
       <div>
-        {this.state.friends.map(friend => (
-          <div>{friend.name} {friend.age} {friend.email}</div>
-        ))}
+        {this.state.friends.map(friend =>
+          <div key={friend.id}>  
+            <div>{friend.name} {friend.age} {friend.email} {friend.id}</div> 
+            <button type="button" onClick={() => this.handleDelete(friend.id)}> Delete </button>
+          </div>  
+        )}
       </div>
     )
   }
