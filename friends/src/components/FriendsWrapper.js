@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React  from 'react';
 // import FriendsForm from './FriendsForm';
 
 
 const FriendsWrapper = ({ friends }) =>
     
     <div>
-        { friends.map(friend =>
+        { friends.map((friend) => 
             <div key={friend.id}>
                 <div>{friend.name}</div>
                 <div>{friend.age}</div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 export default class FriendsForm extends Component {
 
@@ -8,20 +7,20 @@ export default class FriendsForm extends Component {
 
     return (
        <div className="friends-form"> 
-        <form>
+        <form onSubmit={(e) => this.props.submit(e)}> 
             <label>
                 Name:
-                <input type="text" name="name" value={this.props.name} />
+                <input type="text" name="name" value={this.props.name} onChange={this.props.input}/>
             </label>
             <label>
                 Age:
-                <input type="text" name="age" value={this.props.age}/>
+                <input type="number" name="age" value={this.props.age} onChange={this.props.input}/>
             </label>
             <label>
                 Email:
-                <input type="text" name="email" value={this.props.email}/>
+                <input type="email" name="email" value={this.props.email} onChange={this.props.input}/>
             </label>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="submit" />
         </form>
        </div>
     );
