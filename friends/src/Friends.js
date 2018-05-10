@@ -1,88 +1,104 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Friend from "./Friend";
 
 class Friends extends Component {
     state = {
         friends: [],
-        name: '',
-        age: '',
-        email: ''
-    }
+        name: "",
+        age: "",
+        email: ""
+    };
 
-    componentDidMount() {
-        axios.get("http://localhost:5000/friends")
+    updateAll = () => {
+        axios
+            .get("http://localhost:5000/friends")
             .then(response => {
-                this.setState({friends: response.data})
+                this.setState({ friends: response.data });
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
+    }
+
+    componentDidMount() {
+        this.updateAll();
     }
 
     handleTextInput = event => {
-        this.setState({ 
+        this.setState({
             [event.target.name]: event.target.value,
             [event.target.age]: event.target.value,
             [event.target.email]: event.target.value
-         })
-    }
+        });
+    };
 
-    saveFriendsData = () => {
-        const friendData = {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-        }
+    saveFriendsData = (e) => {
+        e.preventDefault();
+        const friendData = { name: this.state.name, age: this.state.age, email: this.state.email }
         axios.post("http://localhost:5000/friends", friendData)
             .then(savedFriend => {
-                console.log(savedFriend)
+                this.updateAll();
             })
             .catch(err => {
                 console.log(err)
             });
-            this.setState({ name: '', age: '', email: ''})
+        this.setState({ name: '', age: '', email: '' })
     }
 
+
     render() {
-        return (
+        return <div>
             <div>
-                <div className="Friends">
-                    {this.state.friends.map(friend => {
-                        return (
-                            <div key={friend.id}>{friend.name}</div>
-                        )
-                    })}
-                </div>
+                {this.state.friends.map(friend => {
+                    return <div>
+                        <Link onClick={() => { this.props.updateFriend(friend) }} to={`/friends/${friend.id}`} >
+                            {friend.name}
+                        </Link>
+                    </div>;
+                })}
+            </div>
+            <form>
+                <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput} />
+                <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput} />
+                <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />
+                <button onClick={this.saveFriendsData}>Save Friend</button>
+            </form>
+            {/* <div class='container'>
+          <div class=''>
                 <form>
-                    <input
-                        type= 'text'
-                        placeholder= 'Name'
-                        name= 'name'
-                        value={this.state.name}
-                        onChange={this.handleTextInput} 
-                    />
-                    <input
-                        type='text'
-                        placeholder='Age'
-                        name='age'
-                        value={this.state.age}
-                        onChange={this.handleTextInput}
-                    />
-                    <input
-                        type='text'
-                        placeholder='Email'
-                        name='email'
-                        value={this.state.email}
-                        onChange={this.handleTextInput}
-                    />
-                    <button
-                        onClick={this.saveFriendsData}
-                    >Save Friend</button>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                        <label class="form-check-label" for="exampleCheck1">
+                        Check me out
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
                 </form>
             </div>
-        );
+            </div> */}
+        </div>;
     }
 }
 
+function FriendsDeatils({ friend }) {
+    const { name, age, email } = friend;
+    return (
+        <div>
+            {name}
+        </div>
+    )
+}
 export default Friends;
