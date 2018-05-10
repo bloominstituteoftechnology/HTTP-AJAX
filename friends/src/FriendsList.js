@@ -15,7 +15,7 @@ export default class FriendsList extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     // this.fetchUsers()
     axios.get('http://localhost:5000/friends')
     .then(response => {
@@ -48,7 +48,7 @@ export default class FriendsList extends Component {
         <input type="number" placeholder="Age" name="age" onChange={this.handleChange} value={this.state.age} />
         <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.email} />
         <button onClick={this.buttonSubmit}>Submit</button> */}
-        <OriginalFriends/>
+        <OriginalFriends originalState={this.state} />
         {/* <h1>Friends:</h1>
         <ul className="friends">
           {this.state.friends.map(friend => {
