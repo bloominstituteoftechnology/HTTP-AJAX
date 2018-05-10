@@ -73,7 +73,7 @@ render() {
       <input onChange={this.handleAge} placeholder="age" name="age" value={this.state.newAge} />
       <input onChange={this.handleEmail} placeholder="email" name="email" value={this.state.newEmail} />
       <button onClick={this.addNewFriend}>Add</button>
-// The part above gets all the inputs and when you click the button, it adds it all to the bottom of your existing friends list.
+{/* The part above gets all the inputs and when you click the button, it adds it all to the bottom of your existing friends list.*/}
       <div>
 	 {this.state.friends.map(friend => {
 	      return(
