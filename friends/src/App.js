@@ -23,8 +23,9 @@ componentDidMount() {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
+        {/* Setting up props to pass along state to child components as props */}
         <Form friends={this.state.friends} />
+        <FriendsList friends={this.state.friends} /> 
       </div>
     );
   }
