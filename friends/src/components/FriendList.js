@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react';
 import axios from 'axios';
+//import FriendInput from 'FriendInput';
 
 
 class FriendList extends Component {
@@ -16,19 +17,20 @@ class FriendList extends Component {
     axios
       .get(`http://localhost:5000/friends`)
       .then(response => {
-        console.log('response', response)
+        //console.log('response', response)
         this.setState({ friends: response.data });
       })
+      .catch(err => console.log(err));
   }
 
   render() { 
-    // console.log('this.state', this.state)
+    console.log('Friend List State', this.state.friends)
     return (
-      <ul>
+      <div>
         {this.state.friends.map(friend => (
-          <li>{friend.name}</li>
+          <div>{friend.name} {friend.age} {friend.email}</div>
         ))}
-      </ul>
+      </div>
     )
   }
 }

@@ -5,13 +5,12 @@ import FriendList from './components/FriendList';
 import FriendInput from './components/FriendInput';
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-        </header>
         <FriendInput />
-        < FriendList />
+        <FriendList />
       </div>
     );
   }
