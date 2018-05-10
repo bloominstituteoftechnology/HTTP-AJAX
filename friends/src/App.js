@@ -12,11 +12,15 @@ class App extends Component {
 
   componentDidMount() { //found in help channel
     axios.get('http://localhost:5000/friends')
-    then.(response => this.setState({friends.response.data}));
+    .then(response => {
+      const friends = response.data;
+      this.setState({friends});
+    })
+    .catch(error => console.log(error))
   }
 
 
-class App extends Component {
+
   render() {
     return (
       <div>
