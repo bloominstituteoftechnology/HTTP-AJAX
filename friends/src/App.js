@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import FriendsList from './FriendsList';
 import FriendCard from './FriendCard';
+import { Button, Form, FormGroup } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">React Friends Forever</h1>
         </header>
+        <Form inline>
         <input 
           type='number' 
           onChange={this.handleTextInput}
@@ -72,8 +74,9 @@ class App extends Component {
           name="name" 
           value={this.state.name} 
         />
-        <button onClick={this.saveNoteData}>add friend</button>
+        <Button color="secondary" onClick={this.saveNoteData}>add friend</Button>{' '}
         <FriendsList friends={FriendCard}/>
+        </Form>
       </div>
     );
   }
