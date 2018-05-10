@@ -11,7 +11,6 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="heading">My Friends</h1>
-        <Link to="/addfriend" className="add-link">Add a new friend</Link>
         <Route path="/addfriend" component={NewFriend}/>
         <Route path="/friend/:id" component={Friend}/>
         <Route exact path="/" component={FriendsList}/>
