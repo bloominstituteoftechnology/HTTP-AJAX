@@ -12,10 +12,12 @@ class Form extends Component {
             [el.target.name]: el.target.value
         })
     } 
-
-handleSubmit = () => {
-    this.props.handleSubmit(this.state)
-}
+    handleSubmit = () => {
+        this.props.handleSubmit(this.state)
+    }
+    buttonSubmit = () => {
+        this.setState('')
+    }
 
 render() {
     const {name, age, email} = this.state 
@@ -24,7 +26,7 @@ render() {
             <input type= 'text' name= 'name' value= {name} onChange={el => this.handleChange(el)}/>
             <input type= 'text' name= 'age' value= {age} onChange={el => this.handleChange(el)}/>
             <input type= 'text' name= 'email' value= {email} onChange={el => this.handleChange(el)}/>
-            <button onClick={this.handleSubmit}>Just do it!</button>
+            <button onClick={this.handleSubmit}>Add</button>
             
         </div>
         )
