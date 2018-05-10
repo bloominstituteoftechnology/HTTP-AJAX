@@ -1,8 +1,9 @@
 .App {
   text-align: center;
+  background-color: rgba(12, 211, 95, 0.85);
+  color: orangered;
 }
 
 .friendsBox {
-  background-color: rgba(84, 34, 5, 0.75);
-  color: white;
+  
 }

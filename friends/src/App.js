@@ -57,10 +57,11 @@ export default class App extends Component {
         age={this.state.age}
         email={this.state.email}
         />
+        </div>
         <div className='friendsBox'>
         <FriendsList friends={this.state.friends} />
         </div>
-      </div>
+      
       </div>
     )
 
