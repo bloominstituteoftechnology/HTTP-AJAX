@@ -9,6 +9,9 @@ export default class Friends extends Component {
         super(props);
         this.state = {
             friends: [],
+            name: '',
+            age: '',
+            email: '',
             showUpdateFriend: false
         };
     }
@@ -39,8 +42,34 @@ export default class Friends extends Component {
             })
     }
 
+    handleFriendInput = e => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
     showUpdateFriend = () => {
         this.setState({showUpdateFriend: !this.state.showUpdateFriend})
+    }
+
+    updateFriend = friendID => {
+        const friend = {};
+        if(this.state.name !== '') {
+            friend.name = this.state.name;
+        }
+        if(this.state.age !== '') {
+            friend.age = this.state.age;
+        }
+        if(this.state.email !== '') {
+            friend.email = this.state.email;
+        }
+        
+        axios.put(`http://localhost:5000/friends/${friendID}`, friend)
+            .then(response => {
+                this.setState({ showUpdateFriend: false, name: '', age: '', email: '' })
+                this.getFriends();
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render() {
@@ -82,7 +111,7 @@ export default class Friends extends Component {
                                         value={this.state.email} 
                                         placeholder="Your Email" 
                                     />
-                                    <button onClick={this.saveNewFriend} >Save Friend</button>
+                                    <button onClick={() => this.updateFriend(friend.id)} >Update Friend</button>
                                 </div>
                             ) : null }
 
