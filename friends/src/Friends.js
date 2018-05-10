@@ -89,17 +89,17 @@ class Friends extends Component {
                           <ul class="list-inline">
                             <li class="list-inline-item">
                               <a class="social-icon text-xs-center" target="_blank" href="#">
-                                <i class="fa fa-facebook">*</i>
+                                <i class="fa fa-facebook"></i>
                               </a>
                             </li>
                             <li class="list-inline-item">
                               <a class="social-icon text-xs-center" target="_blank" href="#">
-                                <i class="fa fa-twitter">~</i>
+                                <i class="fa fa-twitter"></i>
                               </a>
                             </li>
                             <li class="list-inline-item">
                               <a class="social-icon text-xs-center" target="_blank" href="#">
-                                <i class="fa fa-skype">)</i>
+                                <i class="fa fa-skype"></i>
                               </a>
                             </li>
                             <li class="list-inline-item">
