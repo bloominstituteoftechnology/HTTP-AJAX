@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import './App.css';
 import FriendCard from './FriendCard';
 import AddFriend from './AddFriend';
@@ -72,6 +71,16 @@ class App extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  updateEditText = ({ name, age, email } = {}, operation) => {
+    // console.log("updateEditText obj", obj);
+    console.log("updateEditText operation", operation);
+    if (operation === "edit") {
+      this.setState({ inputName: name, inputAge: age, inputEmail: email });
+    } else {
+      this.setState({ inputName: "", inputAge: "", inputEmail: "" });
+    }
+  }
+
   renderFriendsList = () => {
     return this.state.friends.map((e, i) => {
       return <FriendCard 
@@ -88,31 +97,41 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Friends List App</h1>
-        <h5>The Friends List That Doesn't Spy On You</h5>
-        <Link to="/update/add/new">
-          <Button className="btn btn-primary mb-2">Add Friend</Button>
-        </Link>
-        <Route path="/update/:operation/:id" render={(props) => <AddFriend  
-          input={this.updateDataText}
-          submit={this.postNewFriend} 
-          edit={this.editFriend}
-          name={this.state.inputName} 
-          age={this.state.inputAge} 
-          email={this.state.inputEmail} 
-          {...props} />
-        } />
-        <Route exact path="/" render={this.renderFriendsList} />
-        {/* {this.state.friends.map((e, i) => {
-          return <FriendCard 
-            name={e.name} 
-            age={e.age} 
-            mail={e.email}
-            id={e.id} 
-            key={e.id}
-            delete={this.deleteFriend} 
-          />
-        })} */}
+        <h1><del>Robot</del> Totally Human Friends List</h1>
+        <h5>Everyone here is a real human with real human emotions and sensory peceptive inputs.</h5>
+        
+        <Route path="/update/:operation/:id" render={(props) => {
+          const toUpdateId = props.match.params.id;
+          let friendObj;
+          for (let friend of this.state.friends) {
+            if (friend.id === Number(toUpdateId)) {
+              friendObj = friend;
+              break;
+            }
+          }
+          console.log("Friend Obj:",friendObj);
+
+          return ( <AddFriend  
+            input={this.updateDataText}
+            submit={this.postNewFriend} 
+            edit={this.editFriend}
+            editValue={this.updateEditText}
+            name={this.state.inputName} 
+            age={this.state.inputAge} 
+            email={this.state.inputEmail}
+            friend={friendObj} 
+            {...props} />
+          )}} />
+        <Route exact path="/" render={() => {
+          return (
+            <Link to="/update/add/new">
+              <button className="center mb3">Add Friend</button>
+            </Link> 
+          );
+        }} />
+        <div className="friends-list flex flex-wrap justify-center">
+          <Route exact path="/" render={this.renderFriendsList} />
+        </div>
       </div>
     );
   }
