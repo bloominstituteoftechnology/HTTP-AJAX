@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FriendList from './FriendList';
 import axios from 'axios';
+import FriendForm from './FriendForm';
 import './App.css';
 
 class App extends Component {
@@ -8,9 +9,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      name: " ",
-      age: " ",
-      email: " "
+      name: ' ',
+      age: ' ',
+      email: ' '
     }
   }
   componentDidMount() {
@@ -62,18 +63,8 @@ class App extends Component {
          
           <h1 className="App-title">Welcome to React</h1>
         </header>        
-        <FriendList friends={this.state.friends} />
-        <form>
-                <label>
-                    Name:
-            <input type="text" name="name" value={this.state.name} onChange={this.onChange} />
-                    age:
-            <input type="text" name="age" value={this.state.age} onChange={this.onChange} />
-                    email:
-            <input type="text" name="email" value={this.state.email} onChange={this.onChange} />
-                </label>
-                <button type="submit" onClick={this.Submit}> Submit</button>
-            </form>
+        <FriendList friends={this.state.friends} />      
+        <FriendForm name={this.state.name} age={this.state.age} email={this.state.email} onChange={this.onChange} onClick={this.Submit} />        
       </div>
     );
   }
