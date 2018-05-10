@@ -2,50 +2,99 @@ import React, { Component } from "react";
 
 class NewFriends extends Component {
   state = {
-    age: "",
-    name: "",
-    email: ""
+      path: "",
+      input: {
+        name: "",
+        age: "",
+        email: "",
+        color: ""
+    }
   };
 
-  handleChange = x => {
+  componentDidMount = () => {
+    let path = this.props.match.path;
+    if (path === "/edit/:id") {
+      this.setState({
+        path: "edit"
+      });
+      if (this.props.friends.length > 0) {
+        let friends = this.props.friends;
+        let id = parseInt(this.props.match.params.id);
+        let input = friends.filter(friend => friend.id === id)[0];
+        this.setState({
+          input
+        });
+      }
+    } else {
+      this.setState({
+        path: "addfriend"
+      });
+    }
+  };
+
+  componentWillReceiveProps = (nextProps, prevProps) => {
+    if (nextProps.friends !== prevProps.friends) {
+      let friends = nextProps.friends;
+      //let path = nextProps.match.path;
+      if (this.state.path === "edit") {
+        let id = parseInt(nextProps.match.params.id);
+        let input = friends.filter(friend => friend.id === id)[0];
+        this.setState({
+          input
+        });
+      }
+    }
+  };
+
+  handleChange = e => {
+    let input = this.state.input;
+    input[e.target.name] = e.target.value;
     this.setState({
-      [x.target.name]: x.target.value
+      input
     });
   };
 
   handleSubmit = () => {
-    this.props.handleSubmit(this.state);
+    if (this.state.path === "new") {
+      this.props.handleAdd(this.state.input);
+    } else {
+      this.props.handleUpdate(this.props.match.params.id, this.state.input);
+    }
   };
 
   render() {
-    const { age, name, email } = this.state;
+    const { name, age, email, color } = this.state.input;
 
     return (
       <div>
-        <form>
-          <input
-            type="number"
-            placeholder="age"
-            name="age"
-            value={age}
-            onChange={x => this.handleChange(x)}
-          />
-          <input
-            type="text"
-            placeholder="name"
-            name="name"
-            value={name}
-            onChange={x => this.handleChange(x)}
-          />
-          <input
-            type="email"
-            placeholder="email"
-            name="email"
-            value={email}
-            onChange={x => this.handleChange(x)}
-          />
-          <button onClick={this.handleSubmit}>Submit!</button>
-        </form>
+        <input
+          type="text"
+          name="name"
+          placeholder="name"
+          value={name}
+          onChange={e => this.handleChange(e)}
+        />{" "}
+        <input
+          type="number"
+          name="age"
+          placeholder="age"
+          value={age}
+          onChange={e => this.handleChange(e)}
+        />{" "}
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={email}
+          onChange={e => this.handleChange(e)}
+        />{" "}
+        <input
+          type="text"
+          name="color"
+          value={color}
+          onChange={e => this.handleChange(e)}
+        />
+        <button onClick={this.handleSubmit}>Submit</button>
       </div>
     );
   }
