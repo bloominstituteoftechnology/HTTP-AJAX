@@ -101,7 +101,7 @@ class Friends extends Component {
                           <Link onClick={() => {
                               this.props.updateFriend(friend);
                             }} to={`/friends/${friend.id}`}>
-                            <p class="card-text">
+                            <p class="card-text visit-p">
                               Visit {friend.name}'s card
                             </p>
                           </Link>
@@ -127,7 +127,7 @@ class Friends extends Component {
                               </a>
                             </li>
                           </ul>
-                          <button onClick={() => this.handleDeleteFriend(friend.id)}>x</button>
+                          <button class='btn btn-danger delete-button' onClick={() => this.handleDeleteFriend(friend.id)}>Delete Friend</button>
                         </div>
                       </div>
                     </div>
@@ -144,7 +144,7 @@ class Friends extends Component {
           <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />
           <button onClick={this.saveFriendsData}>Save Friend</button>
         </form>
-        {/*   */}
+
       </div>;
   }
 }
