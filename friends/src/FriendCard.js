@@ -3,6 +3,7 @@ import {
     Card, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const FriendCard = (props) => {
     return (
@@ -10,11 +11,13 @@ const FriendCard = (props) => {
             <Card>
                 <CardBody>
                     <CardTitle>{props.name}</CardTitle>
-                    <CardSubtitle>{props.mail}</CardSubtitle>
-                    <CardText>{props.age}</CardText>
+                    <CardSubtitle>E-mail: {props.mail}</CardSubtitle>
+                    <CardText>Age: {props.age}</CardText>
                     <div className="d-flex justify-content-center">
-                        <Button className="mx-3">Awesome!</Button>
-                        <Button className="mx-3" onClick={() => props.delete(props.id)} className="btn btn-danger">Delete</Button>
+                        <Link to={`/update/edit/${props.id}`}>
+                            <Button className="mx-3">Update</Button>
+                        </Link>
+                        <Button className="btn btn-danger mx-3" onClick={() => props.delete(props.id)}>Delete</Button>
                     </div>
                 </CardBody>
             </Card>

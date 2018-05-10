@@ -23,6 +23,28 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  editFriend = (e, id) => {
+    e.preventDefault();
+    alert(`editFriend Called. Id value is ${id}`);
+    let oldFriend = {
+      name: this.state.inputName,
+      age: this.state.inputAge,
+      email: this.state.inputEmail,
+    }
+
+    axios.put(`http://localhost:5000/friends/${id}`, oldFriend)
+      .then(data => {
+        console.log("PUT:", data);
+        return data;
+      })
+      .then(data => this.setState({ 
+        friends: data.data,
+        inputName: "",
+        inputAge: "",
+        inputEmail: "" }))
+      .catch(err => console.log(err));
+  }
+
   deleteFriend = (id) => {
     axios.delete(`http://localhost:5000/friends/${id}`)
       .then(response => this.setState({ friends: response.data }))
@@ -68,12 +90,13 @@ class App extends Component {
       <div className="App">
         <h1>Friends List App</h1>
         <h5>The Friends List That Doesn't Spy On You</h5>
-        <Link to="/update/add">
+        <Link to="/update/add/new">
           <Button className="btn btn-primary mb-2">Add Friend</Button>
         </Link>
-        <Route path="/update/:operation" render={(props) => <AddFriend  
+        <Route path="/update/:operation/:id" render={(props) => <AddFriend  
           input={this.updateDataText}
           submit={this.postNewFriend} 
+          edit={this.editFriend}
           name={this.state.inputName} 
           age={this.state.inputAge} 
           email={this.state.inputEmail} 
