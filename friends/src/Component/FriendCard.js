@@ -18,14 +18,14 @@ class FriendCard extends Component {
                         axios     
                         .delete(`http://localhost:5000/friends/${item.id}`)
                            .then(response => {
-                                this.forceUpdate();
+                                this.props.refresh(response);
                            })
                            .catch(err => {
                              console.log(err)
                            });
                         
-                        
                     }}> Delete </Button>
+                    
                     </Card>
                 ) )}
             </div>

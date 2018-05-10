@@ -26,6 +26,10 @@ fetchFriends = () => {
   };
 
 
+  refreshFriends = (response) => {
+    this.setState(() => ({ friends: response.data }));
+  }
+
   render(){
     if (!this.state.friends) {
         return <div>Loading friends information...</div>;
@@ -33,7 +37,7 @@ fetchFriends = () => {
 
     return(
         <div>
-            <FriendCard boo = {this.state.friends} />
+            <FriendCard refresh = {this.refreshFriends} boo = {this.state.friends} />
         </div>
     )
     
