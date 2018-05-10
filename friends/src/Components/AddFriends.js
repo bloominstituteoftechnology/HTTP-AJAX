@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Button, Form, FormGroup, Label } from 'reactstrap';
 
 class AddFriends extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: '',
             age: '',
@@ -16,7 +16,8 @@ class AddFriends extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    addNewFriend = () => {
+    addNewFriend = ( event ) => {
+        event.preventDefault();
         const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
         axios.post(`http://localhost:5000/friends`, newFriend)
         .then( response => { this.setState({ list: response.data, name: '', age: '', email: ''})
@@ -26,7 +27,7 @@ class AddFriends extends Component {
 
     render() {
         return (
-            <Form inline>
+            <Form onSubmit = {this.addNewFriend} inline>
                 <FormGroup className = 'mb-2 mr-sm-2 mb-sm-0'>
                 <Label for='Add Friend!' className = 'mr-sm-2'>Name</Label>
                     <input type = 'text' onChange = {this.handleInput} name = 'name' value = {this.state.name} placeholder = 'name' />
@@ -39,7 +40,7 @@ class AddFriends extends Component {
                 <Label for='Add Friend!' className = 'mr-sm-2'>Email</Label>
                     <input type = 'email' onChange = {this.handleInput} name = 'email' value = {this.state.email} placeholder = 'email' />
                 </FormGroup>                
-                <Button onClick = {this.addNewFriend}>Submit</Button>
+                <Button>Submit</Button>
             </Form>
         )
     }
