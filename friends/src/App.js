@@ -11,9 +11,13 @@ export default class App extends Component {
     this.state = {
       friends: [],
       name: "",
-      age: 0,
-      email: ""
+      age: "",
+      email: "",
+      updateName: "",
+      updateAge: "",
+      updateEmail: ""
     }
+
   }
 
   componentDidMount() {
@@ -25,9 +29,8 @@ export default class App extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleSubmit(e) {
+ handleSubmit = (e) => {
     e.preventDefault();
-    console.log("testing");
     let newFriend = {
       name: this.state.name,
       email: this.state.email,
@@ -45,6 +48,38 @@ export default class App extends Component {
       });
   }
 
+  handleUpdate(e) {
+    e.preventDefault();
+    let newUpdate = {
+      name: this.state.updateName,
+      age: this.state.updateAge,
+      email: this.state.updateEmail
+    }
+    axios.put(`http://localhost:5000/friends/${e.target.name}`, newUpdate)
+      .then(response => {
+        console.log(response);
+        let newArray = response.data.slice();
+        this.setState({friends: newArray});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    e.target.parentElement.style.display = "none";
+    axios.delete(`http://localhost:5000/friends/${e.target.name}`)
+      .then(response => {
+        console.log(response.data)
+        let newArray = response.data.slice();
+        this.setState({name: newArray});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   render() {
     return (
       <div>
@@ -56,7 +91,16 @@ export default class App extends Component {
         age={this.state.age}
         email={this.state.email}
         />
-        <FriendsList friends={this.state.friends} />
+        <FriendsList
+        input={this.handleInput.bind(this)}
+        friends={this.state.friends}
+        update={this.handleUpdate.bind(this)}
+        updateName={this.state.updateName}
+        updateAge={this.state.updateAge}
+        updateEmail={this.state.updateEmail}
+        delete={this.handleDelete}
+        />
+
       </div>
     )
 
