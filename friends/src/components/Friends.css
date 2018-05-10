@@ -5,6 +5,7 @@ input::placeholder {
 input {
     border-radius: 10px;
     width: 200px;
+    border: 2px solid #b78338;
 }
 
 button {

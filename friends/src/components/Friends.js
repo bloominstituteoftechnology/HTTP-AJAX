@@ -10,37 +10,35 @@ class Friends extends Component {
     constructor() {
         super();
         this.state = {
-            friends: [], 
-            newFriend: {},
+            friends: [],
             name: "",
             age: "",
-            email: "", 
-            errCode: ""
+            email: ""
         }
     }
 
     componentDidMount() {
         axios.get("http://localhost:5000/friends")
-            .then((response => this.setState({friends: response.data})))
-            .catch((err) => this.setState({errCode: err}))
+            .then((response => this.setState({ friends: response.data })))
+            .catch((err) => this.setState({ errCode: err }))
     }
 
 
     handleFormChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value})
-    const newObj = {  //creating new object and setting it's keys' values to equal input values
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-    }
-        // let newFriend = Object.assign({}, newObj) // This step is unnecessary...instead I just setState using newObj
-        this.setState({newFriend: newObj})
-        // console.log(this.state.newFriend)
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmitFriend = () => {
-        axios.post('http://localhost:5000/friends', this.state.newFriend)
-        this.setState({newFriend: {}})  // resets newFriend back to an empty object..not sure if this is necessary...app seems to function the same without this code..keeping just in case
+    handleSubmitFriend = () => { 
+        const newFriend = {  
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email 
+        }
+       
+        axios.post("http://localhost:5000/friends", newFriend) 
+            .then((res) => { console.log(res.data)})
+            .catch((err) => {console.log(err)})
+        this.setState({ name: "", age: "", email: "" })  
     }
 
     render() {
@@ -62,9 +60,9 @@ class Friends extends Component {
             width: "75%",
             margin: "0 auto"
         }
-         
+
         return (
-        //    (this.state.friends.length > 0)  HOW TO ADD CONDITIONAL LOGIC
+            //    (this.state.friends.length > 0)  HOW TO ADD CONDITIONAL LOGIC
             <div style={mainStyle}>
                 <form style={formStyle} >
                     <input onChange={this.handleFormChange} type="text" placeholder="Name" name="name" value={this.state.name} style={formStyle}></input>
@@ -77,7 +75,9 @@ class Friends extends Component {
                     <div>Age</div>
                     <div>Email</div>
                 </div>
-                {this.state.friends.map((friend, index) => { return <Friend key={friend.name + index} friend={friend}/>})}
+                <div>
+                    {this.state.friends.map((friend, index) => { return <Friend key={friend.name + index} friend={friend} /> })}
+                </div>
             </div>
         )
     }

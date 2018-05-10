@@ -7,22 +7,19 @@ class Friend extends Component {
     }
     render() {
         const rowStyles = {
-            // display: "flex",
+            display: "flex",
             justifyContent: "space-around",
             margin: "10px 0px 0px 0px",
             fontSize: "18px", 
             fontWeight: "bold",
             borderTop: "3px solid darkgray",
-            textAlign: "start",
-            display: "flex",
             height: "40px",
-            paddingTop: "5px"
-
+            paddingTop: "5px",
         }
         const ageColStyle = {
             paddingLeft: "70px",
         }
-        
+ 
         return (
             <div style={rowStyles}>
                 <div >{this.props.friend.name}</div>
