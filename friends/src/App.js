@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Friends from '../src/components/Friends'
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super()
-  }
-  render() {
+const App = props => {
+
     return (
       <div className="App">
         <Friends />
       </div>
     );
   }
-}
 
 export default App;
