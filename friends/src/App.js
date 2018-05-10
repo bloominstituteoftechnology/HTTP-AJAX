@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       friends: []
     }
-  }
+  } 
   
   componentDidMount = () => {
     axios.get("http://localhost:5000/friends")

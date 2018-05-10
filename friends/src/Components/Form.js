@@ -11,7 +11,7 @@ class Form extends Component {
         this.setState({
             [el.target.name]: el.target.value
         })
-    }
+    } 
 
 handleSubmit = () => {
     this.props.handleSubmit(this.state)
@@ -25,6 +25,7 @@ render() {
             <input type= 'text' name= 'age' value= {age} onChange={el => this.handleChange(el)}/>
             <input type= 'text' name= 'email' value= {email} onChange={el => this.handleChange(el)}/>
             <button onClick={this.handleSubmit}>Just do it!</button>
+            
         </div>
         )
     }
