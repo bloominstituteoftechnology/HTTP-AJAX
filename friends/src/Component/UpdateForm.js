@@ -54,7 +54,7 @@ export default class UpdateForm extends React.Component {
           </FormGroup>
           <Button type="submit" >Submit</Button>
           <Link to ="/">
-            <Button onClick={this.handleRequest} >Back</Button>
+            <Button>Back</Button>
           </Link>
           {/* <Button onClick= {this.handleRequest} >Submit</Button> */}
         </Form>
