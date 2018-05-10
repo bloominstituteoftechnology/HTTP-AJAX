@@ -10,7 +10,10 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      age: '',
+      email: '',
     }
   };
 
@@ -20,13 +23,25 @@ class App extends Component {
       this.setState(() => ({ friends: [...response.data] }));
     })
     .catch(err =>{console.error(err)});
+
+    // axios.post('http://localhost:5000/', {
+    //   name: '',
+    //   age: '',
+    //   email:''
+    //   })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   }
 
   render(){ 
     return (
       <div>
         <Friends friendData={this.state.friends}/>
-        <Form />      
+        <Form  />      
         <Button />  
       </div>
     )
