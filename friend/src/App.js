@@ -37,18 +37,19 @@ class App extends Component {
  
   }
 
-  handleRemoveFriend(friendId) {
-    // const removeList = this.state.friendArray;
-
-    // removeList.forEach((name, i) => {
-    //   if (name.id = friendId) {
-    //     removeList.splice(i, 1);
-    //   }
-    // });
-    // this.setState({ removeList });
+  handleRemoveFriend = () => {
     const stateId = this.state.id
     axios.delete(`http://localhost:5000/friends/${stateId}`)
-    .then( response => this.setState ({ friendArray: response.data, name: '',  age: '',  email: '' } ))
+    .then( response => this.setState ({ friendArray: response.data, id: ''} ))
+    .catch( err => console.log(err))  
+  }
+
+  handleFriendUpdate = () => {
+    const updateId = this.state.id
+    const updateInfo = { name: this.state.name, age: this.state.age, email: this.state.email };
+
+    axios.put(`http://localhost:5000/friends/${updateId}`, updateInfo )
+    .then( response => this.setState ({ friendArray: response.data, id: '', name: '',  age: '',  email: ''} ))
     .catch( err => console.log(err))  
   }
 
@@ -58,17 +59,18 @@ class App extends Component {
         <header className="App-header">
             <h1 className="App-title">Welcome to React</h1>
         </header>
-        {this.state.friendArray.map( itemFriend =>( <div key={ itemFriend.id }>{itemFriend.id} {itemFriend.name} {itemFriend.age} {itemFriend.email}</div>))}
-        <input name='name' type='text'value={this.state.name}  onChange={this.handleFriendChange}/ >
-          <input name='age' type='text' value={this.state.age} onChange={this.handleFriendChange}/ >
-          <input name='email' type='text' value={this.state.email} onChange={this.handleFriendChange}/ >
+          <input name='name' type='text'value={this.state.name}  placeholder='name' onChange={this.handleFriendChange}/ >
+          <input name='age' type='text' value={this.state.age}  placeholder='age'onChange={this.handleFriendChange}/ >
+          <input name='email' type='text' value={this.state.email} placeholder='email' onChange={this.handleFriendChange}/ >
           <button onClick={this.handleAddFriend}>Submit Friend </button>
-          <input name='id' type='text' value={this.state.id} onChange={this.handleFriendChange}/ >
-          <button onClick={this.handleRemoveFriend}>Remove Friend </button>
-          {/* <FriendList
-            removeFriend={handleRemoveFriend}
-            friendArray={this.state.friendArray}
-          /> */}
+          <div>
+            <input name='id' type='text' value={this.state.id} placeholder='id' onChange={this.handleFriendChange}/ >
+            <button onClick={this.handleRemoveFriend}>Remove Friend </button>
+          </div>
+          <div>
+            <button onClick={this.handleFriendUpdate}>Update Friend's List </button>
+          </div>
+          {this.state.friendArray.map( itemFriend =>( <div key={ itemFriend.id }>{itemFriend.id} {itemFriend.name} {itemFriend.age} {itemFriend.email}</div>))}
       </div>  
     );
   }
