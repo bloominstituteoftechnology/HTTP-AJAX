@@ -3,11 +3,14 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import NewFriend from './NewFriend'
 
-export default class MovieList extends Component {
+export default class Friends extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        friends: [] 
+        friends: [] ,
+        name: '',
+        age: '',
+        email: '',
       };
     }
 
@@ -15,13 +18,31 @@ export default class MovieList extends Component {
         axios
           .get('http://localhost:5000/friends')
           .then(response => {
-            this.setState(() => ({ friends: response.data }));
+            this.setState({ friends: response.data });
           })
           .catch(error => {
             console.error('Server Error', error);
           });
     }
 
+    onChange = (e) => {
+      const state = this.state
+      state[e.target.name] = e.target.value;
+      this.setState(state);
+    }
+
+    onSubmit = (e) => {
+        const { name, age, email  } = this.state;
+        axios
+            .post('http://localhost:5000/friends', { "name":name, "age":age, "email":email })
+            .then(response => {
+                this.setState( { name, age, email : response.data } );
+              })
+              .catch(error => {
+                console.error('Server Error', error);
+            });     
+    }
+    
     render() {
         const newFriendFormData = new FormData();
         return (
@@ -29,7 +50,7 @@ export default class MovieList extends Component {
                 {this.state.friends.map(friend => (
                 <Friend key={friend.id} friend={friend} />
                 ))}
-                <NewFriend />
+                <NewFriend onSubmit={this.onSubmit} onChange={this.onChange}/>
             </div>
         );
     }
