@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import FriendsList from './FriendsList';
+import FriendCard from './FriendCard';
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +13,7 @@ class App extends Component {
       age: '',
       email: '',
       name: '',
+      FriendCard: []
     };
   }
 
@@ -41,6 +44,7 @@ class App extends Component {
   };
 
   render() {
+    const { FriendCard } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -69,6 +73,7 @@ class App extends Component {
           value={this.state.name} 
         />
         <button onClick={this.saveNoteData}>add friend</button>
+        <FriendsList friends={FriendCard}/>
       </div>
     );
   }
