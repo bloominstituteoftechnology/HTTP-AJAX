@@ -2,14 +2,27 @@ import React, { Component } from 'react';
 import {Row, Col, Table} from 'reactstrap';
 import axios from 'axios';
 import TableRow from '../auxiliar/TableRow';
+import {Route} from 'react-router-dom';
+import {FriendCard} from '../../components'
 
 class FriendsList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+    
+    displayFriendCard = () => {
+        
+    }
+
     /** <Col > is fully responsive : try risizing your viewport */
     render() {
         const {friends} = this.props;
         // console.log(friends);
         return (
             <Row className="">
+                <Route path="/:id-:name" render={ props => <FriendCard {...props} friends={friends} /> } />
                 <Col sm="12" md={{size: 8, offset:2}} >
                 {/* Hello from FriendsList. */}
                 <Table>

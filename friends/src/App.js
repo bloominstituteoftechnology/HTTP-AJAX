@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import {Container} from 'reactstrap';
 import axios from 'axios';
 
@@ -37,13 +37,18 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Jesuarva: an HTTP-based Friends API </h1>
+          <Link to="/" >
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">HOME</h1>
+          </Link>
         </header>
         <Container>
           {/* <Route path="/" component={CustomForm} /> */}
-          <Route path="/" render={ props => <CustomForm {...props} upDate={this.upDate} />} />
-          <Route path="/:id" component={FriendCard} />
+          <Route exact path="/" render={ props => <CustomForm {...props} upDate={this.upDate} />} />
+
+          {/* <Route path="/:id" component={FriendCard} /> */}
+          {/* <Route path="/:id" render={ props => <FriendCard {...props} friends={this.state.friends} /> } /> */}
+          
           {/* <Route path='/' component={FriendsList} /> */}
           <Route path='/' render={ props => <FriendsList {...props} friends={this.state.friends} />} />
         </Container>
