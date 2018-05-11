@@ -14,15 +14,15 @@ class NewFriend extends Component {
   render() {
     const { name, age, email } = this.state;
       return (
-        <form onSubmit={this.props.onSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <label htmlFor="friend-name">Name:
-            <input type="text" name="name" id="friend-name" value={name} onChange={this.props.onChange} />
+            <input type="text" name="name" id="friend-name" value={name} onChange={this.props.handleChange} />
           </label>
           <label htmlFor="friend-age">Age:
-            <input type="number" name="age" id="friend-age" value={age}  onChange={this.props.onChange} />
+            <input type="number" name="age" id="friend-age" value={age}  onChange={this.props.handleChange} />
           </label>
           <label htmlFor="friend-email">Email:
-            <input type="text" name="email" id="friend-email" value={email} onChange={this.props.onChange} />
+            <input type="text" name="email" id="friend-email" value={email} onChange={this.props.handleChange} />
           </label>
           <button type="submit">Add Friend</button>
         </form>
