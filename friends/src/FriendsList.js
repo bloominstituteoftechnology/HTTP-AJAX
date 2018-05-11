@@ -18,7 +18,11 @@ class FriendsList extends Component {
   //set everything to blank
   
 componentDidMount() {  
-  axios
+  this.gatherFriends();
+}
+
+  gatherFriends = () => {
+    axios
     .get(`http://localhost:5000/friends/`)
     .then(response => {
       this.setState({ friends: response.data });
@@ -28,14 +32,12 @@ componentDidMount() {
       console.log(err);
      });
 
-}
-
-
+  }
   
 render() {
   return(
     <div>
-      <FriendForm prop={this.state} />
+      <FriendForm prop={this.state} updateFriendsList={this.gatherFriends} />
      	<Container>
 	  <Row>
 	    <Col className="header">Name</Col>

@@ -36,11 +36,12 @@ class FriendForm extends Component {
     axios
     .post(`http://localhost:5000/friends`, newFriend)
     .then(response => 
-	  { response.data }
-	 )
+	  { this.props.updateFriendsList(); 
+	  })
     .catch(err => {
        console.log(err);
-      });
+    });
+   this.setState({ name:"", age:"", email:"" });
 }
 
   
