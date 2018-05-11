@@ -16,6 +16,7 @@ const FriendCard = (props) => {
           <CardTitle>Name: {friend.name}</CardTitle>
           <CardSubtitle>Age: {friend.age}</CardSubtitle>
           <CardText>Email: {friend.email}</CardText>
+          <CardText>City: {friend.city}</CardText>
           <Link to="/edit">
             <Button onClick={() => props.handleGatherForUpdate(friend)} className="m-2">Update</Button>
           </Link>

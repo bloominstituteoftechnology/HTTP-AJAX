@@ -33,7 +33,8 @@ class FriendsList extends Component {
       .post(`http://localhost:5000/friends`,{
         name: newFriend.name,
         age: newFriend.age,
-        email: newFriend.email
+        email: newFriend.email,
+        city: newFriend.city
       })
         .then(response => {
           console.log("post response:",response)
@@ -72,6 +73,7 @@ class FriendsList extends Component {
         name: friendID.name,
         age: friendID.age,
         email: friendID.email,
+        city: friendID.city,
       })
         .then(response => {
           console.log("edit response:", response)

@@ -11,6 +11,7 @@ class FriendAdd extends Component {
       age: "",
       email: "",
       id: "",
+      city: "",
     };
   }
 
@@ -31,6 +32,7 @@ class FriendAdd extends Component {
       name: "",
       age: "",
       email: "",
+      city: "",
     })
   }
 
@@ -43,6 +45,7 @@ class FriendAdd extends Component {
         age: id.age,
         email: id.email,
         id: id.id,
+        city: id.city
       })
     } 
     
@@ -65,6 +68,10 @@ class FriendAdd extends Component {
             <FormGroup>
               <Label for="friendEmail">Email</Label>
               <Input type="email" name="email" id="friendEmail" placeholder="New email" value={this.state.email} onChange={this.handleFriendInput}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="friendCity">City</Label>
+              <Input type="text" name="city" id="friendCity" placeholder="New City" value={this.state.city} onChange={this.handleFriendInput}/>
             </FormGroup>
             <Button onClick={this.handleAddFriend}>Submit</Button>
           </Form>
