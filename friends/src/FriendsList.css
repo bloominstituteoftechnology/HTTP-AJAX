@@ -1,0 +1,18 @@
+.App-header {
+    background-color: #F05D23;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.App-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    height: 100px;
+}
+.friend {
+    padding: 10px;
+    border: 2px solid orange;
+    margin: 10px;
+    background-color: orange;
+}
