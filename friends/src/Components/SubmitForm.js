@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import FriendsComponent from './FriendsComponent';
+// import axios from 'axios';
 
-class Form extends Component {
-    state = {
+class SubmitForm extends Component {
+    constructor(props){
+    super(props)
+    
+    this.state = {
         name: '',
         age: '',
         email: ''
-    }   
+    }     
+}
     handleChange = (el) => {
         this.setState({ 
             [el.target.name]: el.target.value
@@ -31,10 +36,11 @@ render() {
             <input type= 'text' placeholder='age' name= 'age' value= {age} onChange={el => this.handleChange(el)}/>
             <input type= 'text' placeholder='email' name= 'email' value= {email} onChange={el => this.handleChange(el)}/>
             <button onClick={this.handleSubmit}>Add</button>
-            <button>Delete</button>
+            {/* <button onClick={this.updateFriend(friend.id)}>Update Info</button> */}
+            
         </div>
         )
     }
 
 }
-export default Form;
+export default SubmitForm;

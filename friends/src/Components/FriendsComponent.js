@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import './FriendsComponent.css';
-const FriendsComponent = ({ friends }) => 
+import {Link} from 'react-router-dom';
 
+const FriendsComponent = ({ friends, deleteFriend }) => 
 
     <div>
         {friends.map(friend =>
@@ -13,10 +14,11 @@ const FriendsComponent = ({ friends }) =>
                         <CardTitle>{friend.name}</CardTitle>
                         <CardBody>{friend.age}</CardBody>
                         <CardSubtitle>{friend.email}</CardSubtitle>
-                        <button>Delete</button>
-                    </CardBody>
+                        <button onClick= {() => deleteFriend(friend.id)}>Delete</button>
+                        <Link to={`/update/${friend.id}`}><button>Update</button></Link>
+                    </CardBody> 
                 </Card>
-            </div>
+            </div> 
         )}
     </div>
 

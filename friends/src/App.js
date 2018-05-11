@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Form from './Components/Form';
+import SubmitForm from './Components/SubmitForm';
 import FriendsComponent from './Components/FriendsComponent';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
+import Update from './Components/Update';
 
 class App extends Component {
 
@@ -28,23 +30,37 @@ class App extends Component {
     .then(res => {
       const friends = res.data;
       this.setState({friends});
-    })
+    }) 
     .catch(error => console.log(error))
   }
-  deleteFriend = (ele) => {
-    axios.delete('http://localhost:5000/friends/${id}')
-    .then(response => this.setState({friends: response.data}))
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(res => this.setState({friends: res.data}))
     .catch(err => console.log(err));
 }
+
+updateFriend = (obj) => {
+  const updatedFriend = {
+      name: obj.name,
+      age: obj.age,
+      email: obj.email
+  }
+  axios.put(`http://localhost:5000/friends/${obj.id}`, updatedFriend)
+
+  .then(res => {
+    this.setState({friends: res.data})
+  })
+  .catch(err => console.log(err));
+} 
 
   render() {
     const {friends} = this.state
     console.log(friends)
     return (
       <div className="App">
-        <Form handleSubmit={this.handleSubmit}/>
-        <FriendsComponent friends={friends}/>
-        
+        <SubmitForm handleSubmit={this.handleSubmit}/>
+        <FriendsComponent deleteFriend={this.deleteFriend} friends={friends}/>
+        <Route path="/update/:id" render={(props) => <Update {...props} updateFriend={this.updateFriend} friends={friends}/>} />
       </div>
     );
   }
