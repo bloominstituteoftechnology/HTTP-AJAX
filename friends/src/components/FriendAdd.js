@@ -10,6 +10,7 @@ class FriendAdd extends Component {
       name: "",
       age: "",
       email: "",
+      id: "",
     };
   }
 
@@ -22,36 +23,33 @@ class FriendAdd extends Component {
     // console.log("onsubmit",newFriend)
     this.props.handleSubmits(newFriend)
     
-    // axios
-    //   .post(`http://localhost:5000/friends`,{
-    //     name: newFriend.name,
-    //     age: newFriend.age,
-    //     email: newFriend.email
-    //   })
-    //     .then(response => {
-    //       console.log("post response:",response)
-    //       this.setState({
-    //         name: "",
-    //         age: "",
-    //         email: "",
-    //       })
-    //     })
-    //     .catch(err => {
-    //       console.log("post err:",err)
-    //     }) 
+
     this.props.history.push('/');
-    console.log("looking for history",this.props.history)
+    // console.log("looking for history",this.props.history)
 
     this.setState({
       name: "",
       age: "",
       email: "",
-      fireRedirect: true,
     })
   }
 
-  render() {
+  componentDidMount(){
+    console.log("on componentDidMount:",this.props.toUpdate)
+    let id = this.props.toUpdate;
+    if(id !== undefined){
+      this.setState({
+        name: id.name,
+        age: id.age,
+        email: id.email,
+        id: id.id,
+      })
+    } 
+    
+  }
 
+  render() {
+    
     return(
       <div className="col-12 row">
         {/* <div></div> */}

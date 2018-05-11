@@ -10,6 +10,7 @@ class FriendsList extends Component {
     super();
     this.state = {
       friends: [],
+      updateFriend: [],
     }
 
   }
@@ -46,6 +47,41 @@ class FriendsList extends Component {
         }) 
   }
 
+  handleDelete = (friendID) => {
+    console.log(friendID)
+    axios
+      .delete(`http://localhost:5000/friends/${friendID}`)
+        .then(response => {
+          console.log("delete response:", response)
+          this.setState({ friends: response.data })
+        })
+        .catch(err => {
+          console.log("post err:",err)
+        }) 
+  }
+
+  handleGatherForUpdate = (friendID) => {
+    // console.log(friendID,)
+    this.setState({updateFriend: friendID })
+  }
+
+  handleEditSubmits = (friendID) => {
+    console.log("edit Submit id:", friendID)
+    axios
+      .put(`http://localhost:5000/friends/${friendID.id}`,{
+        name: friendID.name,
+        age: friendID.age,
+        email: friendID.email,
+      })
+        .then(response => {
+          console.log("edit response:", response)
+          this.setState({ friends: response.data })
+        })
+        .catch(err => {
+          console.log("edit err:",err)
+        })
+  }
+
   render() {
     // console.log('state on friends', this.state)
     return(
@@ -55,10 +91,11 @@ class FriendsList extends Component {
             <FriendCard key={friend.id} friend={friend}/>
           ))} */}
 
-        <Route exact path="/"render={() => <FriendCard passedFriends={this.state.friends}/> }/>
+        <Route exact path="/"render={() => <FriendCard passedFriends={this.state.friends} handleDelete={this.handleDelete} handleGatherForUpdate={this.handleGatherForUpdate}/> }/>
         {/* <FriendCard passedFriends={this.state.friends}/>  */}
         <Route path="/add"render={(props) => <FriendAdd {...props} handleSubmits={this.handleSubmit}/> }/>
         {/* <FriendAdd handleSubmits={this.handleSubmit}/> */}
+        <Route path="/edit"render={(props) => <FriendAdd {...props} handleSubmits={this.handleEditSubmits} toUpdate={this.state.updateFriend}/> }/>
         </div>
         
       </div>
