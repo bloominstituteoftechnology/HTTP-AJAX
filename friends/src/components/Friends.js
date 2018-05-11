@@ -66,12 +66,10 @@ export default class Friends extends Component {
     render() {
         return (
             <div>
-            <Route exact path="/" render={(props) => <FriendsList {...props} friends={this.state.friends}/>} />
-            {this.state.friends.map(friend => {
-             return <Route path={`/${friend.name.toLowerCase()}`} key={friend.email + friend.age} render={(props) => <UpdateFriend {...props} friends={this.state.friends} handleChange={this.state.handleChange}/>}/>
-            })}
+            <Route path="/:friendid" render={(props) => <UpdateFriend {...props} friends={this.state.friends} handleChange={this.handleChange}/>} />
+            <Route exact path="/" render={(props) => <FriendsList friends={this.state.friends} />} />
                 <div className="container">
-                   <Form className="row">
+                    <Form className="row">
                     <FormGroup className="col-4" onSubmit={this.handleSubmit}>
                         <Input 
                             type="text" 
