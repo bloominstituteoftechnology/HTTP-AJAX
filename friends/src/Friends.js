@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Friend from "./Friend";
+import './Friends.css';
 
 class Friends extends Component {
     state = {
@@ -62,22 +63,22 @@ class Friends extends Component {
 
 
     render() {
-        return <div>
-            <div>
+        return <div className={`background`}>
+            <div className={`container`}>
                 {this.state.friends.map(friend => {
                     return (
-                    <div>
+                    <div className={`card`} key={friend.id}>
                         <Link onClick={() => { this.props.updateFriend(friend) }} to={`/friends/${friend.id}`} >
-                            <h2>{friend.name}</h2>
+                            <h2 className={`card-title`}>NAME: {friend.name}</h2>
                         </Link>
-                        <h2>{friend.age}</h2>
-                        <h2>{friend.email}</h2>
+                        <h2>AGE: {friend.age}</h2>
+                        <h2>EMAIL: {friend.email}</h2>
                         <button onClick={() =>
                         this.handleDeleteFriend(friend.id)}>DELETE</button>
                     </div>);
                 })}
             </div>
-            <form class="new-friend">
+            <form className="new-friend">
                 <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput} />
                 <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput} />
                 <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />

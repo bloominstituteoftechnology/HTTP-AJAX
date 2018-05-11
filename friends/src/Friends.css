@@ -1,0 +1,61 @@
+body {
+    background-color: lightblue;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 10%;
+    width: 30%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 15px black;
+    margin-top: 30px;
+    -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.card:hover {
+    background-color: rgb(218, 218, 218);
+    width: 80%;
+    height: 40%;
+    font-size: 20px;
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+}
+
+.card h2 {
+    margin-left: 10px;
+}
+
+.container button {
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 50%;
+    align-self: center;
+    font-size: 16px;
+}
+
+.container button:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 4px 4px 6px gray;
+}
+
+.new-friend {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    height: 40px;
+}
