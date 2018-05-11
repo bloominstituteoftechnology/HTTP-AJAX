@@ -14,7 +14,8 @@ class InputForm extends Component {
     }
 
     handleSubmit = () => {
-        this.props.handleSubmit(this.state)
+        const friend = this.state;
+        this.props.handleSubmit(friend);
     }
 
     render() {
