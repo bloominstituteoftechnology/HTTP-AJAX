@@ -1,20 +1,33 @@
 import React, { Component } from "react";
 import { Button } from 'reactstrap';
+import {Route} from 'react-router-dom';
+
 import axios from 'axios';
 
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import FriendsList from "./FriendsList";
-import SaveFriend from "./SaveFriend";
+import FriendsList from "./components/Friends/FriendsList";
+import SaveFriend from "./components/Friends/SaveFriend";
+import Friend from "./components/Friends/Friend";
 
+
+import './components/Nav/Nav.css'
+import NavWrapper from './components/Nav/NavWrapper';
+import SubNavContainer from './components/Nav/SubNavContainer';
+import menuData from "./menuData";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      menu: []
     };
+  }
+
+  componentWillMount() {
+    this.setState({ menu: menuData.data });
+    console.log("add");
   }
 
   componentDidMount() {
@@ -34,8 +47,10 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to Friends</h1>
         </header>
-        <SaveFriend />
-        <FriendsList friends={this.state.friends} />
+        <Route path="/" render={ (props) => <NavWrapper {...props} menuData={this.state.menu}/> } />
+        <Route exact path="/add-friend" component={SaveFriend} />
+        <Route exact path="/search" component={FriendsList} />
+        <Route path="/friend/:id" component={Friend}/>
       </div>
     );
   }
