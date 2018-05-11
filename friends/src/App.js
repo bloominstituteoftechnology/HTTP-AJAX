@@ -13,25 +13,41 @@ class App extends Component {
       age: '',
       email: ''
     }
+    this.handleChange = this.handleChange;
+    this.buttonSubmit = this.buttonSubmit; 
   }
 
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
       .then(response => this.setState({friends: response.data}))
-      .catch(err => console.log(err))
+      .catch(err => { throw new Error(err) })
 }
+
+handleChange = (e) => {this.setState({ [e.target.name]: e.target.value }) }; 
+  buttonSubmit = () => {
+    const { name, age, email} = this.state;
+    axios.post('http://localhost:5000/friends', { name, age, email})
+      .then((response) => {
+        this.setState({ friends: response.data, name: '', age: '', email: ''})
+      })
+  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <FriendsList results={this.state.friends} />
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>                 
+          <h1 className="App-title">Welcome to React, Friends!</h1>
+        </header>     
+        <h3>Add Friend</h3>
+        <input type="text" placeholder="Name" name="name" onChange={this.handleChange} value={this.state.name} />   
+        <input type="number" placeholder="Age" name="age" onChange={this.handleChange} value={this.state.age} />
+        <input type="text" placeholder="Email" name="email" onChange={this.handleChange} value={this.state.email} />
+        <button onClick={this.buttonSubmit}>Submit</button>
+        <h1 className="App-intro">
+          List of Cool Friends
+        </h1>    
+        <FriendsList results={this.state.friends} />            
       </div>
     );
   }
