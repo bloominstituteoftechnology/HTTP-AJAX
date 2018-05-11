@@ -4,15 +4,13 @@ import Friend from "../Friend/Friend.js";
 
 const FriendsList = props => {
     return (
-        <ul className="friends-list">
+        <div className="friends-list">
                 {props.data.map(friend => {
                     return (
-                        <li key={friend.id}>
-                            <Friend {...friend}/>
-                        </li>
+                            <Friend key={friend.id} {...friend}/>
                     );
                 })}
-        </ul>
+        </div>
     );
 }
 

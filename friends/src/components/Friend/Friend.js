@@ -1,8 +1,7 @@
 import React from "react";
 import './Friend.css';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from "axios";
-import FriendUpdate from "./FriendUpdate.js";
 
 class Friend extends React.Component {
     constructor(props){
@@ -14,20 +13,18 @@ class Friend extends React.Component {
         }
     }
         
-    handleUpdateFriend() {
-            let form = document.getElementById('updateFriend');
-            const formData = new FormData(form);
-            axios.put('http://localhost:5000/friends', formData)
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            this.setState({name: formData.name})
-            this.setState({name: formData.age})
-            this.setState({name: formData.email})
-        }
+    handleUpdateFriend = (e) => {
+        e.preventDefault();
+        const {name, age, email} =this.state;
+        axios.put('http://localhost:5000/friends', {name, age, email})
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+        this.setState({
+            name: name,
+            age: age,
+            email: email
+        })
+    }
 
     render() {
         return (
@@ -35,8 +32,8 @@ class Friend extends React.Component {
                 <h3>{this.state.name}</h3>
                 <p>{`Age: ${this.state.age}`}</p>
                 <p>{`Email: ${this.state.email}`}</p>
-                <Link to={`/friend/${this.props.id}`}><button onSubmit={this.handleUpdateFriend}>Update</button></Link>
-                <Route path="/friend/:id" component={FriendUpdate}/>
+                <Link to={`/friend/${this.props.id}`}><button>Update</button></Link>
+                <button className="delete-button" onSubmit={this.handleDeleteFriend}>Delete</button>
             </div>
              );
     }

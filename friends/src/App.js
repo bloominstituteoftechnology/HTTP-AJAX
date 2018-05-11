@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { FriendsList, Form, Navigation } from "./components/";
+import { FriendsList, Form, Navigation, FriendUpdate  } from "./components/";
 import axios from "axios";
 import { Route } from "react-router-dom";
+
 
 class App extends Component {
   constructor() {
@@ -18,24 +19,19 @@ class App extends Component {
     .catch(error => console.log(error))
   }
 
-  handleSubmit() {
-    let form = document.getElementById('addFriend');
-    const formData = new FormData(form);
-    axios.post('http://localhost:5000/friends', formData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  handleDeleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(response => this.setState({data: response.data}))
+        .catch(error => console.log(error))
+}
 
   render() {
     return (
       <div className="App">
         <Navigation />
-        <Route exact path="/" render={props => <FriendsList data={this.state.data}/>}/>
+        <Route exact path="/" render={props => <FriendsList {...props} data={this.state.data}/>}/>
         <Route path="/addfriend" component={Form}/>
+        <Route path="/friend/:id" render={props => <FriendUpdate {...props} data={this.state.data}/>}/>
       </div>
     );
   }
