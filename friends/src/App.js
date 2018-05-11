@@ -40,14 +40,22 @@ class App extends Component {
   };
 
   Update = id => {    
-    axios.put(`http://localhost:5000/friends/${id}`
+    if (this.state.name && this.state.age && this.state.email) {
+    const { name, age, email } = this.state;
+    axios.put(`http://localhost:5000/friends/${id}`, { 
+      name, 
+      age, 
+      email, }
       )
       .then((result) => {
        this.setState({friends: result.data, name: '', age: '', email: ''});
       }).catch((error) => {
         console.log('error', error);           
       });
+  } else {
+    alert('All fields are required');
   }
+};
 
   Submit = event => {
     event.preventDefault();
