@@ -55,20 +55,20 @@ class FriendInput extends Component {
 
   render() { 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={() => this.handleSubmit()}>
         <div className="container">
          <h4 className="text-center"> Add A Friend </h4>
           <div className="col">
             <input type="text" name="name" className="form-control" placeholder="name" onChange={this.handleChange}/>
           </div>
           <div className="col">
-            <input type="text" name="age" className="form-control" placeholder="age" onChange={this.handleChange}/>
+            <input type="text" name="age" className="form-control" placeholder="age" onChange={() => this.handleChange()}/>
           </div>
           <div className="col">
-            <input type="text" name="email" className="form-control" placeholder="email" onChange={this.handleChange}/>
+            <input type="text" name="email" className="form-control" placeholder="email" onChange={() => this.handleChange()}/>
           </div>
           <div className="col">
-            <button className="btn btn-primary px-4 mt-2 float-left" type="submit" > Add </button>
+            <button className="btn btn-primary px-4 mt-2 float-left" type="submit"> Add </button>
           </div>
         </div>
       </form>

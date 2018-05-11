@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import axios from 'axios';
-//import FriendInput from 'FriendInput';
+import FriendInput from './FriendInput';
 
 
 class FriendList extends Component {
@@ -36,6 +36,14 @@ class FriendList extends Component {
       .catch(err => console.log('error deleting ', err)) 
   }
 
+  handleUpdate = id => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`)
+      .then(response => response.data.filter(el => el.id === id))
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }
+
   render() { 
     //console.log('Friend List State', this.state.friends)
     return (
@@ -48,7 +56,8 @@ class FriendList extends Component {
                 <li className="list-group-item">age: {friend.age}</li>
                 <li className="list-group-item">email: {friend.email}</li>
               </ul>
-              <button className="btn btn-danger mt-2" type="button" onClick={() => this.handleDelete(friend.id)}>Delete</button>
+              <button className="btn btn-outline-success mt-2" type="button" onClick={() => this.handleUpdate(friend.id)}>Update</button>
+              <button className="btn btn-outline-danger mt-2 ml-2" type="button" onClick={() => this.handleDelete(friend.id)}>Delete</button>
             </div>
           </div>
         )}
