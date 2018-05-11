@@ -61,7 +61,6 @@ export default class App extends Component {
         <div className='friendsBox'>
         <FriendsList friends={this.state.friends} />
         </div>
-      
       </div>
     )
 
