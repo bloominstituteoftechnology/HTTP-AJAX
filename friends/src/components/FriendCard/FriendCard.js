@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Row, Col, Fade} from 'reactstrap';
+import {Col, Fade, Button} from 'reactstrap';
 import axios from 'axios';
 
 class FriendCard extends Component {
     constructor(props) {
-        super(props),
+        super(props);
         this.state = {
             fadeIn: true,
             friends: [],
@@ -20,7 +20,7 @@ class FriendCard extends Component {
         .then( ({data}) => {
             console.log("FriendCard-Axios response.data",data);
             let {name, age, email} = data[id];
-            this.setState({ friends: data });
+            this.setState({ friends: data, toRender: {name, age, email} });
             console.log("this.state.friends",this.state.friends);
         })
         .catch( e => console.log(e) );
@@ -48,6 +48,29 @@ class FriendCard extends Component {
     //     // this.setState({ fadeIn: true });
     // }
     
+    handleDelete = (e) => {
+        // e.preventDefault();
+        axios.delete(`http://localhost:5000/friends/${this.props.match.params.id}`)
+        .then( res => console.log("DELETE status code",res.status) )
+        .then( () => {
+            console.log("DELETE second then")
+            let id = this.props.match.params.id;
+            id--;
+            
+            axios.get('http://localhost:5000/friends')
+            .then( ({data}) => {
+                console.log("FriendCard-Axios response.data",data);
+                let {name, age, email} = data[id];
+                this.setState({ friends: data, toRender: {name, age, email} });
+                console.log("this.state.friends",this.state.friends);
+            })
+            .catch( e => console.log(e) );
+
+            this.props.upDate();
+            
+        } )
+        .catch( e => console.log(e) );
+    }
     
     render() {
         console.log("this.props.friends.[...match.params.id",this.props.friends[this.props.match.params.id]);
@@ -59,14 +82,17 @@ class FriendCard extends Component {
             return <Col><p>Loading friend Card</p></Col>
         } else if (this.state.friends.length !== 0) {
             let {name, age, email} = this.state.friends[id];
+            // let {name, age, email} = this.state.toRender;
             console.log("name, email, age",name, email, age);
             return (
                 <Col>
-                    <p>Hello From FriendCard.</p>
                     <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
                         <p>{name}</p>
                         <p>{email}</p>
                         <p>{age}</p>
+                        <Button >Modify</Button>
+                        {' '}
+                        <Button onClick={this.handleDelete} >Delete</Button>
                     </Fade>
                 </Col>
             );
@@ -76,12 +102,13 @@ class FriendCard extends Component {
             console.log("name, email, age",name, email, age);
             return (
                 <Col>
-                    <p>Hello From FriendCard.</p>
                     <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
-                        <p>Name: {name}</p>
-                        <p>email: {email}</p>
-                        <p>age: {age}</p>
-
+                        <p>{name}</p>
+                        <p>{email}</p>
+                        <p>{age}</p>
+                        <Button >Modify</Button>
+                        {' '}
+                        <Button onClick={this.handleDelete} >Delete</Button>
                     </Fade>
                 </Col>
             );

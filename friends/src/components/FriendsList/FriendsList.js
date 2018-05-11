@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Row, Col, Table} from 'reactstrap';
-import axios from 'axios';
 import TableRow from '../auxiliar/TableRow';
 import {Route} from 'react-router-dom';
 import {FriendCard} from '../../components'
@@ -11,10 +10,8 @@ class FriendsList extends Component {
         this.state = {
         }
     }
-    
-    displayFriendCard = () => {
-        
-    }
+
+
 
     /** <Col > is fully responsive : try risizing your viewport */
     render() {
@@ -22,7 +19,7 @@ class FriendsList extends Component {
         // console.log(friends);
         return (
             <Row className="">
-                <Route path="/:id-:name" render={ props => <FriendCard {...props} friends={friends} /> } />
+                <Route path="/:id-:name" render={ props => <FriendCard {...props} friends={friends} upDate={this.props.upDate} /> } />
                 <Col sm="12" md={{size: 8, offset:2}} >
                 {/* Hello from FriendsList. */}
                 <Table>

@@ -6,7 +6,7 @@ import {Container} from 'reactstrap';
 import axios from 'axios';
 
 /** My custom components */
-import { FriendCard, CustomForm, FriendsList } from './components';
+import { CustomForm, FriendsList } from './components';
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class App extends Component {
           {/* <Route path="/:id" render={ props => <FriendCard {...props} friends={this.state.friends} /> } /> */}
           
           {/* <Route path='/' component={FriendsList} /> */}
-          <Route path='/' render={ props => <FriendsList {...props} friends={this.state.friends} />} />
+          <Route path='/' render={ props => <FriendsList {...props} friends={this.state.friends} upDate={this.upDate} />} />
         </Container>
       </div>
     );

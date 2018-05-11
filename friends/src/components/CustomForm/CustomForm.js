@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class CustomForm extends Component {
     constructor(props) {
@@ -80,7 +80,7 @@ class CustomForm extends Component {
                         {/* <Input  onChange={this.handleInput} type="number" name="age" id="exampleNumber" placeholder="friend's age" /> */}
                         
                         </FormGroup>
-                        <Button >Submit</Button>
+                        <Button >Add new friend to the list</Button>
                     </Form>
                 </Col>
             </Row>
