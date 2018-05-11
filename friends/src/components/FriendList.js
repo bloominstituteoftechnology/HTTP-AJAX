@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import axios from 'axios';
-import FriendInput from './FriendInput';
+//import FriendInput from './FriendInput';
 
 
 class FriendList extends Component {
