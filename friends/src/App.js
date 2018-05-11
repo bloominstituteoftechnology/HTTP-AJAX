@@ -48,6 +48,16 @@ export default class App extends Component {
       .then(response => this.setState({ friends: response.data }));
   }
 
+  gatherData = () => {
+    axios.get("http://localhost:5000/friends")
+      .then(response => this.setState({ friends: response.data }));
+  }
+
+  updateData = (friends) => {
+    this.setState({ friends: friends });
+  }
+
+
   handleInput(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
