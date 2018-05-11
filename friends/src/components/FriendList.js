@@ -28,7 +28,7 @@ class FriendList extends Component {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
-        console.log('deleted id', response)
+        console.log('deleted id', id)
         this.setState({
           friends: response.data
         });
@@ -37,16 +37,22 @@ class FriendList extends Component {
   }
 
   render() { 
-    console.log('Friend List State', this.state.friends)
+    //console.log('Friend List State', this.state.friends)
     return (
-      <div>
+      <div className="container">
         {this.state.friends.map(friend =>
-          <div key={friend.id}>  
-            <div>{friend.name} {friend.age} {friend.email} {friend.id}</div> 
-            <button type="button" onClick={() => this.handleDelete(friend.id)}> Delete </button>
-          </div>  
+          <div className="card mt-3">
+            <div className="card-body">
+              <h5 className="card-title">{friend.name}</h5>
+              <ul className="list-group">
+                <li className="list-group-item">age: {friend.age}</li>
+                <li className="list-group-item">email: {friend.email}</li>
+              </ul>
+              <button className="btn btn-danger mt-2" type="button" onClick={() => this.handleDelete(friend.id)}>Delete</button>
+            </div>
+          </div>
         )}
-      </div>
+      </div> 
     )
   }
 }

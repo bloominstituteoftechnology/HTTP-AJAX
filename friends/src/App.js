@@ -9,8 +9,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendInput />
-        <FriendList />
+        <div className="friend-input">  
+          <FriendInput />
+        </div>  
+        <div className="friend-list">
+          <FriendList />
+        </div>  
       </div>
     );
   }

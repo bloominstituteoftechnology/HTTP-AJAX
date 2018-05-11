@@ -52,23 +52,25 @@ class FriendInput extends Component {
       })
       .catch(err => console.log(err))
   }
-  
+
   render() { 
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="name" onChange={this.handleChange}/>
-        </label><br/>
-        <label>
-          Age:
-          <input type="text" name="age" onChange={this.handleChange}/>
-        </label><br/>
-        <label>
-          Email:
-          <input type="text" name="email" onChange={this.handleChange}/>
-        </label><br/>
-        <button type="submit">Add</button>
+        <div className="container">
+         <h4 className="text-center"> Add A Friend </h4>
+          <div className="col">
+            <input type="text" name="name" className="form-control" placeholder="name" onChange={this.handleChange}/>
+          </div>
+          <div className="col">
+            <input type="text" name="age" className="form-control" placeholder="age" onChange={this.handleChange}/>
+          </div>
+          <div className="col">
+            <input type="text" name="email" className="form-control" placeholder="email" onChange={this.handleChange}/>
+          </div>
+          <div className="col">
+            <button className="btn btn-primary px-4 mt-2 float-left" type="submit" > Add </button>
+          </div>
+        </div>
       </form>
     )
   }
