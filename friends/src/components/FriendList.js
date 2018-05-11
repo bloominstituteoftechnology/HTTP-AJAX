@@ -22,7 +22,7 @@ class FriendList extends Component {
       })
       .catch(err => console.log(err));
   }
-
+  
   handleDelete = id => {
     //console.log('id', id);
     axios

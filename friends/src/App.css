@@ -1,11 +1,11 @@
 .App {
   margin: 0 auto;
   margin-top: 2em;
-  width: 650px;
+  width: 725px;
 }
 
 .friend-list {
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
   float: right;
 }
