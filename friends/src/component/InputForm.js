@@ -25,9 +25,12 @@ class InputForm extends Component {
         } = this.state
     return (
         <div>
-            <input type='text' name='name' value={name} onChange={e => this.handleChange(e) } />
-            <input type='text' name='age' value={age} onChange={e => this.handleChange(e) } />
-            <input type='text' name='email' value={email} onChange={e => this.handleChange(e) } />
+            <input type='text' name='name' value={name} 
+                onChange={e => this.handleChange(e) } />
+            <input type='text' name='age' value={age} 
+                onChange={e => this.handleChange(e) } />
+            <input type='text' name='email' value={email} 
+                onChange={e => this.handleChange(e) } />
             <button onClick={this.handleSubmit}>Submit</button>
         </div>
     )
