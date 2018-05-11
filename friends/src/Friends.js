@@ -77,7 +77,7 @@ class Friends extends Component {
                     </div>);
                 })}
             </div>
-            <form>
+            <form class="new-friend">
                 <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleTextInput} />
                 <input type="text" placeholder="Age" name="age" value={this.state.age} onChange={this.handleTextInput} />
                 <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />
