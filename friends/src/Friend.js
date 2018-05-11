@@ -1,19 +1,9 @@
 import React, { Component } from "react";
 import Friends from './Friends'
+import { Link } from "react-router-dom";
 
 const Friend = props => {
 
-    // state = {
-    //     friend: null
-    // };
-
-    // componentDidMount() {
-    //     // this.setState(() => ({friend: props}))
-    // }
-
-
-    console.log(props)
-    // const { name, age, email } = this.state.friend;
     return (
         <div>
             <h1>
@@ -31,6 +21,9 @@ const Friend = props => {
                     ? "friend not found"
                     : props.friendData.email}
             </h3>
+            <Link onClick={() => { this.props.updateFriend(Friends) }} to={`/`} >
+                <button>HOME</button>
+            </Link>
         </div>
     )
 }

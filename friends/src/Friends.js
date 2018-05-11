@@ -35,6 +35,18 @@ class Friends extends Component {
         });
     };
 
+    handleDeleteFriend = (id) => {
+        axios
+            .delete(`http://localhost:5000/friends/${id}`)
+            .then(savedFriend => {
+                this.updateAll();
+            })
+            
+            .catch(err => {
+                console.log
+            })
+    }
+
     saveFriendsData = (e) => {
         e.preventDefault();
         const friendData = { name: this.state.name, age: this.state.age, email: this.state.email }
@@ -53,11 +65,16 @@ class Friends extends Component {
         return <div>
             <div>
                 {this.state.friends.map(friend => {
-                    return <div>
+                    return (
+                    <div>
                         <Link onClick={() => { this.props.updateFriend(friend) }} to={`/friends/${friend.id}`} >
-                            {friend.name}
+                            <h2>{friend.name}</h2>
                         </Link>
-                    </div>;
+                        <h2>{friend.age}</h2>
+                        <h2>{friend.email}</h2>
+                        <button onClick={() =>
+                        this.handleDeleteFriend(friend.id)}>DELETE</button>
+                    </div>);
                 })}
             </div>
             <form>
@@ -66,29 +83,6 @@ class Friends extends Component {
                 <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.handleTextInput} />
                 <button onClick={this.saveFriendsData}>Save Friend</button>
             </form>
-            {/* <div class='container'>
-          <div class=''>
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                        <label class="form-check-label" for="exampleCheck1">
-                        Check me out
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
-            </div>
-            </div> */}
         </div>;
     }
 }
@@ -97,7 +91,9 @@ function FriendsDeatils({ friend }) {
     const { name, age, email } = friend;
     return (
         <div>
-            {name}
+            <h2>{name}</h2>
+            <h3>{age}</h3>
+            <h3>{email}</h3>
         </div>
     )
 }
