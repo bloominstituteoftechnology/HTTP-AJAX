@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { FriendsList, Form, Navigation, FriendUpdate  } from "./components/";
+import { FriendsList, AddFriend, Navigation, FriendUpdate  } from "./components/";
 import axios from "axios";
 import { Route } from "react-router-dom";
 
@@ -30,7 +30,7 @@ class App extends Component {
       <div className="App">
         <Navigation />
         <Route exact path="/" render={props => <FriendsList {...props} data={this.state.data}/>}/>
-        <Route path="/addfriend" component={Form}/>
+        <Route path="/addfriend" component={AddFriend}/>
         <Route path="/friend/:id" render={props => <FriendUpdate {...props} data={this.state.data}/>}/>
       </div>
     );

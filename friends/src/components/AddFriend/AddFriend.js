@@ -1,8 +1,8 @@
 import React from "react";
-import './Form.css';
+import './AddFriend.css';
 import axios from "axios";
 
-class Form extends React.Component {
+class AddFriend extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +27,7 @@ class Form extends React.Component {
         return (
             <form className="form" id="addFriend">
                 <input type="text" placeholder="name"  onChange={this.handleChange} name="name"required/>
-                <input type="age" placeholder="age" onChange={this.handleChange} name="age"required/>
+                <input type="number" placeholder="age" onChange={this.handleChange} name="age"required/>
                 <input type="email" placeholder="email" onChange={this.handleChange} name="email"required/>
                 <button onSubmit={this.handleSubmit}>Submit</button>
             </form>
@@ -35,4 +35,4 @@ class Form extends React.Component {
     }
 }
 
-export default Form;
+export default AddFriend;

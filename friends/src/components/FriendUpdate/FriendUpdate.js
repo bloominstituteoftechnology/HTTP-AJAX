@@ -7,41 +7,38 @@ class FriendUpdate extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            id: this.props.match.params.id
+            friend: {}
         }
     }
 
     componentDidMount() {    
-        this.findFriend(this.state.id);   
+        this.findFriend(parseInt((this.props.match.params.id), 10));
     }
 
     findFriend = (friendId) => {
-        const friend = this.props.data.filter(friend => friend.id == friendId)[0];
-        this.setState({
-            name: friend.name,
-            age: friend.age,
-            email: friend.email
-        })
+        const friend = this.props.data.filter(friend => friend.id === friendId)[0];
+        this.setState({ friend })
     }
 
-    handleChange = (e) => {this.setState({[e.target.name]: e.target.value})
+    handleChange = (e) => {
+        let friend = this.state.friend;
+        friend[e.target.name] = e.target.value;
+        this.setState({friend})
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const {name, age, email} = this.state;
-        axios.post('http://localhost:5000/friends', {name, age, email})
+        const {friend} = this.state;
+        axios.post('http://localhost:5000/friends', {friend})
           .then(response => console.log(response))
           .catch(error => console.log(`${error}`))
-        this.setState({});
     }
 
     render() {
         return (
             <form className="form" id="updateFriend">
-                <input type="text" placeholder={this.state.name}  onChange={this.handleChange} name="name"/>
-                <input type="age" placeholder={this.state.age} onChange={this.handleChange} name="age"/>
-                <input type="email" placeholder={this.state.email} onChange={this.handleChange} name="email"/>
+                <input type="text" placeholder={this.state.friend.name} name="name" onChange={e => this.handleChange(e)}/>
+                <input type="number" placeholder={this.state.friend.age} name="age" onChange={e => this.handleChange(e)}/>
+                <input type="email" placeholder={this.state.friend.email} name="email" onChange={e => this.handleChange(e)}/>
                 <button onSubmit={this.handleSubmit}>Update</button>
             </form>
         );
