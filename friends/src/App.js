@@ -1,30 +1,3 @@
-// import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-// import Axios from 'axios';
-// import Friends from './components/friends'
-
-
-
-
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <Friends />
-        
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
@@ -96,7 +69,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>United Kingdom</h1>
+        <h1 className="text-white">United Kingdom</h1>
         <AddForm
         input={this.handleInput.bind(this)}
         submit={this.handleSubmit.bind(this)}

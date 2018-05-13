@@ -8,15 +8,15 @@ export default class App extends Component {
         return (
             <div>
                 <form onSubmit={(e) => this.props.submit(e)}>
-                    <label>Name</label>
+                    <label className="text-white">Name</label>
                     <br/>
                     <input type="text" required value={this.props.name} name="name" onChange={this.props.input} />
                     <br/>
-                    <label>Age</label>
+                    <label className="text-white">Age</label>
                     <br/>
                     <input type="number" required value={this.props.age} name="age" onChange={this.props.input} />
                     <br/>
-                    <label>Email</label>
+                    <label className="text-white">Email</label>
                     <br/>
                     <input type="email" required value={this.props.email} name="email" onChange={this.props.input} />
                     <br />

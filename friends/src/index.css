@@ -4,8 +4,8 @@ body {
   font-family: sans-serif;
   background-image:  
     linear-gradient(
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0.8)
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
     ), url("https://london.ac.uk/sites/default/files/styles/promo_large/public/2017-08/Study%20in%20london.png?itok=GqrD62Mc");
   height: 30em;
   width: 100%;
