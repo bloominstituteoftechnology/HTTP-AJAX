@@ -38,7 +38,7 @@ class FriendInput extends Component {
       [el.target.name]: el.target.value
     })
   }
-
+  
   handleSubmit = event => {
     // event.preventDefault();
     axios
@@ -57,7 +57,6 @@ class FriendInput extends Component {
     return (
       <form onSubmit={() => this.handleSubmit()}>
         <div className="container">
-         <h4 className="text-center"> Add A Friend </h4>
           <div className="col">
             <input type="text" name="name" className="form-control" placeholder="name" onChange={(el) => this.handleChange(el)}/>
           </div>

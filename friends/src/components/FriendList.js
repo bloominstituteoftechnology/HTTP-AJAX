@@ -11,9 +11,9 @@ class FriendList extends Component {
     this.state = {
       friends: []
     }
-  }  
+  }
 
-  componentDidMount() { 
+  componentDidMount() {
     axios
       .get(`http://localhost:5000/friends`)
       .then(response => {
@@ -28,21 +28,50 @@ class FriendList extends Component {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
-        console.log('deleted id', id)
+        //console.log('deleted id', id)
         this.setState({
           friends: response.data
         });
       })
-      .catch(err => console.log('error deleting ', err)) 
+      .catch(err => console.log('error deleting ', err))
   }
 
   handleUpdate = id => {
+    //let stateObj = this.state;
     axios
       .put(`http://localhost:5000/friends/${id}`)
-      .then(response => response.data.filter(el => el.id === id))
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => res.data.find(el => el.id === id))
+      .then(data => {
+        console.log('data', data) // returns the object with the id that "===" with the id passed to handleUpdate()
+        data.name = prompt('Name', data.name);
+        data.age = prompt('Age', data.age);
+        data.email = prompt('Email', data.email);
+        return data;
+      })
+      .then(data => {
+        console.log('edited', data) // return the edited object
+        this.setState({
+          friends: [...this.state.friends, data]
+        })
+      })
+      .catch(data => console.log(data))
   }
+
+        // console.log(res);
+        // const mapped = stateObj.friends.forEach(friend => {
+        //   if (friend.id === res.id) {
+        //     friend = res;
+        //   }
+        // })
+        // return mapped;
+    // axios.get(`http://localhost:5000/friends`)
+    //   .then(res => {
+    //     console.log(res)
+    //     this.setState({
+    //       friends: res.data
+    //     })
+    //   })
+    //   .catch(err => console.log(err));
 
   render() { 
     //console.log('Friend List State', this.state.friends)
