@@ -27,6 +27,20 @@ export default class FriendsList extends Component {
          .then(response => this.setState({ friends: response.data }));
    };
 
+   //    handleSubmit = (e, id) => {
+   //       axios
+   //          .put(`http://localhost:5000/friends/${id}`, { e })
+   //          .then(data =>
+   //             this.setState({
+   //                friends: data.data,
+   //                name: '',
+   //                age: '',
+   //                email: ''
+   //             })
+   //          )
+   //          .catch(err => console.log(err));
+   //    };
+
    render() {
       return (
          <div>
@@ -34,6 +48,7 @@ export default class FriendsList extends Component {
             <OriginalFriends
                originalState={this.state}
                delete={this.deleteFriend}
+               handleSubmit={this.handleSubmit}
             />
          </div>
       );
