@@ -3,67 +3,58 @@ import axios from 'axios';
 import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
+    const URL = 'http://localhost:5000/friends';
 
 
 
 export default class FriendDetails extends Component {
-    constructor(){
-      super()
+    constructor(props){
+      super(props)
       this.state = {
-        friends: [],
-        name: '',
-        age: '',
-        email: ''
+        friends: [{}],
       }
     }
   
-    componentDidMount(){
-      this.getUsers()
-    }
-  
-    getUsers = () => {
-      axios.get('http://localhost:5000/friends')
-        .then(response => {
-            this.setState({ friends: response.data, name: '', age: '', email: ''})
+    componentWillMount(){
+        console.log('CWM', this.state);
+     axios.get(URL)
+        .then(res => {
+            return this.setState({ friends: res.data})
         })
         .catch(err => console.log(err))
-    } 
+    };
+    
 
-    postUsers = (event) => {
+    postUsers = () => {
         const {name, age, email} = this.state
-        axios.post('http://localhost:5000/friends', {name, age, email})
+        axios.post(URL, {name, age, email})
         .then(response =>{
             return this.setState({friends: response.data});
         })
-        .catch(error =>{
-            return `There's an error!`;
+        .catch(err =>{
+            console.log(err);
         })
         
     }
 
     handleChange = event => {
-       { this.setState({ [event.target.name]: event.target.value })};
+       this.setState({ [event.target.name]: event.target.value });
       }; 
     
 
     render() {
+        console.log(this.state.friends);
         return(
             <div>
             <div>
                 <h3>Join my Slack Channel!</h3>
                     <Form inline onChange={this.handleChange}>
-                        <FormGroup className="formgroup">
                         <Label for="Name" className="mr-sm-2">Name  </Label>
                         <Input type="text" name="name" id="name" placeholder="Name" />
-                        </FormGroup>
-                        <FormGroup className="formgroup">
                         <Label for="Age" className="mr-sm-2">Age   </Label>
                         <Input type="number" name="age" id="age" placeholder="it's just a number!" />
-                        </FormGroup>
-                        <FormGroup className="formgroup">
                         <Label for="Email" className="mr-sm-2">Email</Label>
                         <Input type = "email" name="email" id="email" placeholder="something@idk.cool" />
-                        </FormGroup>
                         <Button className = "button-info" onClick = {this.postUsers}>Submit Now!</Button>
                     </Form>
                    <br/>
