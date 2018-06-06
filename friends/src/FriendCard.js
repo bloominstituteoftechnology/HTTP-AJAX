@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import {Card, CardBody, CardText, CardTitle, CardSubtitle} from 'reactstrap';
 import FriendDetails from './FriendDetails';
+import axios from 'axios';
 
 class FriendCard extends Component {
     constructor(props){
@@ -17,6 +18,13 @@ class FriendCard extends Component {
     componentDidMount(){
         this.state.props;
         console.log(this.state.props);
+    }
+
+    deleteUser =(id) =>{
+        axios.delete(URL+"/"+id)
+          .then(res =>{
+              return this.setState({friends: res.data});
+          })
     }
     render() {
         return(

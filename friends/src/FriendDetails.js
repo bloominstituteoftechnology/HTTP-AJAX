@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+    CardTitle, CardSubtitle, Button, Form,Input, Label } from 'reactstrap';
 
     const URL = 'http://localhost:5000/friends';
 
@@ -16,7 +16,7 @@ export default class FriendDetails extends Component {
     }
   
     componentWillMount(){
-        console.log('CWM', this.state);
+        console.log('CWM', this.state.friends);
      axios.get(URL)
         .then(res => {
             return this.setState({ friends: res.data})
@@ -37,10 +37,25 @@ export default class FriendDetails extends Component {
         
     }
 
+    deleteUser =(id) =>{
+        axios.delete(URL+"/"+id)
+          .then(res =>{
+              return this.setState({friends: res.data});
+          })
+    }
+
     handleChange = event => {
        this.setState({ [event.target.name]: event.target.value });
       }; 
+
     
+    putChange = (id, user) =>{
+        axios.put(URL+"/"+id, user)
+          .then(res =>{
+              return this.setState({friends: res.data});
+          })
+ //gather data from user to modify something...would probably happen inside another component called friendEdit
+    }
 
     render() {
         console.log(this.state.friends);
@@ -49,13 +64,41 @@ export default class FriendDetails extends Component {
             <div>
                 <h3>Join my Slack Channel!</h3>
                     <Form inline onChange={this.handleChange}>
-                        <Label for="Name" className="mr-sm-2">Name  </Label>
-                        <Input type="text" name="name" id="name" placeholder="Name" />
-                        <Label for="Age" className="mr-sm-2">Age   </Label>
-                        <Input type="number" name="age" id="age" placeholder="it's just a number!" />
-                        <Label for="Email" className="mr-sm-2">Email</Label>
-                        <Input type = "email" name="email" id="email" placeholder="something@idk.cool" />
-                        <Button className = "button-info" onClick = {this.postUsers}>Submit Now!</Button>
+                        <Label 
+                            for="Name" 
+                            className="mr-sm-2">
+                            Name  
+                            </Label>
+                        <Input 
+                            type="text" 
+                            name="name" 
+                            id="name" 
+                            placeholder="Name" />
+                        <Label 
+                            for="Age" 
+                            className="mr-sm-2">
+                            Age   
+                            </Label>
+                        <Input 
+                            type="number" 
+                            name="age" 
+                            id="age" 
+                            placeholder="it's just a number!" />
+                        <Label 
+                            for="Email" 
+                            className="mr-sm-2">
+                            Email
+                            </Label>
+                        <Input 
+                            type = "email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="something@idk.cool" />
+                        <Button 
+                            className = "button-info" 
+                            onClick = {this.postUsers}>
+                            Submit Now!
+                            </Button>
                     </Form>
                    <br/>
                    <br/>
@@ -71,6 +114,8 @@ export default class FriendDetails extends Component {
                                     <CardSubtitle>Age - {friend.age}</CardSubtitle>
                                     <CardText>Email - {friend.email}</CardText>
                                     <br/>
+                                    <button onClick={() => this.deleteUser(friend.id)}>Remove</button>
+                                    <button>Edit(doesn't work yet)</button>
                                 </CardBody>
                             </Card>
                             
