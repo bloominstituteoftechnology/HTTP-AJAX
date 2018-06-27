@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendsList from './components/FriendsList';
+import AddFriendForm from './components/AddFriendForm';
 import axios from 'axios';
 
 class App extends Component {
@@ -8,7 +9,10 @@ class App extends Component {
     super();
 
     this.state = {
-      friendsData: []
+      friendsData: [],
+      name: '',
+      age: '',
+      email: ''
     }
   }
 
@@ -18,10 +22,12 @@ class App extends Component {
       .then(response => this.setState({ friendsData: response.data }))
       .catch(err => console.log(err))
   }
+  
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friendsData}/>
+        <FriendsList friends={this.state.friendsData} />
+        <AddFriendForm />
       </div>
     );
   }
