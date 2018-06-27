@@ -3,6 +3,7 @@ import './App.css';
 import axios from "axios";
 import { Route } from "react-router-dom";
 import FriendList from "./components/FriendList"
+import AddFriend from "./components/AddFriend"
 
 class App extends Component {
   constructor() {
@@ -27,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" render={props => <FriendList {...props} data={this.state.data}/>}/>
+        <Route exact path="/" render={props => <div><AddFriend/> <FriendList {...props} data={this.state.data}/></div>}/>
       </div>
     );
   }
