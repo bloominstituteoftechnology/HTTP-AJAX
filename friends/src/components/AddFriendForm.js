@@ -1,7 +1,16 @@
 import React from 'react';
 import '../App.css';
 
-const AddFriendForm = props => {
+class AddFriendForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
+  pageRefresh = () => {
+    this.props.history.push("/");
+  }
+  render() {
   return (
     <div>
       <form>
@@ -9,26 +18,27 @@ const AddFriendForm = props => {
         type="text"
         placeholder="Name"
         name="friendName"
-        value={props.name}
-        onChange={props.handleChange} />
+        value={this.props.name}
+        onChange={this.props.handleChange} />
         <br/>
         Age: <input
         type="number"
         placeholder="Age"
         name="friendAge"
-        value={props.age}
-        onChange={props.handleChange} />
+        value={this.props.age}
+        onChange={this.props.handleChange} />
         <br/>
         Email: <input
         type="text"
         placeholder="Email"
         name="friendEmail"
-        value={props.email}
-        onChange={props.handleChange} />
-        <button onClick={props.handleSubmitFriend}>Add Friend</button>
+        value={this.props.email}
+        onChange={this.props.handleChange} />
+        <button onClick={this.props.handleSubmitFriend}>Add Friend</button>
       </form>
     </div>
   )
+}
 }
 
 export default AddFriendForm;

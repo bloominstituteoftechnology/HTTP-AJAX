@@ -6,8 +6,8 @@ import AddFriendForm from './components/AddFriendForm';
 import {Route, NavLink} from 'react-router-dom';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friends: [],
       friendName: '',
@@ -55,14 +55,16 @@ class App extends Component {
       <div className="App">
         <NavLink to="/friend-form"><button>Add friend</button></NavLink>
         <NavLink to="/"><button>View Freinds</button></NavLink>
+        <Route exact path="/" render={props => <FriendsList {...props}
+        friends={this.state.friends} />} />
+
         <Route path="/friend-form" render={props => <AddFriendForm {...props}
         handleChange={this.handleChange}
         name = {this.state.friendName} age={this.state.friendAge}
         email={this.state.friendEmail}
         handleSubmitFriend={this.handleSubmitFriend} />} />
 
-        <Route exact path="/" render={props => <FriendsList {...props}
-        friends={this.state.friends} />} />
+
       </div>
     );
   }
