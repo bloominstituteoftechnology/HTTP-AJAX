@@ -8,7 +8,9 @@ class App extends Component {
     super();
     this.state = {
       friendsData: [],
-      friend: ""
+      name: "",
+      age: "",
+      email: ""
     };
   }
 
@@ -29,7 +31,7 @@ class App extends Component {
   };
 
   addFriend = e => {
-    const friend = { name: this.state.friend }
+    const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
     axios
     .post('http://localhost:5000/friends', friend)
     .then(response => {
@@ -38,6 +40,7 @@ class App extends Component {
     })
     .catch(error => console.log(error));
   }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +48,7 @@ class App extends Component {
         <h1 className="title">Friend List</h1>
 
         <FriendsForm 
-        changeNameHandler={this.changeFriendName} 
+        changeInfoHandler={this.changeFriendInfo} 
         addFriendHandler = {this.addFriend} />
 
         <FriendsList friendsData={this.state.friendsData} />
