@@ -1,20 +1,21 @@
 import React from 'react';
+import { Card, CardTitle, CardText } from 'reactstrap';
 import styled from 'styled-components';
 
-const FriendDiv = styled.div`
+const FriendCard = styled(Card)`
   width: 300px;
   margin-left: 40%;
   margin-bottom: 5px;
-  border: 1px solid black;
-  padding-left: 15px;
 `;
 
 const Friend = props => (
-  <FriendDiv>
-    <p>Name: {props.friend.name}</p>
-    <p>Age: {props.friend.age}</p>
-    <p>email: {props.friend.email}</p>
-  </FriendDiv>
+  <FriendCard>
+    <Card body>
+      <CardTitle className="text-center">{props.friend.name}</CardTitle>
+      <CardText>Age: {props.friend.age}</CardText>
+      <CardText>email: {props.friend.email}</CardText>
+    </Card>
+  </FriendCard>
 );
 
 export default Friend;
