@@ -4,8 +4,15 @@ import Friend from './Friend';
 const FriendsList = props => {
     return (
         <Fragment>
-            Pass Props to FriendsList
-            <Friend />
+            {props.friendsData.map((friend, index) => {
+                return (
+                    <Friend
+                        key={index}
+                        index={index}
+                        friend={friend}
+                    />
+                );
+            })}
         </Fragment>
     );
 }

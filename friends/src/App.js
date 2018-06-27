@@ -47,7 +47,7 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
             friend={this.state.friend}
           />
-          <FriendsList />
+          <FriendsList friendsData={this.state.friendsData} />
         </div>
       </Fragment>
     );

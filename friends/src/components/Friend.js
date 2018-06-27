@@ -3,7 +3,7 @@ import React, {Fragment} from 'react';
 const Friend = props => {
     return (
         <Fragment>
-            <p></p>
+            <p>{props.friend.name}</p>
         </Fragment>
     );
 }
