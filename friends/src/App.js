@@ -24,6 +24,7 @@ class App extends Component {
   handleInput = (e) => {
     let fieldName = e.target.name;
     let value = e.target.value;
+    if (fieldName === 'age') value = parseInt(value, 10);
     this.setState({[fieldName]: value});
   }
 
@@ -31,7 +32,15 @@ class App extends Component {
     e.preventDefault();
     let {friendList, ...rest} = this.state;
     const friendPost = axios.post(this.url, rest);
-    friendPost.then((response)=>{console.log(response)});
+    friendPost
+      .then((response)=>{this.setState({friendList: response.data})})
+      .catch((response)=>{alert('Add friend failed!')});
+    this.setState({
+      name: '',
+      age: '',
+      email: '',
+    });
+
   }
 
   render() {
