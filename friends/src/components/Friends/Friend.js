@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 const Friend = props => {
-  <Fragment>[FRIEND]</Fragment>;
+  return <div>[FRIEND]</div>;
 };
 
 export default Friend;

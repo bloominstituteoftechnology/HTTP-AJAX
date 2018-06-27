@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Friends from "./Friends";
 
 const FriendsList = props => {
   return (
-    <Fragment>
+    <div>
       [FRIENDS LIST]
-      <Friends />
-    </Fragment>
+      <Friends data={props.data} />
+    </div>
   );
 };
 

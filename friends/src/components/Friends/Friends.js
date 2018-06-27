@@ -1,7 +1,14 @@
-import React, { Fragment } from "react";
+import React from "react";
+import Friend from "./Friend";
 
 const Friends = props => {
-  return <Fragment>[FRIENDS]</Fragment>;
+  return (
+    <div>
+      {props.data.map(friend => {
+        return <Friend key={friend.id} friend={friend} />;
+      })}
+    </div>
+  );
 };
 
 export default Friends;
