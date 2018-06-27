@@ -20,9 +20,10 @@ export default class AddFriendForm extends React.Component {
   }
 
   handleSubmit = e => {
+    e.preventDefault();
     let newFriend = {
       name: this.state.name,
-      age: this.state.age,
+      age: Number(this.state.age),
       email: this.state.email,
     };
     axios
@@ -64,6 +65,7 @@ export default class AddFriendForm extends React.Component {
           </Label>
           <Col sm={10}>
             <Input
+              type="number"
               value={this.state.age}
               onChange={this.handleAgeChange}
               placeholder="enter age"

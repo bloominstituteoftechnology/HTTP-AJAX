@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   updateFriends = friends => {
+    console.log(friends);
     this.setState({ friends });
   };
 
