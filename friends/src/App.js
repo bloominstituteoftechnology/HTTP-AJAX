@@ -32,12 +32,17 @@ constructor() {
    };
 
 
- addFriend = event =>{
-	//const newfriend = {this.state.newfriend}; 
- 	axios.post("http://localhost:5000/friends")
+ addFriend = event => {
+	const friend = {name:this.state.newfriend, age:this.state.age, email:this.state.email}; 
+ 	axios.post("http://localhost:5000/friends", friend)
+	.then(response => {
+         console.log("POST RESPONSE", response);
+        this.setState({ friendsData: response.data, newfriend: "", ahe: "", email: "" });
+      })
+      .catch(error => console.log(error));
+  };
 	 
- 
- }
+
 
 	
   componentDidMount() {
@@ -59,7 +64,7 @@ constructor() {
       <div className="App main-container">
 	    <input className="input-field" type="text" placeholder="name" value={this.state.newfriend} onChange={this.nameChangeHandler} /> <br />
 
-		 <input className="input-field" type="text" placeholder="age" value={this.state.age} onChange={this.ageChangeHandler} /><br />
+		 <input className="input-field" type="number" placeholder="age" value={this.state.age} onChange={this.ageChangeHandler} /><br />
 
 	     <input className="input-field" type="text" placeholder="email" value={this.state.email} onChange={this.emailChangeHandler} /><br />
 
