@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class ListOfFriends extends Component {
-  state = {
-    friends: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: []
+    };
+  }
   componentDidMount() {
     axios
       .get("http://localhost:5000/friends")
-      .then(function(response) {
+      .then(response => {
         console.log(response);
         const friends = response.data;
-        this.setState({ friends: friends });
+        this.setState({ friends });
         console.log(this.state);
       })
       .catch(function(error) {
@@ -19,7 +22,15 @@ class ListOfFriends extends Component {
       });
   }
   render() {
-    return <ul>{this.state.friends.map(friend => <li>{friend.name}</li>)} </ul>;
+    return (
+      <ul>
+        {this.state.friends.map(friend => (
+          <li>
+            Name: {friend.name} Age: {friend.age} Email: {friend.email}
+          </li>
+        ))}{" "}
+      </ul>
+    );
   }
 }
 
