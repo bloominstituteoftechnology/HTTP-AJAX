@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      friends : []
+      friends : [],
+      friend : ""
     }
   }
 
@@ -24,6 +25,24 @@ class App extends Component {
       })
   }
 
+  handleChange = (e) => {
+    this.setState({friend : e.target.value})
+  }
+  handleSubmit = () => {
+    let newFriend = {name : this.state.friend , age : 30 , email : 'sulaiman.sanusi@icloud.com'}
+
+    axios
+        .post("http://localhost:5000/friends", newFriend  )
+        .then(response => {
+          console.log("POST",response)
+          this.setState({friends : response.data , friend : ''})
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -31,6 +50,18 @@ class App extends Component {
           <h1 className="App-title">Welcome to our Friends List</h1>
         </header>
         <FriendList friends={this.state.friends}/>
+        <input
+        type="text"
+        name="friend"
+        placeholder ="add name here "
+        onChange = {this.handleChange}
+        value = {this.state.friend}
+        />
+        <input type="text" name="age" />
+        <input type="email" name="email" />
+        <button
+        type="submit"
+        onClick ={this.handleSubmit}>Submit</button>
       </div>
     );
   }
