@@ -4,8 +4,8 @@ import Friend from './Friend';
 
 const FriendsList = props => {
   return (
-    <div>
-      {props.friends.map(friend => {
+    <div className="friends">
+      {props.friends.reverse().map(friend => {
         return (
           <Friend key={friend.id} friend={friend} />
         )

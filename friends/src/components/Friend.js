@@ -3,10 +3,10 @@ import '../App.css';
 
 const Friend = props => {
   return (
-    <div>
-      <div>{props.friend.name}</div>
-      <div>{props.friend.age}</div>
-      <div>{props.friend.email}</div>
+    <div className="friend">
+      <div className="friendDetail"><b>Name:</b> {props.friend.name}</div>
+      <div className="friendDetail"><b>Age:</b> {props.friend.age}</div>
+      <div className="friendDetail"><b>Email:</b> {props.friend.email}</div>
     </div>
   );
 }

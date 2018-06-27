@@ -1,0 +1,65 @@
+* {
+  /*border: 1px solid black;*/
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background: lightgray;
+}
+
+.form-and-friends-container {
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.form-and-friends-container form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-and-friends-container form input {
+  box-sizing: border-box;
+  width: 200px;
+  height: 50px;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.form-and-friends-container button {
+  width: 200px;
+  height: 50px;
+  padding: 0;
+  margin-top: 10px;
+  color: white;
+  background: blue;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.friends {
+  width: 500px;
+}
+
+.friend {
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+}
+
+.friendDetail {
+  margin: 5px 0;
+}

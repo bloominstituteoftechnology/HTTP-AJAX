@@ -40,35 +40,37 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <input
-            autoComplete="off"
-            type="text"
-            placeholder="Name"
-            name="name"
-            onChange={this.handleChange}
-            value={this.state.name}
-          />
-          <input
-            autoComplete="off"
-            type="text"
-            placeholder="Age"
-            name="age"
-            onChange={this.handleChange}
-            value={this.state.age}
-          />
-          <input
-            autoComplete="off"
-            type="text"
-            placeholder="Email"
-            name="email"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-        </form>
-        <button onClick={this.handleFriendSubmit}>Submit</button>
-        <FriendsList friends={this.state.friendsData} />
+      <div className="container">
+        <div className="form-and-friends-container">
+          <form>
+            <input
+              autoComplete="off"
+              type="text"
+              placeholder="Name"
+              name="name"
+              onChange={this.handleChange}
+              value={this.state.name}
+            />
+            <input
+              autoComplete="off"
+              type="text"
+              placeholder="Age"
+              name="age"
+              onChange={this.handleChange}
+              value={this.state.age}
+            />
+            <input
+              autoComplete="off"
+              type="text"
+              placeholder="Email"
+              name="email"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+            <button onClick={this.handleFriendSubmit}>Submit</button>
+          </form>
+          <FriendsList friends={this.state.friendsData} />
+        </div>
       </div>
     );
   }
