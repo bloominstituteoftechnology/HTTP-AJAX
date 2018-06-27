@@ -42,7 +42,7 @@ class Friend extends React.Component {
 
     render() {
         return (
-            <CardContainer body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+            <CardContainer body inverse>
 
                 <p>{this.props.friend.name}</p>
                 <p>{this.props.friend.age}</p>

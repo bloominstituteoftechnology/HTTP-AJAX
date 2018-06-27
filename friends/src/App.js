@@ -52,14 +52,14 @@ class App extends Component {
 
         <Navigation />
 
-        <FriendsList handleSetData={this.handleSetData} friends={this.state.friendsData} />
-
         <Route path='/edit' render={props => <AddFriendForm {...props}
           onClick={this.handleSubmit}
           name={this.state.name}
           age={this.state.age}
           email={this.state.email}
           handleInput={this.handleInput} />} />
+
+        <FriendsList handleSetData={this.handleSetData} friends={this.state.friendsData} />
 
       </div>
     );

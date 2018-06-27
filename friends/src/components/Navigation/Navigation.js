@@ -1,15 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Header, StyledNavBar, StyledLink } from '../ReusableComponents/Navigation';
 const Navigation = () => {
     return (
-        <div>
-            <div>
-                <Link to='/'>Home</Link>
-            </div>
-            <div>
-                <Link to='/edit'>Edit</Link>
-            </div>
-        </div>
+        <Header>
+
+            <StyledNavBar>
+                
+                <div>
+                    <StyledLink to='/'>Home</StyledLink>
+                </div>
+                <div>
+                    <StyledLink to='/edit'>Edit</StyledLink>
+                </div>
+
+            </StyledNavBar>
+            
+        </Header>
     );
 }
 

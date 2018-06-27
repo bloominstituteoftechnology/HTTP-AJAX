@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AddInputField, AddButton, AddForm } from '../ReusableComponents/FriendsCard';
 
 const AddFriendForm = props => {
     return (
-        <form onSubmit={event => event.preventDefault()}>
-            <input value={props.name} onChange={props.handleInput} type='text' placeholder='name' name='name' />
-            <input value={props.age} onChange={props.handleInput} type='text' placeholder='age' name='age' />
-            <input value={props.email} onChange={props.handleInput} type='text' placeholder='email' name='email' />
-            <button onClick={props.onClick}>Submit</button>
-        </form>
+        <AddForm onSubmit={event => event.preventDefault()}>
+            <AddInputField value={props.name} onChange={props.handleInput} type='text' placeholder='Name' name='name' />
+            <AddInputField value={props.age} onChange={props.handleInput} type='text' placeholder='Age' name='age' />
+            <AddInputField value={props.email} onChange={props.handleInput} type='text' placeholder='Email' name='email' />
+            <AddButton color='primary' onClick={props.onClick}>Submit</AddButton>
+        </AddForm>
     );
 }
 
