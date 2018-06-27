@@ -9,7 +9,7 @@ class App extends Component {
     this.state = { 
       friendsData: [],
       name: "", 
-      age:"",
+      age: "",
       email:"",
       nameplaceholder:"Add Name",
       emailplaceholder:"Add Email",
@@ -59,7 +59,7 @@ class App extends Component {
   }
 
   handleAgeChange = e => {
-    this.setState({ age: e.target.value});
+    this.setState({ age: Number(e.target.value)});
   }
 
 
@@ -91,7 +91,6 @@ class App extends Component {
         <button onSubmit={this.handleSubmitFriend} onClick={this.handleSubmitFriend}>Submit Friend</button>
         </form>
         <FriendsDisplay 
-          handleSetData={this.handleSetData}
           friends={this.state.friendsData}
           />
 
