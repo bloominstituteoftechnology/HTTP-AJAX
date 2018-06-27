@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Friend from './Friend'
+import './friends.css'
 
 class Friends extends React.Component {
     constructor() {
@@ -9,7 +10,7 @@ class Friends extends React.Component {
             friends: [],
             name: '',
             age: '',
-            email: ''
+            email: '',
         }
     }
 
@@ -29,18 +30,17 @@ class Friends extends React.Component {
         e.preventDefault();
         const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
         axios
-        .post("http://localhost:5000/friends", friend)
-        .then(response => {
-            console.log("POST RESPONSE", response);
-            this.setState({friends: response.data, name: '', age: '', email: ''});
-        })
-        .catch(error => console.log(error));
+            .post("http://localhost:5000/friends", friend)
+            .then(response => {
+                console.log("POST RESPONSE", response);
+                this.setState({ friends: response.data, name: '', age: '', email: '' });
+            })
+            .catch(error => console.log(error));
     }
 
     handleNameChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
-
 
 
     render() {
@@ -49,15 +49,17 @@ class Friends extends React.Component {
                 {this.state.friends.map((friend) => (
                     <Friend key={friend.id} friend={friend} />
                 ))}
-                <form>
+                <form className="form">
                     <input
+                        className="field"
                         type="text"
                         placeholder="name"
                         name="name"
                         onChange={this.handleNameChange}
-                        value={this.state.friend}
+                        value={this.state.name}
                     />
                     <input
+                        className="field"
                         type="number"
                         placeholder="age"
                         name="age"
@@ -65,13 +67,14 @@ class Friends extends React.Component {
                         value={this.state.age}
                     />
                     <input
+                        className="field"
                         type="text"
                         placeholder="email"
                         name="email"
                         onChange={this.handleNameChange}
                         value={this.state.email}
                     />
-                    <button onClick={this.handleSubmitFriend}>Submit Friend</button>
+                    <button className="field-btn" onClick={this.handleSubmitFriend}>Submit Friend</button>
                 </form>
             </div>);
     }
