@@ -13,6 +13,7 @@ class FriendForm extends Component {
     };
   }
   handleChange = event => {
+    event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
   handleSubmit = event => {
@@ -30,6 +31,7 @@ class FriendForm extends Component {
       })
       .then(response => {
         console.log(response);
+        this.props.friendsetter(response.data);
       })
       .catch(error => {
         console.log(error);
