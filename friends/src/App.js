@@ -10,8 +10,8 @@ class App extends Component {
     this.state = {
       friendsData : [],  
       name : "",
-      age: 0,
-      email: "",     
+      age: "",
+      email: "",
     };
   }
 
@@ -34,7 +34,7 @@ class App extends Component {
 
   handleAgeChange = e => {
     console.log(e)
-    this.setState ({age: e.target.value})
+    this.setState ({age: Number(e.target.value)})
   }
 
   handleEmailChange = e => {
@@ -70,7 +70,7 @@ class App extends Component {
           placeholder = "add friend name"
         /> <br></br>
         <input 
-          type = "text"
+          type = "number"
           onChange = {this.handleAgeChange}
           value = {this.state.age}
           placeholder = "add age"
@@ -84,9 +84,8 @@ class App extends Component {
         <button onClick = {this.handleSubmitFriend}>
           Submit Friend
         </button>
-        </form>
-       
-        <FriendsList friends={this.state.friendsData} />
+        </form>       
+        <FriendsList friends = {this.state.friendsData} />
       </div>
     );
   }
