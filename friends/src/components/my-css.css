@@ -2,5 +2,9 @@
     border-top: 1px solid grey ;
     border-bottom: 1px solid grey ;
     text-align: left;
+    margin: 5px 0 ;
   }
-  
+  .form {
+    margin-bottom: 20px ;
+    background: dodgerblue ;
+  }
