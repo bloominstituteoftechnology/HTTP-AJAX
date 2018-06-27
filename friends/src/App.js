@@ -13,7 +13,8 @@ class App extends Component {
       friendsData: [],
       name: '',
       age: '',
-      email: ''
+      email: '',
+      food: ''
     }
   }
 
@@ -38,15 +39,15 @@ class App extends Component {
   }
 
   handleSubmit = () => {
-    if (this.state.name === '' || this.state.age === '' || this.state.email === '') {
+    if (this.state.name === '' || this.state.age === '' || this.state.email === '' || this.state.food === '') {
       alert('You forgot to input a value!');
       return;
     }
 
-    const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
+    const friend = { name: this.state.name, age: this.state.age, email: this.state.email, food: this.state.food }
     axios
       .post('http://localhost:5000/friends', friend)
-      .then(response => this.setState({ friendsData: response.data, name: '', age: '', email: '' }))
+      .then(response => this.setState({ friendsData: response.data, name: '', age: '', email: '', food: '' }))
       .catch(err => console.log(err));
   }
 
@@ -61,6 +62,7 @@ class App extends Component {
           name={this.state.name}
           age={this.state.age}
           email={this.state.email}
+          food={this.state.food}
           handleInput={this.handleInput} />} />
 
         <FriendsList handleSetData={this.handleSetData} friends={this.state.friendsData} />

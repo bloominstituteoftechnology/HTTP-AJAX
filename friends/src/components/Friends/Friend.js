@@ -12,7 +12,8 @@ class Friend extends React.Component {
         this.state = {
             name: '',
             age: '',
-            email: ''
+            email: '',
+            food: ''
         }
     }
 
@@ -29,6 +30,7 @@ class Friend extends React.Component {
         let name = this.state.name;
         let age = this.state.age;
         let email = this.state.email;
+        let food = this.state.food;
 
         if (name === '') {
             name = this.props.friend.name;
@@ -39,13 +41,16 @@ class Friend extends React.Component {
         if (age === '') {
             age = this.props.friend.age;
         }
+        if (food === '') {
+            food = this.props.friend.food;
+        }
 
         const friend = { name: name, age: age, email: email }
         axios
             .put(`http://localhost:5000/friends/${this.props.friend.id}`, friend)
             .then(response => {
                 this.props.handleSetData(response.data)
-                this.setState({ name: '', age: '', email: '' })
+                this.setState({ name: '', age: '', email: '', food: '' })
             })
             .catch(err => console.log(err));
     }
