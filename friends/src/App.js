@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import friends from '.../server'
 
 class App extends Component {
   constructor() {
@@ -29,7 +28,7 @@ class App extends Component {
   handleSubmitFriend = () => {
     const name = { name:this.state.name };
     axios
-     .post("http://localhost:5000/friends", friend)
+     .post("http://localhost:5000/friends", name)
      .then(response => {
        console.log("POST RESPONSE", response);
        this.setState({ friendsData: response.data });
@@ -39,12 +38,10 @@ class App extends Component {
 
 
   render() {
-
-    }
     return (
       <div className="App">
       <h1>List of Friends</h1>
-      <
+
       </div>
     );
   }
