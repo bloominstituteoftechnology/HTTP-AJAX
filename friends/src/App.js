@@ -36,7 +36,7 @@ class App extends Component {
     });
   }
 
-  handleSetData = data => this.setState({ friendsList: data });
+  handleSetData = friends => this.setState({ friendsList: friends });
   componentDidMount() {
     axios
       .get("http://localhost:5000/friends")

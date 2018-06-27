@@ -9,6 +9,7 @@ const EditFriend = (props) => {
                     placeholder={props.friend.name}
                     onChange={props.editHandler}
                     value={props.stateProp.name}
+                    name='name'
                 />
                 <input
                     type='number'
