@@ -65,6 +65,7 @@ class Friend extends React.Component {
                 <p>Name: {this.props.friend.name}</p>
                 <p>Age: {this.props.friend.age}</p>
                 <p>Email: {this.props.friend.email}</p>
+                <p>Favorite Food: {this.props.friend.food}</p>
 
 
                 <Route path='/edit' render={props => <EditFriends {...props}
