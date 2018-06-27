@@ -31,7 +31,7 @@ class App extends Component {
   };
 
   addFriend = e => {
-    const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
+    const friend = { name: this.state.name, age: Number(this.state.age), email: this.state.email }
     axios
     .post('http://localhost:5000/friends', friend)
     .then(response => {
