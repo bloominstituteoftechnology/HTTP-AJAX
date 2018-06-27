@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 class FriendsList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       friends: []
@@ -15,7 +15,7 @@ class FriendsList extends React.Component {
       .then(response => {
         const friends = response.data;
         this.setState({friends});
-      })
+      });
   }
 
   render() {
