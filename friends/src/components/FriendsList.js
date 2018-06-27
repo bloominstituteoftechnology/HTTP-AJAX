@@ -3,9 +3,10 @@ import '../App.css';
 import Friend from './Friend';
 
 const FriendsList = props => {
+  const friendsList = props.friends.slice().reverse();
   return (
     <div className="friends">
-      {props.friends.reverse().map(friend => {
+      {friendsList.map(friend => {
         return (
           <Friend key={friend.id} friend={friend} />
         )
