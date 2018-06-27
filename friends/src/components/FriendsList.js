@@ -9,7 +9,7 @@ const FriendsList = props => {
                     <Friend
                         key={index}
                         index={index}
-                        friend={friend}
+                        friend={friend}           
                     />
                 );
             })}

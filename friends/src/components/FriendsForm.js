@@ -6,9 +6,28 @@ const FriendsForm = props => {
             <form onSubmit={props.handleSubmit}>
                 <input
                     type="text"
-                    value={props.friend}
-                    placeholder="Add Friend"
-                    onChange={props.handleChange}
+                    value={props.friendName}
+                    name="name"
+                    placeholder="First Name"
+                    onChange={props.handleNameChange}
+                />
+            </form>
+            <form onSubmit={props.handleSubmit}>
+                <input
+                    type="text"
+                    value={props.friendAge}
+                    name="age"
+                    placeholder="Age"
+                    onChange={props.handleAgeChange}
+                />
+            </form>
+            <form onSubmit={props.handleSubmit}>
+                <input
+                    type="text"
+                    value={props.friendEmail}
+                    name="email"
+                    placeholder="Email"
+                    onChange={props.handleEmailChange}
                 />
             </form>
         </Fragment>

@@ -9,7 +9,9 @@ class App extends Component {
     super();
     this.state = {
       friendsData: [],
-      friend: ''
+      friendName: '',
+      friendAge: '',
+      friendEmail: ''
     };
   }
 
@@ -23,18 +25,37 @@ class App extends Component {
   //     });
   // }
 
-  handleChange = e => {
-    this.setState({friend: e.target.value});
+  handleNameChange = e => {
+    this.setState({friendName: e.target.value});
+  }
+
+  handleAgeChange = e => {
+    this.setState({friendAge: e.target.value});
+  }
+
+  handleEmailChange = e => {
+    this.setState({friendEmail: e.target.value});
   }
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log('handled');
     const friendsData = this.state.friendsData;
     const friend = {
-      "name": this.state.friend
+      'id': friendsData.length + 1,
+      'name': this.state.friendName,
+      'age': this.state.friendAge,
+      'email': this.state.friendEmail
     };
+    console.log(friend);
     friendsData.push(friend);
-    this.setState({friendsData, friend: ''});
+    console.log('pushed');
+    this.setState({
+      friendsData,
+      friendName: '',
+      friendAge: '',
+      friendEmail: ''
+    });
   }
   
   render() {
@@ -43,9 +64,13 @@ class App extends Component {
         <div className="App">
           <h1>Friends App</h1>
           <FriendsForm
-            handleChange={this.handleChange}
+            handleNameChange={this.handleNameChange}
+            handleAgeChange={this.handleAgeChange}
+            handleEmailChange={this.handleEmailChange}
             handleSubmit={this.handleSubmit}
-            friend={this.state.friend}
+            friendName={this.state.friendName}
+            friendAge={this.state.friendAge}
+            friendEmail={this.state.friendEmail}
           />
           <FriendsList friendsData={this.state.friendsData} />
         </div>
