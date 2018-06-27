@@ -28,10 +28,10 @@ class NewFriendForm extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleFormSubmit = event => {
+    handleFormSubmit = () => {
         const friend = {
             name: this.state.friendName,
-            age: this.state.friendAge,
+            age: Number(this.state.friendAge),
             email: this.state.friendEmail,
         }
         if(!this.state.friendName || this.state.friendAge === 0 || !this.state.friendEmail) {
