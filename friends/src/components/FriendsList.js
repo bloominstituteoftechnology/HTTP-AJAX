@@ -9,6 +9,7 @@ const Friends = props => {
             <Friend
               key={friend.id}
               friend={friend}
+              handleFriendData={props.handleFriendData}
             />
           );
         })}
