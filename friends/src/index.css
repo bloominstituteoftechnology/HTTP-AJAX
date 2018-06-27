@@ -3,3 +3,38 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.App {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.App .friends {
+  width: 60%;
+}
+form {
+  margin: 0 auto;
+  margin-bottom: 100px;
+  display: flex;
+  flex-flow: column;
+  width: 300px;
+  height: 500px;
+  justify-content: space-around;
+}
+form input {
+  height: 30px;
+  font-size: 18px;
+}
+
+form button {
+  font-size: 18px;
+  height: 40px;
+  background-color: lightblue;
+}
+
+.friend-container {
+  margin: 0 auto;
+  margin-top: 40px;
+  border: 1px gray solid;
+  width: 40%;
+}

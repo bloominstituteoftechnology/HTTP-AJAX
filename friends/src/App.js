@@ -57,16 +57,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>List of Friends</h1>
+      <div className="friends">
+        <h1>Friends</h1>
+      <FriendsList friends={this.state.friendsData} />
+    </div>
+    <div className="add-friends">
+      <h2>Add Friend</h2>
       <form>
         <input type='text' value={this.state.name} onChange={this.handleNameChange} placeholder="Friends name" />
         <input type='text' value={this.state.age} onChange={this.handleAgeChange} placeholder="Friends age" />
         <input type='text' value={this.state.email} onChange={this.handleEmailChange} placeholder="Friends email" />
-
         <button onClick={this.handleSubmitFriend}>Add Friend</button>
       </form>
-      <FriendsList friends={this.state.friendsData} />
       </div>
+    </div>
     );
   }
 }

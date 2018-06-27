@@ -6,7 +6,7 @@ const FriendsList = props => {
     <div>
       {props.friends.map(friend => {
         return (
-          <Friend
+          <Friend className ='friend'
             key={friend.id}
             friend={friend}
           />
