@@ -33,11 +33,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <AddFriend updateFriends={this.updateFriends} />
+        <hr />
         <FriendsList
           updateFriends={this.updateFriends}
           friends={this.state.friends}
         />
-        <AddFriend updateFriends={this.updateFriends} />
       </div>
     );
   }
