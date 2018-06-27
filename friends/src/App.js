@@ -40,23 +40,25 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('handled');
-    const friendsData = this.state.friendsData;
+
     const friend = {
-      'id': friendsData.length + 1,
+      'id': this.state.friendsData.length + 1,
       'name': this.state.friendName,
       'age': Number(this.state.friendAge),
       'email': this.state.friendEmail
     };
-    console.log(friend);
-    friendsData.push(friend);
-    console.log('pushed');
-    this.setState({
-      friendsData,
-      friendName: '',
-      friendAge: '',
-      friendEmail: ''
-    });
+
+    axios.post('http://localhost:5000/friends', friend)
+      .then(response => {
+        console.log("POST RESPONSE", response);
+        this.setState({
+          friendsData: response.data,
+          friendName: '',
+          friendAge: '',
+          friendEmail: ''
+        }) 
+      })
+      .catch(error => console.log(error));
   }
   
   render() {
