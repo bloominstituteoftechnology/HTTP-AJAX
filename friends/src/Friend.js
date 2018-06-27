@@ -10,7 +10,7 @@ const FriendCard = styled(Card)`
 
 const Friend = props => (
   <FriendCard>
-    <Card body>
+    <Card body style={{ backgroundColor: 'aliceblue' }}>
       <CardTitle className="text-center">{props.friend.name}</CardTitle>
       <CardText>Age: {props.friend.age}</CardText>
       <CardText>email: {props.friend.email}</CardText>
