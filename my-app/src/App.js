@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import FriendsList from './Components/FriendsCard'
+import FriendsList from './Components/FriendsList'
 import AddFriendInput from './Components/AddFriendInput'
 import { Route } from 'react-router-dom'
 import axios from 'axios'
