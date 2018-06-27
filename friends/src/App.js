@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendsList from './components/FriendsList';
-import AddFriendForm from './components/AddFriendForm';
+import EditFriends from './components/EditFriends/EditFriends';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -43,10 +43,11 @@ class App extends Component {
           <Link to='/'>Home</Link>
         </div>
         <div>
-          <Link to='/'>Edit</Link>
+          <Link to='/edit'>Edit</Link>
         </div>
+
         <FriendsList friends={this.state.friendsData} />
-        <AddFriendForm handleInput={this.handleInput} onClick={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} />
+        <Route path='/edit' render={props => <EditFriends {...props} onClick={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} handleInput={this.handleInput} />} />
       </div>
     );
   }
