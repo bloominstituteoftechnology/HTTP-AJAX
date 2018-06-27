@@ -12,7 +12,7 @@ class App extends Component {
       friends: []
     };
   }
-  friendsetter = data => {
+  newFriend = data => {
     this.setState({ friends: data });
   };
   componentDidMount() {
@@ -34,8 +34,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <ListOfFriends friendslist={this.state.friends} />
-        <FriendForm friendsetter={this.friendsetter} />
+        <ListOfFriends friends={this.state.friends} />
+        <FriendForm newFriend={this.newFriend} />
       </div>
     );
   }

@@ -6,9 +6,9 @@ class FriendForm extends Component {
     super(props);
     this.state = {
       friend: {
-        name: "",
-        age: "",
-        email: ""
+        name: String,
+        age: Number(),
+        email: String
       }
     };
   }
@@ -18,41 +18,40 @@ class FriendForm extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    // const friend = {
-    //   name: this.state.name,
-    //   age: this.state.age,
-    //   email: this.state.email
-    // };
     axios
       .post("http://localhost:5000/friends", {
         name: this.state.name,
-        age: this.state.age,
+        age: Number(this.state.age),
         email: this.state.email
       })
       .then(response => {
         console.log(response);
-        this.props.friendsetter(response.data);
+        this.props.newFriend(response.data);
       })
       .catch(error => {
         console.log(error);
       });
+    event.target.reset();
   };
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
+          required
           type="text"
           name="name"
           placeholder="Name"
           onChange={this.handleChange}
         />
         <input
-          type="text"
+          required
+          type="number"
           name="age"
           placeholder="Age"
           onChange={this.handleChange}
         />
         <input
+          required
           type="text"
           name="email"
           placeholder="Email"
