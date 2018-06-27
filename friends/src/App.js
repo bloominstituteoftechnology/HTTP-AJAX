@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import FriendForm from './components/Friends/FriendForm';
-import FriendsList from './components/Friends/FriendsList';
+import FriendsListPage from './components/Friends/FriendsListPage';
 
 class App extends Component {
 
@@ -26,7 +27,6 @@ class App extends Component {
 
   onSubmitFriend = e => {
     e.preventDefault();
-    const formElement = e.target.parentElement;
     const friendID = this.state.friends.length + 1;
     const friend = {
       id: friendID,
@@ -41,7 +41,7 @@ class App extends Component {
         this.setState({ friends: response.data, friend: {
           name: '', age: undefined, email: ''
         }});
-        formElement.reset();
+        window.location.href = '/';
       })
       .catch(error => console.log(error));
   };
@@ -60,8 +60,8 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <FriendForm onFriendChange={this.onFriendChange} onSubmitFriend={this.onSubmitFriend} />
-        <FriendsList friends={this.state.friends} />
+        <Route exact path="/" render={(props) => <FriendsListPage {...props} friends={this.state.friends} />} />
+        <Route path="/add" render={(props) => <FriendForm {...props} onFriendChange={this.onFriendChange} onSubmitFriend={this.onSubmitFriend} />} />
       </div>
     );
   }

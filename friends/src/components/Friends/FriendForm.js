@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FriendsForm = props => {
   return(
@@ -9,7 +10,10 @@ const FriendsForm = props => {
       <input name="age" type="number" onChange={props.onFriendChange} />
       <label htmlFor="email">Email</label>
       <input name="email" type="email" onChange={props.onFriendChange} />
-      <button onClick={props.onSubmitFriend}>Add Friend</button>
+      <button onClick={props.onSubmitFriend}>Submit</button>
+      <Link to="/">
+        <button>Cancel</button>
+      </Link>
     </form>
   )
 }
