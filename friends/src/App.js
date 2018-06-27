@@ -33,7 +33,7 @@ class App extends Component {
     if (event.target.name === 'age') {
       if (isNaN(event.target.value) || event.target.value.includes('.') || event.target.value > 125) {
         return;
-      }
+      } 
     }
     this.setState({ [event.target.name]: event.target.value })
   }
@@ -44,7 +44,7 @@ class App extends Component {
       return;
     }
 
-    const friend = { name: this.state.name, age: this.state.age, email: this.state.email, food: this.state.food }
+    const friend = { name: this.state.name, age: Number(this.state.age), email: this.state.email, food: this.state.food }
     axios
       .post('http://localhost:5000/friends', friend)
       .then(response => this.setState({ friendsData: response.data, name: '', age: '', email: '', food: '' }))
