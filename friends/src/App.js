@@ -3,6 +3,7 @@ import './App.css';
 import FriendsList from './components/FriendsList';
 import AddFriendForm from './components/AddFriendForm';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -38,6 +39,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div>
+          <Link to='/'>Home</Link>
+        </div>
+        <div>
+          <Link to='/'>Edit</Link>
+        </div>
         <FriendsList friends={this.state.friendsData} />
         <AddFriendForm handleInput={this.handleInput} onClick={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} />
       </div>
