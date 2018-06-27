@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendsList from './components/FriendsList';
-import EditFriends from './components/EditFriends/EditFriends';
+import AddFriendForm from './components/EditFriends/AddFriendForm';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom';
 
@@ -23,6 +23,10 @@ class App extends Component {
       .then(response => this.setState({ friendsData: response.data }))
       .catch(err => console.log(err))
   }
+
+  handleSetData = data => {
+    this.setState({ friendsData: data });
+  };
 
   handleInput = event => {
     this.setState({ [event.target.name]: event.target.value })
@@ -46,8 +50,15 @@ class App extends Component {
           <Link to='/edit'>Edit</Link>
         </div>
 
-        <FriendsList friends={this.state.friendsData} />
-        <Route path='/edit' render={props => <EditFriends {...props} onClick={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} handleInput={this.handleInput} />} />
+        <FriendsList handleSetData={this.handleSetData} friends={this.state.friendsData} />
+
+        <Route path='/edit' render={props => <AddFriendForm {...props}
+          onClick={this.handleSubmit}
+          name={this.state.name}
+          age={this.state.age}
+          email={this.state.email}
+          handleInput={this.handleInput} />} />
+
       </div>
     );
   }

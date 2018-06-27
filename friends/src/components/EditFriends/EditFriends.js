@@ -3,9 +3,12 @@ import AddFriendForm from './AddFriendForm';
 
 const EditFriends = props => {
     return (
-        <div>
-            <AddFriendForm onClick={props.onClick} handleInput={props.handleInput} name={props.name} age={props.age} email={props.email} />
-        </div>
+        <form onSubmit={event => event.preventDefault()}>
+            <input value={props.name} onChange={props.handleInput} type='text' placeholder='name' name='name' />
+            <input value={props.age} onChange={props.handleInput} type='text' placeholder='age' name='age' />
+            <input value={props.email} onChange={props.handleInput} type='text' placeholder='email' name='email' />
+            <button onClick={props.onClick}>Save</button>
+        </form>
     );
 }
 
