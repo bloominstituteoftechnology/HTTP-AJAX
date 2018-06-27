@@ -46,3 +46,15 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+html {
+	font-size: 62.5%;
+}
+body {
+	font-size: 3.2rem;
+}
+
+.title {
+	font-size: 5rem;
+	margin-bottom: 1rem;
+}
