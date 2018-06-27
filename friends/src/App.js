@@ -23,8 +23,9 @@ class App extends Component {
       });
   }
 
-  changeFriendName = e => {
-    this.setState({ friend: e.target.value });
+  changeFriendInfo = e => {
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   addFriend = e => {
