@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 /* prettier-ignore */
 import { Col, Button, Form, FormGroup, Label, Input, } from 'reactstrap';
@@ -9,6 +10,39 @@ const StyledForm = styled(Form)`
 `;
 
 export default class AddFriendForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      age: '',
+      email: '',
+    };
+  }
+
+  handleSubmit = e => {
+    let newFriend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    };
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(response => this.props.updateFriends(response.data))
+      .catch(err => console.log('ERROR:', err));
+  };
+
+  handleNameChange = e => {
+    this.setState({ name: e.target.value });
+  };
+
+  handleAgeChange = e => {
+    this.setState({ age: e.target.value });
+  };
+
+  handleEmailChange = e => {
+    this.setState({ email: e.target.value });
+  };
+
   render() {
     return (
       <StyledForm>
@@ -17,7 +51,11 @@ export default class AddFriendForm extends React.Component {
             Name
           </Label>
           <Col sm={10}>
-            <Input type="name" name="name" placeholder="enter name" />
+            <Input
+              value={this.state.name}
+              onChange={this.handleNameChange}
+              placeholder="enter name"
+            />
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -25,7 +63,11 @@ export default class AddFriendForm extends React.Component {
             Age
           </Label>
           <Col sm={10}>
-            <Input type="age" name="age" placeholder="enter age" />
+            <Input
+              value={this.state.age}
+              onChange={this.handleAgeChange}
+              placeholder="enter age"
+            />
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -34,14 +76,15 @@ export default class AddFriendForm extends React.Component {
           </Label>
           <Col sm={10}>
             <Input
-              type="email"
-              name="email"
-              id="exampleEmail"
+              value={this.state.email}
+              onChange={this.handleEmailChange}
               placeholder="enter email"
             />
           </Col>
         </FormGroup>
-        <Button color="primary">Submit</Button>
+        <Button color="primary" onClick={this.handleSubmit}>
+          Submit
+        </Button>
       </StyledForm>
     );
   }

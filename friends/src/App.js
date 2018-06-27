@@ -12,17 +12,25 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  retrieveData() {
     axios
       .get('http://localhost:5000/friends')
       .then(response => this.setState({ friends: response.data }))
       .catch(err => console.log('ERROR:', err));
   }
 
+  componentDidMount() {
+    this.retrieveData();
+  }
+
+  updateFriends = friends => {
+    this.setState({ friends });
+  };
+
   render() {
     return (
       <div>
-        <AddFriendForm />
+        <AddFriendForm updateFriends={this.updateFriends} />
         <Friends friends={this.state.friends} />
       </div>
     );
