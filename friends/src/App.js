@@ -4,15 +4,47 @@ import axios from 'axios';
 import friends from '.../server'
 
 class App extends Component {
-  render() {
-    component() {
-      super();
-      this.state = {
+  constructor() {
+    super();
+    this.state = {
+      friendsData: [],
+      name: "",
+      age: "",
+      email: ""
+    };
+  }
 
-      }
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        console.log('get response:', response);
+        this.setState({friendsData: response.data});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  handleSubmitFriend = () => {
+    const name = { name:this.state.name };
+    axios
+     .post("http://localhost:5000/friends", friend)
+     .then(response => {
+       console.log("POST RESPONSE", response);
+       this.setState({ friendsData: response.data });
+     })
+     .catch(error => console.log(error));
+  };
+
+
+  render() {
+
     }
     return (
       <div className="App">
+      <h1>List of Friends</h1>
+      <
       </div>
     );
   }
