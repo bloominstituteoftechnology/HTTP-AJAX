@@ -10,12 +10,17 @@ constructor() {
     super();
     this.state = {
       friendsData: [],
-      friend: ""
+      newfriend: ""
     };
   }
 
 
-//  handleSetData = data => this.setState({ avengersData: data });
+	
+   nameChangeHandler = event => {
+	   this.setState({newfriend: event.target.value});
+   };
+
+
 	
   componentDidMount() {
     axios
@@ -33,7 +38,9 @@ constructor() {
 
   render() {
     return (
-      <div>
+      <div className="App main-container">
+	    <input className="input-field" type="text" placeholder="add a name" value={this.state.newfriend} onChange={this.nameChangeHandler} />
+
 	    <FriendList  friendsData={this.state.friendsData}/>
       </div>
     );
