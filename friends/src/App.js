@@ -28,11 +28,12 @@ class App extends Component {
     // you wouldn't put a post in your lifecycle method unless you wanted your data to be created automatically
     
   handleSubmitFriend = () => {
-    const friend = { friend: this.state.friend };
-    axios.post('http://localhost:5000/friends', friend)
+    const friend = { name: this.state.friend };
+    axios
+      .post('http://localhost:5000/friends', friend)
       .then(response => {
         console.log("POST RESPONSE: ", response);
-        this.setState({ friendsData: response.data });
+        this.setState({ friendsData: response.data, friend: '' });
       })
       .catch(err => console.log(err));
   }
