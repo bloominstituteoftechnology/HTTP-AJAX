@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friendsData : [],  
       name : "",
-      age: PropTypes.number,
+      age: 0,
       email: "",     
     };
   }
@@ -43,9 +43,9 @@ class App extends Component {
   }
 
   handleSubmitFriend = () => {
-    const name = {name : this.state.name};
+    const friend = {name : this.state.name, age : this.state.age, email : this.state.email};
     axios
-    .post("http://localhost:5000/friends", name)
+    .post("http://localhost:5000/friends", friend)
     .then (response => {
       console.log("post response", response);
       this.setState({friendsData: response.data});
@@ -63,7 +63,7 @@ class App extends Component {
           <h1 className="App-title">Friends HTTP AJAX</h1>
         </header>
         <form>
-        <input 
+        <input
           type = "text"         
           onChange = {this.handleNameChange}          
           value = {this.state.name}
@@ -81,10 +81,11 @@ class App extends Component {
           value = {this.state.email}
           placeholder = "add email"
         /> <br></br>
-        </form>
         <button onClick = {this.handleSubmitFriend}>
           Submit Friend
         </button>
+        </form>
+       
         <FriendsList friends={this.state.friendsData} />
       </div>
     );
