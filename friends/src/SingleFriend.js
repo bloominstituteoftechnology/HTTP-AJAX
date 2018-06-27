@@ -6,9 +6,17 @@ class SingleFriend extends React.Component{
         super(props);
         this.state = {
             showEditForm: false,
-            editFriend: ''
+            editFriend: '',
+            name: '',
+            age: '',
+            email: '',
         }
     }
+
+    toggleForm=()=>{
+        this.setState({ showEditForm: !this.state.showEditForm})
+    }
+
     render(){
         console.log('single friend: ', this.props.friendItem)
         return (
@@ -16,11 +24,17 @@ class SingleFriend extends React.Component{
                 <p>{this.props.friendItem.name}</p>
                 <p>{this.props.friendItem.age}</p>
                 <p>{this.props.friendItem.email}</p>
-                <EditFriend
+                {this.state.showEditForm ? (
+                    <EditFriend
                     submitEdits={this.saveEdit}
                     friend={this.props.friendItem}
                     editHandler={this.editHandler}
-                />
+                    stateProp = {this.state}
+                    />
+                    ) : null}
+                    <button onClick={this.toggleForm}> Edit </button>
+                
+                
     
             </div>
         )
