@@ -15,7 +15,6 @@ class ListOfFriends extends Component {
         console.log(response);
         const friends = response.data;
         this.setState({ friends });
-        console.log(this.state);
       })
       .catch(function(error) {
         console.log(error);
