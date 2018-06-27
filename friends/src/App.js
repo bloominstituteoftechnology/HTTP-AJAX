@@ -30,8 +30,8 @@ class App extends Component {
   };
 
   handleInput = event => {
-    if (event.target.name === 'age' || event.target.value.includes('.')) {
-      if (isNaN(event.target.value)) {
+    if (event.target.name === 'age') {
+      if (isNaN(event.target.value) || event.target.value.includes('.')) {
         return;
       }
     }
@@ -39,6 +39,11 @@ class App extends Component {
   }
 
   handleSubmit = () => {
+    if (this.state.name === '' || this.state.age === '' || this.state.email === '') {
+      alert('You forgot to input a value!');
+      return;
+    }
+
     const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
     axios
       .post('http://localhost:5000/friends', friend)

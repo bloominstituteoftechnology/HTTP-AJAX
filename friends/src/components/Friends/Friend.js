@@ -26,6 +26,11 @@ class Friend extends React.Component {
     }
 
     saveFriendHandler = () => {
+        if (this.state.name === '' || this.state.age === '' || this.state.email === '') {
+            alert('You forgot to input a value!');
+            return;
+        }
+
         const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
         axios
             .put(`http://localhost:5000/friends/${this.props.friend.id}`, friend)
@@ -44,9 +49,11 @@ class Friend extends React.Component {
         return (
             <CardContainer body inverse>
 
-                <p>{this.props.friend.name}</p>
-                <p>{this.props.friend.age}</p>
-                <p>{this.props.friend.email}</p>
+
+                <p>Name: {this.props.friend.name}</p>
+                <p>Age: {this.props.friend.age}</p>
+                <p>Email: {this.props.friend.email}</p>
+
 
                 <Route path='/edit' render={props => <EditFriends {...props}
                     name={this.state.name}
@@ -55,6 +62,7 @@ class Friend extends React.Component {
                     handleInput={this.editFriendHandler}
                     deleteFriend={this.deleteFriendHandler}
                     onClick={this.saveFriendHandler} />} />
+
             </CardContainer>
         );
     }

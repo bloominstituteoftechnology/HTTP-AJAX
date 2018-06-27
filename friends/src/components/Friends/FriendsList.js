@@ -3,9 +3,11 @@ import Friend from './Friend';
 import { CardsContainer } from '../ReusableComponents/FriendsCard';
 
 const FriendsList = props => {
+    const friends = props.friends.slice().reverse();
+
     return (
         <CardsContainer>
-            {props.friends.map((friend, index) => <Friend key={index} friend={friend} handleSetData={props.handleSetData} />)}
+            {friends.map(friend => <Friend key={friend.id} friend={friend} handleSetData={props.handleSetData} />)}
         </CardsContainer>
     );
 }

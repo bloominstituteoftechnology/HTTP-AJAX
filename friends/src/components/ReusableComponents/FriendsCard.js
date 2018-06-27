@@ -18,7 +18,8 @@ export const CardContainer = styled(Card)`
 export const EditInputField = styled(Input)`
     margin: 20px auto;
     margin-bottom: 0;
-    width: 90%;
+    width: 80%;
+    font-size: 12px;
     
     &:first-child {
         margin-top: 0;
@@ -26,15 +27,15 @@ export const EditInputField = styled(Input)`
 `
 
 export const EditButtons = styled(Button)`
-    width: 45%;
+    width: 38%;
     margin: 20px 10px;
+    font-size: 12px;
 `
 export const AddForm = styled(Form)`
     max-width: 1000px;
     margin: 20px auto
     display: flex;
     justify-content: center;
-
 `
 
 export const AddInputField = styled(Input)`
