@@ -29,7 +29,7 @@ class Friend extends React.Component {
         let name = this.state.name;
         let age = this.state.age;
         let email = this.state.email;
-        
+
         if (name === '') {
             name = this.props.friend.name;
         }
@@ -43,7 +43,10 @@ class Friend extends React.Component {
         const friend = { name: name, age: age, email: email }
         axios
             .put(`http://localhost:5000/friends/${this.props.friend.id}`, friend)
-            .then(respone => this.props.handleSetData(respone.data))
+            .then(response => {
+                this.props.handleSetData(response.data)
+                this.setState({ name: '', age: '', email: '' })
+            })
             .catch(err => console.log(err));
     }
 
