@@ -7,8 +7,7 @@ const FriendsList = props => {
         return (
           <div key={friend.id} age={friend.age} email={friend.email}>
             {friend.name} 
-            age:{friend.age} 
-            email:{friend.email}
+ 
           </div>
         );
       })}
