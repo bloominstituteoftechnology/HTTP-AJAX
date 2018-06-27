@@ -19,19 +19,17 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-   // const newFriendData = { [e.target.name]: e.target.value }
     this.setState({newFriend: {...this.state.newFriend, [e.target.name]: e.target.value }})
 
   }
 
   addFriend = () => {
-    const newFriend = this.state.newFriend;
     console.log(this.state.newFriend);
     Axios
     .post('http://localhost:5000/friends', this.state.newFriend)
     .then(response => {
       console.log(response);
-      this.setState({friends: response.data, newFriend: ''});
+      this.setState({friends: response.data, newFriend: {}});
     })
     .catch(err => {
       console.log(err);
