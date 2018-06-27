@@ -5,11 +5,12 @@ body {
 }
 
 .input-field{
-	height: 25px;
+	height: 30px;
 	width: 300px;
 	border: 1px solid chocolate;
 	border-radius: 2px;
 	margin-top: 2%;
+	text-align: center;
 
 }
 
@@ -19,4 +20,19 @@ body {
 
 p{
 	font-size: 1.6rem;
+}
+
+.btn-style{
+	height: 30px;
+        width: 100px;
+	color: white;
+	background-color: teal;
+        border: 1px solid teal;
+        border-radius: 2px;
+        margin-top: 2%;
+}
+
+.btn-style:hover{
+	background-color: white;
+	color: black;
 }

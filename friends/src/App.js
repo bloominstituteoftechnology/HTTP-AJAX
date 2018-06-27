@@ -10,7 +10,9 @@ constructor() {
     super();
     this.state = {
       friendsData: [],
-      newfriend: ""
+      newfriend: "",
+      age: "",
+      email: ""
     };
   }
 
@@ -20,6 +22,22 @@ constructor() {
 	   this.setState({newfriend: event.target.value});
    };
 
+
+   ageChangeHandler = event => {
+           this.setState({age: event.target.value});
+   };
+
+  emailChangeHandler = event => {
+           this.setState({email: event.target.value});
+   };
+
+
+ addFriend = event =>{
+	//const newfriend = {this.state.newfriend}; 
+ 	axios.post("http://localhost:5000/friends")
+	 
+ 
+ }
 
 	
   componentDidMount() {
@@ -39,8 +57,13 @@ constructor() {
   render() {
     return (
       <div className="App main-container">
-	    <input className="input-field" type="text" placeholder="add a name" value={this.state.newfriend} onChange={this.nameChangeHandler} />
+	    <input className="input-field" type="text" placeholder="name" value={this.state.newfriend} onChange={this.nameChangeHandler} /> <br />
 
+		 <input className="input-field" type="text" placeholder="age" value={this.state.age} onChange={this.ageChangeHandler} /><br />
+
+	     <input className="input-field" type="text" placeholder="email" value={this.state.email} onChange={this.emailChangeHandler} /><br />
+
+	    <button className="btn-style" onClick={this.addFriend}>Add Friend</button>
 	    <FriendList  friendsData={this.state.friendsData}/>
       </div>
     );
