@@ -6,7 +6,6 @@ const Card = styled.div.attrs({
     className: 'card'
 })`
 margin: 1rem;
-min-width: 100px;
 `;
 const Friend = props => {
   return (
