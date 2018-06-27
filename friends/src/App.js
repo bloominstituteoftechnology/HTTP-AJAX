@@ -29,18 +29,29 @@ class App extends Component {
   }
 
   handleSubmitFriend = () => {
-    const name = { name:this.state.name };
+    const friend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
     axios
-     .post("http://localhost:5000/friends", name)
+     .post("http://localhost:5000/friends", friend)
      .then(response => {
-       console.log("POST RESPONSE", response);
-       this.setState({ friendsData: response.data, name: '' });
+       this.setState({ friendsData: response.data, name: '' , age: '', email: ''});
      })
      .catch(error => console.log(error));
   };
 
-  handleChange = event => {
+  handleNameChange = event => {
     this.setState({ name: event.target.value });
+  };
+
+  handleAgeChange = event => {
+    this.setState({ age: event.target.value });
+  };
+
+  handleEmailChange = event => {
+    this.setState({ email: event.target.value });
   };
 
   render() {
@@ -48,7 +59,10 @@ class App extends Component {
       <div className="App">
       <h1>List of Friends</h1>
       <form>
-        <input type='text' value={this.state.name} onChange={this.handleChange} placeholder="Friends name" />
+        <input type='text' value={this.state.name} onChange={this.handleNameChange} placeholder="Friends name" />
+        <input type='text' value={this.state.age} onChange={this.handleAgeChange} placeholder="Friends age" />
+        <input type='text' value={this.state.email} onChange={this.handleEmailChange} placeholder="Friends email" />
+
         <button onClick={this.handleSubmitFriend}>Add Friend</button>
       </form>
       <FriendsList friends={this.state.friendsData} />
