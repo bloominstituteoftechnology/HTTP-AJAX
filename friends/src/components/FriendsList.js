@@ -3,7 +3,7 @@ import Friend from './Friend';
 
 const FriendsList = props => {
     return (
-        <div>
+        <div className="friends-list">
             {props.friends.map(friend => {
                 return(
                     <Friend
