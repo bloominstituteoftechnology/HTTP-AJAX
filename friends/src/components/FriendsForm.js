@@ -20,7 +20,7 @@ const FriendsForm = props => {
                     name="age"
                     placeholder="Age"
                     onChange={props.handleAgeChange}
-                    
+                    required
                 />
             </form>
             <form onSubmit={props.handleSubmit}>
@@ -33,6 +33,7 @@ const FriendsForm = props => {
                     required
                 />
             </form>
+            <button onClick={props.handleSubmit}>Add</button>
         </Fragment>
     );
 }

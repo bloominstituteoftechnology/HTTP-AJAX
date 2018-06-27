@@ -41,6 +41,14 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    if(this.state.friendName === '') {
+      return alert('Please enter a name!');
+    } else if(this.state.friendAge === '') {
+      return alert('Please enter an age!');
+    } else if(this.state.friendEmail === '') {
+      return alert('Please enter an email!');
+    }
+
     const friend = {
       'id': this.state.friendsData.length + 1,
       'name': this.state.friendName,
