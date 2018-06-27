@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const StyledForm = styled(Form)`
     width: 40%;
@@ -9,6 +10,15 @@ const StyledForm = styled(Form)`
     border-radius: 5px;
     text-align: left;
     padding: 15px;
+`
+
+const StyleButton = styled(Button)`
+    width: 100px;
+`
+
+const ButtonGroup = styled(FormGroup)`
+    display:flex;
+    justify-content: space-around;
 `
 
 class AddFriend extends React.Component {
@@ -31,7 +41,10 @@ class AddFriend extends React.Component {
                     <Label for="email" >Email</Label>
                     <Input onChange={this.props.handleChange} id="email" type="email" name="email" placeholder="...enter email" value={this.props.newFriend.email}></Input>
                 </FormGroup>
-                <Button onClick={this.props.addFriendHandler}>Add Friend</Button>
+                <ButtonGroup>
+                    <StyleButton onClick={this.props.addFriendHandler}>Add Friend</StyleButton>
+                    <StyleButton><Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}>Back</Link></StyleButton>
+                </ButtonGroup>
             </StyledForm>
         )
     }

@@ -49,10 +49,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Friends</h1>
-        <Route path="/" render={(props) => <FriendList {...props} friendList = {this.state.friends}/>}></Route>
-        <Button><Link to="/add" style={{'color': 'white', 'textDecoration': 'none'}}>Add Friend</Link></Button>
-        <AddFriend addFriendHandler={this.addNewFriend} handleChange={this.handleChange} newFriend={this.state.newFriend}/>
+        <h1>Friends List</h1>
+        <Route exact path="/" render={(props) => <FriendList {...props} friendList = {this.state.friends}/>}></Route>
+        <Route exact path="/add" render={props => <AddFriend {...props} addFriendHandler={this.addNewFriend} handleChange={this.handleChange} newFriend={this.state.newFriend}/>} />
       </div>
     );
   }
