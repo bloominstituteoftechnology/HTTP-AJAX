@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
 import FriendsList from './FriendsList';
+import FriendForm from './FriendForm';
 
 
 
@@ -10,7 +11,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      friendsData: []
+      friendsData: [],
+      friend: "",
     }
   }
 
@@ -28,6 +30,21 @@ class App extends React.Component {
       });
   }
 
+  handleSubmitFriend = () => {
+    const friend = { friend: this.state.friend };
+    axios
+      .post("http://localhost:5000/friends", friend)
+      .then(response => {
+        console.log("POST RESPONSE", response);
+        this.setState({ friendsData: response.data });
+      })
+      .catch(error => console.log(error));
+  };
+
+  handleNameInput = e => {
+    this.setState({ friend: e.target.value });
+  };
+
   render() {
     return (
       <div className="App">
@@ -38,6 +55,11 @@ class App extends React.Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <FriendForm 
+          friend={this.state.friend}
+          submitFriend={this.handleSubmitFriend}
+          inputFriend={this.handleNameInput}
+        />
         <FriendsList friends={this.state.friendsData} />
       </div>
     );
