@@ -4,6 +4,7 @@ import FriendsList from './components/Friends/FriendsList';
 import AddFriendForm from './components/EditFriends/AddFriendForm';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom';
+import Navigation from './components/Navigation/Navigation';
 
 class App extends Component {
   constructor() {
@@ -48,12 +49,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <Link to='/'>Home</Link>
-        </div>
-        <div>
-          <Link to='/edit'>Edit</Link>
-        </div>
+
+        <Navigation />
 
         <FriendsList handleSetData={this.handleSetData} friends={this.state.friendsData} />
 
