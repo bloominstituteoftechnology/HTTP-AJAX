@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { get } from 'axios'
 
 class Friends extends Component {
   constructor() {
@@ -10,9 +10,9 @@ class Friends extends Component {
   }
 
   componentDidMount(){ 
-    axios
-      .get('http://localhost:5000/friends')
+    get('http://localhost:5000/friends')
       .then(({ data }) => this.setState({friends: data}))
+      .catch(err => console.log("error:", err))
   }
 
   render() {

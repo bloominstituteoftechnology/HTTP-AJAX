@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Friends from './components/Friends';
+import NewFriendForm from './components/NewFriendForm';
+
 import './App.css';
 
 class App extends Component {
@@ -10,6 +12,7 @@ class App extends Component {
           <h1 className="App-title">friends</h1>
         </header>
         <Friends />
+        <NewFriendForm />
       </div>
     );
   }
