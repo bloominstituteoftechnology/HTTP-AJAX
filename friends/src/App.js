@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import FriendsList from "./components/Friends/FriendsList";
 
 class App extends Component {
   render() {
-    return <div className="App">APP</div>;
+    return <FriendsList />;
   }
 }
 
