@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import ListOfFriends from './ListOfFriends';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -84,7 +85,8 @@ class App extends Component {
           <button onClick={this.handleSubmit}>Submit New Friend</button>
         </form>
 
-        <ListOfFriends friendsData={this.state.friendsList} handleSetData={this.handleSetData} />
+        <Route path='/' render={(props) => <ListOfFriends {...props} friendsData={this.state.friendsList} handleSetData={this.handleSetData} /> }
+        />
       </div>
     );
   }
