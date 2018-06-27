@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
-import FriendsCard from './Components/FriendsCard'
+import FriendsList from './Components/FriendsCard'
 import AddFriendInput from './Components/AddFriendInput'
+import { Route } from 'react-router-dom'
 import axios from 'axios'
 
 class App extends Component {
@@ -53,9 +54,13 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <div className='card container'>
-          <FriendsCard friends={this.state.friends} />
-        </div>
+        <Route
+          exact
+          path='/'
+          render={(props) => (
+            <FriendsList {...props} friends={this.state.friends} />
+          )}
+        />
       </div>
     )
   }

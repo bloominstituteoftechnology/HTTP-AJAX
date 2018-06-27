@@ -21,7 +21,7 @@ const Button = styled.button`
   border-color: tomato;
 `
 
-const FriendsCard = (props) => {
+const FriendsList = (props) => {
   return (
     <div>
       {props.friends.map((friend) => {
@@ -38,4 +38,4 @@ const FriendsCard = (props) => {
   )
 }
 
-export default FriendsCard
+export default FriendsList
