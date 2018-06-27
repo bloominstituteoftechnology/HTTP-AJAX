@@ -24,7 +24,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <FriendsCard friends={TestData} />
+        <FriendsCard friends={this.state.friends} />
       </div>
     )
   }

@@ -25,12 +25,16 @@ const Button = styled.button`
 const FriendsCard = (props) => {
   return (
     <div>
-      <Card>
-        <BodyCard>
-          <CardTitle>{props.friends.username}</CardTitle>
-          <Button>Friend details</Button>
-        </BodyCard>
-      </Card>
+      {props.friends.map((friend) => {
+        return (
+          <Card>
+            <BodyCard>
+              <CardTitle>{friend.name}</CardTitle>
+              <Button>{friend.email}</Button>
+            </BodyCard>
+          </Card>
+        )
+      })}
     </div>
   )
 }
