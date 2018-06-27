@@ -10,7 +10,7 @@ export default class FriendList extends Component {
   render() {
     return (
       <div className="friend-list">
-        <h3>Saved Friends:</h3>
+        <h3>A List of Lambda School Friends:</h3>
         {this.props.list.map(friend => (
           <span className="friend-title">{friend.name}</span>
         ))}
