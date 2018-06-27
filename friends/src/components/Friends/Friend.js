@@ -45,7 +45,7 @@ class Friend extends React.Component {
             food = this.props.friend.food;
         }
 
-        const friend = { name: name, age: age, email: email }
+        const friend = { name, age, email, food }
         axios
             .put(`http://localhost:5000/friends/${this.props.friend.id}`, friend)
             .then(response => {
@@ -77,6 +77,7 @@ class Friend extends React.Component {
                     name={this.state.name}
                     age={this.state.age}
                     email={this.state.email}
+                    food={this.state.food}
                     handleInput={this.editFriendHandler}
                     deleteFriend={this.deleteFriendHandler}
                     onClick={this.saveFriendHandler} />} />
