@@ -1,6 +1,8 @@
 import React from 'react' ;
 import Axios from 'axios' ;
 import Friend from './Friend' ;
+import './my-css.css' ;
+
 
 
 const FriendsList = props => {
@@ -11,6 +13,7 @@ const FriendsList = props => {
                     <Friend 
                         propMapFriend={mapFriend}
                         key={mapFriend.id}
+                        
                     />
                    
                 )

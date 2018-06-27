@@ -29,7 +29,8 @@ class App extends Component {
         </header>
         <h1>HTTP-AJAX Project</h1>
 
-        <FriendsList propFriendsData={this.state.friendsData} />
+        
+          <FriendsList propFriendsData={this.state.friendsData} />
 
       </div>
     );
