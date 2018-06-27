@@ -3,18 +3,17 @@ import styled from 'styled-components'
 import { CardTitle } from 'reactstrap'
 
 const Card = styled.div`
-  width: 300px;
+  width: 299px;
   height: 400px;
   border 2px solid black;
-  display:flex;
-  justify-content: center;
-  align-items:center;
+  display:inline-block;
 `
 const BodyCard = styled.div`
   color: palevioletred;
   font-weight: bold;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 `
 const Button = styled.button`
@@ -27,10 +26,10 @@ const FriendsCard = (props) => {
     <div>
       {props.friends.map((friend) => {
         return (
-          <Card>
+          <Card key={friend.id}>
             <BodyCard>
               <CardTitle>{friend.name}</CardTitle>
-              <Button>{friend.email}</Button>
+              <div>{friend.email}</div>
             </BodyCard>
           </Card>
         )
