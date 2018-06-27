@@ -9,14 +9,41 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      friendName: '',
-      friendAge: '',
-      friendEmail: ''
+      friend: {
+        id: '',
+        name: '',
+        age: 0,
+        email: ''
+      }
     };
   }
 
   onFriendChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    const friendVals = this.state.friend;
+    friendVals[e.target.name] = e.target.value;
+    this.setState({ friend: friendVals });
+  };
+
+  onSubmitFriend = e => {
+    e.preventDefault();
+    const formElement = e.target.parentElement;
+    const friendID = this.state.friends.length + 1;
+    const friend = {
+      id: friendID,
+      name: this.state.friend.name,
+      age: Number(this.state.friend.age),
+      email: this.state.friend.email
+    };
+    axios
+      .post("http://localhost:5000/friends", friend)
+      .then(response => {
+        console.log('posted', response);
+        this.setState({ friends: response.data, friend: {
+          name: '', age: undefined, email: ''
+        }});
+        formElement.reset();
+      })
+      .catch(error => console.log(error));
   };
 
   componentDidMount() {
@@ -33,7 +60,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <FriendForm friendName={this.state.friendName} friendAge={this.state.friendAge} friendEmail={this.state.friendEmail} onFriendChange={this.onFriendChange} />
+        <FriendForm onFriendChange={this.onFriendChange} onSubmitFriend={this.onSubmitFriend} />
         <FriendsList friends={this.state.friends} />
       </div>
     );

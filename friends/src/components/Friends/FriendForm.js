@@ -2,10 +2,14 @@ import React from 'react';
 
 const FriendsForm = props => {
   return(
-    <form id="friendForm">
-      <input name="friendName" type="text" placeholder="Name" onChange={props.onFriendChange} />
-      <input name="friendAge" type="number" placeholder="Age" onChange={props.onFriendChange} />
-      <input name="friendEmail" type="email" placeholder="Email" onChange={props.onFriendChange} />
+    <form>
+      <label htmlFor="name">Name</label>
+      <input name="name" type="text" onChange={props.onFriendChange} />
+      <label htmlFor="age">Age</label>
+      <input name="age" type="number" onChange={props.onFriendChange} />
+      <label htmlFor="email">Email</label>
+      <input name="email" type="email" onChange={props.onFriendChange} />
+      <button onClick={props.onSubmitFriend}>Add Friend</button>
     </form>
   )
 }
