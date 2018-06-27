@@ -43,7 +43,7 @@ class App extends Component {
   };
 
   handleAgeChange = e => {
-    this.setState({ age: e.target.value });
+    this.setState({ age: Number(e.target.value) });
   };
 
   handleEmailChange = e => {
