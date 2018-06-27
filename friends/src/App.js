@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import FriendsList from './components/FriendsList';
+import FriendsList from './components/Friends/FriendsList';
 import AddFriendForm from './components/EditFriends/AddFriendForm';
 import axios from 'axios';
 import { Link, Route } from 'react-router-dom';
@@ -29,6 +29,11 @@ class App extends Component {
   };
 
   handleInput = event => {
+    if (event.target.name === 'age' || event.target.value.includes('.')) {
+      if (isNaN(event.target.value)) {
+        return;
+      }
+    }
     this.setState({ [event.target.name]: event.target.value })
   }
 

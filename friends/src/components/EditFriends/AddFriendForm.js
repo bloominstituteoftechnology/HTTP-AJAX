@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AddFriendForm = props => {
     return (
@@ -9,6 +10,11 @@ const AddFriendForm = props => {
             <button onClick={props.onClick}>Submit</button>
         </form>
     );
+}
+
+AddFriendForm.propTypes = {
+    name: PropTypes.string,
+    email: PropTypes.string
 }
 
 export default AddFriendForm;

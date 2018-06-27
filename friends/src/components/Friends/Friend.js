@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import EditFriends from './EditFriends/EditFriends';
+import EditFriends from '../EditFriends/EditFriends';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Friend extends React.Component {
     constructor(props) {
@@ -15,6 +16,11 @@ class Friend extends React.Component {
     }
 
     editFriendHandler = event => {
+        if (event.target.name === 'age') {
+            if (isNaN(event.target.value) || event.target.value.includes('.')) {
+                return;
+            }
+        }
         this.setState({ [event.target.name]: event.target.value });
     }
 
@@ -32,7 +38,7 @@ class Friend extends React.Component {
             .then(response => this.props.handleSetData(response.data))
             .catch(err => console.log(err));
     }
-    
+
     render() {
         return (
             <div>
@@ -40,10 +46,22 @@ class Friend extends React.Component {
                 <p>{this.props.friend.age}</p>
                 <p>{this.props.friend.email}</p>
 
-                <Route path='/edit' render={props => <EditFriends {...props} handleInput={this.editFriendHandler} deleteFriend={this.deleteFriendHandler} onClick={this.saveFriendHandler} />} />
+                <Route path='/edit' render={props => <EditFriends {...props}
+                    name={this.state.name}
+                    age={this.state.age}
+                    email={this.state.email}
+                    handleInput={this.editFriendHandler}
+                    deleteFriend={this.deleteFriendHandler}
+                    onClick={this.saveFriendHandler} />} />
             </div >
         );
     }
+}
+
+Friend.propTypes = {
+    name: PropTypes.string,
+    age: PropTypes.number,
+    email: PropTypes.string
 }
 
 export default Friend;
