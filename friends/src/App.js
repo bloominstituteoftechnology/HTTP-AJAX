@@ -3,7 +3,7 @@ import './App.css';
 import FriendsList from './components/Friends/FriendsList';
 import AddFriendForm from './components/EditFriends/AddFriendForm';
 import axios from 'axios';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 
 class App extends Component {

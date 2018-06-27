@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import EditFriends from '../EditFriends/EditFriends';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { CardContainer } from '../ReusableComponents/FriendsCard';
 
 class Friend extends React.Component {
     constructor(props) {
@@ -41,7 +42,8 @@ class Friend extends React.Component {
 
     render() {
         return (
-            <div>
+            <CardContainer body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+
                 <p>{this.props.friend.name}</p>
                 <p>{this.props.friend.age}</p>
                 <p>{this.props.friend.email}</p>
@@ -53,7 +55,7 @@ class Friend extends React.Component {
                     handleInput={this.editFriendHandler}
                     deleteFriend={this.deleteFriendHandler}
                     onClick={this.saveFriendHandler} />} />
-            </div >
+            </CardContainer>
         );
     }
 }
