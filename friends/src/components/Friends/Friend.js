@@ -19,7 +19,7 @@ class Friend extends React.Component {
 
     editFriendHandler = event => {
         if (event.target.name === 'age') {
-            if (isNaN(event.target.value) || event.target.value.includes('.')) {
+            if (isNaN(event.target.value) || event.target.value.includes('.') || event.target.value > 125) {
                 return;
             }
         }
