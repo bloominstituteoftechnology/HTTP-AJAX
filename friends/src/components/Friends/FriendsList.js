@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class FriendsList extends Component {
   render() {
     return (
-      <div id="app">
+      <div id="friendsList">
       </div>
     );
   }
 }
 
-export default App;
+export default FriendsList;
