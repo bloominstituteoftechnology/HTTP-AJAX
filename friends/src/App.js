@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+        <h1 className = 'title'>Friend List</h1>
       </div>
     );
   }
