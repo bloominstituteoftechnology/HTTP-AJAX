@@ -39,15 +39,12 @@ class FriendList extends Component {
   handleUpdate = id => {
     //let stateObj = this.state;
     axios
-      .put(`http://localhost:5000/friends/${id}`)
-      .then(res => res.data.find(el => el.id === id))
-      .then(data => {
-        console.log('data', data) // returns the object with the id that "===" with the id passed to handleUpdate()
-        data.name = prompt('Name', data.name);
-        data.age = prompt('Age', data.age);
-        data.email = prompt('Email', data.email);
-        return data;
+      .put(`http://localhost:5000/friends/${id}`, {
+        name: prompt('Name', data.name),
+        age: prompt('Age', data.age),
+        email: prompt('Email', data.email)
       })
+      //.then(res => res.data.find(el => el.id === id))
       .then(data => {
         console.log('edited', data) // return the edited object
         this.setState({
@@ -57,24 +54,8 @@ class FriendList extends Component {
       .catch(data => console.log(data))
   }
 
-        // console.log(res);
-        // const mapped = stateObj.friends.forEach(friend => {
-        //   if (friend.id === res.id) {
-        //     friend = res;
-        //   }
-        // })
-        // return mapped;
-    // axios.get(`http://localhost:5000/friends`)
-    //   .then(res => {
-    //     console.log(res)
-    //     this.setState({
-    //       friends: res.data
-    //     })
-    //   })
-    //   .catch(err => console.log(err));
-
   render() { 
-    //console.log('Friend List State', this.state.friends)
+    console.log('Friend List State', this.state.friends)
     return (
       <div className="container">
         {this.state.friends.map(friend =>

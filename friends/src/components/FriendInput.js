@@ -14,28 +14,10 @@ class FriendInput extends Component {
       id: 0, 
     }
   }  
-
-  // handleName = event => {
-  //   this.setState({
-  //     name: event.target.value,
-  //   });
-  // }
-
-  // handleAge = event => {
-  //   this.setState({
-  //     age: event.target.value,
-  //   });
-  // }
-
-  // handleEmail = event => {
-  //   this.setState({
-  //     email: event.target.value,
-  //   });
-  // }
-
-  handleChange = (el) => {
+  
+  handleChange = (e) => {
     this.setState({
-      [el.target.name]: el.target.value
+      [e.target.name]: e.target.value
     })
   }
   
