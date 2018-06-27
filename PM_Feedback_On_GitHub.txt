@@ -8,9 +8,9 @@
 
 ### Stretch Goals
 
-* [ ] Separate the list of friends and the new friend form into different components, and use the appropriate React Router to build routes for the proper aspects of your components to be revealed separately.
+* [x] Separate the list of friends and the new friend form into different components, and use the appropriate React Router to build routes for the proper aspects of your components to be revealed separately.
 
-* [ ] Implement Update and Delete functionality.
+* [x] Implement Update and Delete functionality.
 - for update pass the friend id as a URL parameter, including the information about the friend inside the body.
 - for delete pass the friend id as a URL parameter. 
 * [ ] Style the friends list, the input field, and make everything look nice
