@@ -11,6 +11,13 @@ const FriendList = props => {
                     <div className="friends_email" >{friend.email}</div>
                 </div>
             ))}
+            {props.newFriend.map((friend, index) => (
+                <div className="friends" key={friend.id + index}>
+                    <div className="friends_name" >{friend.name}</div>
+                    <div className="friends_age" >{friend.age}</div>
+                    <div className="friends_email" >{friend.email}</div>
+                </div>
+            ))}
         </div>
     );
 };
