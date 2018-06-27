@@ -6,7 +6,7 @@ export const Header = styled.div`
     position: sticky;
     top: 0;
     z-index: 3;
-    background: black;
+    background: #323232;
 `
 
 export const StyledNavBar = styled(Navbar)`
@@ -18,7 +18,8 @@ export const StyledNavBar = styled(Navbar)`
 export const StyledLink = styled(Link)`
     color: white;
     text-decoration: none;
-
+    font-size: 14px;
+    
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
         color: white;

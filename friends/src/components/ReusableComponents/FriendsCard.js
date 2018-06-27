@@ -39,9 +39,11 @@ export const AddForm = styled(Form)`
 `
 
 export const AddInputField = styled(Input)`
-    margin: 0 20px;
+    margin: 0 30px;
+    font-size: 14px;
 `
 
 export const AddButton = styled(Button)`
-    margin: 0 20px;
+    margin: 0 30px;
+    font-size: 14px;
 `

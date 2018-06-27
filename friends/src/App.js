@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import FriendsList from './components/Friends/FriendsList';
 import AddFriendForm from './components/EditFriends/AddFriendForm';
 import axios from 'axios';

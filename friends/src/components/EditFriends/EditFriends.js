@@ -8,7 +8,7 @@ const EditFriends = props => {
             <EditInputField value={props.age} onChange={props.handleInput} type='text' placeholder='Age' name='age' />
             <EditInputField value={props.email} onChange={props.handleInput} type='text' placeholder='Email' name='email' />
 
-            <EditButtons color='primary' onClick={props.onClick}>Save</EditButtons>
+            <EditButtons type='submit'color='primary' onClick={props.onClick}>Save</EditButtons>
             <EditButtons color='danger' onClick={props.deleteFriend}>Delete</EditButtons>
         </form>
     );
