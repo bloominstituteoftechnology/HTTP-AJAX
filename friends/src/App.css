@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+<<<<<<< HEAD
 }
 
 .App-logo {
@@ -26,3 +27,6 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+=======
+}
+>>>>>>> 39468339efffe51f969e9a705feac07ae6f47b48
