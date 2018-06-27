@@ -22,12 +22,16 @@ class App extends Component {
       .then(response => this.setState({ friendsData: response.data }))
       .catch(err => console.log(err))
   }
-  
+
+  handleInput = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   render() {
     return (
       <div className="App">
         <FriendsList friends={this.state.friendsData} />
-        <AddFriendForm />
+        <AddFriendForm handleInput={this.handleInput} name={this.state.name} age={this.state.age} email={this.state.email} />
       </div>
     );
   }
