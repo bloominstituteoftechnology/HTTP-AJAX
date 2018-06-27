@@ -26,12 +26,21 @@ class Friend extends React.Component {
     }
 
     saveFriendHandler = () => {
-        if (this.state.name === '' || this.state.age === '' || this.state.email === '') {
-            alert('You forgot to input a value!');
-            return;
+        let name = this.state.name;
+        let age = this.state.age;
+        let email = this.state.email;
+        
+        if (name === '') {
+            name = this.props.friend.name;
+        }
+        if (email === '') {
+            email = this.props.friend.email;
+        }
+        if (age === '') {
+            age = this.props.friend.age;
         }
 
-        const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
+        const friend = { name: name, age: age, email: email }
         axios
             .put(`http://localhost:5000/friends/${this.props.friend.id}`, friend)
             .then(respone => this.props.handleSetData(respone.data))
