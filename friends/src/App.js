@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
 import FriendList from "./List/FriendList";
+import Form from "./List/Form";
 
 
 
@@ -37,11 +38,22 @@ constructor() {
  	axios.post("http://localhost:5000/friends", friend)
 	.then(response => {
          console.log("POST RESPONSE", response);
-        this.setState({ friendsData: response.data, newfriend: "", ahe: "", email: "" });
+        this.setState({ friendsData: response.data, newfriend: "", age: "", email: "" });
       })
       .catch(error => console.log(error));
   };
 	 
+
+/* deleteFriend = (event,friendId) => {
+        const friend = {id:friendId};
+        axios.delete("http://localhost:5000/friends", friend)
+        .then(response => {
+         console.log("POST RESPONSE", response);
+        this.setState({ friendsData: response.data });
+      })
+      .catch(error => console.log(error));
+  };
+*/
 
 
 	
@@ -62,14 +74,10 @@ constructor() {
   render() {
     return (
       <div className="App main-container">
-	    <input className="input-field" type="text" placeholder="name" value={this.state.newfriend} onChange={this.nameChangeHandler} /> <br />
 
-		 <input className="input-field" type="number" placeholder="age" value={this.state.age} onChange={this.ageChangeHandler} /><br />
+	    <Form  addFriend={this.addFriend} newfriend={this.state.newfriend} age={this.state.age} email={this.state.email} emailChangeHandler={this.emailChangeHandler}  ageChangeHandler={this.ageChangeHandler}  nameChangeHandler={this.nameChangeHandler} />
 
-	     <input className="input-field" type="text" placeholder="email" value={this.state.email} onChange={this.emailChangeHandler} /><br />
-
-	    <button className="btn-style" onClick={this.addFriend}>Add Friend</button>
-	    <FriendList  friendsData={this.state.friendsData}/>
+	    <FriendList  friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />
       </div>
     );
   }
