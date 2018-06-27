@@ -28,11 +28,14 @@ class NewFriendForm extends React.Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleFormSubmit = () => {
+    handleFormSubmit = event => {
         const friend = {
             name: this.state.friendName,
             age: this.state.friendAge,
             email: this.state.friendEmail,
+        }
+        if(!this.state.friendName || this.state.friendAge === 0 || !this.state.friendEmail) {
+            return;
         }
         axios
             .post("http://localhost:5000/friends", friend)
