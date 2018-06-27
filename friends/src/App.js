@@ -3,6 +3,21 @@ import "./App.css";
 import axios from "axios";
 import FriendsList from "./components/FriendsList/FriendsList";
 import FriendsForm from "./components/FriendsList/FriendsForm";
+import styled from "styled-components";
+import "bulma/css/bulma.css";
+
+const HeroSection = styled.section.attrs({
+  className: "hero is-dark is-bold has-text-centered"
+})``;
+
+const HeroBody = styled.div.attrs({
+  className: "hero-body"
+})``;
+
+const Title = styled.div.attrs({
+  className: "title"
+})``;
+
 class App extends Component {
   constructor() {
     super();
@@ -31,25 +46,33 @@ class App extends Component {
   };
 
   addFriend = e => {
-    const friend = { name: this.state.name, age: Number(this.state.age), email: this.state.email }
+    const friend = {
+      name: this.state.name,
+      age: Number(this.state.age),
+      email: this.state.email
+    };
     axios
-    .post('http://localhost:5000/friends', friend)
-    .then(response => {
-      console.log('Post', response.data);
-      this.setState({ friendsData: response.data, friend: ''});
-    })
-    .catch(error => console.log(error));
-  }
+      .post("http://localhost:5000/friends", friend)
+      .then(response => {
+        console.log("Post", response.data);
+        this.setState({ friendsData: response.data, friend: "" });
+      })
+      .catch(error => console.log(error));
+  };
 
   render() {
     return (
       <div className="App">
+        <HeroSection>
+          <HeroBody>
+            <Title>Friend List</Title>
+          </HeroBody>
+        </HeroSection>
 
-        <h1 className="title">Friend List</h1>
-
-        <FriendsForm 
-        changeInfoHandler={this.changeFriendInfo} 
-        addFriendHandler = {this.addFriend} />
+        <FriendsForm
+          changeInfoHandler={this.changeFriendInfo}
+          addFriendHandler={this.addFriend}
+        />
 
         <FriendsList friendsData={this.state.friendsData} />
       </div>
