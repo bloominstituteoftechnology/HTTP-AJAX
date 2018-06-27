@@ -10,6 +10,7 @@ const FriendsForm = props => {
                     name="name"
                     placeholder="First Name"
                     onChange={props.handleNameChange}
+                    required
                 />
             </form>
             <form onSubmit={props.handleSubmit}>
@@ -19,6 +20,7 @@ const FriendsForm = props => {
                     name="age"
                     placeholder="Age"
                     onChange={props.handleAgeChange}
+                    
                 />
             </form>
             <form onSubmit={props.handleSubmit}>
@@ -28,6 +30,7 @@ const FriendsForm = props => {
                     name="email"
                     placeholder="Email"
                     onChange={props.handleEmailChange}
+                    required
                 />
             </form>
         </Fragment>

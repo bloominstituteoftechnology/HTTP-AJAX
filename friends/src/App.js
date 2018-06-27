@@ -15,22 +15,23 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   axios.get('http://localhost:5000/friends')
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends')
+      .then(response => {
+        console.log(response);
+        this.setState({friendsData: response.data});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   handleNameChange = e => {
     this.setState({friendName: e.target.value});
   }
 
   handleAgeChange = e => {
-    this.setState({friendAge: e.target.value});
+    this.setState({friendAge: Number(e.target.value)});
   }
 
   handleEmailChange = e => {
@@ -44,7 +45,7 @@ class App extends Component {
     const friend = {
       'id': friendsData.length + 1,
       'name': this.state.friendName,
-      'age': this.state.friendAge,
+      'age': Number(this.state.friendAge),
       'email': this.state.friendEmail
     };
     console.log(friend);
