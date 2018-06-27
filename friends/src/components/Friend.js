@@ -26,6 +26,13 @@ class Friend extends React.Component {
             .catch(err => console.log(err));
     }
 
+    deleteFriendHandler = () => {
+        axios
+            .delete(`http://localhost:5000/friends/${this.props.friend.id}`)
+            .then(response => this.props.handleSetData(response.data))
+            .catch(err => console.log(err));
+    }
+    
     render() {
         return (
             <div>
@@ -33,7 +40,7 @@ class Friend extends React.Component {
                 <p>{this.props.friend.age}</p>
                 <p>{this.props.friend.email}</p>
 
-                <Route path='/edit' render={props => <EditFriends {...props} handleInput={this.editFriendHandler} onClick={this.saveFriendHandler} />} />
+                <Route path='/edit' render={props => <EditFriends {...props} handleInput={this.editFriendHandler} deleteFriend={this.deleteFriendHandler} onClick={this.saveFriendHandler} />} />
             </div >
         );
     }

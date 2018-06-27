@@ -1,5 +1,4 @@
 import React from 'react';
-import AddFriendForm from './AddFriendForm';
 
 const EditFriends = props => {
     return (
@@ -8,6 +7,7 @@ const EditFriends = props => {
             <input value={props.age} onChange={props.handleInput} type='text' placeholder='age' name='age' />
             <input value={props.email} onChange={props.handleInput} type='text' placeholder='email' name='email' />
             <button onClick={props.onClick}>Save</button>
+            <button onClick={props.deleteFriend}>Delete</button>
         </form>
     );
 }
