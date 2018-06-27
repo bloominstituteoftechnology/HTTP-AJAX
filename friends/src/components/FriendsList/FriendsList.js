@@ -8,8 +8,10 @@ const FriendListSection = styled.section.attrs({
 const Container = styled.div.attrs({
   className: "container"
 })`
+
 display: flex;
 flex-direction: column-reverse;
+max-width: 600px;
 `;
 const FriendsList = props => {
   return (
