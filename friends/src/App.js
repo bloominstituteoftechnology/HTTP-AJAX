@@ -22,48 +22,21 @@ class App extends Component {
     });
   }
 
-
-
   handleSubmitFriend = () => {
-    const name = { name: this.state.name, age: this.state.age, email: this.state.email };
+    const name = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
 
     axios
       .post("http://localhost:5000/Friends", name)
       .then(response => {
         console.log("POST RESPONSE", response);
-        this.setState({ friendsData: response.data, name: '' });
+        this.setState({ friendsData: response.data });
       })
       .catch(error => console.log(error));
   };
-
-  // handleSubmitFriendAge = () => {
-  //   const age = { age: this.state.age };
-  //   axios
-  //     .post("http://localhost:5000/Friends", age)
-  //     .then(response => {
-  //       console.log("POST RESPONSE", response);
-  //       this.setState({ friendsData: response.data, age: 0, });
-  //     })
-  //     .catch(error => console.log(error));
-  // };
-
-  // handleSubmitFriendEmail = () => {
-
-  //   const email = { email: this.state.email };
-  //   axios
-  //     .post("http://localhost:5000/Friends", email)
-  //     .then(response => {
-  //       console.log("POST RESPONSE", response);
-  //       this.setState({ friendsData: response.data, email:"" });
-  //     })
-  //     .catch(error => console.log(error));
-  // };
-
-  //  handleSubmitFriend = () => {
-  //   handleSubmitFriendName();
-  //   handleSubmitFriendAge();
-  //   handleSubmitFriendEmail();
-  // };
 
   handleNameChange = e => {
     this.setState({ name: e.target.value });
@@ -83,7 +56,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Friends AXIOS</h1>
         </header>
-        <form >
+        <form>
           <input
             type="text"
             onChange={this.handleNameChange}
