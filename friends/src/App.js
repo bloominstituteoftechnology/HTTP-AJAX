@@ -35,15 +35,11 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  onSumbit = event => {
-    event.preventDefault();
-  }
-
   render() {
     return (
       <div className="App">
         <FriendsList friends={this.state.friendsData} />
-        <AddFriendForm handleInput={this.handleInput} onSubmit={this.onSumbit} onClick={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} />
+        <AddFriendForm handleInput={this.handleInput} onClick={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} />
       </div>
     );
   }
