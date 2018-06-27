@@ -9,34 +9,51 @@ class App extends Component {
     super()
     this.state = {
       friends : [],
-      newFriend: {
         name: '',
-        age: null,
-        email: '',                
-      },
+        age: 0,
+        email: '',         
     }
   }
 
   componentDidMount(){
-    axios
-      .get('http://localhost:5000/friends')
-      .then( res =>{
-        this.setState({friends:res.data})
-      }
-    )
+    this.axiosGet()
   }
-onChange = e => {
-  e.preventDefault();
-  console.log(e.target);
-  this.setState({ newFriend: { [e.target.name]: e.target.value } });
+
+axiosGet = () => {
+    axios
+    .get('http://localhost:5000/friends')
+    .then( res =>{
+      this.setState({friends:res.data})
+    }
+  )
 }
 
+onChange = e => {
+  e.preventDefault();
+  console.log(typeof(e.target.value));
+  this.setState({[e.target.name]: e.target.value });
+}
+
+formSubmit = e =>{
+  e.preventDefault();
+  let newFriend = {
+    name : this.state.name,
+    age: Number(this.state.age),
+    email: this.state.email,
+  }
+
+  axios.post('http://localhost:5000/friends', newFriend)
+    .then( res => {
+      this.axiosGet()
+    }
+  )
+}
   
   render() {
     return (
       <div className="App">
         <FriendsList friends={this.state.friends}/>
-        <FriendForm onChange = {this.onChange} />
+        <FriendForm onChange = {this.onChange} formSubmit={this.formSubmit}/>
       </div>
     );
   }
