@@ -33,16 +33,8 @@ export default class AddFriendForm extends React.Component {
       .catch(err => console.log('ERROR:', err));
   };
 
-  handleNameChange = e => {
-    this.setState({ name: e.target.value });
-  };
-
-  handleAgeChange = e => {
-    this.setState({ age: e.target.value });
-  };
-
-  handleEmailChange = e => {
-    this.setState({ email: e.target.value });
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -55,7 +47,7 @@ export default class AddFriendForm extends React.Component {
           <Col sm={10}>
             <Input
               value={this.state.name}
-              onChange={this.handleNameChange}
+              onChange={this.handleChange}
               placeholder="enter name"
             />
           </Col>
@@ -68,7 +60,7 @@ export default class AddFriendForm extends React.Component {
             <Input
               type="number"
               value={this.state.age}
-              onChange={this.handleAgeChange}
+              onChange={this.handleChange}
               placeholder="enter age"
             />
           </Col>
@@ -80,7 +72,7 @@ export default class AddFriendForm extends React.Component {
           <Col sm={10}>
             <Input
               value={this.state.email}
-              onChange={this.handleEmailChange}
+              onChange={this.handleChange}
               placeholder="enter email"
             />
           </Col>

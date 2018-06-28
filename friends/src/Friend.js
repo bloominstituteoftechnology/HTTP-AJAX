@@ -33,11 +33,12 @@ class Friend extends React.Component {
     this.props.deleteHandler(id);
   };
 
-  handleEditClick = id => {
+  handleEditClick = () => {
     const { name, age, email } = this.props.friend;
     this.setState({ edit: true, name, age, email });
-    // document.getElementById('nameBox').select();
-    // this.props.editHandler(id);
+    setTimeout(() => {
+      document.getElementById('nameBox').select();
+    }, 300);
   };
 
   handleNameChange = e => {
@@ -98,6 +99,7 @@ class Friend extends React.Component {
                     </Label>
                     <Col sm={10}>
                       <Input
+                        id="nameBox"
                         value={this.state.name}
                         onChange={this.handleNameChange}
                       />
@@ -134,7 +136,7 @@ class Friend extends React.Component {
                 <span>
                   <Button
                     style={{ width: '70px', marginLeft: '-399px' }}
-                    onClick={() => this.handleEditClick(this.props.friend.id)}
+                    onClick={() => this.handleEditClick()}
                     className="btn btn-outline-primary float-left"
                   >
                     edit
