@@ -4,6 +4,7 @@ import './App.css';
 import FriendForm from './components/FriendForm';
 import Friends from './components/Friends';
 import { Route, NavLink, withRouter } from 'react-router-dom';
+import { Navbar } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -15,9 +16,8 @@ class App extends Component {
       email: '',
       friendList: [],
     };
-    this.handleDeleteFriend=this.handleDeleteFriend.bind(this);
-    this.handleNewFriend=this.handleNewFriend.bind(this);
-    
+    this.handleDeleteFriend = this.handleDeleteFriend.bind(this);
+    this.handleNewFriend = this.handleNewFriend.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +39,8 @@ class App extends Component {
     let { friendList, ...rest } = this.state;
     let context = this;
     let friendRequest = axios.post(this.url, rest);
-      friendRequest.then(response => {
+    friendRequest
+      .then(response => {
         context.setState({ friendList: response.data });
         context.props.history.push('/');
       })
@@ -51,46 +52,53 @@ class App extends Component {
       age: '',
       email: '',
     });
-  };
+  }
 
   handleDeleteFriend(id) {
-    axios.delete(`${this.url}/${id}`).then(response=>{
+    axios.delete(`${this.url}/${id}`).then(response => {
       console.log(response);
-      this.setState({friendList: response.data})});
-  };
+      this.setState({ friendList: response.data });
+    });
+  }
 
-  handleFriendUpdate = (friend) => {
-    axios.put(`${this.url}/${friend.id}`, friend)
-      .then((response) => {
-        this.setState({friendList: response.data});
+  handleFriendUpdate = friend => {
+    axios
+      .put(`${this.url}/${friend.id}`, friend)
+      .then(response => {
+        this.setState({ friendList: response.data });
       })
-      .catch((response) => {alert('Save failed: ', response.data )});
+      .catch(response => {
+        alert('Save failed: ', response.data);
+      });
   };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Friend Having Utility</h1>
+        <header className="App__header">
+          <h1 className="App__header__text">I Have Friends Okay</h1>
           <nav>
-            <div>
-              <NavLink
-                exact
-                to="/"
-                activeStyle={{ fontWeight: 'bold', backgroundColor: 'yellow' }}
-              >
+            <Navbar>
+              <NavLink className="nav-link" exact to="/">
                 See Friends
               </NavLink>
-              <NavLink
-                to="/addfriend"
-                activeStyle={{ fontWeight: 'bold', backgroundColor: 'yellow' }}
-              >
+              <NavLink className="nav-link" to="/addfriend">
                 Add Friends
               </NavLink>
-            </div>
+            </Navbar>
           </nav>
         </header>
-        <Route exact path="/" render={() => <Friends friendList={this.state.friendList} handleFriendUpdate={this.handleFriendUpdate} handleDeleteFriend={this.handleDeleteFriend} />} />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Friends
+              friendList={this.state.friendList}
+              handleFriendUpdate={this.handleFriendUpdate}
+              handleDeleteFriend={this.handleDeleteFriend}
+            />
+          )}
+        />
         <Route
           exact
           path="/addfriend"
@@ -109,6 +117,6 @@ class App extends Component {
   }
 }
 
-const AppWithRouter = withRouter(({ history })=><App history={history} />);
+const AppWithRouter = withRouter(({ history }) => <App history={history} />);
 
 export default AppWithRouter;

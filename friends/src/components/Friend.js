@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
 import FriendForm from './FriendForm';
+import { ListGroupItem, Container, Row, Col, Button } from 'reactstrap';
 
 export default class Friend extends Component {
   constructor(props) {
@@ -47,12 +47,18 @@ export default class Friend extends Component {
   }
   render() {
   return (
-    <div>
-        <div>{`${this.props.name}, age: ${this.props.age}, email: ${this.props.email}`}</div>
-        <button onClick={this.editFriend}>Edit</button>
-        <button onClick={() => {this.props.handleDeleteFriend(this.props.id)}}>Delete</button>
-        {this.presentEdit()}
-        </div>)
+    <Container>
+      <Row>
+      <Col xs="4">
+          <ListGroupItem>
+              <div>{`${this.props.name}, age: ${this.props.age}, email: ${this.props.email}`}</div>
+              <Button onClick={this.editFriend}>Edit</Button>
+              <Button onClick={() => {this.props.handleDeleteFriend(this.props.id)}}>Delete</Button>
+              {this.presentEdit()}
+          </ListGroupItem>
+      </Col>
+      </Row>
+    </Container>
   
-  };
+  )};
 }
