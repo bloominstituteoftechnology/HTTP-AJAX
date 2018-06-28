@@ -1,6 +1,8 @@
 import React from 'react' ;
 import './my-css.css' ;
-import FriendForm from './FriendForm'
+import FriendForm from './FriendForm' ;
+import Delete from './Delete' ;
+
 
 
 const Friend = props => {
@@ -12,6 +14,8 @@ const Friend = props => {
                 <li>AGE: {props.propMapFriend.age}</li>
                 <li>EMAIL: {props.propMapFriend.email}</li>
             </ul>
+
+            <Delete deleteId={props.propMapFriend.id}/>
             
         </div>
     )
