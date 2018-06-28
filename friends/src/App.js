@@ -3,8 +3,16 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import FriendFormPage from './components/Friends/FriendFormPage';
 import FriendsListPage from './components/Friends/FriendsListPage';
+import styled from 'styled-components';
 
 const API_URL = 'http://localhost:5000/friends';
+
+const AppDivElement = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 760px;
+`;
 
 class App extends Component {
 
@@ -61,11 +69,11 @@ class App extends Component {
 
   render() {
     return (
-      <div id="app">
+      <AppDivElement>
         <Route exact path="/" render={(props) => <FriendsListPage {...props} friends={this.state.friends} onDeleteFriend={this.onDeleteFriend} />} />
         <Route path="/add" render={(props) => <FriendFormPage {...props} formType='add' onSubmitFriend={this.onAddFriend}  />} />
         <Route path="/update/:friendID" render={(props) => <FriendFormPage {...props} formType='update' onFriendChange={this.onFriendChange} onSubmitFriend={this.onUpdateFriend} friends={this.state.friends} />} />
-      </div>
+      </AppDivElement>
     );
   }
 }

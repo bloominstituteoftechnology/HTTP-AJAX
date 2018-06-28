@@ -38,7 +38,6 @@ class FriendForm extends Component {
       id = Number(this.props.match.params.friendID);
       this.setState({id: id});
     }
-    console.log('id', id);
     switch(this.props.formType) {
       case 'update':
         let friend = this.props.friends.slice();
