@@ -9,7 +9,6 @@ class App extends Component {
     super(props)
     this.state= {
       friendsData: [],
-      friend: ''
     }
   }
 
@@ -24,13 +23,16 @@ class App extends Component {
         console.log(err);
       });
   }
+  handleSetData = data => this.setState({ friendsData: data });
   
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Friends List</h1>
-          <FriendsForm />
+          <FriendsForm
+            handleSetDat={this.handleSetData}
+          />
         </header>
         <FriendsList friends={this.state.friendsData} />
       </div>
