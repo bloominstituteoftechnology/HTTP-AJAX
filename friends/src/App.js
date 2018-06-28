@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FriendsList from './FriendsList';
+import FriendForm from './Friends';
 import axios from "axios";
 import './App.css';
 
@@ -39,21 +40,60 @@ class App extends React.Component {
     this.setState({ friend: e.target.value });
   };
 
+  handleDelete = id => {
+    // delete request to the server with the id.
+    axios
+    .delete(`${'http://localhost:5000/friends'}/${id}`)
+      .then(response => {
+        console.log(response);
+        this.setState({ friendsData: response.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+handleDate = data => this.setState({friendsData: data});
   
 
   render() {
     return (
       <div className="App">
-        
-        <input 
+        <header className="App-header">
+        <h1>Friends</h1>
+        {/* <input 
         type= 'text' 
         placeholder="friend name" 
         onChange={this.handleNameChange} 
         name="friend"
         value={this.state.friend}
           />
-          <button onClick={this.handleSubmitFriend}>Submit Friend</button>
-        <FriendsList friends={this.state.friendsData} />
+          <input 
+        type= 'text' 
+        placeholder="Age" 
+        onChange={this.handleNameChange} 
+        name="friend"
+        value={this.state.friend}
+          />
+          <input 
+        type= 'text' 
+        placeholder="Email" 
+        onChange={this.handleNameChange} 
+        name="friend"
+        value={this.state.friend}
+          /> */}
+          <button onClick={this.handleSubmitFriend}>Add Friend</button>
+        </header>
+        
+        <FriendsList 
+        handleDelete={this.handleDelete}
+        friends={this.state.friendsData} />
+        
+        <FriendForm 
+        // friends={this.state.friendsData}
+        // handleSubmitFriend={this.handleSubmitFriend}
+        // value={this.state.friend}
+        handleNameChange ={this.handleNameChange}
+        />
         
       </div>
     );
