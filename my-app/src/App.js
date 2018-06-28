@@ -51,17 +51,18 @@ class App extends Component {
   render () {
     return (
       <div className='container'>
-        <AddFriendInput
-          value={this.state.newFriend}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
         <Switch>
           <Route
             exact
             path='/'
             render={(props) => (
-              <FriendsList {...props} friends={this.state.friends} />
+              <FriendsList
+                {...props}
+                friends={this.state.friends}
+                value={this.state.newFriend}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
             )}
           />
           <Route
