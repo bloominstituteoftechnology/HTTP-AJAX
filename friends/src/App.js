@@ -32,6 +32,14 @@ class App extends Component {
     this.setState({[e.target.name]:e.target.value});
   }
 
+  editHandler = e => {
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  setData = data => {
+    this.setState({friends: data})
+  }
+
   handleSubmitFriend = e => {
     e.preventDefault();
     console.log("Hi there");
@@ -43,20 +51,25 @@ class App extends Component {
       .then(response => {
         console.log("POST RESPONSE", response);
         this.setState({friends: response.data, friendName: '',
-      friendAge: '', friendEmail: ''})
+      friendAge: '', friendEmail: ''});
+      window.location.href = "/";
       })
       .catch(err => {
         console.log("POST ERROR is", err);
       })
   }
 
+
+
   render() {
     return (
       <div className="App">
         <NavLink to="/friend-form"><button>Add friend</button></NavLink>
         <NavLink to="/"><button>View Freinds</button></NavLink>
+
         <Route exact path="/" render={props => <FriendsList {...props}
-        friends={this.state.friends} />} />
+        friends={this.state.friends} handleChange={this.handleChange}
+        setData={this.setData} />} />
 
         <Route path="/friend-form" render={props => <AddFriendForm {...props}
         handleChange={this.handleChange}

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+/*import {Link} from 'react-router-dom';*/
 
 class AddFriendForm extends React.Component {
   constructor(props) {
@@ -8,8 +9,11 @@ class AddFriendForm extends React.Component {
   }
 
   pageRefresh = () => {
-    this.props.history.push("/");
+    this.props.handleSubmitFriend;
+    console.log('fajiowfj');
   }
+
+
   render() {
   return (
     <div>

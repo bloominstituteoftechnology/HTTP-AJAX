@@ -14,23 +14,32 @@ class Friend extends React.Component {
     }
   }
 
-  editHandler = e => {
-    this.setState({[e.target.name]: e.target.value})
-  }
-
   toggleEdit = () => {
     this.setState({ showEditForm: !this.state.showEditForm })
   }
 
-  saveEdit = (e) => {
-    e.preventDefault();
-    const newEdits = {name: this.state.nameEdit, age: this.state.ageEdit,
-    email: this.state.email};
-    axios
-      .put()
+  handleChange = e => {
+    this.setState({[e.target.name]:e.target.value});
   }
 
-
+  saveEdit = (e) => {
+    e.preventDefault();
+    const id = this.props.friend.id;
+    const newEdits = {};
+    if (this.state.nameEdit.length > 0) newEdits.name = this.state.nameEdit;
+    if (this.state.ageEdit.length > 0) newEdits.age = this.state.ageEdit;
+    if (this.state.emailEdit.length > 0) newEdits.email = this.state.emailEdit;
+    axios
+      .put(`http://localhost:5000/friends/${id}`, newEdits)
+      .then(response => {
+        console.log(response.data)
+        this.props.setData(response.data);
+        this.setState({nameEdit: '', ageEdit: '', emailEdit: ''});
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
     render() {
       return (
@@ -41,7 +50,9 @@ class Friend extends React.Component {
             <li>Email: {this.props.friend.email}</li>
           </ul>
           {this.state.showEditForm ? (
-            <EditFriend editHandler={this.editHandler} saveEdit={this.saveEdit} />
+            <EditFriend editHandler={this.handleChange} saveEdit={this.saveEdit}
+            nameValue={this.state.nameEdit} ageValue={this.state.ageEdit}
+            emailValue={this.state.emailEdit} />
           ) : null}
           <button onClick={this.toggleEdit}>Edit Friend</button>
         </div>
