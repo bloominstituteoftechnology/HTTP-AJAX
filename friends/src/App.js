@@ -5,11 +5,10 @@ import FriendForm from './Components/FriendForm';
 import FriendsList from './Components/FriendsList';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-
     }
   }
   render() {

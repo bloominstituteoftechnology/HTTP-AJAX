@@ -14,9 +14,7 @@ class FriendForm extends React.Component {
 
   handleChange = event => {
     this.setState({
-      name: event.target.value,
-      age: event.target.value,
-      email: event.target.value
+      [event.target.name]: event.target.value
     });
   }
 
@@ -29,8 +27,11 @@ class FriendForm extends React.Component {
       email: this.state.email
     };
 
-    axios.post(`http://localhost:5000/friends`, { friend })
+    console.log(friend);
+
+    axios.post(`http://localhost:5000/friends`, friend)
       .then(response => {
+        this.setState({friend})
         console.log({response});
         console.log(response.data);
       });
@@ -42,17 +43,17 @@ class FriendForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
-            <input type="text" name="name" onChange={this.onChange} />
+            <input type="text" name="name" onChange={this.handleChange} />
           </label>
 
           <label>
             Age:
-            <input type="text" name="age" onChange={this.onChange} />
+            <input type="text" name="age" onChange={this.handleChange} />
           </label>
 
           <label>
             Email:
-            <input type="email" name="email" onChange={this.onChange} />
+            <input type="email" name="email" onChange={this.handleChange} />
           </label>
 
           <button type="submit">Add Friend</button>
