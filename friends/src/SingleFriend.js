@@ -64,6 +64,7 @@ class SingleFriend extends React.Component{
                     friend={this.props.friendItem}
                     editHandler={this.editHandler}
                     stateProp = {this.state}
+                    // goHome = {this.resetButton}
                     />
                     ) : null}
                     <div className='buttonArea'>

@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const EditFriend = (props) => {
 
     return (
-        <div>
+        <div className='editInput'>
              <form  onSubmit={props.submitEdits}>
                 <input
                     type='text'
@@ -26,8 +27,11 @@ const EditFriend = (props) => {
                     name='email'
                     value={props.stateProp.email}
                 />
-                <button>Update {props.friend.name}</button>
+                <button className='editInput'>Update {props.friend.name}</button>
+                
             </form>
+            {/* <Link to='/'><button>Cancel</button></Link> //needs to be working */}
+            {/* <button onClick={props.goHome}>Cancel</button> */}
         </div>
     )
 }

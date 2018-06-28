@@ -38,6 +38,9 @@
 .mainInput {
   margin: 2rem 0;
 }
+.editInput {
+  margin: 1rem 0;
+}
 
 button, input {
   font-size: 1rem;
