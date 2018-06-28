@@ -1,53 +1,45 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
-import FriendForm from './components/Friends/FriendForm';
+import FriendFormPage from './components/Friends/FriendFormPage';
 import FriendsListPage from './components/Friends/FriendsListPage';
+
+const API_URL = 'http://localhost:5000/friends';
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      friends: [],
-      friend: {
-        id: '',
-        name: '',
-        age: 0,
-        email: ''
-      }
+      friends: []
     };
   }
 
-  onFriendChange = e => {
-    const friendVals = this.state.friend;
-    friendVals[e.target.name] = e.target.value;
-    this.setState({ friend: friendVals });
-  };
-
-  onSubmitFriend = e => {
-    e.preventDefault();
-    const friendID = this.state.friends.length + 1;
-    const friend = {
-      id: friendID,
-      name: this.state.friend.name,
-      age: Number(this.state.friend.age),
-      email: this.state.friend.email
-    };
+  onSubmitFriend = (friend) => {
+    friend.age = Number(friend.age);
     axios
-      .post("http://localhost:5000/friends", friend)
+      .post(API_URL, friend)
       .then(response => {
         console.log('posted', response);
-        this.setState({ friends: response.data, friend: {
-          name: '', age: undefined, email: ''
-        }});
+        this.setState({ friends: response.data});
         window.location.href = '/';
       })
       .catch(error => console.log(error));
   };
 
+  onDeleteFriend = id => {
+    axios
+      .delete(`${API_URL}/${id}`)
+      .then(response => {
+        console.log('posted', response);
+        this.setState({ friends: response.data});
+      })
+      .catch(error => console.log(error));
+    console.log(id);
+  }
+
   componentDidMount() {
-    axios.get('http://localhost:5000/friends')
+    axios.get(API_URL)
     .then(response => {
       this.setState({friends: response.data});
       console.log(response);
@@ -60,8 +52,9 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <Route exact path="/" render={(props) => <FriendsListPage {...props} friends={this.state.friends} />} />
-        <Route path="/add" render={(props) => <FriendForm {...props} onFriendChange={this.onFriendChange} onSubmitFriend={this.onSubmitFriend} />} />
+        <Route exact path="/" render={(props) => <FriendsListPage {...props} friends={this.state.friends} onDeleteFriend={this.onDeleteFriend} />} />
+        <Route path="/add" render={(props) => <FriendFormPage {...props} formType='add' onSubmitFriend={this.onSubmitFriend}  />} />
+        <Route path="/update/:friendID" render={(props) => <FriendFormPage {...props} formType='update' onFriendChange={this.onFriendChange} onSubmitFriend={this.onSubmitFriend} friends={this.state.friends} />} />
       </div>
     );
   }

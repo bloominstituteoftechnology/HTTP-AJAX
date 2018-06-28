@@ -6,7 +6,7 @@ const FriendsList = props => {
     <ul id="friendsList">
       {props.friends.map(friend => {
         return(
-          <Friend key={`${friend.id}-${Math.random()}`} friend={friend} />
+          <Friend key={`${friend.id}-${Math.random()}`} friend={friend} onDeleteFriend={props.onDeleteFriend} />
         )})
       }
     </ul>
