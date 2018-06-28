@@ -15,7 +15,7 @@ class App extends Component {
     };
   }
 
-  onSubmitFriend = (friend) => {
+  onAddFriend = (friend) => {
     friend.age = Number(friend.age);
     axios
       .post(API_URL, friend)
@@ -27,6 +27,18 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  onUpdateFriend = (id, friend) => {
+    axios
+      .put(`${API_URL}/${id}`, friend)
+      .then(response => {
+        console.log('posted', response);
+        this.setState({ friends: response.data});
+        window.location.href = '/';
+      })
+      .catch(error => console.log(error));
+    console.log(id);
+  }
+
   onDeleteFriend = id => {
     axios
       .delete(`${API_URL}/${id}`)
@@ -35,14 +47,12 @@ class App extends Component {
         this.setState({ friends: response.data});
       })
       .catch(error => console.log(error));
-    console.log(id);
   }
 
   componentDidMount() {
     axios.get(API_URL)
     .then(response => {
       this.setState({friends: response.data});
-      console.log(response);
     })
     .catch(error => {
       console.log(error);
@@ -53,8 +63,8 @@ class App extends Component {
     return (
       <div id="app">
         <Route exact path="/" render={(props) => <FriendsListPage {...props} friends={this.state.friends} onDeleteFriend={this.onDeleteFriend} />} />
-        <Route path="/add" render={(props) => <FriendFormPage {...props} formType='add' onSubmitFriend={this.onSubmitFriend}  />} />
-        <Route path="/update/:friendID" render={(props) => <FriendFormPage {...props} formType='update' onFriendChange={this.onFriendChange} onSubmitFriend={this.onSubmitFriend} friends={this.state.friends} />} />
+        <Route path="/add" render={(props) => <FriendFormPage {...props} formType='add' onSubmitFriend={this.onAddFriend}  />} />
+        <Route path="/update/:friendID" render={(props) => <FriendFormPage {...props} formType='update' onFriendChange={this.onFriendChange} onSubmitFriend={this.onUpdateFriend} friends={this.state.friends} />} />
       </div>
     );
   }

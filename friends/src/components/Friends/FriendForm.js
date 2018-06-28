@@ -9,7 +9,7 @@ class FriendForm extends Component {
       buttonText: '',
       friend: {
         name: '',
-        age: undefined,
+        age: 0,
         email: ''
       }, 
       id: undefined
@@ -25,7 +25,11 @@ class FriendForm extends Component {
 
   onSubmit = e => {
     e.preventDefault(); 
-    this.props.onSubmitFriend(this.state.friend);
+    if (this.props.formType === 'update') {
+      this.props.onSubmitFriend(this.state.id, this.state.friend);
+    } else {
+      this.props.onSubmitFriend(this.state.friend);
+    }
   }
 
   componentDidMount() {
@@ -37,6 +41,15 @@ class FriendForm extends Component {
     console.log('id', id);
     switch(this.props.formType) {
       case 'update':
+        let friend = this.props.friends.slice();
+        friend = friend.filter(item => item.id === id);
+        if (friend[0]) {
+          this.setState({ friend: {
+            name: friend[0].name,
+            age: friend[0].age,
+            email: friend[0].email
+          }});
+        }
         newText = 'Update';
         break;
       case 'delete':
@@ -53,11 +66,11 @@ class FriendForm extends Component {
     return(
       <form>
         <label htmlFor="name">Name</label>
-        <input name="name" type="text" onChange={this.onChange} />
+        <input name="name" type="text" onChange={this.onChange} value={this.state.friend.name} />
         <label htmlFor="age">Age</label>
-        <input name="age" type="number" onChange={this.onChange} />
+        <input name="age" type="number" onChange={this.onChange} value={this.state.friend.age} />
         <label htmlFor="email">Email</label>
-        <input name="email" type="email" onChange={this.onChange} />
+        <input name="email" type="email" onChange={this.onChange} value={this.state.friend.email} />
         <button onClick={this.onSubmit}>{this.state.buttonText}</button>
         <Link to="/">
           <button>Cancel</button>
