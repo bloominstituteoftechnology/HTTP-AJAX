@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import FriendList from './Friends/FriendList';
-import Friend from './Friends/Friend';
-import FriendCard from './Friends/FriendCard';
 import './App.css';
-
-
-
+import FriendsList from './Friends/FriendList';
+import Friend from './Friends/Friend';
+import NewFriend from './Friends/NewFriend';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-     friends: []
-
-    };
-  }
 
   render() {
     return (
       <div className="App">
-          <h1 className="App-title">LAMBDA SCHOOL</h1>
-          <FriendList  />
+        <h1 className="heading">Lambda Friends</h1>
+        <Route path="/addfriend" component={NewFriend}/>
+        <Route path="/friend/:id" component={Friend}/>
+        <Route exact path="/" component={FriendsList}/>
       </div>
     );
   }

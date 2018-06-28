@@ -1,13 +1,13 @@
 import React from 'react';
-
+import '../App.css';
 const FriendCard = (props) => {
-    console.log(props);
     return (
-        <div className="friend-card">
-            <h3>{props.friends.name}</h3>
-            <p>age: {props.friends.age}</p>
-            <p>email: {props.friends.email}</p>
+        <div className="friend-list">
+            <h3>{props.friend.name}</h3>
+            <p>age: {props.friend.age}</p>
+            <p>email: {props.friend.email}</p>
         </div>
+
     )
 }
 
