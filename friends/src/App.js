@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FriendsList from './components/FriendsList';
 import FriendsForm from './components/FriendsForm';
+import Friend from './components/Friend';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
@@ -8,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state= {
-      friendsData: [],
+      friendsData: []
     }
   }
 
@@ -30,11 +32,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Friends List</h1>
-          <FriendsForm
-            handleSetData={this.handleSetData}
-          />
+          <FriendsForm handleSetData={this.handleSetData} />
         </header>
-        <FriendsList friends={this.state.friendsData} />
+          <Route path='/' render={(props) => <FriendsList {...props} handleSetData={this.handleSetData} friends={this.state.friendsData} />} />
+          {/* <Route path='/friends/:id' render={(props) => <Friend {...props} friend={this.state.friendsData} />} /> */}
+        {/* <FriendsList friends={this.state.friendsData} /> */}
       </div>
     );
   }

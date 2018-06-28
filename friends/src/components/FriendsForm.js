@@ -16,12 +16,12 @@ class FriendsForm extends React.Component {
         }
     }
 
-    editAvengerHandler = e => {
+    editFriendsHandler = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
 
     saveNewFriend = () => {
-        const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
+        const newFriend = { name: this.state.name, age: Number(this.state.age), email: this.state.email };
         axios
           .post(`http://localhost:5000/friends`, newFriend)
           .then(response => {
@@ -29,8 +29,10 @@ class FriendsForm extends React.Component {
             this.props.handleSetData(response.data);
             this.setState({ name: '', email: '', age: '' })
           })
-          .catch(error => console.log(error)); // send up our edits to the server using a put
-      };
+          .catch(error => console.log(error));
+    };
+
+    
 
     render() { 
         return (
@@ -41,21 +43,21 @@ class FriendsForm extends React.Component {
                     name="name"
                     placeholder={this.state.nameHolder}
                     value={this.state.name}
-                    onChange={this.editAvengerHandler}
+                    onChange={this.editFriendsHandler}
                 />
                 <input
                     type="text"
                     name="age"
                     placeholder={this.state.ageHolder}
                     value={this.state.age}
-                    onChange={this.editAvengerHandler}
+                    onChange={this.editFriendsHandler}
                 />
                 <input
                     type="text"
                     name="email"
                     placeholder={this.state.emailHolder}
                     value={this.state.email}
-                    onChange={this.editAvengerHandler}
+                    onChange={this.editFriendsHandler}
                 />
                 <button onClick={this.saveNewFriend}>Save</button>
             </div>
