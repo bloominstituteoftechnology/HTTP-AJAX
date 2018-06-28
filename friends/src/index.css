@@ -36,3 +36,24 @@ p{
 	background-color: white;
 	color: black;
 }
+
+.delete-btn{
+	width: 70px;
+	height: 30px;
+	margin-top: 2%;
+	color: white;
+	border-radius: 20px;
+	margin-left: 15px;
+	background-color: chocolate;
+        border: 1px solid chocolate;
+}
+
+.delete-btn:hover{
+        background-color: white;
+        color: black;
+}
+
+.list-container{	
+	display: flex;
+	justify-content: center;
+}
