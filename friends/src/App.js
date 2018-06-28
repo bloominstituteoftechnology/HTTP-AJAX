@@ -14,9 +14,15 @@ class App extends Component {
         email: '',         
     }
   }
+  
+
 
   componentDidMount(){
     this.axiosGet()
+    // let firedB = firebase.database();
+    
+    // console.log(firedB);
+
   }
 
 axiosGet = () => {
