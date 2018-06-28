@@ -30,7 +30,7 @@ class FriendInput extends Component {
         email: this.state.email,
       })
       .then(response => {
-        console.log('post data', response.data)
+        console.log('post data', response)
       })
       .catch(err => console.log(err))
   }

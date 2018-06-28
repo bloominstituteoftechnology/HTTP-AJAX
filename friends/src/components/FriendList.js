@@ -38,24 +38,34 @@ class FriendList extends Component {
 
   handleUpdate = id => {
     //let stateObj = this.state;
+    const name = prompt('Name', 'Name');
+    const age = prompt('Age', 'Age');
+    const email = prompt('Email', 'Email');
     axios
       .put(`http://localhost:5000/friends/${id}`, {
-        name: prompt('Name', data.name),
-        age: prompt('Age', data.age),
-        email: prompt('Email', data.email)
+        name: name,
+        age: age,
+        email: email,
       })
       //.then(res => res.data.find(el => el.id === id))
-      .then(data => {
-        console.log('edited', data) // return the edited object
+      // .then(data => {
+      //   console.log('data', data) // returns the object with the id that "===" with the id passed to handleUpdate()
+      //   data.name = prompt('Name', data.name);
+      //   data.age = prompt('Age', data.age);
+      //   data.email = prompt('Email', data.email);
+      //   return data;
+      // })
+      .then(response => {
+        console.log('edited', response.data) // return the edited object
         this.setState({
-          friends: [...this.state.friends, data]
+          friends: [response.data[0], ...this.state.friends]
         })
       })
       .catch(data => console.log(data))
   }
 
   render() { 
-    console.log('Friend List State', this.state.friends)
+    //console.log('Friend List State', this.state.friends)
     return (
       <div className="container">
         {this.state.friends.map(friend =>
