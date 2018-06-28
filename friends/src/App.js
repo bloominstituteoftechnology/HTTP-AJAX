@@ -30,8 +30,11 @@ class App extends Component {
       .catch(err => console.log('ERROR deleting:', err));
   };
 
-  editFriend = id => {
-    console.log('clicked edit');
+  editFriend = editedFriend => {
+    axios
+      .put(`http://localhost:5000/friends/${editedFriend.id}`, editedFriend)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(err => console.log('ERROR deleting:', err));
   };
 
   componentDidMount() {

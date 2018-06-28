@@ -2,23 +2,30 @@ import React from 'react';
 import { Card, CardTitle, CardText, Button } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import styled from 'styled-components';
+import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const FriendCard = styled(Card)`
   width: 300px;
   margin-left: 40%;
   margin-bottom: 5px;
 `;
+
 class Friend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
+      edit: false,
+      name: '',
+      age: '',
+      email: '',
     };
   }
 
   toggle = () => {
     this.setState({
       modal: !this.state.modal,
+      edit: false,
     });
   };
 
@@ -27,11 +34,38 @@ class Friend extends React.Component {
   };
 
   handleEditClick = id => {
-    this.props.editHandler(id);
+    const { name, age, email } = this.props.friend;
+    this.setState({ edit: true, name, age, email });
+    // document.getElementById('nameBox').select();
+    // this.props.editHandler(id);
+  };
+
+  handleNameChange = e => {
+    this.setState({ name: e.target.value });
+  };
+
+  handleAgeChange = e => {
+    this.setState({ age: e.target.value });
+  };
+
+  handleEmailChange = e => {
+    this.setState({ email: e.target.value });
   };
 
   handleCardClick = id => {
     this.setState({ modal: !this.state.modal });
+  };
+
+  handleSubmitEditClick = id => {
+    const { name, age, email } = this.state;
+    const editedFriend = {
+      name,
+      age,
+      email,
+      id,
+    };
+    this.props.editHandler(editedFriend);
+    this.toggle();
   };
 
   render() {
@@ -50,27 +84,80 @@ class Friend extends React.Component {
           <Modal isOpen={this.state.modal} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>Edit Friend</ModalHeader>
             <ModalBody>
-              <p>Name: {this.props.friend.name}</p>
-              <p>Age: {this.props.friend.age}</p>
-              <p>email: {this.props.friend.email}</p>
+              {!this.state.edit ? (
+                <React.Fragment>
+                  <p>Name: {this.props.friend.name}</p>
+                  <p>Age: {this.props.friend.age}</p>
+                  <p>email: {this.props.friend.email}</p>
+                </React.Fragment>
+              ) : (
+                <Form>
+                  <FormGroup row>
+                    <Label for="Name" sm={2}>
+                      Name
+                    </Label>
+                    <Col sm={10}>
+                      <Input
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
+                      />
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Label for="Age" sm={2}>
+                      Age
+                    </Label>
+                    <Col sm={10}>
+                      <Input
+                        type="number"
+                        value={this.state.age}
+                        onChange={this.handleAgeChange}
+                      />
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Label for="Email" sm={2}>
+                      Email
+                    </Label>
+                    <Col sm={10}>
+                      <Input
+                        value={this.state.email}
+                        onChange={this.handleEmailChange}
+                      />
+                    </Col>
+                  </FormGroup>
+                </Form>
+              )}
             </ModalBody>
             <ModalFooter>
-              <span>
+              {!this.state.edit ? (
+                <span>
+                  <Button
+                    style={{ width: '70px', marginLeft: '-399px' }}
+                    onClick={() => this.handleEditClick(this.props.friend.id)}
+                    className="btn btn-outline-primary float-left"
+                  >
+                    edit
+                  </Button>
+                  <Button
+                    style={{ width: '70px' }}
+                    onClick={() => this.handleDelClick(this.props.friend.id)}
+                    className="btn btn-outline-danger float-right"
+                  >
+                    delete
+                  </Button>
+                </span>
+              ) : (
                 <Button
-                  style={{ width: '70px', marginLeft: '-399px' }}
-                  onClick={() => this.handleEditClick(this.props.friend.id)}
-                  className="btn btn-outline-primary float-left"
+                  style={{ width: '140px' }}
+                  onClick={() =>
+                    this.handleSubmitEditClick(this.props.friend.id)
+                  }
+                  className="btn btn-outline-primary"
                 >
-                  edit
+                  submit edits
                 </Button>
-                <Button
-                  style={{ width: '70px' }}
-                  onClick={() => this.handleDelClick(this.props.friend.id)}
-                  className="btn btn-outline-danger float-right"
-                >
-                  delete
-                </Button>
-              </span>
+              )}
             </ModalFooter>
           </Modal>
         </div>
