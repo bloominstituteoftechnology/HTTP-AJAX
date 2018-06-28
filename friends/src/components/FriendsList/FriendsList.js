@@ -19,7 +19,9 @@ const FriendsList = props => {
       <Container>
           {props.friendsData.map(friend => {
             return (
-                <Friend key={friend.id} name={friend.name} age = {friend.age} email = {friend.email} />);
+                <Friend key={friend.id} id = {friend.id} name={friend.name} age = {friend.age} email = {friend.email} 
+                showUpdateModalHandler = {props.showUpdateModalHandler}
+                deleteFriendHandler = {props.deleteFriendHandler} />);
           })}
       </Container>
     </FriendListSection>

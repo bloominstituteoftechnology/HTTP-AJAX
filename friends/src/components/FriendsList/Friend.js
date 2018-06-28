@@ -18,6 +18,12 @@ const UpdateBtn = styled.div.attrs({
     background: royalblue;
   }
 `;
+
+const DeleteBtn = styled.div.attrs({
+  className: "button is-danger"
+})`
+
+`;
 const Friend = props => {
   return (
     <Card>
@@ -27,6 +33,8 @@ const Friend = props => {
         <p className="subtitle is-6">Age: {props.age}</p>
         <UpdateBtn onClick = {props.showUpdateModalHandler}>Update?</UpdateBtn>
         <DeleteBtn onClick = {() => {
+          props.deleteFriendHandler(props.id);
+          }}>Delete!</DeleteBtn>
       </div>
     </Card>
   );

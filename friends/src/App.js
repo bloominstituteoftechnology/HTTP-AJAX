@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import FriendsList from "./components/FriendsList/FriendsList";
 import FriendsForm from "./components/FriendsList/FriendsForm";
+import UpdateModal from "./components/ModalComponents/UpdateModal";
 import styled from "styled-components";
 import "bulma/css/bulma.css";
 
@@ -63,6 +64,19 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  deleteFriend = (id) => {
+    axios.delete(`${URL}/${id}`).then(response => {
+      this.setState({ friendsData: response.data });
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+  cancelUpdateModal = () => {
+    this.setState({ updateModalShown: false });
+  }
+  showUpdateModal = () => {
+    this.setState({ updateModalShown: true });
+  }
   render() {
     return (
       <div className="App">
@@ -77,7 +91,11 @@ class App extends Component {
           addFriendHandler={this.addFriend}
         />
 
-        <FriendsList friendsData={this.state.friendsData} />
+        <FriendsList friendsData={this.state.friendsData} 
+        showUpdateModalHandler = {this.showUpdateModal}
+        deleteFriendHandler = {this.deleteFriend}/>
+
+        <UpdateModal cancelUpdateHandler = {this.cancelUpdateModal} updateModalShown = {this.state.updateModalShown} />
       </div>
     );
   }
