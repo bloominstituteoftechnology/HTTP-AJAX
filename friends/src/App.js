@@ -38,6 +38,7 @@ class App extends Component {
   };
 
   handleSubmitNewFriend = event => {
+    event.preventDefault();
     let URL = "http://localhost:5000/friends";
     if (
       this.state.newFriendName &&
@@ -51,17 +52,23 @@ class App extends Component {
         age: this.state.newFriendAge
       };
 
-      axios.post(URL, serverMessage).then(response => {
-        console.log("POST RESPONSE: ", response);
-        // now set state when you see the new data
+      axios
+        .post(URL, serverMessage)
+        .then(response => {
+          console.log("POST RESPONSE: ", response);
+          // now set state when you see the new data
+          this.setState({ f: response.data });
 
-        // reset state fields
-        this.setState({
-          newFriendName: "",
-          newFriendEmail: "",
-          newFriendAge: ""
+          // reset state fields
+          this.setState({
+            newFriendName: "",
+            newFriendEmail: "",
+            newFriendAge: ""
+          });
+        })
+        .catch(error => {
+          console.log("POST ERROR: ", error);
         });
-      });
     } else {
       // alert missing data
       alert(
