@@ -1,19 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import { Route } from 'react-router-dom'; 
+import FriendsList from './components/FriendsList';
+import Friend from './components/Friend';
+import FriendForm from './components/FriendForm';
+
+const URL = "http://localhost:5000/friends";
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      friends: [],
+    }
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
+  getData = () => {
+    axios
+        .get(URL)
+        .then(response => {
+          console.log(response);
+          this.setData(response.data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+    
+  setData = data => {
+    this.setState({friends: data});
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <div className='App'>
+          <h1>Friends</h1>
+          <Route exact path='/' render={props => <FriendsList {...props} friends={this.state.friends} />} />
+          <Route path='/friends/:id' component={Friend} />
+        </div>
     );
   }
 }
