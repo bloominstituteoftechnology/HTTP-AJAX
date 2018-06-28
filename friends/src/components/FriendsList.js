@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Friend from "./Friend";
-import {Link} from "react-router-dom";
 
 
 export default class FriendsList extends Component {

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import './index.css';
 import axios from 'axios';
 import FriendsList from "./components/FriendsList";
-import FriendsForm from "./components/FriendsForm";
+import Add from "./components/Add";
+import Update from "./components/Update";
+import Delete from "./components/Delete";
 import Navigation from "./components/Navigation";
-import {Switch, Route} from 'react-router-dom';
+import { Route} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -34,12 +36,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {/* <Switch> */}
       <Route path='/' component={Navigation}/>
       <Route exact path='/' render={(props) => <FriendsList {...props} friends={this.state.friendsData}/>} />
-      <Route path='/add' render={(props) => <FriendsForm {...props} handleSetData={this.handleSetData}/>} />
-
-    {/* </Switch> */}
+      <Route path='/add' render={(props) => <Add {...props} handleSetData={this.handleSetData}/>} />
+      <Route path='/update' render={(props) => <Update {...props} handleSetData={this.handleSetData}/>} />
+      <Route path='/delete' render={(props) => <Delete {...props} handleSetData={this.handleSetData}/>} />
     </div>
     );
   }

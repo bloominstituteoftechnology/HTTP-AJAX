@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from "react-router-dom";
 
-class FriendsForm extends React.Component {
+class Add extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +42,6 @@ class FriendsForm extends React.Component {
     render() {
         return (
             <div className="friends-form">
-              <Link to="/">Friend's List</Link>
               <h2>Add Friend</h2>
                 <input
                     type="text"
@@ -72,4 +70,4 @@ class FriendsForm extends React.Component {
     }
 }
 
-export default FriendsForm;
+export default Add;

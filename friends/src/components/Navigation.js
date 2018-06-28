@@ -3,9 +3,7 @@ import {Link} from "react-router-dom";
 import './navigation.css';
 
 class Navigation extends React.Component {
-  constructor(props) {
-      super(props);
-    }
+
   render() {
     return (
       <div className="navigation">
