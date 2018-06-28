@@ -9,11 +9,9 @@ class App extends Component {
     super();
     this.state = {
       f: [],
-      formInput: {
-        name: "",
-        email: "",
-        age: ""
-      }
+      newFriendName: "",
+      newFriendEmail: "",
+      newFriendAge: ""
     };
   }
 
@@ -49,7 +47,13 @@ class App extends Component {
         <Route
           path={"/friends"}
           render={props => {
-            return <FriendsList {...props} f={this.state.f} />;
+            return (
+              <FriendsList
+                {...props}
+                f={this.state.f}
+                newTextHandler={this.handleNewFriendText}
+              />
+            );
           }}
         />
         {/*<FriendsList f={this.state.f} foo="bar" />*/}

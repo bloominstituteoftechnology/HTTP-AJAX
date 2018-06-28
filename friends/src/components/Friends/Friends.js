@@ -3,6 +3,7 @@ import Friend from "./Friend";
 import AddFriendForm from "./AddFriendForm";
 
 const Friends = props => {
+  console.log("FRIENDS PROPS: ", props);
   return (
     <Fragment>
       <div>

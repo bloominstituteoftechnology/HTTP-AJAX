@@ -16,7 +16,7 @@ const FriendsList = props => {
           <Link to={"/friends"}>Friends</Link>
         </li>
       </ul>
-      <Friends data={props.f} />
+      <Friends data={props.f} newTextHandler={props.newTextHandler} />
       {/*<Route path={"/friends"} component={AddFriendForm} />*/}
     </div>
   );

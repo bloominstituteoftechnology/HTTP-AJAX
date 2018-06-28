@@ -1,6 +1,8 @@
 import React from "react";
 
 const AddFriendForm = props => {
+  console.log("ADD FRIEND FORM PROPS", props);
+  console.log("ADD FRIEND PROPS: ", props);
   return (
     <form>
       <h3>Add a new friend</h3>
@@ -8,7 +10,7 @@ const AddFriendForm = props => {
       <input
         type="text"
         id="name"
-        name="name"
+        name="newFriendName"
         placeholder="Name"
         onChange={props.newTextHandler}
       />
@@ -16,7 +18,7 @@ const AddFriendForm = props => {
       <input
         type="text"
         id="email"
-        name="email"
+        name="newFriendEmail"
         placeholder="Emial"
         onChange={props.newTextHandler}
       />
@@ -24,7 +26,7 @@ const AddFriendForm = props => {
       <input
         type="text"
         id="age"
-        name="age"
+        name="newFriendAge"
         placeholder="Age"
         onChange={props.newTextHandler}
       />
