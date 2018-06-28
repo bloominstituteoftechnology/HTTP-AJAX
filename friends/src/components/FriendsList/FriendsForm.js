@@ -28,7 +28,7 @@ const FriendsForm = props => {
             <input
               className="input"
               type="text"
-              placeholder="Text input"
+              placeholder="What is your friend's name?"
               name="name"
               id="name"
               onChange={props.changeInfoHandler}
@@ -42,7 +42,7 @@ const FriendsForm = props => {
             <input
               className="input"
               type="text"
-              placeholder="Text input"
+              placeholder="How old is your friend?"
               name="age"
               id="age"
               onChange={props.changeInfoHandler}
@@ -56,7 +56,7 @@ const FriendsForm = props => {
             <input
               className="input"
               type="text"
-              placeholder="Text input"
+              placeholder="Friend's email that you can spam?"
               name="email"
               id="email"
               onChange={props.changeInfoHandler}
