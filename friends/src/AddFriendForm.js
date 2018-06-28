@@ -26,6 +26,7 @@ export default class AddFriendForm extends React.Component {
       age: Number(this.state.age),
       email: this.state.email,
     };
+    this.setState({ name: '', age: '', email: '' });
     axios
       .post('http://localhost:5000/friends', newFriend)
       .then(response => this.props.updateFriends(response.data))

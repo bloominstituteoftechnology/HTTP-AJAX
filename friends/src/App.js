@@ -16,7 +16,7 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => this.setState({ friends: response.data }))
-      .catch(err => console.log('ERROR:', err));
+      .catch(err => console.log('ERROR retreiving:', err));
   }
 
   updateFriends = friends => {
@@ -27,7 +27,11 @@ class App extends Component {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(response => this.setState({ friends: response.data }))
-      .catch(err => console.log('ERROR deleteing:', err));
+      .catch(err => console.log('ERROR deleting:', err));
+  };
+
+  editFriend = id => {
+    console.log('clicked edit');
   };
 
   componentDidMount() {
@@ -41,6 +45,7 @@ class App extends Component {
         <Friends
           friends={this.state.friends}
           deleteHandler={this.deleteFriend}
+          editHandler={this.editFriend}
         />
       </div>
     );

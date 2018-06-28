@@ -23,42 +23,27 @@ class Friend extends React.Component {
   };
 
   handleDelClick = id => {
-    console.log('clicked', id);
     this.props.deleteHandler(id);
   };
 
   handleEditClick = id => {
-    console.log('clicked', id);
+    this.props.editHandler(id);
+  };
+
+  handleCardClick = id => {
     this.setState({ modal: !this.state.modal });
-    // this.props.deleteHandler(id);
   };
 
   render() {
     return (
       <div>
-        <FriendCard>
+        <FriendCard onClick={this.handleCardClick}>
           <Card body style={{ backgroundColor: 'aliceblue' }}>
             <CardTitle className="text-center">
               {this.props.friend.name}
             </CardTitle>
             <CardText>Age: {this.props.friend.age}</CardText>
             <CardText>email: {this.props.friend.email}</CardText>
-            <span>
-              <Button
-                style={{ width: '70px' }}
-                onClick={() => this.handleEditClick(this.props.friend.id)}
-                className="btn btn-outline-primary float-leftt"
-              >
-                edit
-              </Button>
-              <Button
-                style={{ width: '70px' }}
-                onClick={() => this.handleDelClick(this.props.friend.id)}
-                className="btn btn-outline-danger float-right"
-              >
-                delete
-              </Button>
-            </span>
           </Card>
         </FriendCard>
         <div>
@@ -70,12 +55,22 @@ class Friend extends React.Component {
               <p>email: {this.props.friend.email}</p>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>
-                Do Something
-              </Button>{' '}
-              <Button color="secondary" onClick={this.toggle}>
-                Cancel
-              </Button>
+              <span>
+                <Button
+                  style={{ width: '70px', marginLeft: '-399px' }}
+                  onClick={() => this.handleEditClick(this.props.friend.id)}
+                  className="btn btn-outline-primary float-left"
+                >
+                  edit
+                </Button>
+                <Button
+                  style={{ width: '70px' }}
+                  onClick={() => this.handleDelClick(this.props.friend.id)}
+                  className="btn btn-outline-danger float-right"
+                >
+                  delete
+                </Button>
+              </span>
             </ModalFooter>
           </Modal>
         </div>
