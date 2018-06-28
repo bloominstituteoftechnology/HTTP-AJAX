@@ -21,6 +21,8 @@ class App extends Component {
     }
   }
 
+  handleSetData = data => this.setState({ friendsData: data });
+
   componentDidMount() {
     axios
         .get("http://localhost:5000/friends")
@@ -87,7 +89,8 @@ class App extends Component {
         value={this.state.friend.email}
         />
         <button onClick={this.handleFriendSubmit}> Add Friend </button>
-      <FriendsList friends={this.state.friendsData}/>
+      <FriendsList friends={this.state.friendsData}
+                   handleSetData={this.handleSetData}/>
     </div>);
   }
 }

@@ -7,6 +7,7 @@ const FriendsList = props => {
             {props.friends.map(friend => {
                 return(
                         <Friend
+                            handleSetData={props.handleSetData}
                             key={friend.id}
                             friend={friend}/>
                 );
