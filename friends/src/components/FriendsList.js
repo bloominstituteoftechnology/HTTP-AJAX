@@ -1,10 +1,20 @@
-import React from "react";
+import React, { Component } from 'react';
 import Friend from "./Friend";
+import {Link} from "react-router-dom";
 
-const FriendsList = props => {
+
+export default class FriendsList extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+    cats: []
+  };
+}
+  render() {
   return (
     <div>
-      {props.friends.map(friend => {
+      <h1>My Friends</h1>
+      {this.props.friends.map(friend => {
         return (
           <Friend className ='friend'
             key={friend.id}
@@ -14,6 +24,5 @@ const FriendsList = props => {
       })}
     </div>
   );
-};
-
-export default FriendsList;
+}
+}

@@ -3,6 +3,8 @@ import './index.css';
 import axios from 'axios';
 import FriendsList from "./components/FriendsList";
 import FriendsForm from "./components/FriendsForm";
+import Navigation from "./components/Navigation";
+import {Switch, Route} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -32,14 +34,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <div className="friends">
-        <h1>My Friends</h1>
-      <FriendsList friends={this.state.friendsData} />
-    </div>
-    <div className="add-friends">
-      <h2>Add Friend</h2>
-      <FriendsForm className ='form' handleSetData={this.handleSetData}/>
-      </div>
+      {/* <Switch> */}
+      <Route path='/' component={Navigation}/>
+      <Route exact path='/' render={(props) => <FriendsList {...props} friends={this.state.friendsData}/>} />
+      <Route path='/add' render={(props) => <FriendsForm {...props} handleSetData={this.handleSetData}/>} />
+
+    {/* </Switch> */}
     </div>
     );
   }

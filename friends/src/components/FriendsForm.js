@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from "react-router-dom";
 
 class FriendsForm extends React.Component {
     constructor(props) {
@@ -42,6 +43,8 @@ class FriendsForm extends React.Component {
     render() {
         return (
             <div className="friends-form">
+              <Link to="/">Friend's List</Link>
+              <h2>Add Friend</h2>
                 <input
                     type="text"
                     name="name"
