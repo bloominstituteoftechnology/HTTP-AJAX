@@ -3,6 +3,7 @@ import axios from "axios";
 import FriendsList from "./components/Friends/FriendsList";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { Route } from "react-router-dom";
+import Navigation from "./components/Navigation/Navigation";
 
 class App extends Component {
   constructor() {
@@ -81,6 +82,7 @@ class App extends Component {
     // console.log("THIS STATE: ", this.state);
     return (
       <div>
+        <Route path="/" component={Navigation} />
         <Route exact path={"/"} component={LandingPage} />
         <Route
           path={"/friends"}
