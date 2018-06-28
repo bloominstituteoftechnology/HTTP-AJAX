@@ -1,5 +1,7 @@
 import React from "react";
 import EditFriend from "./EditFriend";
+import Friend from "./Friend";
+import {Link} from 'react-router-dom';
 
 
 
@@ -9,16 +11,13 @@ const FriendList = props => {
       <div>
             {props.friendsData.map(friend => {
 		    return(
-	    
-		    <div className="list-container" key={friend.id}>		   
-		     <div className="form-div"> 
-		    <p>{friend.name} {friend.age} {friend.email}</p>
-		    <button className="delete-btn" onClick={()=>props.deleteFriend(friend.id)}>Delete</button> 			</div>
-		
-		   <div>		    
-	           <EditFriend editFriend={props.editFriend}  friend={friend} />
-		   </div>
-		   </div>	    
+			    
+	   	   <Link to={`/friends/${friend.id}`}  className="friend-link" key={friend.id}>
+		   <div className="list-container">
+	           <Friend  friend={friend} deleteFriend={props.deleteFriend} />
+		   <EditFriend editFriend={props.editFriend}  friend={friend} />
+	        </div>   
+		</Link>		    
 		    ); 
 	    })}
       </div>

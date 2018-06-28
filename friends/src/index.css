@@ -11,6 +11,12 @@ body {
 	
 }
 
+.friend-link{
+	text-decoration: none;
+	color: teal;
+}
+
+
 .form-div{
 	display: flex;
 }
