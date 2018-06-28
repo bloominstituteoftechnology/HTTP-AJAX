@@ -41,6 +41,18 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  removeFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log(response);
+        this.setState({ friends: response.data });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   newname = e => {
     this.setState({ newName: e.target.value });
   };
@@ -59,7 +71,8 @@ class App extends Component {
       name: this.newname,
       age: this.newage,
       email: this.newemail,
-      add: this.addFriend
+      add: this.addFriend,
+      delete: this.removeFriend
     }
 
     const values = {
