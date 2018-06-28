@@ -4,8 +4,8 @@ const FriendForm = (props) => {
   return (
     <div>
       <form onSubmit={props.formSubmit}>
-          <input onChange = {props.onChange} type="text" name='name' placeholder='name'/>
-              <input onChange={props.onChange} type="number" name='age' placeholder='age'/>
+          <input onChange = {props.onChange} type="text" name='first_name' placeholder='name'/>
+              {/* <input onChange={props.onChange} type="number" name='age' placeholder='age'/> */}
               <input onChange={props.onChange} type="text" name='email' placeholder='email'/>
           <button>Submit</button>
           </form>

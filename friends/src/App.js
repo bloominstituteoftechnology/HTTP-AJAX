@@ -3,30 +3,42 @@ import './App.css';
 import axios from 'axios';
 import FriendsList from "./FriendsList";
 import FriendForm from './FriendForm';
+import firebase from './firebase';
 
 class App extends Component {
   constructor(props){
     super()
     this.state = {
       friends : [],
-        name: '',
-        age: 0,
+        first_name: '',
+        // age: 0,
         email: '',         
     }
   }
 
   componentDidMount(){
-    this.axiosGet()
-  }
-
-axiosGet = () => {
-    axios
-    .get('http://localhost:5000/friends')
-    .then( res =>{
-      this.setState({friends:res.data})
-    }
-  )
+    let db = firebase.database().ref('friends');
+    db.on('value', snapshot => {
+      let records = snapshot.val();
+      let newRecords = Object.entries(records);
+      console.log(newRecords);
+      this.setState ({friends: newRecords});
+     
+      // firstfifty.map(friend => {
+      // this.setState({friends: snapshot.val()});
+      // })
+   
+  })
 }
+
+// axiosGet = () => {
+//     axios
+//     .get('http://localhost:5000/friends')
+//     .then( res =>{
+//       this.setState({friends:res.data})
+//     }
+//   )
+// }
 
 onChange = e => {
   e.preventDefault();
@@ -37,16 +49,18 @@ onChange = e => {
 formSubmit = e =>{
   e.preventDefault();
   let newFriend = {
-    name : this.state.name,
-    age: Number(this.state.age),
+    first_name : this.state.first_name,
+    // age: Number(this.state.age),
     email: this.state.email,
   }
+let friendly = firebase.database().ref('friends');
+friendly.push(newFriend);
+  // axios.post('http://localhost:5000/friends', newFriend)
+  //   .then( res => {
+  //     this.axiosGet()
+  //   }
+  // )
 
-  axios.post('http://localhost:5000/friends', newFriend)
-    .then( res => {
-      this.axiosGet()
-    }
-  )
 }
   
   render() {

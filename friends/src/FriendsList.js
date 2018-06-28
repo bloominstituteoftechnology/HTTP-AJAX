@@ -8,7 +8,7 @@ class FriendsList extends Component {
   render() { 
     return ( 
       <ul>
-        {this.props.friends.map( friend => <li key={Math.random()}>{friend.name}</li>)}
+        {this.props.friends.map(friend => <li key={Math.random()}>{friend[1].first_name}</li>)}
       </ul>
      )
   }

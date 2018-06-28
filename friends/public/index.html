@@ -19,11 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-<<<<<<< HEAD
-    <title>React App</title>
-=======
     <title>Friends</title>
->>>>>>> 39468339efffe51f969e9a705feac07ae6f47b48
   </head>
   <body>
     <noscript>
@@ -40,5 +36,21 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBni6UzBo0fvZCq1JhZ2Bj-oLhcHUMlyBU",
+    authDomain: "friends-d7d17.firebaseapp.com",
+    databaseURL: "https://friends-d7d17.firebaseio.com",
+    projectId: "friends-d7d17",
+    storageBucket: "friends-d7d17.appspot.com",
+    messagingSenderId: "601138510393"
+  };
+  firebase.initializeApp(config);
+  </script>
   </body>
 </html>

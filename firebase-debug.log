@@ -1,0 +1,41 @@
+[debug] [2018-06-28T00:37:33.543Z] ----------------------------------------------------------------------
+[debug] [2018-06-28T00:37:33.547Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Josh\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-06-28T00:37:33.548Z] CLI Version:   3.19.1
+[debug] [2018-06-28T00:37:33.548Z] Platform:      win32
+[debug] [2018-06-28T00:37:33.548Z] Node Version:  v8.11.2
+[debug] [2018-06-28T00:37:33.548Z] Time:          Wed Jun 27 2018 20:37:33 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-06-28T00:37:33.548Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-28T00:37:33.579Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-28T00:37:33.582Z] > authorizing via signed-in user
+[debug] [2018-06-28T00:37:33.592Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-28T00:37:33.592Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/IsMPdlaYtfUfIgSXqORxiCL2dKXKhkidARz5BKkRm4E',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jun 27 2018 20:37:33 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-06-28T00:37:33.800Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-28T00:37:33.805Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/friends-d7d17  
+  
+ Wed Jun 27 2018 20:37:33 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-06-28T00:37:34.199Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-28T00:37:34.199Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/friends-d7d17/tokens  
+  
+ Wed Jun 27 2018 20:37:34 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-06-28T00:37:34.629Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-28T00:37:34.630Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/friends-d7d17  
+  
+ Wed Jun 27 2018 20:37:34 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-06-28T00:37:34.942Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Josh\Documents\Dev\lambdaschool\HTTP-AJAX'...
+[info] 
+[debug] [2018-06-28T00:37:34.945Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/601138510393/clients/_:getWebAppConfig  
+  
+ Wed Jun 27 2018 20:37:34 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-06-28T00:37:35.309Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

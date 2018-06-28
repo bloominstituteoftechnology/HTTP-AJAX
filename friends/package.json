@@ -6,10 +6,7 @@
     "axios": "^0.18.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-<<<<<<< HEAD
-=======
     "react-router-dom": "^4.3.1",
->>>>>>> 39468339efffe51f969e9a705feac07ae6f47b48
     "react-scripts": "1.1.4"
   },
   "scripts": {
@@ -17,5 +14,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "firebase": "^5.1.0"
   }
 }
