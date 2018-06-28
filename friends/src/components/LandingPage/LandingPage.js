@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const LandingPage = props => {
-  return <div>[LANDING PAGE]</div>;
+  return (
+    <Fragment>
+      <div>[LANDING PAGE]</div>
+      <Link to="/friends">FRIENDS</Link>
+    </Fragment>
+  );
 };
 
 export default LandingPage;
