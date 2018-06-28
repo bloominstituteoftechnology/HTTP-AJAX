@@ -8,14 +8,9 @@ import FriendForm from './components/FriendForm'
 class App extends Component {
   constructor() {
     super() ;
-    this.state = 
-    { friendsData: [] },
-    { newFriend: {name: "", email: "", age: ""} }
-  }
-  // handleSetStateDataFromServer = serverData => 
-  //   this.setState({ friendsData: serverData });
-  createNewFriend = event => {
-    this.setState({ newFriend: {[event.target.name]: event.target.value }})
+    this.state = { friendsData: [] }
+    // { friendsData: [], newFriend: {name: "", age: "", email: "" } 
+    // { friendsData: [], newFriend: {} }    
   }
 
   // getting initial server data, setting state
@@ -26,11 +21,16 @@ class App extends Component {
         console.log("MY-GET-RESPONSE: ", response.data) ;
         this.setState({ friendsData: response.data });
       })
-      .catch(error => console.log("My-Server-Error: ", error));      
+      .catch(error => {
+        alert('server error! (see console)') ;
+        console.log("MY-GET-ERROR: ", error) ;
+      });      
   }
-
+  // handleSetStateDataFromServer = serverData => 
+    // this.setState({ friendsData: serverData });   
 
   render() {
+    
     return (
       <div className="App">
         <header className="App-header">
@@ -38,7 +38,7 @@ class App extends Component {
         </header>
         <h1>HTTP-AJAX Project</h1>
 
-          <FriendForm propCreateNewFriend={this.createNewFriend}/>
+          <FriendForm />
           <FriendsList propFriendsData={this.state.friendsData} />
 
       </div>
