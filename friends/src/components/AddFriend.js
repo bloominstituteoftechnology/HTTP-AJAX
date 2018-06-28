@@ -13,7 +13,6 @@ class AddFriend extends React.Component {
       }
       copyinfo = (event) => {this.setState({[event.target.name]: event.target.value})}
       postinfo = (event) => {
-        event.preventDefault();
         const {name, age, email} = this.state;
         axios.post('http://localhost:5000/friends', {name, age, email})
           .then(response => console.log(response))
@@ -34,7 +33,7 @@ class AddFriend extends React.Component {
                 <label htmlFor="InputEmail">Email</label>
                 <input type="email" className="form-control" id="InputEmail" placeholder="Email" name="email" onChange={this.copyinfo}></input>
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary" onClick={this.postinfo}>Submit</button>
             </form>
 
           </div>
