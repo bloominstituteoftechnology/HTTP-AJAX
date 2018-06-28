@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function NewFriend(props) {
+export default function FriendForm(props) {
   return (
-    <form onSubmit={props.addNewFriend}>
+    <form onSubmit={props.handleFriendForm}>
       <input
         type="text"
         name="name"

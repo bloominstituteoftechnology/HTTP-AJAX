@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import NewFriend from './components/NewFriend';
+import FriendForm from './components/FriendForm';
 import Friends from './components/Friends';
 import { Route, NavLink } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ class App extends Component {
     this.setState({ [fieldName]: value });
   };
 
-  addNewFriend = e => {
+  handleNewFriend = e => {
     e.preventDefault();
     let { friendList, ...rest } = this.state;
     const friendPost = axios.post(this.url, rest);
@@ -47,6 +47,15 @@ class App extends Component {
       age: '',
       email: '',
     });
+  };
+
+  handleFriendUpdate = (friend) => {
+    axios.put(`${this.url}/${friend.id}`, friend)
+      .then((response) => {
+        console.log(response);
+        this.setState({friendList: response.data})
+      })
+      .catch((response) => {alert('Save failed: ', response.data )});
   };
 
   render() {
@@ -72,17 +81,17 @@ class App extends Component {
             </div>
           </nav>
         </header>
-        <Route exact path="/" render={() => <Friends friendList={this.state.friendList} />} />
+        <Route exact path="/" render={() => <Friends friendList={this.state.friendList} handleFriendUpdate={this.handleFriendUpdate} />} />
         <Route
           exact
           path="/addfriend"
           render={() => (
-            <NewFriend
+            <FriendForm
               nameInput={this.state.name}
               ageInput={this.state.age}
               emailInput={this.state.email}
               handleInput={this.handleInput}
-              addNewFriend={this.addNewFriend}
+              handleFriendForm={this.handleNewFriend}
             />
           )}
         />

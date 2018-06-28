@@ -1,10 +1,7 @@
 import React from 'react';
+import Friend from './Friend';
 
 export default function Friends(props) {
-  const friendElems = props.friendList.map((friend) => {
-    const string = `${friend.name}, age: ${friend.age}, email: ${friend.email}`;
-    return <div key={friend.id}> {string}</div>;
-  });
-
+  const friendElems = props.friendList.map(friend => <Friend key={friend.id} {...friend} handleFriendUpdate={props.handleFriendUpdate} />);
   return <div>{friendElems}</div>;
 }
