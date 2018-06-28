@@ -6,6 +6,8 @@ import FriendsForm from "./components/FriendsList/FriendsForm";
 import styled from "styled-components";
 import "bulma/css/bulma.css";
 
+const URL = 'http://localhost:5000/friends';
+
 const HeroSection = styled.section.attrs({
   className: "hero is-info is-bold has-text-centered"
 })``;
@@ -32,7 +34,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
+      .get(URL)
       .then(response => {
         this.setState({ friendsData: response.data });
       })
@@ -53,7 +55,7 @@ class App extends Component {
       email: this.state.email
     };
     axios
-      .post("http://localhost:5000/friends", friend)
+      .post(URL, friend)
       .then(response => {
         console.log("Post", response.data);
         this.setState({ friendsData: response.data, friend: "" });
