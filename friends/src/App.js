@@ -41,6 +41,7 @@ class App extends Component {
   }
 
   handleSetData = friends => this.setState({ friendsList: friends });
+
   componentDidMount() {
     axios
       .get("http://localhost:5000/friends")
@@ -62,9 +63,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">HTTP/AJAX Friends</h1>
         </header>
-        <form>
+        <form className='mainInput'>
           <input
             type='text'
             placeholder='Name...'

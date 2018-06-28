@@ -66,9 +66,10 @@ class SingleFriend extends React.Component{
                     stateProp = {this.state}
                     />
                     ) : null}
-                    <button onClick={this.toggleForm}> Edit </button>
-                    <button onClick={() => this.deleteFriend(this.props.friendItem.id)}>Delete {this.props.friendItem.name}</button>
-                
+                    <div className='buttonArea'>
+                        <button onClick={this.toggleForm}> Edit </button>
+                        <button onClick={() => this.deleteFriend(this.props.friendItem.id)}>Delete {this.props.friendItem.name}</button>
+                    </div>
                 
     
             </div>
