@@ -7,7 +7,7 @@ import styled from "styled-components";
 import "bulma/css/bulma.css";
 
 const HeroSection = styled.section.attrs({
-  className: "hero is-dark is-bold has-text-centered"
+  className: "hero is-info is-bold has-text-centered"
 })``;
 
 const HeroBody = styled.div.attrs({
