@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyBni6UzBo0fvZCq1JhZ2Bj-oLhcHUMlyBU",
+    apiKey: "key changed",
     authDomain: "friends-d7d17.firebaseapp.com",
     databaseURL: "https://friends-d7d17.firebaseio.com",
     projectId: "friends-d7d17",
