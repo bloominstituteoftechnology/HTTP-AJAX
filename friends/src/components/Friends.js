@@ -25,11 +25,11 @@ class Friends extends React.Component {
                 console.log(err);
             })
     }
-
     handleSubmitFriend = (e) => {
         e.preventDefault();
         const friend = { name: this.state.name, age: this.state.age, email: this.state.email }
         axios
+
             .post("http://localhost:5000/friends", friend)
             .then(response => {
                 console.log("POST RESPONSE", response);
@@ -42,12 +42,18 @@ class Friends extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    handleDelete = id => {
+        axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(response => {
+            this.setState({friends:response.data})
+        })
+    }
 
     render() {
         return (
             <div>
                 {this.state.friends.map((friend) => (
-                    <Friend key={friend.id} friend={friend} />
+                    <Friend key={friend.id} friend={friend} handleDelete={this.handleDelete}/>
                 ))}
                 <form className="form">
                     <input
