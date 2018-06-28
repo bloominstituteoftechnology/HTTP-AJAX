@@ -43,7 +43,7 @@ class AddFriend extends React.Component {
                 </FormGroup>
                 <ButtonGroup>
                     <StyleButton onClick={this.props.addFriendHandler}>Add Friend</StyleButton>
-                    <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton>Back</StyleButton></Link>
+                    <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton>Go Back</StyleButton></Link>
                 </ButtonGroup>
             </StyledForm>
         )
