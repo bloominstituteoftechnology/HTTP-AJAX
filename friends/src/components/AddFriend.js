@@ -20,34 +20,27 @@ const ButtonGroup = styled(FormGroup)`
     display:flex;
     justify-content: space-around;
 `
-
-class AddFriend extends React.Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-        return (
-            <StyledForm>
-                <FormGroup>
-                    <Label for="name" >Name</Label>
-                    <Input onChange={this.props.handleChange} type="text" name="name" id="name" placeholder="...enter name" value={this.props.newFriend.name}></Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="age" >Age</Label>
-                    <Input onChange={this.props.handleChange} id="age" type="number" name="age" placeholder="...enter age" value={this.props.newFriend.age}></Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="email" >Email</Label>
-                    <Input onChange={this.props.handleChange} id="email" type="email" name="email" placeholder="...enter email" value={this.props.newFriend.email}></Input>
-                </FormGroup>
-                <ButtonGroup>
-                    <StyleButton color="primary" onClick={this.props.addFriendHandler}>Add Friend</StyleButton>
-                    <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton>Go Back</StyleButton></Link>
-                </ButtonGroup>
-            </StyledForm>
-        )
-    }
+const AddFriend = (props) => {
+    return (
+        <StyledForm>
+            <FormGroup>
+                <Label for="name" >Name</Label>
+                <Input onChange={props.handleChange} type="text" name="name" id="name" placeholder="...enter name" value={props.newFriend.name}></Input>
+            </FormGroup>
+            <FormGroup>
+                <Label for="age" >Age</Label>
+                <Input onChange={props.handleChange} id="age" type="number" name="age" placeholder="...enter age" value={props.newFriend.age}></Input>
+            </FormGroup>
+            <FormGroup>
+                <Label for="email" >Email</Label>
+                <Input onChange={props.handleChange} id="email" type="email" name="email" placeholder="...enter email" value={props.newFriend.email}></Input>
+            </FormGroup>
+            <ButtonGroup>
+                <StyleButton color="primary" onClick={props.addFriendHandler}>Add Friend</StyleButton>
+                <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton>Go Back</StyleButton></Link>
+            </ButtonGroup>
+        </StyledForm>
+    )
 }
 
 export default AddFriend;

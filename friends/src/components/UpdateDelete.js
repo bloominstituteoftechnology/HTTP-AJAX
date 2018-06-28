@@ -60,7 +60,7 @@ class UpdateDeleteFriend extends Component {
         const id = this.state.currentFriend.id;
         const updatedFriend = {
             name : this.state.updatedFriend.name? this.state.updatedFriend.name : this.state.currentFriend.name,
-            age : this.state.updatedFriend.age? this.state.updatedFriendriend.age : this.state.currentFriend.age,
+            age : this.state.updatedFriend.age? this.state.updatedFriend.age : this.state.currentFriend.age,
             email : this.state.updatedFriend.email? this.state.updatedFriend.email : this.state.currentFriend.email
         }
         axios.put(`http://localhost:5000/friends/${id}`, updatedFriend)

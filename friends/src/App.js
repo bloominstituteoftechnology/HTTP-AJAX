@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -35,15 +35,19 @@ class App extends Component {
 
   addNewFriend = () => {
     const newFriend = this.state.newFriend;
-    axios.post('http://localhost:5000/friends', newFriend)
-    .then(response => {
-      this.setState({ friends: response.data,
-      newFriend: {
-        name: '',
-        age:'',
-        email: ''
-      } });
-    });
+    if (newFriend.name) {
+      axios.post('http://localhost:5000/friends', newFriend)
+      .then(response => {
+        this.setState({ friends: response.data,
+        newFriend: {
+          name: '',
+          age:'',
+          email: ''
+        } });
+      });
+    } else {
+      alert('Please enter valid name');
+    }
   }
 
   updateFriends = (data) => {
