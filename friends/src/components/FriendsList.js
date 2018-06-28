@@ -15,7 +15,15 @@ const FriendsList = props => {
     return (
         <Container>
             {props.friends.map(friend => {
-                return <FriendCard key={friend.id} name={friend.name} age={friend.age} email={friend.email} />
+                return<Link to={`/friend/${friend.id}`}> 
+                <FriendCard key={friend.id} 
+                name={friend.name} 
+                age={friend.age} 
+                email={friend.email} 
+                location={friend.location} 
+
+                id={friend.id} 
+                deleteFriend={props.deleteFriend} /></Link>
             })}
             <Link to='/newfriend' ><button>Add new friend</button></Link>
  

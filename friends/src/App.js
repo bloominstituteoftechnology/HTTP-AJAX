@@ -3,6 +3,7 @@ import './App.css';
 import {Route} from 'react-router-dom';
 import FriendsList from './components/FriendsList';
 import FriendForm from './components/FriendForm';
+import FriendCard from './components/FriendCard';
 import Axios from 'axios';
 
 class App extends Component {
@@ -35,6 +36,23 @@ class App extends Component {
       console.log(err);
     })
   }
+
+  editFriendHandler = id => {
+
+  }
+
+  deleteFriend = id => {
+    Axios
+    .delete(`http://localhost:5000/friends/${id}`)
+    .then(response => {
+      console.log(response);
+      this.setState({friends: response.data});
+    })
+  .catch(err => {
+    console.log(err);
+  })
+  }
+  
   componentDidMount() {
     Axios
     .get('http://localhost:5000/friends')
@@ -49,8 +67,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Route exact path='/' render={(props) =><FriendsList {...props} friends={this.state.friends} newFriend={this.state.newFriend} />} />
-    <Route path='/newfriend' render={(props) =><FriendForm {...props} newFriend={this.state.newFriend} textHandler={this.handleChange} addFriend={this.addFriend}/>}/>
+      <Route exact path='/' render={(props) =><FriendsList {...props} 
+      friends={this.state.friends} deleteFriend={this.deleteFriend} />} />
+    <Route path='/newfriend' render={(props) =><FriendForm {...props} 
+    newFriend={this.state.newFriend} 
+    textHandler={this.handleChange} 
+    addFriend={this.addFriend} 
+    />}/>
+    <Route path='/friend/:id' render={(props) =><FriendCard {...props} 
+    deleteFriend={this.deleteFriend}/>}/>
       </div>
     );
   }

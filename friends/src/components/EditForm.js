@@ -14,41 +14,56 @@ border: 1px solid black;
 background: lightgray;
 `;
 
-const FriendForm = props => {
+const EditForm = props => {
     return (
         <div>
         <FormBox>
             <input type='text' 
             name='name'
-            placeholder='Name'
+            placeholder={props.name}
             onChange={props.textHandler}
             />
             <input type='number' 
             name='age'
-            placeholder='Age'
+            placeholder={props.age}
             onChange={props.textHandler}
             />
             <input type='text' 
             name='email'
-            placeholder='Email'
+            placeholder={props.email}
             onChange={props.textHandler}
             />
             <input type='text' 
             name='location'
-            placeholder='City, State'
+            placeholder={props.location}
             onChange={props.textHandler}
             />
-            <Link to='/'><button onClick={props.addFriend}>Add Friend</button></Link>
+            <div>
+            <input type='radio' 
+            name='gender'
+            value='male'
+            onChange={props.textHandler}
+            />
+            <label value='male'>Male</label>
+            <input type='radio' 
+            name='gender'
+            value='female'
+            onChange={props.textHandler}
+            />
+            <label value='female'>Female</label>
+            </div>
+
+            <Link to='/'><button onClick={props.editFriend}>Add Friend</button></Link>
         </FormBox>
 
         </div>
     );
 }
 
-FriendForm.propTypes = {
+EditForm.propTypes = {
     name: PropTypes.string,
     age: PropTypes.number,
     email: PropTypes.string,
     location: PropTypes.string
 }
-export default FriendForm;
+export default EditForm;
