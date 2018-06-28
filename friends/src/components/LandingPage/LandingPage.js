@@ -17,8 +17,8 @@ const LandingPage = props => {
                     Here at NewMyspace we understand how important it is to put
                     a list of friends together on a fictitious database. "Why
                     fictitious?" you may be wondering... and the answer is
-                    ZUCKERBOT. We know you don't want anybody selling you'r
-                    private friends information, or using you'r data to train
+                    ZUCKERBOT. We know you don't want anybody selling your
+                    private friends information, or using your data to train
                     artificial intelligence on human behavior, that leads to the
                     machines resentment of the human race in general.{" "}
                     <span style={{ fontWeight: "bold" }}>
