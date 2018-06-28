@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .App-logo {
@@ -12,6 +16,7 @@
   height: 150px;
   padding: 20px;
   color: white;
+  width: 100%;
 }
 
 .App-title {
@@ -26,7 +31,6 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
 
 .input {
   border: 2px solid red;
@@ -59,4 +63,8 @@
 
 .button-save {
   background-color: rgb(174, 182, 58);
+}
+
+.button-return {
+  background-color: rgb(30, 126, 43);  
 }
