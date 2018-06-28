@@ -34,10 +34,23 @@ class Friend extends React.Component {
       .then(response => {
         console.log(response.data)
         this.props.setData(response.data);
-        this.setState({nameEdit: '', ageEdit: '', emailEdit: ''});
+        this.setState({showEditForm: false, nameEdit: '', ageEdit: '', emailEdit: ''});
       })
       .catch(err => {
         console.log(err)
+      })
+  }
+
+  deleteFriend = () => {
+    const id = this.props.friend.id;
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log(response.data);
+        this.props.setData(response.data);
+      })
+      .catch(err => {
+        console.log(err);
       })
   }
 
@@ -55,6 +68,7 @@ class Friend extends React.Component {
             emailValue={this.state.emailEdit} />
           ) : null}
           <button onClick={this.toggleEdit}>Edit Friend</button>
+          <button onClick={this.deleteFriend}>Delete Friend</button>
         </div>
       )
   }
