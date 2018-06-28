@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
 import FriendsList from './components/friendsList/FriendsList';
+import FriendsForm from './components/friendsForm/FriendsForm';
+
+import {Route} from 'react-router-dom';
+
 
 
 class App extends Component {
@@ -27,33 +31,37 @@ class App extends Component {
     })
   }
 
-  handleNameChange = e => {
-    console.log(e)
-    this.setState ({name : e.target.value})
+  handleSetData = data => {
+    this.setState({friendsData: data})
   }
 
-  handleAgeChange = e => {
-    console.log(e)
-    this.setState ({age: Number(e.target.value)})
-  }
+  // handleNameChange = e => {
+  //   console.log(e)
+  //   this.setState ({name : e.target.value})
+  // }
 
-  handleEmailChange = e => {
-    console.log(e)
-    this.setState ({email: e.target.value})
-  }
+  // handleAgeChange = e => {
+  //   console.log(e)
+  //   this.setState ({age: Number(e.target.value)})
+  // }
 
-  handleSubmitFriend = () => {
-    const friend = {name : this.state.name, age : this.state.age, email : this.state.email};
-    axios
-    .post("http://localhost:5000/friends", friend)
-    .then (response => {
-      console.log("post response", response);
-      this.setState({friendsData: response.data});
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-  }
+  // handleEmailChange = e => {
+  //   console.log(e)
+  //   this.setState ({email: e.target.value})
+  // }
+
+  // handleSubmitFriend = () => {
+  //   const friend = {name : this.state.name, age : this.state.age, email : this.state.email};
+  //   axios
+  //   .post("http://localhost:5000/friends", friend)
+  //   .then (response => {
+  //     console.log("post response", response);
+  //     this.setState({friendsData: response.data});
+  //   })
+  //   .catch(error=>{
+  //     console.log(error)
+  //   })
+  // }
 
 
   render() {
@@ -62,7 +70,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Friends HTTP AJAX</h1>
         </header>
-        <form>
+        {/* <form>
         <input
           type = "text"         
           onChange = {this.handleNameChange}          
@@ -84,8 +92,15 @@ class App extends Component {
         <button onClick = {this.handleSubmitFriend}>
           Submit Friend
         </button>
-        </form>       
-        <FriendsList friends = {this.state.friendsData} />
+        </form>        */}
+        <FriendsForm handleSetData = {this.handleSetData} />
+        <FriendsList 
+        friends = {this.state.friendsData} 
+        handleSetData = {this.handleSetData}
+        />
+        {/* <Route exact path = "/" component = {Friends.id}  />
+        <Route path = "/" render = {(props)=> <FriendsList {...props} friends = {this.state.friendsData}/>} /> */}
+      
       </div>
     );
   }
