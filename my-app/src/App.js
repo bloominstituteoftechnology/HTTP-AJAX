@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
-import FriendsList from './Components/FriendsList'
+import FriendsList from './Components/FriendsList/FriendsList'
 import AddFriendInput from './Components/AddFriendInput'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import FriendDetails from './Components/FriendDetails'
 import axios from 'axios'
 
 class App extends Component {
@@ -14,14 +15,16 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {
+  getFriends = () => {
     axios
       .get('http://localhost:5000/friends')
       .then((response) => {
-        console.log('data', response)
         this.setState({ friends: response.data })
       })
       .catch((err) => console.log(err))
+  }
+  componentDidMount () {
+    this.getFriends()
   }
 
   handleChange = (e) => {
@@ -40,7 +43,6 @@ class App extends Component {
     axios
       .post('http://localhost:5000/friends', newFriend)
       .then((response) => {
-        console.log('post response', response)
         this.setState({ friends: response.data, newFriend: '' })
       })
       .catch((error) => console.log(error))
@@ -54,13 +56,25 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <Route
-          exact
-          path='/'
-          render={(props) => (
-            <FriendsList {...props} friends={this.state.friends} />
-          )}
-        />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={(props) => (
+              <FriendsList {...props} friends={this.state.friends} />
+            )}
+          />
+          <Route
+            path='/friends/:id'
+            render={(props) => (
+              <FriendDetails
+                {...props}
+                friends={this.state.friends}
+                getFriends={this.getFriends}
+              />
+            )}
+          />
+        </Switch>
       </div>
     )
   }
