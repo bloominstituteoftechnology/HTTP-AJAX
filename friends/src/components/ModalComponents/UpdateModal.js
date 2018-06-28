@@ -49,7 +49,7 @@ const UpdateModal = props => {
                     className="input"
                     type="text"
                     placeholder="Change your friend's name..."
-                    name="name"
+                    name="updateName"
                     id="name"
                     onChange={props.changeInfoHandler}
                   />
@@ -63,7 +63,7 @@ const UpdateModal = props => {
                     className="input"
                     type="text"
                     placeholder="How old is friend now?"
-                    name="age"
+                    name="updateAge"
                     id="age"
                     onChange={props.changeInfoHandler}
                   />
@@ -77,7 +77,7 @@ const UpdateModal = props => {
                     className="input"
                     type="text"
                     placeholder="Your friend changed their email because of you..."
-                    name="email"
+                    name="updateEmail"
                     id="email"
                     onChange={props.changeInfoHandler}
                   />
@@ -87,7 +87,10 @@ const UpdateModal = props => {
           </FormSection>
         </section>
         <ModalFooter>
-          <button className="button is-success">Save changes</button>
+          <button className="button is-success" onClick = {() =>{
+            props.updateFriendHandler(props.updateID);
+            props.cancelUpdateHandler();
+            }}>Save changes</button>
           <button className="button" onClick ={props.cancelUpdateHandler}>Cancel</button>
         </ModalFooter>
       </div>

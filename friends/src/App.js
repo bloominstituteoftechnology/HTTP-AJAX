@@ -29,7 +29,11 @@ class App extends Component {
       name: "",
       age: "",
       email: "",
-      updateModalShown: false
+      updateModalShown: false,
+      updateID: 0,
+      updateName: "",
+      updateAge: "",
+      updateEmail: ""
     };
   }
 
@@ -64,6 +68,22 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  updateFriend = (id) => {
+
+    const friend = {
+      name: this.state.updateName,
+      age: Number(this.state.updateAge),
+      email: this.state.updateEmail
+    };
+    axios.put(`${URL}/${id}`, friend).then(response => {
+      this.setState({ friendsData: response.data, friend: ""});
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+
   deleteFriend = (id) => {
     axios.delete(`${URL}/${id}`).then(response => {
       this.setState({ friendsData: response.data });
@@ -74,8 +94,8 @@ class App extends Component {
   cancelUpdateModal = () => {
     this.setState({ updateModalShown: false });
   }
-  showUpdateModal = () => {
-    this.setState({ updateModalShown: true });
+  showUpdateModal = (id) => {
+    this.setState({ updateModalShown: true, updateID: id  });
   }
   render() {
     return (
@@ -95,7 +115,12 @@ class App extends Component {
         showUpdateModalHandler = {this.showUpdateModal}
         deleteFriendHandler = {this.deleteFriend}/>
 
-        <UpdateModal cancelUpdateHandler = {this.cancelUpdateModal} updateModalShown = {this.state.updateModalShown} />
+        <UpdateModal 
+        cancelUpdateHandler = {this.cancelUpdateModal} 
+        updateModalShown = {this.state.updateModalShown}
+        updateFriendHandler = {this.updateFriend}
+        updateID = {this.state.updateID}
+        changeInfoHandler = {this.changeFriendInfo} />
       </div>
     );
   }
