@@ -7,27 +7,53 @@ const FriendCard = styled(Card)`
   margin-left: 40%;
   margin-bottom: 5px;
 `;
+class Friend extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+    };
+  }
 
-const Friend = props => {
-  const handleDelClick = id => {
+  handleDelClick = id => {
     console.log('clicked', id);
-    props.deleteHandler(id);
+    this.props.deleteHandler(id);
   };
-  return (
-    <FriendCard>
-      <Card body style={{ backgroundColor: 'aliceblue' }}>
-        <CardTitle className="text-center">{props.friend.name}</CardTitle>
-        <CardText>Age: {props.friend.age}</CardText>
-        <CardText>email: {props.friend.email}</CardText>
-        <Button
-          onClick={() => handleDelClick(props.friend.id)}
-          className="btn btn-outline-danger float-right"
-        >
-          delete friend
-        </Button>
-      </Card>
-    </FriendCard>
-  );
-};
+
+  handleEditClick = id => {
+    console.log('clicked', id);
+    // this.props.deleteHandler(id);
+  };
+
+  render() {
+    return (
+      <FriendCard>
+        <Card body style={{ backgroundColor: 'aliceblue' }}>
+          <CardTitle className="text-center">
+            {this.props.friend.name}
+          </CardTitle>
+          <CardText>Age: {this.props.friend.age}</CardText>
+          <CardText>email: {this.props.friend.email}</CardText>
+          <span>
+            <Button
+              style={{ width: '70px' }}
+              onClick={() => this.handleEditClick(this.props.friend.id)}
+              className="btn btn-outline-primary float-leftt"
+            >
+              edit
+            </Button>
+            <Button
+              style={{ width: '70px' }}
+              onClick={() => this.handleDelClick(this.props.friend.id)}
+              className="btn btn-outline-danger float-right"
+            >
+              delete
+            </Button>
+          </span>
+        </Card>
+      </FriendCard>
+    );
+  }
+}
 
 export default Friend;
