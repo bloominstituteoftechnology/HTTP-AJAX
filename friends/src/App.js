@@ -4,6 +4,8 @@ import FriendsForm from './components/FriendsForm';
 import FriendsList from './components/FriendsList';
 import './App.css';
 
+const URL = 'http://localhost:5000/friends';
+
 class App extends Component {
   constructor() {
     super();
@@ -16,14 +18,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/friends')
-      .then(response => {
-        console.log(response);
-        this.setState({friendsData: response.data});
+    axios.get(URL)
+      .then(res => {
+        console.log('GET RESPONSE', res);
+        this.setState({friendsData: res.data});
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(error => console.log(error));
   }
 
   handleNameChange = e => {
@@ -56,18 +56,47 @@ class App extends Component {
       'email': this.state.friendEmail
     };
 
-    axios.post('http://localhost:5000/friends', friend)
-      .then(response => {
-        console.log("POST RESPONSE", response);
+    axios.post(URL, friend)
+      .then(res => {
+        console.log('POST RESPONSE', res);
         this.setState({
-          friendsData: response.data,
+          friendsData: res.data,
           friendName: '',
           friendAge: '',
           friendEmail: ''
         }) 
       })
       .catch(error => console.log(error));
-  }
+  };
+
+  handleUpdate = e => {
+    e.preventDefault();
+    const friend = {
+      friendName: this.state.friendName,
+      friendAge: this.state.friendAge,
+      friendEmail: this.state.friendEmail
+    };
+
+    axios.put(URL, {friend})
+      .then(res => {
+        console.log("PUT RESPONSE", res)
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleDelete = id => {
+    // console.log(id);
+    axios.delete(`${URL}/${id}`)
+      .then(res => {
+        console.log('DELETE RESPONSE', res);
+        this.setData(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  setData = data => {
+    this.setState({friendsData: data});
+  };
   
   render() {
     return (
@@ -83,7 +112,7 @@ class App extends Component {
             friendAge={this.state.friendAge}
             friendEmail={this.state.friendEmail}
           />
-          <FriendsList friendsData={this.state.friendsData} />
+          <FriendsList handleDelete={this.handleDelete} friendsData={this.state.friendsData} />
         </div>
       </Fragment>
     );
