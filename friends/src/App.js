@@ -39,7 +39,7 @@ class App extends Component {
   addNewFriend = () => {
     const friend = { name: this.state.newFriend};
     friend.age = Math.floor(Math.random() * 70) + 1;
-    friend.email = Math.random().toString(36).substr(2, 9);
+    friend.email = (Math.random().toString(36).substr(2, 9) + "@gmail.com");
     
     axios
         .post(URL, friend)

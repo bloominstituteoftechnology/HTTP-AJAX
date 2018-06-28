@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import FriendCard from './FriendCard';
-import BrowserHistory from 'react-router-dom';
 
 class Friend extends React.Component {
     constructor(props){
@@ -12,12 +10,10 @@ class Friend extends React.Component {
             match: props.match,
             url: props.url,
         };
-        this.fetchFriend();
     }
 
     componentDidMount() {
         const id = this.state.match.params.id;
-        console.log(id);
         this.fetchFriend(id);
     }
 
@@ -39,7 +35,10 @@ class Friend extends React.Component {
         return (
             <div>
                 <div>
-                    <FriendCard friend={this.state.friend} />
+                    {this.state.friend.name}<br />
+                    {this.state.friend.age}<br />
+                    {this.state.friend.email}<br />
+                    <Link to="/friends" className="home-button">Home</Link>
                 </div>
             </div>
         );
