@@ -16,27 +16,28 @@ class App extends React.Component {
     }
   }
 
-  handleSetData = data => this.setState({ friendsData: data });
+  setData = data => this.setState({ friendsData: data });
 
   componentDidMount() {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
-        console.log("GET RESPONSE: ", response);
-        this.setState({ friendsData: response.data });
+        console.log(response);
+        this.setData( response.data );
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  handleSubmitFriend = () => {
-    const friend = { friend: this.state.friend };
+  handleSubmitFriend = event => {
+    event.preventDefault();
+    const newFriend = this.state.friend;
     axios
-      .post("http://localhost:5000/friends", friend)
+      .post("http://localhost:5000/friends", {friend: newFriend})
       .then(response => {
         console.log("POST RESPONSE", response);
-        this.setState({ friendsData: response.data });
+        this.setState({ friendsData: response.data, friend: "" });
       })
       .catch(error => console.log(error));
   };
@@ -56,11 +57,11 @@ class App extends React.Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <FriendForm 
-          friend={this.state.friend}
+          value={this.state.friend}
           submitFriend={this.handleSubmitFriend}
           inputFriend={this.handleNameInput}
         />
-        <FriendsList friends={this.state.friendsData} />
+        <FriendsList friendsData={this.state.friendsData} />
       </div>
     );
   }

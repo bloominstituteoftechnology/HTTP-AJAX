@@ -12,22 +12,22 @@ const FriendForm = props => {
     
         return (
           <FlexWrapper>
-            <Form inline>
+            <Form inline onSubmit={props.submitFriend}>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleName" className="mr-sm-2">Name</Label>
                     <Input type="text" name="name" id="exampleName" placeholder="Billy Bob"
-                        value={props.friend}
+                        value={props.value}
                         onChange={props.inputFriend} />
                 </FormGroup>
-                {/* <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleAge" className="mr-sm-2">Age</Label>
                     <Input type="number" name="age" id="exampleAge" placeholder="42" />
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     <Label for="exampleEmail" className="mr-sm-2">Email</Label>
                     <Input type="email" name="email" id="exampleEmail" placeholder="idk@something.cool" />
-                </FormGroup> */}
-                <Button onSubmit={props.submitFriend}>Submit</Button>
+                </FormGroup>
+                <Button>Submit</Button>
             </Form>
           </FlexWrapper>
         )
