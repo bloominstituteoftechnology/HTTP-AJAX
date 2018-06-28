@@ -10,6 +10,8 @@ const Friends = props => {
               key={friend.id}
               friend={friend}
               handleFriendData={props.handleFriendData}
+              handleDeleteFriend={props.handleDeleteFriend}
+              handleSetData={props.handleSetData}
             />
           );
         })}
