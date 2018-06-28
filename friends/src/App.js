@@ -46,13 +46,17 @@ class App extends Component {
     });
   }
 
+  updateFriends = (data) => {
+    this.setState({friends: data});
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Friends List</h1>
         <Route exact path="/" render={(props) => <FriendList {...props} friendList = {this.state.friends}/>} />
         <Route exact path="/add" render={props => <AddFriend {...props} addFriendHandler={this.addNewFriend} handleChange={this.handleChange} newFriend={this.state.newFriend}/>} />
-        <Route exact path="/:id" render={(props) => <UpdateDeleteFriend {...props} friendList = {this.state.friends}/>}/>
+        <Route exact path="/friends/:id" render={(props) => <UpdateDeleteFriend {...props} updateFriends = {this.updateFriends}/>}/>
       </div>
     );
   }

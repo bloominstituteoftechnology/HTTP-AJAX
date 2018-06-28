@@ -27,22 +27,22 @@ class UpdateDeleteFriend extends Component {
         super(props);
         this.state = {
             currentFriend: {},
-            friends:[]
+            updatedFriend: {}
         }
     }
 
     handleChange = (e) => {
-        const currentFriend = Object.assign({}, this.state.currentFriend);
-        currentFriend[e.target.name] = e.target.value;
-        this.setState({currentFriend});
+        const updatedFriend = Object.assign({}, this.state.updatedFriend);
+        updatedFriend[e.target.name] = e.target.value;
+        this.setState({updatedFriend});
     }
 
     componentDidMount () {
         const id = this.props.match.params.id;
-        this.fetchMovie(id);
+        this.fetchFriend(id);
     }
 
-    fetchMovie (id) {
+    fetchFriend (id) {
         axios.get('http://localhost:5000/friends')
         .then(friends => friends.data.filter(friend=>friend.id.toString()===id)[0])
         .then(friend => this.setState({ currentFriend: friend }))
@@ -50,16 +50,21 @@ class UpdateDeleteFriend extends Component {
     }
 
     deleteFriend = () => {
-        const id = this.state.currentFriend.id;
-        axios.delete(`http://localhost:5000/friends/${id}`, this.state.currentFriend)
-        .then(friends=>console.log(friends))
+        const id = this.props.match.params.id;
+        axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(res => this.props.updateFriends(res.data))
         .catch(error => console.log(error));
     }
 
     updateFriend = () => {
         const id = this.state.currentFriend.id;
-        axios.put(`http://localhost:5000/friends/${id}`, this.state.currentFriend)
-        .then(friend=>console.log(friend))
+        const updatedFriend = {
+            name : this.state.updatedFriend.name? this.state.updatedFriend.name : this.state.currentFriend.name,
+            age : this.state.updatedFriend.age? this.state.updatedFriendriend.age : this.state.currentFriend.age,
+            email : this.state.updatedFriend.email? this.state.updatedFriend.email : this.state.currentFriend.email
+        }
+        axios.put(`http://localhost:5000/friends/${id}`, updatedFriend)
+        .then(res => this.props.updateFriends(res.data))
         .catch(error => console.log(error));
     }
 
@@ -67,20 +72,20 @@ class UpdateDeleteFriend extends Component {
         return (
             <StyledForm>
                 <FormGroup>
-                    <Label for="name" >Name</Label>
-                    <Input onChange={this.handleChange} type="text" name="name" id="name" value={this.state.currentFriend.name}></Input>
+                    <Label for="name">Current Name: {this.state.currentFriend.name}</Label>
+                    <Input onChange={this.handleChange} type="text" name="name" id="name" placeholder="...enter new name"></Input>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="age" >Age</Label>
-                    <Input onChange={this.handleChange} id="age" type="number" name="age" value={Number(this.state.currentFriend.age)}></Input>
+                    <Label for="age">Current Age: {this.state.currentFriend.age}</Label>
+                    <Input onChange={this.handleChange} id="age" type="number" name="age" placeholder="...enter new age"></Input>
                 </FormGroup>
                 <FormGroup>
-                    <Label for="email" >Email</Label>
-                    <Input onChange={this.handleChange} id="email" type="email" name="email" value={this.state.currentFriend.email}></Input>
+                    <Label for="email">Current Email: {this.state.currentFriend.email}</Label>
+                    <Input onChange={this.handleChange} id="email" type="email" name="email" placeholder="...enter new email"></Input>
                 </FormGroup>
                 <ButtonGroup>
-                    <StyleButton color="success" onClick={this.updateFriend}>Update</StyleButton>
-                    <StyleButton color="danger" onClick={this.deleteFriend}>Delete</StyleButton>
+                    <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton color="success" onClick={this.updateFriend}>Update</StyleButton></Link>
+                    <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton color="danger" onClick={this.deleteFriend}>Delete</StyleButton></Link>
                     <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton>Go Back</StyleButton></Link>
                 </ButtonGroup>
             </StyledForm>

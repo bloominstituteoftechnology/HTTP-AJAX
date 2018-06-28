@@ -16,7 +16,7 @@ const StyledForm = styled(Form)`
 const FriendCard = props => {
     return (
         <StyledForm>
-            <Link to={`/${props.friend.id}`} style={{'color': 'black'}}>
+            <Link to={`/friends/${props.friend.id}`} style={{'color': 'black'}}>
                 <FormGroup>
                     <Label>Name: {props.friend.name}</Label>
                 </FormGroup>

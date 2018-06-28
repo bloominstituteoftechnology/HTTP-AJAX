@@ -22,8 +22,8 @@ const ButtonGroup = styled(FormGroup)`
 `
 
 class AddFriend extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
     }
 
     render() {
@@ -42,7 +42,7 @@ class AddFriend extends React.Component {
                     <Input onChange={this.props.handleChange} id="email" type="email" name="email" placeholder="...enter email" value={this.props.newFriend.email}></Input>
                 </FormGroup>
                 <ButtonGroup>
-                    <StyleButton onClick={this.props.addFriendHandler}>Add Friend</StyleButton>
+                    <StyleButton color="primary" onClick={this.props.addFriendHandler}>Add Friend</StyleButton>
                     <Link to='/' style={{'color': 'white', 'textDecoration': 'none'}}><StyleButton>Go Back</StyleButton></Link>
                 </ButtonGroup>
             </StyledForm>
