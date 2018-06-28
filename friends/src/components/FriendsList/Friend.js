@@ -25,7 +25,8 @@ const Friend = props => {
         <h2 className="title is-6">{props.name}</h2>
         <p className="subtitle is-6">Email: {props.email}</p>
         <p className="subtitle is-6">Age: {props.age}</p>
-        <UpdateBtn>Update?</UpdateBtn>
+        <UpdateBtn onClick = {props.showUpdateModalHandler}>Update?</UpdateBtn>
+        <DeleteBtn onClick = {() => {
       </div>
     </Card>
   );
