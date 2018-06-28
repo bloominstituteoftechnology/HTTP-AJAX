@@ -1,27 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FriendForm from './FriendForm';
+import FriendFormError from './FriendFormError';
 
-const FriendsFormPage = props => {
-
-  let formTitle;
-  switch(props.formType) {
-    case 'update':
-      formTitle = 'Update Friend';
-      break;
-    case 'delete':
-      formTitle = 'Delete Friend';
-      break;
-    default:
-      formTitle = 'Add a Friend';
-      break;
+class FriendsFormPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formTitle: ''
+    };
   }
 
-  return(
-    <div id="friendFormPage">
-      <h2>{formTitle}</h2>
-      <FriendForm formType={props.formType} onSubmitFriend={props.onSubmitFriend} friends={props.friends} match={props.match} />
-    </div>
-  )
+  componentDidMount() {
+    switch(this.props.formType) {
+      case 'update':
+        this.setState({formTitle: 'Update Friend'});
+        break;
+      case 'delete':
+        this.setState({formTitle: 'Delete Friend'});
+        break;
+      default: 
+        this.setState({formTitle: 'Add a Friend'});
+    }
+  }
+
+  render() {
+    let friendForm, isIdValid = false, allFriends;
+    allFriends = this.props.friends.slice();
+    allFriends = allFriends.filter(friend => friend.id === Number(this.props.match.params.friendID));
+    if (allFriends.length > 0) {
+      isIdValid = true;
+    }
+    
+    if (isIdValid) {
+      friendForm = <FriendForm formType={this.props.formType} onSubmitFriend={this.props.onSubmitFriend} friends={this.props.friends} match={this.props.match} />;
+    } else {
+      friendForm = <FriendFormError />;
+    }
+
+    return(
+      <div id="friendFormPage">
+        <h2>{this.state.formTitle}</h2>
+        {friendForm}
+      </div>
+    )
+  }
 }
 
 export default FriendsFormPage;
