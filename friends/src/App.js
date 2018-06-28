@@ -25,7 +25,6 @@ class App extends Component {
     axios
         .get(URL)
         .then(response => {
-          console.log(response);
           this.setState({ friends: response.data, newFriend: "" });
         })
         .catch(err => {
@@ -57,11 +56,11 @@ class App extends Component {
     return (
         <div className='App'>
           <h1>Friends</h1>
-          <Route path='/' render={props => <FriendForm {...props} handleNewFriend={this.handleNewFriend} 
+          <Route path='/friends' render={props => <FriendForm {...props} handleNewFriend={this.handleNewFriend} 
                                                                   newFriendValue={this.state.newFriend}
                                                                   addNewFriend={this.addNewFriend} /> } />
-          <Route path='/friends/:id' component={Friend} />
-          <Route path='/' render={props => <FriendsList {...props} friends={this.state.friends} />} />
+          <Route path='/friends/:id' render={props => <Friend {...props} url={URL} />} />
+          <Route exact path='/friends' render={props => <FriendsList {...props} friends={this.state.friends} />} />
         </div>
     );
   }
