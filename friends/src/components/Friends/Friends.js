@@ -3,11 +3,14 @@ import Friend from "./Friend";
 import AddFriendForm from "./AddFriendForm";
 
 const Friends = props => {
-  console.log("FRIENDS PROPS: ", props);
+  // console.log("FRIENDS PROPS: ", props);
   return (
     <Fragment>
       <div>
-        <AddFriendForm newTextHandler={props.newTextHandler} />
+        <AddFriendForm
+          newTextHandler={props.newTextHandler}
+          handleSubmit={props.handleSubmit}
+        />
       </div>
       <div>
         {props.data.map(props => {

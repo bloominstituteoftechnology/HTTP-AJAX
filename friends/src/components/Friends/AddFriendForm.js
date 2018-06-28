@@ -1,10 +1,9 @@
 import React from "react";
 
 const AddFriendForm = props => {
-  console.log("ADD FRIEND FORM PROPS", props);
-  console.log("ADD FRIEND PROPS: ", props);
+  // console.log("ADD FRIEND FORM PROPS", props);
   return (
-    <form>
+    <form onSubmit={props.handleSubmit}>
       <h3>Add a new friend</h3>
       <label htmlFor="name">Name</label>
       <input

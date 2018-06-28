@@ -37,7 +37,38 @@ class App extends Component {
     });
   };
 
-  handleSubmitNewFriend = event => {};
+  handleSubmitNewFriend = event => {
+    let URL = "http://localhost:5000/friends";
+    if (
+      this.state.newFriendName &&
+      this.state.newFriendEmail &&
+      this.state.newFriendAge
+    ) {
+      // bundle and send to server
+      let serverMessage = {
+        name: this.state.newFriendName,
+        email: this.state.newFriendEmail,
+        age: this.state.newFriendAge
+      };
+
+      axios.post(URL, serverMessage).then(response => {
+        console.log("POST RESPONSE: ", response);
+        // now set state when you see the new data
+
+        // reset state fields
+        this.setState({
+          newFriendName: "",
+          newFriendEmail: "",
+          newFriendAge: ""
+        });
+      });
+    } else {
+      // alert missing data
+      alert(
+        "All form fields are required. Please check your data and try again"
+      );
+    }
+  };
 
   render() {
     // console.log("THIS STATE: ", this.state);
@@ -52,6 +83,7 @@ class App extends Component {
                 {...props}
                 f={this.state.f}
                 newTextHandler={this.handleNewFriendText}
+                handleSubmit={this.handleSubmitNewFriend}
               />
             );
           }}

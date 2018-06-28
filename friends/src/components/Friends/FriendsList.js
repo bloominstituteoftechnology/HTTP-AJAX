@@ -5,6 +5,7 @@ import { Route, Link } from "react-router-dom";
 import LandingPage from "../LandingPage/LandingPage";
 
 const FriendsList = props => {
+  // console.log("FRIENDS LIST PROPS: ", props);
   return (
     <div>
       [FRIENDS LIST]
@@ -16,7 +17,11 @@ const FriendsList = props => {
           <Link to={"/friends"}>Friends</Link>
         </li>
       </ul>
-      <Friends data={props.f} newTextHandler={props.newTextHandler} />
+      <Friends
+        data={props.f}
+        newTextHandler={props.newTextHandler}
+        handleSubmit={props.handleSubmit}
+      />
       {/*<Route path={"/friends"} component={AddFriendForm} />*/}
     </div>
   );
