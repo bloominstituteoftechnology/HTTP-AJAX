@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import FriendsList from "./components/FriendsList/FriendsList";
 import FriendsForm from "./components/FriendsList/FriendsForm";
+import UpdateModal from "./components/ModalComponents/UpdateModal";
 import styled from "styled-components";
 import "bulma/css/bulma.css";
 
