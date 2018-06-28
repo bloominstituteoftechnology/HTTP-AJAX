@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FriendForm from './FriendForm';
 import FriendCard from './FriendCard';
 import Styled from  'styled-components';
 import {Link} from 'react-router-dom';
@@ -15,15 +14,14 @@ const FriendsList = props => {
     return (
         <Container>
             {props.friends.map(friend => {
-                return<Link to={`/friend/${friend.id}`}> 
-                <FriendCard key={friend.id} 
+                return <FriendCard key={friend.id} 
                 name={friend.name} 
                 age={friend.age} 
                 email={friend.email} 
                 location={friend.location} 
-
                 id={friend.id} 
-                deleteFriend={props.deleteFriend} /></Link>
+                deleteFriend={props.deleteFriend} 
+                toggleForm={props.toggleForm} showForm={props.showEditForm}/>
             })}
             <Link to='/newfriend' ><button>Add new friend</button></Link>
  
@@ -34,6 +32,7 @@ const FriendsList = props => {
 FriendsList.propTypes = {
     name: PropTypes.string,
     age: PropTypes.number,
-    email: PropTypes.string
+    email: PropTypes.string,
+    location: PropTypes.string
 }
 export default FriendsList;

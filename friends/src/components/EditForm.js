@@ -38,22 +38,8 @@ const EditForm = props => {
             placeholder={props.location}
             onChange={props.textHandler}
             />
-            <div>
-            <input type='radio' 
-            name='gender'
-            value='male'
-            onChange={props.textHandler}
-            />
-            <label value='male'>Male</label>
-            <input type='radio' 
-            name='gender'
-            value='female'
-            onChange={props.textHandler}
-            />
-            <label value='female'>Female</label>
-            </div>
 
-            <Link to='/'><button onClick={props.editFriend}>Add Friend</button></Link>
+            <Link to='/'><button onClick={(e) => props.editFriend(props.id)}>Edit Friend</button></Link>
         </FormBox>
 
         </div>

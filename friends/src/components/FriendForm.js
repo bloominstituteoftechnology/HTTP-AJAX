@@ -35,7 +35,7 @@ const FriendForm = props => {
             />
             <input type='text' 
             name='location'
-            placeholder='City, State'
+            placeholder='Location'
             onChange={props.textHandler}
             />
             <Link to='/'><button onClick={props.addFriend}>Add Friend</button></Link>

@@ -26,11 +26,14 @@ const FriendCard = props => {
 
     return (
         <Border>
-            <Name>{props.name}</Name>
+            <Link to={`/friend/${props.id}`}> 
+               <Name>{props.name}</Name></Link>
+               
             <Data>{props.age}</Data>
             <Data>{props.email}</Data>
             <Data>{props.location}</Data>
-            <button>Edit</button>
+            <Link to={`/edit/${props.id}`}><button editFriend={props.editFriend}>Edit</button></Link>
+           
            <Link to='/'> <button onClick={(e) => props.deleteFriend(props.id)}>Delete</button></Link>
         </Border>
     );
