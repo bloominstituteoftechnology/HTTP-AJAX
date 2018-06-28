@@ -1,11 +1,18 @@
 import React from 'react';
+import Friend from './Friend';
+import { Link } from 'react-router-dom';
+
+
 
 const FriendsDisplay = props => {
     return (
         <div>
-            {props.friends.map(friend => {
+            {props.nuts.map(friend => {
                 return (
-                    <div key={friend.id}>{friend.name}</div>
+                    // <Link to={`/friends/${friend.id}`}>
+                    <Friend key={friend.id} friend={friend} handleSetData={props.handleSetData} />
+                    
+                    
                 
             )})}
         </div>
@@ -13,4 +20,4 @@ const FriendsDisplay = props => {
     );
 };
  
-export default FriendsDisplay;
+export default FriendsDisplay
