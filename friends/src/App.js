@@ -16,7 +16,7 @@ constructor() {
  
   render() {
     return (
-      <div className="App main-container">
+      <div className="main-container">
 	    <Form />
       </div>
     );

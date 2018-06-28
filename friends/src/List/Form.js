@@ -11,10 +11,13 @@ constructor() {
       friendsData: [],
       newfriend: "",
       age: "",
-      email: ""
+      email: "",
     };
   }
 
+ // nameEditHandler = event => {
+   //       this.setState({editedName: event.target.value});
+  // };
 
 
    nameChangeHandler = event => {
@@ -52,6 +55,16 @@ constructor() {
       .catch(error => console.log(error));
   };
 
+editFriend = (friendId, nameEdit) => {
+        const friend = {name: nameEdit};
+        axios.put(`http://localhost:5000/friends/${friendId}`,
+        friend)
+        .then(response => {
+         console.log("POST RESPONSE", response);
+        this.setState({ friendsData: response.data, editedName: "" });
+      })
+      .catch(error => console.log(error));
+  };
 
  componentDidMount() {
     axios
@@ -78,7 +91,8 @@ render(){
              <input className="input-field" type="text" placeholder="email" value={this.state.email} onChange={this.emailChangeHandler} /><br />
 
 	   <button className="btn-style" onClick={this.addFriend}>Add Friend</button>
-	  <FriendList  friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />
+
+	  <FriendList editFriend={this.editFriend} friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />
 	  </div>
   );
 }
