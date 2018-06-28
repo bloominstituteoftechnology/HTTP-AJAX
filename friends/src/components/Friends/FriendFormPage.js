@@ -25,9 +25,13 @@ class FriendsFormPage extends Component {
 
   render() {
     let friendForm, isIdValid = false, allFriends;
-    allFriends = this.props.friends.slice();
-    allFriends = allFriends.filter(friend => friend.id === Number(this.props.match.params.friendID));
-    if (allFriends.length > 0) {
+    if (this.props.friends) {
+      allFriends = this.props.friends.slice();
+      allFriends = allFriends.filter(friend => friend.id === Number(this.props.match.params.friendID));
+      if (allFriends.length > 0) {
+        isIdValid = true;
+      }
+    } else {
       isIdValid = true;
     }
     

@@ -6,7 +6,7 @@ const FriendFormError = props => {
     <div id="form-error">
       You have reached this page because you tried to update an imaginary friend.
       <Link to='/'>
-        <button>Go to Friends</button>
+        <button><div>Go to Friends</div></button>
       </Link>
     </div>
   );

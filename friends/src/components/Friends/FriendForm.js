@@ -71,9 +71,9 @@ class FriendForm extends Component {
         <input name="age" type="number" onChange={this.onChange} value={this.state.friend.age} />
         <label htmlFor="email">Email</label>
         <input name="email" type="email" onChange={this.onChange} value={this.state.friend.email} />
-        <button onClick={this.onSubmit}>{this.state.buttonText}</button>
+        <button onClick={this.onSubmit}><div>{this.state.buttonText}</div></button>
         <Link to="/">
-          <button>Cancel</button>
+          <button><div>Cancel</div></button>
         </Link>
       </form>
     )

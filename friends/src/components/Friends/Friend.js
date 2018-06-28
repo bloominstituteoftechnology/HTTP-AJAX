@@ -8,9 +8,9 @@ const Friend = props => {
       <div className="friend__age">{props.friend.age}</div>
       <div className="friend__email">{props.friend.email}</div>
       <Link to={`/update/${props.friend.id}`}>
-        <button>Update</button>
+        <button><div>Update</div></button>
       </Link>
-      <button onClick={() => {props.onDeleteFriend(props.friend.id)}}>Delete</button>
+      <button onClick={() => {props.onDeleteFriend(props.friend.id)}}><div>Delete</div></button>
     </li>
   );
 }
