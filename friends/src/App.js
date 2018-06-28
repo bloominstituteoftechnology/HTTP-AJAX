@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import FriendForm from './components/FriendForm';
 import Friends from './components/Friends';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +15,9 @@ class App extends Component {
       email: '',
       friendList: [],
     };
+    this.handleDeleteFriend=this.handleDeleteFriend.bind(this);
+    this.handleNewFriend=this.handleNewFriend.bind(this);
+    
   }
 
   componentDidMount() {
@@ -31,16 +34,17 @@ class App extends Component {
     this.setState({ [fieldName]: value });
   };
 
-  handleNewFriend = e => {
+  handleNewFriend(e) {
     e.preventDefault();
     let { friendList, ...rest } = this.state;
-    const friendPost = axios.post(this.url, rest);
-    friendPost
-      .then(response => {
-        this.setState({ friendList: response.data });
+    let context = this;
+    let friendRequest = axios.post(this.url, rest);
+      friendRequest.then(response => {
+        context.setState({ friendList: response.data });
+        context.props.history.push('/');
       })
       .catch(response => {
-        alert('Add friend failed!');
+        alert('Add friend failed! ' + response);
       });
     this.setState({
       name: '',
@@ -49,11 +53,16 @@ class App extends Component {
     });
   };
 
+  handleDeleteFriend(id) {
+    axios.delete(`${this.url}/${id}`).then(response=>{
+      console.log(response);
+      this.setState({friendList: response.data})});
+  };
+
   handleFriendUpdate = (friend) => {
     axios.put(`${this.url}/${friend.id}`, friend)
       .then((response) => {
-        console.log(response);
-        this.setState({friendList: response.data})
+        this.setState({friendList: response.data});
       })
       .catch((response) => {alert('Save failed: ', response.data )});
   };
@@ -81,7 +90,7 @@ class App extends Component {
             </div>
           </nav>
         </header>
-        <Route exact path="/" render={() => <Friends friendList={this.state.friendList} handleFriendUpdate={this.handleFriendUpdate} />} />
+        <Route exact path="/" render={() => <Friends friendList={this.state.friendList} handleFriendUpdate={this.handleFriendUpdate} handleDeleteFriend={this.handleDeleteFriend} />} />
         <Route
           exact
           path="/addfriend"
@@ -100,4 +109,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const AppWithRouter = withRouter(({ history })=><App history={history} />);
+
+export default AppWithRouter;

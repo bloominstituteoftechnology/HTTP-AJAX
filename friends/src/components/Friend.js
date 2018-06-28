@@ -50,6 +50,7 @@ export default class Friend extends Component {
     <div>
         <div>{`${this.props.name}, age: ${this.props.age}, email: ${this.props.email}`}</div>
         <button onClick={this.editFriend}>Edit</button>
+        <button onClick={() => {this.props.handleDeleteFriend(this.props.id)}}>Delete</button>
         {this.presentEdit()}
         </div>)
   
