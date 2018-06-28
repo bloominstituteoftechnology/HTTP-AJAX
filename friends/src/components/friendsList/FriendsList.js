@@ -11,7 +11,9 @@ const FriendsList = props => {
                 < Friends 
                 handleSetData = {props.handleSetData}
                 key = {friend.id} 
-                friend ={friend} />
+                friend ={friend} 
+                handleDelete = {props.handleDelete}
+                />
                 // </Link>
                  )
             })}

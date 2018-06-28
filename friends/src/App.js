@@ -6,7 +6,7 @@ import FriendsForm from './components/friendsForm/FriendsForm';
 
 import {Route} from 'react-router-dom';
 
-
+const URL = "http://localhost:5000/friends";
 
 class App extends Component {
   constructor() {
@@ -19,9 +19,11 @@ class App extends Component {
     };
   }
 
+  
+
   componentDidMount() {
     axios
-    .get("http://localhost:5000/friends")
+    .get(URL)
     .then(response =>{
       console.log("get response:", response);
       this.setState({friendsData : response.data})
@@ -33,6 +35,15 @@ class App extends Component {
 
   handleSetData = data => {
     this.setState({friendsData: data})
+  }
+
+  handleDelete = id => {
+    axios
+    .delete(`${URL}/${id}`)
+    .then(response => this.handleSetData(response.data))
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   // handleNameChange = e => {
@@ -97,6 +108,7 @@ class App extends Component {
         <FriendsList 
         friends = {this.state.friendsData} 
         handleSetData = {this.handleSetData}
+        handleDelete = {this.handleDelete}
         />
         {/* <Route exact path = "/" component = {Friends.id}  />
         <Route path = "/" render = {(props)=> <FriendsList {...props} friends = {this.state.friendsData}/>} /> */}
