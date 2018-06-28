@@ -1,0 +1,34 @@
+/* FriendsForm Styles */
+.friends-form {
+    background: #C9E4CA;
+    padding: 10px 0;
+    width: 80%;
+    border-radius: 15px;
+}
+.friends-form h3 {
+    color: #364958;
+    margin: 5px 0 10px 0;
+    width: 100%;
+}
+.friends-form input {
+    margin: 0 5px;
+    width: 30%;
+}
+.friends-form button {
+    margin-top: 10px;
+}
+
+/* FriendsList Styles */
+.friends-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Friend Styles */
+.friend-card {
+    width: 50%;
+    margin: 10px auto;
+    border: 1px solid #364958;
+    border-radius: 15px;
+    background: #C9E4CA;
+}

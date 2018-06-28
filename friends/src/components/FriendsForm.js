@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './Components.css';
 
 class FriendsForm extends React.Component {
     constructor(props) {

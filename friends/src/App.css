@@ -8,14 +8,19 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #364958;
+  height: 200px;
   padding: 20px;
   color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .App-title {
   font-size: 1.5em;
+  color: white;
+  width: 100%;
 }
 
 .App-intro {
