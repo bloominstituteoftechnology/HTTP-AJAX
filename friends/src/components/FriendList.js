@@ -9,7 +9,10 @@ class FriendList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      email: '',
+      age: ''
     }
   }
 
@@ -56,6 +59,12 @@ class FriendList extends Component {
       .catch(data => console.log(data))
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   render() { 
     //console.log('Friend List State', this.state.friends)
     return (
@@ -63,13 +72,39 @@ class FriendList extends Component {
         {this.state.friends.map(friend =>
           <div className="card mt-3">
             <div className="card-body">
-              <h5 className="card-title">{friend.name}</h5>
+              <input 
+                className="card-title"
+                type="text"
+                name="name"
+                value={friend.name}
+                onChange={() => this.handleChange()}  
+              />
               <ul className="list-group">
-                <li className="list-group-item">age: {friend.age}</li>
-                <li className="list-group-item">email: {friend.email}</li>
+                <input 
+                  type="text" 
+                  className="list-group-item"
+                  value={friend.age}
+                  onChange={() => this.handleChange()} 
+                />
+                <input 
+                  type="text" 
+                  className="list-group-item" 
+                  value={friend.email}
+                  onChange={() => this.handleChange()}  
+                />
               </ul>
-              <button className="btn btn-outline-success mt-2" type="button" onClick={() => this.handleUpdate(friend.id, friend.name, friend.age, friend.email)}>Update</button>
-              <button className="btn btn-outline-danger mt-2 ml-2" type="button" onClick={() => this.handleDelete(friend.id, friend)}>Delete</button>
+              <button 
+                className="btn btn-outline-success mt-2" 
+                type="button" 
+                onClick={() => this.handleUpdate(friend.id, friend.name, friend.age, friend.email)}>
+                Update
+              </button>
+              <button 
+                className="btn btn-outline-danger mt-2 ml-2" 
+                type="button" 
+                onClick={() => this.handleDelete(friend.id, friend)}>
+                Delete
+              </button>
             </div>
           </div>
         )}
