@@ -19,20 +19,29 @@ class App extends Component {
       .catch(err => console.log('ERROR:', err));
   }
 
+  updateFriends = friends => {
+    this.setState({ friends });
+  };
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(err => console.log('ERROR deleteing:', err));
+  };
+
   componentDidMount() {
     this.retrieveData();
   }
-
-  updateFriends = friends => {
-    console.log(friends);
-    this.setState({ friends });
-  };
 
   render() {
     return (
       <div>
         <AddFriendForm updateFriends={this.updateFriends} />
-        <Friends friends={this.state.friends} />
+        <Friends
+          friends={this.state.friends}
+          deleteHandler={this.deleteFriend}
+        />
       </div>
     );
   }
