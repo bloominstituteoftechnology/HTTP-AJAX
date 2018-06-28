@@ -6,7 +6,7 @@ const Friends = props => {
   return (
     <Fragment>
       <div>
-        <AddFriendForm />
+        <AddFriendForm newTextHandler={props.newTextHandler} />
       </div>
       <div>
         {props.data.map(props => {

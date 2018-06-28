@@ -8,7 +8,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      f: []
+      f: [],
+      formInput: {
+        name: "",
+        email: "",
+        age: ""
+      }
     };
   }
 
@@ -23,6 +28,18 @@ class App extends Component {
         console.log("ERROR", err);
       });
   }
+
+  handleNewFriendText = event => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleSubmitNewFriend = event => {};
 
   render() {
     // console.log("THIS STATE: ", this.state);
