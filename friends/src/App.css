@@ -32,18 +32,19 @@
   to { transform: rotate(360deg); }
 }
 
+
 .input {
   border: 2px solid red;
   border-radius: 4px;
   text-align: center;
-  width: 150px;
+  width: 250px;
   margin: 0 5px;
   height: 25px;
 }
 
 .input:focus {
   outline: none;
-  width: 250px;
+  border: 2px solid rgb(47, 154, 216);
 }
 
 .button {
@@ -57,14 +58,46 @@
   margin: 5px;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 .button-add {
-  background-color: rgb(2, 138, 184);  
+  background-color: rgb(2, 138, 184);
+}
+
+.button-add:hover {
+  background-color: rgb(2, 100, 133);
 }
 
 .button-save {
   background-color: rgb(174, 182, 58);
 }
 
+.button-save:hover {
+  background-color: rgb(107, 112, 36);
+}
+
 .button-return {
-  background-color: rgb(30, 126, 43);  
+  background-color: rgb(30, 126, 43);
+}
+
+.button-return:hover {
+  background-color: rgb(27, 116, 39);
+}
+
+.button-update {
+  background-color: rgb(207, 143, 24);
+}
+
+.button-update:hover {
+  background-color: rgb(150, 105, 22);
+}
+
+.button-delete {
+  background-color: rgb(196, 58, 24);
+}
+
+.button-delete:hover {
+  background-color: rgb(145, 46, 21);
 }

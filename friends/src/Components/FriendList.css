@@ -3,16 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1000px;
+    width: 75%;
     margin: 0 auto;
 }
 
 .friends {
     border-bottom: 1px solid black;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 100%;
     padding: 5px 0;
     font-weight: bold;
 }
@@ -32,6 +32,6 @@
 }
 
 .friends_email {
-    width: 10%;
+    width: 20%;
     margin: 0 40px;
 }
