@@ -34,6 +34,7 @@ export default class AddFriendForm extends React.Component {
   };
 
   handleChange = e => {
+    // console.log(e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -46,6 +47,7 @@ export default class AddFriendForm extends React.Component {
           </Label>
           <Col sm={10}>
             <Input
+              name="name"
               value={this.state.name}
               onChange={this.handleChange}
               placeholder="enter name"
@@ -58,6 +60,7 @@ export default class AddFriendForm extends React.Component {
           </Label>
           <Col sm={10}>
             <Input
+              name="age"
               type="number"
               value={this.state.age}
               onChange={this.handleChange}
@@ -71,6 +74,7 @@ export default class AddFriendForm extends React.Component {
           </Label>
           <Col sm={10}>
             <Input
+              name="email"
               value={this.state.email}
               onChange={this.handleChange}
               placeholder="enter email"
