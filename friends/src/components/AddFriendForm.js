@@ -8,10 +8,10 @@ class AddFriendForm extends React.Component {
     this.state = {}
   }
 
-  pageRefresh = () => {
+  /*pageRefresh = () => {
     this.props.handleSubmitFriend;
     console.log('fajiowfj');
-  }
+  } */
 
 
   render() {

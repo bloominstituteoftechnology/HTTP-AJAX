@@ -56,12 +56,12 @@ class Friend extends React.Component {
 
     render() {
       return (
-        <div>
-          <ul>
-            <li>Name: {this.props.friend.name}</li>
-            <li>Age: {this.props.friend.age}</li>
-            <li>Email: {this.props.friend.email}</li>
-          </ul>
+        <div className="friend-contianer">
+          <div>
+            <h3>Name: {this.props.friend.name}</h3>
+            <h3>Age: {this.props.friend.age}</h3>
+            <h3>Email: {this.props.friend.email}</h3>
+          </div>
           {this.state.showEditForm ? (
             <EditFriend editHandler={this.handleChange} saveEdit={this.saveEdit}
             nameValue={this.state.nameEdit} ageValue={this.state.ageEdit}
