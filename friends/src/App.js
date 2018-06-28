@@ -22,6 +22,7 @@ class App extends Component {
     e.preventDefault();
 
     const newFriendObj = { 
+      // 'name' is from server.js
       name: this.state.name,
       age: this.state.age,
       email: this.state.email

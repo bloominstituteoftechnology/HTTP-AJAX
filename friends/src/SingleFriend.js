@@ -20,7 +20,7 @@ class SingleFriend extends React.Component{
 
     saveEdit = e => {
         e.preventDefault();
-        let id = this.props.friendItem.id;
+        let { id } = this.props.friendItem;
         const friendObj ={
             name: this.state.name,
             age: this.state.age,
@@ -31,8 +31,19 @@ class SingleFriend extends React.Component{
             .then(response =>{
                 console.log('save edit response: ', response);
                 this.props.handleSetData(response.data)
+                .then(() => this.setState({ name: '', age: '', email: ''}))
             })
             .catch(error => console.log(error));
+    }
+
+    deleteFriend=id=>{
+        console.log('id delete: ', id);
+        axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(res => this.props.handleSetData(res.data))
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     toggleForm=()=>{
@@ -56,6 +67,7 @@ class SingleFriend extends React.Component{
                     />
                     ) : null}
                     <button onClick={this.toggleForm}> Edit </button>
+                    <button onClick={() => this.deleteFriend(this.props.friendItem.id)}>Delete {this.props.friendItem.name}</button>
                 
                 
     
