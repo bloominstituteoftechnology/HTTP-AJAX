@@ -32,7 +32,7 @@ render() {
       return <div>Loading...</div>;
     }
 
-    return (    <div>
+    return (    <div className="list-container">
                 <Friend deleteFriend ={this.props.deleteFriend} friend={this.state.selectedFriend}/>
                 </div>
       );
