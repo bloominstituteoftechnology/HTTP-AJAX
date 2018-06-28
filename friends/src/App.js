@@ -55,7 +55,7 @@ class App extends Component {
       axios
         .post(URL, serverMessage)
         .then(response => {
-          console.log("POST RESPONSE: ", response);
+          // console.log("POST RESPONSE: ", response);
           // now set state when you see the new data
           this.setState({ f: response.data });
 

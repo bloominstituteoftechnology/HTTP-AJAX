@@ -1,14 +1,11 @@
 import React from "react";
 import Friends from "./Friends";
-import AddFriendForm from "./AddFriendForm";
-import { Route, Link } from "react-router-dom";
-import LandingPage from "../LandingPage/LandingPage";
+import { Link } from "react-router-dom";
 
 const FriendsList = props => {
   // console.log("FRIENDS LIST PROPS: ", props);
   return (
     <div>
-      [FRIENDS LIST]
       <ul>
         <li>
           <Link to={"/"}>Home</Link>

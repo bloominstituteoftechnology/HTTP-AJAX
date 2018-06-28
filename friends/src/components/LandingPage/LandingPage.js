@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const LandingPage = props => {
   return (
     <Fragment>
-      <div>[LANDING PAGE]</div>
       <Link to="/friends">FRIENDS</Link>
     </Fragment>
   );
