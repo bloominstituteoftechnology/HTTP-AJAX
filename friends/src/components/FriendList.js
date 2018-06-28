@@ -36,29 +36,21 @@ class FriendList extends Component {
       .catch(err => console.log('error deleting ', err))
   }
 
-  handleUpdate = id => {
-    //let stateObj = this.state;
-    const name = prompt('Name', 'Name');
-    const age = prompt('Age', 'Age');
-    const email = prompt('Email', 'Email');
+  handleUpdate = (id, friendName, friendAge, friendEmail) => {
+    const name = prompt('Name', friendName);
+    const age = prompt('Age', friendAge);
+    const email = prompt('Email', friendEmail);
+
     axios
-      .put(`http://localhost:5000/friends/${id}`, {
-        name: name,
-        age: age,
-        email: email,
+      .put(`http://localhost:5000/friends/${id}`, { 
+        name, 
+        age, 
+        email 
       })
-      //.then(res => res.data.find(el => el.id === id))
-      // .then(data => {
-      //   console.log('data', data) // returns the object with the id that "===" with the id passed to handleUpdate()
-      //   data.name = prompt('Name', data.name);
-      //   data.age = prompt('Age', data.age);
-      //   data.email = prompt('Email', data.email);
-      //   return data;
-      // })
       .then(response => {
-        console.log('edited', response.data) // return the edited object
+        //console.log('edited', response.data)
         this.setState({
-          friends: [response.data[0], ...this.state.friends]
+          friends: response.data
         })
       })
       .catch(data => console.log(data))
@@ -76,8 +68,8 @@ class FriendList extends Component {
                 <li className="list-group-item">age: {friend.age}</li>
                 <li className="list-group-item">email: {friend.email}</li>
               </ul>
-              <button className="btn btn-outline-success mt-2" type="button" onClick={() => this.handleUpdate(friend.id)}>Update</button>
-              <button className="btn btn-outline-danger mt-2 ml-2" type="button" onClick={() => this.handleDelete(friend.id)}>Delete</button>
+              <button className="btn btn-outline-success mt-2" type="button" onClick={() => this.handleUpdate(friend.id, friend.name, friend.age, friend.email)}>Update</button>
+              <button className="btn btn-outline-danger mt-2 ml-2" type="button" onClick={() => this.handleDelete(friend.id, friend)}>Delete</button>
             </div>
           </div>
         )}
