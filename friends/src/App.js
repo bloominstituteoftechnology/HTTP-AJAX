@@ -31,7 +31,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Friends List</h1>
           <FriendsForm
-            handleSetDat={this.handleSetData}
+            handleSetData={this.handleSetData}
           />
         </header>
         <FriendsList friends={this.state.friendsData} />

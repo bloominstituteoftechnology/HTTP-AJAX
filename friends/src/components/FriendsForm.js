@@ -8,7 +8,10 @@ class FriendsForm extends React.Component {
         this.state = {
             name: '',
             email: '',
-            age: ''
+            age: '',
+            nameHolder: 'Enter a name...',
+            emailHolder: 'Enter an email...',
+            ageHolder: 'Enter an age...'
         }
     }
 
@@ -17,15 +20,13 @@ class FriendsForm extends React.Component {
     };
 
     saveNewFriend = () => {
-        const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email }; // create our edits object
+        const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
         axios
-          .put(
-            `http://localhost:5000/friends`,
-            newFriend
-          )
+          .post(`http://localhost:5000/friends`, newFriend)
           .then(response => {
-            console.log(response);
+            console.log('POST RESPONSE: ', response);
             this.props.handleSetData(response.data);
+            this.setState({ name: '', email: '', age: '' })
           })
           .catch(error => console.log(error)); // send up our edits to the server using a put
       };
@@ -37,19 +38,22 @@ class FriendsForm extends React.Component {
                 <input
                     type="text"
                     name="name"
-                    placeholder={this.state.name}
+                    placeholder={this.state.nameHolder}
+                    value={this.state.name}
                     onChange={this.editAvengerHandler}
                 />
                 <input
                     type="text"
                     name="age"
-                    placeholder={this.state.age}
+                    placeholder={this.state.ageHolder}
+                    value={this.state.age}
                     onChange={this.editAvengerHandler}
                 />
                 <input
                     type="text"
                     name="email"
-                    placeholder={this.state.email}
+                    placeholder={this.state.emailHolder}
+                    value={this.state.email}
                     onChange={this.editAvengerHandler}
                 />
                 <button onClick={this.saveNewFriend}>Save</button>
