@@ -3,16 +3,30 @@ import styled from "styled-components";
 import "bulma/css/bulma.css";
 
 const Card = styled.div.attrs({
-    className: 'card'
+  className: "card"
 })`
-margin: 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+`;
+const UpdateBtn = styled.div.attrs({
+  className: "button"
+})`
+  background: lightskyblue;
+  color: white;
+  &:hover {
+    color: white;
+    background: royalblue;
+  }
 `;
 const Friend = props => {
   return (
-      <Card>
-          <h2 className = "title is-6">{props.name}</h2>
-          <p className = 'subtitle is-6'>Email: {props.email}</p>
-          <p className = 'subtitle is-6'>Age: {props.age}</p>
+    <Card>
+      <div className="card-content">
+        <h2 className="title is-6">{props.name}</h2>
+        <p className="subtitle is-6">Email: {props.email}</p>
+        <p className="subtitle is-6">Age: {props.age}</p>
+        <UpdateBtn>Update?</UpdateBtn>
+      </div>
     </Card>
   );
 };
