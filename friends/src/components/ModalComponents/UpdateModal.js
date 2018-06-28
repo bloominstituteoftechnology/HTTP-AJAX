@@ -5,27 +5,33 @@ import "bulma/css/bulma.css";
 const FormSection = styled.section.attrs({
   className: "section"
 })``;
+
 const Container = styled.div.attrs({
   className: "container"
 })`
   max-width: 400px;
 `;
+
 const Field = styled.div.attrs({
   className: "field"
 })``;
+
 const Control = styled.div.attrs({
   className: "control"
 })``;
+
 const ModalFooter = styled.div.attrs({
   className: "modal-card-foot"
 })`
+
 display: flex;
 justify-content: space-between;
 }
 `;
-const UpdateForm = props => {
+
+const UpdateModal = props => {
   return (
-    <div className="modal is-active">
+    <div className={`modal ${props.updateModalShown ? 'is-active' : ''}`}>
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
@@ -82,11 +88,11 @@ const UpdateForm = props => {
         </section>
         <ModalFooter>
           <button className="button is-success">Save changes</button>
-          <button className="button">Cancel</button>
+          <button className="button" onClick ={props.cancelUpdateHandler}>Cancel</button>
         </ModalFooter>
       </div>
     </div>
   );
 };
 
-export default UpdateForm;
+export default UpdateModal;
