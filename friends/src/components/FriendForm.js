@@ -2,9 +2,13 @@ import React from 'react';
 
 const FriendForm = props => {
     return (
-        <div>
-
-        </div>
+        <form onSubmit={props.addNewFriend}>
+            <input type="text"
+                    placeholder='Enter Friend'
+                    onChange={props.handleNewFriend}
+                    value={props.newFriendValue} /> 
+            <button type='submit'>Submit</button>       
+        </form>
     );
 }
 

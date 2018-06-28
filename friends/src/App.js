@@ -13,6 +13,7 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
+      newFriend: "",
     }
   }
 
@@ -25,24 +26,42 @@ class App extends Component {
         .get(URL)
         .then(response => {
           console.log(response);
-          this.setData(response.data);
+          this.setState({ friends: response.data, newFriend: "" });
         })
         .catch(err => {
           console.log(err);
         })
       }
     
-  setData = data => {
-    this.setState({friends: data});
+  handleNewFriend = e => {
+    this.setState({ newFriend: e.target.value });
   }
 
+  addNewFriend = () => {
+    const friend = { name: this.state.newFriend};
+    friend.age = Math.floor(Math.random() * 70) + 1;
+    friend.email = Math.random().toString(36).substr(2, 9);
+    
+    axios
+        .post(URL, friend)
+        .then(response => {
+          console.log("Post Response", response);
+          this.getData();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+  }
 
   render() {
     return (
         <div className='App'>
           <h1>Friends</h1>
-          <Route exact path='/' render={props => <FriendsList {...props} friends={this.state.friends} />} />
+          <Route path='/' render={props => <FriendForm {...props} handleNewFriend={this.handleNewFriend} 
+                                                                  newFriendValue={this.state.newFriend}
+                                                                  addNewFriend={this.addNewFriend} /> } />
           <Route path='/friends/:id' component={Friend} />
+          <Route path='/' render={props => <FriendsList {...props} friends={this.state.friends} />} />
         </div>
     );
   }
