@@ -10,7 +10,8 @@ const FriendsList = props => {
                         key={index}
                         index={index}
                         friend={friend}
-                        handleDelete={props.handleDelete}         
+                        handleDelete={props.handleDelete}
+                        handleUpdate={props.handleUpdate}    
                     />
                 );
             })}

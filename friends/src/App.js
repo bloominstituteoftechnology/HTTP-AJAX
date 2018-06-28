@@ -64,22 +64,29 @@ class App extends Component {
           friendName: '',
           friendAge: '',
           friendEmail: ''
-        }) 
+        }); 
       })
       .catch(error => console.log(error));
   };
 
-  handleUpdate = e => {
-    e.preventDefault();
+  handleUpdate = (id) => {
+    // console.log(id, name, age, email);
+
     const friend = {
-      friendName: this.state.friendName,
-      friendAge: this.state.friendAge,
-      friendEmail: this.state.friendEmail
+      name: this.state.friendName,
+      age: Number(this.state.friendAge),
+      email: this.state.friendEmail
     };
 
-    axios.put(URL, {friend})
+    axios.put(`${URL}/${id}`, friend)
       .then(res => {
         console.log("PUT RESPONSE", res)
+        this.setState({
+          friendsData: res.data,
+          friendName: '',
+          friendAge: '',
+          friendEmail: ''
+        });
       })
       .catch(err => console.log(err));
   };
@@ -112,7 +119,7 @@ class App extends Component {
             friendAge={this.state.friendAge}
             friendEmail={this.state.friendEmail}
           />
-          <FriendsList handleDelete={this.handleDelete} friendsData={this.state.friendsData} />
+          <FriendsList handleUpdate={this.handleUpdate} handleDelete={this.handleDelete} friendsData={this.state.friendsData} />
         </div>
       </Fragment>
     );
