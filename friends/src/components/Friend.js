@@ -5,9 +5,13 @@ const Friend = props => {
         <Fragment>
             <p>{`${props.friend.id}: ${props.friend.name}, ${props.friend.age}, ${props.friend.email}`}</p>
             <button
-                onClick={() => props.handleUpdate(
-                    props.friend.id, props.friend.name, props.friend.age, props.friend.email
-                )}>
+                style={props.name 
+                    && props.age
+                    && props.email
+                    ? {color: 'green'}
+                    : {display: 'none'}
+                }
+                onClick={() => props.handleUpdate(props.friend.id)}>
                 Edit
             </button>
             <button onClick={() => props.handleDelete(props.friend.id)}>Delete</button>

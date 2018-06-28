@@ -11,7 +11,10 @@ const FriendsList = props => {
                         index={index}
                         friend={friend}
                         handleDelete={props.handleDelete}
-                        handleUpdate={props.handleUpdate}    
+                        handleUpdate={props.handleUpdate}  
+                        name={props.name}
+                        age={props.age}
+                        email={props.email}
                     />
                 );
             })}

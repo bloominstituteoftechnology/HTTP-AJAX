@@ -13,7 +13,10 @@ class App extends Component {
       friendsData: [],
       friendName: '',
       friendAge: '',
-      friendEmail: ''
+      friendEmail: '',
+      name: false,
+      age: false,
+      email: false
     };
   }
 
@@ -27,15 +30,15 @@ class App extends Component {
   }
 
   handleNameChange = e => {
-    this.setState({friendName: e.target.value});
+    this.setState({friendName: e.target.value, name: true});
   }
 
   handleAgeChange = e => {
-    this.setState({friendAge: Number(e.target.value)});
+    this.setState({friendAge: Number(e.target.value), age: true});
   }
 
   handleEmailChange = e => {
-    this.setState({friendEmail: e.target.value});
+    this.setState({friendEmail: e.target.value, email: true});
   }
 
   handleSubmit = e => {
@@ -63,7 +66,10 @@ class App extends Component {
           friendsData: res.data,
           friendName: '',
           friendAge: '',
-          friendEmail: ''
+          friendEmail: '',
+          name: false,
+          age: false,
+          email: false
         }); 
       })
       .catch(error => console.log(error));
@@ -85,7 +91,10 @@ class App extends Component {
           friendsData: res.data,
           friendName: '',
           friendAge: '',
-          friendEmail: ''
+          friendEmail: '',
+          name: false,
+          age: false,
+          email: false
         });
       })
       .catch(err => console.log(err));
@@ -119,7 +128,14 @@ class App extends Component {
             friendAge={this.state.friendAge}
             friendEmail={this.state.friendEmail}
           />
-          <FriendsList handleUpdate={this.handleUpdate} handleDelete={this.handleDelete} friendsData={this.state.friendsData} />
+          <FriendsList
+            handleUpdate={this.handleUpdate}
+            handleDelete={this.handleDelete}
+            friendsData={this.state.friendsData}
+            name={this.state.name}
+            age={this.state.age}
+            email={this.state.email}
+          />
         </div>
       </Fragment>
     );
