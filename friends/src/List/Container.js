@@ -87,7 +87,7 @@ render(){
 
 	  <Route exact path="/"  render={(props) => <FriendList {...props} editFriend={this.editFriend} friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />} />
 
-	  <Route path="/friends/:id"  render={(props) => <IndividualFriend {...props}  deleteFriend={this.deleteFriend} />} />
+	  <Route  path="/friends/:id"  render={(props) => <IndividualFriend {...props}  deleteFriend={this.deleteFriend} />} />
 	</div>
   );}
 }

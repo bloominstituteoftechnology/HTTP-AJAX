@@ -16,6 +16,9 @@ body {
 	color: teal;
 }
 
+.friend-link:hover{
+	color: chocolate;
+}
 
 .form-div{
 	display: flex;
@@ -59,10 +62,10 @@ p{
 .delete-btn{
 	width: 70px;
 	height: 30px;
-	margin: 6% auto;
+	margin-bottom: 5%;
 	color: white;
 	border-radius: 20px;
-	margin-left: 15px;
+	margin-left: 10px;
 	background-color: chocolate;
         border: 1px solid chocolate;
 }

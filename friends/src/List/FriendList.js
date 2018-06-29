@@ -12,16 +12,16 @@ const FriendList = props => {
             {props.friendsData.map(friend => {
 		    return(
 			    
-	   	   <Link to={`/friends/${friend.id}`}  className="friend-link" key={friend.id}>
-		   <div className="list-container">
+		   <div key={friend.id} className="list-container">
 	           <Friend  friend={friend} deleteFriend={props.deleteFriend} />
 		   <EditFriend editFriend={props.editFriend}  friend={friend} />
-	        </div>   
-		</Link>		    
+	        </div>   	    
 		    ); 
 	    })}
       </div>
   );
 }	
+
+
 
 export default FriendList;	
