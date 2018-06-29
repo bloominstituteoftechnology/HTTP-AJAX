@@ -3,7 +3,7 @@ import axios from "axios";
 import FriendList from "./FriendList";
 import Form from "./Form";
 import IndividualFriend from "./IndividualFriend";
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 
 class Container  extends React.Component {
 constructor() {
@@ -82,7 +82,7 @@ render(){
   return (
 
         <div>
-	  
+	  <Link  to="/">Home</Link> 
 <Form newfriend={this.state.newfriend} nameChangeHandler={this.nameChangeHandler} age={this.state.age}  ageChangeHandler={this.ageChangeHandler} email={this.state.email} emailChangeHandler={this.emailChangeHandler} addFriend={this.addFriend}  editFriend={this.editFriend}  friendsData={this.state.friendsData} />
 
 	  <Route exact path="/"  render={(props) => <FriendList {...props} editFriend={this.editFriend} friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />} />
