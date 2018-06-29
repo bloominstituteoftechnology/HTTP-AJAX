@@ -13,6 +13,7 @@ const AddFriendForm = props => {
           name="newFriendName"
           placeholder="Name"
           onChange={props.newTextHandler}
+          className="input-field"
         />
         <label htmlFor="email">Email</label>
         <input
@@ -21,6 +22,7 @@ const AddFriendForm = props => {
           name="newFriendEmail"
           placeholder="Emial"
           onChange={props.newTextHandler}
+          className="input-field"
         />
         <label htmlFor="age">Age</label>
         <input
@@ -29,6 +31,7 @@ const AddFriendForm = props => {
           name="newFriendAge"
           placeholder="Age"
           onChange={props.newTextHandler}
+          className="input-field"
         />
         <button
           type="submit"
