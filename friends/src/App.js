@@ -4,6 +4,39 @@ import axios from 'axios';
 import FriendsList from "./FriendsList";
 import FriendForm from './FriendForm';
 import firebase, {auth, provider} from './firebase';
+import styled from 'styled-components';
+
+const MessageDiv = styled.div`
+
+max-width: 100vw;
+display: flex;
+justify-content: space-between;
+align-items: center;
+text-align: center;
+background-color: #282828;
+color: white;
+list-style: none; 
+height: 55px;
+border: 1px solid grey;
+`
+const LogButton = styled.button`
+height: 55px;
+width: 200px;
+background-color: #363636;
+color: white;
+border: none;
+cursor: pointer;
+font-size: 22px;
+`
+const SignUpButton = styled.button`
+height: 55px;
+width: 250px;
+background-color: #40e0d0;
+color: white;
+border: none;
+cursor: pointer;
+font-size: 22px;
+`
 
 
 
@@ -106,12 +139,16 @@ this.setState({
     return (
  
       <div className="App">
-        {this.state.user ? <h1>Welcome, {this.state.user.displayName}!</h1> : <h1>Please sign in below.</h1>}
+         {this.state.user ? 
+          <MessageDiv><div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', paddingLeft: '5px' }}><p style={{ paddingLeft: '10px', paddingRight:'15px', borderRight: '1px solid grey', fontSize: '28px', color: '#ff0080', fontWeight: 'bold' }}>ReactChat</p> <img style={{ width: '40px', height: '40px', paddingLeft: '15px', paddingRight: '10px' }} src={this.state.user.photoURL} /> <div style={{ display: 'block', margin: '0', padding: '0', paddingLeft: '5px' }}> <p style={{fontWeight: 'bold', fontSize: '28 px', textAlign:'left', margin: '3px', padding: '0'}}>Welcome, {this.state.user.displayName}!</p><p style={{color: 'grey', fontSize: '12px'}}>The Weather is Partly Cloudy today.</p> </div> </div><LogButton onClick={this.logout}>Logout</LogButton></MessageDiv>
+           : <MessageDiv> 
+            <p style={{ paddingLeft: '10px', fontSize: '28px', color:'#ff0080', fontWeight:'bold'}}>ReactChat</p> <div><LogButton onClick={this.login}>Login</LogButton> <SignUpButton >Sign up</SignUpButton></div>
+          
+          </MessageDiv>} 
+      
         
-        {this.state.user ? <button onClick = {this.logout}>Logout</button> : <button onClick = {this.login}>Login</button>}
-        
-        <FriendsList friends={this.state.friends}/>
-        <FriendForm onChange = {this.onChange} nameValue = {this.state.first_name} emailValue = {this.state.email} formSubmit={this.formSubmit}/>
+        <FriendsList user={this.state.user} friends={this.state.friends} onChange={this.onChange} nameValue={this.state.first_name} emailValue={this.state.email} formSubmit={this.formSubmit}/>
+       
       
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import FriendForm from './FriendForm';
 
 const FriendDiv = styled.div`
 position: relative;
@@ -8,62 +9,59 @@ display: flex;
 justify-content: center;
 align-items:center;
 text-align: center;
-background-color: black
+background-color: #282828;
 color: white;
 list-style: none;
 flex-direction: column;
 overflow-y: auto;
 height: 100%;
 align-items: flex-start;
-margin: 5px;
 `
 const PageContainer = styled.div`
-position: relative;
-margin: 20px auto;
 max-width: 1000px;
 display:flex;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
 `
-const MessageDiv = styled.div `
-
-width: 380px;
-display: flex;
-justify-content: center;
-align-items:center;
-text-align: center;
-background-color: white;
-color: black;
-list-style: none;
-flex-direction: column;
-overflow-y: auto;
-height: 340px;
-align-items: flex-start;
-border: 1px solid grey;
-
-`
 const Wrapper = styled.div`
-height: 340px;
+height: 90vh;
 margin: 0 auto;
+`
+const MessageBox = styled.div`
+position:absolute;
+top:120px;
+left: 170px;
+width: 288px;
+height: 78vh;
+border: 1px solid #363636;
+background-color:  #282828;
+`
+const Info = styled.p`
+margin: 10px;
+color: #464646;
+font-size: 30px;
 `
 
 
 class FriendsList extends Component {
   constructor(props){
-    super(props)
+    super(props);
+
   }
   render() { 
     return ( 
-      <PageContainer>
+     <div>
       <FriendDiv>
       <Wrapper>
         {this.props.friends.map(friend => <div key={Math.random()} style={{display: 'flex', flexDirection:'column'}}>
        <div> <img src ={friend[1].profile_pic} style={{paddingTop:'15px', borderRadius: '50%'}}/></div><div>{friend[1].first_name}</div>
         </div>)}</Wrapper>
       </FriendDiv>
+        <FriendForm onChange={this.props.onChange} nameValue={this.props.first_name} emailValue={this.props.email} formSubmit={this.formSubmit}/>
+        <MessageBox><Info>Your Friend's Profile information will appear here.</Info></MessageBox>
+
+  </div>
       
-      <MessageDiv></MessageDiv>
-      </PageContainer>
      )
   }
 }

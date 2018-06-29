@@ -2,13 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FlexDiv = styled.div `
-margin: 0 auto;
+position:absolute;
+top:60px;
+left:160px;
 width: 220px;
 display: flex;
 justify-content: flex-start;
 align-items:center;
 text-align: center;
-background-color: white;
+background-color: none;
 color: black;
 list-style: none;
 `
@@ -17,10 +19,13 @@ width: 215px;
 padding: 0;
 margin: 0;
 `
-const AddFriend = styled.h1`
-margin: 20px;
-color: royalblue;
+const AddFriend = styled.p`
+margin: 10px;
+color: white;
+font-size: 20px;
+font-weight: bold;
 `
+
 
 const FriendForm = (props) => {
   return (
