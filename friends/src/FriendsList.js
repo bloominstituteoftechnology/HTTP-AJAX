@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import FriendForm from './FriendForm';
+import {Route, Link} from 'react-router-dom';
 
 const FriendDiv = styled.div`
 position: relative;
@@ -53,12 +54,18 @@ class FriendsList extends Component {
      <div>
       <FriendDiv>
       <Wrapper>
-        {this.props.friends.map(friend => <div key={Math.random()} style={{display: 'flex', flexDirection:'column'}}>
+        {this.props.friends.map(friend => <Link to={`/chat/${friend[1].id}`}><div key={Math.random()} style={{display: 'flex', flexDirection:'column'}}>
        <div> <img src ={friend[1].profile_pic} style={{paddingTop:'15px', borderRadius: '50%'}}/></div><div>{friend[1].first_name}</div>
-        </div>)}</Wrapper>
+        </div></Link>)}</Wrapper>
       </FriendDiv>
-        <FriendForm onChange={this.props.onChange} nameValue={this.props.first_name} emailValue={this.props.email} formSubmit={this.formSubmit}/>
-        <MessageBox><Info>Your Friend's Profile information will appear here.</Info></MessageBox>
+        <FriendForm onChange={this.props.onChange} nameValue={this.props.nameValue} emailValue={this.props.emailValue} formSubmit={this.props.formSubmit}/>
+      
+      <Route friends={this.props.friends} path ={`/chat/:id`} render={({match}) =>{return (
+          <MessageBox friendID={match.params.id} {...this.props}></MessageBox>
+          
+          
+      )}} />
+        
 
   </div>
       
@@ -67,3 +74,4 @@ class FriendsList extends Component {
 }
  
 export default FriendsList;
+// { this.props.friends[{ this.props.friendID }]['1'].first_name }
