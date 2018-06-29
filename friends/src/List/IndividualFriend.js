@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import  Friend from './Friend';
+import {Link} from 'react-router-dom';
 
 export default class IndividualFriend extends Component {
   constructor(props) {

@@ -13,7 +13,9 @@ const FriendList = props => {
 		    return(
 			    
 		   <div key={friend.id} className="list-container">
-	           <Friend  friend={friend} deleteFriend={props.deleteFriend} />
+	           <Friend  friend={friend}  />
+		   <button className="delete-btn" onClick={()=>props.deleteFriend(friend.id)}>Delete</button>
+
 		   <EditFriend editFriend={props.editFriend}  friend={friend} />
 	        </div>   	    
 		    ); 
