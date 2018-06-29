@@ -30,7 +30,10 @@ const AddFriendForm = props => {
           placeholder="Age"
           onChange={props.newTextHandler}
         />
-        <button type="submit" className="waves-effect waves-light btn">
+        <button
+          type="submit"
+          className="waves-effect waves-light blue-grey white-text btn"
+        >
           SUBMIT
         </button>
       </form>

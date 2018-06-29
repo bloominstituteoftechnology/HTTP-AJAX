@@ -1,9 +1,17 @@
 import React, { Fragment } from "react";
+import styled from "styled-components";
+
+const MainContainer = styled.div`
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const LandingPage = props => {
   return (
     <Fragment>
-      <div className="container">
+      <MainContainer className="container">
         <div className="col s12">
           <div className="card">
             <div className="card-image">
@@ -30,7 +38,7 @@ const LandingPage = props => {
             </div>
           </div>
         </div>
-      </div>
+      </MainContainer>
     </Fragment>
   );
 };
