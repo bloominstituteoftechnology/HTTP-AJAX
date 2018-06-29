@@ -10,7 +10,9 @@ class Friends extends Component {
         super(props);
         this.state = {
             showEditForm: false,
-            editedFriend: ""
+            name: "",
+            age: "",
+            email: "",
         }
     }
     handleDelete = id => {
@@ -18,11 +20,26 @@ class Friends extends Component {
     }
 
     toggleForm =() => {
-        this.setState({showEditForm: !this.state.showEditForm})
+        this.setState({showEditForm : !this.state.showEditForm});
     }
 
     editHandler = e => {
-        this.setState({editedFriend: e.target.value})
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    submitFriendEdit = () => {
+        const editFriend = {name : this.state.name, age : Number(this.state.age), email : this.state.email};
+        axios
+        .put(
+            `http://localhost:5000/friends/${this.props.friend.id}`, editFriend
+        )
+        .then(response => {
+            console.log(response);
+            this.props.handleSetData(response.data);
+        })
+        .catch(err=> {
+        console.log(err)
+        })
     }
 
 
@@ -33,16 +50,23 @@ class Friends extends Component {
             {this.props.friend.name} 
             {this.props.friend.age} 
             {this.props.friend.email} 
+
+            {this.state.showEditForm ? (
             <EditFriends
             friend = {this.props.friend}
             editHandler = {this.editHandler}
+            submitFriendEdit = {this.submitFriendEdit}
             />
+            ) : null}
+
             <button onClick ={this.toggleForm}>
                 Edit
             </button>
+
             <button onClick ={() => this.handleDelete(this.props.friend.id)}> 
                 Delete
             </button>
+
         </div>
     )
 }

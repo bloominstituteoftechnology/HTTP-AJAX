@@ -18,9 +18,7 @@ class App extends Component {
       email: "",
     };
   }
-
   
-
   componentDidMount() {
     axios
     .get(URL)
@@ -73,7 +71,6 @@ class App extends Component {
   //     console.log(error)
   //   })
   // }
-
 
   render() {
     return (
