@@ -18,15 +18,7 @@ a:visited {
   background: lightgray;
 }
 
-.form-and-friends-container {
-  width: 600px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  margin-top: 40px;
-}
-
-.form-and-friends-container form {
+form {
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -35,7 +27,7 @@ a:visited {
   margin-bottom: 10px;
 }
 
-.form-and-friends-container form input {
+form input {
   box-sizing: border-box;
   width: 200px;
   height: 50px;
@@ -46,7 +38,7 @@ a:visited {
   font-size: 15px;
 }
 
-.form-and-friends-container button {
+button {
   width: 200px;
   height: 50px;
   padding: 0;

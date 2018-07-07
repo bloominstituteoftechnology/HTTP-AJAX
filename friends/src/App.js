@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
-import FormAndFriendsList from './components/FormAndFriendsList';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import FriendsList from './components/FriendsList';
 import Friend from './components/Friend';
+import Form from './components/Form';
+import Header from './components/Header';
 
 class App extends Component {
   state = {
-    friendsData: [],
+    friends: [],
     name: "",
     age: "",
     email: ""
@@ -17,7 +19,7 @@ class App extends Component {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
-        this.setState({ friendsData: response.data });
+        this.setState({ friends: response.data });
       })
       .catch(err => {
         console.log(err);
@@ -31,36 +33,67 @@ class App extends Component {
   handleFriendSubmit = e => {
     e.preventDefault();
 
-    const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
+    const newFriend = { name: this.state.name,
+                        age: this.state.age,
+                        email: this.state.email };
 
     axios
       .post("http://localhost:5000/friends", newFriend)
       .then(response => {
-        this.setState({ friendsData: response.data, name: "", age: "", email: "" });
+        this.setState({ friends: response.data,
+                        name: "",
+                        age: "",
+                        email: "" });
       })
       .catch(error => console.log(error));
+
+      this.props.history.push('/');
+  }
+
+  handleCancel = e => {
+    e.preventDefault();
+    this.setState({ name: "", age: "", email: "" });
+    this.props.history.push("/");
+  }
+
+  handleUpdateFriends = (data, deletedFriendId) => {
+    const friends = this.state.friends.filter(friend => friend.id !== deletedFriendId);
+    this.setState({ friends });
+    this.props.history.push('/');
   }
 
   render() {
     return (
       <div className="container">
+        <Header />
 
         <Route exact path="/" render={(props) =>
-          <FormAndFriendsList name={this.state.name}
-                              age={this.state.age}
-                              email={this.state.email}
-                              handleChange={this.handleChange}
-                              handleFriendSubmit={this.handleFriendSubmit}
-                              friends={this.state.friendsData} />
-        }/>
+            <FriendsList friends={this.state.friends} />
+          }
+        />
 
-        <Route path="/friends/:id" render={(props) =>
-          <Friend {...props} />
-        }/>
+        <Switch>
+
+          <Route path="/friends/add" render={(props) =>
+            <Form name={this.state.name}
+                  age={this.state.age}
+                  email={this.state.email}
+                  handleChange={this.handleChange}
+                  handleCancel={this.handleCancel}
+                  handleFriendSubmit={this.handleFriendSubmit} />
+            }
+          />
+
+          <Route path="/friends/:id" render={(props) =>
+            <Friend {...props} handleUpdateFriends={this.handleUpdateFriends} />
+            }
+          />
+
+        </Switch>
 
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
