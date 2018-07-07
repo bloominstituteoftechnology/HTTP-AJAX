@@ -31,6 +31,11 @@ class App extends Component {
   }
 
   handleFriendSubmit = e => {
+    if (this.state.name === "") {
+          this.props.history.push("/");
+          return;
+        }
+
     e.preventDefault();
 
     const newFriend = { name: this.state.name,
