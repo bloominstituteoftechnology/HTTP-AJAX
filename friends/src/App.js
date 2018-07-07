@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import FriendsList from './components/FriendsList';
+import { Route } from 'react-router-dom';
+import FormAndFriendsList from './components/FormAndFriendsList';
+import Friend from './components/Friend';
 
 class App extends Component {
   state = {
@@ -26,9 +28,10 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleFriendSubmit = () => {
-    const id = (this.state.friendsData[this.state.friendsData.length - 1].id + 1);
-    const newFriend = { id: id, name: this.state.name, age: this.state.age, email: this.state.email };
+  handleFriendSubmit = e => {
+    e.preventDefault();
+
+    const newFriend = { name: this.state.name, age: this.state.age, email: this.state.email };
 
     axios
       .post("http://localhost:5000/friends", newFriend)
@@ -41,36 +44,20 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <div className="form-and-friends-container">
-          <form>
-            <input
-              autoComplete="off"
-              type="text"
-              placeholder="Name"
-              name="name"
-              onChange={this.handleChange}
-              value={this.state.name}
-            />
-            <input
-              autoComplete="off"
-              type="text"
-              placeholder="Age"
-              name="age"
-              onChange={this.handleChange}
-              value={this.state.age}
-            />
-            <input
-              autoComplete="off"
-              type="text"
-              placeholder="Email"
-              name="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
-            <button onClick={this.handleFriendSubmit}>Submit</button>
-          </form>
-          <FriendsList friends={this.state.friendsData} />
-        </div>
+
+        <Route exact path="/" render={(props) =>
+          <FormAndFriendsList name={this.state.name}
+                              age={this.state.age}
+                              email={this.state.email}
+                              handleChange={this.handleChange}
+                              handleFriendSubmit={this.handleFriendSubmit}
+                              friends={this.state.friendsData} />
+        }/>
+
+        <Route path="/friends/:id" render={(props) =>
+          <Friend {...props} />
+        }/>
+
       </div>
     );
   }

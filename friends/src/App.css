@@ -1,5 +1,13 @@
 * {
-  /*border: 1px solid black;*/
+  border: 1px solid black;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
 }
 
 .container {
@@ -55,12 +63,33 @@
   width: 500px;
 }
 
-.friend {
-  margin-bottom: 10px;
+.friend-card {
+  margin-bottom: 15px;
   border: 1px solid black;
   border-radius: 4px;
   padding: 10px;
   background: white;
+  text-decoration: none;
+}
+
+.friend-card a {
+  text-decoration: none;
+}
+
+.friend-card a:visited {
+  color: inherit;
+}
+
+.friend {
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+}
+
+.friend:hover {
+  box-shadow: 4px 4px black;
 }
 
 .friendDetail {
