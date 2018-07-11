@@ -12,9 +12,6 @@ class App extends Component {
     super(props);
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: '',
     }
   }
   
@@ -29,7 +26,7 @@ class App extends Component {
         this.setState({ friends });
       })
       .catch(err => {
-        console.log({ Error: err })
+        console.log(err);
       }
     )
   }
@@ -59,11 +56,13 @@ class App extends Component {
         {/* <FriendForm friend={this.state.friend} /> */}
 
         <Navigation />
+
         <Route 
           exact path='/' 
           render={(props) => (
           <ListOfFriends {...props} friends={this.state.friends} />
         )}/>
+
         <Route path ='/form' component = { FriendForm } />
       </div>
     );
