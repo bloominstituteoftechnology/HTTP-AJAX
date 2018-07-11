@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
+import Friend from './components/Friend';
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,7 +10,9 @@ class App extends Component {
     super();
     this.state = {
       friendsData: [],
-      friend: ''
+      name: '', 
+      age: '',
+      email: ''
     };
   }
 
@@ -23,7 +26,7 @@ class App extends Component {
   }
 
   handleNameChange = e => {
-    this.setState({ friend: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleSubmitFriend = () => {
@@ -32,7 +35,7 @@ class App extends Component {
     .post("http://localhost:5000/friends", { friend })
     .then(response => {
        console.log("POST RESPONSE", response);
-       this.setState({ friendsData: response.data })
+       this.setState({ friendsData: response.data, friend: "" });
     })
     .catch(error => console.log(error));
   };
