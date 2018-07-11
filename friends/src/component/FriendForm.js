@@ -33,8 +33,9 @@ class FriendForm extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form className="Form__Container">
                     <input
+                        className="Friend__Form Form"
                         type= 'text'
                         placeholder= 'Name'
                         name= 'name'
@@ -42,6 +43,7 @@ class FriendForm extends Component {
                         onChange={ this.handleTextInput }
                     />
                     <input
+                        className="Friend__Form Form"
                         type= 'text'
                         placeholder= 'Age'
                         name= 'age'
@@ -49,14 +51,15 @@ class FriendForm extends Component {
                         onChange={ this.handleTextInput }
                     />
                     <input
+                        className="Friend__Form Form"
                         type= 'text'
                         placeholder= 'Email'
                         name= 'email'
                         value= { this.state.email }
                         onChange= { this.handleTextInput }
                     />
-                <button onClick={ this.addFriend }>Make A Friend </button>
             </form>
+            <button onClick={ this.addFriend }>Make A Friend </button>
         </div>
         )
     }
