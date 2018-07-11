@@ -1,17 +1,18 @@
 import React from 'react';
 
 const ListOfFriends = props => {
-    console.log(props);
     return (
         <div> 
-            <div> {props.friend.map(f => <div key ={f.id} className='friends'> 
-            <h1>{f.name}</h1>
-            <h2>{f.age}</h2>
-            <h2>{f.email}</h2>
+            { props.friends.map((friend, index) => {
+                return [
+                    <div key={index}>
+                        <h3>{ friend.name} </h3>
+                        <div>{ friend.age} </div>
+                        <div>{ friend.email }</div>
+                    </div>
+                ]
+            })}
         </div>
-        )}
-        </div>
-    </div>
     )
 }
 

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import "./Navigation.css";
 
 const Navigation = () => {
     return (
-        <div>
-            <Link to='/'> FriendsList </Link>
-            <Link to='/form'> New Friends </Link> 
+        <div className="Navigation">
+            <Link className="Navigation__Link" to='/'> FriendsList </Link>
+            <Link className="Navigation__Link" to='/form'> New Friends </Link> 
         </div>  
     );
 };

@@ -11,23 +11,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friend: [],
+      friends: [],
       name: '',
       age: '',
       email: '',
     }
   }
   
-
+  // GET request
+  
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/friends`)
-      .then(response => {
-        this.setState({ friend: response.data});
+      .get("http://localhost:5000/friends")
+      .then(res => {
+        let friends = [];
+        friends = friends.concat(res.data);
+        this.setState({ friends });
       })
       .catch(err => {
-        console.log(err);
-      });
+        console.log({ Error: err })
+      }
+    )
   }
 
   handleTextInput = e => {
@@ -52,11 +56,14 @@ class App extends Component {
       <div className="App">
         {/* <FriendForm friend={this.state.friend} /> */}
         {/* <ListOfFriends friend={this.state.friend} /> */}
-        <Navigation />
-        <Route exact path='/' render={(props) => (
-        <ListOfFriends {...props} friend={this.state.friend} />
-        )}/>
         {/* <FriendForm friend={this.state.friend} /> */}
+
+        <Navigation />
+        <Route 
+          exact path='/' 
+          render={(props) => (
+          <ListOfFriends {...props} friends={this.state.friends} />
+        )}/>
         <Route path ='/form' component = { FriendForm } />
       </div>
     );

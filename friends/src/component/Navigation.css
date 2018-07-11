@@ -1,0 +1,11 @@
+.Navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.Navigation__Link {
+    text-decoration: none;
+    margin: 20px 20px 0 0;
+    color: black;
+    font-weight: bold;
+}
