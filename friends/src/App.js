@@ -26,7 +26,7 @@ class App extends Component {
         this.setState({ friends });
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
       }
     )
   }
@@ -34,6 +34,23 @@ class App extends Component {
   handleTextInput = e => {
     this.setState({ [e.target.name]: e.target.value});
   };  
+
+  deleteFriend = (id) => {
+    let friends = [];
+    friends = friends.concat(this.state.friends);
+    friends.forEach(friend => {
+      if (friend.id === id) {
+      axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(deletedNote => {
+          console.log('Deleted');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      }
+    })
+  };
 
   // saveNoteData = () => {
   //   const friend = { name: this.state.name, age: this.state.age, email: this.state.email };
@@ -51,16 +68,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <FriendForm friend={this.state.friend} /> */}
-        {/* <ListOfFriends friend={this.state.friend} /> */}
-        {/* <FriendForm friend={this.state.friend} /> */}
-
         <Navigation />
 
         <Route 
           exact path='/' 
           render={(props) => (
-          <ListOfFriends {...props} friends={this.state.friends} />
+          <ListOfFriends {...props} friends={ this.state.friends } deleteFriend={ this.deleteFriend }/>
         )}/>
 
         <Route path ='/form' component = { FriendForm } />
