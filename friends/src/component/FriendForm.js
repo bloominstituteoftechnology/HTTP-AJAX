@@ -23,6 +23,7 @@ class FriendForm extends Component {
                 console.log(err);
             });
         this.setState({ name: '', age: '', email: '' }); 
+        window.location.reload();
     };
     
     handleTextInput = e => {
