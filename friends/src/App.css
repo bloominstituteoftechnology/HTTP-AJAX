@@ -3,8 +3,10 @@
   background: grey;
   color: white;
   width: 400px;
+  min-height: 650px;
   border-radius: 50px;
   margin-left: 550px;
+  padding: 5px;
 }
 
 .Navigation {

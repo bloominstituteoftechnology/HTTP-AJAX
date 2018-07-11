@@ -35,6 +35,7 @@ class App extends Component {
     )
   }
 
+  // DELETE request
   deleteFriend = (id) => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
@@ -47,6 +48,7 @@ class App extends Component {
     window.location.reload();
   };
 
+  // EDIT request
   editFriend = (id, friend) => {
     axios
       .put(`http://localhost:5000/friends/:${id}`, friend)

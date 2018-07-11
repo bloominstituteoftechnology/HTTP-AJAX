@@ -59,7 +59,7 @@ class FriendForm extends Component {
                         onChange= { this.handleTextInput }
                     />
             </form>
-            <button onClick={ this.addFriend }>Make A Friend </button>
+            <button onClick={ this.addFriend }>Make A Friend</button>
         </div>
         )
     }

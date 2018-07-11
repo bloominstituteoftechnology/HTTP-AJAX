@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Navigation = () => {
     return (
         <div className="Navigation">
-            <Link className="Navigation__Link" to='/'> FriendsList </Link>
-            <Link className="Navigation__Link" to='/form'> New Friends </Link> 
+            <Link className="Navigation__Link" to='/'> Friends List </Link>
+            <Link className="Navigation__Link" to='/form'> Make Friend </Link> 
         </div>  
     );
 };
