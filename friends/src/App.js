@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       friends: [],
       name: '',
-      age: 0,
+      age: '',
       email: '',
     }
   }
@@ -36,6 +36,13 @@ class App extends Component {
 
   friendEmail = e => {
     this.setState({email : e.target.value})
+  }
+
+  newFriend = () => {
+    const friend = {name: this.state.name, age: this.state.age, email: this.state.email}
+    axios.post('http://localhost:5000/friends', friend)
+    .then(response => this.setState({friends : response.data}))
+    .catch(error => console.log(error));
   }
 
   render() {
