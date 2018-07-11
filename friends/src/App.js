@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import Friends from "./components/Friends";
+import FriendsList from "./components/FriendsList";
+import FriendInput from "./components/FriendInput";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <h1>Friends App</h1>
-        <Friends />
+        <FriendInput />
+        <FriendsList />
       </div>
     );
   }
