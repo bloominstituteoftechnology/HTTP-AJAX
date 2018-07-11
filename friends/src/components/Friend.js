@@ -7,9 +7,9 @@ class Friend extends React.Component {
         this.state = {
             showEditForm: false
         }
-        //toggleForm = () => {
-          //  this.setState({ showEditForm: !this.state.showEditForm })
-        // };
+        // toggleForm = () => {
+         // this.setState({ showEditForm: !this.state.showEditForm })
+         //};
         
     }
     render(){
@@ -19,14 +19,15 @@ class Friend extends React.Component {
         {this.state.showEditForm ? (
         <EditFriendForm 
         friend={this.props.friend}
-         editHandler={() => console.log("") } 
+         editHandler={this.editFriendHandler} 
          />
         ) : null}
+       
         </div>
     );
 }
 };
 
-
+//  <button onClick={this.toggleForm}>Edit Friend</button>
 
 export default Friend;
