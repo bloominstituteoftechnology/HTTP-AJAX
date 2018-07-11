@@ -14,6 +14,7 @@ class FriendInput extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    // Get our form data out of state
     const { name, age, email } = this.state;
 
     axios
@@ -25,6 +26,7 @@ class FriendInput extends Component {
   };
 
   handleChange = e => {
+    // Use the named inputs to match their corresponding values in state
     this.setState({ [e.target.name]: e.target.value });
   };
 
