@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import FriendsList from './components/FriendsList'
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class App extends Component {
       .get('http://localhost:5000/friends')
       .then(response => {
         console.log('GET RESPONSE: ', response);
-        this.setState({data: response.data})
+        this.setState({ data: response.data })
       })
       .catch(err => {
         console.log(err);
@@ -25,13 +25,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Friends</h1>
+        <FriendsList friends={this.state.data} />
       </div>
     );
   }
