@@ -8,9 +8,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      newFriend: {
+        name: '',
+        age: '',
+        email: '',
+      }
     }
   }
+
+  friendFormHandler = (e) => {
+    e.preventDefault();
+  }
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
