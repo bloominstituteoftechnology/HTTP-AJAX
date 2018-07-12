@@ -10,11 +10,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      friend: {
-        name: '',
-        age: 0,
-        email: ''
-      }
+      name: '',
+      age: '',
+      email: ''
     };
   }
 
@@ -29,26 +27,37 @@ class App extends Component {
         console.log(err);
       });
   }
+
   handleSubmit = () => {
-    const friend = { friend: this.state.friend };
+    const friend = { name: this.state.name, age: this.state.age, email: this.state.email };
     axios
       .post('http://localhost:5000/friends', friend)
       .then((response) => {
         console.log('POST RESPONSE', response);
-        this.setState({ friends: response.data, friend: '' }); //should this be an obj?
+        this.setState({ friends: response.data });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
+    this.setState({ name: '', age: '', email: '' });
   };
 
-  handleNameChange = (e) => {
-    this.setState({ friend: e.target.value });
+  handleFriendChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    // handles all 3 forms by name referring to what you name the input form
   };
 
   render() {
     return (
       <div className="App">
         <FriendList friends={this.state.friends} />
-        <FriendForm handleNameChange={this.handleNameChange} handleSubmit={this.handleSubmit} />
+        <FriendForm
+          handleFriendChange={this.handleFriendChange}
+          handleSubmit={this.handleSubmit}
+          name={this.state.name}
+          age={this.state.age}
+          email={this.state.email}
+        />
       </div>
     );
   }
