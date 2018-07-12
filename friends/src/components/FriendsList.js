@@ -4,10 +4,11 @@ import Friend from './Friend';
 const FriendsList=props => {
     return (
         <div>
+            
             {props.friends.map(friend => {
                 return (
                     <Friend
-                        handleData={props.handData}
+                        handleData={props.handleData}
                         key= {friend.id}
                         friend={friend}
                     />
