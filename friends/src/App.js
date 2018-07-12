@@ -28,24 +28,30 @@ class App extends Component {
   }
 
   handleNameChange = e => {
-    this.setState({ friend:{name: e.target.value} })
+    this.setState({ friend: Object.assign({}, this.state.friend, { name: e.target.value }) })
   }
 
   handleAgeChange = e => {
-    this.setState({ friend:{age: e.target.value} })
+    this.setState({ friend: Object.assign({}, this.state.friend, { age: e.target.value }) })
   }
 
   handleEmailChange = e => {
-    this.setState({ friend:{email: e.target.value} })
+    this.setState({ friend: Object.assign({}, this.state.friend, { email: e.target.value }) })
   }
 
-  submitNewFriend = () => {
+  submitNewFriend = e => {
+    e.preventDefault()
+    // const friend = { friend: this.state.friend};
+    const friend = { ...this.state.friend };
     axios
-      .post('http://localhost:5000/friends')
+      .post('http://localhost:5000/friends', friend)
       .then(response => {
+        console.log(response);
         this.setState({ friendsData: response.data, friend:{name:'', age:'', email:''} })
       })
+      .catch(error => console.log('error: ', error));
   }
+
   
   render() {
     return (
