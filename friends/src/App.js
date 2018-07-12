@@ -24,7 +24,7 @@ class App extends Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
   
-  handleSubmit = e => {
+  handleSubmit = () => {
     const friend = {
       name: this.state.name,
       age: Number(this.state.age),
@@ -41,13 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>REACT FRIENDS LIST</h1>
         <FriendsList friends={this.state.friendsData} />
         <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
