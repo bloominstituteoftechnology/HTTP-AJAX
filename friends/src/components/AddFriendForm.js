@@ -8,7 +8,7 @@ const AddFriendForm = (props) => {
         <input onChange={props.nameHandler} type="text" name="name" placeholder="name"/>
         <input onChange={props.ageHandler} type="text" name="age" placeholder="age"/>
         <input onChange={props.emailHandler} type="text" name="email" placeholder="email"/>
-        <button onClick={props.addAFriend}>Add</button>
+        <button onClick={props.addFriend}>Add</button>
       </form>
     </div>
   );

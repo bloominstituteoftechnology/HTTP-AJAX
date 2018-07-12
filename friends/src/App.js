@@ -17,7 +17,7 @@ class App extends Component {
     }
   }
 
-  addAFriend = (e) => {
+  addFriend = (e) => {
     alert('what');
      e.preventDefault();
     const newFriend = this.state.newFriend;
@@ -53,6 +53,17 @@ class App extends Component {
     this.setState ({ newFriend });
   }
 
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log(response);
+        this.setState( {data: response.data })})
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
@@ -69,9 +80,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Friends</h1>
-        <FriendsList friends={this.state.data} />
+        <FriendsList
+          friends={this.state.data} 
+          deleteFriend={this.deleteFriend}
+        />
         <AddFriendForm
-          addAFriend={this.addAFriend}
+          addFriend={this.addFriend}
           nameHandler={this.nameHandler}
           ageHandler={this.ageHandler}
           emailHandler={this.emailHandler}
