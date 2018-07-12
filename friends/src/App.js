@@ -21,7 +21,18 @@ class App extends Component {
     alert('what');
      e.preventDefault();
     const newFriend = this.state.newFriend;
-    
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(response => {
+        console.log(response);
+        newFriend.name = '';
+        newFriend.age = '';
+        newFriend.email = '';
+        this.setState({ data: response.data, newFriend})
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   nameHandler = (e) => {
