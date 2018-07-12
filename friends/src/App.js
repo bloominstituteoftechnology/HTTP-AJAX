@@ -7,7 +7,9 @@ class App extends Component {
     super();
     this.state={
       friendsData:[],
-      friends:""
+      friends:"",
+      age:"",
+      email:""
     };
   }
 
@@ -36,6 +38,18 @@ class App extends Component {
     this.setState({email:event.target.value});
   };
 
+  addFriend() {
+    // event.preventDefault();
+    const friend={ friend:this.state.friends}
+    const age={ age:this.state.age}
+    const email={ email:this.state.email}
+    axios.post('http://localhost:5000/friends', friend, age, email)
+      .then(response => {
+        this.setState({friendsData: response.data, friends:"", age:"", email:""})
+      })
+      .catch(error => console.log(error));
+  };
+
   render() {
     return (
       <div className="App">
@@ -45,24 +59,26 @@ class App extends Component {
             type="text"
             placeholder="name"
             onChange={this.handleNameChange}
-            name="friend"
+            name="friends"
             value={this.state.friend}
           />
           <input
-            type="text"
+            type="number"
             placeholder="age"
             onChange={this.handleAgeChange}
-            name="age"
+            age="age"
             value={this.state.age}
           />
           <input
             type="text"
             placeholder="email"
             onChange={this.handleEmailChange}
-            name="email"
+            email="email"
             value={this.state.email}
           />
+          <button onClick={this.addFriend}>Add Friend</button>
         </form>
+
 
         <FriendsList
           handleData={this.handleData}
