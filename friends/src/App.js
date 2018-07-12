@@ -17,8 +17,29 @@ class App extends Component {
     }
   }
 
-  friendFormHandler = (e) => {
-    e.preventDefault();
+  addAFriend = (e) => {
+    alert('what');
+     e.preventDefault();
+    const newFriend = this.state.newFriend;
+    
+  }
+
+  nameHandler = (e) => {
+    const newFriend = this.state.newFriend;
+    newFriend.name = e.target.value;
+    this.setState ({ newFriend });
+  }
+
+  ageHandler = (e) => {
+    const newFriend = this.state.newFriend;
+    newFriend.age = e.target.value;
+    this.setState ({ newFriend });
+  }
+
+  emailHandler = (e) => {
+    const newFriend = this.state.newFriend;
+    newFriend.email = e.target.value;
+    this.setState ({ newFriend });
   }
 
   componentDidMount() {
@@ -38,7 +59,12 @@ class App extends Component {
       <div className="App">
         <h1>Friends</h1>
         <FriendsList friends={this.state.data} />
-        <AddFriendForm />
+        <AddFriendForm
+          addAFriend={this.addAFriend}
+          nameHandler={this.nameHandler}
+          ageHandler={this.ageHandler}
+          emailHandler={this.emailHandler}
+        />
       </div>
     );
   }

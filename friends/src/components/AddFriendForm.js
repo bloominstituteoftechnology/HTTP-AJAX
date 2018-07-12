@@ -5,9 +5,10 @@ const AddFriendForm = (props) => {
     <div>
       <h3>Add a friend:</h3>
       <form>
-        <input type="text" name="name" placeholder="name"/>
-        <input type="text" name="age" placeholder="age"/>
-        <input type="text" name="email" placeholder="email"/>
+        <input onChange={props.nameHandler} type="text" name="name" placeholder="name"/>
+        <input onChange={props.ageHandler} type="text" name="age" placeholder="age"/>
+        <input onChange={props.emailHandler} type="text" name="email" placeholder="email"/>
+        <button onClick={props.addAFriend}>Add</button>
       </form>
     </div>
   );

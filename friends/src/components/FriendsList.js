@@ -5,10 +5,8 @@ class FriendsList extends React.Component {
   }
   render() { 
     return ( 
-      
-        this.props.friends.map( friend => <p key={Math.random()}>{friend.name}</p>)
-      
-     )
+        this.props.friends.map( friend => <p key={Math.random()}>{friend.name}, {friend.age}, {friend.email}</p>)
+     );
   }
 }
  
