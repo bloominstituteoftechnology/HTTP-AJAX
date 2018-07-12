@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
 import Form from './components/Form';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -13,10 +13,15 @@ class App extends Component {
     };
   }
 
+
+  setData = data => {
+    this.setState({ friendsData: data })
+  }
+
   componentDidMount() {
     axios.get('http://localhost:5000/friends').then(response => {
       console.log(response);
-      this.setState({ friendsData: response.data });
+      this.setData(response.data);
     }).catch(err => {
       console.log(err);
     });
@@ -24,25 +29,36 @@ class App extends Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
   
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     const friend = {
       name: this.state.name,
       age: Number(this.state.age),
       email: this.state.email
     };
     axios.post('http://localhost:5000/friends', friend).then(create => {
-      console.log(create);
-      console.log(create.data);
+      this.setState({ friendsData: create.data });
     }).catch(error => {
       console.log(error);
     });
+  }
+
+  handleDelete = id => {
+    axios
+      .delete(`${'http://localhost:5000/friends'}/${id}`)
+      .then(poop => {
+        console.log(poop);
+        this.setData(poop.data);
+      }).catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
     return (
       <div className="App">
         <h1>REACT FRIENDS LIST</h1>
-        <FriendsList friends={this.state.friendsData} />
+        <FriendsList friends={this.state.friendsData} handleDelete={this.handleDelete}/>
         <Form handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
     );

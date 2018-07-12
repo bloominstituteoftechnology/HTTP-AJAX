@@ -4,7 +4,7 @@ const Form = props => {
     return (
         <form onSubmit={props.handleSubmit}>
             <input
-                type="text"
+                type="text"            
                 name="name"
                 placeholder="Friend's Name"
                 onChange={props.handleChange}
