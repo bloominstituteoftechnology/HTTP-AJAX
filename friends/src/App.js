@@ -49,7 +49,9 @@ class App extends Component {
   handleDelete = (id) => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
-      .then((response) => this.setData(response.data))
+      .then((response) => this.setState({ friends: response.data }))
+      //resetting the friends to new data
+      // after you delete friend then it sends back the friends that weren't deleted
       .catch((err) => {
         console.log(err);
       });
