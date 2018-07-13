@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from "axios"
 import FriendsList from './Components/FriendsList';
+import FriendForm from './Components/FriendForm';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       friendsData: [],
-      friend: "",
+      friendData:  {
+        name:"", 
+        age: "", 
+        email:"",
+        id: ""
+      }
     };
   }
 
@@ -26,12 +32,46 @@ class App extends Component {
     })
   }
 
+  addNewFriendData = (e) => {
+    const friendData = {friendData: this.state.friendData};
+    const friendDataBlank = {
+      name: "",
+      age: "", 
+      email: "",
+      // id: ""
+    }
+    axios 
+      .post("http://localhost:5000/friends", friendData)
+      .then(response => {
+        console.log("POST RESPONSE", response)
+        this.setState({friendsData: response.data, friendData: friendDataBlank});
+      })
+      .catch(error => console(error))
+  }
+
+  handleNewFriendData = event => {
+    console.log(event.target.name);
+    console.log(event.target.value);
+
+    this.setState({friendData: {
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+    } })
+  }
+
   render() {
     return (
       <div>
-        <h1>List of Friends</h1>
+        <div style={{fontWeight: 'bold'}} > FRIENDS LIST</div>
         <FriendsList 
           friends = {this.state.friendsData}
+        />
+        <br />
+        <FriendForm 
+          addNewFriendData = {this.addNewFriendData}
+          handleNewFriendData = {this.handleNewFriendData}
+          friendData = {this.state.friendData}
         />
       </div>
     );
