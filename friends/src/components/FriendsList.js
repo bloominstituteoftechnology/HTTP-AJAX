@@ -4,13 +4,14 @@ import Friend from './Friend';
 const FriendsList=props => {
     return (
         <div>
-            
-            {props.friends.map(friend => {
+            {props.name.map(friend => {
                 return (
                     <Friend
                         handleData={props.handleData}
                         key= {friend.id}
-                        friend={friend}
+                        name={friend.name}
+                        age={friend.age}
+                        email={friend.email}
                     />
                 );
             })}
