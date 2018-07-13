@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import FriendList from './FriendList';
@@ -28,18 +27,18 @@ class App extends Component {
       });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const friend = { name: this.state.name, age: this.state.age, email: this.state.email };
     axios
       .post('http://localhost:5000/friends', friend)
       .then((response) => {
         console.log('POST RESPONSE', response);
-        this.setState({ friends: response.data });
+        this.setState({ friends: response.data, name: '', age: '', email: '' });
       })
       .catch((error) => {
         console.log(error);
       });
-    this.setState({ name: '', age: '', email: '' });
   };
 
   handleFriendChange = (e) => {
@@ -47,10 +46,19 @@ class App extends Component {
     // handles all 3 forms by name referring to what you name the input form
   };
 
+  handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then((response) => this.setData(response.data))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="App">
-        <FriendList friends={this.state.friends} />
+        <FriendList friends={this.state.friends} handleDelete={this.handleDelete} />
         <FriendForm
           handleFriendChange={this.handleFriendChange}
           handleSubmit={this.handleSubmit}
