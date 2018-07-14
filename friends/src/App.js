@@ -7,8 +7,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friendsData: []
-    }
+      friendsData: [],
+      friend: ''
+    };
   }
 
   componentDidMount() {
@@ -17,6 +18,20 @@ class App extends Component {
       this.setState({friendsData: response.data})
     });
   }
+
+  addFriend = e => {
+    this.setState({ friend: e.target.value });
+  };
+
+  submitFriend = () => {
+    const friend = { friend: this.state.name};
+    axios
+      .post('http://localhost:5000', friend)
+      .then(response => {
+        this.setState({ friendsData: response.data });
+      })
+      .catch(error => console.log(error));
+    };
   render() {
     return (
       <div className="App">
@@ -27,6 +42,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <input type="text" placeholder="friend name" onChange={this.addFriend} name="friend" value={this.state.friend} />
+        <button onClick={this.submitFriend}>Submit Friend</button>
         <FriendsList friends={this.state.friendsData} />
       </div>
     );
