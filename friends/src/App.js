@@ -25,15 +25,16 @@ class App extends Component {
     .get("http://localhost:5000/friends")
     .then(response => {
       console.log("GET RESPONSE: ". response);
-      this.setState({friendsData:response.data})
+      this.setState({friendsData:response.data});
     })
     .catch(err => {
       console.log(err);
-    })
+    });
   }
 
   addNewFriendData = (e) => {
-    const friendData = {friendData: this.state.friendData};
+    // const friendData = {friendData: this.state.friendData};
+    const friendDataCopy = this.state.friendData;
     const friendDataBlank = {
       name: "",
       age: "", 
@@ -41,23 +42,48 @@ class App extends Component {
       // id: ""
     }
     axios 
-      .post("http://localhost:5000/friends", friendData)
+      .post("http://localhost:5000/friends", friendDataCopy)
       .then(response => {
-        console.log("POST RESPONSE", response)
+        console.log("POST RESPONSE:", response)
         this.setState({friendsData: response.data, friendData: friendDataBlank});
       })
       .catch(error => console(error))
   }
 
-  handleNewFriendData = event => {
-    console.log(event.target.name);
-    console.log(event.target.value);
+  handleNewFriendName = e => {
+    console.log(e.target.value);
+
+    const friendDataCopy = this.state.friendData;
 
     this.setState({friendData: {
-      [event.target.name]: event.target.value,
-      [event.target.name]: event.target.value,
-      [event.target.name]: event.target.value,
-    } })
+      name: e.target.value,
+      age: friendDataCopy.age, 
+      email:friendDataCopy.email
+    }})
+  }
+
+  handleNewFriendAge = e => {
+    console.log(e.target.value);
+
+    const friendDataCopy = this.state.friendData;
+
+    this.setState({friendData: {
+      name: friendDataCopy.name,
+      age: e.target.value, 
+      email:friendDataCopy.email
+    }})
+  }
+
+  handleNewFriendEmail = e => {
+    console.log(e.target.value);
+
+    const friendDataCopy = this.state.friendData;
+
+    this.setState({friendData: {
+      name: friendDataCopy.name,
+      age: friendDataCopy.name, 
+      email:e.target.value
+    }})
   }
 
   render() {
@@ -71,6 +97,9 @@ class App extends Component {
         <FriendForm 
           addNewFriendData = {this.addNewFriendData}
           handleNewFriendData = {this.handleNewFriendData}
+          handleNewFriendName = {this.handleNewFriendName}
+          handleNewFriendAge = {this.handleNewFriendAge}
+          handleNewFriendEmail = {this.handleNewFriendEmail}
           friendData = {this.state.friendData}
         />
       </div>

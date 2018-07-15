@@ -13,16 +13,16 @@ const FriendForm =  props => {
                 <input 
                     type = "text" 
                     placeholder = "friend name" 
-                    onChange = {props.handleNewFriendData}
+                    onChange = {props.handleNewFriendName}
                     value = {props.friendData.name}
                     name = "name"
                 />
                 <br />
                 AGE:
                 <input 
-                    type = "text" 
+                    type = "number" 
                     placeholder = "age" 
-                    onChange = {props.handleNewFriendData}
+                    onChange = {props.handleNewFriendAge}
                     value = {props.friendData.age}
                     name = "age"
                 />
@@ -32,7 +32,7 @@ const FriendForm =  props => {
                 <input 
                     type = "text" 
                     placeholder = "email" 
-                    onChange = {props.handleNewFriendData}
+                    onChange = {props.handleNewFriendEmail}
                     value = {props.friendData.email}
                     name = "email"
                 />
