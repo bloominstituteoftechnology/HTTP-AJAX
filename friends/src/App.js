@@ -24,7 +24,7 @@ class App extends Component {
   };
 
   submitFriend = () => {
-    const friend = { friend: this.state.friend};
+    const friend = { name: this.state.friend};
     axios
       .post('http://localhost:5000/friends', friend)
       .then(response => {
