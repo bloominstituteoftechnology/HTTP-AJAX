@@ -26,6 +26,7 @@ class App extends Component {
   }
 
   Submit = a => {
+    a.preventDefault();
     axios
       .post("http://localhost:5000/friends",{
         name: this.state.name,
