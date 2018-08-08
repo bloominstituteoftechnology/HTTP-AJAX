@@ -14,7 +14,7 @@ class App extends Component {
       friends: [],
       loading: true,
       friendName: '',
-      friendAge: undefined,
+      friendAge: '',
       friendEmail: '',
       number: undefined
     }
@@ -32,7 +32,7 @@ class App extends Component {
 
   addAgeHandler = (e) => {
     this.setState({
-      friendAge: parseInt(e.target.value)
+      friendAge: e.target.value
     })
   }
 
@@ -49,24 +49,24 @@ class App extends Component {
       name: this.state.friendName,
       age: this.state.friendAge,
       email: this.state.friendEmail
-    }
+    };
     axios.post('http://localhost:5000/friends', newfriend)
     .then(result => {
       this.setState({
       friendName: '',
-      friendAge: undefined,
+      friendAge: '',
       friendEmail: '',
-      friends: result.data
-    });
-  })
-  console.log(this.state);
+      friends: result.data,
+      number: newfriend.id
+    })
+  }).then(console.log(this.state));
   }
 
   render() {
     return (
       <div className="App">
+        <Route path='/' render={props => <FriendForm {...props} newFriendName={this.state.friendName} newFriendAge={this.state.friendAge} newFriendEmail={this.state.friendEmail} nameAdd={this.addNameHandler} ageAdd={this.addAgeHandler} emailAdd={this.addEmailHandler} submitFriend={this.addNewFriendHandler} />} />
         <Route path='/' render={props => <Friends {...props} friends={this.state.friends} loading={this.state.loading} />} />
-        <Route path='/' render={props => <FriendForm {...props} newFriendName={this.state.friendName} newFriendAge={this.state.friendAge} newFriendEmail={this.state.friendEmail} nameAdd={this.addNameHandler} ageAdd={this.addAgeHandler} emailAdd={this.addEmailHandler} />} />
       </div>
     );
   }

@@ -53,4 +53,16 @@
 
 form {
   font-size: 25px;
+  margin: 20px auto;
+}
+
+form input {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+form button {
+  background: gray;
+  color: white;
+  font-size: 20px;
 }
