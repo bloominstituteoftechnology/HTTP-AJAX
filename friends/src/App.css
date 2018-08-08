@@ -9,6 +9,8 @@
   /* flex-grow: 1; */
   justify-content: space-between;
   flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 
 .friendWrap {
@@ -18,4 +20,6 @@
   background-color: lightgray;
   padding: 9px;
   width: 30%;
+  color: darkgreen;
+  border-radius: 8px;
 }
