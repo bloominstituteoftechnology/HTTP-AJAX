@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Tooltip } from "reactstrap";
+import { Button } from "reactstrap";
 
 const Friends = props => {
   return (
@@ -11,11 +11,8 @@ const Friends = props => {
           </h4>
           <div className="friend-btns">
             <Button id={friend.id} onClick={props.update} color="success">
-              <span id="update-tooltip">Update</span>
+              Update
             </Button>
-            <Tooltip placement='bottom' isOpen={props.open} target="update-tooltip" toggle={props.toggle}>
-              Use the form and then click here!
-            </Tooltip>
             <Button id={friend.id} onClick={props.delete} color="danger">
               Delete
             </Button>

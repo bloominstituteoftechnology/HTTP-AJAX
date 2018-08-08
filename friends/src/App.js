@@ -9,8 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [],
-      tooltipOpen: false
+      friends: []
     };
   }
 
@@ -71,12 +70,6 @@ class App extends Component {
       });
   };
 
-  toggleTooltip = () => {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen
-    });
-  };
-
   render() {
     return (
       <div className="App">
@@ -104,8 +97,6 @@ class App extends Component {
                   friends={this.state.friends}
                   update={this.updateFriend}
                   delete={this.deleteFriend}
-                  toggle={this.toggleTooltip}
-                  open={this.state.tooltipOpen}
                 />
               </div>
             );
