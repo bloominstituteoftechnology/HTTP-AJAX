@@ -9,6 +9,7 @@ footer {
   width: 100%;
   bottom: 0;
   font-size: 90%;
+  margin-top: 50px;
 }
 .App {
   text-align: center;
@@ -30,6 +31,20 @@ footer {
 }
 .friend-form .form-group {
   margin: 0 5px;
+}
+.friend-form .form-group input {
+  width: 220px;
+}
+.friend-form .form-group input[type='number'] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.friend-form .form-group input[type="number"]::-webkit-inner-spin-button,
+.friend-form .form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 @media (max-width: 500px) {
   .friend-form .form-group {

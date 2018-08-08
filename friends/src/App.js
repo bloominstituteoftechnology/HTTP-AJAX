@@ -49,8 +49,11 @@ class App extends Component {
           onSubmit={this.handleSubmit}
         />
         <Friends friends={this.state.friends} />
-        <footer>This friends list is a compilation of my and/or your friends, and no one else's. 
-          <br /> Fake Copyright Company &copy;</footer>
+        <footer>
+          This friends list is a compilation of my and/or your friends,
+          and no one else's.
+          <br /> Fake Copyright Company &copy;
+        </footer>
       </div>
     );
   }

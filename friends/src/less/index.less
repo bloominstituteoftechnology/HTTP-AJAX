@@ -10,6 +10,7 @@ footer {
   width: 100%;
   bottom: 0;
   font-size: 90%;
+  margin-top: 50px;
 }
 
 .App {
@@ -35,6 +36,23 @@ footer {
 
   .form-group {
     margin: 0 5px;
+
+    input {
+      width: 220px;
+    }
+
+    input[type='number'] {
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
 
     @media (max-width: 500px) {
       margin-bottom: 5px;
