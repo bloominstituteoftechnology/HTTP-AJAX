@@ -1,9 +1,21 @@
 .friendCardWrapper {
   width: 25%;
   height: auto;
-  border: 1px solid red;
+  padding: 1rem;
+  margin: 1rem;
+  background: #011627;
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+  box-shadow: 0 0 10px 1px #ff3366;
+}
+
+.friendCardWrapper:nth-child(odd) {
+  box-shadow: 0 0 10px 1px #2ec4b6;
 }
 
 .friendWrapper {
-  border: 1px solid blue;
+  display: flex;
+  flex-wrap: wrap;
+  background: #011627;
 }
