@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.friends-list {
+  text-align: left;
+  width: 10vw;
+  margin: auto;
+}
+
+.friends-list h1 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  margin: auto;
+}
+
+label {
+  font-weight: bold;
+}
+
+form input:nth-child(even) {
+  margin-bottom: 20px;
+}
+
+button {
+  margin-bottom: 20px;
+}
