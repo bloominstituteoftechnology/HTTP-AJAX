@@ -1,19 +1,26 @@
 .App {
   text-align: center;
   background-color: black;
- border: 4px solid gold;
-  /* margin-top: -25px; */
-
-  color: white;
-  
+  border: 4px solid gold;
+  display: flex;
+  flex-direction: column;
+  color: white;  
 }
 
 .sub-app{
   border: 1px solid green;
-  flex: display;
+  display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+
+.form {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  margin: 0;
 }
 
 .component {
@@ -21,8 +28,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* width: 400px; */
   margin: 0;
+}
+
+.ageInput {
+  width: 45%;
 }
 
 h1, h4 {
@@ -34,9 +44,3 @@ p {
   margin: 5px;
 }
 
-form {
-  border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-}

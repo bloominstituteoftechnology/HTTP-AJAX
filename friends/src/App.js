@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import Friend from './list';
-import NewFriend from './newFriend';
+// import Friend from './list';
+import NewFriend from './components/newFriend';
+import Friend from './components/list.js';
 
 const url = 'http://localhost:5000/friends'
 
@@ -10,10 +11,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [],  
+      friends: [], 
       name: '',
-      age: null, 
-      email: '',
+      // age: null, 
+      // email: '',
+      clicked: [],
       } 
   }
   
@@ -28,6 +30,8 @@ class App extends Component {
     .catch(function (error) {
       console.log(error)
     })
+
+  
   }
   
   click = event => {
@@ -36,7 +40,7 @@ class App extends Component {
     })   
   }
 
-  submit = (event) => {
+  submit = event => {
     event.preventDefault();
     console.log('submit');
     axios.post(url, {
@@ -57,6 +61,12 @@ class App extends Component {
     })
   }
 
+  // friendClick = event => {
+  //   console.log(event.currentTarget)
+  //   this.setState({
+  //     clicked: event.currentTarget})
+  //   // localStorage.setItem('selected', event.target.value)
+  // }
 
 
   render() {
@@ -66,14 +76,23 @@ class App extends Component {
         <h1>mjk-HTTP-AJAX</h1>
         
         <div className="sub-app">
+
+          <div className="form">
+            <NewFriend click={this.click} submit={this.submit} data={this}/>
+          </div>
+          
           <div className="component">
             {this.state.friends.map(friend => {
-              return <Friend key={friend.id} data={friend}>{friend.name}</Friend>
+              return <Friend key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</Friend>
             })}
           </div>
-        </div>
-        
-        <NewFriend click={this.click} submit={this.submit} data={this}/>
+
+          <div className="details">
+          <p>New Friend sample profile</p>
+           <Friend data={this.state} />
+          </div>
+
+        </div>  
      
       </div>
     );

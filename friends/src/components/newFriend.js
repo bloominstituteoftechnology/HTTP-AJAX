@@ -1,18 +1,13 @@
-
 import React from 'react';
-
 
 export default function NewFriend(props) {
     return (
         <form onSubmit={props.submit}>
             <h4>Add New Friend</h4>
             <input name='name' type="text" placeholder="Name" value={props.newFriend} onChange={props.click}>{props.value}</input>
-            <input name='age' type="number" placeholder="Age" value={props.newFriend} onChange={props.click}>{props.value}</input>
-            <input name='email'  placeholder="Email" value={props.newFriend} onChange={props.click}>{props.value}</input>
+            <input name='email' type="email" placeholder="Email" value={props.newFriend} onChange={props.click}>{props.value}</input>
+            <input name='age' className="ageInput" type="number" placeholder="Age" value={props.newFriend} onChange={props.click}>{props.value}</input>
             <button>Submit</button>
-        
       </form>
-
     )
-
 }
