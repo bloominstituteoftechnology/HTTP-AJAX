@@ -28,7 +28,7 @@ class App extends Component {
       age: this.state.age,
       email: this.state.email
     })
-         .then(response => console.log(response))
+         .then(response => this.setState({friends: response.data}))
   }
   componentDidMount(){
       axios
