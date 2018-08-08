@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 
 const FriendForm = props => {
