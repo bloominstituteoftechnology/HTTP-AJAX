@@ -11,16 +11,12 @@ class FriendForm extends Component {
         }
     };
     
-    componentDidMount() {
-        this.props.getFriends();
-    }
-
     handleFriendChange = event => {
         this.setState({ [event.target.name]: event.target.value, [event.target.age]: event.target.value, [event.target.email]: event.target.value})
     };
     
     addNewFriend = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         const friend = {
             name: this.state.name,
             age: this.state.age,
@@ -31,7 +27,6 @@ class FriendForm extends Component {
                 console.log(response);
                 console.log(response.data)
         })  
-        this.componentDidMount();
     }
 
     render() {
@@ -41,7 +36,7 @@ class FriendForm extends Component {
                 <input type="text" placeholder="Name" name="name" onChange={this.handleFriendChange} value={this.state.name} autoComplete="off" />
                 <input type="number" placeholder="Age" name="age" onChange={this.handleFriendChange} value={this.state.age} autoComplete="off" />
                 <input type="email" placeholder="Email" name="email" onChange={this.handleFriendChange} value={this.state.email} autoComplete="off" /> 
-                <button onClick={this.addNewFriend}>Submit</button>
+                <button>Submit</button>
             </form>  
         </div>           
         );
