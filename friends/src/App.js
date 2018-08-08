@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 import './App.css';
 import NewFriendForm from './NewFriendForm';
 import FriendsList from './FriendsList'; 
+import FriendPage from './FriendPage';
 
 class App extends Component {
   constructor(props){
@@ -54,7 +55,7 @@ handleOnChange = event => {
         <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()}/>} />
         <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
         name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} />
-      
+        <Route path = '/:name' render={(props) => <FriendPage {...props} /> }/>
       </div>
     );
   }

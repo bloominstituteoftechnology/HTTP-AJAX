@@ -16,6 +16,10 @@ class FriendPage extends React.Component {
             <div>
                 
                 <h1>Delete Friend</h1>
+                <div>Something is here</div>
+                <div>Something is here</div>
+                <div>Something is here</div>
+                <div>Something is here</div>
 
 
             </div>
