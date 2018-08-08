@@ -11,12 +11,9 @@ const Wrap = styled.div`
     width: 100%;
     margin: 0 auto;
     background-color: lightgray;
-    height: 100vh;
+   
 
 `
-
-
-
 
 const url = 'http://localhost:5000/friends';
 
@@ -24,8 +21,7 @@ class FriendList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            friends: [],
-            loading: true
+            friends: []
          }     
     }
 
@@ -35,11 +31,12 @@ componentDidMount () {
     axios.get(url)
     .then(response => {
         this.setState({
-            friends: response.data,
-            loading: false,
+            friends: response.data
         });
-    });
+    })
 }
+
+
 
     render() { 
         return ( 
@@ -47,9 +44,10 @@ componentDidMount () {
                 {this.state.friends.map(friend => (
                    <Friend
                    key={friend.id}
-                   name={friend.name.toLowerCase()}
+                   name={friend.name}
                    age={friend.age}
                    email={friend.email}
+                   
                    />
                 ))}
             </Wrap>

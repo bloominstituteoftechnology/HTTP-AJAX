@@ -11,6 +11,7 @@ const NavigationWrap = styled.div`
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
     border-bottom: 1px solid #fff;
+
     
     
     > ul {
@@ -25,6 +26,7 @@ const NavigationWrap = styled.div`
         > a {
             padding: 20px 20px;
             color: #fff;
+            
             
         } 
         
