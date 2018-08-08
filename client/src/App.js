@@ -9,7 +9,9 @@ class App extends Component {
     super();
     this.state = {
       data: [],
-      id: '',
+      deleteId: '',
+      updateId: '',
+      updateName: '',
       name: '',
       age: '',
       email: '',
@@ -46,8 +48,8 @@ class App extends Component {
 
   deleteFriend = e => {
     e.preventDefault();
-    let chooseName = this.state.id;
-    axios.delete(`http://localhost:5000/friends/${chooseName}`)
+    let chooseId = this.state.deleteId;
+    axios.delete(`http://localhost:5000/friends/${chooseId}`)
     .then(response => {
       this.setState({data: response.data})
     })
@@ -55,7 +57,25 @@ class App extends Component {
       console.log(error);
     });
 
-    this.setState({id: ''})
+    this.setState({deleteId: ''})
+  }
+
+  updateFriend = e => {
+    e.preventDefault();
+    let chooseId = this.state.updateId;
+    let chooseName = this.state.updateName;
+    axios.put(`http://localhost:5000/friends/${chooseId}`, {
+      name: chooseName
+    })
+    .then(response => {
+      this.setState({data: response.data})
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    this.setState({updateId: '', updateName: ''})
+
   }
 
   render() {
@@ -63,10 +83,10 @@ class App extends Component {
       <div className="App">
         <section className="friends-list">
           <h1>List</h1>
-          {this.state.data.map((item, index) => <h3 key={index}>{item.name}</h3>)}
+          {this.state.data.map((item, index) => <h3 key={index}>{`${item.id}: ${item.name}`}</h3>)}
         </section>
         <hr />
-        <section>
+        <section className="friend-forms">
           <div>
             <h1>Add A New Person</h1>
             <form onSubmit={this.addNewFriend} action="submit">
@@ -83,7 +103,17 @@ class App extends Component {
             <h1>Delete A Person</h1>
             <form onSubmit={this.deleteFriend} action="submit">
               <label htmlFor="id">Enter Id:</label>
-              <input id="id" type="number" name="id" value={this.state.id} onChange={this.handleOnChange} />
+              <input id="id" type="number" name="deleteId" value={this.state.deleteId} onChange={this.handleOnChange} />
+              <button>Submit</button>
+            </form>
+          </div>
+          <div>
+            <h1>Update A Person</h1>
+            <form onSubmit={this.updateFriend} action="submit">
+              <label htmlFor="id">Enter Id:</label>
+              <input id="id" type="number" name="updateId" value={this.state.updateId} onChange={this.handleOnChange} />
+              <label htmlFor="name">Enter Name:</label>
+              <input id="name" type="text" name="updateName" value={this.state.updateName} onChange={this.handleOnChange} />
               <button>Submit</button>
             </form>
           </div>
