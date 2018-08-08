@@ -15,11 +15,13 @@ class App extends Component {
   }
   componentDidMount() {
     axios.get(url).then(response => {
-      console.log(response.data);
       this.setState({
         friends: response.data,
         loading: false
       });
+    })
+    .catch(function (error) {
+      console.log(error);
     });
   }
   render() {
