@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+const url = "http://localhost:5000/friends"
+
 class AddFriend extends React.Component {
   constructor() {
     super();
@@ -23,7 +25,7 @@ class AddFriend extends React.Component {
       age: parseInt(this.state.age, 10),
       email: this.state.email
     };
-    axios.post("http://localhost:5000/friends", newFriend).then(response => {
+    axios.post(url, newFriend).then(response => {
       this.setState({ name: "", age: "", email: "" });
       this.props.update(response.data);
     });

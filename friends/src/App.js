@@ -4,6 +4,8 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import AddFriend from "./components/AddFriend";
 
+const url = "http://localhost:5000/friends";
+
 class App extends Component {
   constructor() {
     super();
@@ -14,7 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
+      .get(url)
       .then(response => {
         this.setState(() => ({ friends: response.data }));
       })
