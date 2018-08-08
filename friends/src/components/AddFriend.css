@@ -1,0 +1,18 @@
+.add-friend-form{
+
+}
+
+
+.add-friend-prompt{
+    padding: 10px;
+    font-size: 30px;
+}
+
+input{
+    padding: 10px 20px;
+    border: 1px solid rgb(223, 220, 220);
+    border-radius: 10px;
+    margin: 10px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 15px;
+}

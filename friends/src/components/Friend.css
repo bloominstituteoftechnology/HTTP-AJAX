@@ -24,6 +24,8 @@
     transition: all .15s linear;
     z-index:0;
         position:relative;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 

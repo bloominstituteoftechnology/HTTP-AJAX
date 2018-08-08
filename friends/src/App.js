@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './App.css';
 import Friends from './components/Friends';
-
+import AddFriend from './components/AddFriend';
 
 
 class App extends Component {
@@ -11,6 +11,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
+      name: '',
+      age: '',
+      email: '',
       loading: true,
     };
   }
@@ -27,6 +30,7 @@ componentDidMount() {
       <div className="App">
         <h1>
           [ Friends ]
+        <AddFriend />
         </h1>
         <Friends friends = {this.state.friends} />
       </div>
