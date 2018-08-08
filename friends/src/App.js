@@ -10,8 +10,26 @@ class App extends Component {
     super(props);
     this.state = {
         friends: [],
-        loading: true
+        loading: true,
+        name: '',
+        age: '',
+        email: ''
     }
+  }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
+  newFriend = e => {
+    e.preventDefault();
+    const user = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.post(url,{user})
+         .then(response => this.setState({friends: response.data, loading: false}))
   }
   componentDidMount(){
       axios
@@ -25,7 +43,14 @@ class App extends Component {
       return(
           <div>
               <FriendList friends={this.state.friends} />
+              <form onSubmit={this.newFriend}>
+                <input placeholder='name' onChange={this.handleChange} />
+                <input placeholder='age' onChange={this.handleChange} />
+                <input placeholder='email' onChange={this.handleChange} />
+                <button>Save</button>
+              </form>
           </div>
+         
       )
     }
 }
