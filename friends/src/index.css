@@ -4,10 +4,10 @@ body {
   font-family: sans-serif;
 }
 footer {
-  position: absolute;
+  position: relative;
   text-align: center;
   width: 100%;
-  bottom: 3px;
+  bottom: 0;
   font-size: 90%;
 }
 .App {
@@ -31,6 +31,11 @@ footer {
 .friend-form .form-group {
   margin: 0 5px;
 }
+@media (max-width: 500px) {
+  .friend-form .form-group {
+    margin-bottom: 5px;
+  }
+}
 .friend-form button {
   margin: 0 5px;
 }
@@ -38,7 +43,10 @@ footer {
   color: lightgray;
 }
 .friends {
+  border-radius: 5px;
   background: #222;
+  width: 98.5%;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -46,5 +54,5 @@ footer {
   color: white;
 }
 .friends h3 {
-  margin-bottom: 25px;
+  margin: 0 15px 30px;
 }
