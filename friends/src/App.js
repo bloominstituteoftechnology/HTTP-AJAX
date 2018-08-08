@@ -24,11 +24,15 @@ class App extends Component {
         console.error("Server Error", error);
       });
   }
+  inputHandler = event => this.setState({ [event.target.name]: event.target.value });
 
   render() {
     return (
       <div className="App">
-        <AddFriend />
+        <AddFriend 
+          updateInput={this.inputHandler}
+          value={this.state.friends.value}
+        />
         <FriendsList friends={this.state.friends} />
       </div>
     );
