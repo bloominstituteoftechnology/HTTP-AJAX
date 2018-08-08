@@ -1,24 +1,65 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
+import axios from "axios";
 
-const Form = styled.form`
-    margin: 25px 0 50px 0;
-`
-const FormHeader = styled.h1`
-    margin: 50px 0 0 0;
-`
-const AddFriend = (props) => {
+class AddFriend extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      age: "",
+      email: ""
+    };
+  }
+
+  inputHandler = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  submitHandler = event => {
+    event.preventDefault();
+    const newFriend = {
+      name: this.state.name,
+      age: parseInt(this.state.age, 10),
+      email: this.state.email
+    };
+    axios.post("http://localhost:5000/friends", newFriend).then(response => {
+      this.setState({ name: "", age: "", email: "" });
+      this.props.update(response.data);
+    });
+  };
+
+  render() {
     return (
-        <div>
-        <FormHeader>Add Friend</FormHeader>
-        <Form onSubmit={props.submit}>
-            <input onChange={props.updateInput} type='text' name='name' id='1' value={props.name} placeholder='name' />
-            <input onChange={props.updateInput} type='number' name='age' id='2' value={props.age} placeholder='age' />
-            <input onChange={props.updateInput} type='text' name='email' id='3' value={props.value} placeholder='email' />
-            <button>Submit</button>
-        </Form>
-        </div>
-    )
+      <form onSubmit={this.submitHandler}>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={this.state.name}
+          placeholder="Enter Name"
+          onChange={this.inputHandler}
+        />
+        <input
+          type="text"
+          name="age"
+          id="age"
+          value={this.state.age}
+          placeholder="Enter Age"
+          onChange={this.inputHandler}
+        />
+        <input
+          type="text"
+          id="email"
+          name="email"
+          value={this.state.email}
+          placeholder="Enter E-Mail"
+          onChange={this.inputHandler}
+        />
+        <input type="submit" />
+      </form>
+    );
+  }
 }
 
-export default AddFriend
+export default AddFriend;
