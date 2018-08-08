@@ -11,9 +11,9 @@ const AddFriend = (props) => {
     return (
         <div>
         <FormHeader>Add Friend</FormHeader>
-        <Form>
-            <input onChange={props.updateInput} type='text' name='name' id='1' value={props.value} placeholder='name' />
-            <input onChange={props.updateInput} type='number' name='age' id='2' value={props.value} placeholder='age' />
+        <Form onSubmit={props.submit}>
+            <input onChange={props.updateInput} type='text' name='name' id='1' value={props.name} placeholder='name' />
+            <input onChange={props.updateInput} type='number' name='age' id='2' value={props.age} placeholder='age' />
             <input onChange={props.updateInput} type='text' name='email' id='3' value={props.value} placeholder='email' />
             <button>Submit</button>
         </Form>

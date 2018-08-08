@@ -4,7 +4,6 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import AddFriend from "./components/AddFriend";
 
-const url = "http://localhost:5000/friends";
 
 class App extends Component {
   constructor() {
@@ -26,12 +25,26 @@ class App extends Component {
   }
   inputHandler = event => this.setState({ [event.target.name]: event.target.value });
 
+  submitHandler = event => {
+    event.preventDefault();
+    const newFriend = {
+      name: this.state.name,
+      age: parseInt(this.state.age, 10),
+      email: this.state.email,
+    };
+    axios.post('http://localhost:5000/friends', newFriend)
+          .then( response =>
+            this.setState({name: '', age: '', email: '', friends: response.data})
+          );
+  }
+
   render() {
     return (
       <div className="App">
         <AddFriend 
           updateInput={this.inputHandler}
-          value={this.state.friends.value}
+          value={this.state.friends.data}
+          submit={this.submitHandler}
         />
         <FriendsList friends={this.state.friends} />
       </div>
