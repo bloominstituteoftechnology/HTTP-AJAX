@@ -19,3 +19,21 @@
 .friendsListItem{
   width: 50px;
 }
+
+.friendSubmitForm{
+  display:flex;
+  flex-direction: column;
+width: 400px;
+justify-content: center;
+}
+.friendSubmitFormInput{
+margin: 10px;
+}
+.App{
+  margin:0 auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
