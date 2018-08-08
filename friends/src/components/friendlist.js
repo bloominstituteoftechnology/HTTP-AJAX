@@ -1,9 +1,9 @@
 import React from 'react';
 
-const friendlist = (props) => {
+const Friendlist = (props) => {
   return(
   <h1> hello </h1>
   )
 };
 
-export default friendlist;
+export default Friendlist;
