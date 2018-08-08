@@ -17,8 +17,8 @@ class FriendsForm extends React.Component {
       <form
         onSubmit={e => {
           e.preventDefault();
-          this.props.onAddFriend(this.state);
-          this.props.history.push('/friends');
+          this.props.onSubmit(this.state);
+          this.props.history && this.props.history.push('/friends');
           this.setState({
             name: '',
             age: '',
@@ -26,7 +26,7 @@ class FriendsForm extends React.Component {
           });
         }}
       >
-        <h2>Add new friend</h2>
+        <h2>{this.props.title}</h2>
         <div>
           <input
             onChange={this.handleChange}

@@ -1,14 +1,16 @@
 import React from 'react';
+import FriendDetail from './FriendDetail';
 
-const FriendList = ({ friends }) => (
+const FriendList = ({ friends, onUpdate, onDelete }) => (
   <div>
     <h1>Your Friends</h1>
     {friends.map(friend => (
-      <div key={friend.id}>
-        <h2>{friend.name}</h2>
-        <div>{friend.age}</div>
-        <div>{friend.email}</div>
-      </div>
+      <FriendDetail
+        onDelete={onDelete.bind(null, friend.id)}
+        onUpdate={onUpdate.bind(null, friend.id)}
+        key={friend.id}
+        friend={friend}
+      />
     ))}
   </div>
 );
