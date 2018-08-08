@@ -34,6 +34,7 @@ class App extends Component {
       <div className="App">
         <Route exact path="/" render={props=> <FriendList {...props} friends={this.state.friends} loading={this.state.isLoading} />} />
         <Route path="/new" render={props=> <FriendForm {...props} update={this.updateFriends} />} />
+        <Route path="/update/:id" render={props => <FriendForm {...props} update={this.updateFriends} updating="true" />} />
       </div>
     );
   }
