@@ -12,7 +12,7 @@ const Friend = props => {
             <Card>
                 <CardBody>
                     <CardTitle>{props.friend.name}</CardTitle>
-                    <CardSubtitle>{props.friend.age}</CardSubtitle>
+                    <CardSubtitle>Age: {props.friend.age}</CardSubtitle>
                     <CardSubtitle>{props.friend.email}</CardSubtitle>
                 </CardBody>
             </Card>
