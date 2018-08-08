@@ -9,7 +9,6 @@ class FriendsList extends Component {
   }
   friendLister =()=>{
     const filterNum = parseInt(this.props.match.params.id, 10);
-     console.log(isNaN(filterNum))
     return this.props.friends.filter((e)=> {if ( isNaN(filterNum) ){return e} else{  return e.id===filterNum}}).map((e,i)=>{
       return(
       <Link   className='friendListRow' id={e.id} key={i} to={`/friend/${e.id}`}>
@@ -23,6 +22,10 @@ class FriendsList extends Component {
         <div className='friendsListItem'>
         {e.email}
         </div>
+        {e.hairColor ?  <div className='friendsListItem'>
+        {e.hairColor}
+        </div> : <div className='friendsListItem'>  </div>}
+     
      
       </Link>
       )
@@ -44,6 +47,9 @@ class FriendsList extends Component {
           </div>
           <div className='titleItem'>
             Email
+          </div>
+          <div className='titleItem'>
+            Hair Color
           </div>
         </div>
         {this.friendLister()}
