@@ -35,7 +35,7 @@ class App extends Component {
     this.state = {
       friends: [],
       Name: "",
-      Age: null,
+      Age: [], 
       Email: ""
     };
   }
@@ -52,7 +52,6 @@ class App extends Component {
   }
 
   addAFrand = () => {
-    // const currentfrands = this.state.friends.slice();
     const newfrand = {
       name: this.state.Name,
       age: this.state.Age,
@@ -63,7 +62,7 @@ class App extends Component {
     .then(response => {
       this.setState(() => ({ friends: response.data }));
     })
-    this.setState({Name: "", Age: "", Email: ""})
+    this.setState({Name: "", Age: [], Email: ""})
   }
 
   enterAFrand = (event) => {
@@ -74,8 +73,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <h1>My Frands</h1>
       <Friendos friends={this.state.friends}/>
-      <FriendForm enterAFrand={this.enterAFrand} addAFrand={this.addAFrand} val={this.state.friends}/>
+      <FriendForm enterAFrand={this.enterAFrand} addAFrand={this.addAFrand} val={this.state}/>
       </div>
     );
   }

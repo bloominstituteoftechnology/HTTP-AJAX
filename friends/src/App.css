@@ -1,4 +1,11 @@
 
+h1 {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 330%;
+  color: white;
+  text-shadow: 1px 1px 20px black, 0 0 25px rgba(249, 251, 255, 0.425), 0 0 5px gray;
+}
 .friendCard {
   height: 150px;
   width: 300px;
@@ -24,7 +31,7 @@
 
 .friendoname {
   color: rgb(146, 126, 255);
-  text-shadow: 1px 1px 2px black, 0 0 25px rgba(249, 251, 255, 0.425), 0 0 5px gray;
+  text-shadow: 1px 1px 5px black, 0 0 25px rgba(249, 251, 255, 0.425), 0 0 5px gray;
   font-family: 'Pacifico', cursive;
   font-size: 150%;
 }
@@ -41,6 +48,10 @@ align-self: flex-start;
 }
 
 form {
+  font-family: 'Pacifico', cursive;
+  text-shadow: 1px 1px 20px black, 0 0 25px rgba(249, 251, 255, 0.425), 0 0 5px gray;
+  color: white;
+  font-size: 150%;
   display: flex;
   flex-direction: column;
   align-items: center;
