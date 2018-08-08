@@ -13,7 +13,6 @@ class FriendList extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response.data);
         this.setState(() => ({ friends: response.data }));
       })
       .catch(error => {
@@ -31,6 +30,7 @@ class FriendList extends Component {
             <p>Age: {friend.age}</p>
             <p>Email: {friend.email}</p></li>)}
         </ul>
+
       </div>
     );
   }
