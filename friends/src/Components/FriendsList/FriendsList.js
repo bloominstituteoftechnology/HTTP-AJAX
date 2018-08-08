@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import {Link} from 'react-router-dom';
 class FriendsList extends React.Component{
     constructor() {
         super();
@@ -23,6 +23,7 @@ class FriendsList extends React.Component{
                         {e.address?<p>{e.address}</p>:null}
                     </div>
                 )}
+                <Link to='/'><button className='btn waves-effect waves-light backToFriendForm'>Go To Friends Form</button></Link>
             </div>
         )
     }

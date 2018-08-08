@@ -31,6 +31,7 @@ class FriendsForm extends React.Component {
             <input type='email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
             <input type='text' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
             <Link to='/list'><button type='button' className='btn waves-effect waves-light' onClick={this.submitNewFriend}>Submit New Friend Info</button></Link>
+            <Link to='/list' className='block'><button type='button' className='btn waves-effect waves-light'>Go To Friends List</button></Link>
         </form>
         )
     }
