@@ -25,11 +25,15 @@ class App extends Component {
           });
   }
 
+  updateFriends = friends => {
+    this.setState({friends});
+  }
+
   render() {
     return (
       <div className="App">
         <Route exact path="/" render={props=> <FriendList {...props} friends={this.state.friends} loading={this.state.isLoading} />} />
-        <Route path="/new" component={FriendForm} />
+        <Route path="/new" render={props=> <FriendForm {...props} update={this.updateFriends} />} />
       </div>
     );
   }
