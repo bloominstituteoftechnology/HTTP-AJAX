@@ -22,7 +22,7 @@ class FriendPage extends React.Component {
                 
                 <h1>Delete Friend</h1>
                 <div><h1>{this.props.match.params.name}</h1></div>
-                <div><button>It's not hard to say goodbye just click here</button></div>
+                <div><button onClick = {() => this.props.delete(this.props.match.params.name)}>It's not hard to say goodbye just click here</button></div>
 
 
             </DeleteDiv>

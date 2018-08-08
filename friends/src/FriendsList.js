@@ -34,7 +34,7 @@ class FriendsList extends React.Component {
                     </ul>
                     <div><Link to ='/create-friend'>Click Here to Add New Friend</Link></div>
                 </FriendListDiv>
-                <Route path = '/:name' render={(props) => <FriendPage {...props} /> }/>
+                <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.props.delete}/> }/>
                 
             </FriendListContainer>
          );
