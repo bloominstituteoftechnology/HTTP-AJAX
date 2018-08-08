@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount(){
     axios.get(url)
       .then(response => {
-        this.setState( {data: response.data, loading: false} )
+        this.setState({data: response.data, loading: false})
       })
       .catch(err => {
         console.log(err);
