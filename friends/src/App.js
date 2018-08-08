@@ -51,12 +51,9 @@ handleOnChange = event => {
     return (
       <div className="App">
         
-
         <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()}/>} />
         <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
         name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} />
-      
-      
       
       </div>
     );

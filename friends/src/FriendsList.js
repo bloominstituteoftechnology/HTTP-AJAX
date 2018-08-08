@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+import FriendPage from './FriendPage';
 
 
 class FriendsList extends React.Component {
@@ -13,13 +14,16 @@ class FriendsList extends React.Component {
         console.log(this.props.friends)
         const friends = this.props.friends
         return(
-            
             <div>
-                <h1>HTTP -AJAX Friends</h1>
-                <ul>
-                    {friends.map(friend => <li key ={friend.id}>{friend.name}  {friend.age}  {friend.email}</li>)}
-                </ul>
-                <div><Link to ='/create-friend'>Click Here to Add New Friend</Link></div>
+                <div>
+                    <h1>HTTP -AJAX Friends</h1>
+                    <ul>
+                        {friends.map(friend => <Link key ={friend.id} to = {`/${friend.name}`}><li key ={friend.id}>{friend.name}  {friend.age}  {friend.email}</li></Link>)}
+                    </ul>
+                    <div><Link to ='/create-friend'>Click Here to Add New Friend</Link></div>
+                </div>
+                <Route path = '/:name' render={(props) => <FriendPage {...props} /> }/>
+                
             </div>
          );
     }
