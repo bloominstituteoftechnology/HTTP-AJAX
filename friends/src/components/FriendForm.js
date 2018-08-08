@@ -6,7 +6,7 @@ const FriendForm = props => {
         <input onChange = {props.Change} name = "name" placeholder = "Add name" />
         <input onChange = {props.Change} name =  "age" placeholder = "Add age" />
         <input onChange = {props.Change} name = "email" placeholder = "Add email" />
-        <input type = "submit" value = "onSubmit" />
+         <button value="onSubmit">Submit!</button>
     </form>
   )
 }

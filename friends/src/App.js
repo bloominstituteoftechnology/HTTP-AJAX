@@ -9,7 +9,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [ ]
     }
   }
   componentDidMount(){
@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-              <FriendForm onChane ={this.Change} onSubmit = {this.Submit}/>
+              <FriendForm onChange ={this.Change} onSubmit = {this.Submit}/>
               <Friendlist friends = {this.state.friends}/>
       </div>
     );
