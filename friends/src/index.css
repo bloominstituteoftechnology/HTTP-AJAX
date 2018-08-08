@@ -22,7 +22,8 @@ footer {
 }
 .App-title {
   font-size: 1.5em;
-  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
 }
 .friend-form {
   display: flex;
@@ -67,7 +68,12 @@ footer {
   justify-content: space-around;
   padding-top: 2vh;
   color: white;
+  margin-top: 30px;
 }
 .friends .friend {
   margin: 0 15px 30px;
+}
+.friends .friend .friend-btns {
+  display: flex;
+  justify-content: space-evenly;
 }

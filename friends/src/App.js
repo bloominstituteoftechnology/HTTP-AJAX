@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route, NavLink } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Friends from "./components/Friends";
@@ -31,14 +32,20 @@ class App extends Component {
 
   addFriend = e => {
     e.preventDefault();
-    axios.post("http://localhost:5000/friends", {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    }).catch(err => {
-      console.error("Server Post", err);
-    });
+    axios
+      .post("http://localhost:5000/friends", {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .catch(err => {
+        console.error("Server Post", err);
+      });
     this.componentDidMount();
+  };
+
+  updateFriend = e => {
+    
   };
 
   deleteFriend = e => {
@@ -58,16 +65,59 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Friends List</h1>
+          <h1 className="App-title">
+            <NavLink to="/">All</NavLink>
+            <NavLink to="/friends">Friends List</NavLink>
+            <NavLink to="/add">Add Friends</NavLink>
+          </h1>
         </header>
-        <FriendForm
-          onChange={this.handleInputChange}
-          onSubmit={this.addFriend}
+
+        <Route
+          exact
+          path="/"
+          render={props => {
+            return (
+              <div>
+                <FriendForm
+                  {...props}
+                  onChange={this.handleInputChange}
+                  onSubmit={this.addFriend}
+                />
+                <Friends
+                  {...props}
+                  friends={this.state.friends}
+                  delete={this.deleteFriend}
+                />
+              </div>
+            );
+          }}
         />
-        <Friends friends={this.state.friends} delete={this.deleteFriend} />
+
+        <Route
+          path="/add"
+          render={props => (
+            <FriendForm
+              {...props}
+              onChange={this.handleInputChange}
+              onSubmit={this.addFriend}
+            />
+          )}
+        />
+
+        <Route
+          path="/friends"
+          render={props => (
+            <Friends
+              {...props}
+              friends={this.state.friends}
+              delete={this.deleteFriend}
+            />
+          )}
+        />
+
         <footer>
-          This friends list is a compilation of my and/or your friends,
-          and no one else's.
+          This friends list is a compilation of my and/or your friends, and no
+          one else's.
           <br /> Fake Copyright Company &copy;
         </footer>
       </div>
