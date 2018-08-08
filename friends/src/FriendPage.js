@@ -1,6 +1,11 @@
 import React from 'react'; 
+import styled from 'styled-components'; 
 
 
+const DeleteDiv = styled.div `
+    width: 100%; 
+
+`;
 class FriendPage extends React.Component {
     constructor(props){
         super(props)
@@ -13,16 +18,14 @@ class FriendPage extends React.Component {
         console.log(this.props)
         return (
 
-            <div>
+            <DeleteDiv>
                 
                 <h1>Delete Friend</h1>
-                <div>Something is here</div>
-                <div>Something is here</div>
-                <div>Something is here</div>
-                <div>Something is here</div>
+                <div><h1>{this.props.match.params.name}</h1></div>
+                <div><button>It's not hard to say goodbye just click here</button></div>
 
 
-            </div>
+            </DeleteDiv>
         ); 
     }
 }

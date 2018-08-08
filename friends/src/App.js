@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import {Route} from 'react-router-dom';  
 
@@ -50,13 +50,18 @@ handleOnChange = event => {
   render() {
     
     return (
-      <div className="App">
+      <Fragment>
         
-        <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()}/>} />
+        <div>
+        <Route  path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()}/>} />
+        </div>
+        <div>
         <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
         name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} />
-        <Route path = '/:name' render={(props) => <FriendPage {...props} /> }/>
-      </div>
+        </div>
+        
+        {/* <Route path = '/:name' render={(props) => <FriendPage {...props} /> }/> */}
+      </Fragment>
     );
   }
 }
