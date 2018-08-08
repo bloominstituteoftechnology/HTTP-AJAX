@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './friend.css';
 
 class FriendForm extends Component{
   constructor(){
@@ -83,7 +85,7 @@ class FriendForm extends Component{
           value={this.state.age}
           placeholder="Enter Age"
           onChange={this.handleInputChange} />
-        <label htmlFor="email">eMail: </label>
+        <label htmlFor="email">E-Mail: </label>
         <input
           type="text"
           id="email"
@@ -91,7 +93,8 @@ class FriendForm extends Component{
           value={this.state.email}
           placeholder="Enter E-Mail"
           onChange={this.handleInputChange} />
-        <input type="submit" />
+        <button type="submit">Submit!</button>
+        <Link to="/"><div className="btn btn-return">Return</div></Link>
       </form>
     );
   }
