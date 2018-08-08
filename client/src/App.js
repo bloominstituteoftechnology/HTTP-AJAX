@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import FriendList from './FriendsList';
+import FriendList from './components/FriendsList';
+import FriendsForm from './components/FriendsForm';
 
 const API_URL = 'http://localhost:5000';
 class App extends Component {
@@ -9,10 +10,14 @@ class App extends Component {
     friends: []
   };
 
-  componentDidMount() {
+  updateState = () => {
     axios
       .get(`${API_URL}/friends`)
       .then(response => this.setState({ friends: response.data }));
+  };
+
+  componentDidMount() {
+    this.updateState();
   }
 
   render() {
@@ -20,6 +25,7 @@ class App extends Component {
       <div>
         <h1>Your Friends</h1>
         <FriendList friends={this.state.friends} />
+        <FriendsForm />
       </div>
     );
   }
