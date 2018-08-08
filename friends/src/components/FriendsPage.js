@@ -1,10 +1,11 @@
 import React from "react";
 //import { Link, NavLink, Route } from "react-router-dom";//
 import axios from "axios";
-import { Row, Container, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Row, Container, Col } from 'reactstrap';
 
 import './FriendsPage.css';
 import Friend from './Friend';
+import FriendForm from './FriendForm';
 
 class FriendsPage extends React.Component {
     constructor() {
@@ -40,17 +41,11 @@ class FriendsPage extends React.Component {
                         </Col>
                     ))}
                 </Row>
-
-                <Form>
-                    <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-                    </FormGroup>
-                </Form>
+                    <Row className="custom-display">
+                        <Col sm="6">
+                        <FriendForm />
+                        </Col>
+                    </Row>
 
             </Container>
         )
