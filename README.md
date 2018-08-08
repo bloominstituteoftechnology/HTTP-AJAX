@@ -1,7 +1,7 @@
 # HTTP/AJAX
 
 Topics:
-
+ 
 * `axios` package
 * AJAX
 * Promises
