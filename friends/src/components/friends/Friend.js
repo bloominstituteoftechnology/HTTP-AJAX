@@ -1,13 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
+
 import FriendCard from "./FriendCard";
+import "./Friend.css";
 
 const Friend = props => {
   return (
-    <div>
-      {props.friends.map(friend => {
-        return <FriendCard friends={friend} />;
-      })}
-    </div>
+    <Fragment>
+      <div className="friendWrapper">
+        {props.friends.map(friend => {
+          return <FriendCard friends={friend} />;
+        })}
+      </div>
+    </Fragment>
   );
 };
 

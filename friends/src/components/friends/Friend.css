@@ -1,0 +1,9 @@
+.friendCardWrapper {
+  width: 25%;
+  height: auto;
+  border: 1px solid red;
+}
+
+.friendWrapper {
+  border: 1px solid blue;
+}

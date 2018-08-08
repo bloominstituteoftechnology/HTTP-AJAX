@@ -27,7 +27,9 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Friend friends={this.state.friendsData} />
+        <div className="mainAppWrapper">
+          <Friend friends={this.state.friendsData} />
+        </div>
       </Fragment>
     );
   }

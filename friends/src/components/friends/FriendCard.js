@@ -1,10 +1,16 @@
 import React, { Fragment } from "react";
 
+import "./Friend.css";
+
 const FriendCard = props => {
   console.log("FriendCard", props);
   return (
     <Fragment>
-      <h2>{props.friends.name}</h2>
+      <div className="friendCardWrapper">
+        <h2>{props.friends.name}</h2>
+        <h4>{props.friends.age}</h4>
+        <h4>{props.friends.email}</h4>
+      </div>
     </Fragment>
   );
 };
