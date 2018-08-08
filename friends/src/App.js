@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Friendlist from './components/friendlist.js'
 import FriendForm from './components/FriendForm.js'
@@ -22,11 +21,11 @@ class App extends Component {
             })
   }
   Change = a => {
-    this.setState({[a.target.name]: a.target.value})
+    this.setState({[a.target.name]: a.target.value })
   }
 
   Submit = a => {
-    a.preventDefault();
+      a.preventDefault();
     axios
       .post("http://localhost:5000/friends",{
         name: this.state.name,
