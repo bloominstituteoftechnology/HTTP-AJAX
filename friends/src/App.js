@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 import FriendList from './components/FriendList';
+import FriendForm from './components/FriendForm';
 
 class App extends Component {
   constructor(){
@@ -16,7 +17,6 @@ class App extends Component {
   componentDidMount(){
     axios.get('http://localhost:5000/friends')
           .then(res => {
-            console.log(res.data);
             this.setState({ friends: res.data, isLoading: false });
           })
           .catch(err => {
@@ -31,6 +31,7 @@ class App extends Component {
           <h1>Loading Friends, one moment please...</h1> :
           <FriendList friends={this.state.friends} />
         }
+        <FriendForm />
       </div>
     );
   }

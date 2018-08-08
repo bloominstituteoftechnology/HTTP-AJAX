@@ -3,7 +3,7 @@ import React from 'react';
 const FriendDisplay = props => {
   return(
     <div>
-      {props.name}
+      {props.name} : {props.email}
     </div>
   );
 }
