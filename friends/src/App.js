@@ -4,6 +4,7 @@ import './App.css';
 import FriendsList from './Components/FriendsList';
 import AddFriendForm from './Components/AddFriendForm';
 import { Route, Link } from 'react-router-dom';
+import UpdateFriend from './Components/UpdateFriend';
 
 const url = 'http://localhost:5000/friends';
 
@@ -42,12 +43,17 @@ class App extends Component {
     })
   }
 
+  handleUpdate = (event) => {
+    console.log(event);
+  }
+
   render() {
     return (
       <div className="App">
         <Route path="/" component={Home} />
-        <Route path="/friends" render={(props) => <FriendsList {...props} friends={this.state.data} loading={this.state.loading} />} />
+        <Route exact path="/friends" render={(props) => <FriendsList {...props} friends={this.state.data} loading={this.state.loading} handleUpdate={this.handleUpdate} />} />
         <Route path="/add" render={(props) => <AddFriendForm {...props} handleSubmit={this.handleSubmit} />} />
+        <Route path="/friends/:id" render={(props) => <UpdateFriend {...props} handleUpdate={this.handleUpdate} />} />
       </div>
     );
   }

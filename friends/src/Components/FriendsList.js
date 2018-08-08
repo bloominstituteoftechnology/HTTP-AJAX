@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FriendsList = (props) => {
     if (props.loading){
@@ -13,6 +14,10 @@ const FriendsList = (props) => {
                     <p> Name: {friend.name} </p>
                     <p> Age: {friend.age} </p>
                     <p> Email: {friend.email} </p>
+                    <div className="button-container">
+                        <Link to={`/friends/${friend.id}`}><button> Update </button></Link>
+                        <button> Delete </button>
+                    </div>
                 </div>
             ))}
         </div>

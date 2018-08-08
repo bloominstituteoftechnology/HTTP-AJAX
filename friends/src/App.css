@@ -86,3 +86,7 @@ button {
 button:focus {
   outline: none;
 }
+
+.button-container {
+  display: flex;
+}
