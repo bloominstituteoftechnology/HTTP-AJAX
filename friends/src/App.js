@@ -30,7 +30,7 @@ class App extends Component {
       .post("http://localhost:5000/friends",{
         name: this.state.name,
         age: this.state.age,
-        emaile: this.state.email
+        email: this.state.email
       });
       this.componentDidMount()
   }
