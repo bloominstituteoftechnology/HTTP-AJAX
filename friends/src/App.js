@@ -52,7 +52,7 @@ class App extends Component {
     console.log(`${url}/${id}`);
     axios.delete(`${url}/${id}`)
       .then((res) => {
-        this.setState({data: res.data}, () => window.location="/friends");
+        this.setState({data: res.data});
       })
       .catch(err => {
         console.log(err);
