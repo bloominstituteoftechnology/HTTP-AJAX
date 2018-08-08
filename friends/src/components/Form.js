@@ -29,11 +29,13 @@ class Form extends React.Component{
         console.log(this.state);
         axios.post(url, this.state)
           .then(function (response) {
-            console.log(response);
+              console.log(response.data);
+            // this.setState(()=>({friends:response.data}))
           })
           .catch(function (error) {
             console.log(error);
           });
+          window.location.reload();
     }
     changeHandler= (e)=> {
         if (e.target.placeholder === 'name'){
