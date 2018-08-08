@@ -20,6 +20,7 @@ class FriendsList extends React.Component{
                         <p>{e.name}</p>
                         <p>{e.age}</p>
                         <p>{e.email}</p>
+                        {e.address?<p>{e.address}</p>:null}
                     </div>
                 )}
             </div>

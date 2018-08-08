@@ -7,7 +7,8 @@ class FriendsForm extends React.Component {
         this.state={
             name:'',
             age:'',
-            email:''
+            email:'',
+            address:''
         }
     }
     handleInputChange=(e)=>{
@@ -17,7 +18,8 @@ class FriendsForm extends React.Component {
         let newFriend=({
             name: this.state.name,
             age: this.state.age,
-            email: this.state.email
+            email: this.state.email,
+            address: this.state.address
         })
         axios.post('http://localhost:5000/friends', newFriend).then(()=>window.location.reload());
     }
@@ -27,6 +29,7 @@ class FriendsForm extends React.Component {
             <input type='text' name='name' value={this.state.name} onChange={(e)=>this.handleInputChange(e)}/>
             <input type='number' name='age' value={this.state.age} onChange={(e)=>this.handleInputChange(e)}/>
             <input type='email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
+            <input type='text' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
             <button type='button' className='btn waves-effect waves-light' onClick={this.submitNewFriend}>Submit New Friend Info</button>
         </form>
         )
