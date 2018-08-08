@@ -1,0 +1,19 @@
+.friendsList {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.friendsCard {
+    background: #f2f2f2; 
+    margin: 10px;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
