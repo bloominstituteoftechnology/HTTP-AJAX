@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Friends from "./components/Friends";
+import FriendForm from "./components/FriendForm";
 import axios from "axios";
 
 class App extends Component {
@@ -23,12 +24,28 @@ class App extends Component {
       });
   }
 
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    axios
+    .post("http://localhost:5000/friends", {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    });
+    this.componentDidMount();
+  };
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Friends List</h1>
         </header>
+        <FriendForm onChange={this.handleInputChange} onSubmit={this.handleSubmit} />
         <Friends friends={this.state.friends} />
       </div>
     );

@@ -2,13 +2,13 @@ import React from "react";
 
 const Friends = props => {
   return (
-    <ul className="friends">
+    <div className="friends">
       {props.friends.map(friend => (
-        <li key={friend.email}>
+        <h3 key={friend.id}>
           {friend.name} is {friend.age} years old.
-        </li>
+        </h3>
       ))}
-    </ul>
+    </div>
   );
 };
 
