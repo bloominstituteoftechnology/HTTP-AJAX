@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
+import Friends from './components/Friends'
 
 import './App.css';
 
@@ -29,7 +29,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Some Text</h1>
+        <header className="App-header">
+          <h1 className="App-title">Friends List</h1>
+        </header>
+        <Friends friends={this.state.friends}/>
       </div>
     );
   }
