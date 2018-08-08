@@ -1,11 +1,72 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { NavLink, Route, Link } from 'react-router-dom';
+import styled, { injectGlobal } from 'styled-components';
+import bg from './bg.jpg';
 
 import FriendList from './components/FriendsList';
 import FriendsForm from './components/FriendsForm';
+import Navbar from './components/Navbar';
+import { Container } from './styles';
 
 const API_URL = 'http://localhost:5000';
+
+injectGlobal`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+  }
+`;
+
+const Landing = styled.div`
+  height: calc(100vh - 8.5rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(${bg});
+  background-position: center;
+  background-size: cover;
+`;
+
+const Title = styled.h1`
+  font-size: 4.8rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1rem;
+  margin-bottom: 3rem;
+  text-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.4);
+`;
+
+const LinkButton = styled(Link)`
+  text-decoration: none;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  color: #212121;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.9;
+  background-color: #ffeb3b;
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+  }
+`;
+
 class App extends Component {
   state = {
     friends: []
@@ -38,21 +99,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-          <NavLink to="/friends">Friends</NavLink>
-          <NavLink to="/add">Add Friend</NavLink>
-        </div>
+        <Navbar />
         <Route
           exact
           path="/"
           render={() => (
-            <div>
-              <h1>Friends Manager</h1>
-              <Link to="/friends">View your friends</Link>
-            </div>
+            <Landing>
+              <Title>Friends Manager</Title>
+              <LinkButton to="/friends">View your friends</LinkButton>
+            </Landing>
           )}
         />
         <Route
