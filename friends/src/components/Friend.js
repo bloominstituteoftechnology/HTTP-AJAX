@@ -1,4 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const FriendWrapper = styled.div`
+  height: 10rem;
+  max-width: 30rem;
+  margin: 1rem auto;
+  display: block;
+  background-color: #b2bec3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 2px;
+  text-align: center;
+`
 
 export default class Friend extends React.Component {
   state={
@@ -22,12 +38,17 @@ export default class Friend extends React.Component {
     let updatedFriend = {id: this.props.friend.id, name: name, age: age, email: email};
 
     this.props.updateFriend(updatedFriend);
+    this.setState({
+      name: '',
+      age: '',
+      email: ''
+    })
 
   }
 
   render() {
     return (
-      <div>
+      <FriendWrapper>
        <p>{this.props.friend.name}</p>
        <p>{this.props.friend.age}</p>
        <p>{this.props.friend.email}</p>
@@ -37,26 +58,26 @@ export default class Friend extends React.Component {
                 name="name"
                 type="text"
                 value={this.state.name}
-                placeholder="Friends Name"
+                placeholder="Name"
               />
               <input
                 onChange={this.handleOnChange}
                 type="number"
                 name="age"
                 value={this.state.age}
-                placeholder="Friends Age"
+                placeholder="Age"
               />
               <input
                 onChange={this.handleOnChange}
                 type="text"
                 name="email"
                 value={this.state.email}
-                placeholder="Friends email"
+                placeholder="Email"
               />
             <button type='submit' value='Submit'>Update</button>
           </form>
           <button onClick={() => this.props.deleteFriend(this.props.friend.id)}>Delete</button>
-      </div>
+      </FriendWrapper>
     )
   }
 }

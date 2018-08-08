@@ -28,21 +28,21 @@ export default class AddFriend extends React.Component {
           name="name"
           type="text"
           value={this.state.name}
-          placeholder="Friends Name"
+          placeholder="Name"
         />
         <input
           onChange={this.handleOnChange}
           type="number"
           name="age"
           value={this.state.age}
-          placeholder="Friends Age"
+          placeholder="Age"
         />
         <input
           onChange={this.handleOnChange}
           type="text"
           name="email"
           value={this.state.email}
-          placeholder="Friends email"
+          placeholder="Email"
         />
         <input type="submit" value="Submit" />
       </form>

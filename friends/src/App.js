@@ -3,13 +3,35 @@ import axios from "axios";
 import FriendsList from "./components/FriendList";
 import AddFriend from "./components/AddFriend";
 import { Route } from "react-router-dom";
+import styled, {injectGlobal} from 'styled-components';
 
 const url = "http://localhost:5000/friends";
+
+injectGlobal`
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  body{
+    background-color: #dfe6e9;
+
+  }
+`
+
+const AppWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+`
 
 class App extends Component {
   state = {
     friends: [],
     loading: true,
+    add: false
   };
 
   componentDidMount() {
@@ -19,6 +41,12 @@ class App extends Component {
         loading: false,
       });
     });
+  }
+
+  handleToggleAdd = () => {
+    this.setState(prevState => ({ 
+      add: !prevState.add
+    }))
   }
 
   handleAddFriend = (name, age, email) => {
@@ -32,6 +60,7 @@ class App extends Component {
       .post(url, friend)
       .then(response => {
         this.setState({ friends: response.data });
+        this.handleToggleAdd();
       })
       .catch(response => {
         console.log(`error ${response}`);
@@ -53,7 +82,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <AppWrapper>
         <FriendsList
           friends={this.state.friends}
           loading={this.state.loading}
@@ -62,14 +91,17 @@ class App extends Component {
           name={this.state.name}
           age={this.state.age}
           email={this.state.email}
+          add={this.state.add}
+          handleShowAdd={this.handleToggleAdd}
         />
+        {this.state.add &&
         <Route
           path="/add"
           render={props => (
             <AddFriend {...props} addFriend={this.handleAddFriend} />
           )}
-        />
-      </div>
+        /> }
+      </AppWrapper>
     );
   }
 }
