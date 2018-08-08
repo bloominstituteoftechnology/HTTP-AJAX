@@ -20,7 +20,7 @@ class App extends Component {
         });
       })
       .catch(err => {
-        console.error("Server Error:", err);
+        console.error("Server Get", err);
       });
   }
 
@@ -28,14 +28,29 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  addFriend = e => {
     e.preventDefault();
     axios.post("http://localhost:5000/friends", {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
+    }).catch(err => {
+      console.error("Server Post", err);
     });
     this.componentDidMount();
+  };
+
+  deleteFriend = e => {
+    axios
+      .delete(`http://localhost:5000/friends/${e.target.id}`)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+      })
+      .catch(err => {
+        console.error("Server Delete", err);
+      });
   };
 
   render() {
@@ -46,9 +61,9 @@ class App extends Component {
         </header>
         <FriendForm
           onChange={this.handleInputChange}
-          onSubmit={this.handleSubmit}
+          onSubmit={this.addFriend}
         />
-        <Friends friends={this.state.friends} />
+        <Friends friends={this.state.friends} delete={this.deleteFriend} />
         <footer>
           This friends list is a compilation of my and/or your friends,
           and no one else's.

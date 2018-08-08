@@ -1,12 +1,14 @@
 import React from "react";
+import { Button } from "reactstrap";
 
 const Friends = props => {
   return (
     <div className="friends">
       {props.friends.map(friend => (
-        <h3 key={friend.id}>
-          {friend.name} is {friend.age} years old.
-        </h3>
+        <div className="friend" key={friend.id}>
+          <h4><a href={`mailto:${friend.email}`}>{friend.name}</a> is {friend.age} years old.</h4>
+          <Button id={friend.id} onClick={props.delete} color="danger">Delete</Button>
+        </div>
       ))}
     </div>
   );
