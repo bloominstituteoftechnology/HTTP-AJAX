@@ -27,7 +27,7 @@ componentDidMount () {
   
 }
 handleSubmit = event => {
-  event.preventDefault(); 
+   
   if(this.state.name.length && this.state.age.length && this.state.email.length){// if they are all greater than zero... 
     // do something with post. 
     const length = this.state.friends.length; //gets the number to set the id paramater needed because i use it as the key for the map method. 
