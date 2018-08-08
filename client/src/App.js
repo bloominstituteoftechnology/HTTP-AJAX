@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
-
+//test
 const friendsData = 'http://localhost:5000/friends';
 
 class App extends Component {
