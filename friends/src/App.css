@@ -1,5 +1,11 @@
 .App {
+  max-width: 1500px;
+  width: 100%;
   text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .App-logo {
@@ -25,4 +31,26 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.person-card {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+  border-bottom: 1px solid gray;
+}
+
+.person-card h2 {
+  width: 25%;
+  border: 1px solid gray;
+}
+
+.person-card h2 p {
+  margin-top: 0;
+  padding-top: 20px;
+  color: teal;
+}
+
+form {
+  font-size: 25px;
 }
