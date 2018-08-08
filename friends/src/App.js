@@ -23,13 +23,12 @@ class App extends Component {
   }
   newFriend = e => {
     e.preventDefault();
-    const user = {
+    axios.post(url,{
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
-    }
-    axios.post(url,{user})
-         .then(response => this.setState({friends: response.data, loading: false}))
+    })
+         .then(response => console.log(response))
   }
   componentDidMount(){
       axios
@@ -44,9 +43,9 @@ class App extends Component {
           <div>
               <FriendList friends={this.state.friends} />
               <form onSubmit={this.newFriend}>
-                <input placeholder='name' onChange={this.handleChange} />
-                <input placeholder='age' onChange={this.handleChange} />
-                <input placeholder='email' onChange={this.handleChange} />
+                <input name="name" placeholder='name' onChange={this.handleChange} />
+                <input name="age" placeholder='age' onChange={this.handleChange} />
+                <input name="email" placeholder='email' onChange={this.handleChange} />
                 <button>Save</button>
               </form>
           </div>
