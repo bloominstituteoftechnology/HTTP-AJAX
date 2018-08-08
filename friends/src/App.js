@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from "axios";
+import FriendList from './Components/FriendList';
+
+
+const url = "http://localhost:5000/friends";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      friends: [],
+      loading: true
+    };
+  }
+
+  componentDidMount() {
+    axios.get(url).then(response => {
+      console.log(response);
+      this.setState({
+        friends: response.data,
+        loading: false
+      });
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {/* {this.state.friends.map(friend => (
+            <div >
+                {friend.name}
+            </div>
+            )
+        ) } */}
+        <FriendList friends={this.state.friends} />
       </div>
     );
   }
