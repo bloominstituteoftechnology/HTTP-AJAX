@@ -29,13 +29,14 @@ class App extends Component {
     })
   }
   
+  
   click = event => {
     this.setState({
       [event.target.name]: event.target.value,
     })   
   }
 
-  submit= (event) => {
+  submit = (event) => {
     event.preventDefault();
     console.log('submit');
     axios.post(url, {
@@ -43,6 +44,21 @@ class App extends Component {
       age: this.state.age,
       email: this.state.email
     })
+    .then( () => {
+      axios.get(url).then(response => {
+        console.log(response)
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    })
+  }
+
+  getList = () => {
+
   }
 
   render() {
@@ -57,15 +73,18 @@ class App extends Component {
           </div>
           <form onSubmit={this.submit}>
             <h2>New Friends</h2>
-            <input name='name' placeholder="name" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
-            <input name='age' placeholder="name" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
-            <input name='email' placeholder="name" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
+            <input name='name' type="text" placeholder="name" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
+            <input name='age' type="number" placeholder="age" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
+            <input name='email' type="email" placeholder="email" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
             <button>
               submit
             </button>
+            
           </form>
       </div>
-       
+      <button onClick={this.refresh}>
+              refresh
+            </button>
 
       </div>
     );
