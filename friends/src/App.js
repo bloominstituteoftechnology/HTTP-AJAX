@@ -44,14 +44,26 @@ class App extends Component {
   }
 
   handleUpdate = (event) => {
-    console.log(event);
+    event.preventDefault();
+    console.log(event.target);
+  }
+
+  handleDelete = (id) => {
+    console.log(`${url}/${id}`);
+    axios.delete(`${url}/${id}`)
+      .then((res) => {
+        this.setState({data: res.data}, () => window.location="/friends");
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
     return (
       <div className="App">
         <Route path="/" component={Home} />
-        <Route exact path="/friends" render={(props) => <FriendsList {...props} friends={this.state.data} loading={this.state.loading} handleUpdate={this.handleUpdate} />} />
+        <Route exact path="/friends" render={(props) => <FriendsList {...props} friends={this.state.data} loading={this.state.loading} handleDelete={this.handleDelete} />} />
         <Route path="/add" render={(props) => <AddFriendForm {...props} handleSubmit={this.handleSubmit} />} />
         <Route path="/friends/:id" render={(props) => <UpdateFriend {...props} handleUpdate={this.handleUpdate} />} />
       </div>

@@ -67,7 +67,7 @@
   flex-wrap: wrap;
 }
 
-.home a{
+.home a {
   text-decoration: none;
 }
 
@@ -89,4 +89,8 @@ button:focus {
 
 .button-container {
   display: flex;
+}
+
+.friend a {
+  text-decoration: none;
 }
