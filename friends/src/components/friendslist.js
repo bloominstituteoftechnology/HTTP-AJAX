@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 const FriendsList = (props) => {
-    const { id, name, age, email} = props.friendslist;
-    console.log(props);
     return (  
         <div>
             {props.friendslist.map(friend => 
