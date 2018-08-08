@@ -32,21 +32,13 @@ class App extends Component {
   }
 
   handleSubmit = (input) => {
-   
-    console.log(input);
-    
-
-    const friend = {
-      name: input.name,
-      email: input.email
-    };
-
     axios.post(`http://localhost:5000/friends`, {
       name: input.name,
       email: input.email })
       .then(res => {
         console.log(res);
         console.log(res.data);
+        this.setState({friends: res.data})
       })
   };
 
