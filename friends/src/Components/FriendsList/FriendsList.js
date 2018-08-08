@@ -11,16 +11,20 @@ class FriendsList extends React.Component{
     componentDidMount() {
         axios.get('http://localhost:5000/friends').then(res=>this.setState({friends:res.data}));
     }
+    delete=(index)=>{
+        axios.delete(`http://localhost:5000/friends/${index}`).then(window.location.reload());
+    }
     render() {
         return (
             <div>
-                {this.state.friends.map(e=>
-                    <div key={e.id} className='card'>
+                {this.state.friends.map((e,i)=>
+                    <div key={i} className='card'>
                         <p>Friend number {e.id} information:</p>
                         <p>{e.name}</p>
                         <p>{e.age}</p>
                         <p>{e.email}</p>
-                        {e.address?<p>{e.address}</p>:null}
+                        <p>{e.address}</p>
+                        <i className="fas fa-trash-alt" onClick={()=>this.delete(e.id)}></i>
                     </div>
                 )}
                 <Link to='/'><button className='btn waves-effect waves-light backToFriendForm'>Go To Friends Form</button></Link>
