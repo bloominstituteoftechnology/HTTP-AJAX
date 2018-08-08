@@ -78,25 +78,9 @@ class FriendsPage extends React.Component {
                 </Row>
                 <Row className="custom-display">
                     <Col sm="6">
-                        <FriendForm />
+                        <FriendForm handleSubmit={this.handleSubmit} handleName={this.handleName} handleAge={this.handleAge} handleEmail={this.handleEmail}/>
                     </Col>
                 </Row>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Person Name:
-            <input type="text" name="name" onChange={this.handleName} />
-                        </label>                        <label>
-                            age:
-            <input type="text" name="age" onChange={this.handleAge} />
-                        </label>
-                        <label>
-                            email:
-            <input type="text" name="email" onChange={this.handleEmail} />
-                        </label>
-                        <button type="submit">Add</button>
-                    </form>
-                </div>
             </Container>
         )
     }

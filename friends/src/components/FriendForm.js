@@ -8,18 +8,18 @@ import './FriendForm.css';
 const FriendForm = props => {
     return (
         <div>
-            <Form>
+            <Form onSubmit={props.handleSubmit}>
                 <FormGroup>
                     <Label>Name</Label>
-                    <Input type="text" placeholder="..." />
+                    <Input onChange={props.handleName} type="text" placeholder="..." />
                 </FormGroup>
                 <FormGroup>
                     <Label >Age</Label>
-                    <Input type="text"placeholder="..." />
+                    <Input  onChange={props.handleAge} type="text"placeholder="..." />
                 </FormGroup>
                 <FormGroup>
                     <Label >Email</Label>
-                    <Input className="red" type="text"placeholder="..." />
+                    <Input onChange={props.handleEmail} className="red" type="text"placeholder="..." />
                 </FormGroup>
                 <Button color="danger">Submit</Button>
             </Form>
