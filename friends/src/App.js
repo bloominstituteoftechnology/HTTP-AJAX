@@ -30,13 +30,30 @@ friend = e => {
 }
 
 newFriend = () => {
-  
+
 }
 
   render() {
     return (
       <div className="App">
 
+      <form>
+      
+      <input
+      type='text'
+      placeholder='name'
+       />
+
+      </form>
+
+
+      {this.state.friends.map((friend, index) => {
+        return <ul key={index}>
+        <li>Name: {friend.name}</li>
+        <li>Age: {friend.age}</li>
+        <li>Email: {friend.email}</li>
+        </ul>
+      })}
       </div>
     );
   }
