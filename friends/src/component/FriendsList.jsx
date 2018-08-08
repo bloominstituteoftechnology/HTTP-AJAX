@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, } from 'react-router-dom';
 
 
 class FriendsList extends Component {
@@ -7,8 +8,12 @@ class FriendsList extends Component {
     
   }
   friendLister =()=>{
-    return this.props.friends.map((e,i)=>{
-      return <div id={e.id} key={i} className='friendListRow'>
+    const filterNum = parseInt(this.props.match.params.id, 10);
+     console.log(isNaN(filterNum))
+    return this.props.friends.filter((e)=> {if ( isNaN(filterNum) ){return e} else{  return e.id===filterNum}}).map((e,i)=>{
+      return(
+      <Link   className='friendListRow' id={e.id} key={i} to={`/friend/${e.id}`}>
+       
         <div className='friendsListItem'>
         {e.name}
         </div>
@@ -18,11 +23,14 @@ class FriendsList extends Component {
         <div className='friendsListItem'>
         {e.email}
         </div>
-      </div>
+     
+      </Link>
+      )
     })
   }
   componentDidMount =()=>{
-   
+
+    
   }
   render() {
     return (
