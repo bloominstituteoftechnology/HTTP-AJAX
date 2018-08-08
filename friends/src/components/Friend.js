@@ -1,16 +1,24 @@
 import React from "react";
 // import { Link, NavLink, Route } from "react-router-dom";
+import { Card, CardTitle, CardBody, CardSubtitle, Col } from 'reactstrap';
+
+
 import './Friend.css';
 
 
 const Friend = props => {
     return (
         <div>
-            <h2>{props.friend.name}</h2>
-            <p>{props.friend.age}</p>
-            <p>{props.friend.email}</p>
+            <Card>
+                <CardBody>
+                    <CardTitle>{props.friend.name}</CardTitle>
+                    <CardSubtitle>{props.friend.age}</CardSubtitle>
+                    <CardSubtitle>{props.friend.email}</CardSubtitle>
+                </CardBody>
+            </Card>
         </div>
     );
 }
 
 export default Friend;
+
