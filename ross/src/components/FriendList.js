@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Friend from './Friend.js';
 
 const AllTheRosses = styled.div`
-    width: 420px;
-    margin:0 auto;
+    width: 620px;
+    margin:0 47%;
 `;
 
 

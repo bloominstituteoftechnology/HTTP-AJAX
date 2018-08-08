@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendList from './components/FriendList.js';
+import Form from './components/Form/Form.js';
 import './App.css';
 // https://github.com/LambdaSchool/HTTP-AJAX/pull/275
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <Form />
         <FriendList friends={this.state.friends}/>
       </div>
     );
