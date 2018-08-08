@@ -2,4 +2,23 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  box-sizing: border-box;
+}
+.App{
+  width: 100%;
+  margin: auto;
+}
+.friend-list{
+  display: flex;
+  flex-direction: column;
+}
+.friend-list > h3{
+  padding-left: 15px;
+}
+.friend-card{
+  border: 1px solid gray;
+  width: 300px;
+  height: 100px;
+  margin: 5px;
+  text-align: center;
 }

@@ -1,33 +1,16 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Friend from './Friend';
 
-export default class FriendList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      friends: []
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        this.setState(() => ({ friends: response.data }));
-      })
-      .catch(error => {
-        console.error('Server Error', error);
-      });
-  }
-
-  render() {
-    return (
+const FriendList = props => {
+      return (
       <div className="friend-list">
-        {this.state.friends.map(friend => (
+        <h3>Contacts:</h3>
+        {props.friends.map(friend => (
           <Friend friend={friend} key={friend.id}/>
         ))}
       </div>
-    );
+    )
   }
-}
+  
+
+  export default FriendList;
