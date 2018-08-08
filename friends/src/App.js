@@ -26,7 +26,7 @@ componentDidMount() {
     return (
       <div className="App">
         <h1>
-          Friend List
+          I have the coolest friends!
         </h1>
         <Friends friends = {this.state.friends} />
       </div>
