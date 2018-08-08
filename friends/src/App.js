@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 const FriendsContainer = styled.div`
   display:flex; 
+  margin: 0 auto;
 
 `;
 class App extends Component {
@@ -49,6 +50,7 @@ handleSubmit = event => {
 }
 
 handleOnChange = event => {
+  console.log(event);
   this.setState({[event.target.name] : event.target.value})
 }
 
@@ -68,17 +70,19 @@ handleUpdate = (name) => {
 }
 
 
-
   render() {
     
     return (
       <Fragment>
         
-        <FriendsContainer>
-        <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()} delete = {this.handleDelete} update = {this.handleUpdate}/>} />
         
-        <Route path ='/'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
-        name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} />
+        <FriendsContainer>
+        <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()} delete = {this.handleDelete} 
+        update = {this.handleUpdate} handleChange ={this.handleOnChange} name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} 
+        />
+        
+        {/* <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
+        name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} /> */}
         </FriendsContainer>
         
         <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.handleDelete} update = {this.handleUpdate}/> }/>

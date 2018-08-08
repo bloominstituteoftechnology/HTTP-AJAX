@@ -14,6 +14,7 @@ const FriendListContainer = styled.div`
     display: flex;
     flex-direction: column;
     width:100%;
+    background: gray;
     a{
         text-decoration: none;
         color: white; 
@@ -42,15 +43,31 @@ class FriendsList extends React.Component {
     render() {
         console.log(this.props.friends)
         console.log(this.props); 
+        console.log("what the heck")
         const friends = this.props.friends
         return(
             <FriendListContainer>
                 <FriendListDiv>
                     <H1>HTTP -AJAX Friends</H1>
+                    {/* <Link to ='/create-friend'><H1>Add New Friend Click Here</H1></Link>  */}
                     <ul>
                         {friends.map(friend => <Link key ={friend.id} to = {`/${friend.name}`}><LI key ={friend.id}>{friend.name}  {friend.age}  {friend.email}</LI></Link>)}
                     </ul>
-                    <div><Link to ='/create-friend'>Click Here to Add New Friend</Link></div>
+                    <div>
+                    
+                    <form>
+                        <h1>Add New Friend</h1>
+                        <h1>Name</h1>
+                        <input  onChange = {this.props.handleChange} placeholder = "Enter name here" name = "name" value = {this.props.name}/>
+                        <h1>Age</h1>
+                        <input  onChange = {this.props.handleChange} placeholder = "Enter age here" name = "age" value = {this.props.age}/>
+                        <h1>Email</h1>
+                        <input  onChange = {this.props.handleChange} placeholder = "Enter name here" name = "email" value = {this.props.email}/>
+                        <br/>
+                        <button onClick = {this.props.handleSubmit}>Submit</button>
+                    </form>
+                     
+                </div>
                 </FriendListDiv>
                 
                 

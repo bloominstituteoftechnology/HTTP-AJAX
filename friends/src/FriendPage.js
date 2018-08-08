@@ -33,8 +33,6 @@ class FriendPage extends React.Component {
                 <br/>
                 <button onClick = {() => this.props.update(this.props.match.params.name)}>Update Friend</button>
 
-
-
             </DeleteDiv>
         ); 
     }
