@@ -19,7 +19,8 @@ class Friends extends React.Component {
     render () {
         console.log(this.state.url);
         return (
-            <div>
+            <div className='friends'>
+                <h1>My Friends</h1>
                 {this.state.friends.map(friend => {
                     return(
                         <div key={friend.id} className='friend'>
