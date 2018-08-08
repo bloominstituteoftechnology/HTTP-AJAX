@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import React, { Component } from 'react';
+import React from 'react';
 
 
 export default function Friend(props) {
     return (
-        <FriendDiv data={props}>
+        <FriendDiv key={props.data.id} data={props}>
             <h3>{props.data.name}</h3>
             <p>{`Age: ${props.data.age}`}</p>
             <p>{props.data.email}</p>
@@ -20,6 +20,6 @@ const FriendDiv = styled.div`
     flex-direction: column;
     width: 250px;
     &:hover{
-        opacity: .9;
+        opacity: .8;
     }
 `;

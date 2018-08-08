@@ -1,17 +1,28 @@
 .App {
   text-align: center;
   background-color: black;
-  /* height: 1000px; */
-  margin-top: -25px;
+ border: 4px solid gold;
+  /* margin-top: -25px; */
+
   color: white;
+  
 }
 
+.sub-app{
+  border: 1px solid green;
+  flex: display;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
 
 .component {
-  border: 1px solid green;
+  border: 1px solid pink;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  /* width: 400px; */
+  margin: 0;
 }
 
 h1 {
@@ -20,4 +31,11 @@ h1 {
 
 p {
   margin: 5px;
+}
+
+form {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
 }
