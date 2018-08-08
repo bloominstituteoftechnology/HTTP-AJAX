@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import FriendsList from "./components/FriendList";
+import AddFriend from './components/AddFriend'
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -10,7 +12,6 @@ class App extends Component {
 
   componentDidMount() {
     axios.get("http://localhost:5000/friends").then(response => {
-      console.log(response.data);
       this.setState({
         friends: response.data,
         loading: false
@@ -27,7 +28,6 @@ class App extends Component {
     }
     axios.post("http://localhost:5000/friends", friend)
       .then((response) => {
-        console.log(response);
         this.setState({friends: response})
       })
       .catch((response) => {
@@ -37,8 +37,14 @@ class App extends Component {
 
   render() {
     return ( 
-    <div className="App">
-      <FriendsList friends={this.state.friends} loading={this.state.loading} addFriend={this.handleAddFriend}/>
+    <div>
+      <FriendsList friends={this.state.friends} loading={this.state.loading} />
+      <Route
+        path='/add'
+        render={(props) => 
+          <AddFriend {...props} addFriend={this.handleAddFriend}/>
+        }
+      />
     </div>
     )
   }
