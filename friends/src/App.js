@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/" render={props => <FriendsList {...props} friendslist={props.friendslist} />} />
+        <Route path="/" render={props => <FriendsList {...props} friendslist={this.state.friends} />} />
       </div>
     );
   }
