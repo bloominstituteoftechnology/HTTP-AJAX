@@ -4,6 +4,14 @@ body {
   font-family: sans-serif;
 }
 
+footer {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 3px;
+  font-size: 90%;
+}
+
 .App {
   text-align: center;
 }
@@ -18,4 +26,35 @@ body {
 .App-title {
   font-size: 1.5em;
   text-align: center;
+}
+
+.friend-form {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 20px;
+
+  .form-group {
+    margin: 0 5px;
+  }
+
+  button {
+    margin: 0 5px;
+
+    &:hover {
+      color: lightgray;
+    }
+  }
+}
+
+.friends {
+  background: #222;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 2vh;
+  color: white;
+
+  h3 {
+    margin-bottom: 25px;
+  }
 }

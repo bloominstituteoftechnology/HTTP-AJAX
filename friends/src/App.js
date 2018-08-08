@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Friends from "./components/Friends";
 import FriendForm from "./components/FriendForm";
-import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -30,8 +30,7 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    axios
-    .post("http://localhost:5000/friends", {
+    axios.post("http://localhost:5000/friends", {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
@@ -45,8 +44,13 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Friends List</h1>
         </header>
-        <FriendForm onChange={this.handleInputChange} onSubmit={this.handleSubmit} />
+        <FriendForm
+          onChange={this.handleInputChange}
+          onSubmit={this.handleSubmit}
+        />
         <Friends friends={this.state.friends} />
+        <footer>This friends list is a compilation of my and/or your friends, and no one else's. 
+          <br /> Fake Copyright Company &copy;</footer>
       </div>
     );
   }
