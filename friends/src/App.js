@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Friend from './list';
+import NewFriend from './newFriend';
 
 const url = 'http://localhost:5000/friends'
 
@@ -28,7 +29,6 @@ class App extends Component {
       console.log(error)
     })
   }
-  
   
   click = event => {
     this.setState({
@@ -57,35 +57,24 @@ class App extends Component {
     })
   }
 
-  getList = () => {
 
-  }
 
   render() {
     return (
       <div className="App">
-      <h1>mjk-HTTP-AJAX</h1>
-      <div className="sub-app">
+       
+        <h1>mjk-HTTP-AJAX</h1>
+        
+        <div className="sub-app">
           <div className="component">
             {this.state.friends.map(friend => {
-              return <Friend data={friend}>{friend.name}</Friend>
+              return <Friend key={friend.id} data={friend}>{friend.name}</Friend>
             })}
           </div>
-          <form onSubmit={this.submit}>
-            <h2>New Friends</h2>
-            <input name='name' type="text" placeholder="name" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
-            <input name='age' type="number" placeholder="age" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
-            <input name='email' type="email" placeholder="email" value={this.state.newFriend} onChange={this.click}>{this.value}</input>
-            <button>
-              submit
-            </button>
-            
-          </form>
-      </div>
-      <button onClick={this.refresh}>
-              refresh
-            </button>
-
+        </div>
+        
+        <NewFriend click={this.click} submit={this.submit} data={this}/>
+     
       </div>
     );
   }
