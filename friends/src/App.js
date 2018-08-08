@@ -17,16 +17,19 @@ class App extends Component {
   componentDidMount() {
     axios.get(dataUrl).then(response => {
       console.log("RESPONSE", response);
-      this.setState({
-        friendsData: response.data,
-        loading: false
-      });
+      this.setState({ friendsData: response.data, loading: false });
     });
   }
+
+  // getFriend = id => {
+
+  // }
+
   render() {
+    console.log("App Page, friendsdata", this.state.friendsData);
     return (
       <Fragment>
-        <Friend friendsData={this.state.friendsData} />
+        <Friend friends={this.state.friendsData} />
       </Fragment>
     );
   }
