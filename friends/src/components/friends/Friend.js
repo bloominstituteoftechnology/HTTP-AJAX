@@ -2,11 +2,11 @@ import React from "react";
 import FriendCard from "./FriendCard";
 
 const Friend = props => {
-  console.log("Friend", props);
-
   return (
     <div>
-      <FriendCard friends={props.friends} />
+      {props.friends.map(friend => {
+        return <FriendCard friends={friend} />;
+      })}
     </div>
   );
 };

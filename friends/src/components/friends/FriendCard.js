@@ -4,7 +4,7 @@ const FriendCard = props => {
   console.log("FriendCard", props);
   return (
     <Fragment>
-      <h2>Filler</h2>
+      <h2>{props.friends.name}</h2>
     </Fragment>
   );
 };

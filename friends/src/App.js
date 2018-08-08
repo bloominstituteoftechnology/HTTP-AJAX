@@ -16,7 +16,6 @@ class App extends Component {
   }
   componentDidMount() {
     axios.get(dataUrl).then(response => {
-      console.log("RESPONSE", response);
       this.setState({ friendsData: response.data, loading: false });
     });
   }
@@ -26,7 +25,6 @@ class App extends Component {
   // }
 
   render() {
-    console.log("App Page, friendsdata", this.state.friendsData);
     return (
       <Fragment>
         <Friend friends={this.state.friendsData} />
