@@ -1,17 +1,15 @@
 import React from 'react';
 import './Friend.css';
 
-const Pictures = () => {
-  
-}
-
-
 const Friend = props => {
   return (
+
     <div className = "friend-info">
-      <h3>{props.friend.name}</h3>
-      <h4>{props.friend.age}</h4>
-      <h4>{props.friend.email}</h4>
+    
+      <h2>{props.friend.name}</h2>
+      <h3> . age: {props.friend.age}</h3>
+      <h3> . email: {props.friend.email}</h3>
+    
     </div>
   )
 }

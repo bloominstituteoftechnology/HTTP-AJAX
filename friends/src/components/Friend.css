@@ -7,12 +7,14 @@
 } */
 
 .friend-info{
+    font-family: 'Shadows Into Light', cursive;
+    font-weight: 100;
     background: white;
     display: inline;
     float: left;
     margin: 0 15px 30px;
     padding: 10px 10px 25px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
     -moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
@@ -22,4 +24,27 @@
     transition: all .15s linear;
     z-index:0;
         position:relative;
+}
+
+
+.polaroid {
+  position: relative;
+  width: 220px;
+}
+ 
+.polaroid img {
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+     -moz-box-shadow: 3px 3px 3px #777;
+          box-shadow: 3px 3px 3px #777;
+}
+ 
+.polaroid p {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  font: 400 18px/1 'Kaushan Script', cursive;
+  color: #888;
 }
