@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import FriendsList from "./components/FriendList";
-import AddFriend from './components/AddFriend'
-import { Route } from 'react-router-dom';
+import AddFriend from "./components/AddFriend";
+import { Route } from "react-router-dom";
+
+const url = "http://localhost:5000/friends";
 
 class App extends Component {
   state = {
@@ -11,11 +13,11 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:5000/friends").then(response => {
+    axios.get(url).then(response => {
       this.setState({
         friends: response.data,
-        loading: false
-      })
+        loading: false,
+      });
     });
   }
 
@@ -24,29 +26,51 @@ class App extends Component {
       id: this.state.friends.length + 2,
       name: name,
       age: age,
-      email: email
-    }
-    axios.post("http://localhost:5000/friends", friend)
-      .then((response) => {
-        this.setState({friends: response})
+      email: email,
+    };
+    axios
+      .post(url, friend)
+      .then(response => {
+        this.setState({ friends: response.data });
       })
-      .catch((response) => {
-        console.log(`error ${response}`)
-      })
+      .catch(response => {
+        console.log(`error ${response}`);
+      });
+  };
+
+  handleDelete = id => {
+    axios.delete(`${url}/${id}`).then(response => {
+      this.setState({ friends: response.data });
+    });
+  };
+
+  handleUpdate = friend => {
+    axios.put(`${url}/${friend.id}`, friend).then(response => {
+      this.setState({ friends: response.data })
+    })
   }
+  
 
   render() {
-    return ( 
-    <div>
-      <FriendsList friends={this.state.friends} loading={this.state.loading} />
-      <Route
-        path='/add'
-        render={(props) => 
-          <AddFriend {...props} addFriend={this.handleAddFriend}/>
-        }
-      />
-    </div>
-    )
+    return (
+      <div>
+        <FriendsList
+          friends={this.state.friends}
+          loading={this.state.loading}
+          deleteFriend={this.handleDelete}
+          updateFriend={this.handleUpdate}
+          name={this.state.name}
+          age={this.state.age}
+          email={this.state.email}
+        />
+        <Route
+          path="/add"
+          render={props => (
+            <AddFriend {...props} addFriend={this.handleAddFriend} />
+          )}
+        />
+      </div>
+    );
   }
 }
 

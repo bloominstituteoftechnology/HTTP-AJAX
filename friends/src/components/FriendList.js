@@ -1,18 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Friend from './Friend';
 
-export default function FriendsList(props) {
-  if (props.loading) {
+export default class FriendsList extends React.Component {
+  
+  handleUpdate = friend => {
+    
+    this.props.updateFriend(friend)
+  }
+  
+
+  render() {
+  if (this.props.loading) {
     return <h2>Loading data..</h2>;
-  } else if (!props.loading && props.friends.length === 0) {
+  } else if (!this.props.loading && this.props.friends.length === 0) {
     return <h2>No data here, try again</h2>;
   }
 
   return (
     <div>
-      {props.friends.map((friend, i) => (
+      {this.props.friends.map((friend, i) => (
         <div key={i}>
-          <p>{friend.name}</p>
+          <Friend friend={friend} updateFriend={(friend) => this.props.updateFriend(friend)} deleteFriend={(id) => this.props.deleteFriend(id)}/>
         </div>
       ))}
       <Link to="/add">
@@ -20,4 +29,5 @@ export default function FriendsList(props) {
       </Link>
     </div>
   );
+}
 }
