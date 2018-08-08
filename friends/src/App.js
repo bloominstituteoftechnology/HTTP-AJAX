@@ -5,8 +5,13 @@ import {Route} from 'react-router-dom';
 import './App.css';
 import NewFriendForm from './NewFriendForm';
 import FriendsList from './FriendsList'; 
+import FriendPage from './FriendPage';
+import styled from 'styled-components'; 
 
+const FriendsContainer = styled.div`
+  display:flex; 
 
+`;
 class App extends Component {
   constructor(props){
     super(props);
@@ -48,21 +53,35 @@ handleOnChange = event => {
 }
 
 handleDelete = (name) => {
+  const friends = this.state.friends.slice(); 
+  const friendToDelete = friends.filter(friend => friend.name !== name);
+  const friendId = friendToDelete.id; 
   console.log(name); 
+  axios.delete('http://localhost:5000/friends', friendToDelete)
+        .then(response => {
+          console.log(response); 
+        })
+  
 }
+handleUpdate = (name) => {
+  console.log(name)
+}
+
+
 
   render() {
     
     return (
       <Fragment>
         
-        <div>
-        <Route  path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()} delete = {this.handleDelete}/>} />
-        </div>
-        <div>
-        <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
+        <FriendsContainer>
+        <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()} delete = {this.handleDelete} update = {this.handleUpdate}/>} />
+        
+        <Route path ='/'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
         name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} />
-        </div>
+        </FriendsContainer>
+        
+        <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.handleDelete} update = {this.handleUpdate}/> }/>
       </Fragment>
     );
   }

@@ -5,14 +5,32 @@ import styled from 'styled-components';
 
 
 const FriendListDiv = styled.div`
-    width: 100%;
+    width: 500px;
+    border: 2px solid black;
+    
 
 `;
 const FriendListContainer = styled.div`
     display: flex;
     flex-direction: column;
     width:100%;
+    a{
+        text-decoration: none;
+        color: white; 
+    }
 `
+const H1 = styled.h1`
+    color: blue; 
+    text-align: center;
+`;
+
+const LI = styled.li `
+    background: red;
+    box-shadow: 10px 10px; 
+    margin: 30px;
+    text-align: center;
+`;
+
 
 class FriendsList extends React.Component {
     constructor(props){
@@ -28,13 +46,13 @@ class FriendsList extends React.Component {
         return(
             <FriendListContainer>
                 <FriendListDiv>
-                    <h1>HTTP -AJAX Friends</h1>
+                    <H1>HTTP -AJAX Friends</H1>
                     <ul>
-                        {friends.map(friend => <Link key ={friend.id} to = {`/${friend.name}`}><li key ={friend.id}>{friend.name}  {friend.age}  {friend.email}</li></Link>)}
+                        {friends.map(friend => <Link key ={friend.id} to = {`/${friend.name}`}><LI key ={friend.id}>{friend.name}  {friend.age}  {friend.email}</LI></Link>)}
                     </ul>
                     <div><Link to ='/create-friend'>Click Here to Add New Friend</Link></div>
                 </FriendListDiv>
-                <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.props.delete}/> }/>
+                
                 
             </FriendListContainer>
          );
