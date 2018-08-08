@@ -48,8 +48,11 @@ class App extends Component {
   handleDeleteFriend(e) {
     const targetId = e.target.dataset.id;
 
-    axios.delete(`${this.state.url}/targetId`)
-      .then(response => console.log(response))
+    axios.delete(`${this.state.url}/${targetId}`)
+      .then(response => response.data)
+      .then(data => {
+        this.setState({ friendsArray: data });
+      })
       .catch(e => console.error(e));
   }
 
@@ -78,10 +81,9 @@ function FriendList(props) {
                   return (
                     <div>
                       <Link to={`${props.match.url}/${id}`}>Number {`${id}`}</Link>
-                      <button data-id={`${id}`} onClick={handleDeleteFriend}>Delete</button>
                     </div>
               )})}
-              <Route path={`${props.match.path}/:id`} render={props => <Friend {...props} friendsArray={friendsArray} />} />
+              <Route path={`${props.match.path}/:id`} render={props => <Friend {...props} friendsArray={friendsArray} handleDeleteFriend={handleDeleteFriend} />} />
             </div>
           : <p>Loading</p>
       }
@@ -90,8 +92,8 @@ function FriendList(props) {
 }
 
 function Friend(props) {
-  const { match, friendsArray } = props;
-  const friend = friendsArray.find(friend => friend.id === Number(match.params.id) );
+  const { match, friendsArray, handleDeleteFriend } = props;
+  const friend = friendsArray.find(friend => friend.id === Number(match.params.id) ) || {};
   const { id, name, age, email } = friend;
 
   return (
@@ -102,6 +104,10 @@ function Friend(props) {
         <li>{age}</li>
         <li>{email}</li>
       </ul>
+      { Object.keys(friend).length === 0
+          ? <div></div>
+          : <button data-id={`${id}`} onClick={handleDeleteFriend}>Delete</button>
+      }
     </div>
   )   
 }
