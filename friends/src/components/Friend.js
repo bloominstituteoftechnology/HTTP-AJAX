@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, Route } from "react-router-dom";
+// import { Link, NavLink, Route } from "react-router-dom";
 import './Friend.css';
 
 
