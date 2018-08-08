@@ -9,7 +9,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      tooltipOpen: false
     };
   }
 
@@ -45,7 +46,16 @@ class App extends Component {
   };
 
   updateFriend = e => {
-    
+    axios
+      .put(`http://localhost:5000/friends/${e.target.id}`, {
+        name: this.state.name,
+        age: +this.state.age,
+        email: this.state.email
+      })
+      .catch(err => {
+        console.error("Server Delete", err);
+      });
+      this.componentDidMount();
   };
 
   deleteFriend = e => {
@@ -59,6 +69,12 @@ class App extends Component {
       .catch(err => {
         console.error("Server Delete", err);
       });
+  };
+
+  toggleTooltip = () => {
+    this.setState({
+      tooltipOpen: !this.state.tooltipOpen
+    });
   };
 
   render() {
@@ -86,7 +102,10 @@ class App extends Component {
                 <Friends
                   {...props}
                   friends={this.state.friends}
+                  update={this.updateFriend}
                   delete={this.deleteFriend}
+                  toggle={this.toggleTooltip}
+                  open={this.state.tooltipOpen}
                 />
               </div>
             );
