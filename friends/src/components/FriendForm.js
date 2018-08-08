@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class FriendForm extends React.Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class FriendForm extends React.Component {
                     <p>Age: <input type="text" name="age" onChange={this.handleInputChange} value={this.state.age}/></p>
                     <p>Email: <input type="text" name="email" onChange={this.handleInputChange} value={this.state.email}/></p>
                     <button type="submit">Submit</button>
+                    <p><Link to="/">Go to friends list</Link></p>
                 </form>
             </div>
         )

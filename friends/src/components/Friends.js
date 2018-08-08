@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Friend from './Friend';
 import FriendForm from './FriendForm';
+import { Route, Link } from 'react-router-dom';
 
 class Friends extends React.Component {
     constructor(props) {
@@ -25,8 +26,11 @@ class Friends extends React.Component {
     render() {
         return (
             <div>
-                {this.state.friends.map(friend => <Friend person={friend} key={friend.id} />)}
-                <FriendForm array={this.state.friends} didMount={this.componentDidMount} />
+                
+                {this.state.friends.map(friend => <Route exact path="/" render={props => (<Friend person={friend} key={friend.id} {...props} />)} />)}
+                <Route exact path="/" render={props => (<Link to="/form">Add a friend here</Link>)}/>
+                <Route path="/form" render={props => (<FriendForm array={this.state.friends} didMount={this.componentDidMount} />)} />
+                
             </div>
         )
     }
