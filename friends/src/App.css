@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+  background-color: black;
+  /* height: 1000px; */
+  margin-top: -25px;
+  color: white;
+}
+
+
+.component {
+  border: 1px solid green;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+h1 {
+  padding: 10px;
+}
+
+p {
+  margin: 5px;
+}
