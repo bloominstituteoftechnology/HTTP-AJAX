@@ -9,9 +9,11 @@ const FriendsList = (props) => {
     return ( 
         <div className="friendList">
             {props.friends.map(friend=> (
-                <p key={friend.name}> 
-                    {friend.name} 
-                </p>
+                <div className="friend" key={friend.id}>
+                    <p> Name: {friend.name} </p>
+                    <p> Age: {friend.age} </p>
+                    <p> Email: {friend.email} </p>
+                </div>
             ))}
         </div>
      );
