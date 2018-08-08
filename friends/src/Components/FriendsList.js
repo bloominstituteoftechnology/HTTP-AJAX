@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FriendsList = (props) => {
-    // if (props.loading){
-    //     return (
-    //         <h1> Currently Loading </h1>
-    //     )
-    // }
+    if (props.loading){
+        return (
+            <h1> Currently Loading </h1>
+        )
+    }
     return ( 
         <div className="friendList">
             {props.friends.map(friend=> (

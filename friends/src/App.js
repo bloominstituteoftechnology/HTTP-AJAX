@@ -36,20 +36,29 @@ class App extends Component {
       email: event.target.email.value
     })
     .then((res) => {
-      this.setState({data:res.data}, ()=> window.location="/friends");
+      this.setState({ data: res.data }, ()=> window.location="/friends");
     })
     .catch(err => {
       console.log(err);
     })
   }
 
-  handleUpdate = (event) => {
+  handleUpdate = (id, event) => {
     event.preventDefault();
-    console.log(event.target);
+    axios.put(`${url}/${id}`, {
+      name: event.target.name.value,
+      age: event.target.age.value,
+      email: event.target.email.value
+    })
+      .then((res) => {
+        this.setState({ data: res.data }, () => window.location = "/friends");
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   handleDelete = (id) => {
-    console.log(`${url}/${id}`);
     axios.delete(`${url}/${id}`)
       .then((res) => {
         this.setState({data: res.data});
