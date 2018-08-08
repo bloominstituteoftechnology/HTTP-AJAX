@@ -28,6 +28,9 @@ class App extends Component {
     return (
       <Fragment>
         <div className="mainAppWrapper">
+          <div className="crt">
+            <h2>List of Friends</h2>
+          </div>
           <Friend friends={this.state.friendsData} />
         </div>
       </Fragment>

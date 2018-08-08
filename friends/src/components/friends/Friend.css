@@ -8,6 +8,10 @@
   font-size: 0.8rem;
   text-align: center;
   box-shadow: 0 0 10px 1px #ff3366;
+  z-index: 4;
+  /* 2 ways to deal with text overflow below */
+  /* overflow: hidden; */
+  word-wrap: break-word;
 }
 
 .friendCardWrapper:nth-child(odd) {
