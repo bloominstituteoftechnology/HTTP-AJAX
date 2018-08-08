@@ -48,12 +48,13 @@ const FormContainer = styled.div`
 
 
 class Form extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             name:'',
             email:'',
         };
+        
     }
 
     componentDidMount(){
@@ -61,8 +62,6 @@ class Form extends Component {
     }
 
     handleInput = (e) => {
-        console.log(e.target.value);
-        console.log(e.target.name);
         this.setState({ [e.target.name]: e.target.value });
     }
 
@@ -72,7 +71,7 @@ class Form extends Component {
                 <HOne>adD frienD</HOne>
                 <input style={Input} type="text" name="name" placeholder="name" onChange={this.handleInput}/>
                 <input style={Input} type="text" name="email" placeholder="email" onChange={this.handleInput} />
-                <Btn>mOO pOint</Btn>
+                <Btn onClick={()=>{this.props.handleSubmit(this.state)}}>mOO pOint</Btn>
             </FormContainer>
         )
     }
