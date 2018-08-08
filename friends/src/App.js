@@ -21,6 +21,7 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.friends);
     return (
       <div className="app">
       
