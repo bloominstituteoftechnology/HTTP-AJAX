@@ -5,12 +5,11 @@ class FriendsList extends React.Component{
     constructor() {
         super();
         this.state={
-            friends:[],
-            loading: true
+            friends:[]
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/friends').then(res=>this.setState({friends:res.data,loading:false}));
+        axios.get('http://localhost:5000/friends').then(res=>this.setState({friends:res.data}));
     }
     render() {
         return (
