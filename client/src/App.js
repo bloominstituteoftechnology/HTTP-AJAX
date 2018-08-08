@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { NavLink, Route, Link } from 'react-router-dom';
 
 import FriendList from './components/FriendsList';
 import FriendsForm from './components/FriendsForm';
@@ -25,9 +26,35 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Your Friends</h1>
-        <FriendList friends={this.state.friends} />
-        <FriendsForm onAddFriend={this.addFriend} />
+        <div>
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <NavLink to="/friends">Friends</NavLink>
+          <NavLink to="/add">Add Friend</NavLink>
+        </div>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div>
+              <h1>Friends Manager</h1>
+              <Link to="/friends">View your friends</Link>
+            </div>
+          )}
+        />
+        <Route
+          exact
+          path="/friends"
+          render={() => <FriendList friends={this.state.friends} />}
+        />
+        <Route
+          exact
+          path="/add"
+          render={props => (
+            <FriendsForm {...props} onAddFriend={this.addFriend} />
+          )}
+        />
       </div>
     );
   }
