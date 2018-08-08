@@ -4,6 +4,8 @@ import Friendlist from './components/friendlist.js'
 import FriendForm from './components/FriendForm.js'
 import axios from "axios";
 
+const url = "http://localhost:5000/friends";
+
 class App extends Component {
   constructor(){
     super();
@@ -13,21 +15,23 @@ class App extends Component {
   }
   componentDidMount(){
       axios
-          .get("http://localhost:5000/friends")
+          .get(url)
             .then(response =>{
               this.setState({
                 friends: response.data
               })
             })
   }
-  Change = a => {
-    this.setState({[a.target.name]: a.target.value })
+  change = a => {
+    let change = {}
+ change[a.target.name] = a.target.value
+ this.setState(change)
   }
 
-  Submit = a => {
+  submit = a => {
       a.preventDefault();
     axios
-      .post("http://localhost:5000/friends",{
+      .post(url,{
         name: this.state.name,
         age: this.state.age,
         email: this.state.email
@@ -37,8 +41,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-              <FriendForm onChange ={this.Change} onSubmit = {this.Submit}/>
-              <Friendlist friends = {this.state.friends}/>
+              <FriendForm onChange={this.change} onSubmit={this.submit} data = {this}/>
+              <Friendlist friends={this.state.friends}/>
       </div>
     );
   }
