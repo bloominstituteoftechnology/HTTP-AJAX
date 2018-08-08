@@ -26,6 +26,21 @@ componentDidMount () {
   }); 
   
 }
+handleSubmit = event => {
+  event.preventDefault(); 
+  if(this.state.name.length && this.state.age.length && this.state.email.length){// if they are all greater than zero... 
+    // do something with post. 
+    const length = this.state.friends.length; //gets the number to set the id paramater needed because i use it as the key for the map method. 
+    const data = {name: this.state.name.slice(), age : this.state.age.slice(), email: this.state.email.slice(), id: length + 1}// friends data to add. 
+    axios.post('http://localhost:5000/friends', data)
+         .then(response => {
+           this.setState({name: '', age:'', email:''})
+    });
+    
+  } else {
+    alert('The name, age and email inputs are required add your friend!');
+  }
+}
 
 handleOnChange = event => {
   this.setState({[event.target.name] : event.target.value})
@@ -37,9 +52,9 @@ handleOnChange = event => {
       <div className="App">
         
 
-        <Route path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()}/>} />
+        <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()}/>} />
         <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
-        name = {this.state.name}  age = {this.state.age} email = {this.state.email}/>} />
+        name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} />
       
       
       
