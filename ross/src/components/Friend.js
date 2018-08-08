@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const Ross = styled.div`
+    width: 400px;
+    height:222px;
+    margin:2% 0;
+    box-shadow: 1px 0px 5px #000;
+`;
 
 const Friend = (props) => {
 
@@ -6,11 +14,11 @@ const Friend = (props) => {
     
 
     return (
-        <div>
+        <Ross>
             <div>{props.ross.name}</div>
             <div>{props.ross.age}</div>
             <div>{props.ross.email}</div>
-        </div>
+        </Ross>
     )
 }
 
