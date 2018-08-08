@@ -26,5 +26,13 @@ h1 {
 }
 
 .friend h3 {
-  font-size: 35px; 
+  font-size: 30px; 
+}
+
+
+.form {
+  background-color: white; 
+  padding: 20px; 
+  text-align: center; 
+  margin: 0 auto; 
 }
