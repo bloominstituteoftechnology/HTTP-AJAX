@@ -26,10 +26,10 @@ class FriendsForm extends React.Component {
     render() {
         return(
         <form>
-            <input type='text' name='name' value={this.state.name} onChange={(e)=>this.handleInputChange(e)}/>
-            <input type='number' name='age' value={this.state.age} onChange={(e)=>this.handleInputChange(e)}/>
-            <input type='email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
-            <input type='text' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
+            <input type='text' placeholder='enter a name' name='name' value={this.state.name} onChange={(e)=>this.handleInputChange(e)}/>
+            <input type='number' placeholder='enter an age' name='age' value={this.state.age} onChange={(e)=>this.handleInputChange(e)}/>
+            <input type='email' placeholder='enter an email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
+            <input type='text' placeholder='enter an address' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
             <Link to='/list'><button type='button' className='btn waves-effect waves-light' onClick={this.submitNewFriend}>Submit New Friend Info</button></Link>
             <Link to='/list' className='block'><button type='button' className='btn waves-effect waves-light'>Go To Friends List</button></Link>
         </form>

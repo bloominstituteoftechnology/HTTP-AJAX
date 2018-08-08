@@ -5,7 +5,12 @@ class FriendsList extends React.Component{
     constructor() {
         super();
         this.state={
-            friends:[]
+            friends:[],
+            name: '',
+            age: '',
+            email:'',
+            address:'',
+            cardNumber:''
         }
     }
     componentDidMount() {
@@ -13,6 +18,19 @@ class FriendsList extends React.Component{
     }
     delete=(index)=>{
         axios.delete(`http://localhost:5000/friends/${index}`).then(window.location.reload());
+    }
+    handleInputChange=(e)=>{
+        this.setState({[e.target.name]:e.target.value});
+    }
+    updateFriendInfo=()=>{
+        const id=this.state.cardNumber;
+        let updatedInfo={
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email,
+            address:this.state.address
+        }
+        axios.put(`http://localhost:5000/friends/${this.state.cardNumber}`,updatedInfo).then(window.location.reload());
     }
     render() {
         return (
@@ -27,7 +45,17 @@ class FriendsList extends React.Component{
                         <i className="fas fa-trash-alt" onClick={()=>this.delete(e.id)}></i>
                     </div>
                 )}
-                <Link to='/'><button className='btn waves-effect waves-light backToFriendForm'>Go To Friends Form</button></Link>
+                <form>
+                    <h2>Update Form</h2>
+                    <input type='number' placeholder='enter card number' name='cardNumber' value={this.state.cardNumber} onChange={(e)=>this.handleInputChange(e)}/>
+                    <input type='text' placeholder='enter a name' name='name' value={this.state.name} onChange={(e)=>this.handleInputChange(e)}/>
+                    <input type='number' placeholder='enter an age' name='age' value={this.state.age} onChange={(e)=>this.handleInputChange(e)}/>
+                    <input type='email' placeholder='enter an email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
+                    <input type='text' placeholder='enter an address' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
+                    <Link to='/list'><button type='button' className='btn waves-effect waves-light' onClick={this.updateFriendInfo}>Update Friend Info</button></Link>
+                    <Link to='/'><button className='btn waves-effect waves-light backToFriendForm'>Go To Friends Form</button></Link>
+                </form>
+                
             </div>
         )
     }
