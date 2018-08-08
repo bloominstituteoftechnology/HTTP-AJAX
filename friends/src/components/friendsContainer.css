@@ -17,3 +17,7 @@
     align-items: flex-start;
     padding: 10px;
 }
+
+.hide {
+    display: none
+}
