@@ -13,6 +13,8 @@ export default function FriendsContainer (props){
                     <div><strong>Age:</strong> {friend.age}</div>
                     <div><strong>Email:</strong> {friend.email}</div>   
                 </div>
+                <button>Update</button>
+                <button>Delete</button>
             </div>
         )}
         </div>

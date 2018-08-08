@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
 import FriendsContainer from './components/FriendsContainer';
-import { NavLink, Route, Switch } from 'react-router-dom'
+import { NavLink, Route, Switch, Link } from 'react-router-dom'
 import NewFriendComponent from './components/NewFriendComponent';
 
 class App extends Component {
@@ -39,13 +39,30 @@ class App extends Component {
 
     return (
       <div>
-        <Route path="/" 
-          render={props => <FriendsContainer {...props} friends={this.state.friends} />}
-        />
-        <Route to="/add" render={props => <NewFriendComponent {...props} />}/>
+        <Header />
+        <div>
+          <Switch>
+            <Route path="/friends" 
+              render={props => <FriendsContainer {...props} friends={this.state.friends} />}
+            />
+            <Route path="/add" render={props => <NewFriendComponent {...props} />}/>
+          </Switch>
+        </div>
       </div>
     );
   }
+}
+
+function Header (){
+  return (<header>
+    <nav>
+      <ul>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/friends'>Friends</Link></li>
+        <li><Link to='/add'>Add Friend</Link></li>
+      </ul>
+    </nav>
+  </header>)
 }
 
 export default App;
