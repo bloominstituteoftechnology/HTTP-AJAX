@@ -1,0 +1,21 @@
+.friendsListTitleBar{
+  display:flex;
+  margin: 30px;
+  width: 400px;
+  justify-content: space-between;
+}
+.titleItem{
+  width: 50px;
+
+}
+
+.friendListRow{
+  display:flex;
+  margin: 30px;
+  width: 400px;
+  justify-content: space-between;
+}
+
+.friendsListItem{
+  width: 50px;
+}
