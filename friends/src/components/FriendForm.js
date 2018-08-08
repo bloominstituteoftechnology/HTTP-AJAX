@@ -11,11 +11,15 @@ const FriendForm = props => {
             <Form>
                 <FormGroup>
                     <Label>Name</Label>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                    <Input type="text" placeholder="..." />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="examplePassword">Password</Label>
-                    <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                    <Label >Age</Label>
+                    <Input type="text"placeholder="..." />
+                </FormGroup>
+                <FormGroup>
+                    <Label >Email</Label>
+                    <Input className="red" type="text"placeholder="..." />
                 </FormGroup>
                 <Button color="danger">Submit</Button>
             </Form>

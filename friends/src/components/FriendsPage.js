@@ -13,6 +13,9 @@ class FriendsPage extends React.Component {
 
         this.state = {
             friends: [],
+            name: '',
+            age: '',
+            email: '',
             loading: true
         }
     }
@@ -31,6 +34,38 @@ class FriendsPage extends React.Component {
             });
     }
 
+    handleName = event => {
+        this.setState({ name: event.target.value });
+    }
+    handleAge = event => {
+        this.setState({ age: event.target.value });
+    }
+    handleEmail = event => {
+        this.setState({ email: event.target.value });
+    }
+
+    handleSubmit = event => {
+        event.preventDefault();
+
+        const user = {
+            name: this.state.name
+        };
+
+        axios.post(`http://localhost:5000/friends`, { 
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+         })
+            .then(response => {
+                this.setState({
+                    friends: response.data,
+                })
+            })
+            .catch(error => {
+                console.error('Server Error', error);
+            });
+    }
+
     render() {
         return (
             <Container fluid>
@@ -41,12 +76,27 @@ class FriendsPage extends React.Component {
                         </Col>
                     ))}
                 </Row>
-                    <Row className="custom-display">
-                        <Col sm="6">
+                <Row className="custom-display">
+                    <Col sm="6">
                         <FriendForm />
-                        </Col>
-                    </Row>
-
+                    </Col>
+                </Row>
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Person Name:
+            <input type="text" name="name" onChange={this.handleName} />
+                        </label>                        <label>
+                            age:
+            <input type="text" name="age" onChange={this.handleAge} />
+                        </label>
+                        <label>
+                            email:
+            <input type="text" name="email" onChange={this.handleEmail} />
+                        </label>
+                        <button type="submit">Add</button>
+                    </form>
+                </div>
             </Container>
         )
     }
