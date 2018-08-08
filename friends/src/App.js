@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import FriendsList from './Components/FriendsList';
 import AddFriendForm from './Components/AddFriendForm';
+import { Route, Link } from 'react-router-dom';
 
 const url = 'http://localhost:5000/friends';
 
@@ -34,7 +35,7 @@ class App extends Component {
       email: event.target.email.value
     })
     .then((res) => {
-      this.setState({data:res.data});
+      this.setState({data:res.data}, ()=> window.location="/friends");
     })
     .catch(err => {
       console.log(err);
@@ -44,11 +45,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.data} loading={this.state.loading} />
-        <AddFriendForm handleSubmit={this.handleSubmit} />
+        <Route path="/" component={Home} />
+        <Route path="/friends" render={(props) => <FriendsList {...props} friends={this.state.data} loading={this.state.loading} />} />
+        <Route path="/add" render={(props) => <AddFriendForm {...props} handleSubmit={this.handleSubmit} />} />
       </div>
     );
   }
+}
+
+const Home = () => {
+  return(
+    <div className="home">
+      <Link to="/friends">
+        <button>Friend List</button>
+      </Link>
+      <Link to="/add">
+        <button>Add Friend </button>
+      </Link>
+    </div>
+  );
 }
 
 export default App;

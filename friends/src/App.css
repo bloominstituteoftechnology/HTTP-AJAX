@@ -60,3 +60,29 @@
   font-weight: bold;
   height: 30px;
 }
+
+.home {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home a{
+  text-decoration: none;
+}
+
+button {
+  display: block;
+  margin: 0px 10px;
+  border: 1px solid #17ABD1;
+  border-radius: 8px;
+  background-color: #17ABD1;
+  color: white;
+  font-weight: bold;
+  height: 30px;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
