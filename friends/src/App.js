@@ -2,17 +2,43 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Friendlist from './components/friendlist.js'
+import FriendForm from './components/FriendForm.js'
+import axios from "axios";
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      friends: []
+    }
+  }
+  componentDidMount(){
+      axios
+          .get("http://localhost:5000/friends")
+            .then(response =>{
+              this.setState({
+                friends: response.data
+              })
+            })
+  }
+  Change = a => {
+    this.setState({[a.target.name]: a.target.value})
+  }
+
+  Submit = a => {
+    axios
+      .post("http://localhost:5000/friends",{
+        name: this.state.name,
+        age: this.state.age,
+        emaile: this.state.email
+      });
+      this.componentDidMount()
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-              <Friendlist/>
-        </header>
-
+              <FriendForm onChane ={this.Change} onSubmit = {this.Submit}/>
+              <Friendlist friends = {this.state.friends}/>
       </div>
     );
   }
