@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+// import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import FriendsList from './components/FriendsList';
+import Form from './components/Form';
 
 const url =
   "http://localhost:5000/friends";
@@ -27,7 +30,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.friends.map(friend=><div key={friend.id}>{friend.name}</div>)}
+        <h2>Lambda Friends ... <br/>
+            Assemble!!</h2>
+        <div className="friendHug">
+          {this.state.friends.map(friend=><FriendsList key={friend.id}><p>{friend.name}</p><p>age:{friend.age}</p></FriendsList>)}
+        </div>
+        <Form />
       </div>
     );
   }
