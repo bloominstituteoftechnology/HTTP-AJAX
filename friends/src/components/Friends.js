@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "reactstrap";
+import { Button, Alert } from "reactstrap";
 
 const Friends = props => {
   return (
@@ -9,6 +9,11 @@ const Friends = props => {
           <h4>
             <a href={`mailto:${friend.email}`}>{friend.name}</a> is {friend.age} years old.
           </h4>
+          {
+            friend.hasOwnProperty('isNew') ?
+              <Alert color="success">New!</Alert>
+              : ''
+          }
           <div className="friend-btns">
             <Button id={friend.id} onClick={props.update} color="success">
               Update

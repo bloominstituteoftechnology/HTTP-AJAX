@@ -36,7 +36,8 @@ class App extends Component {
       .post("http://localhost:5000/friends", {
         name: this.state.name,
         age: this.state.age,
-        email: this.state.email
+        email: this.state.email,
+        isNew: true
       })
       .catch(err => {
         console.error("Server Post", err);
