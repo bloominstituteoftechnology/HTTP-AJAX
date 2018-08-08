@@ -12,6 +12,7 @@ class App extends Component {
     super();
     this.state = {
       friends: [], 
+      rev: [],
       name: '',
       // age: null, 
       // email: '',
@@ -29,15 +30,17 @@ class App extends Component {
     })
     .catch(function (error) {
       console.log(error)
-    })
-
-  
+    })  
   }
   
   click = event => {
     this.setState({
       [event.target.name]: event.target.value,
     })   
+  }
+
+  eventDidUpdate(){
+    debugger;
   }
 
   submit = event => {
@@ -82,7 +85,7 @@ class App extends Component {
           </div>
           
           <div className="component">
-            {this.state.friends.map(friend => {
+            {this.state.friends.reverse().map(friend => {
               return <Friend key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</Friend>
             })}
           </div>
