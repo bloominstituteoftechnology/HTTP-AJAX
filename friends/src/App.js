@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import axios from 'axios'
 import FriendsList from "./components/FriendsList";
+import AddFriend from "./components/AddFriend";
 
 const url = "http://localhost:5000/friends";
 
@@ -28,6 +29,7 @@ class App extends Component {
   render() {
     return (
     <div className="App">
+    <AddFriend />
     <FriendsList friends={this.state.friends} />
     </div>
     )
