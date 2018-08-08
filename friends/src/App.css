@@ -1,5 +1,12 @@
 .App {
-  text-align: center;
+  text-align: left;
+  width: 70vw;
+  margin: 0 auto;
+  background-color: #DDDDDD;
+}
+
+body {
+  background-color: dodgerblue;
 }
 
 .App-logo {
@@ -25,4 +32,47 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.friend-title {
+  color: dodgerblue;
+  font-family: 'Permanent Marker';
+}
+
+p span {
+  font-weight: bold;
+}
+
+.friends-div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.friend-div {
+  margin: 50px;
+  padding: 50px;
+  min-width: 350px;
+  font-family: 'Lobster';
+  font-size: 20px;
+}
+
+.friend-div:nth-child(1n) {
+  background-color: rgb(2, 0, 128);
+  color: white;
+}
+.friend-div:nth-child(2n) {
+  background-color: lightgreen;
+  color: black;
+}
+
+.link {
+  margin: 50px;
+}
+
+.form-div {
+  text-align: center;
+  margin: 25vh auto;
+  padding: 20vh 0;
 }

@@ -37,7 +37,7 @@ class FriendForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="form-div">
                 <form onSubmit={this.addFriend}>
                     <h1>Add Friend #{this.props.array.length + 1}</h1>
                     <p>Name: <input type="text" name="name" onChange={this.handleInputChange} value={this.state.name}/></p>
