@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import {Link} from 'react-router-dom'
 class FriendsForm extends React.Component {
     constructor(){
         super() 
@@ -30,7 +30,7 @@ class FriendsForm extends React.Component {
             <input type='number' name='age' value={this.state.age} onChange={(e)=>this.handleInputChange(e)}/>
             <input type='email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
             <input type='text' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
-            <button type='button' className='btn waves-effect waves-light' onClick={this.submitNewFriend}>Submit New Friend Info</button>
+            <Link to='/list'><button type='button' className='btn waves-effect waves-light' onClick={this.submitNewFriend}>Submit New Friend Info</button></Link>
         </form>
         )
     }
