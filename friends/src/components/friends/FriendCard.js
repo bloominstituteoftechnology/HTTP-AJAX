@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 const FriendCard = props => {
   return (
-    <div>
+    <Fragment>
       <h2>Filler</h2>
-    </div>
+    </Fragment>
   );
 };
 

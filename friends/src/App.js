@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import "./App.css";
 import Friend from "./components/friends/Friend";
@@ -6,9 +6,9 @@ import Friend from "./components/friends/Friend";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <Fragment className="App">
         <Friend />
-      </div>
+      </Fragment>
     );
   }
 }
