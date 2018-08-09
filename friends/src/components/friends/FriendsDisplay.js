@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default FriendsDisplay = props => {
+const FriendsDisplay = props => {
 
     return(
         <div className="friends">
@@ -19,4 +19,4 @@ export default FriendsDisplay = props => {
 }
 
 
-
+export default FriendsDisplay

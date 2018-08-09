@@ -73,7 +73,7 @@ axios
     return (
       <div className="app">
         <div className="list">
-        <Route exact path="/" render={props=> <Friends  friend={props.friends} deleteFriend={this.deleteFriend}/>} /> 
+        <Route exact path="/" render={props=> <Friends {...props} friend={this.state.friends} deleteFriend={this.deleteFriend}/>} /> 
         </div>
           <div className="form">
         <Route path="/form/friends" render={props => <FriendsForm {...props} 
