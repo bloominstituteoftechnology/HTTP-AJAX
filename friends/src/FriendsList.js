@@ -25,6 +25,14 @@ const FriendListContainer = styled.div`
     input:hover{
         border:3px solid blue; 
     }
+    button:hover{
+        cursor:pointer;
+        color:white;
+        font:weight: bold;
+        width: 100px;
+        background: blue;
+
+    }
 `
 const H1 = styled.h1`
     color: blue; 
@@ -36,6 +44,7 @@ const LI = styled.li `
     box-shadow: 10px 10px; 
     margin: 30px;
     text-align: center;
+    
 `;
 
 

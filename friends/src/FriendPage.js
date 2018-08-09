@@ -9,6 +9,7 @@ const DeleteDiv = styled.div `
     background: black;
     color: white;
     padding-top: 10px;
+    border 1px inset blue;
     a{
         text-decoration: none;
         color: white;
@@ -30,7 +31,8 @@ const DeleteDiv = styled.div `
     button:hover{
         cursor:pointer; 
         background: black;
-        color: white; 
+        color: white;
+        height: 30px; 
     }
 
 `;

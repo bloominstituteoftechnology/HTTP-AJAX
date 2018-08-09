@@ -16,8 +16,14 @@ const FriendsContainer = styled.div`
 const Appbody = styled.div`
   margin: 0 auto; 
   width 1000px; 
+  @keyframes backgroundChange {
+    from{background-color: white;}
+    to{background-color:red}
+  }
   li:hover{
     color:black;
+    animation-name: backgroundChange;
+    animation-duration 2s;
   }
 `;
 class App extends Component {
