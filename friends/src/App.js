@@ -51,20 +51,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <div className="container">
           <ul>
-            {this.state.friends.map(friend => <li key={friend.id}>
-              <p>Name: {friend.name}</p>
-              <p>id: {friend.id}</p>
-              <p>Age: {friend.age}</p>
-              <p>Email: {friend.email}</p></li>)}
+            {this.state.friends.map(friend => <li className="friend-card" key={friend.id}>
+              <div><p><strong>Name: </strong> {friend.name}<br/> <strong>id: </strong>{friend.id}<br/> <strong>Age: </strong>{friend.age}<br/> <strong>Email: </strong>{friend.email}<br/></p></div><span>X</span></li>)}
           </ul>
 
           <form>
-            Name: <input type="text" name="name" onChange={this.editInput}/>
-            Age: <input type="number" name="age" placeholder="0" onChange={this.editInput}/>
-            Email: <input type="email" name="email" onChange={this.editInput}/>
-            id: <input type="number" name="id" placeholder="0" onChange={this.editInput}/>
+            Name: <input type="text" name="name" onChange={this.editInput}/><br/>
+            Age: <input type="number" name="age" placeholder="0" onChange={this.editInput}/><br/>
+            Email: <input type="email" name="email" onChange={this.editInput}/><br/>
+            id: <input type="number" name="id" placeholder="0" onChange={this.editInput}/><br/>
             <button type="submit" onClick={this.addFriendHandler}>Add Friend</button>
           </form>
         </div>
