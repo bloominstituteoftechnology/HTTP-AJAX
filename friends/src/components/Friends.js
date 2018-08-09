@@ -16,9 +16,10 @@ class Friends extends React.Component {
             .then(response => {
                 this.setState({
                     friends: response.data
-                });
-            });
+                })
+            })
     }
+
     render() {
         return (
             <div>
@@ -26,9 +27,7 @@ class Friends extends React.Component {
                    return (
                    <div key={friend.id}>
                         <p>
-                            <a href={`mailto: ${friend.email}`}>{friend.name}</a> 
-                            is {friend.age} years old
-                        </p>
+                            <a href={`mailto: ${friend.email}`}>{friend.name}</a> is {friend.age} years old</p>
                     </div>
                    )
                 })}
