@@ -25,5 +25,24 @@
 }
 
 .individualCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
+  background: #011627;
+  box-shadow: 0 0 10px 1px #ff3366;
+  font-size: 2rem;
+  padding: 3rem;
+}
+
+.individualCard h1 {
+  font-size: 2.5rem;
+  padding: 1rem;
+  margin: 0;
+}
+.individualCard h2 {
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 0;
 }

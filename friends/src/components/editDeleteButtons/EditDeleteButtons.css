@@ -4,6 +4,10 @@
   background: #ff3366;
   color: white;
   font-weight: bold;
+  font-size: 2rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 15rem;
 }
 
 .editDeleteCardButtons button:nth-child(odd) {
