@@ -1,0 +1,21 @@
+.editDeleteCardButtons button {
+  border: none;
+  border-radius: 0 100px 100px 0;
+  background: #ff3366;
+  color: white;
+  font-weight: bold;
+}
+
+.editDeleteCardButtons button:nth-child(odd) {
+  border-radius: 100px 0 0 100px;
+  background: #2ec4b6;
+}
+
+.editDeleteCardButtons button:hover {
+  cursor: pointer;
+  background: #ff8fab;
+  color: #011627;
+}
+.editDeleteCardButtons button:hover:nth-child(odd) {
+  background: #67d4c9;
+}

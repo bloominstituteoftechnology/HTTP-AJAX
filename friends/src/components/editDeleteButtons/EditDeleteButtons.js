@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./EditDeleteButtons.css";
 
 export default class EditDeleteButtons extends Component {
   constructor(props) {
