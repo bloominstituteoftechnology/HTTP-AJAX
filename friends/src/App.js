@@ -37,6 +37,7 @@ class App extends Component {
       name: '',
       age: '', 
       email: '',
+      gender: '', 
       mounted: false
     };
   }
@@ -61,7 +62,7 @@ handleSubmit = () => {
             console.log(parseInt(this.state.age));
             if(this.state.name.length > 2){
               const length = this.state.friends.length; //gets the number to set the id paramater needed because i use it as the key for the map method. 
-              const data = {name: this.state.name.slice(), age : this.state.age.slice(), email: this.state.email.slice(), id: length + 1}// friends data to add. 
+              const data = {name: this.state.name.slice(), age : this.state.age.slice(), email: this.state.email.slice(), id: length + 1, gender: this.state.gender}// friends data to add. 
               axios.post('http://localhost:5000/friends', data)
                 .then(response => {
                   console.log(response, "response"); 
@@ -117,11 +118,11 @@ handleUpdate = (name) => {
               console.log(name)
               axios.put(`http://localhost:5000/friends/${friendId}`, data)
                 .then(response =>{
-                  this.setState({friends:response.data, name: '', age: '', email: ''})
+                  this.setState({friends:response.data, name: '', age: '', email: '', gender:''})
                 })
                 .catch(error => console.log(error))
             } else {
-              alert('Please enter a valid name. ')
+              alert('Please enter a valid name.');
             }
       } else{
         alert('please enter a valid age. Must be a valid number no extra characters');
@@ -145,7 +146,8 @@ handleUpdate = (name) => {
         
         <FriendsContainer>
         <Route exact path = '/' render={(props) => <FriendsList {...props} friends = {this.state.friends.slice()} delete = {this.handleDelete} 
-        update = {this.handleUpdate} handleChange ={this.handleOnChange} name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} 
+        update = {this.handleUpdate} handleChange ={this.handleOnChange} name = {this.state.name}  age = {this.state.age} 
+        email = {this.state.email} handleSubmit ={this.handleSubmit} gender ={this.state.gender}/>} 
         />
         
         {/* <Route path ='/create-friend'  render = {(props) => <NewFriendForm {...props} handleChange ={this.handleOnChange} 
@@ -153,7 +155,8 @@ handleUpdate = (name) => {
         </FriendsContainer>
         
         <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.handleDelete} update = {this.handleUpdate}
-        name = {this.state.name} age = {this.state.age} email = {this.state.email} onChange ={this.handleOnChange} friends = {this.state.friends}/> }/>
+        name = {this.state.name} age = {this.state.age} email = {this.state.email} onChange ={this.handleOnChange} friends = {this.state.friends}
+        gender = {this.state.gender}/> }/>
         </Appbody>
       </Fragment>
     );

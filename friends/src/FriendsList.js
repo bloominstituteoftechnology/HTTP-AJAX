@@ -75,7 +75,9 @@ class FriendsList extends React.Component {
                         <h1>Age</h1>
                         <input  onChange = {this.props.handleChange} placeholder = "Enter age here" name = "age" value = {this.props.age}/>
                         <h1>Email</h1>
-                        <input  onChange = {this.props.handleChange} placeholder = "Enter name here" name = "email" value = {this.props.email}/>
+                        <input  onChange = {this.props.handleChange} placeholder = "Enter email here" name = "email" value = {this.props.email}/>
+                        <h1>Gender</h1>
+                        <input  onChange = {this.props.handleChange} placeholder = "Enter gender here" name = "gender" value = {this.props.gender}/>
                         <br/>
                         <button onClick = {this.props.handleSubmit}>Submit</button>
                     </form>

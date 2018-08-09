@@ -33,7 +33,6 @@ const DeleteDiv = styled.div `
     button:hover{
         cursor:pointer; 
         background: blue;
-        
         height: 50px; 
         
     }
@@ -54,10 +53,12 @@ class FriendPage extends React.Component {
         const friend = this.props.friends.filter(frie => frie.name === this.props.match.params.name)
         console.log(friend)
         let friendAge; 
-        let friendEmail; 
+        let friendEmail;
+        let friendGender; 
         if(friend.length){
             friendAge = friend[0].age;
             friendEmail = friend[0].email;
+            friendGender = friend[0].gender;
         }
     
         return (
@@ -76,6 +77,8 @@ class FriendPage extends React.Component {
                 <input type="text" placeholder = {`${friendAge}`} name = 'age' value ={this.props.age} onChange={this.props.onChange}/>
                 <h1>Email </h1>
                 <input type="text" placeholder = {`${friendEmail}`}  name ='email' value ={this.props.email} onChange={this.props.onChange}/>
+                <h1>Gender</h1>
+                <input  onChange = {this.props.handleChange} placeholder = {`${friendGender}`} name = "gender" value = {this.props.gender}/>
                 <br/>
                 <form >
                     <button onClick = {() => this.props.update(this.props.match.params.name)}><Link to= '/'>Update Friend</Link></button>
