@@ -20,7 +20,8 @@ class App extends Component {
       friends: [],
       name: '',
       age: '', 
-      email: ''
+      email: '',
+      mounted: false
     };
   }
 
@@ -28,40 +29,47 @@ componentDidMount () {
   axios.get('http://localhost:5000/friends').then((response) => {
     console.log(response.data); 
     this.setState({
-      friends: response.data
+      friends: response.data, mounted: true
     })
   }); 
   
 }
-handleSubmit = event => {
-   
+handleSubmit = () => {
+  if(this.state.mounted){
   if(this.state.name.length && this.state.age.length && this.state.email.length){// if they are all greater than zero... 
     // do something with post. 
     const length = this.state.friends.length; //gets the number to set the id paramater needed because i use it as the key for the map method. 
     const data = {name: this.state.name.slice(), age : this.state.age.slice(), email: this.state.email.slice(), id: length + 1}// friends data to add. 
     axios.post('http://localhost:5000/friends', data)
          .then(response => {
-           this.setState({name: '', age:'', email:''})
+           console.log(response, "response"); 
+           this.setState({name: '', age:'', email:'', friends:response.data})
     });
     
   } else {
     alert('The name, age and email inputs are required add your friend!');
   }
+  }
 }
 
 handleOnChange = event => {
-  console.log(event);
+  
   this.setState({[event.target.name] : event.target.value})
 }
 
 handleDelete = (name) => {
+  
   const friends = this.state.friends.slice(); 
-  const friendToDelete = friends.filter(friend => friend.name !== name);
-  const friendId = friendToDelete.id; 
+  const friendToDelete = friends.filter(friend => friend.name === name);
+  console.log(friendToDelete[0]);
+  const friendId = friendToDelete[0].id; 
+  console.log(friendId); 
   console.log(name); 
-  axios.delete('http://localhost:5000/friends', friendToDelete)
+  // 
+  axios.delete(`http://localhost:5000/friends/${friendId}`)
         .then(response => {
           console.log(response); 
+          this.setState({friends:response.data})
         })
   
 }

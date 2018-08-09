@@ -76,8 +76,10 @@ app.put('/friends/:id', (req, res) => {
 });
 
 app.delete('/friends/:id', (req, res) => {
-	friends = friends.filter(friend => friend.id != req.params.id);
-	res.status(200).json(friends);
+  console.log(req.params.id)
+  friends = friends.filter(friend => friend.id != req.params.id);
+  console.log(friends)
+  res.status(200).json(friends);
 });
 
 app.listen(5000, () => {

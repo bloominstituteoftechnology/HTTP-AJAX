@@ -31,7 +31,9 @@ class FriendPage extends React.Component {
                 <h1>Email </h1>
                 <input type="text" placeholder = 'Update email..'  name ='email'/>
                 <br/>
-                <button onClick = {() => this.props.update(this.props.match.params.name)}>Update Friend</button>
+                <form >
+                   <Link to= '/'> <button onClick = {() => this.props.update(this.props.match.params.name)}>Update Friend</button></Link>
+                </form>
 
             </DeleteDiv>
         ); 

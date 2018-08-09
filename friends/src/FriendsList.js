@@ -40,10 +40,8 @@ class FriendsList extends React.Component {
             friends: []
         }
     }
-    render() {
-        console.log(this.props.friends)
-        console.log(this.props); 
-        console.log("what the heck")
+    render() { 
+        
         const friends = this.props.friends
         return(
             <FriendListContainer>
