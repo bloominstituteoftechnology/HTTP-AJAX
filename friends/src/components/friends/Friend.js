@@ -8,7 +8,14 @@ const Friend = props => {
     <Fragment>
       <div className="friendWrapper">
         {props.friends.map(friend => {
-          return <FriendCard friends={friend} key={friend.id} />;
+          return (
+            <FriendCard
+              friends={friend}
+              key={friend.id}
+              activeFriendHandler={props.activeFriendHandler}
+              activeFriend={props.activeFriend}
+            />
+          );
         })}
       </div>
     </Fragment>
