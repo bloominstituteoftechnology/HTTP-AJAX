@@ -25,21 +25,9 @@ class App extends Component {
     axios.get(url).then(response => this.setState({friends: response.data, loading: false, number: response.data.length}));
   }
 
-  addNameHandler = (e) => {
+  addValueHandler = (e) => {
     this.setState({
-      friendName: e.target.value.toString()
-    })
-  }
-
-  addAgeHandler = (e) => {
-    this.setState({
-      friendAge: e.target.value
-    })
-  }
-
-  addEmailHandler = (e) => {
-    this.setState({
-      friendEmail: e.target.value.toString()
+      [e.target.name]: e.target.value
     })
   }
 
@@ -63,12 +51,20 @@ class App extends Component {
   });
   }
 
+  reSetState = () => {
+    axios.get(url)
+    .then(response => this.setState({friends: response.data}))
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <Route exact path='/' render={props => <FriendForm {...props} newFriendName={this.state.friendName} newFriendAge={this.state.friendAge} newFriendEmail={this.state.friendEmail} nameAdd={this.addNameHandler} ageAdd={this.addAgeHandler} emailAdd={this.addEmailHandler} submitFriend={this.addNewFriendHandler} />} />
+        <Route exact path='/' render={props => <FriendForm {...props} newFriendName={this.state.friendName} newFriendAge={this.state.friendAge} newFriendEmail={this.state.friendEmail} valueAdd={this.addValueHandler} submitFriend={this.addNewFriendHandler} />} />
         <Route exact path='/' render={props => <Friends {...props} friends={this.state.friends} loading={this.state.loading} />} />
-        <Route path='/:id' render={props => <FriendCard {...props} friends={this.state.friends} />} />
+        <Route path='/:id' render={props => <FriendCard {...props} friends={this.state.friends} reSetState={this.reSetState} />} />
       </div>
     );
   }
