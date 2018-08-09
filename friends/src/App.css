@@ -3,16 +3,18 @@
   background-color: black;
   border: 4px solid gold;
   display: flex;
-  flex-direction: column;
-  color: white;  
+  flex-direction: row;
+  color: white;
 }
 
-.sub-app{
-  border: 1px solid green;
+.left {
+  margin: 20px;
+}
+
+.right {
   display: flex;
   justify-content: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .form {
@@ -23,12 +25,17 @@
   margin: 0;
 }
 
-.component {
-  border: 1px solid pink;
+.friendLink {
+  border: 1px solid white;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0;
+  flex-direction: column;
+  width: 260px;
+  height: 120px;
+  color: white;
+}
+
+.friendFull {
+
 }
 
 .ageInput {
@@ -43,4 +50,3 @@ h1, h4 {
 p {
   margin: 5px;
 }
-

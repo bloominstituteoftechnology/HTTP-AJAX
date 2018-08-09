@@ -14,12 +14,4 @@ export default function AllFriends(props) {
 }
 
 const FriendDiv = styled.div`
-    border: 1px solid white;
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    color: white;
-    &:hover{
-        opacity: .8;
-    }
 `;

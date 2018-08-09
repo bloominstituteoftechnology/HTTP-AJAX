@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import {Route, Link} from 'react-router-dom';
+import EditFriend from './components/editFriend';
 import NewFriend from './components/newFriend';
 import AllFriends from './components/allFriends';
 
@@ -11,15 +12,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [], 
+      friends: [],
       rev: [],
       name: '',
-      // age: null, 
+      // age: null,
       // email: '',
       clicked: [],
-      } 
+      }
   }
-  
+
   componentDidMount() {
     axios.get(url).then(response => {
       let foo = response.data.reverse()
@@ -29,24 +30,20 @@ class App extends Component {
     })
     .catch(function (error) {
       console.log(error)
-    })  
+    })
   }
-  
+
   click = event => {
     this.setState({
       [event.target.name]: event.target.value,
-    })   
+    })
   }
-
-  // eventDidUpdate(){
-  //   debugger;
-  // }
 
   submit = event => {
     event.preventDefault();
     console.log('submit');
     axios.post(url, {
-      name: this.state.name, 
+      name: this.state.name,
       age: this.state.age,
       email: this.state.email
     })
@@ -63,18 +60,11 @@ class App extends Component {
       })
     })
     this.setState({
-      name: "", 
+      name: "",
       age: "",
       email: ""
     })
   }
-
-  // friendClick = event => {
-  //   console.log(event.currentTarget)
-  //   this.setState({
-  //     clicked: event.currentTarget})
-  //   // localStorage.setItem('selected', event.target.value)
-  // }
 
   getFriend(id) {
    let selectedFriend = '';
@@ -84,7 +74,7 @@ class App extends Component {
       }
     });
    return selectedFriend;
-    
+
   }
 
 
@@ -92,42 +82,58 @@ class App extends Component {
     // console.log(this.getFriend(0));
     return (
       <div className="App">
-       
-       <div className="left">
+
+        <div className="left">
           <Link to="/">
             <Route path='/' render={() => { return <h1>Home</h1>}} />
           </Link>
           <Link to="/allFriends">Show all Frieneds</Link>
-          <NewFriend  click={this.click} submit={this.submit} data={this}/>
-       </div>
-        
+
+          <Route path="/allFriends" render={() => {
+            return(
+              <div>
+                <NewFriend  click={this.click} submit={this.submit} data={this}/>
+                <div className="details">
+                  <p>New Friend sample profile</p>
+                  <AllFriends data={this.state} />
+                </div>
+              </div>
+            )
+          }}
+          />
+
+          <Route path="/friend/:id" component={EditFriend} />
+
+          <Route path="/friend/:id" render={() => {
+            return <button>Delete Friend</button>
+          }} />
+
+        </div>
+
         <div className="right">
           <Route path='/allFriends' render={(props) => {
             return this.state.friends.map(friend => {
               return (
-                <Link key={friend.id} to={`/friend/${friend.id}`}>
-                  <AllFriends key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
-                </Link> 
+                <Link className="friendLink" key={friend.id} to={`/friend/${friend.id}`}>
+                  <AllFriends  key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
+                </Link>
               )
             })
-          }} /> 
-          
-          <Route 
-            path="/friend/:id"
-            render={(props) => {
+          }}
+          />
+
+          <Route path="/friend/:id" render={(props) => {
             return <AllFriends data={this.getFriend(props.match.params.id)} {...props} />
-            }}
-          /> 
+          }}
+          />
+
         </div>
 
-          {/* <div className="details">
-          <p>New Friend sample profile</p>
-           <Friend data={this.state} />
-          </div> */}
 
-        </div>  
-     
-  
+
+        </div>
+
+
     );
   }
 }
