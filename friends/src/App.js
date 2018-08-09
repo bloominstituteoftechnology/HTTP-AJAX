@@ -83,7 +83,6 @@ class App extends Component {
         selectedFriend = friend
       }
     });
-   console.log(id, selectedFriend, 'getFriend') 
    return selectedFriend;
     
   }
@@ -94,52 +93,32 @@ class App extends Component {
     return (
       <div className="App">
        
-        <Link to="/">
-          <Route path='/' render={() => { return <h1>Home</h1>}} />
-        </Link>
-
-        <Link to="/allFriends">
-          Show all Frieneds
-        </Link>
-
-        <Route path='/allFriends' render={(props) => {
-          return this.state.friends.map(friend => {
-            return (
-              <Link key={friend.id} to={`/friend/${friend.id}`}>
-                <AllFriends key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
-              </Link> 
-            )
-          })
-        }} /> 
+       <div className="left">
+          <Link to="/">
+            <Route path='/' render={() => { return <h1>Home</h1>}} />
+          </Link>
+          <Link to="/allFriends">Show all Frieneds</Link>
+          <NewFriend  click={this.click} submit={this.submit} data={this}/>
+       </div>
         
-        <Route 
-          path="/friend/:id"
-          render={(props) => {
-          // console.log('this.getFriends(props.id)');
-           return <AllFriends data={this.getFriend(props.match.params.id)} {...props} />
-          }}
-        /> 
-        
-        <div className="form">
-            <NewFriend click={this.click} submit={this.submit} data={this}/>
-        </div>
-        
-        <div className="sub-app">
-
-          
-          
-          {/* <div className="component">
-            {this.state.friends.map(friend => {
+        <div className="right">
+          <Route path='/allFriends' render={(props) => {
+            return this.state.friends.map(friend => {
               return (
                 <Link key={friend.id} to={`/friend/${friend.id}`}>
                   <AllFriends key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
                 </Link> 
               )
-              
-             
-              
-            })}
-          </div> */}
+            })
+          }} /> 
+          
+          <Route 
+            path="/friend/:id"
+            render={(props) => {
+            return <AllFriends data={this.getFriend(props.match.params.id)} {...props} />
+            }}
+          /> 
+        </div>
 
           {/* <div className="details">
           <p>New Friend sample profile</p>
@@ -148,7 +127,7 @@ class App extends Component {
 
         </div>  
      
-      </div>
+  
     );
   }
 }
