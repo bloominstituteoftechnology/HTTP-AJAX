@@ -42,6 +42,7 @@ class FriendPage extends React.Component {
 
     render() {
     console.log("Array: ", this.props.array[this.state.matchId -1])
+    
     if (this.props.array.length > 0) {
     return (
         <div className="friend-div">
