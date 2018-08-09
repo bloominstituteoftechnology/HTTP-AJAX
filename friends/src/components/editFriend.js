@@ -7,7 +7,7 @@ export default function EditFriend(props) {
             <input name='name' type="text" placeholder="Name" value={props.newFriend} onChange= {props.click}>{props.value}</input>
             <input name='email' placeholder="Email" value={props.newFriend} onChange={props.click}>{props.value}</input>
             <input name='age' className="ageInput" type="number" placeholder="Age" value={props.newFriend} onChange={props.click}>{props.value}</input>
-            <button>Submit</button>
+            <button>Edit Friend</button>
       </form>
     )
 }

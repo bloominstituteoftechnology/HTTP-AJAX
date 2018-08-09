@@ -74,12 +74,17 @@ class App extends Component {
       }
     });
    return selectedFriend;
+  }
+
+  deleteFriend(id) {
 
   }
 
+  editFriend() {
+
+  }
 
   render() {
-    // console.log(this.getFriend(0));
     return (
       <div className="App">
 
@@ -92,7 +97,7 @@ class App extends Component {
           <Route path="/allFriends" render={() => {
             return(
               <div>
-                <NewFriend  click={this.click} submit={this.submit} data={this}/>
+                <NewFriend  click={this.click} submit={this.submit} data={this} />
                 <div className="details">
                   <p>New Friend sample profile</p>
                   <AllFriends data={this.state} />
@@ -102,10 +107,15 @@ class App extends Component {
           }}
           />
 
-          <Route path="/friend/:id" component={EditFriend} />
+          <Route path="/friend/:id" render={() => {
+            return (
+              <EditFriend click={this.click} submit={this.editFriend} data={this} />
+            )
+          }}
+          />
 
           <Route path="/friend/:id" render={() => {
-            return <button>Delete Friend</button>
+            return <button onClick={this.deleteFriend}>Delete Friend</button>
           }} />
 
         </div>
@@ -123,7 +133,11 @@ class App extends Component {
           />
 
           <Route path="/friend/:id" render={(props) => {
-            return <AllFriends data={this.getFriend(props.match.params.id)} {...props} />
+            return (
+              <div className="friendFull">
+                <AllFriends  data={this.getFriend(props.match.params.id)} {...props} />
+              </div>
+            )
           }}
           />
 
