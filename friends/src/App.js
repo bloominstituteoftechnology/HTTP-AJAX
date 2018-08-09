@@ -38,7 +38,7 @@ class App extends Component {
             <h2>List of Friends</h2>
           </div>
           <Friend friends={this.state.friendsData} />
-          <FriendForm />
+          <FriendForm url={dataUrl} />
         </div>
       </Fragment>
     );
