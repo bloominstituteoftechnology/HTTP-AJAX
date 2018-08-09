@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendCard from './FriendCard'
+import {Link} from 'react-router-dom'
 
 export default class Friend extends Component {
     constructor(props){
@@ -76,9 +77,13 @@ export default class Friend extends Component {
     }  
 
     render(){
+        if(!this.state.friend){
+            return <div>Friend.</div>
+        }
         return(
             <div>
                 <FriendCard friend = {this.state.friend}/>
+                <Link to = "/"><button>Add Friend</button></Link>
                 <form>
                     <span>Name:</span>
                     <input onChange = {this.handleName} value = {this.state.name} />
