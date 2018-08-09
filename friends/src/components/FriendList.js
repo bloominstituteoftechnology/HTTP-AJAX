@@ -36,6 +36,20 @@ componentDidMount () {
     })
 }
 
+delete = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(response => {
+        this.setState({
+            friends: response.data
+        })
+    })
+    .then(response => {
+        console.log(response);
+    })
+}
+
+    
+
 
 
     render() { 
@@ -47,7 +61,7 @@ componentDidMount () {
                    name={friend.name}
                    age={friend.age}
                    email={friend.email}
-                   
+                   delete={() => this.delete(friend.id)}
                    />
                 ))}
             </Wrap>

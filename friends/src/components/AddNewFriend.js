@@ -58,15 +58,13 @@ class AddNewFriend extends Component{
       }
 
       handleSubmit = event => {
-        event.preventDefault();        
+        event.preventDefault();
         
-    
         axios.post(`http://localhost:5000/friends`, {
            
                 name: this.state.name,
                 age: this.state.age,
                 email: this.state.email
-            
         })
           .then(res => {
             console.log(res);
