@@ -47,9 +47,11 @@ componentDidMount () {
     this.setState({
       friends: response.data, mounted: true
     })
-  }); 
+  })
+  .catch(error => console.log(error))
   
 }
+
 handleSubmit = () => {
   if(this.state.mounted){
   if(this.state.name.length && this.state.age.length && this.state.email.length){// if they are all greater than zero... 
@@ -64,7 +66,8 @@ handleSubmit = () => {
                 .then(response => {
                   console.log(response, "response"); 
                   this.setState({name: '', age:'', email:'', friends:response.data})
-                });
+                })
+                .catch(error => console.log(error))
             } else {
               alert('Please enter a valid name. ')
             }
@@ -79,7 +82,7 @@ handleSubmit = () => {
     
   } else {
     alert('The name, age and email inputs are required add your friend!');
-  }
+    }
   }
 }
 
@@ -97,13 +100,44 @@ handleDelete = (name) => {
         .then(response => {
           this.setState({friends:response.data})
         })
+        .catch(error => console.log(error))
 }
 handleUpdate = (name) => {
   const friends = this.state.friends.slice(); 
-  const friendToDelete = friends.filter(friend => friend.name === name);
-  const friendId = friendToDelete[0].id;
-  console.log(name)
-}
+  const friendToUpdate = friends.filter(friend => friend.name === name);
+  const friendId = friendToUpdate[0].id;
+  if(this.state.name.length && this.state.age.length && this.state.email.length){// if they are all greater than zero... 
+    // do something with post. 
+    if( this.state.email.includes('@') && this.state.email.includes('.') && this.state.email.length > 6){
+      if(Number(this.state.age)){
+            console.log(parseInt(this.state.age));
+            if(this.state.name.length > 2){
+              const length = this.state.friends.length; //gets the number to set the id paramater needed because i use it as the key for the map method. 
+              const data = {name: this.state.name.slice(), age : this.state.age.slice(), email: this.state.email.slice(), id: length + 1}// friends data to add. 
+              console.log(name)
+              axios.put(`http://localhost:5000/friends/${friendId}`, data)
+                .then(response =>{
+                  this.setState({friends:response.data, name: '', age: '', email: ''})
+                })
+                .catch(error => console.log(error))
+            } else {
+              alert('Please enter a valid name. ')
+            }
+      } else{
+        alert('please enter a valid age. Must be a valid number no extra characters');
+      }
+
+    } else {
+      alert('Please enter a valid email address for example joe@something.com'); 
+    }
+    
+    
+  } else {
+    alert('The name, age and email inputs are required update your friend!');
+    }
+  }
+  
+
 
 
   render() {
@@ -121,7 +155,8 @@ handleUpdate = (name) => {
         name = {this.state.name}  age = {this.state.age} email = {this.state.email} handleSubmit ={this.handleSubmit}/>} /> */}
         </FriendsContainer>
         
-        <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.handleDelete} update = {this.handleUpdate}/> }/>
+        <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.handleDelete} update = {this.handleUpdate}
+        name = {this.state.name} age = {this.state.age} email = {this.state.email} onChange ={this.handleOnChange}/> }/>
         </Appbody>
       </Fragment>
     );

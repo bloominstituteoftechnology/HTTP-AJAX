@@ -48,7 +48,7 @@ class FriendPage extends React.Component {
     }
 
     render () {
-        
+        console.log(this.props); 
         return (
 
             <DeleteDiv>
@@ -58,14 +58,14 @@ class FriendPage extends React.Component {
                 <div><button onClick = {() => this.props.delete( this.props.match.params.name)}>It's not hard to say goodbye just click here</button></div>
                 <div>Update Friend Below</div>
                 <h1>Name</h1>
-                <input placeholder = "Update name.." name = 'name'/>
+                <input placeholder = "Update name.." name = 'name' value ={this.props.name} onChange={this.props.onChange}/>
                 <h1>Age </h1>
-                <input type="text" placeholder = "Update Age ... " name = 'age'/>
+                <input type="text" placeholder = "Update Age ... " name = 'age' value ={this.props.age} onChange={this.props.onChange}/>
                 <h1>Email </h1>
-                <input type="text" placeholder = 'Update email..'  name ='email'/>
+                <input type="text" placeholder = 'Update email..'  name ='email' value ={this.props.email} onChange={this.props.onChange}/>
                 <br/>
                 <form >
-                   <Link to= '/'> <button onClick = {() => this.props.update(this.props.match.params.name)}>Update Friend</button></Link>
+                    <button onClick = {() => this.props.update(this.props.match.params.name)}><Link to= '/'>Update Friend</Link></button>
                 </form>
 
             </DeleteDiv>
