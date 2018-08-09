@@ -17,10 +17,7 @@ const Appbody = styled.div`
   margin: 0 auto; 
   width 1000px; 
   li:hover{
-   
-    
     color:black;
-    margin:50px;
   }
 `;
 class App extends Component {
@@ -37,7 +34,7 @@ class App extends Component {
 
 componentDidMount () {
   axios.get('http://localhost:5000/friends').then((response) => {
-    console.log(response.data); 
+     
     this.setState({
       friends: response.data, mounted: true
     })

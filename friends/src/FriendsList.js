@@ -19,6 +19,12 @@ const FriendListContainer = styled.div`
         text-decoration: none;
         color: white; 
     }
+    input{
+        margin-bottom: 20px;
+    }
+    input:hover{
+        border:3px solid blue; 
+    }
 `
 const H1 = styled.h1`
     color: blue; 
@@ -26,7 +32,7 @@ const H1 = styled.h1`
 `;
 
 const LI = styled.li `
-    background: red;
+    background: blue;
     box-shadow: 10px 10px; 
     margin: 30px;
     text-align: center;
@@ -53,7 +59,7 @@ class FriendsList extends React.Component {
                     </ul>
                     <div>
                     
-                    <form>
+                    <form style ={{paddingLeft: '50px', marginBottom: '30px'}}>
                         <h1>Add New Friend</h1>
                         <h1>Name</h1>
                         <input  onChange = {this.props.handleChange} placeholder = "Enter name here" name = "name" value = {this.props.name}/>

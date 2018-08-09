@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom'; 
 
 const DeleteDiv = styled.div `
+    padding-left: 30px; 
+    padding-bottom: 30px; 
     width: 100%; 
     background: black;
     color: white;
@@ -15,9 +17,25 @@ const DeleteDiv = styled.div `
         color: red;
         text-decoration: underline;
     }
-
+    input{
+        margin-bottom: 30px;
+    }
+    input:hover{
+        border: 3px solid blue;
+        cursor: pointer; 
+    }
+    button{
+        margin-bottom: 25px;
+    }
+    button:hover{
+        cursor:pointer; 
+        background: black;
+        color: white; 
+    }
 
 `;
+
+
 class FriendPage extends React.Component {
     constructor(props){
         super(props)
@@ -27,7 +45,7 @@ class FriendPage extends React.Component {
     }
 
     render () {
-        console.log(this.props)
+        
         return (
 
             <DeleteDiv>
