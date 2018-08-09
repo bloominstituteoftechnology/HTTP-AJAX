@@ -67,6 +67,15 @@ const LinkButton = styled(Link)`
   }
 `;
 
+const FormWrapper = styled.div`
+  max-width: 50rem;
+  width: 100%;
+  padding: 3rem;
+  background-color: rgba(0, 188, 212, 0.45);
+  border-radius: 3px;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+`;
+
 class App extends Component {
   state = {
     friends: []
@@ -125,11 +134,15 @@ class App extends Component {
           exact
           path="/add"
           render={props => (
-            <FriendsForm
-              {...props}
-              title="Add new friend"
-              onSubmit={this.addFriend}
-            />
+            <Landing>
+              <FormWrapper>
+                <FriendsForm
+                  {...props}
+                  title="Add new friend"
+                  onSubmit={this.addFriend}
+                />
+              </FormWrapper>
+            </Landing>
           )}
         />
       </div>
