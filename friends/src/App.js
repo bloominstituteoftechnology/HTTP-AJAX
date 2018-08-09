@@ -51,11 +51,17 @@ class App extends Component {
       age: Number(this.state.age), 
       email: this.state.email
     }
-    axios.post("http://localhost:5000/friends", friend).then(friends => {
-      this.setState({
-        friendsData: friends.data
-      }) 
-    })
+    if((this.state.name != null) && (this.state.email != null)){
+      axios.post("http://localhost:5000/friends", friend).then(friends => {
+        this.setState({
+          friendsData: friends.data, 
+          name: null, 
+          age: null, 
+          email: null
+        }) 
+      })
+    }
+   
   }
 
   render() {
