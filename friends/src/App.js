@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import Friends from './components/Friends';
 
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
     this.state = {
       friends: [],
       name: '',
-      age: 0,
+      age: null,
       email: ''
     }
   }
@@ -42,7 +43,7 @@ class App extends Component {
 
     this.setState({
       name: '',
-      age: 0,
+      age: null,
       email: ''
     })
   }
@@ -65,7 +66,7 @@ class App extends Component {
 
           <input
             type='number'
-            placeholder='age'
+            placeholder='0'
             name='age'
             value={this.state.age}
             onChange={this.friend}
@@ -87,14 +88,7 @@ class App extends Component {
 
         </form>
 
-
-        {this.state.friends.map((friend, index) => {
-          return <ul key={index}>
-            <li>Name: {friend.name}</li>
-            <li>Age: {friend.age}</li>
-            <li>Email: {friend.email}</li>
-          </ul>
-        })}
+        <Friends friends={this.state.friends} />
       </div>
     );
   }
