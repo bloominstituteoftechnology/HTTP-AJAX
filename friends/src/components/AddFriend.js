@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const url = "http://localhost:5000/friends"
 
@@ -48,7 +49,7 @@ class AddFriend extends React.Component {
 //   editHandler = (id) => {
 //     const updatedFriend = {
 //       name: this.state.name,
-//       age: parseInt(this.state.age, 10),
+//       age: this.sate.age,
 //       email: this.state.email
 //     };
 //     axios.post(`url/${id}`, updatedFriend)
@@ -59,17 +60,16 @@ class AddFriend extends React.Component {
 //     .catch((err) => console.log(err))
 //   };
 
-// example delete function with delete request
-  // deleteFriend = (id) => {
-  //   axios.delete(`http://localhost:5000/friends/${id}`)
-  //   .then(response => {
-  //     this.setState({
-  //       friends: response.data
-  //     })
-  //   })
-  //   .catch((err) => console.log(err))
-  // }
-
+deleteHandler = event => {
+    event.preventDefault();
+    axios.delete(`http://localhost:5000/friends/${this.props.match.params.id}`)
+          .then(res=>{
+            this.setState({name: '', age: '', email: '',});
+            this.props.update(res.data);
+            this.props.history.push('/');
+          })
+          .catch(err => console.log(err));
+  }
   render() {
     return (
       <Form onSubmit={this.submitHandler}>
@@ -98,7 +98,8 @@ class AddFriend extends React.Component {
           onChange={this.inputHandler}
         />
         <Input type="submit" />
-        
+        <button onClick={this.deleteHandler}>Delete This Friend</button>
+        <Link to="/"><div className="btn btn-return">Return</div></Link>
       </Form>
     );
   }
