@@ -61,8 +61,19 @@ class FriendForm extends Component{
                 this.props.history.push('/');
               }
             )
-            .catch(err=> console.log(err));
+            .catch(err => console.log(err));
     }
+  }
+
+  handleRemoveFriend = event => {
+    event.preventDefault();
+    axios.delete(`http://localhost:5000/friends/${this.props.match.params.id}`)
+          .then(res=>{
+            this.setState({name: '', age: '', email: '',});
+            this.props.update(res.data);
+            this.props.history.push('/');
+          })
+          .catch(err => console.log(err));
   }
 
   render() {
@@ -94,6 +105,10 @@ class FriendForm extends Component{
           placeholder="Enter E-Mail"
           onChange={this.handleInputChange} />
         <button type="submit">Submit!</button>
+        {this.props.updating === 'true' ?
+          <button className="btn-delete" onClick={this.handleRemoveFriend}>Delete This Friend</button> :
+          null
+        }
         <Link to="/"><div className="btn btn-return">Return</div></Link>
       </form>
     );

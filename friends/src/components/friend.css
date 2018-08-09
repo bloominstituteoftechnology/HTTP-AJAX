@@ -55,6 +55,7 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+   overflow-y: scroll;
  }
 
  form label{
@@ -71,7 +72,7 @@
  }
 
  form button{
-   margin-top: 40px;
+   margin-top: 25px;
    width: 60%;
    height: 50px;
    cursor: pointer;
@@ -81,6 +82,12 @@
 
  form button:hover{
    border: 1px solid lightgreen;
+   background: lightgreen;
+ }
+
+ form button.btn-delete:hover{
+   background: red;
+   border: 1px solid red;
  }
 
  form a{
