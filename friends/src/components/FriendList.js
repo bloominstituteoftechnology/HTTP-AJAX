@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
         <div>                
             <h1>Muh Frans!</h1>            
             {props.friends.map(data => (               
-                <Link to = {`/${data.id}`}><FriendCard key = {data.id} friends = {data} /></Link>                
+                <Link to = {`/${data.id}`}><FriendCard key = {data.id} friend = {data} /></Link>                
             ))}                        
         </div>
     )

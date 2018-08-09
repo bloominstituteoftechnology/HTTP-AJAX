@@ -4,6 +4,7 @@ import FriendList from './components/FriendList'
 import FriendAdd from './components/FriendAdd'
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import Friend from './components/Friend'
 
 class App extends Component {
   constructor() {
@@ -17,6 +18,17 @@ class App extends Component {
   }
 
   componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      });
+  }
+
+  componentDidUpdate(){
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
@@ -53,19 +65,41 @@ class App extends Component {
       .then(res => {
           console.log(res);
           console.log(res.data);
-          this.setState({friends: res.data});
-          
-      })
-      .then(this.setState({newName: '', newAge: '', newEmail: ''}))
+          this.setState({friends: res.data, newName: '', newAge: '', newEmail: ''});          
+      })      
       .catch(err => {
           console.log(err);
       })
           
   }
 
+  handleEdit = (event) => {    
+    event.preventDefault();
+
+    const id = this.props.match.params.id;
+
+    const updatedFriend = {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
+    }
+
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriend)
+    .then(response => {
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch((err) => console.log(err))
+  }
+
   render() {
     return (
       <div>
+        <Route path = '/:id' render= {(props) => 
+        <Friend {...props}
+          
+        /> } />        
         <Route exact path = '/' render= {(props) => 
         <FriendAdd {...props}
           handleAge = {this.handleAge} 
