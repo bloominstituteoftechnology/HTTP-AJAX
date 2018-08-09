@@ -19,12 +19,20 @@ class App extends Component {
         friend: response.data
       })
 
-    })
+   })
   }
   render() {
     return (
       <div className="friend-list">
       <List list={this.state.friend} />
+      <div>
+        <form>
+          <input placeholder="Name" />
+          <input placeholder="Age" />
+          <input placeholder="E-mail" />
+          <button></button>
+        </form>
+      </div>
       </div>
     );
   }
