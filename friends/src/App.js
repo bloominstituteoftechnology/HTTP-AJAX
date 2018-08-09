@@ -76,8 +76,21 @@ class App extends Component {
   //   // localStorage.setItem('selected', event.target.value)
   // }
 
+  getFriend(id) {
+   let selectedFriend = '';
+   this.state.friends.forEach( friend => {
+      if (friend.id == id){
+        selectedFriend = friend
+      }
+    });
+   console.log(id, selectedFriend, 'getFriend') 
+   return selectedFriend;
+    
+  }
+
 
   render() {
+    // console.log(this.getFriend(0));
     return (
       <div className="App">
        
@@ -85,11 +98,11 @@ class App extends Component {
           <Route path='/' render={() => { return <h1>Home</h1>}} />
         </Link>
 
-        <Link to="/friends">
+        <Link to="/allFriends">
           Show all Frieneds
         </Link>
 
-        <Route path='/friends' render={(props) => {
+        <Route path='/allFriends' render={(props) => {
           return this.state.friends.map(friend => {
             return (
               <Link key={friend.id} to={`/friend/${friend.id}`}>
@@ -100,8 +113,11 @@ class App extends Component {
         }} /> 
         
         <Route 
-          path="/friends/:id"
-          render={(props) => <AllFriends {...props} />} 
+          path="/friend/:id"
+          render={(props) => {
+          // console.log('this.getFriends(props.id)');
+           return <AllFriends data={this.getFriend(props.match.params.id)} {...props} />
+          }}
         /> 
         
         <div className="form">
