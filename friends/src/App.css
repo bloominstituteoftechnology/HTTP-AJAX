@@ -17,9 +17,17 @@
   /* border: 1px solid lawngreen; */
   /* flex-grow: 1; */
   margin: 11px;
-  background-color: lightgray;
+  background-color: slategray;
   padding: 9px;
   width: 30%;
-  color: darkgreen;
+  color: darkorange;
   border-radius: 8px;
+}
+
+body {
+  background: linear-gradient(to right, #684ff1 , #4f6ef62a);
+}
+
+label {
+  margin: 0 22px;
 }

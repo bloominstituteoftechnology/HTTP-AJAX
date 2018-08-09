@@ -12,7 +12,10 @@ class App extends Component {
 
     this.state = {
       friends: [],
-      loading: true
+      loading: true,
+      name: '',
+      age: '',
+      email: ''
     };
   }
 
@@ -29,16 +32,63 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* {this.state.friends.map(friend => (
-            <div >
-                {friend.name}
-            </div>
-            )
-        ) } */}
+        <h1>New Friends?</h1>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+              <input type="text" value={this.state.name} onChange={this.handleName} />
+          </label>
+          <label>
+            Age:
+              <input type="text" value={this.state.age} onChange={this.handlePrice} />
+          </label>
+          <label>
+            email:
+              <input type="text" value={this.state.email} onChange={this.handleEmail} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
         <FriendList friends={this.state.friends} />
       </div>
     );
   }
+
+  handleName = (event) => {
+    event.preventDefault();
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  handlePrice = (event) => {
+    event.preventDefault();
+    this.setState({
+      age: event.target.value
+    });
+  }
+
+  handleEmail = (event) => {
+    event.preventDefault();
+    this.setState({
+      email: event.target.value
+    });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:5000/friends', {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    })
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
 }
 
 export default App;
