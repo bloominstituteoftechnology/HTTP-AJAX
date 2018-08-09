@@ -28,6 +28,8 @@ export default class App extends Component {
     })
   }
 
+
+
   inputHandler = e => {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -43,7 +45,7 @@ export default class App extends Component {
 
   axios
   .post("http://localhost:5000/friends", newFriend)
-  .then(response => {
+  .then(response => { 
       this.setState({
       friends: response.data
     })
@@ -52,16 +54,31 @@ export default class App extends Component {
 }
 
 
+deleteFriend = (id) =>{
+axios
+.post(`http://localhost:5000/friends/${id}`)
+.then(response => { 
+    this.setState({
+    friends: response.data
+  })
+})
+.catch((err) => console.log(err))
+}
+
+
+
   render() {
+
     return (
       <div className="app">
         <div className="list">
-        {this.state.friends.map(friend => <Friends key={friend.id} friend={friend}/>)} 
+        {this.state.friends.map(friend => <Friends deleteFriend={this.deleteFriend} key={friend.id} friend={friend}/>)} 
         </div>
           <div className="form">
             <FriendsForm 
             inputHandler={this.inputHandler}
             addNewFriend={this.addNewFriend}
+            deleteFriend={this.deleteFriend}
             value={this.state}
             />
           </div>      

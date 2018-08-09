@@ -5,7 +5,7 @@ const Friends = props => {
 
     return(
         <div className="friends">
-            <div className="name">Name:{' '} 
+            <div onClick={props.deleteFriend} className="name">Name:{' '} 
             {props.friend.name}
             </div>
             <div className="age">Age:{' '} 
