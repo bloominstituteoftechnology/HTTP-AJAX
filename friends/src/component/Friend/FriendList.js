@@ -19,13 +19,13 @@ const FriendList = props => {
     }
     return (
         <Div>
-            {props.friends.map(friend =>
+            {props.friends.map((friend) =>
                 <Friend key={friend.id}>
                     <p>Name: {friend.name}</p>
                     <p>Age: {friend.age}</p>
                     <p>Email: {friend.email}</p>
-                    <button onClick={props.delete}>Delete Friend</button>
-                    <button onClick={props.update}>Update Info</button>
+                    <button id={friend.id} onClick={props.delete}>Delete Friend</button>
+                    <button id={friend.id} onClick={props.update}>Update Info</button>
                 </Friend>
             )}
         </Div>

@@ -19,6 +19,12 @@ const Links = styled.div`
   padding: 1rem 0;
 `;
 
+const Input = styled.div`
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid black;
+`;
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -27,7 +33,8 @@ class App extends Component {
         loading: true,
         name: '',
         age: '',
-        email: ''
+        email: '',
+        id:''
     }
   }
   handleChange = e => {
@@ -44,8 +51,8 @@ class App extends Component {
           })
          .then(response => this.setState({friends: response.data}))
   }
-  updateFriend = id => {
-    axios.put(`http://localhost:5000/friends/${id}`, {
+  updateFriend = e => {
+    axios.put(`${url}/${e.target.id}`, {
             name: this.state.name,
             age: this.state.age,
             email: this.state.email
@@ -53,8 +60,8 @@ class App extends Component {
          .then(response => this.setState({friends: response.data}))
          .catch(err => console.log(err));
   }
-  deleteFriend = id => {
-    axios.delete(`http://localhost:5000/friends/${id}`)
+  deleteFriend = e => {
+    axios.delete(`${url}/${e.target.id}`)
          .then(response => this.setState({friends: response.data}))
          .catch(err => console.log(err));
   }
@@ -64,23 +71,25 @@ class App extends Component {
           .then(person => {
               this.setState({friends: person.data, loading: false})
           })
-          .catch(err => console.log('Server Error', err));
+          .catch(err => console.log(err));
   }
   render(){
       return(
         <Body>
             <Links>
-                <Link to="/friends/:id">Meet my Friends!</Link>
-                <Link to="/addFriend">Add New Friend</Link>
+                <Link to="/friends">Meet my Friends!</Link>
             </Links>
+            <Input>
+              <Route exact path="/friends"
+                        render={(props) => <NewFriend {...props} newFriend={this.addNewFriend}
+                                                                 change={this.handleChange} />} />
+            </Input>
             <div>
                 <Route path="/friends"
                       render={(props) => <FriendList {...props} friends={this.state.friends}
                                                                 loading={this.state.loading}
                                                                 delete={this.deleteFriend}
                                                                 update={this.updateFriend} />} />
-                <Route exact path="/addFriend"
-                      render={(props) => <NewFriend {...props} newFriend={this.addNewFriend} change={this.handleChange} />} />
             </div>
           </Body>
       )
