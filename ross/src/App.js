@@ -34,6 +34,7 @@ class App extends Component {
   handleSubmit = (input) => {
     axios.post(`http://localhost:5000/friends`, {
       name: input.name,
+      age: input.age,
       email: input.email })
       .then(res => {
         console.log(res);
@@ -42,13 +43,26 @@ class App extends Component {
       })
   };
 
+  handleDelete = (input) => {
+    axios.delete(`http://localhost:5000/friends/${input}`).then(res => {
+        console.log(res);
+        console.log(res.data);
+        this.setState({ friends: res.data })
+      });
+  }
+
+  handleEdit = (input) => {
+    console.log(input);
+    
+  }
+
   render() {
     console.log(this.state.friends);
     
     return (
       <div className="App">
         <Form handleSubmit={this.handleSubmit}/>
-        <FriendList friends={this.state.friends}/>
+        <FriendList friends={this.state.friends} handleDelete={this.handleDelete} handleEdit={this.handleEdit}/>
       </div>
     );
   }
