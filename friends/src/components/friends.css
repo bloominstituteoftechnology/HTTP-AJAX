@@ -23,6 +23,19 @@
     padding: 0 5px;
 }
 
+.container .custom-form button{
+    background: #395A93;
+    color: white;
+    border-radius: 5px;
+    font-weight: lighter;
+    letter-spacing: .5px;
+    margin: 0 15px;
+}
+
+.container .custom-form button:hover{
+    background: rgb(84, 133, 216);
+}
+
 .container .friend-grid {
     list-style-type: none;
     margin: 0;
