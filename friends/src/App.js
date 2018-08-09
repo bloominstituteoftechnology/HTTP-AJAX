@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-// import Friend from './list';
+import {Route, Link} from 'react-router-dom';
 import NewFriend from './components/newFriend';
 import Friend from './components/list.js';
 
@@ -24,8 +24,9 @@ class App extends Component {
     console.log('mounted');
     axios.get(url).then(response => {
       console.log(response)
+      let food = response.data.reverse()
       this.setState({
-        friends: response.data
+        friends: food
       })
     })
     .catch(function (error) {
@@ -54,13 +55,19 @@ class App extends Component {
     .then( () => {
       axios.get(url).then(response => {
         console.log(response)
+         let food = response.data.reverse()
         this.setState({
-          friends: response.data
+          friends: food
         })
       })
       .catch(function (error) {
         console.log(error)
       })
+    })
+    this.setState({
+      name: "", 
+      age: "",
+      email: ""
     })
   }
 
@@ -85,8 +92,15 @@ class App extends Component {
           </div>
           
           <div className="component">
-            {this.state.friends.reverse().map(friend => {
-              return <Friend key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</Friend>
+            {this.state.friends.map(friend => {
+              return (
+                <Link key={friend.id} to={`/friend/${friend.id}`}>
+                  <Friend key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</Friend>
+                </Link> 
+              )
+              
+             
+              
             })}
           </div>
 
