@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 const Form = styled.div`
 
     display: flex;
@@ -30,12 +31,27 @@ const Age = styled.div`
     padding: 5px 0;
     margin: 5px 0;
     
+`
+const ButtonWrap = styled.div`
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 40px;
+    
+
+    >button {
+        border-radius: 40px;
+        width: 50px;
+        height: 50px;
+    }
 
 `
 
 const Friend = (props) => {
     return(
         <Form>
+        <div>List number: {props.number}</div>
             <Name>
                 <h2>{props.name}</h2>
             </Name>
@@ -45,7 +61,11 @@ const Friend = (props) => {
             <div className="email">
                 <h3>{props.email}</h3>
             </div>
+            <ButtonWrap>
             <button onClick={props.delete}>Delete</button>
+            <button onClick={props.update}>Update</button>
+            </ButtonWrap>
+            
         </Form>
     );
 }

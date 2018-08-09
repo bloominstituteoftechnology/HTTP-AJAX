@@ -11,8 +11,6 @@ const NavigationWrap = styled.div`
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
     border-bottom: 1px solid #fff;
-
-    
     
     > ul {
         display: flex;
@@ -21,18 +19,12 @@ const NavigationWrap = styled.div`
         margin: 0 auto;
         align-items: center;
         list-style-type: none;
-        
 
         > a {
             padding: 20px 20px;
             color: #fff;
-            
-            
         } 
-        
     }
-
-
 `
 
 const Navigation = () => {

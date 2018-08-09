@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const Form = styled.div`
 
     display: flex;
-    width: 525px;
+    max-width: 525px;
+    width: 100%;
     height: 300px;
     border: 1px solid gray;
     border-radius: 40px;
@@ -29,8 +30,6 @@ const Email = styled.div`
 
 `
 
-
-
 class AddNewFriend extends Component{
     constructor() {
         super();
@@ -41,31 +40,20 @@ class AddNewFriend extends Component{
         }
     }
 
-    handleNameChange = event => {
+    handleChange = event => {
         this.setState({ 
-            name: event.target.value
+            [event.target.name]: event.target.value
         });
-      }
-      handleAgeChange = event => {
-        this.setState({ 
-            age: event.target.value
-        });
-      }
-      handleEmailChange = event => {
-        this.setState({ 
-            email: event.target.value
-        });
-      }
+    }
 
       handleSubmit = event => {
         event.preventDefault();
-        
-        axios.post(`http://localhost:5000/friends`, {
-           
-                name: this.state.name,
-                age: this.state.age,
-                email: this.state.email
-        })
+        const newFriend = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        }
+        axios.post(`http://localhost:5000/friends`, newFriend) 
           .then(res => {
             console.log(res);
             console.log(res.data);
@@ -75,13 +63,15 @@ class AddNewFriend extends Component{
     render() {
     return(
         <Form>
+        <h1>Add new friend</h1>
             <Name>
                 <label>
                     Friend's name:
                     <input
                         type="text"
                         name="name"
-                        onChange={this.handleNameChange}
+                        value={this.state.name}
+                        onChange={this.handleChange}
                     />
                 </label>
                 
@@ -90,9 +80,10 @@ class AddNewFriend extends Component{
             <label>
                     Friend's age:
                     <input
-                        type="text"
+                        type="number"
                         name="age"
-                        onChange={this.handleAgeChange}
+                        value={this.state.age}
+                        onChange={this.handleChange}
                     />
                 </label>
             </Age>
@@ -100,9 +91,10 @@ class AddNewFriend extends Component{
             <label>
                     Friend's email:
                     <input
-                        type="text"
+                        type="email"
                         name="email"
-                        onChange={this.handleEmailChange}
+                        value={this.state.email}
+                        onChange={this.handleChange}
                     />
                 </label>
             </Email>
