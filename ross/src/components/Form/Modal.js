@@ -79,7 +79,7 @@ class Modal extends Component {
     }
 
     handleCancel = () => {
-
+        this.props.toggleIsEditting();
     }
 
     render() {
