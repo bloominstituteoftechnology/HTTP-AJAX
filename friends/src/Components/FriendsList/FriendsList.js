@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+
 class FriendsList extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state={
             friends:[],
             name: '',
@@ -32,6 +32,9 @@ class FriendsList extends React.Component{
         }
         axios.put(`http://localhost:5000/friends/${this.state.cardNumber}`,updatedInfo).then(window.location.reload());
     }
+    goToForm=()=>{
+        this.props.history.push('/');
+    }
     render() {
         return (
             <div>
@@ -52,8 +55,8 @@ class FriendsList extends React.Component{
                     <input type='number' placeholder='enter an age' name='age' value={this.state.age} onChange={(e)=>this.handleInputChange(e)}/>
                     <input type='email' placeholder='enter an email' name='email' value={this.state.email} onChange={(e)=>this.handleInputChange(e)}/>
                     <input type='text' placeholder='enter an address' name='address' value={this.state.address} onChange={(e)=>this.handleInputChange(e)}/>
-                    <Link to='/list'><button type='button' className='btn waves-effect waves-light' onClick={this.updateFriendInfo}>Update Friend Info</button></Link>
-                    <Link to='/'><button className='btn waves-effect waves-light backToFriendForm'>Go To Friends Form</button></Link>
+                    <button type='button' className='btn waves-effect waves-light' onClick={this.updateFriendInfo}>Update Friend Info</button>
+                    <button onClick={this.goToForm} className='btn waves-effect waves-light backToFriendForm'>Go To Friends Form</button>
                 </form>
                 
             </div>

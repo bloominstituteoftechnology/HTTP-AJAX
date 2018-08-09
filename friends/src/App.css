@@ -41,16 +41,11 @@ form {
   width: 100%;
   margin: 0 auto;
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
-form button{
-  display: block;
+
+form *{
   margin-top: 10px;
-}
-form button:last-child {
-  margin-left: 2%;
-}
-.backToFriendForm {
-  margin: 0 auto;
-  display: block;
-  margin-top: 30px;
 }
