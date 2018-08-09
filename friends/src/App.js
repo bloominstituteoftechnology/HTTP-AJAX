@@ -62,7 +62,7 @@ class App extends Component {
         });
       })
       .catch(err => {
-        console.error("Server Delete", err);
+        console.error("Server Put", err);
       });
   };
 
