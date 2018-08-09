@@ -26,7 +26,7 @@ class Friends extends React.Component {
     render() {
         return (
             <div className="friends-div">
-                {this.state.friends.map(friend => <Route exact path="/" render={props => (<Friend person={friend} key={friend.id} {...props} />)} />)}
+                {this.state.friends.map(friend => <Route exact path="/" render={props => (<Friend person={friend} key={friend.id} {...props} array={this.props.array} />)} />)}
                 <Route exact path="/" render={props => (<Link to="/form" className="link">Add a friend here</Link>)}/>
                 <Route exact path="/form" render={props => (<FriendForm array={this.state.friends} didMount={this.componentDidMount} />)} />
                 

@@ -26,7 +26,7 @@ class FriendPage extends React.Component {
     }
 
     updateFriend = (props) => {
-        axios.put('http://localhost:5000/friends', {
+        axios.put(`http://localhost:5000/friends/${this.state.matchId}`, {
             name: this.state.uname,
             age: parseInt(this.state.uage, 10),
             email: this.state.uemail
@@ -46,20 +46,25 @@ class FriendPage extends React.Component {
     return (
         <div className="friend-div">
             <h1 className="friend-title">Friend #{this.state.matchId}</h1>
-            <p><span>Name:</span> {this.props.array[this.state.matchId -1].name}</p>
-            <p><span>Age:</span> {this.props.array[this.state.matchId -1].age}</p>
-            <p><span>Email:</span> {this.props.array[this.state.matchId -1].email}</p>
+            <p><span>Name:</span> {this.props.array[this.state.matchId-1].name}</p>
+            <p><span>Age:</span> {this.props.array[this.state.matchId-1].age}</p>
+            <p><span>Email:</span> {this.props.array[this.state.matchId-1].email}</p>
         
 
             <form onSubmit={this.updateFriend}>
             <h1>Update Friend</h1>
-            <p>Name: <input type="text" name="uname" onChange={this.handleInputChange} value={this.state.uname} placeholder={this.props.array[this.state.matchId -1].name} /></p>
-            <p>Age: <input type="number" name="uage" onChange={this.handleInputChange} value={this.state.uage} placeholder={this.props.array[this.state.matchId -1].age}/></p>
-            <p>Email: <input type="text" name="uemail" onChange={this.handleInputChange} value={this.state.uemail} placeholder={this.props.array[this.state.matchId -1].email}/></p>
+            <p>Name: <input type="text" name="uname" onChange={this.handleInputChange} value={this.state.uname} placeholder={this.props.array[this.state.matchId-1].name} /></p>
+            <p>Age: <input type="number" name="uage" onChange={this.handleInputChange} value={this.state.uage} placeholder={this.props.array[this.state.matchId-1].age}/></p>
+            <p>Email: <input type="text" name="uemail" onChange={this.handleInputChange} value={this.state.uemail} placeholder={this.props.array[this.state.matchId-1].email}/></p>
             <button type="submit">Submit</button>
-            <p><Link to="/">Go to friends list</Link></p>
+            
             </form>
 
+            <h1>Delete Friend</h1>
+            <form onSubmit={() => this.props.delete(this.state.matchId)}>
+            <button type="submit">Delete this friend</button>
+            </form>
+            <p><Link to="/">Go to friends list</Link></p>
         </div>
     )
     } else {

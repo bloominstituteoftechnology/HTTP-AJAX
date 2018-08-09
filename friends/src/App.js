@@ -25,11 +25,23 @@ class App extends Component {
         })
 }
 
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(function (response) {
+        this.setState({friends: response.data})
+        this.state.friends.map((index) => axios.put(`http://localhost:5000/friends/${index}`, {id: index}))
+        this.componentDidMount();
+    })
+    .then(function (error) {
+        console.log(error);
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <Route path="/" render={(props) => (<Friends {...props} />)} />
-        <Route path ="/friends/:id" render={(props) => (<FriendPage array={this.state.friends} {...props} />)} />
+        <Route path="/" render={(props) => (<Friends {...props} array={this.state.friends} />)} />
+        <Route path ="/friends/:id" render={(props) => (<FriendPage array={this.state.friends} delete={this.deleteFriend} {...props} />)} />
       </div>
     );
   }
