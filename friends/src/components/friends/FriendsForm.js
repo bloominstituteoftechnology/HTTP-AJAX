@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
+
 const FriendsForm = props => {
 
     return (
+
       <Form onSubmit={props.addNewFriend}>
         <FormGroup>
 
@@ -33,6 +35,8 @@ const FriendsForm = props => {
         </FormGroup>
         <Button>Submit</Button>
       </Form>
+   
+
     );
   }
 
