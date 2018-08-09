@@ -34,22 +34,15 @@ class FriendsPage extends React.Component {
             });
     }
 
-    handleName = event => {
-        this.setState({ name: event.target.value });
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
-    handleAge = event => {
-        this.setState({ age: event.target.value });
-    }
-    handleEmail = event => {
-        this.setState({ email: event.target.value });
-    }
-
+ 
     handleSubmit = event => {
         event.preventDefault();
 
-        const user = {
-            name: this.state.name
-        };
 
         axios.post(`http://localhost:5000/friends`, { 
             name: this.state.name,
@@ -78,7 +71,7 @@ class FriendsPage extends React.Component {
                 </Row>
                 <Row className="custom-display">
                     <Col sm="6">
-                        <FriendForm handleSubmit={this.handleSubmit} handleName={this.handleName} handleAge={this.handleAge} handleEmail={this.handleEmail}/>
+                        <FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
                     </Col>
                 </Row>
             </Container>

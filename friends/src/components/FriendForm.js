@@ -11,15 +11,15 @@ const FriendForm = props => {
             <Form onSubmit={props.handleSubmit}>
                 <FormGroup>
                     <Label>Name</Label>
-                    <Input onChange={props.handleName} type="text" placeholder="..." />
+                    <Input onChange={props.handleChange} value={props.name} name="name" type="text" placeholder="..." />
                 </FormGroup>
                 <FormGroup>
                     <Label >Age</Label>
-                    <Input  onChange={props.handleAge} type="text"placeholder="..." />
+                    <Input  onChange={props.handleChange} value={props.age} name="age" type="text" placeholder="..." />
                 </FormGroup>
                 <FormGroup>
                     <Label >Email</Label>
-                    <Input onChange={props.handleEmail} className="red" type="text"placeholder="..." />
+                    <Input onChange={props.handleChange} value={props.email} name="email" className="red" type="text" placeholder="..." />
                 </FormGroup>
                 <Button color="danger">Submit</Button>
             </Form>
