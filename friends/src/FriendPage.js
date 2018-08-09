@@ -4,6 +4,18 @@ import {Link} from 'react-router-dom';
 
 const DeleteDiv = styled.div `
     width: 100%; 
+    background: black;
+    color: white;
+    padding-top: 10px;
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    a:hover{
+        color: red;
+        text-decoration: underline;
+    }
+
 
 `;
 class FriendPage extends React.Component {
