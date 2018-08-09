@@ -53,21 +53,6 @@ table {
   margin: auto;
 }
 
-.friend-card {
-  border: 1px solid #404040;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 15px;
-  font-size: 1.6rem;
-  font-family: sans-serif;
-  line-height: 1.2;
-  padding: 25px;
-  margin-bottom: 50px;
-  text-align: justify;
-}
-
-strong {
-  font-weight: bold;
-}
 li {
   display: flex;
   width: 100%;
@@ -83,6 +68,47 @@ li span {
 li span:hover {
   color: gray;
   cursor: pointer;
+}
+
+.friend-list a {
+  text-decoration: none;
+}
+
+.form-wrapper a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.form-wrapper .home-btn {
+  color: black;
+}
+
+.friend-card {
+  border: 1px solid #404040;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  line-height: 1.2;
+  padding: 25px;
+  margin-bottom: 50px;
+  text-align: justify;
+}
+
+.friend-list .add-friend {
+  color: black;
+  justify-content: center;
+}
+
+.friend-list .add-friend:hover, .form-wrapper .home-btn:hover{
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+}
+strong {
+  font-weight: bold;
 }
 
 form {
