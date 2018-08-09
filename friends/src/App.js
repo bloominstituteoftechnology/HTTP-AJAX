@@ -14,7 +14,7 @@ class App extends Component {
       friends: [],
       loading: true,
       name: '',
-      age: '',
+      age: [],
       email: ''
     };
   }
@@ -82,11 +82,12 @@ class App extends Component {
       email: this.state.email,
     })
       .then(response => {
-        this.setState({ friends: response.data });
+        this.setState({ friends: response.data, name: "", age: [], email: "" });
       })
       .catch(error => {
         console.log(error);
       });
+      // this.setState({Name: "", Age: [], Email: ""})
   }
 
 }
