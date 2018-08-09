@@ -5,24 +5,24 @@ const FormInput = props => {
     <div>
     <form>
       <input 
-        onChange={props.changeName}
-        value={props.nameInput}
+        onChange={props.addName}
+        value={props.name}
         type="text"
         placeholder="Name"
        />
        <input 
-        onChange={props.changeAge}
-        value={props.ageInput}
+        onChange={props.addAge}
+        value={props.age}
         type="number"
         placeholder="Age"
        />
        <input 
-        onChange={props.changeEmail}
-        value={props.emailInput}
+        onChange={props.addEmail}
+        value={props.email}
         type="email"
         placeholder="Email"
        />
-       <button onClick={props.add}>Add Friend</button>
+       <button onClick={props.addFriend}>Add Friend</button>
     </form>
     </div>
   );
