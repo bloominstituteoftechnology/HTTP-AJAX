@@ -9,7 +9,12 @@ class App extends Component {
     this.state = {
       url: 'http://localhost:5000/friends',
       friendsArray: [],
-      newFriendsArray: []
+      newFriendsArray: [],
+      newFormInput: {
+        name: '',
+        age: '',
+        email: ''
+      }
     }
   }
 
@@ -25,12 +30,8 @@ class App extends Component {
     const lastIndex = [this.state.friendsArray.length - 1];
     const newId = this.state.friendsArray[lastIndex].id + 1;
     const newFriendsArray = this.state.newFriendsArray;
-    const newFriend = {
-      id: newId,
-      name: `testing${newId}`,
-      age: Math.floor(Math.random() * 100),
-      email: `testing${newId}@gmail.com`
-    }
+
+    const newFriend = Object.assign(this.state.newFormInput, { id: newId });
 
     // Post request to add new user
     axios.post(this.state.url, newFriend)
@@ -45,11 +46,25 @@ class App extends Component {
       .catch(e => console.error(e));
   }
 
+  handleOnChange(e) {
+    const targetValue = e.target.value;
+    const target = e.target.placeholder;
+    const newKey = Object.keys(this.state.newFormInput).filter(key => key === target);
+    const newFormInput = this.state.newFormInput;
+
+    newFormInput[newKey] = targetValue;
+    
+    this.setState({ newFormInput: newFormInput });
+  }
+
   handleDeleteFriend(e) {
+    // Get the id to match for delete request
     const targetId = e.target.dataset.id;
 
     axios.delete(`${this.state.url}/${targetId}`)
       .then(response => response.data)
+      // Update the state of component
+      // TODO: manage case for NewFriendList too
       .then(data => {
         this.setState({ friendsArray: data });
       })
@@ -61,7 +76,11 @@ class App extends Component {
       <div className="App">
         <NavLink to="/friends">Friends</NavLink>
         <NavLink to="/newfriends">New Friends</NavLink>
-        <PostButton handleAddFriend={this.handleAddFriend.bind(this)}/>
+        <PostForm 
+          handleAddFriend={this.handleAddFriend.bind(this)}
+          handleOnChange={this.handleOnChange.bind(this)}
+          newFormInput={this.state.newFormInput}
+        />
         <Route path="/friends" render={(props) => <FriendList {...props} friendsArray={this.state.friendsArray} handleDeleteFriend={this.handleDeleteFriend.bind(this)} />} />
         <Route path="/newfriends" render={(props) => <NewFriendList {...props} newFriendsArray={this.state.newFriendsArray} />} />
       </div>
@@ -134,10 +153,16 @@ function NewFriendList(props) {
   )
 }
 
-function PostButton(props) {
+function PostForm(props) {
+  const { handleAddFriend, handleOnChange } = props;
+  const { name, age, email } = props.newFormInput;
+
   return (
     <div>
-      <button onClick={props.handleAddFriend}>Add a new friend</button>
+      <input type="text" onChange={handleOnChange} value={name} placeholder="name" />
+      <input type="text" onChange={handleOnChange} value={age} placeholder="age" />
+      <input type="text" onChange={handleOnChange} value={email} placeholder="email" />
+      <input type="submit" onClick={handleAddFriend} value="submit" />
     </div>
   )
 }
