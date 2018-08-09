@@ -48,7 +48,7 @@ class FriendCard extends React.Component {
     };
     axios.put(`http://localhost:5000/friends/${changedfriend.id}`, changedfriend)
     .then(response => {
-      console.log(response);
+      this.props.reSetState();
     })
     .catch(error => {
       console.error(error);
@@ -67,7 +67,7 @@ class FriendCard extends React.Component {
         <FriendForm submitFriend={this.changeFriendHandler} newFriendName={this.state.name} valueAdd={this.addValueHandler} newFriendAge={this.state.age} newFriendEmail={this.state.email} />
         <Friend person={this.state.friend} />
         <Link to='/'>
-          <button onClick={this.props.reSetState}>Back to Home</button>
+          <button>Back to Home</button>
         </Link>
       </div>
     )
