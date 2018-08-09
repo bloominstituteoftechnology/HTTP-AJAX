@@ -40,13 +40,19 @@ class App extends Component {
             <h2>List of Friends</h2>
           </div>
           <Route
+            exact
             path={"/"}
             render={props => (
               <Friend {...props} friends={this.state.friendsData} />
             )}
           />
           {/* <Friend friends={this.state.friendsData} /> */}
-          <FriendForm url={dataUrl} />
+          <Route
+            exact
+            path={"/"}
+            render={props => <FriendForm {...props} url={dataUrl} />}
+          />
+          {/* <FriendForm url={dataUrl} /> */}
         </div>
       </Fragment>
     );
