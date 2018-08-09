@@ -3,6 +3,7 @@ import axios from "axios";
 
 import "./App.css";
 import Friend from "./components/friends/Friend";
+import FriendForm from "./components/friendForm/FriendForm";
 
 let dataUrl = "http://localhost:5000/friends/";
 
@@ -15,9 +16,14 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    axios.get(dataUrl).then(response => {
-      this.setState({ friendsData: response.data, loading: false });
-    });
+    axios
+      .get(dataUrl)
+      .then(response => {
+        this.setState({ friendsData: response.data, loading: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   // getFriend = id => {
@@ -32,6 +38,7 @@ class App extends Component {
             <h2>List of Friends</h2>
           </div>
           <Friend friends={this.state.friendsData} />
+          <FriendForm />
         </div>
       </Fragment>
     );

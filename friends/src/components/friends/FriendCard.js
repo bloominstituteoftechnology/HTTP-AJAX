@@ -3,7 +3,6 @@ import React, { Fragment } from "react";
 import "./Friend.css";
 
 const FriendCard = props => {
-  console.log("FriendCard", props);
   return (
     <Fragment>
       <div className="friendCardWrapper">

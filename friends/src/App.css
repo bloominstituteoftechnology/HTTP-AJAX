@@ -9,11 +9,14 @@ body {
   text-align: center;
 }
 
+/* .filler {
+  color: white;
+} */
 .mainAppWrapper .crt h2 {
   font-size: 4rem;
   color: #ff3366;
-  opacity: 0.5;
 }
+
 /* Code for CRT listed below */
 @keyframes flicker {
   0% {
