@@ -10,7 +10,11 @@ class App extends Component {
   constructor(){
     super(); 
     this.state={
-      friend: []
+      friend: [],
+      loading: true,
+      name: '',
+      age: '',
+      email: ''
     }
   }
   componentDidMount(){
@@ -25,6 +29,21 @@ class App extends Component {
     return (
       <div className="friend-list">
       <List list={this.state.friend} />
+      <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+              <input type="text" value={this.state.name} onChange={this.handleName} />
+          </label>
+          <label>
+            Age:
+              <input type="text" value={this.state.age} onChange={this.handlePrice} />
+          </label>
+          <label>
+            email:
+              <input type="text" value={this.state.email} onChange={this.handleEmail} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }
