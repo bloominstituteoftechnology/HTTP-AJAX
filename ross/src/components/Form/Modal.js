@@ -58,9 +58,11 @@ class Modal extends Component {
         this.state = {
             name: '',
             email: '',
-            age: []
+            age: [],
+            id: props.friendID,
         };
-
+        // console.log("modal props", props);
+        
     }
 
     componentDidMount() {

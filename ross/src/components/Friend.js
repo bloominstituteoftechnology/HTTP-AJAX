@@ -56,7 +56,7 @@ class Friend extends Component {
         this.state = {
             isEditting: false,
         }
-        console.log("friend props", props);
+        // console.log("friend props", props);
         
     }
 
@@ -68,7 +68,7 @@ class Friend extends Component {
 
     render(){
         let modal;
-        if (this.state.isEditting === true) modal = <Modal handleEdit={this.props.handleEdit} toggleIsEditting={this.toggleIsEditting}/>;
+        if (this.state.isEditting === true) modal = <Modal friendID={this.props.ross.id} handleEdit={this.props.handleEdit} toggleIsEditting={this.toggleIsEditting}/>;
         return (
             <Ross>
                 <Delete onClick={() => { this.props.handleDelete(this.props.ross.id) }}>X</Delete>

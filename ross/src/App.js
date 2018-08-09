@@ -52,8 +52,14 @@ class App extends Component {
   }
 
   handleEdit = (input) => {
-    console.log(input);
-    
+    console.log(",edit input",input);
+    axios.put(`http://localhost:5000/friends/${input.id}`,{
+      name:input.name, age: input.age, email: input.email
+    }).then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.setState({ friends: res.data });
+    })
   }
 
   render() {
