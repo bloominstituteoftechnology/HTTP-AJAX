@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import "./Friend.css";
+import EditDeleteButtons from "../editDeleteButtons/EditDeleteButtons";
 
 const FriendCard = props => {
   return (
@@ -10,6 +11,7 @@ const FriendCard = props => {
         <h4>{props.friends.age}</h4>
         <h4>{props.friends.email}</h4>
       </div>
+      <EditDeleteButtons />
     </Fragment>
   );
 };
