@@ -67,7 +67,7 @@ export default class FriendForm extends React.Component {
               onFocus={this.removeInputText}
             />
           </div>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button>Submit</button>
         </form>
       </Fragment>
     );
