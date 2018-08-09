@@ -39,10 +39,14 @@ class App extends Component {
         email: this.state.email,
         isNew: true
       })
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+      })
       .catch(err => {
         console.error("Server Post", err);
       });
-    this.componentDidMount();
   };
 
   updateFriend = e => {
@@ -52,10 +56,14 @@ class App extends Component {
         age: +this.state.age,
         email: this.state.email
       })
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+      })
       .catch(err => {
         console.error("Server Delete", err);
       });
-      this.componentDidMount();
   };
 
   deleteFriend = e => {
