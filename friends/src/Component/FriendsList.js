@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
-export default class FriendsList extends Component {
-  constructor(props) {
-    super(props);
+class FriendsList extends Component {
+  constructor() {
+    super();
     this.state = {
-      friends: []
+      friends: [],
+      name: "",
+      age: [],
+      email: ""
     };
   }
 
@@ -23,35 +25,86 @@ export default class FriendsList extends Component {
 
   render() {
     return (
-      <div className="friend-list">
-        {this.state.friends.map(friend => (
-          <FriendDetails key={friend.email} friend={friend} />
-        ))}
+      <div>
+        <h1>FriendsList</h1>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input
+              type="text"
+              value={this.state.name}
+              onChange={this.handleName}
+            />
+          </label>
+          <label>
+            Age:
+            <input
+              type="number"
+              value={this.state.age}
+              onChange={this.handleAge}
+            />
+          </label>
+          <label>
+            email:
+            <input
+              type="text"
+              value={this.state.email}
+              onChange={this.handleEmail}
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+
+        <div className="friends">
+          {this.state.friends.map((friend, id) => {
+            return (
+              <div className="card" key={id}>
+                <div>{friend.name}</div>
+                <div>{`age: ${friend.age}`}</div>
+                <div>{`email: ${friend.email}`}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
-}
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, stars } = movie;
-  return (
-    <Link to={`/movies/${movie.id}`}>
-      <div className="movie-card">
-        <h2>{title}</h2>
-        <div className="movie-director">
-          Director: <em>{director}</em>
-        </div>
-        <div className="movie-metascore">
-          Metascore: <strong>{metascore}</strong>
-        </div>
-        <h3>Actors</h3>
+  handleName = event => {
+    event.preventDefault();
+    this.setState({
+      name: event.target.value
+    });
+  };
 
-        {stars.map(star => (
-          <div key={star} className="movie-star">
-            {star}
-          </div>
-        ))}
-      </div>
-    </Link>
-  );
+  handleAge = event => {
+    event.preventDefault();
+    this.setState({
+      age: event.target.value
+    });
+  };
+
+  handleEmail = event => {
+    event.preventDefault();
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:5000/friends", {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 }
+export default FriendsList;
