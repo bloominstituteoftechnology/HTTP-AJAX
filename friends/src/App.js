@@ -71,35 +71,12 @@ class App extends Component {
           console.log(err);
       })
           
-  }
-
-  handleEdit = (event) => {    
-    event.preventDefault();
-
-    const id = this.props.match.params.id;
-
-    const updatedFriend = {
-      name: this.state.newName,
-      age: this.state.newAge,
-      email: this.state.newEmail
-    }
-
-    axios.put(`http://localhost:5000/friends/${id}`, updatedFriend)
-    .then(response => {
-      this.setState({
-        friends: response.data
-      })
-    })
-    .catch((err) => console.log(err))
-  }
+  }  
 
   render() {
     return (
       <div>
-        <Route path = '/:id' render= {(props) => 
-        <Friend {...props}
-          
-        /> } />        
+        <Route path = '/:id' component= {Friend} />        
         <Route exact path = '/' render= {(props) => 
         <FriendAdd {...props}
           handleAge = {this.handleAge} 

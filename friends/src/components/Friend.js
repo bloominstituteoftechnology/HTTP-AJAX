@@ -59,20 +59,35 @@ export default class Friend extends Component {
           })
         })
         .catch((err) => console.log(err))
-      }
+    }
+
+    handleDelete = (event) => {    
+        event.preventDefault();
+        
+        const id = this.props.match.params.id;        
+
+        axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(response => {
+            this.setState({
+            friends: response.data
+            })
+        })
+        .catch((err) => console.log(err))
+    }  
 
     render(){
         return(
             <div>
                 <FriendCard friend = {this.state.friend}/>
-                <form onSubmit = {this.handleEdit}>
+                <form>
                     <span>Name:</span>
                     <input onChange = {this.handleName} value = {this.state.name} />
                     <span>Age:</span>
                     <input onChange = {this.handleAge} value = {this.state.age} />
                     <span>Email:</span>
                     <input onChange = {this.handleEmail} value = {this.state.email} />
-                    <button>Edit Friend</button>
+                    <button onClick = {this.handleEdit}>Edit Friend</button>
+                    <button onClick = {this.handleDelete}>Delete Friend</button>
                 </form> 
             </div>
         )
