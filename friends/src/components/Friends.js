@@ -18,6 +18,9 @@ class Friends extends React.Component {
                     friends: response.data
                 })
             })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     render() {
