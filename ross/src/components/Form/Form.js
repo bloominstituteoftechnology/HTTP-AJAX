@@ -22,14 +22,12 @@ const HOne = styled.div`
 const Btn = styled.button`
     height:67px;
     background:rgba(0,0,0,0);
-    ${'' /* box-shadow: 1px 0px 435px #292929; */}
     color: #292929;
     border:solid 0px #000;
     font-size:2rem;
     font-family:sans-serif;
     text-align:end;
     &:hover{
-        ${'' /* background:rgba(111,111,111,0.1); */}
         color:#44081b;
         height:67px;
     }
@@ -39,7 +37,6 @@ const FormContainer = styled.div`
     width:400px;
     height:300px;
     margin:5% ;
-    ${'' /* border: solid 1px #292929; */}
     position:fixed;
     display:flex;
     flex-flow:column;

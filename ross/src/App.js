@@ -4,6 +4,7 @@ import FriendList from './components/FriendList.js';
 import Form from './components/Form/Form.js';
 import './App.css';
 // https://github.com/LambdaSchool/HTTP-AJAX/pull/275
+const URL = `http://localhost:5000/friends`;
 class App extends Component {
   constructor(){
     super();
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:5000/friends')
+    axios.get(URL)
       .then((response)=>{
         this.setFriendsToState(response.data)
       })
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   handleSubmit = (input) => {
-    axios.post(`http://localhost:5000/friends`, {
+    axios.post(URL, {
       name: input.name,
       age: input.age,
       email: input.email })
@@ -40,13 +41,13 @@ class App extends Component {
   };
 
   handleDelete = (input) => {
-    axios.delete(`http://localhost:5000/friends/${input}`).then(res => {
+    axios.delete(URL+`/${input}`).then(res => {
         this.setState({ friends: res.data })
       });
   }
 
   handleEdit = (input) => {
-    axios.put(`http://localhost:5000/friends/${input.id}`,{
+    axios.put(URL+`/${input.id}`,{
       name:input.name, age: input.age, email: input.email
     }).then(res => {
       this.setState({ friends: res.data });
