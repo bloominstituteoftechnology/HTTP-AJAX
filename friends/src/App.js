@@ -6,8 +6,8 @@ import Inputs from './components/Inputs';
 
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       friends: [],
       name: '',
@@ -25,6 +25,9 @@ class App extends Component {
       .catch(err => {
         console.log(err)
       })
+
+      const id = this.props.match.params.id;
+      this.editFriend(id);
   }
 
   friend = e => {
@@ -47,6 +50,10 @@ class App extends Component {
       age: '',
       email: ''
     })
+  }
+
+  editFriend = id => {
+
   }
 
   render() {
