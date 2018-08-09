@@ -15,7 +15,7 @@ const DeleteDiv = styled.div `
         color: white;
     }
     a:hover{
-        color: red;
+        
         text-decoration: underline;
     }
     input{
@@ -27,13 +27,15 @@ const DeleteDiv = styled.div `
     }
     button{
         margin-bottom: 25px;
+        background: black;
+        color: white;
     }
     button:hover{
         cursor:pointer; 
-        background: black;
-        color: white;
+        background: blue;
+        
         height: 50px; 
-        text-shadow: 2px 2px blue;
+        
     }
 
 `;
@@ -49,20 +51,31 @@ class FriendPage extends React.Component {
 
     render () {
         console.log(this.props); 
+        const friend = this.props.friends.filter(frie => frie.name === this.props.match.params.name)
+        console.log(friend)
+        let friendAge; 
+        let friendEmail; 
+        if(friend.length){
+            friendAge = friend[0].age;
+            friendEmail = friend[0].email;
+        }
+    
         return (
 
             <DeleteDiv>
                 <Link to ="/">Return to homepage</Link>
                 <h1>Delete Friend</h1>
-                <div><h1>{this.props.match.params.name}</h1></div>
-                <div><button onClick = {() => this.props.delete( this.props.match.params.name)}>It's not hard to say goodbye just click here</button></div>
+                <div><h1>{this.props.match.params.name}  {friendAge}  {friendEmail}</h1></div>
+                <p>Deleting cannot be undone.</p>
+                <div><button onClick = {() => this.props.delete( this.props.match.params.name)}><Link to = '/'>It's not hard to say goodbye just click here</Link></button></div>
                 <div>Update Friend Below</div>
+                <p>Your friends information has been entered in as a place holder. You will have to enter the information in again to update your friend.</p>
                 <h1>Name</h1>
-                <input placeholder = "Update name.." name = 'name' value ={this.props.name} onChange={this.props.onChange}/>
+                <input placeholder = {`${this.props.match.params.name}`} name = 'name' value ={this.props.name} onChange={this.props.onChange}/>
                 <h1>Age </h1>
-                <input type="text" placeholder = "Update Age ... " name = 'age' value ={this.props.age} onChange={this.props.onChange}/>
+                <input type="text" placeholder = {`${friendAge}`} name = 'age' value ={this.props.age} onChange={this.props.onChange}/>
                 <h1>Email </h1>
-                <input type="text" placeholder = 'Update email..'  name ='email' value ={this.props.email} onChange={this.props.onChange}/>
+                <input type="text" placeholder = {`${friendEmail}`}  name ='email' value ={this.props.email} onChange={this.props.onChange}/>
                 <br/>
                 <form >
                     <button onClick = {() => this.props.update(this.props.match.params.name)}><Link to= '/'>Update Friend</Link></button>

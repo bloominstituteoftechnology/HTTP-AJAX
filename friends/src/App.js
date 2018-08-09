@@ -136,9 +136,6 @@ handleUpdate = (name) => {
     alert('The name, age and email inputs are required update your friend!');
     }
   }
-  
-
-
 
   render() {
     
@@ -156,7 +153,7 @@ handleUpdate = (name) => {
         </FriendsContainer>
         
         <Route path = '/:name' render={(props) => <FriendPage {...props} delete = {this.handleDelete} update = {this.handleUpdate}
-        name = {this.state.name} age = {this.state.age} email = {this.state.email} onChange ={this.handleOnChange}/> }/>
+        name = {this.state.name} age = {this.state.age} email = {this.state.email} onChange ={this.handleOnChange} friends = {this.state.friends}/> }/>
         </Appbody>
       </Fragment>
     );
