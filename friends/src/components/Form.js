@@ -37,14 +37,7 @@ class Form extends React.Component{
         }
     }
     changeHandler= (e)=> {
-        if (e.target.placeholder === 'name'){
-            this.setState({name : e.target.value});
-        } if (e.target.placeholder === 'age'){
-            this.setState({age : e.target.value});
-        } if (e.target.placeholder === 'email') {
-            this.setState({email : e.target.value});
-        } 
-        
+        this.setState({[e.target.placeholder] : e.target.value});        
     }
     render(){
         return(

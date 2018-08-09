@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-// import { Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
+import FriendCard from './components/FriendCard';
 import Form from './components/Form';
 
 const url =
@@ -35,6 +36,9 @@ class App extends Component {
         console.log(error)});
     window.location.reload();
   }
+  gotoCard(name, age, email) {
+    alert('name: ' + name + ' age: ' + age + ' email : ' + email);
+  }
   render() {
     return (
       <div className="App">
@@ -44,8 +48,19 @@ class App extends Component {
           {this.state.friends.map(friend=><FriendsList key={friend.id}>
                                             <p>{friend.name}</p>
                                             <p>age:{friend.age}</p>
+                                            <Link key={friend.id} to={`/${friend.id}`}><button>more</button></Link>
                                             <button onClick={()=> this.remove(friend.id)}>remove</button>
-                                            </FriendsList>)}
+                                            </FriendsList>
+                                          )}
+          {this.state.friends.map(friend=><Route key={friend.id} exact path={`/:id`}
+                                                render={props=>   
+                                                  <FriendCard id={friend.id}
+                                                  name={friend.name}
+                                                  age={friend.age} 
+                                                  email={friend.email}
+                                                  {...props}
+                                                  />}
+                                            />)}
         </div>
         <Form />
       </div>
