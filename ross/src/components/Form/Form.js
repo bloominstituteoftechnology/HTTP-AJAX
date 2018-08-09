@@ -58,6 +58,11 @@ class Form extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    submitData = (data) => {
+        this.props.handleSubmit(this.state);
+        document.querySelectorAll('input').forEach(el => el.value='');
+    }
+
     render(){
         return (
             <FormContainer>
@@ -65,7 +70,7 @@ class Form extends Component {
                 <input style={Input} type="text" name="name" placeholder="name" onChange={this.handleInput}/>
                 <input style={Input} type="text" name="email" placeholder="email" onChange={this.handleInput} />
                 <input style={Input} type="text" name="age" placeholder="age" onChange={this.handleInput} />
-                <Btn onClick={()=>{this.props.handleSubmit(this.state)}}>mOO pOint</Btn>
+                <Btn onClick={this.submitData}>mOO pOint</Btn>
             </FormContainer>
         )
     }

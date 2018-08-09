@@ -29,8 +29,10 @@ const Delete = styled.div`
     z-index: 4;
     color: #252525;
     background: rgba(111,111,111,0.3);
-    &:hover{
+     &:hover{
         cursor:pointer;
+        color:rgba(111,111,111,0.3);
+        background:#252525;
     }
 `;
 
@@ -47,6 +49,8 @@ const Edit = styled.div`
     background: rgba(111,111,111,0.3);
     &:hover{
         cursor:pointer;
+        color:rgba(111,111,111,0.3);
+        background:#252525;
     }
 `;
 
