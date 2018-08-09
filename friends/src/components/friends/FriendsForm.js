@@ -7,7 +7,7 @@ const FriendsForm = props => {
       <Form onSubmit={props.addNewFriend}>
         <FormGroup>
 
-          <Label for="name">New Friend</Label>
+          <Label className="form-name">New Friend</Label>
           
           <Input 
           type="text" 

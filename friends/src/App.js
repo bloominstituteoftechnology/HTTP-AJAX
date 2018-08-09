@@ -53,16 +53,18 @@ export default class App extends Component {
 
 
   render() {
-    console.log(this.state.name);
-    console.log(this.state.friends);
     return (
       <div className="app">
+        <div className="list">
         {this.state.friends.map(friend => <Friends key={friend.id} friend={friend}/>)} 
-          <FriendsForm 
-          inputHandler={this.inputHandler}
-          addNewFriend={this.addNewFriend}
-          value={this.state}
-          />      
+        </div>
+          <div className="form">
+            <FriendsForm 
+            inputHandler={this.inputHandler}
+            addNewFriend={this.addNewFriend}
+            value={this.state}
+            />
+          </div>      
       </div>
     );
   }

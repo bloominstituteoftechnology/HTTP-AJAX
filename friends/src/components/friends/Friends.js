@@ -5,13 +5,13 @@ const Friends = props => {
 
     return(
         <div className="friends">
-            <div className="name">
+            <div className="name">Name:{' '} 
             {props.friend.name}
             </div>
-            <div className="age">
+            <div className="age">Age:{' '} 
             {props.friend.age}
             </div>
-            <div className="email">
+            <div className="email">Email:{' '} 
             {props.friend.email}
             </div>
         </div>
