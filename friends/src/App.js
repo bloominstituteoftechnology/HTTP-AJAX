@@ -14,6 +14,7 @@ class App extends Component {
       name: '',
       age: '',
       email: '',
+      showUpdatedFriend: false
     };
   }
 
@@ -45,13 +46,35 @@ submitHandler = () => {
     .catch(err => console.log(err));
 }
 
-updateHandler = () => {
+updateHandler = (friendId) => {
+    const friend = {};
+    if (this.state.name !== "" ){
+      friend.name = this.state.name;
+    }
+    if (this.state.name !== "" ){
+      friend.age = this.state.age;
+    }
+    if (this.state.name !== "" ){
+      friend.age = this.state.age;
+    }
+  axios
+    .put(`http://localhost:5000/friends/${friendId})`, friend) 
+    .then (response => {
+      this.setState({ showUpdatedFriend: false, name: '', age: '', email: '' });
+      this.setState({friends: response.data})
+    }) 
+    .catch(err => {
+      console.log(err);
+    });
+};
 
+showUpdatedFriend = () => {
+  this.setState({showUpdatedFriend: !this.state.showUpdatedFriend })
 }
 
-deleteHandler = () => {
+deleteHandler = (friendId) => {
   axios
-    .delete(`http://localhost:5000/friends/${this.friend.id}`)
+    .delete(`http://localhost:5000/friends/${friendId}`)
     .then (response => { 
       this.setState({friends: response.data})
      })
