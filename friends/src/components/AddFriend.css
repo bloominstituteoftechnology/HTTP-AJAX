@@ -16,3 +16,17 @@ input{
     font-family: 'Shadows Into Light', cursive;
     font-size: 15px;
 }
+
+button{
+    padding: 5px 10px;
+    border: 1px solid rgb(223, 220, 220);
+    border-radius: 10px;
+    margin: 10px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 25px;
+    background-color: rgb(149, 197, 216);
+}
+
+button:hover{
+    opacity: .5;
+}

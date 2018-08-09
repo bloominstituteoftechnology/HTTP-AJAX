@@ -29,12 +29,21 @@ inputHandler = event => {
   this.setState({ [event.target.name]:  event.target.value })
 }
 
+submitHandler = () => {
+  const friend = {name: this.state.name, age: this.state.age, email: this.state.email }
+  axios
+    .post('http://localhost:5000/friends', friend)
+    .then(response => this.setState({ friends: response.data, name: '', age: '', email: '' }))
+    .catch(err => console.log(err));
+}
+
   render() {
     return (
       <div className="App">
         <h1>
           ( Friends )
         <AddFriend inputHandler = {this.inputHandler} 
+        onClick = {this.submitHandler}
         name = {this.state.name} 
         age = {this.state.age}
         email = {this.state.email} 
