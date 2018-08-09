@@ -49,7 +49,7 @@ class App extends Component {
       age: this.state.age, 
       email: this.state.email,
     }
-    axios.put(`http://localhost:5000/friends/${id}`, updatedFriend)
+    axios.put(`${url}/${id}`, updatedFriend)
     .then(response => {
       this.setState({
         friends: response.data
@@ -58,12 +58,7 @@ class App extends Component {
     .catch((err) => console.log(err))
   }
   deleteFriend =(id)=>{
-    const updatedFriend ={
-      name: this.state.name, 
-      age: this.state.age, 
-      email: this.state.email,
-    }
-    axios.delete(`http://localhost:5000/friends/${id}`, updatedFriend)
+    axios.delete(`${url}/${id}`)
     .then(response => {
       this.setState({
         friends: response.data
@@ -74,15 +69,16 @@ class App extends Component {
   render() {
     return (
       <div className="friend-list">
-      <List list={this.state.friend} />
+      <List 
+      list={this.state.friend}
+      handleEditFriend={this.state.editFriend}
+      handleDeleteFriend={this.state.deleteFriend} />
       <div className="form-input">
         <form onSubmit ={this.addNewFriend}>
           <input type="text" onChange={this.handleChange} value={this.state.name} name="name" placeholder="Name" />
           <input type="Number" onChange={this.handleChange} value={this.state.age}  name="age" placeholder="Age" />
           <input type="email" onChange={this.handleChange} value={this.state.email}  name="email" placeholder="E-mail" />
           <button onClick={this.addNewFriend}>Add New Friend</button>
-          <button onClick={this.editFriend}>Edit Friend</button>
-          <button onClick={this.deleteFriend}>Delete Friend</button>
         </form>
       </div>
       </div>

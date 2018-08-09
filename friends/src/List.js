@@ -10,6 +10,7 @@ const List = props =>{
                     <section>{item.name}</section>
                     <section>{item.age}</section>
                     <section>{item.email}</section>
+                    <button onClick={props.handleDeleteFriend}>Delete Friend</button>
                     </div>
                 )
             })}
