@@ -24,11 +24,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to My Friends List</h1>
         </header>
         <ul>
           {this.state.friends.map(friend => (
-            <li key={friend.id}>{friend.name}</li>
+          <div>
+            <h1 key={friend.id}>{friend.name}</h1>
+            <li>Age:{friend.age}</li>
+            <li>E-Mail:{friend.email}</li>
+          </div>
           ))}
         </ul>
       </div>
