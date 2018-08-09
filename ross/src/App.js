@@ -15,7 +15,6 @@ class App extends Component {
   componentDidMount(){
     axios.get('http://localhost:5000/friends')
       .then((response)=>{
-        console.log(response.data);
         this.setFriendsToState(response.data)
       })
       .catch((err)=>{
@@ -24,7 +23,6 @@ class App extends Component {
   }
 
   setFriendsToState = (f) => {
-    console.log(f);
     let curr = this.state.friends;
     this.setState({
       friends: f
@@ -37,34 +35,25 @@ class App extends Component {
       age: input.age,
       email: input.email })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
         this.setState({friends: res.data})
       })
   };
 
   handleDelete = (input) => {
     axios.delete(`http://localhost:5000/friends/${input}`).then(res => {
-        console.log(res);
-        console.log(res.data);
         this.setState({ friends: res.data })
       });
   }
 
   handleEdit = (input) => {
-    console.log(",edit input",input);
     axios.put(`http://localhost:5000/friends/${input.id}`,{
       name:input.name, age: input.age, email: input.email
     }).then(res => {
-      console.log(res);
-      console.log(res.data);
       this.setState({ friends: res.data });
     })
   }
 
   render() {
-    console.log(this.state.friends);
-    
     return (
       <div className="App">
         <Form handleSubmit={this.handleSubmit}/>

@@ -9,13 +9,11 @@ const AllTheRosses = styled.div`
 
 
 const FriendList = (props) =>{
-    // console.log(props);
     
     return (
         <AllTheRosses>
             {
                 props.friends.map((ross) => {
-                    // console.log(ross);
                     return <Friend key={ross.id} ross={ross} handleDelete={props.handleDelete} handleEdit={props.handleEdit}/>
                 })
             }

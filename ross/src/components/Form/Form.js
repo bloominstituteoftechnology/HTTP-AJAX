@@ -55,11 +55,6 @@ class Form extends Component {
             name:'',
             email:'',
         };
-        
-    }
-
-    componentDidMount(){
-
     }
 
     handleInput = (e) => {

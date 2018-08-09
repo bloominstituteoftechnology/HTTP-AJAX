@@ -56,14 +56,11 @@ class Friend extends Component {
         this.state = {
             isEditting: false,
         }
-        // console.log("friend props", props);
-        
     }
 
    
     toggleIsEditting = () =>{
         this.setState({ isEditting: !this.state.isEditting});
-        console.log(this.state.isEditting);
     }
 
     render(){

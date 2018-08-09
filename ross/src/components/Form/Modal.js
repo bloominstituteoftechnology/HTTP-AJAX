@@ -61,12 +61,6 @@ class Modal extends Component {
             age: [],
             id: props.friendID,
         };
-        // console.log("modal props", props);
-        
-    }
-
-    componentDidMount() {
-
     }
 
     handleInput = (e) => {
