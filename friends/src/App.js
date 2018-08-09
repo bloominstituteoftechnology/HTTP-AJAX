@@ -5,6 +5,7 @@ import axios from "axios";
 import "./App.css";
 import Friend from "./components/friends/Friend";
 import FriendForm from "./components/friendForm/FriendForm";
+import IndFriendCard from "./components/friends/IndFriendCard";
 
 let dataUrl = "http://localhost:5000/friends/";
 
@@ -27,10 +28,6 @@ class App extends Component {
       });
   }
 
-  // getFriend = id => {
-
-  // }
-
   render() {
     return (
       <Fragment>
@@ -52,6 +49,7 @@ class App extends Component {
             path={"/"}
             render={props => <FriendForm {...props} url={dataUrl} />}
           />
+          <Route path={`/friends/:name`} component={IndFriendCard} />
           {/* <FriendForm url={dataUrl} /> */}
         </div>
       </Fragment>
