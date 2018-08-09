@@ -4,6 +4,18 @@ import axios from "axios";
 
 const url = "http://localhost:5000/friends"
 
+const Form = styled.form`
+    padding: 50px 0 0 0;
+`;
+
+const Input = styled.input`
+    height: 24px;
+    width: 150px;
+    font-size: 14px;
+    color: black;
+    margin: 10px
+`
+
 class AddFriend extends React.Component {
   constructor() {
     super();
@@ -22,19 +34,46 @@ class AddFriend extends React.Component {
     event.preventDefault();
     const newFriend = {
       name: this.state.name,
-      age: parseInt(this.state.age, 10),
+      age: this.state.age,
       email: this.state.email
     };
-    axios.post(url, newFriend).then(response => {
+    axios.post(url, newFriend)
+    .then(response => {
       this.setState({ name: "", age: "", email: "" });
       this.props.update(response.data);
-    });
+    })
+    .catch((err) => console.log(err))
   };
+    
+//   editHandler = (id) => {
+//     const updatedFriend = {
+//       name: this.state.name,
+//       age: parseInt(this.state.age, 10),
+//       email: this.state.email
+//     };
+//     axios.post(`url/${id}`, updatedFriend)
+//     .then(response => {
+//       this.setState({ name: "", age: "", email: "" });
+//       this.props.update(response.data);
+//     })
+//     .catch((err) => console.log(err))
+//   };
+
+// example delete function with delete request
+  // deleteFriend = (id) => {
+  //   axios.delete(`http://localhost:5000/friends/${id}`)
+  //   .then(response => {
+  //     this.setState({
+  //       friends: response.data
+  //     })
+  //   })
+  //   .catch((err) => console.log(err))
+  // }
 
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
-        <input
+      <Form onSubmit={this.submitHandler}>
+        <Input
           type="text"
           name="name"
           id="name"
@@ -42,7 +81,7 @@ class AddFriend extends React.Component {
           placeholder="Enter Name"
           onChange={this.inputHandler}
         />
-        <input
+        <Input
           type="text"
           name="age"
           id="age"
@@ -50,7 +89,7 @@ class AddFriend extends React.Component {
           placeholder="Enter Age"
           onChange={this.inputHandler}
         />
-        <input
+        <Input
           type="text"
           id="email"
           name="email"
@@ -58,8 +97,9 @@ class AddFriend extends React.Component {
           placeholder="Enter E-Mail"
           onChange={this.inputHandler}
         />
-        <input type="submit" />
-      </form>
+        <Input type="submit" />
+        
+      </Form>
     );
   }
 }
