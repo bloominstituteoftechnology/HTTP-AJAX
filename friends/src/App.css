@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+  width: 880px;
+}
+
+.friendHug {
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  margin: 0 15%;
+}
+
+.thebestfriendsthatanyonecanhave {
+  height: 200px;
+  width:200px;
+}
+
+.thebestfriendsthatanyonecanhave button {
+  width: 80%;
+}
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  z-index: 1;
+  position: absolute;
+  background: gray;
+  opacity: .9;
+  width: 600px;
+  height: 400px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 15%;
+}
+
+form h4 {
+  width: 85%;
+}
+form input {
+  width: 25%;
+}
+form button {
+  align-self: center;
+}
