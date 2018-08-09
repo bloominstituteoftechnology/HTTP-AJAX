@@ -5,7 +5,10 @@ export default class Friends extends Component {
     constructor(){
         super();
         this.state = {
-            friends: []
+            friends: [],
+            newName: '',
+            newAge: '',
+            newEmail: ''
         }
     }
     componentDidMount() {
@@ -19,6 +22,40 @@ export default class Friends extends Component {
           });
     }
 
+    handleName = e =>{
+        this.setState({newName: e.target.value})
+    }
+
+    handleAge = e =>{
+        this.setState({newAge: e.target.value})
+    }
+
+    handleEmail = e =>{
+        this.setState({newEmail: e.target.value})
+    }
+
+    handleSubmit = e =>{
+        e.preventDefault();
+
+        const newFriend = {
+            name: this.state.newName,
+            age: this.state.newAge,
+            email: this.state.newEmail
+        }
+
+        axios
+            .post('http://localhost:5000/friends', newFriend)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                this.setState({friends: res.data, newName: '', newAge: '', newEmail: ''})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            
+    }
+
     render(){
         return(
             <div>
@@ -30,6 +67,15 @@ export default class Friends extends Component {
                     <p><span className="fr-sub-hdr">Email: </span><span>{data.email}</span></p>
                 </div>
                 )}
+                <form onSubmit = {this.handleSubmit}>
+                    <span>Name:</span>
+                    <input onChange = {this.handleName} />
+                    <span>Age:</span>
+                    <input onChange = {this.handleAge} />
+                    <span>Email:</span>
+                    <input onChange = {this.handleEmail} />
+                    <button>Add Friend</button>
+                </form>                    
             </div>
         )
     }
