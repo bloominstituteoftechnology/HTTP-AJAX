@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import {Route} from 'react-router-dom'
 
 const Friendos = (props) => { 
   return (
@@ -10,6 +11,7 @@ const Friendos = (props) => {
         <div className="friendoname">{friend.name}</div>
         <div className="ageo">age: {friend.age}</div>
         <div className="emailo">email: {friend.email}</div>
+        <button onClick={()=> props.deleteAFrand(friend.id)}>Delete</button>
       </div>
       ))}
     </div>
@@ -53,6 +55,7 @@ class App extends Component {
 
   addAFrand = () => {
     const newfrand = {
+      id: Date.now(),
       name: this.state.Name,
       age: this.state.Age,
       email: this.state.Email
@@ -61,7 +64,9 @@ class App extends Component {
     .post('http://localhost:5000/friends', newfrand)
     .then(response => {
       this.setState(() => ({ friends: response.data }));
-    })
+    }).catch(error => {
+      console.error('Friend addin Error', error);
+    });
     this.setState({Name: "", Age: [], Email: ""})
   }
 
@@ -69,12 +74,21 @@ class App extends Component {
     this.setState ({ [event.target.name] : event.target.value});
   }
 
+  deleteAFrand = (id) => {
+    axios
+    .delete(`http://localhost:5000/friends/${id}`)
+    .then(response => {
+      this.setState(() => ({ friends: response.data }));
+    }).catch(error => {
+      console.error('Friend deletin Error', error);
+    });
+  }
 
   render() {
     return (
       <div className="App">
-      <h1>My Frands</h1>
-      <Friendos friends={this.state.friends}/>
+      <h1>~~My Frands~~</h1>
+      <Route path="" render={(props) => <Friendos {...props} deleteAFrand={this.deleteAFrand} friends={this.state.friends}/>}/>
       <FriendForm enterAFrand={this.enterAFrand} addAFrand={this.addAFrand} val={this.state}/>
       </div>
     );
