@@ -2,10 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Friend = styled.div`
-    border: 1px solid black;
-    padding: 1rem;
+    padding: 0.5rem;
     margin: 0 auto;
     width: 300px;
+    border: 3px solid coral;
+    font-weight: 800;
+    color: red;
+    background-image: url('http://img2.tvtome.com/i/u/0aa3afb3cbe3468fc6e43e50070b0810.png');
+    background-size: 350px 250px;
+    background-repeat: no-repeat;
 `
 const Div = styled.div`
     display: flex;
@@ -24,7 +29,8 @@ const FriendList = props => {
                     <p>Name: {friend.name}</p>
                     <p>Age: {friend.age}</p>
                     <p>Email: {friend.email}</p>
-                    <button id={friend.id} onClick={props.delete}>Delete Friend</button>
+                    <p>Friends since: {friend.date}</p>
+                    <button id={friend.id} onClick={props.delete}>Delete Friend</button><br />
                     <button id={friend.id} onClick={props.update}>Update Info</button>
                 </Friend>
             )}
