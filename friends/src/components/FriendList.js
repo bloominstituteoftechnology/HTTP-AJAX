@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FriendCard from './FriendCard';
 import axios from 'axios';
 
 class FriendList extends Component {
@@ -21,12 +22,21 @@ class FriendList extends Component {
     });
   }
 
+  removeFriend = e => {
+    axios
+      .delete(`http://localhost:5000/friends/${e}`)
+      .then(response => {
+        this.setState({friends: response.data})
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      });
+  }
+
   render() {
     return (
       <ul className="friend-list">
-      {this.state.friends.map(friend => <li className="friend-card" key={friend.id}>
-      <div><p><strong>Name: </strong> {friend.name}<br/> <strong>id: </strong>{friend.id}<br/> <strong>Age: </strong>{friend.age}<br/> <strong>Email: </strong>{friend.email}<br/></p></div>
-      <span onClick={this.removeFriend}>X</span></li>)}
+      {this.state.friends.map(friend => <FriendCard key={friend.id} friend={friend} removeHandler={this.removeFriend}/>)}
       <Link to="/add_friend"><li className="friend-card add-friend"> <p>Add Friend</p></li></Link>
       </ul>
     );
