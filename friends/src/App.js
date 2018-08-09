@@ -9,10 +9,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      friends: [],
       newName: '',
-      newAge: '',
+      newAge: null,
       newEmail: ''
     }
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      });
   }
 
   handleName = e =>{
@@ -64,7 +76,10 @@ class App extends Component {
           age ={this.state.newAge}
           email ={this.state.newEmail}
         /> } />
-        <Route path = '/' component = {FriendList} />
+        <Route path = '/' render = {(props) =>
+        <FriendList {...props}
+          friends = {this.state.friends}
+        />} />
       </div>
       
     );
