@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import axios from 'axios';
 import Friends from './components/Friends.js';
 import FriendForm from './components/FriendForm.js';
+import FriendCard from './components/FriendCard.js';
 import './App.css';
 
 const url = 'http://localhost:5000/friends';
@@ -50,7 +51,7 @@ class App extends Component {
       age: this.state.friendAge,
       email: this.state.friendEmail
     };
-    axios.post('http://localhost:5000/friends', newfriend)
+    axios.post(url, newfriend)
     .then(result => {
       this.setState({
       friendName: '',
@@ -59,14 +60,15 @@ class App extends Component {
       friends: result.data,
       number: newfriend.id
     })
-  }).then(console.log(this.state));
+  });
   }
 
   render() {
     return (
       <div className="App">
-        <Route path='/' render={props => <FriendForm {...props} newFriendName={this.state.friendName} newFriendAge={this.state.friendAge} newFriendEmail={this.state.friendEmail} nameAdd={this.addNameHandler} ageAdd={this.addAgeHandler} emailAdd={this.addEmailHandler} submitFriend={this.addNewFriendHandler} />} />
-        <Route path='/' render={props => <Friends {...props} friends={this.state.friends} loading={this.state.loading} />} />
+        <Route exact path='/' render={props => <FriendForm {...props} newFriendName={this.state.friendName} newFriendAge={this.state.friendAge} newFriendEmail={this.state.friendEmail} nameAdd={this.addNameHandler} ageAdd={this.addAgeHandler} emailAdd={this.addEmailHandler} submitFriend={this.addNewFriendHandler} />} />
+        <Route exact path='/' render={props => <Friends {...props} friends={this.state.friends} loading={this.state.loading} />} />
+        <Route path='/:id' render={props => <FriendCard {...props} friends={this.state.friends} />} />
       </div>
     );
   }
