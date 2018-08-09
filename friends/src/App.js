@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import {Route, Link} from 'react-router-dom';
 import NewFriend from './components/newFriend';
-import Friend from './components/list.js';
+import AllFriends from './components/allFriends';
 
 const url = 'http://localhost:5000/friends'
 
@@ -21,12 +21,10 @@ class App extends Component {
   }
   
   componentDidMount() {
-    console.log('mounted');
     axios.get(url).then(response => {
-      console.log(response)
-      let food = response.data.reverse()
+      let foo = response.data.reverse()
       this.setState({
-        friends: food
+        friends: foo
       })
     })
     .catch(function (error) {
@@ -40,9 +38,9 @@ class App extends Component {
     })   
   }
 
-  eventDidUpdate(){
-    debugger;
-  }
+  // eventDidUpdate(){
+  //   debugger;
+  // }
 
   submit = event => {
     event.preventDefault();
@@ -83,31 +81,54 @@ class App extends Component {
     return (
       <div className="App">
        
-        <h1>mjk-HTTP-AJAX</h1>
+        <Link to="/">
+          <Route path='/' render={() => { return <h1>Home</h1>}} />
+        </Link>
+
+        <Link to="/friends">
+          Show all Frieneds
+        </Link>
+
+        <Route path='/friends' render={(props) => {
+          return this.state.friends.map(friend => {
+            return (
+              <Link key={friend.id} to={`/friend/${friend.id}`}>
+                <AllFriends key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
+              </Link> 
+            )
+          })
+        }} /> 
+        
+        <Route 
+          path="/friends/:id"
+          render={(props) => <AllFriends {...props} />} 
+        /> 
+        
+        <div className="form">
+            <NewFriend click={this.click} submit={this.submit} data={this}/>
+        </div>
         
         <div className="sub-app">
 
-          <div className="form">
-            <NewFriend click={this.click} submit={this.submit} data={this}/>
-          </div>
           
-          <div className="component">
+          
+          {/* <div className="component">
             {this.state.friends.map(friend => {
               return (
                 <Link key={friend.id} to={`/friend/${friend.id}`}>
-                  <Friend key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</Friend>
+                  <AllFriends key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
                 </Link> 
               )
               
              
               
             })}
-          </div>
+          </div> */}
 
-          <div className="details">
+          {/* <div className="details">
           <p>New Friend sample profile</p>
            <Friend data={this.state} />
-          </div>
+          </div> */}
 
         </div>  
      

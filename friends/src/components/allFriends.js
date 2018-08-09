@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+// import {Route, Link} from 'react-router-dom';
 
 
-export default function Friend(props) {
-    return <FriendDiv  key={props.data.id} name={props.name} data={props}>
+export default function AllFriends(props) {
+    console.log(props)
+    return <FriendDiv path={`/friends/:id`} key={props.data.id} name={props.name} data={props}>
                 <p>{props.data.name}</p>
                 <p>{`Age: ${props.data.age}`}</p>
                 <p>{`Email: ${props.data.email}`}</p>
