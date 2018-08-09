@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom';
 import axios from "axios";
 import Friends from './components/friends/Friends';
 import FriendsForm from './components/friends/FriendsForm';
@@ -72,15 +73,15 @@ axios
     return (
       <div className="app">
         <div className="list">
-        {this.state.friends.map(friend => <Friends deleteFriend={this.deleteFriend} key={friend.id} friend={friend}/>)} 
+        <Route exact path="/" render={props=> <Friends  friend={props.friends} deleteFriend={this.deleteFriend}/>} /> 
         </div>
           <div className="form">
-            <FriendsForm 
+        <Route path="/form/friends" render={props => <FriendsForm {...props} 
             inputHandler={this.inputHandler}
             addNewFriend={this.addNewFriend}
             deleteFriend={this.deleteFriend}
             value={this.state}
-            />
+            />}/>
           </div>      
       </div>
     );

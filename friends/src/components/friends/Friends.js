@@ -5,17 +5,10 @@ const Friends = props => {
 
     return(
         <div className="friends">
-            <div onClick={props.deleteFriend} className="name">Name:{' '} 
-            {props.friend.name}
-            </div>
-            <div className="age">Age:{' '} 
-            {props.friend.age}
-            </div>
-            <div className="email">Email:{' '} 
-            {props.friend.email}
-            </div>
+             {props.friend.map(friend => <Friends  key={friend.id} friend={friend}/>)}
         </div>
         );
 }
 
 export default Friends
+
