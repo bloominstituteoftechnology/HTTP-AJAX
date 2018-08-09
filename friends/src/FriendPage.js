@@ -32,7 +32,8 @@ const DeleteDiv = styled.div `
         cursor:pointer; 
         background: black;
         color: white;
-        height: 30px; 
+        height: 50px; 
+        text-shadow: 2px 2px blue;
     }
 
 `;

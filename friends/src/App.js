@@ -21,11 +21,14 @@ const Appbody = styled.div`
     to{background-color:red}
   }
   li:hover{
-    color:black;
+    color:white;
     animation-name: backgroundChange;
     animation-duration 2s;
+    text-shadow: 1px 3px black;
   }
 `;
+
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -86,20 +89,14 @@ handleOnChange = event => {
 }
 
 handleDelete = (name) => {
-  
   const friends = this.state.friends.slice(); 
   const friendToDelete = friends.filter(friend => friend.name === name);
-  console.log(friendToDelete[0]);
+
   const friendId = friendToDelete[0].id; 
-  console.log(friendId); 
-  console.log(name); 
-  // 
   axios.delete(`http://localhost:5000/friends/${friendId}`)
         .then(response => {
-          console.log(response); 
           this.setState({friends:response.data})
         })
-  
 }
 handleUpdate = (name) => {
   const friends = this.state.friends.slice(); 
