@@ -37,7 +37,7 @@ class FriendList extends Component {
     return (
       <ul className="friend-list">
       {this.state.friends.map(friend => <FriendCard key={friend.id} friend={friend} removeHandler={this.removeFriend}/>)}
-      <Link to="/add_friend"><li className="friend-card add-friend"> <p>Add Friend</p></li></Link>
+      <Link to="/add_friend"><li className="friend-card add-friend"> <p>Add/Update Friend</p></li></Link>
       </ul>
     );
   }
