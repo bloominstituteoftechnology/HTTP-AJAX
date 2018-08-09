@@ -32,6 +32,8 @@ class Form extends Component {
   }
 
   updateFriend = e => {
+    e.preventDefault();
+    
     axios
       .put(`http://localhost:5000/friends/${this.state.id}`, {
         name: this.state.name,
