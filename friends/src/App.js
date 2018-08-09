@@ -18,6 +18,11 @@ class App extends Component {
   }
 
 componentDidMount() {
+    this.getFriends();
+  }
+
+
+  getFriends = () => {
     axios
     .get('http://localhost:5000/friends')
     .then((response) => this.setState({friends: response.data }))
@@ -40,9 +45,16 @@ submitHandler = () => {
     .catch(err => console.log(err));
 }
 
+updateHandler = () => {
+
+}
+
 deleteHandler = () => {
   axios
-    .delete(`http://localhost:5000/friends/: + ${this.friend.id}`)
+    .delete(`http://localhost:5000/friends/${this.friend.id}`)
+    .then (response => { 
+      this.setState({friends: response.data})
+     })
     .catch(err => console.log(err));
 }
 
@@ -58,7 +70,7 @@ deleteHandler = () => {
         email = {this.state.email} 
         />
         </h1>
-        <Friends friends = {this.state.friends} />
+        <Friends friends = {this.state.friends} deleteFriend = {this.deleteHandler}/>
       </div>
     );
   }
