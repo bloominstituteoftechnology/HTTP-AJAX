@@ -1,7 +1,43 @@
 
-.main-display {
+.add-friend-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 450px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 1% auto;
+}
+
+input, button {
+  margin: 1% 0;
+  box-shadow: 0 4px 8px 0 lightskyblue, 0 6px 20px 0 lightgrey;
+  width: 200px;
+  height: 30px;
+}
+
+input{
+  padding-left: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: lightskyblue;
+  box-shadow: 0 0 0 0, 0 0 0 0;
+}
+
+h1 {
+  text-shadow: 2px 2px lightskyblue;
+}
+
+button {
+  margin: 20px 0;
+}
+
+.main-display {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 }
 

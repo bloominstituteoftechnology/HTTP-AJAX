@@ -2,19 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-const FriendInfo = props => {
-  return (
-    <div className="main-display">
-      {props.param.map(friend => (
-        <div key={friend.id} className="friend-display">
-        <h3 className="friend-name">{friend.name}</h3>
-        <h5>age: {friend.age}</h5>
-        <p>email: {friend.email}</p>
-        </div>
-      ))}
-    </div>
-  )
-}
+import FriendInfo from './components/FriendInfo';
+import FriendInput from './components/FriendInput';
 
 class App extends Component {
   constructor() {
@@ -35,9 +24,45 @@ class App extends Component {
       });
   }
 
+  InputText = event => {
+    this.setState({ [event.target.name]: event.target.value});
+  }
+
+  submitHandler = () => {
+    const friend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
+    axios
+      .post('http://localhost:5000/friends', friend)
+      .then(param => {
+        this.setState({ name: '', age: '', email: ''});
+        // this.componentDidMount();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  editFriend = () => {
+    //put request
+  }
+
+  deleteFriend = () => {
+    //// have id but minus object
+  }
+
   render() {
     return (
       <div>
+         <FriendInput 
+        handleTextInput={this.InputText}
+        name={this.state.name}
+        age={this.state.age}
+        email={this.state.email}
+        handleSubmit={this.submitHandler}
+        />
         <FriendInfo param={this.state.friends}/>
       </div>
     );
