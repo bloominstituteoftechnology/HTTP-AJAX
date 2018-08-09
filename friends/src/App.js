@@ -63,7 +63,7 @@ class App extends Component {
         email={this.state.email}
         handleSubmit={this.submitHandler}
         />
-        <FriendInfo param={this.state.friends}/>
+        <FriendInfo props={this.state.friends}/>
       </div>
     );
   }
