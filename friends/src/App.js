@@ -14,7 +14,6 @@ class App extends Component {
       name: '',
       age: '',
       email: '',
-      loading: true,
     };
   }
 
@@ -30,10 +29,20 @@ inputHandler = event => {
 }
 
 submitHandler = () => {
-  const friend = {name: this.state.name, age: this.state.age, email: this.state.email }
+  const friend = {
+    name: this.state.name, 
+    age: this.state.age, 
+    email: this.state.email }
+
   axios
     .post('http://localhost:5000/friends', friend)
     .then(response => this.setState({ friends: response.data, name: '', age: '', email: '' }))
+    .catch(err => console.log(err));
+}
+
+deleteHandler = () => {
+  axios
+    .delete(`http://localhost:5000/friends/: + ${this.friend.id}`)
     .catch(err => console.log(err));
 }
 
