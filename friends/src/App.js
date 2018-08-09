@@ -14,7 +14,8 @@ class App extends Component {
     super(props);
     this.state = {
       friendsData: [],
-      loading: true
+      loading: true,
+      activeCard: false
     };
   }
   componentDidMount() {
@@ -49,7 +50,12 @@ class App extends Component {
             path={"/"}
             render={props => <FriendForm {...props} url={dataUrl} />}
           />
-          <Route path={`/friends/:name`} component={IndFriendCard} />
+          <Route
+            path={`/friends/:name`}
+            render={props => (
+              <IndFriendCard {...props} data={this.state.friendsData} />
+            )}
+          />
           {/* <FriendForm url={dataUrl} /> */}
         </div>
       </Fragment>
