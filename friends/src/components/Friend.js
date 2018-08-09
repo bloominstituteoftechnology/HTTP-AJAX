@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Friend = (props) => {
     return (
-        <div className="friend-div">
+        <div className="friend-div" onClick={() => window.location.assign(`/friends/${props.person.id}`)}>
             <h1 className="friend-title">Friend #{props.person.id}</h1>
             <p><span>Name:</span> {props.person.name}</p>
             <p><span>Age:</span> {props.person.age}</p>
