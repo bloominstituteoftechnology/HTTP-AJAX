@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Route } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
@@ -38,7 +39,13 @@ class App extends Component {
             {/* <div className="crt"> */}
             <h2>List of Friends</h2>
           </div>
-          <Friend friends={this.state.friendsData} />
+          <Route
+            path={"/"}
+            render={props => (
+              <Friend {...props} friends={this.state.friendsData} />
+            )}
+          />
+          {/* <Friend friends={this.state.friendsData} /> */}
           <FriendForm url={dataUrl} />
         </div>
       </Fragment>
