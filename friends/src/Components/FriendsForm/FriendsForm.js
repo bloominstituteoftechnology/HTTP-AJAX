@@ -21,7 +21,7 @@ class FriendsForm extends React.Component {
             email: this.state.email,
             address: this.state.address
         })
-        axios.post('http://localhost:5000/friends', newFriend).then(()=>{window.location.reload(); this.props.history.push('/list')});
+        axios.post('http://localhost:5000/friends', newFriend).then(()=>{window.location.reload(); this.props.history.push('/list')}).catch(err=>console.log(err));
     }
     goToList=()=>{
         this.props.history.push('/list');

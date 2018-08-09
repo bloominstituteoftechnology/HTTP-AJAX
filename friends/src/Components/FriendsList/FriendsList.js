@@ -10,14 +10,15 @@ class FriendsList extends React.Component{
             age: '',
             email:'',
             address:'',
-            cardNumber:''
+            cardNumber:'',
+            loading: true
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:5000/friends').then(res=>this.setState({friends:res.data}));
+        axios.get('http://localhost:5000/friends').then(res=>this.setState({friends:res.data,loading: false})).catch(err=>console.log(err));
     }
     delete=(index)=>{
-        axios.delete(`http://localhost:5000/friends/${index}`).then(window.location.reload());
+        axios.delete(`http://localhost:5000/friends/${index}`).then(window.location.reload()).catch(err=>console.log(err));
     }
     handleInputChange=(e)=>{
         this.setState({[e.target.name]:e.target.value});
@@ -30,12 +31,17 @@ class FriendsList extends React.Component{
             email: this.state.email,
             address:this.state.address
         }
-        axios.put(`http://localhost:5000/friends/${this.state.cardNumber}`,updatedInfo).then(window.location.reload());
+        axios.put(`http://localhost:5000/friends/${id}`,updatedInfo).then(window.location.reload()).catch(err=>console.log(err));
     }
     goToForm=()=>{
         this.props.history.push('/');
     }
     render() {
+        if (this.state.friends.length===0 && this.state.loading===false) {
+            return (
+                <h1>Sorry no data here.</h1>
+            )
+        }
         return (
             <div>
                 {this.state.friends.map((e,i)=>
