@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FriendList from './FriendList';
+import FriendForm from './FriendForm';
 
 class FriendThing extends Component {
     constructor(props) {
@@ -28,9 +30,11 @@ class FriendThing extends Component {
     };
 
     saveNameData = () => {
-        const name = { name: this.state.name,
-                        age: this.state.age,
-                        email: this.state.email };
+        const name = { 
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+         }
         axios
             .post(`http://localhost:5000/friends`, name)
             .then(savedName => {
@@ -43,44 +47,43 @@ class FriendThing extends Component {
             });
     };
 
+       // editFriend = (id) => {
+  //   const updatedFriendObj = {
+  //     name: this.state.name,
+  //     age: this.state.age,
+  //     email: this.state.email
+  //   }
+  //   axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+  //   .then(response => {
+  //     this.setState({
+  //       friends: response.data
+  //     })
+  //   })
+  //   .catch((err) => console.log(err))
+  // }
+
+    editFriend = (id) => {
+        const editedFriend = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        }
+        axios.put(`http://localhost:5000/friends/${id}`, editedFriend)
+             .then(response => {
+                 this.setState({ friends: response.data})
+             })
+             .catch((err) => console.log(err))
+    }
+
+
     render() {
         return(
             <div className="App">
         
-              <h1 className="App-title">Friends List</h1>
-       
-            <input
-              type="text"
-              onChange={this.handleTextInput}
-              placeholder="name"
-              name="name"
-              value={this.state.name}
-            />
-    
-            <input
-              type="number"
-              onChange={this.handleTextInput}
-              placeholder="age"
-              name="age"
-              value={this.state.age}
-            />
-    
-            <input
-                type="text"
-                onChange={this.handleTextInput}
-                placeholder="email"
-                name="email"
-                value={this.state.email}
-                />
-    
-            <button onClick={this.saveNameData}>Save Friend</button>
-    
-            {this.state.friends.map((friend) => { 
-              return (
-               <div key={friend.id}>
-                  { friend.name }
-               </div>)
-             } )}
+            <FriendForm props={this.state.friends}
+                        handleTextInput={this.handleTextInput}
+                        saveNameData={this.saveNameData} />
+            <FriendList friends={this.state.friends} />
     
           </div>
         );
