@@ -1,10 +1,11 @@
 .App {
   text-align: center;
+  padding: 15px;
 }
 
 .friends-list {
   text-align: left;
-  width: 10vw;
+  width: 50vw;
   margin: auto;
 }
 
@@ -44,3 +45,27 @@ form input:nth-child(even) {
 button {
   margin-bottom: 20px;
 }
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+  border: solid .5px rgba(0,0,0,.2);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.nav-item:hover {
+  box-shadow: .5px .5px 20px .5px rgba(0,0,0,.1);
+}
+
+.selected {
+  color: red;
+}
+
