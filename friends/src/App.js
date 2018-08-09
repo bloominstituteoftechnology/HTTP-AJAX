@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Friends from './components/Friends';
+import Inputs from './components/Inputs';
 
 
 class App extends Component {
@@ -10,7 +11,7 @@ class App extends Component {
     this.state = {
       friends: [],
       name: '',
-      age: null,
+      age: '',
       email: ''
     }
   }
@@ -43,7 +44,7 @@ class App extends Component {
 
     this.setState({
       name: '',
-      age: null,
+      age: '',
       email: ''
     })
   }
@@ -51,43 +52,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <form onSubmit={this.newFriend}>
-
-          <input
-            type='text'
-            placeholder='name'
-            name='name'
-            value={this.state.name}
-            onChange={this.friend}
-          />
-
-          <br />
-
-          <input
-            type='number'
-            placeholder='0'
-            name='age'
-            value={this.state.age}
-            onChange={this.friend}
-          />
-
-          <br />
-
-          <input
-            type='email'
-            placeholder='email'
-            name='email'
-            value={this.state.email}
-            onChange={this.friend}
-          />
-
-          <br />
-
-          <button onClick={this.newFriend}>Add Friend</button>
-
-        </form>
-
+        <Inputs friend={this.friend} newFriend={this.newFriend} name={this.state.name} age={this.state.age} email={this.state.email}/>
         <Friends friends={this.state.friends} />
       </div>
     );
