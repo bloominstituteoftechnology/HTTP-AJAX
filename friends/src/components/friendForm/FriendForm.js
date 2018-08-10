@@ -32,15 +32,12 @@ export default class FriendForm extends React.Component {
         console.log(err);
       });
   };
-  inputChangeHandler = event => {
+  postChangeHandler = event => {
     console.log(this.state.url);
     console.log(`${this.state.url}`);
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // removeInputText = value => {
-  //   value.target.value = "";
-  // };
   render() {
     return (
       <Fragment>
@@ -50,21 +47,19 @@ export default class FriendForm extends React.Component {
               placeholder="name..."
               type="text"
               name="name"
-              onChange={this.inputChangeHandler}
+              onChange={this.postChangeHandler}
             />
             <input
               placeholder="age..."
               type="text"
               name="age"
-              onChange={this.inputChangeHandler}
-              onFocus={this.removeInputText}
+              onChange={this.postChangeHandler}
             />
             <input
               placeholder="email..."
               type="text"
               name="email"
-              onChange={this.inputChangeHandler}
-              onFocus={this.removeInputText}
+              onChange={this.postChangeHandler}
             />
           </div>
           <button>Submit</button>

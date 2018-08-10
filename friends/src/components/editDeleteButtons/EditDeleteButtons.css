@@ -10,7 +10,7 @@
   width: 15rem;
 }
 
-.editDeleteCardButtons button:nth-child(odd) {
+.editDeleteCardButtons button:nth-child(even) {
   border-radius: 100px 0 0 100px;
   background: #2ec4b6;
 }
@@ -20,6 +20,23 @@
   background: #ff8fab;
   color: #011627;
 }
-.editDeleteCardButtons button:hover:nth-child(odd) {
+.editDeleteCardButtons button:hover:nth-child(even) {
   background: #67d4c9;
+}
+
+.updateChangeForm input {
+  z-index: 4;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 1px #ff3366;
+  padding: 0.5rem 0.5rem;
+  background: #2ec4b6;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+.updateChangeForm input::placeholder {
+  color: white;
+  font-weight: bold;
 }
