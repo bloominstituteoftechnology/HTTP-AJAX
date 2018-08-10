@@ -14,9 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       friendsData: [],
-      loading: true,
-      activeCard: false,
-      activeFriend: ""
+      loading: true
     };
   }
   componentDidMount() {
@@ -30,10 +28,6 @@ class App extends Component {
       });
   }
 
-  activeFriendHandler = event => {
-    console.log("Working Friend Clicky", event.friends.name);
-  };
-
   render() {
     return (
       <Fragment>
@@ -46,15 +40,9 @@ class App extends Component {
             exact
             path={"/"}
             render={props => (
-              <Friend
-                {...props}
-                friends={this.state.friendsData}
-                activeFriendHandler={this.activeFriendHandler}
-                activeFriend={this.state.activeFriend}
-              />
+              <Friend {...props} friends={this.state.friendsData} />
             )}
           />
-          {/* <Friend friends={this.state.friendsData} /> */}
           <Route
             exact
             path={"/"}
