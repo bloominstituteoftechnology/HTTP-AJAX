@@ -29,10 +29,37 @@ class App extends Component {
     });
   }
 
+   // example edit function with put request
+   editFriend = (id) => {
+    const updatedFriendObj = {
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email
+    }
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+    .then(response => {
+    this.setState({
+        friends: response.data
+    })
+    })
+    .catch((err) => console.log(err))
+}
+
+    //  example delete function with delete request
+    deleteFriend = (id) => {
+        axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(response => {
+        this.setState({
+            friends: response.data
+        })
+        }) 
+        .catch((err) => console.log(err))
+    }
+
   render() {
     return (
       <div className="App">
-        <Route path="/" render={props => <FriendsList {...props} friendslist={this.state.friends} />} />
+        <Route path="/" render={props => <FriendsList {...props} deleteFriend={this.deleteFriend} editFriend={this.editFriend} friendslist={this.state.friends} />} />
         <Route path="/" render={props => <FriendForm {...props} getFriends={this.getFriends}/> } />
       </div>
     );
