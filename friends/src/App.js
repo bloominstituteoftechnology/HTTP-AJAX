@@ -5,6 +5,20 @@ import List from './List';
 
 const url = "http://localhost:5000/friends"
 
+const InputForm = (props) =>{
+  return(
+    <div className="form-input">
+        <form onSubmit ={this.addNewFriend}>
+          <input type="text" onChange={props.handleChange} value={props.value.name} name="name" placeholder="Name" />
+          <input type="Number" onChange={props.handleChange} value={props.value.age}  name="age" placeholder="Age" />
+          <input type="email" onChange={props.handleChange} value={props.value.email}  name="email" placeholder="E-mail" />
+          <button onClick={props.addNewFriend}>Add New Friend</button>
+          <button onClick={props.editFriend}>Edit Friend</button>
+        </form>
+      </div>
+  )
+
+}
 class App extends Component {
   constructor(){
     super(); 
@@ -68,19 +82,17 @@ class App extends Component {
   }
   render() {
     return (
+      <div>
       <div className="friend-list">
-      <List 
-      list={this.state.friend}
-      handleEditFriend={this.state.editFriend}
-      handleDeleteFriend={this.state.deleteFriend} />
-      <div className="form-input">
-        <form onSubmit ={this.addNewFriend}>
-          <input type="text" onChange={this.handleChange} value={this.state.name} name="name" placeholder="Name" />
-          <input type="Number" onChange={this.handleChange} value={this.state.age}  name="age" placeholder="Age" />
-          <input type="email" onChange={this.handleChange} value={this.state.email}  name="email" placeholder="E-mail" />
-          <button onClick={this.addNewFriend}>Add New Friend</button>
-        </form>
+      <List list={this.state.friend}
+      deleteFriend={this.deleteFriend} />
       </div>
+      <InputForm
+      handleChange={this.handleChange}
+      value={this.state.friend}
+      addNewFriend={this.addNewFriend}
+      editFriend={this.editFriend}
+      />
       </div>
     );
   }
