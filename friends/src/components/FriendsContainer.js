@@ -14,9 +14,10 @@ export default class FriendsContainer extends React.Component {
     }
 
     update (event){
-        const id = event.target.id
+        const eId = event.target.id
+        
         this.setState({
-            updateID: id,
+            updateID: eId,
             showForm: true
         })
     }
@@ -45,44 +46,61 @@ export default class FriendsContainer extends React.Component {
                 </div>
             )}
             </div>
-            {this.state.showForm ? <UpdateUser friedID={this.state.updateID}/> : null}
+            {this.state.showForm ? <UpdateUser friedID={this.state.updateID} friends={this.state.friends}/> : null}
         </div>
     )
     }
 }
 
 
-function UpdateUser ({friendData}){
-    this.state = {
-        name: '',
-        email: '',
-        age: ''
+class UpdateUser extends React.Component{
+    constructor (props){
+        super(props)
+        console.log("CONSTRUCTER")
+        console.log(props)
+        console.log('dasdsa' + this.getFriend(props.friends, props.friedID))
+        this.state = {
+            name: '',
+            email: '',
+            age: '',
+            id: props.friedID
+        }
     }
 
-    return (
-        <div className="updateFriendData">
-                <h1>Update user data</h1>
-                <div className="data">
-                    <div><strong>Name:</strong><input type="text" name="name" onChange={this.inputChange}/></div>
-                    <div><strong>Age:</strong><input type="text" name="name" onChange={this.inputChange}/></div>
-                    <div><strong>Email:</strong><input type="text" name="name" onChange={this.inputChange}/></div>   
-                </div>
-                <button id={friendData.id}>Update </button>
-        </div>
-    )
-}
+    getFriend( friends, id){
+        return friends.filter(friend => friend.id == id)
+    }
 
-UpdateUser.prototype.inputChange = (event) => {
-    const loc = event.target.name
-    const val = event.target.value
-    const newState = this.state;
-    newState[loc] = val
-    this.state = newState
-       
-}
+    inputChange (event) {
+        const loc = event.target.name
+        const val = event.target.value
+        const newState = this.state;
+        newState[loc] = val
+        this.setState({newState})      
+    }
 
-UpdateUser.prototype.onSubmit = (event) => {
-    console.log(this.state)
-    axios.post('http://localhost:5000/friends', this.state)
-        .then(res => console.log(res))
+    onSubmit = (event) => {
+        console.log(this.state)
+        axios.put(`http://localhost:5000/friends/${this.state.id}`, {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        })
+            .then(res => console.log(res))
+    }
+
+    render(){
+        
+        return (
+            <div className="updateFriendData">
+                    <h1>Update user data</h1>
+                    <div className="data">
+                        <div><strong>Name:</strong><input type="text" name="name" onChange={this.inputChange.bind(this)}/></div>
+                        <div><strong>Age:</strong><input type="text" name="name" onChange={this.inputChange.bind(this)}/></div>
+                        <div><strong>Email:</strong><input type="text" name="name" onChange={this.inputChange.bind(this)}/></div>   
+                    </div>
+                    <button id={this.state.id} onClick={this.onSubmit.bind(this)}>Update </button>
+            </div>
+        )
+    }
 }

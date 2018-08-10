@@ -24,7 +24,11 @@ export default class NewFriendComponent extends React.Component {
 
     onSubmit(event){
         console.log(this.state)
-        axios.post('http://localhost:5000/friends', this.state)
+        axios.post('http://localhost:5000/friends', {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        })
             .then(res => console.log(res))
     }
 
