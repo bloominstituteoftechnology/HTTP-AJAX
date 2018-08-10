@@ -26,15 +26,6 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.card {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-}
 
 form {
   max-width: 400px;
@@ -48,4 +39,24 @@ form {
 
 form *{
   margin-top: 10px;
+}
+.homepage-button{
+  margin: 0 auto;
+}
+.card{
+  
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.friendsList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.friendsList button {
+  margin-top: 30px;
 }
