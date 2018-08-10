@@ -1,8 +1,8 @@
 import React,{Component } from 'react';
 import axios from "axios";
 import Friend from "./Friend.js";
-import FriendCard from "./FriendCard.js"
 import { Link } from "react-router-dom";
+ 
 
 export default class FriendList extends Component {
     constructor(props) {
@@ -23,17 +23,41 @@ export default class FriendList extends Component {
       });
   }
 
-
-    render() {
+  editFriend = (id) => {
+    const updatedFriendObj = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+    .then(response => {
+       this.setState({
+        friends:response.data
+      })
+    })
+  }
+  
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(response => {
+      this.setState({
+        friends: response.data
+      })
+    })
+  }
+  
+     render() {
       return (
-       <Link to ="/:id">
+        <div>
+       <Link to ="/">
        <div className="friend-list">
-       <FriendCard />
         {this.state.friends.map(friend => (
-          <Friend friend={friend} key={friend.id}/>
+          <Friend deleteMethod = {this.deleteFriend}friend={friend} key={friend.id}/>
          ))}
         </div>
         </Link>
+        <button onClick={() => this.editFriend()}>Edit</button>
+        </div>
        
     
       );

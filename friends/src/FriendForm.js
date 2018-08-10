@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
-export default class FriendForm extends React.Component {
+ export default class FriendForm extends React.Component {
         
         state ={
             name: '',
@@ -15,8 +14,7 @@ export default class FriendForm extends React.Component {
             [event.target.name]: event.target.value,
         })
     };
-
-    addNewFriend = (event) => {
+     addNewFriend = (event) => {
         // event.preventDefault();
         const newFriendObj = {
             name: this.state.name,
@@ -41,8 +39,7 @@ export default class FriendForm extends React.Component {
                friends: response.data
             });
         });
-
-     }
+      }
           
  
      render() {
