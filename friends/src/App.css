@@ -20,3 +20,30 @@
   margin: 5px 0;
   width: 50%;
 }
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+  width: 60%;
+}
+
+.add-friend input {
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.add-friend button {
+  height: 30px;
+  width: 50%;
+  border: 1px solid grey;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.add-friend button:hover {
+  background-color: black;
+  color: white;
+}
