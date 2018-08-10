@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Friends extends React.Component {
@@ -6,10 +7,8 @@ class Friends extends React.Component {
         super(props);
         this.state = {
             friends: [],
-            url: props.url,
-            name: '',
-            age: '',
-            email: ''
+            url: 'http://localhost:5000/friends',
+
         }
     }
 
@@ -23,60 +22,28 @@ class Friends extends React.Component {
       });
     }
 
-    inputHandler = e => {
-      this.setState({
-        [e.target.name]: e.target.value
-      })
-    }
 
-    submitHandler = () => {
-      let name = this.state.name;
-      let age = this.state.age;
-      let email = this.state.email;
-      let newFriend = {name: name, age: age, email: email};
-      axios
-        .post(this.state.url, newFriend)
-        .then(response => {
-          this.setState({
-            name:'',
-            age: '',
-            email: ''
-          });
-          this.getFriends();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-      }
 
     render () {
-        console.log(this.state.url);
         return (
             <div className='friends'>
                 <h1>My Friends</h1>
                 {this.state.friends.map(friend => {
                     return(
-                        <div key={friend.id} className='friend'>
+                      <Link key={friend.id} to={`/friend/${friend.id}`}>
+                        <div className='friend'>
                             <p>Name: {friend.name}</p>
                             <p>Age: {friend.age}</p>
                             <p>Email: {friend.email}</p>
                         </div>
+                      </Link>
                     )
                 })}
-                <div className='add-friend'>
-                  <h2>Add A Friend</h2>
-                  <form onKeyPress={key => {
-                      if(key.charCode === 13) this.submitHandler();
-                    }}>
-                    <input name='name' placeholder=' Enter Name' onChange={this.inputHandler} value={this.state.name} type='text' />
-                    <input name='age' placeholder=' Enter Age' onChange={this.inputHandler} value={this.state.age} />
-                    <input name='email' placeholder=' Enter Email' onChange={this.inputHandler} value={this.state.email} type='email' />
-                  </form>
-                  <button onClick={this.submitHandler} className='submit'>Submit</button>
-                </div>
+                <Link className='add' to='/add'><button className='add-button'>Add a friend!</button></Link>
             </div>
         )
     }
-}
+  }
+
 
 export default Friends;

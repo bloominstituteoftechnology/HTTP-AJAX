@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import { } from 'react-router-dom';
-import Friends from './components/Friends';
+import { Route }from 'react-router-dom';
 
-const url = 'http://localhost:5000/friends';
+import Friends from './components/Friends';
+import AddFriend from './components/AddFriend';
+import Friend from './components/Friend';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Friends url={url} />
+        <Route exact path='/' component={Friends} />
+        <Route path='/add' component={AddFriend} />
+        <Route path='/friend/:id' component={Friend} />
       </div>
     );
   }
