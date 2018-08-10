@@ -6,13 +6,16 @@ class FriendForm extends Component {
         super(props);
         this.state = {
             name: '',
-            age: '',
+            age: null,
             email: ''
         }
     };
     
     handleFriendChange = event => {
-        this.setState({ [event.target.name]: event.target.value, [event.target.age]: event.target.value, [event.target.email]: event.target.value})
+        this.setState({ 
+            [event.target.name]: event.target.value, 
+            [event.target.age]: event.target.value, 
+            [event.target.email]: event.target.value})
     };
     
     addNewFriend = (event) => {
@@ -24,10 +27,38 @@ class FriendForm extends Component {
         }
         axios.post(`http://localhost:5000/friends`, friend)
             .then(response => {
-                console.log(response);
+                console.log(response); 
                 console.log(response.data)
-        })  
+            })  
+            .catch((err) => console.log)
     }
+    
+  // example edit function with put request
+  editFriend = (id) => {
+    const updatedFriendObj = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+    .then(response => {
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch((err) => console.log(err))
+  }
+
+  //  example delete function with delete request
+   deleteFriend = (id) => {
+     axios.delete(`http://localhost:5000/friends/${id}`)
+     .then(response => {
+       this.setState({
+         friends: response.data
+       })
+     })
+     .catch((err) => console.log(err))
+   }
 
     render() {
         return (  

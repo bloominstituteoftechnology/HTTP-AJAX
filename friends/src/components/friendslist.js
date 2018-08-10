@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const FriendsList = (props) => {
+    
     return (  
         <div>
             {props.friendslist.map(friend => 
