@@ -12,7 +12,7 @@ export default class FriendList extends Component {
                 <h4>{friend.name}</h4>
                 <div>age: {friend.age}</div>
                 <div>{friend.email}</div>
-                <button onClick={() => this.props.removeFriend(friend.id)}> Delete Friend </button>
+                <button onClick={() => this.props.deleteFriend(friend.id)}> Delete Friend </button>
             </div>)
            } )}
      </div>

@@ -39,28 +39,29 @@ class FriendThing extends Component {
             .post(`http://localhost:5000/friends`, name)
             .then(savedName => {
                 console.log(savedName);
-                this.setState({ name: '', age: '', email: ''});
-                this.componentDidMount();
+                this.setState({ friends: savedName.data });
+                // this.componentDidMount();
             })
             .catch(err => {
                 console.log(err);
             });
     };
 
-    editFriend = (id) => {
-        const editedFriend = {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-        }
-        axios.put(`http://localhost:5000/friends/${id}`, editedFriend)
-             .then(response => {
-                 this.setState({ friends: response.data})
-             })
-             .catch((err) => console.log(err))
-    }
+    // editFriend = (id) => {
+    //     const editedFriend = {
+    //         name: this.state.name,
+    //         age: this.state.age,
+    //         email: this.state.email
+    //     }
+    //     axios.put(`http://localhost:5000/friends/${id}`, editedFriend)
+    //          .then(response => {
+    //              this.setState({ friends: response.data})
+    //          })
+    //          .catch((err) => console.log(err))
+    // }
 
     deleteFriend = (id) => {
+        console.log('im id', id);
         axios.delete(`http://localhost:5000/friends/${id}`)
              .then(deleted => {
                  this.setState({ friends: deleted.data })
@@ -76,10 +77,10 @@ class FriendThing extends Component {
             <FriendForm props={this.state.friends}
                         handleTextInput={this.handleTextInput}
                         saveNameData={this.saveNameData}
-                        editFriend={this.editFriend}
                          />
             <FriendList friends={this.state.friends}
-                         removeFriend={() => this.deleteFriend(this.state.friends.id)} />
+                         deleteFriend={this.deleteFriend}
+                          />
     
           </div>
         );
