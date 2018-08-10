@@ -47,21 +47,6 @@ class FriendThing extends Component {
             });
     };
 
-       // editFriend = (id) => {
-  //   const updatedFriendObj = {
-  //     name: this.state.name,
-  //     age: this.state.age,
-  //     email: this.state.email
-  //   }
-  //   axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
-  //   .then(response => {
-  //     this.setState({
-  //       friends: response.data
-  //     })
-  //   })
-  //   .catch((err) => console.log(err))
-  // }
-
     editFriend = (id) => {
         const editedFriend = {
             name: this.state.name,
@@ -75,6 +60,14 @@ class FriendThing extends Component {
              .catch((err) => console.log(err))
     }
 
+    deleteFriend = (id) => {
+        axios.delete(`http://localhost:5000/friends/${id}`)
+             .then(deleted => {
+                 this.setState({ friends: deleted.data })
+                 console.log(deleted.data);
+             })
+             .catch((err) => console.log(err))
+    }
 
     render() {
         return(
@@ -82,8 +75,11 @@ class FriendThing extends Component {
         
             <FriendForm props={this.state.friends}
                         handleTextInput={this.handleTextInput}
-                        saveNameData={this.saveNameData} />
-            <FriendList friends={this.state.friends} />
+                        saveNameData={this.saveNameData}
+                        editFriend={this.editFriend}
+                         />
+            <FriendList friends={this.state.friends}
+                         removeFriend={() => this.deleteFriend(this.state.friends.id)} />
     
           </div>
         );

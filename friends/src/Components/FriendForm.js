@@ -31,6 +31,7 @@ export default class FriendForm extends Component {
                         />
 
                     <button onClick={this.props.saveNameData}>Save Friend</button>
+                    
                 </div>
         )
     }
