@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
+
 import FriendInfo from './components/FriendInfo';
 import FriendInput from './components/FriendInput';
 
@@ -38,7 +39,7 @@ class App extends Component {
       .post('http://localhost:5000/friends', friend)
       .then(param => {
         this.setState({ name: '', age: '', email: ''});
-        // this.componentDidMount();
+        this.componentDidMount();
       })
       .catch(err => {
         console.error(err);
@@ -63,7 +64,7 @@ class App extends Component {
         email={this.state.email}
         handleSubmit={this.submitHandler}
         />
-        <FriendInfo props={this.state.friends}/>
+        <FriendInfo param={this.state.friends} />
       </div>
     );
   }
