@@ -25,7 +25,7 @@ class FriendCard extends React.Component {
     axios
       .get(`http://localhost:5000/friends`)
       .then(response => {
-        const friend = response.data[parseInt(idnum) -1];
+        const friend = response.data.find(item => item.id === parseInt(idnum));
         this.setState(() => ({ friend }));
       })
       .catch(error => {
@@ -55,6 +55,15 @@ class FriendCard extends React.Component {
     });
   }
 
+  deleteFriendHandler = () => {
+    axios.delete(`http://localhost:5000/friends/${this.state.friend.id}`)
+    .then(response => {
+      this.props.reSetState();
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
 
   render () {
     if (!this.state.friend) {
@@ -67,6 +76,7 @@ class FriendCard extends React.Component {
         <FriendForm submitFriend={this.changeFriendHandler} newFriendName={this.state.name} valueAdd={this.addValueHandler} newFriendAge={this.state.age} newFriendEmail={this.state.email} />
         <Friend person={this.state.friend} />
         <Link to='/'>
+          <button onClick={this.deleteFriendHandler}>Delete Friend</button>
           <button>Back to Home</button>
         </Link>
       </div>
