@@ -18,6 +18,7 @@ class App extends Component {
       // age: null,
       // email: '',
       clicked: [],
+      editID: 2,
       }
   }
 
@@ -76,12 +77,36 @@ class App extends Component {
    return selectedFriend;
   }
 
-  deleteFriend(id) {
-
+  deleteFriend(event, id) {
+    event.preventDefault();
+    console.log('hi')
   }
 
-  editFriend() {
+  editFriend = (event, id) => {
 
+    event.preventDefault();
+    console.log(this.state.editID)
+    axios
+    .put(`http://localhost:5000/friends/${id}`, {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    })
+    .then((response) => {
+      console.log('hi')
+      console.log(response.data)
+      this.setState({
+        friends: response.data,
+      })
+    })
+    .catch(function (error) {
+      console.error(error)
+    })
+    this.setState({
+      name: "",
+      age: "",
+      email: ""
+    })
   }
 
   render() {
@@ -107,15 +132,19 @@ class App extends Component {
           }}
           />
 
-          <Route path="/friend/:id" render={() => {
+          <Route path="/friends/:id" render={(props) => {
             return (
-              <EditFriend click={this.click} submit={this.editFriend} data={this} />
+              <EditFriend
+                click={this.click}
+                editFriend={this.editFriend}
+                id={props.match.params.id}
+                data={this} />
             )
           }}
           />
 
-          <Route path="/friend/:id" render={() => {
-            return <button onClick={this.deleteFriend}>Delete Friend</button>
+          <Route path="/friends/:id" render={(props) => {
+            return <button onSubmit={(event) => this.deleteFriend(event, props.match.params.id)}>Delete Friend</button>
           }} />
 
         </div>
@@ -124,18 +153,18 @@ class App extends Component {
           <Route path='/allFriends' render={(props) => {
             return this.state.friends.map(friend => {
               return (
-                <Link className="friendLink" key={friend.id} to={`/friend/${friend.id}`}>
-                  <AllFriends  key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
+                <Link className="friendLink" key={friend.id} to={`/friends/${friend.id}`}>
+                  <AllFriends key={friend.id} name={friend.name} click={this.friendClick} data={friend}>{friend.name}</AllFriends>
                 </Link>
               )
             })
           }}
           />
 
-          <Route path="/friend/:id" render={(props) => {
+          <Route path="/friends/:id" render={(props) => {
             return (
               <div className="friendFull">
-                <AllFriends  data={this.getFriend(props.match.params.id)} {...props} />
+                <AllFriends data={this.getFriend(props.match.params.id)} {...props} />
               </div>
             )
           }}
