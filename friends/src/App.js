@@ -75,7 +75,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className = "app">
         <Route path = '/:id' component= {Friend} />        
         <Route exact path = '/' render= {(props) => 
         <FriendAdd {...props}

@@ -78,21 +78,24 @@ export default class Friend extends Component {
 
     render(){
         if(!this.state.friend){
-            return <div>Friend.</div>
+            return <div>Friend is not here right now.</div>
         }
         return(
-            <div>
+            <div className="friend">
                 <FriendCard friend = {this.state.friend}/>
                 <Link to = "/"><button>Add Friend</button></Link>
-                <form>
+                <form className="edit">
                     <span>Name:</span>
                     <input onChange = {this.handleName} value = {this.state.name} />
                     <span>Age:</span>
                     <input onChange = {this.handleAge} value = {this.state.age} />
                     <span>Email:</span>
                     <input onChange = {this.handleEmail} value = {this.state.email} />
-                    <button onClick = {this.handleEdit}>Edit Friend</button>
-                    <button onClick = {this.handleDelete}>Delete Friend</button>
+                    <div className="">
+                        <button onClick = {this.handleEdit}>Edit Friend</button>
+                        <button onClick = {this.handleDelete}>Delete Friend</button>
+                    </div>
+                    
                 </form> 
             </div>
         )
