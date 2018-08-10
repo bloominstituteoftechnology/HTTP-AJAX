@@ -18,5 +18,5 @@ const FriendsDisplay = props => {
         );
 }
 
-
 export default FriendsDisplay
+
