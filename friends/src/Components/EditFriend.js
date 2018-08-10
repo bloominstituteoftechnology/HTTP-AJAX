@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-export default class FriendForm extends Component {
+export default class AddFriend extends Component {
   render() {
     return (
-      <div className="friend-form">
+      <div>
         <input
           type="text"
           onChange={this.props.handleTextInput}
@@ -28,7 +28,7 @@ export default class FriendForm extends Component {
           value={this.props.email}
         />
 
-        <button onClick={this.props.saveNameData}>Save Friend</button>
+        <button onClick={this.props.editFriend}>Save Edit</button>
       </div>
     );
   }
