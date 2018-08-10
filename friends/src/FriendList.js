@@ -1,66 +1,78 @@
-import React,{Component } from 'react';
+import React, { Component } from "react";
 import axios from "axios";
 import Friend from "./Friend.js";
 import { Link } from "react-router-dom";
- 
 
 export default class FriendList extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { 
-          friends : []
-       };
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: []
+    };
   }
-  
+
   componentDidMount() {
     axios
-      .get('http://localhost:5000/friends')
+      .get("http://localhost:5000/friends")
       .then(response => {
         this.setState(() => ({ friends: response.data }));
       })
       .catch(error => {
-        console.error('Server Error', error);
+        console.error("Server Error", error);
       });
   }
 
-  editFriend = (id) => {
+  editFriend = (event, id) => {
+    event.preventDefault();
+    console.log('this.editFriend');
     const updatedFriendObj = {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
-    }
-    axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
-    .then(response => {
-       this.setState({
-        friends:response.data
+    };
+
+    axios
+      .put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
       })
-    })
-  }
-  
-  deleteFriend = (id) => {
-    axios.delete(`http://localhost:5000/friends/${id}`)
-    .then(response => {
-      this.setState({
-        friends: response.data
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  };
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
       })
-    })
-  }
-  
-     render() {
-      return (
-        <div>
-       <Link to ="/">
-       <div className="friend-list">
-        {this.state.friends.map(friend => (
-          <Friend deleteMethod = {this.deleteFriend}friend={friend} key={friend.id}/>
-         ))}
-        </div>
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  };
+
+  render() {
+    return (
+      <div>
+        <Link to="/">
+          <div className="friend-list">
+            {this.state.friends.map(friend => (
+              <Friend
+                editFriend={this.editFriend}
+                deleteMethod={this.deleteFriend}
+                friend={friend}
+                key={friend.id}
+              />
+            ))}
+          </div>
         </Link>
         <button onClick={() => this.editFriend()}>Edit</button>
-        </div>
-       
-    
-      );
-    }
+      </div>
+    );
   }
-  
+}
