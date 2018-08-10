@@ -1,11 +1,12 @@
 import React from "react";
-//import { Link, NavLink, Route } from "react-router-dom";//
+import { Link, Route } from "react-router-dom";
 import axios from "axios";
 import { Row, Container, Col } from 'reactstrap';
 
 import './FriendsPage.css';
 import Friend from './Friend';
 import FriendForm from './FriendForm';
+import FriendDetails from './FriendDetails';
 
 class FriendsPage extends React.Component {
     constructor() {
@@ -39,16 +40,16 @@ class FriendsPage extends React.Component {
             [event.target.name]: event.target.value
         })
     }
- 
+
     handleSubmit = event => {
         event.preventDefault();
 
 
-        axios.post(`http://localhost:5000/friends`, { 
+        axios.post(`http://localhost:5000/friends`, {
             name: this.state.name,
             age: this.state.age,
             email: this.state.email
-         })
+        })
             .then(response => {
                 this.setState({
                     friends: response.data,
@@ -59,19 +60,62 @@ class FriendsPage extends React.Component {
             });
     }
 
+
+    handleEdit = (id) => {
+        const updatedFriendObj = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        }
+        axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+            .then(response => {
+                this.setState({
+                    friends: response.data
+                })
+            })
+            .catch(error => {
+                console.error('Server Error', error);
+            });
+    }
+
+
+    handleDelete = (id) => {
+        axios.delete(`http://localhost:5000/friends/${id}`)
+            .then(response => {
+                this.setState({
+                    friends: response.data
+                })
+            })
+            .catch(error => {
+                console.error('Server Error', error);
+            });
+    }
+
+
+
+
     render() {
         return (
             <Container fluid>
                 <Row >
                     {this.state.friends.map(friend => (
+
                         <Col sm="4" key={friend.id} >
-                            <Friend friend={friend} />
+                            <Link to={`/${friend.id}`}>
+                                <Friend friend={friend} />
+                            </Link>
                         </Col>
+
                     ))}
                 </Row>
                 <Row className="custom-display">
                     <Col sm="6">
-                        <FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+                        <FriendForm name={this.state.name} age={this.state.age} email={this.state.email} handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Route exact path="/:id" render={(props) => <FriendDetails {...props} friends={this.state.friends} />} ></Route>
                     </Col>
                 </Row>
             </Container>
@@ -79,6 +123,9 @@ class FriendsPage extends React.Component {
     }
 
 }
+
+{/* <Route exact path="/" component={MovieList}></Route>
+<Route path="/movies/:id" render={(props) => <Movie {...props} addToSavedList={this.addToSavedList} />} ></Route> */}
 
 
 
