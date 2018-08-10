@@ -15,7 +15,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Friends</h1>
         </header>
-        <Route exact path="/" component={FriendsPage}></Route>
+        <Route exact path="/" component={FriendsPage} />
       </div>
     );
   }

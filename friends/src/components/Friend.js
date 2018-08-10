@@ -7,6 +7,7 @@ import './Friend.css';
 
 
 const Friend = props => {
+    console.log(props)
     return (
         
             <div>

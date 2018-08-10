@@ -115,7 +115,13 @@ class FriendsPage extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Route exact path="/:id" render={(props) => <FriendDetails {...props} friends={this.state.friends} />} ></Route>
+                        <Route exact path="/:id" render={props => 
+                            <FriendDetails
+                                {...props}
+                                friends={this.state.friends}
+                            />
+                        }
+                        />
                     </Col>
                 </Row>
             </Container>
