@@ -79,7 +79,16 @@ class App extends Component {
 
   deleteFriend(event, id) {
     event.preventDefault();
-    console.log('hi')
+    console.log('hi', id);
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then((response) => {
+      console.log(response)
+    })
+    .catch(function (error){
+      console.log(error)
+    })
+    window.location="http://localhost:3000/allFriends" ;
+    // this.goToAll();
   }
 
   editFriend = (event, id) => {
@@ -144,7 +153,14 @@ class App extends Component {
           />
 
           <Route path="/friends/:id" render={(props) => {
-            return <button onSubmit={(event) => this.deleteFriend(event, props.match.params.id)}>Delete Friend</button>
+            console.log(props)
+            return (
+              <form onSubmit={(event) => this.deleteFriend(event, props.match.params.id)}>
+                <button>Delete Friend</button>
+              </form>
+
+            )
+
           }} />
 
         </div>
