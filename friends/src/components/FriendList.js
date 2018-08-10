@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Friend from './Friend';
+import { Link } from "react-router-dom";
+
+import FriendCard from './FriendCard';
 import FormInput from './FormInput';
 
  export default class FriendList extends Component {
@@ -10,7 +12,7 @@ import FormInput from './FormInput';
       friends: [],
       loading: true,
       name: "",
-      age: null,
+      age: "",
       email: ""
     };
   }
@@ -29,14 +31,8 @@ import FormInput from './FormInput';
       });
   }
 
-  nameInputHandler = e => {
-    this.setState({ name: e.target.value });
-  };
-  ageInputHandler = e => {
-    this.setState({ age: e.target.value });
-  };
-  emailInputHandler = e => {
-    this.setState({ email: e.target.value });
+  inputHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   addNewFriend = e => {
@@ -60,18 +56,18 @@ import FormInput from './FormInput';
     } else if (!this.state.loading) {
       return (
         <div>
-        {this.state.friends.map((friend, i) => (
-          <Friend friend={friend} key={i}/>
+        {this.state.friends.map(friend => (
+          <Link to={`/friends/${friend.id}`} key={friend.id}>
+          <FriendCard friend={friend} />
+          </Link>
         ))}
-          <FormInput 
-          addFriend={this.addNewFriend}
+          <FormInput
           name={this.state.name}
           age={this.state.age}
           email={this.state.email}
-          addName={this.nameInputHandler}
-          addAge={this.ageInputHandler}
-          addEmail={this.emailInputHandler}
+          handleChange={this.inputHandler}
         />
+        <button onClick={this.addNewFriend}>Add Friend</button>
         </div>
     )}}
   

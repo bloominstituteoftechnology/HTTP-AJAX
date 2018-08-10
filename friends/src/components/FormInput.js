@@ -5,25 +5,27 @@ const FormInput = props => {
     <div>
     <form>
       <input 
-        onChange={props.addName}
+        onChange={props.handleChange}
+        name="name"
         value={props.name}
         type="text"
         placeholder="Name"
        />
        <input 
-        onChange={props.addAge}
+        onChange={props.handleChange}
+        name="age"
         value={props.age}
         type="number"
         placeholder="Age"
        />
        <input 
-        onChange={props.addEmail}
+        onChange={props.handleChange}
+        name="email"
         value={props.email}
         type="email"
         placeholder="Email"
        />
-       <button onClick={props.addFriend}>Add Friend</button>
-    </form>
+       </form>
     </div>
   );
 };

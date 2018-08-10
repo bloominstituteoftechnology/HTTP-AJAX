@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friend = props => {
+const FriendCard = props => {
   return (
     <div className="friend-card">
       <p>Name: {props.friend.name}</p>
@@ -10,4 +10,4 @@ const Friend = props => {
   );
 };
 
-export default Friend;
+export default FriendCard;
