@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./EditDeleteButtons.css";
 
@@ -41,6 +42,7 @@ export default class EditDeleteButtons extends Component {
             onFocus={this.removeInputText}
           />
           <button onClick={this.updateChangeHandlerSubmit}>Edit</button>
+          <Link to={"/"}>Home</Link>
           <button onClick={this.updateChangeHandler}>Del</button>
         </form>
       </div>
