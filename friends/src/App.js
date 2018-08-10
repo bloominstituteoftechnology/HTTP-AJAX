@@ -14,13 +14,18 @@ class App extends Component {
     this.state = {
       friends: [],
       rev: [],
-      name: '',
-      // age: null,
-      // email: '',
+        name: "",
+        age: "",
+        email: "",
       clicked: [],
       editID: 2,
       }
   }
+
+///ASK ABOUT RESETING STATE AFTER SUBMIT AND
+
+
+
 
   componentDidMount() {
     axios.get(url).then(response => {
@@ -56,7 +61,7 @@ class App extends Component {
           friends: food
         })
       })
-      .catch(function (error) {
+    .catch(function (error) {
         console.log(error)
       })
     })
@@ -88,7 +93,15 @@ class App extends Component {
       console.log(error)
     })
     window.location="http://localhost:3000/allFriends" ;
-    // this.goToAll();
+
+    ///ASK ABOUT RESETING STATE AFTER SUBMIT AND
+
+
+/////HERE
+
+
+
+
   }
 
   editFriend = (event, id) => {
@@ -128,10 +141,10 @@ class App extends Component {
           </Link>
           <Link to="/allFriends">Show all Frieneds</Link>
 
-          <Route path="/allFriends" render={() => {
+          <Route path="/allFriends" render={(props) => {
             return(
               <div>
-                <NewFriend  click={this.click} submit={this.submit} data={this} />
+                <NewFriend onChange={this.click} submit={this.submit} data={this} />
                 <div className="details">
                   <p>New Friend sample profile</p>
                   <AllFriends data={this.state} />
@@ -144,6 +157,7 @@ class App extends Component {
           <Route path="/friends/:id" render={(props) => {
             return (
               <EditFriend
+                state={this.state}
                 click={this.click}
                 editFriend={this.editFriend}
                 id={props.match.params.id}
@@ -158,10 +172,9 @@ class App extends Component {
               <form onSubmit={(event) => this.deleteFriend(event, props.match.params.id)}>
                 <button>Delete Friend</button>
               </form>
-
             )
-
-          }} />
+          }}
+          />
 
         </div>
 
