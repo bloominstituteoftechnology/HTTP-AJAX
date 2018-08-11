@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+  background-color: black;
+  border: 4px solid gold;
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+
+.left {
+  margin: 20px;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  border: 2px solid blue;
+}
+
+.form {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  margin: 0;
+}
+
+.friendLink {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 120px;
+  color: white;
+}
+
+.friendFull {
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+height: auto;
+/* background-color: red; */
+}
+
+.ageInput {
+  width: 45%;
+}
+
+h1, h4 {
+  padding: 0px;
+  margin: 10px;
+}
+
+p {
+  margin: 5px;
+}
