@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import Form from './Components/Form/Form';
 class App extends Component {
   constructor() {
     super();
     this.state={
-      friends:[]
+      friends:[],
+      friend: ''
     };
+    const inputHandler = e => {
+      this.setState({ friend: e.target.value });
+    };
+    const addFriend = e => {
+      e.preventDefault();
+      const newFriend = {
+        name: this.state.friends.name,
+        age: this.state.friends.age,
+        email: this.state.friends.email
+      };
+      const friends = this.state.friends.slice();
+      friends.push(newFriend);
+      this.setState({ friend:'', friends });
+    }
   }
 
   componentDidMount() {
@@ -35,10 +51,11 @@ class App extends Component {
           </div>
           ))}
         </ul>
+      <Form onClick={this.state.addFriend} value={this.state.inputHandler}/>
       </div>
     );
-  }
-  }
-}
+  };
+  };
+};
 
 export default App;
