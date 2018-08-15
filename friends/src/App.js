@@ -9,36 +9,30 @@ const url = "http://localhost:5000/friends";
 const Friends = props => {
   return (
     <Table hover>
-    <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-      {props.friends.map((friend, index)=> (
-
-
-
-              <tr key={index}>
-
-                <th scope="row">{++index}</th>
-
-                <td>{friend.name}</td>
-                <td>{friend.age}</td>
-                <td>{friend.email}</td>
-              </tr>
-
-
-      ))}
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.friends.map((friend, index) => (
+          <tr key={index}>
+            <th scope="row">{++index}</th>
+            <td>{friend.name}</td>
+            <td>{friend.age}</td>
+            <td>{friend.email}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
 };
 
-{/* <div className="friendlies">
+{
+  /* <div className="friendlies">
   {props.friends.map(friend => (
     <div className="friend-sheet">
       <p>
@@ -48,7 +42,8 @@ const Friends = props => {
       </p>
     </div>
   ))}
-</div>; */}
+</div>; */
+}
 
 // const addAFriend = props => {
 //   return(
