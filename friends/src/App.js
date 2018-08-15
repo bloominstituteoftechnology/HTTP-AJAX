@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount() {
     axios.get(url).then(response => {
       this.setState({
-        friendsList: response.name.age.email,
+        friendsList: response.name,
       });
     });
   }
@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h4>Stuff</h4>
+        <Friends friends={this.state.friendsList}/>
       </div>
     );
   }
