@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
+
+const url = 'http://localhost:5000/friends';
 
 class App extends Component {
   constructor() {
@@ -7,12 +10,15 @@ class App extends Component {
 
     this.state = {
       friendsList: [],
-      loading: true,
     }
   }
 
   componentDidMount() {
-    
+    axios.get(url).then(response => {
+      this.setState({
+        friendsList: response.friends,
+      });
+    })
   }
 
   render() {
