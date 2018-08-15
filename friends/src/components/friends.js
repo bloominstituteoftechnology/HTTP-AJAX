@@ -1,7 +1,6 @@
 import React from "react";
-import friends from "../../server";
 
-const Friends = () => {
+const Friends = (props) => {
   return(
 
     <div>
@@ -17,10 +16,15 @@ const Friends = () => {
                     <td>Age</td>
                     <td>Email</td>
                 </tr>
+              {/* this point down will be mapped and filled with information */}
+                <tr>
+                    <td>{props.name}</td>
+                    <td>{props.age}</td>
+                    <td>{props.email}</td>
+                </tr>
             </tbody>
         </table>
-    
-        {console.log(friends)}
+
     </div>
     
   );
