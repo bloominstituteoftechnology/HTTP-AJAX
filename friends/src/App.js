@@ -7,22 +7,27 @@ class App extends Component {
     super();
     this.state={
       friends:[],
-      friend: ''
-    };
-    const inputHandler = e => {
-      this.setState({ friend: e.target.value });
-    };
-    const addFriend = e => {
-      e.preventDefault();
-      const newFriend = {
-        name: this.state.friends.name,
-        age: this.state.friends.age,
-        email: this.state.friends.email
-      };
-      const friends = this.state.friends.slice();
-      friends.push(newFriend);
-      this.setState({ friend:'', friends });
-    }
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
+    }; 
+  }
+  inputHandler = e => {
+    this.setState({ friend: e.target.value });
+  };
+
+  addFriend() {
+    axios
+      .post('http://localhost:5000/friends', this.state.friend)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          friend: { name: '', age: '', email: '' },
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   componentDidMount() {
@@ -51,7 +56,7 @@ class App extends Component {
           </div>
           ))}
         </ul>
-      <Form onClick={this.state.addFriend} value={this.state.inputHandler}/>
+      <Form handleSubmit={this.addFriend} value={this.inputHandler}/>
       </div>
     );
   };

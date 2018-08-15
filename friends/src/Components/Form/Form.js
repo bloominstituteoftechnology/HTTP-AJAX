@@ -5,11 +5,11 @@ const Form = props => {
         <div>
          <form>
             <label for="name">Name:</label>
-            <input type="text" name="name" onChange={props.inputHandler}/>
+            <input type="text" name="name" value={props.friend.name} onChange={props.value}/>
             <label for="age">Age:</label>
-            <input type="number" name="age" onChange={props.inputHandler}/>
+            <input type="number" name="age" value={props.friend.age} onChange={props.value}/>
             <label for="email">E-Mail:</label>
-            <input type="email" name="email" onChange={props.inputHandler}/>
+            <input type="email" name="email" value={props.friend.email} onChange={props.value}/>
             </form>
         <div>
             <button onClick={props.addFriend}>Add Friend</button>
