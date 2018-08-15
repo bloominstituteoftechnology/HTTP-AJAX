@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
-import './App.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import "./App.css";
+import axios from "axios";
 import Friends from "./Friends";
 
-const url = 'http://localhost:5000/friends';
+const url = "http://localhost:5000/friends";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      friendsList: [],
-    }
+      friendsList: []
+    };
   }
 
   componentDidMount() {
     axios.get(url).then(response => {
       this.setState({
-        friendsList: response.name,
+        friendsList: response.name.age.email,
       });
-    })
+    });
   }
 
   render() {
