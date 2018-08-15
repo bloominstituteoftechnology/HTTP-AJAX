@@ -1,64 +1,63 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './App.css';
-import {Route} from 'react-router-dom'
+import React, { Component } from "react";
+import axios from "axios";
+import "./App.css";
+// import {Route} from 'react-router-dom'
 
-const url= 'http://localhost:5000/friends'
+const url = "http://localhost:5000/friends";
 
-const Friends = (props) => {
+const Friends = props => {
   return (
-    <div>
-
+    <div className="friendlies">
+      {props.friends.map(friend => (
+        <div className="friend-sheet">
+          <p>
+            <div> Name: {friend.name} </div>
+            <div>Age: {friend.age}</div>
+            <div>Email: {friend.email}</div>
+          </p>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-const addAFriend = props => {
-  return(
-    <form action="">
+// const addAFriend = props => {
+//   return(
+//     <form action="">
 
-    </form>
-  )
-}
-
-
+//     </form>
+//   )
+// }
 
 class App extends Component {
-
   constructor() {
     super();
-    this.state={
+    this.state = {
       friends: [],
-      // loading: true
-    }
+      Name: "",
+      Age: [],
+      Email: ""
+    };
   }
-
 
   componentDidMount() {
-    axios.get(url).then(response => {
-      this.setState({
-        friends: response.data.data.results
+    axios
+      .get(url)
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(err => {
+        console.error("Server Error");
       });
-    })
-    .catch(err => console.log (err));
   }
-
-
-
-
-
-
-
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Hello Friends</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Friends friends={this.state.friends} />
       </div>
     );
   }
