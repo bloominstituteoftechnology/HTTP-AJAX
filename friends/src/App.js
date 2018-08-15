@@ -6,8 +6,9 @@ import {
 }from 'react-router-dom';
 import axios from 'axios';
 
-
 import './App.css';
+import FriendsList from './components/FriendsList'
+
 const url  = "http://localhost:5000/friends"
 
 class App extends Component {
@@ -34,7 +35,15 @@ class App extends Component {
     console.log(this.state.friends);
     return (
       <div>
-        
+        <Route 
+          exact path='/' 
+          render={props => (
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+            />
+          )}
+        />
       </div>
     );
   }
