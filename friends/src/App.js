@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount() {
     axios.get(url).then(response => {
       this.setState({
-        friendsList: response.name,
+        friendsList: response.friends,
       });
     });
   }

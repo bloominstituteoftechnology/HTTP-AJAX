@@ -16,9 +16,9 @@ const Friends = props => {
             <td>Email</td>
           </tr>
           <tr>
-              <td>{props.name}</td>
-              <td>{props.age}</td>
-              <td>{props.email}</td>
+            <td>{props.name}</td>
+            <td>{props.age}</td>
+            <td>{props.email}</td>
           </tr>
         </tbody>
       </table>
