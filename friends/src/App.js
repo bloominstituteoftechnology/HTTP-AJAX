@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import Friends from './Components/Friends';
+import NewFriendForm from './Components/NewFriendForm';
 import './App.css';
 import axios from 'axios';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+      Name: "",
+      Age: [],
+      Email: ""
+    };
+  }
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
@@ -17,7 +27,8 @@ class App extends Component {
   render() {
     return (
       <div>
-       <Friends friends={this.friends}/>
+       <Friends friends={this.state.friends} />
+       <NewFriendForm />
       </div>
     );
   }
