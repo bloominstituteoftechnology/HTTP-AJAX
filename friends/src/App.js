@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import Friends from "./components/friends";
+import NewFriends from './components/newFriends';
 import { Route } from "react-router-dom";
 import axios from "axios";
 
@@ -28,6 +29,8 @@ class App extends Component {
     });
   }
 
+  
+
   render() {
 
     return (
@@ -41,6 +44,12 @@ class App extends Component {
             return <Friends {...props} friendsList={this.state.friendsList} />;
           }}
         />
+        <Route 
+          path="/"
+          render={props => {
+            return <NewFriends {...props} />
+          }}
+          />
         {/* <Friends friends={this.state.friendsList}/>  */}
       </div>
     );
