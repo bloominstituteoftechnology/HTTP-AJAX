@@ -19,17 +19,29 @@ class Friends extends React.Component {
     render() {
         console.log(this.state.url);
         return (
-            <div>
-                {this.state.friends.map(friend => {
-                    return (
-                        <div key={friend.id} className='friend'>
-                            <p>Name: {friend.name}</p>
-                            <p>Age: {friend.age}</p>
-                            <p>Email: {friend.email}</p>
-                        </div>
-                    )
-                })}
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th colSpan="3">Friend Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>Age</td>
+                        <td>Email</td>
+                    </tr>
+                    {this.state.friends.map(friend => {
+                        return (
+                            <tr key={friend.id} className='friend'>
+                                <td>{friend.name}</td>
+                                <td>{friend.age}</td>
+                                <td>{friend.email}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         )
     }
 }
