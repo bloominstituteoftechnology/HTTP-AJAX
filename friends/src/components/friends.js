@@ -16,13 +16,18 @@ const Friends = props => {
             <td>Email</td>
           </tr>
           {/* this point down will be mapped and filled with information */}
-          {props.friendsList.map(each => {
-            <tr>
+          {/* {console.log(props.friendList)} */}
+          {props.friendsList.map(each =>  {
+            
+            return(
+              <tr key={each.id} className="friend">
               <td>{each.name}</td>
               <td>{each.age}</td>
               <td>{each.email}</td>
-            </tr>;
+            </tr>
+          )
           })}
+
         </tbody>
       </table>
     </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import Friends from "./components/friends";
 import { Route } from "react-router-dom";
@@ -11,16 +11,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friendsList: []
+      friendsList: [],
+      url: url,
     };
   }
-
+  
   componentDidMount() {
     // console.log("testing axios")
-    axios.get(url).then(response => {
-      console.log(response);
+    axios.get(this.state.url).then(response => {
+      // console.log(response);
 
-      console.log(response.data);
+      // console.log(response.data);
       this.setState({
         friendsList: response.data
       });
@@ -32,10 +33,12 @@ class App extends Component {
     return (
       <div className="App">
         component with list of friends will be displayed here
+        {/* {console.log(props.url)}; */}
+        
         <Route
           path="/"
           render={props => {
-            return <Friends friendsList={this.state.friendsList} {...props} />;
+            return <Friends {...props} friendsList={this.state.friendsList} />;
           }}
         />
         {/* <Friends friends={this.state.friendsList}/>  */}
