@@ -19,23 +19,20 @@ class App extends Component {
       this.setState({
         friends: response.data,
         loading: false
-      })
-    }
-    );
+      });
+    });
   }
 
   render() {
     return (
       <div className="App">
         <NavLink to={`/${this.state.friends.id}`} />
-
         <Route path="/:id" component={Friend} />
         <ul>
           {this.state.friends.map(friend => (
             <Friend key={friend.id} friends={friend} />
           ))}
         </ul>
-        
       </div>
     );
   }

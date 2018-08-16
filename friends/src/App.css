@@ -23,6 +23,31 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.name {
+  font-weight: bold;
+}
+
+.age {
+  font-size: 8px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.friend-container {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  height: 80px;
+  background-color: rgba(0, 162, 255, 0.932);
+  color: white;
+  justify-content: center;
+  align-items: center;
 }
