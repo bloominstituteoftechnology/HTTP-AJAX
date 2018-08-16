@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./App.css";
-import Friend from "./components/Friend";
 import { Route, NavLink } from "react-router-dom";
+
+import "./App.css";
+
+import Friend from "./components/Friend";
+import Friends from './components/Friends';
+
 
 class App extends Component {
   constructor() {
@@ -28,11 +32,7 @@ class App extends Component {
       <div className="App">
         <NavLink to={`/${this.state.friends.id}`} />
         <Route path="/:id" component={Friend} />
-        <ul>
-          {this.state.friends.map(friend => (
-            <Friend key={friend.id} friends={friend} />
-          ))}
-        </ul>
+        <Friends data={this.state.friends} />
       </div>
     );
   }

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -31,7 +32,7 @@
   }
 }
 
-.name {
+/* .name {
   font-weight: bold;
 }
 
@@ -50,4 +51,12 @@
   color: white;
   justify-content: center;
   align-items: center;
+} */
+
+
+.table tbody+tbody {
+   border-top: 0px solid #dee2e6; 
 }
+
+
+
