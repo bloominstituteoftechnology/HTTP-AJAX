@@ -31,27 +31,14 @@ const Friends = props => {
   );
 };
 
-{
-  /* <div className="friendlies">
-  {props.friends.map(friend => (
-    <div className="friend-sheet">
-      <p>
-        <div> Name: {friend.name} </div>
-        <div>Age: {friend.age}</div>
-        <div>Email: {friend.email}</div>
-      </p>
-    </div>
-  ))}
-</div>; */
-}
-
-// const addAFriend = props => {
-//   return(
-//     <form action="">
-
-//     </form>
-//   )
-// }
+const addAFriendForm = props => {
+  return (
+    <form>
+      <p>Hi Friendy!</p>
+      <input type="text" />
+    </form>
+  );
+};
 
 class App extends Component {
   constructor() {
@@ -74,6 +61,10 @@ class App extends Component {
         console.error("Server Error");
       });
   }
+
+  enterFriend = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   render() {
     return (
