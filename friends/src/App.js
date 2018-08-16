@@ -13,12 +13,14 @@ class App extends Component {
       loading: true
     };
   }
+
   componentDidMount() {
-    axios.get("http://localhost:5000/friends").then(response =>
+    axios.get("http://localhost:5000/friends").then(response => {
       this.setState({
-        freinds: response.data,
+        friends: response.data,
         loading: false
       })
+    }
     );
   }
 
@@ -33,7 +35,7 @@ class App extends Component {
             <Friend key={friend.id} friends={friend} />
           ))}
         </ul>
-        <h1>hi</h1>
+        
       </div>
     );
   }
