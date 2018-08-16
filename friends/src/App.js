@@ -30,10 +30,25 @@ class App extends Component {
       });
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
+  }
+
+  addNewFriend = () => {
+    const newFriendObj = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.post('http://localhost:5000/friends', newFriendObj)
+    .then(response => {
+        this.setState({
+          friendsList: response.data,
+        })
+      })
+    .catch((err) => console.log(err))
   }
 
   render() {
@@ -69,6 +84,7 @@ class App extends Component {
             type="email"
           />
         </form>
+        <button onClick={this.addNewFriend}>Add</button>
       </div>
     );
   }
