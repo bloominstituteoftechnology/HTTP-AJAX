@@ -15,7 +15,9 @@ class App extends Component {
       friendsList: [],
       name: "",
       age: null,
-      email: ""
+      email: "",
+      editId: null,
+      deleteId: null,
     };
   }
 
@@ -49,6 +51,26 @@ class App extends Component {
         })
       })
     .catch((err) => console.log(err))
+  }
+
+  editFriend = (id) => {
+    axios.put(`http://localhost:5000/friends${id}`)
+    .then(response => {
+      this.setState({
+        friendsList: response.data,
+      })
+    })
+  .catch((err) => console.log(err))
+  }
+
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends${id}`)
+    .then(response => {
+      this.setState({
+        friendsList: response.data,
+      })
+    })
+  .catch((err) => console.log(err))
   }
 
   render() {
@@ -85,6 +107,8 @@ class App extends Component {
           />
         </form>
         <button onClick={this.addNewFriend}>Add</button>
+        <button onClick={() => this.editFriend(this.state.editId)}>Edit</button>
+        <button onClick={() => this.deleteFriend(this.state.deleteId)}>Delete</button>
       </div>
     );
   }
