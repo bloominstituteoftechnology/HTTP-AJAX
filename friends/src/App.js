@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import Friends from "./Friends";
 import { Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const url = "http://localhost:5000/friends";
 

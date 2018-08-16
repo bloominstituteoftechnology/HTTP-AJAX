@@ -1,19 +1,28 @@
 import React from "react";
-import "./index.css"
+import { Table } from 'reactstrap';
+
 
 export default function Friends(props) {
   return (
-    <div>
-      {props.friendsList.map(friend => (
-        <div className="friends-list">
-          <h1>Name:</h1>
-          <h4>{friend.name}</h4>
-          <h1>Age:</h1>
-          <h4>{friend.age}</h4>
-          <h1>Email:</h1>
-          <h4>{friend.email}</h4>
-        </div>
-      ))}
-    </div>
+    <Table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.friendsList.map((friend, i) => (
+          <tr key={i}>
+            <th scope="row">{++i}</th>
+            <td>{friend.name}</td>
+            <td>{friend.age}</td>
+            <td>{friend.email}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 }
