@@ -58,5 +58,16 @@
    border-top: 0px solid #dee2e6; 
 }
 
+.form-container {
+  padding: 10px 50px;
+  background-color: rgb(34, 34, 34);
 
+}
+
+.form-label {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+ 
+}
 
