@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.eachFriend {
+  border-top: 1px solid paleturquoise;
+  border-left: 1px dashed palevioletred;
+  background-color: palegoldenrod;
+  width: 300px;
+  padding-bottom: 5px;
+  margin: 0 auto;
+}
