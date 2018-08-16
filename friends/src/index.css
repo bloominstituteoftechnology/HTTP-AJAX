@@ -3,3 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+friends-list {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import Friends from "./Friends";
+import { Route } from "react-router-dom";
 
 const url = "http://localhost:5000/friends";
 
@@ -10,7 +11,7 @@ class App extends Component {
     super();
 
     this.state = {
-      friendsList: [],
+      friendsList: []
     };
   }
 
@@ -28,7 +29,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Friends friendsList={this.state.friendsList} />
+        <Route
+          path="/"
+          render={props => <Friends friendsList={this.state.friendsList} {...props} />}
+        />
       </div>
     );
   }
