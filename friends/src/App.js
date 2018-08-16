@@ -54,7 +54,12 @@ class App extends Component {
   }
 
   editFriend = (id) => {
-    axios.put(`http://localhost:5000/friends${id}`)
+    const updatedFriendObj = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.put(`http://localhost:5000/friends${id}`, updatedFriendObj)
     .then(response => {
       this.setState({
         friendsList: response.data,
