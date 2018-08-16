@@ -1,30 +1,36 @@
 import React from "react";
 
-const NewFriends = props => {
+const FriendForm = props => {
   return (
-    <form action="">
+    <form onSubmit={props.handleSubmit}>
       <label className="name">
           Name:
         <input
-          onChange={props.handleChangeName}
-          value={props.name}
+          onChange={props.handleUpdate}
+          name="newName"
+          value={props.nameAdd}
           type="text"
+          placeholder="Name"
         />
       </label>
       <label className="age">
           Age:
         <input
-          onChange={props.handleChangeName}
-          value={props.age}
+          onChange={props.handleUpdate}
+          name="newAge"
+          value={props.ageAdd}
           type="number"
+          placeholder="Age"
         />
       </label>
       <label className="email">
           Email:
         <input
-          onChange={props.handleChangeName}
-          value={props.email}
+          onChange={props.handleUpdate}
+          name="newEmail"
+          value={props.emailAdd}
           type="email"
+          placeholder="Email"
         />
       </label>
       <button>Submit</button>
@@ -32,4 +38,4 @@ const NewFriends = props => {
   );
 };
 
-export default NewFriends;
+export default FriendForm;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import Friends from "./components/Friends";
-import NewFriends from "./components/FriendForm";
+import FriendForm from "./components/FriendForm";
 import { Route } from "react-router-dom";
 import axios from "axios";
 
@@ -14,9 +14,9 @@ class App extends Component {
     this.state = {
       friendsList: [],
       url: url,
-      name: '',
-      age: '',
-      email:'',
+      newName: "",
+      newAge: "",
+      newEmail: ""
     };
   }
 
@@ -32,14 +32,32 @@ class App extends Component {
     });
   }
 
-  handleChangeName = event => {
-    this.setState({ name: event.target.value });
+  handleUpdate = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
-  handleChangeAge = event => {
-    this.setState({ age: event.target.value });
-  };
-  handleChangeEmail = event => {
-    this.setState({ email: event.target.value });
+
+  
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("Got to handle submit: ", event)
+    const newInfo = {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
+    };
+    axios
+      .post(url, newInfo)
+      .then(response => {
+        this.setState({
+          newName: "",
+          newAge: "",
+          newEmail: "",
+          friendsList: response.data
+        });
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+      });
   };
 
   render() {
@@ -56,7 +74,13 @@ class App extends Component {
         <Route
           path="/"
           render={props => {
-            return <NewFriends {...props} />;
+            return <FriendForm 
+            {...props}
+            nameAdd={this.state.newName}
+            ageAdd={this.state.newAge}
+            emailAdd={this.state.newEmail}
+            handleUpdate={this.handleUpdate}
+            handleSubmit={this.handleSubmit}/>;
           }}
         />
         {/* <Friends friends={this.state.friendsList}/>  */}
