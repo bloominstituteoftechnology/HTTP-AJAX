@@ -1,5 +1,5 @@
 import React from 'react';
-import Friend from './Friend';
+import Friend from './Friends';
 
 
 const FriendList = props => {
