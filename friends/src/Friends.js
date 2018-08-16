@@ -15,14 +15,17 @@ export default function Friends(props) {
       </thead>
       <tbody>
         {props.friendsList.map((friend, i) => (
-          <tr key={i}>
+          <tr key={friend.id}>
             <th scope="row">{++i}</th>
             <td>{friend.name}</td>
             <td>{friend.age}</td>
             <td>{friend.email}</td>
+            <td><button onClick={() => props.delete(friend.id)}>Delete</button></td>
+            <td><button onClick={() => props.edit(friend.id)}>Edit</button></td>
           </tr>
         ))}
       </tbody>
     </Table>
   );
 }
+
