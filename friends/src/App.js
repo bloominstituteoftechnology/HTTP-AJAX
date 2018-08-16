@@ -39,7 +39,7 @@ class App extends Component {
   
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Got to handle submit: ", event)
+    // console.log("Got to handle submit: ", event)
     const newInfo = {
       name: this.state.newName,
       age: this.state.newAge,
@@ -60,6 +60,46 @@ class App extends Component {
       });
   };
 
+  //possibily need an if statement
+
+  editFriend = id => {
+    const editInfo = {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
+    };
+    axios 
+      .put(`${url}/${id}`)
+      .then(response => {
+        this.setState({
+          friendsList: response.data
+
+        });
+        
+      })
+      .catch( error => {
+        console.log("Error: ", error);
+      });
+
+  };
+  
+
+  deleteFriend = id => {    
+    console.log("deleteFriend:" , id)  
+    axios 
+      .delete(`${url}/${id}`)
+      .then(response => {
+        this.setState ({
+          friendsList: response.data
+        })})
+        .catch(error => {
+          console.error("Error: ", error);
+        });
+      
+    }
+  
+  
+
   render() {
     return (
       <div className="App">
@@ -67,8 +107,10 @@ class App extends Component {
         {/* {console.log(props.url)}; */}
         <Route
           path="/"
-          render={props => {
-            return <Friends {...props} friendsList={this.state.friendsList} />;
+          component={props => {
+            return <Friends {...props} friendsList={this.state.friendsList}
+            deleteFriend={this.deleteFriend}
+            editFriend={this.editFriend} />;
           }}
         />
         <Route

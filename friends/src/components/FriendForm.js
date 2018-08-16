@@ -33,7 +33,7 @@ const FriendForm = props => {
           placeholder="Email"
         />
       </label>
-      <button>Submit</button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
