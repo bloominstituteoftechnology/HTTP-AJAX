@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Friend from './Friend';
+import FriendForm from './FriendForm';
 
 class Friends extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             friends: [],
+            name:'',
+            age: '',
+            email: ''
         }
     }
     
@@ -31,6 +35,7 @@ class Friends extends Component {
         return ( 
             <div>
                 {this.state.friends.map(friend => <Friend friend= {friend} />)}
+                <FriendForm />
             </div>
          );
     }
