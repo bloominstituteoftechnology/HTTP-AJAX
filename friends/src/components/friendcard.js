@@ -40,16 +40,37 @@ class FriendCard extends React.Component {
             id: this.state.friend.id,
             name: this.state.name,
             age: this.state.age,
+            email: this.state.email
         };
+        axios.put(`http://localhost:5000/friends/${changedfriend.id}`, changedfriend)
+        .then(response => {
+            this.props.reSetState();
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
 
-
+    deleteFriendHandler = () => {
+        axios.delete(`http://localhost:5000/friends/${this.state.friend.id}`)
+        .then(response => {
+            this.props.reSetState();
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }
 
 
 
         render() {
-
+            return (
+                <div>
+                    
+            )
         }
-    }
+        
+    
 
 
 
