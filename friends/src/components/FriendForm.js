@@ -1,48 +1,35 @@
-import React from 'react';
+import React from "react";
 
-
-
-class NewFriends extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            name: '',
-            age: '',
-            email:'',
-        }
-    }
-
-
-    // updateInput = event => {
-    //     const { value } = event.target;
-    //     this.setState({name.value});
-    // }
-        
-
-        
-
-    handleChangeName = event => {
-        this.setState({name: event.target.value })
-    }
-    handleChangeAge = event => {
-        this.setState({age: event.target.value })
-    }
-    handleChangeEmail = event => {
-        this.setState({email: event.target.value })
-    }
-
-
-    render() {
-        return (
-            <form action="">
-                <input onChange={this.handleChangeName} value={this.state.name} type="text"/>
-                <input onChange={this.handleChangeAge} value={this.state.age}type="text"/>
-                <input onChange={this.handleChangeEmail} value={this.state.email} type="text"/>
-                <button>Submit</button>
-            </form>
-        )
-    }
-    
-}
+const NewFriends = props => {
+  return (
+    <form action="">
+      <label className="name">
+          Name:
+        <input
+          onChange={props.handleChangeName}
+          value={props.name}
+          type="text"
+        />
+      </label>
+      <label className="age">
+          Age:
+        <input
+          onChange={props.handleChangeName}
+          value={props.age}
+          type="number"
+        />
+      </label>
+      <label className="email">
+          Email:
+        <input
+          onChange={props.handleChangeName}
+          value={props.email}
+          type="email"
+        />
+      </label>
+      <button>Submit</button>
+    </form>
+  );
+};
 
 export default NewFriends;

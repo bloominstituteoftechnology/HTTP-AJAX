@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
-import Friends from "./components/friends";
-import NewFriends from './components/newFriends';
+import Friends from "./components/Friends";
+import NewFriends from "./components/FriendForm";
 import { Route } from "react-router-dom";
 import axios from "axios";
 
@@ -14,9 +14,12 @@ class App extends Component {
     this.state = {
       friendsList: [],
       url: url,
+      name: '',
+      age: '',
+      email:'',
     };
   }
-  
+
   componentDidMount() {
     // console.log("testing axios")
     axios.get(this.state.url).then(response => {
@@ -29,27 +32,33 @@ class App extends Component {
     });
   }
 
-  
+  handleChangeName = event => {
+    this.setState({ name: event.target.value });
+  };
+  handleChangeAge = event => {
+    this.setState({ age: event.target.value });
+  };
+  handleChangeEmail = event => {
+    this.setState({ email: event.target.value });
+  };
 
   render() {
-
     return (
       <div className="App">
         component with list of friends will be displayed here
         {/* {console.log(props.url)}; */}
-        
         <Route
           path="/"
           render={props => {
             return <Friends {...props} friendsList={this.state.friendsList} />;
           }}
         />
-        <Route 
+        <Route
           path="/"
           render={props => {
-            return <NewFriends {...props} />
+            return <NewFriends {...props} />;
           }}
-          />
+        />
         {/* <Friends friends={this.state.friendsList}/>  */}
       </div>
     );
