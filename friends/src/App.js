@@ -35,7 +35,10 @@ const addAFriendForm = props => {
   return (
     <form>
       <p>Hi Friendy!</p>
-      <input type="text" />
+      <input name="Name" onChange={props.enterFriend} value={props.value.Name} placeholder="Name"/>
+      <input name="Age" onChange={props.enterFriend} value={props.value.Age} placeholder="Age"/>
+      <input name="Email" onChange={props.enterFriend} value={props.value.Email} placeholder="Email"/>
+
     </form>
   );
 };
@@ -73,6 +76,7 @@ class App extends Component {
           <h1 className="App-title">Hello Friends</h1>
         </header>
         <Friends friends={this.state.friends} />
+        <addAFriendForm enterFriend={this.enterFriend} />
       </div>
     );
   }
