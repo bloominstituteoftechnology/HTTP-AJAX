@@ -10,7 +10,7 @@ const Friends = props => {
     return (
       
       <div className="eachFriend" >
-      <h1 id={props.data.id} deleter={props.deleter}>x</h1>
+      <button id={props.data.id} deleter={props.deleter}>x</button>
         <h1>{props.data.name}</h1>
         <h3>{props.data.age}</h3>
         <p>{props.data.email}</p>
