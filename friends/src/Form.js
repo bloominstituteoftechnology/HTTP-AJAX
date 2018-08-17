@@ -24,7 +24,7 @@ const Form = props => {
         value={props.email}
         type="email"
       />
-      <button onClick={() => props.add.addNewFriend()}>Add</button>
+      <button onClick={() => props.addNewFriend}>Add</button>
     </form>
   );
 };

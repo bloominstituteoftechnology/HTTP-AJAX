@@ -4,6 +4,7 @@ import axios from "axios";
 import Friends from "./Friends";
 import { Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "./Form";
 
 const url = "http://localhost:5000/friends";
 
@@ -47,7 +48,10 @@ class App extends Component {
       .post("http://localhost:5000/friends", newFriendObj)
       .then(response => {
         this.setState({
-          friendsList: response.data
+          friendsList: response.data,
+          name: "",
+          age: "",
+          email: "",
         });
       })
       .catch(err => console.log("Error: NOT FOUND"));
@@ -94,7 +98,8 @@ class App extends Component {
             />
           )}
         />
-        <form onSubmit={this.addNewFriend}>
+        <Form addNewFriend={this.addNewFriend} handleChange={this.handleChange} />
+        {/* <form onSubmit={this.addNewFriend}>
           <input
             onChange={this.handleChange}
             name="name"
@@ -116,8 +121,8 @@ class App extends Component {
             value={this.state.email}
             type="email"
           />
-        </form>
-        <button onClick={this.addNewFriend}>Add</button>
+        </form> */}
+        {/* <button onClick={this.addNewFriend}>Add</button> */}
       </div>
     );
   }
