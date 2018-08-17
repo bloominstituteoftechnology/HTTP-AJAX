@@ -6,6 +6,7 @@ const Friends = props => {
       <div className="eachFriend" id={props.data.id}>
         <h1>{props.data.name}</h1>
         <h3>{props.data.age}</h3>
+        <p>{props.data.email}</p>
       </div>
     )
   }

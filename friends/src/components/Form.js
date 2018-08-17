@@ -1,51 +1,48 @@
 import React from 'react';
 import axios from 'axios';
-import $ from '../../../node_modules/package-json/index';
+
 
 export default class Form extends React.Component {
-
-    //   constructor(){
-    //     super()
-    //     // this.state ={
-    //     //     friends: []
-    //     // };
+      constructor(){
+        super()
+        this.state = {
+            friends: [],
+            name: null,
+            age: null,
+            email: null
+        };
     
-    // }
-
-    shouldComponentUpdate(){
-        return false;
     }
+
+
+        handleSubmit = event => {
+            // event.preventDefault();
     
+            const user = {
+                name: this.state.name,
+                age: this.state.age,
+                email: this.state.email,
+            }
+    
+        
+        
+            axios
+            .post('http://localhost:5000/friends', user)
+            .then(res => { console.log(res.data)
+                this.setState({
+                    friends: res.data
+                });
+            });
+        };
+
+
     handleChange = event => {
-        this.setState({ friends: event.target.value});
-        console.log(event.target.value)
-    }   
-
-
-    refreshPage = event => {
-       
-        window.location.reload();
-    } 
-
-
-    handleSubmit = event => {
-        event.preventDefault();
-
-        const user = {
-            name: this.state.name
-        }
-
-    
-    
-        axios.post('http://localhost:5000/friends', {user})
-        .then(res => {
-            console.log(res.data);
+        this.setState({ 
+            [event.target.name]: event.target.value
+            
         });
-    };
-    
-    
-
-    
+        console.log(event.target.value)
+    } 
 
 
 
@@ -53,9 +50,9 @@ export default class Form extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
               <input type="text" name="name" onChange={this.handleChange} placeholder="Enter Name" ></input>
-              {/* <input type="number" placeholder="Enter Age"></input> */}
-              
-              <button type="submit" onClick={this.refreshPage}>.push()</button>
+              <input type="number" name="age" onChange={this.handleChange} placeholder="Enter Age" ></input>
+              <input type="email" name="email" onChange={this.handleChange} placeholder="Enter Email" ></input>
+              <button type="submit">.push()</button>
             </form>
         )
     }

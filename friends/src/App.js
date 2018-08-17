@@ -11,7 +11,9 @@ class App extends Component {
     super()
     this.state = {
       friends: [],
-      name: ''
+      name: '',
+      age: 0,
+      email: ''
     };
   }
 
