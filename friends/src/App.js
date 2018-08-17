@@ -4,7 +4,6 @@ import axios from "axios";
 import Friends from "./Friends";
 import { Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Form from "./Form";
 
 const url = "http://localhost:5000/friends";
 
@@ -17,7 +16,7 @@ class App extends Component {
       name: "",
       age: null,
       email: "",
-      editId: null,
+      editId: null
     };
   }
 
@@ -32,52 +31,54 @@ class App extends Component {
       });
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
   addNewFriend = () => {
     const newFriendObj = {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
-    }
-    axios.post('http://localhost:5000/friends', newFriendObj)
-    .then(response => {
+    };
+    axios
+      .post("http://localhost:5000/friends", newFriendObj)
+      .then(response => {
         this.setState({
-          friendsList: response.data,
-        })
+          friendsList: response.data
+        });
       })
-    .catch((err) => console.log("Error: NOT FOUND"))
-  }
+      .catch(err => console.log("Error: NOT FOUND"));
+  };
 
-  editFriend = (id) => {
+  editFriend = id => {
     const updatedFriendObj = {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
-    }
-    axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
-    .then(response => {
-      this.setState({
-        friendsList: response.data,
-      })
-    })
-  .catch((err) => console.log("Error: NOT FOUND"))
-  }
-
-  deleteFriend = (id) => {
+    };
     axios
-    .delete(`http://localhost:5000/friends/${id}`)
-    .then(response => {
-      this.setState({
-        friendsList: response.data,
+      .put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+      .then(response => {
+        this.setState({
+          friendsList: response.data
+        });
       })
-    })
-  .catch((err) => console.log("Error: NOT FOUND"))
-  }
+      .catch(err => console.log("Error: NOT FOUND"));
+  };
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friendsList: response.data
+        });
+      })
+      .catch(err => console.log("Error: NOT FOUND"));
+  };
 
   render() {
     return (
@@ -85,21 +86,38 @@ class App extends Component {
         <Route
           path="/"
           render={props => (
-            <Friends edit={this.editFriend} delete={this.deleteFriend} friendsList={this.state.friendsList} {...props} />
+            <Friends
+              edit={this.editFriend}
+              delete={this.deleteFriend}
+              friendsList={this.state.friendsList}
+              {...props}
+            />
           )}
         />
-        <Route
-        path="/"
-        render={props => {
-          return <Form 
-          {...props}
-          add={this.addNewFriend}
-          name={this.state.name}
-          age={this.state.age}
-          email={this.state.email}
-          />;
-        }} 
-        />   
+        <form onSubmit={this.addNewFriend}>
+          <input
+            onChange={this.handleChange}
+            name="name"
+            placeholder="Name"
+            value={this.state.name}
+            type="text"
+          />
+          <input
+            onChange={this.handleChange}
+            name="age"
+            placeholder="Age"
+            value={this.state.age}
+            type="number"
+          />
+          <input
+            onChange={this.handleChange}
+            name="email"
+            placeholder="Email"
+            value={this.state.email}
+            type="email"
+          />
+        </form>
+        <button onClick={this.addNewFriend}>Add</button>
       </div>
     );
   }
