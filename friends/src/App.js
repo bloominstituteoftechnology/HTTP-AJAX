@@ -28,6 +28,19 @@ componentDidMount(){
       });
 }
   
+deleter = (id) => {
+        
+  console.log("outside deleter id", id)
+
+  axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => { console.log("inside deleter id", id)
+          this.setState({ FriendsList: response.data });
+      })
+      .catch(event => console.log("caught deleter id", id))
+}
+
+
 
   render() {
     return (
@@ -36,7 +49,7 @@ componentDidMount(){
         <br></br>
         <Form />
         <br></br>
-        <div>{this.state.friends.map(each => <Friends data={each} />)}</div>
+        <div>{this.state.friends.map(each => <Friends data={each} key={each.id} deleter={this.deleter} />)}</div>
         
       </div>
     );

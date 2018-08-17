@@ -1,9 +1,16 @@
 import React from 'react';
 
+
 const Friends = props => {
-    console.log(props)
+
+
+
+    console.log("Friends", props)
+    console.log('eachFriend log', props.deleter)
     return (
-      <div className="eachFriend" id={props.data.id}>
+      
+      <div className="eachFriend" >
+      <h1 id={props.data.id} deleter={props.deleter}>x</h1>
         <h1>{props.data.name}</h1>
         <h3>{props.data.age}</h3>
         <p>{props.data.email}</p>
