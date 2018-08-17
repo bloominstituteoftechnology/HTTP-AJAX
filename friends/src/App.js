@@ -16,7 +16,8 @@ class App extends Component {
       friends: [],
       name: " ",
       age: " ",
-      email: " "
+      email: " ",
+      loading: true
     };
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
       console.log(response);
       this.setState({
         friends: response.data
-        // loading: false
+      
       });
     });
   }
@@ -59,7 +60,8 @@ class App extends Component {
 
   delete = id => {
     axios
-      .delete(`${url} ${id} `)
+      .delete(`${url}/${id}`)
+      
 
       .then(response => {
         // console.log(user);

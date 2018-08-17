@@ -1,11 +1,11 @@
 import React from 'react';
-
+import './friends.css'
 const Friend = (props) => {
   return (
-    <div>
-      <div>{props.friend.name}</div>
-      <div>{props.friend.age}</div>
-      <div>{props.friend.email}</div>
+    <div class="container">
+      <div class="getList">Name: {props.friend.name} </div>
+      <div class="getList">Age: {props.friend.age}</div>
+      <div class="getList">Email: {props.friend.email}</div>
       <button onClick={() => props.delete(props.friend.id)}>Delete</button>
     </div>
   );
