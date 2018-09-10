@@ -43,22 +43,6 @@ class App extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-
-  //   handleNameChange = e => {
-  //   this.setState({ avenger: e.target.value });
-  // };
-
-  // handleSubmitAvenger = () => {
-  //   const avenger = { avenger: this.state.avenger };
-  //   axios
-  //     .post("http://localhost:5555/api/avengers", avenger)
-  //     .then(response => {
-  //       console.log("POST RESPONSE", response);
-  //       this.setState({ avengersData: response.data, avenger: "" });
-  //     })
-  //     .catch(error => console.log(error));
-  // };
-
   render() {
     return (
       <div className="App">
@@ -89,10 +73,6 @@ class App extends React.Component {
         />
         </form>
         <button onClick={this.handleSubmitFriend}>Submit friend</button>
-
-
-
-
         <FriendsList friends={this.state.friendsData} />
       </div>
     );

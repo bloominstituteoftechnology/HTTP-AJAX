@@ -11,8 +11,3 @@ const Friend = (props) => {
 }
 
 export default Friend;
-
-// age:30
-// email:"ben@lambdaschool.com"
-// id:1
-// name:"Ben"
