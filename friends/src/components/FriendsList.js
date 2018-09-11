@@ -24,7 +24,7 @@ const FriendsList = (props) => {
 		 {props.friends.map(f => (
 		 	<FriendDiv>
 			 	<Link to={`/${f.id}`}><p>View Profile here</p></Link>
-			 	<Friend key={f.id} f={f} handleData={props.handleData} path={props.match.path + `${f.id}`} />
+			 	<Friend key={f.id} f={f} handleData={props.handleData} />
 		 	</FriendDiv>
 	   ))}
 		</FlexDiv>
