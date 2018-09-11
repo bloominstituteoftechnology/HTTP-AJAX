@@ -3,6 +3,9 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import './reset.css';
 import styled from 'styled-components';
+import Friend from './components/Friend';
+import LinkedFriend from './components/LinkedFriend';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const Contain = styled.div`
   max-width: 680px;
@@ -84,34 +87,47 @@ class App extends React.Component {
   render() {
     return (
       <Contain>
-       <FriendsList friends={this.state.friendsData} handleData={this.handleData} />
-        <SubForm>
-        Name:
-         <input
-          type="text"
-          placehoder="friend name"
-          onChange={this.handleChange}
-          name="name"
-          value={this.state.name}
-        /><br />
-        Age:
-        <input
-          type="text"
-          placehoder="friend age"
-          onChange={this.handleChange}
-          name="age"
-          value={this.state.age}
-        /><br />
-        Email:
-        <input
-          type="text"
-          placehoder="friend email"
-          onChange={this.handleChange}
-          name="email"
-          value={this.state.email}
+        <Route
+          exact
+          path="/"
+          render={props => (
+          <div>
+            <FriendsList
+              {...props}
+              friends={this.state.friendsData}
+              handleData={this.handleData}
+            />
+            <SubForm>
+              Name:
+               <input
+                type="text"
+                placehoder="friend name"
+                onChange={this.handleChange}
+                name="name"
+                value={this.state.name}
+              /><br />
+              Age:
+              <input
+                type="text"
+                placehoder="friend age"
+                onChange={this.handleChange}
+                name="age"
+                value={this.state.age}
+              /><br />
+              Email:
+              <input
+                type="text"
+                placehoder="friend email"
+                onChange={this.handleChange}
+                name="email"
+                value={this.state.email}
+              />
+              </SubForm>
+            <SubmitBTN onClick={this.handleSubmitFriend}>Submit friend</SubmitBTN>
+          </div>
+          )}
         />
-        </SubForm>
-        <SubmitBTN onClick={this.handleSubmitFriend}>Submit friend</SubmitBTN>
+        <Route path="/:id" component={LinkedFriend} />
       </Contain>
     );
   }

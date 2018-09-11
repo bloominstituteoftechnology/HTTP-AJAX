@@ -68,6 +68,7 @@ class Friend extends React.Component {
 			editName: '',
 			editEmail: '',
 			editAge: '',
+			Friend: {},
 		};
 	}
 
