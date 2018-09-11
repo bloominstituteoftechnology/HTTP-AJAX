@@ -1,8 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import axios from "axios";
 import FriendsList from "./components/FriendsList";
+import './reset.css';
+import styled from 'styled-components';
+
+const Contain = styled.div`
+  max-width: 680px;
+  width: 100%;
+  margin: 15px auto;
+`;
+
+const SubForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: solid black 1px;
+  padding 1%;
+  font-size: 1.2rem;
+  background-color: lightgreen;
+  margin-left: 1%;
+  > input {
+    margin: 2.5px 0;
+  }
+`;
+
+const SubmitBTN = styled.button`
+  margin-left: 1%;
+  margin-top: 5px;
+  padding: 1%;
+  font-size: 1.2rem;
+  background-color: lightgrey;
+  border: solid black 1px;
+  border-radius: 4px;
+  &:hover {
+    color: lightgrey;
+    background-color: black;
+    border: solid lightgrey 1px;
+    cursor: pointer;
+  }
+`;
 
 
 class App extends React.Component {
@@ -15,6 +51,8 @@ class App extends React.Component {
       email: "",
     };
   }
+
+  handleData = data => this.setState({ friendsData: data });
 
   componentDidMount() {
     axios
@@ -45,8 +83,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <form>
+      <Contain>
+       <FriendsList friends={this.state.friendsData} handleData={this.handleData} />
+        <SubForm>
         Name:
          <input
           type="text"
@@ -71,10 +110,9 @@ class App extends React.Component {
           name="email"
           value={this.state.email}
         />
-        </form>
-        <button onClick={this.handleSubmitFriend}>Submit friend</button>
-        <FriendsList friends={this.state.friendsData} />
-      </div>
+        </SubForm>
+        <SubmitBTN onClick={this.handleSubmitFriend}>Submit friend</SubmitBTN>
+      </Contain>
     );
   }
 }
