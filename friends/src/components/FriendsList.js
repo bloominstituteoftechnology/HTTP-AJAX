@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendCard from './FriendCard';
+import AddFriendForm from './AddFriendForm';
 import styled from 'styled-components';
 
 class FriendsList extends Component {
@@ -29,6 +30,7 @@ class FriendsList extends Component {
         {this.state.friends.map((friend) => (
           <FriendCard friend={friend} key={friend.id} />
         ))}
+        <AddFriendForm />
       </List>
     );
   }
