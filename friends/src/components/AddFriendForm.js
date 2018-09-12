@@ -10,18 +10,21 @@ const AddFriendForm = (props) => {
         value={props.inputName}
         name="inputName"
         onChange={props.handleInput}
+        type="text"
       />
       <StyledInput
         placeholder="Age"
         value={props.inputAge}
         name="inputAge"
         onChange={props.handleInput}
+        type="number"
       />
       <StyledInput
         placeholder="email"
         value={props.inputEmail}
         name="inputEmail"
         onChange={props.handleInput}
+        type="email"
       />
       <StyledInput type="submit" />
     </StyledForm>
