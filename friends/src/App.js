@@ -31,14 +31,48 @@ class App extends Component {
       });
   }
 
+  updateCall() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      });
+  }
+
+  // setInterval(updateCall, 1000)
+  // setInterval(function(){
+  // axios
+  //   .get('http://localhost:5000/friends')
+  //   .then(response => {
+  //     this.setState(() => ({ friends: response.data }));
+  //   })
+  //   .catch(error => {
+  //     console.error('Server Error', error);
+  //   })}, 1000)
+
   postRequest = e => {
     e.preventDefault()
     let newItem = this.state.newFriend
     axios
-    .post(newItem)
+    .post('http://localhost:5000/friends', newItem)
     .then(reponse=>{
-      const response = response.response
-      console.log(response)
+      axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+          this.setState(() => ({ friends: response.data }));
+        })
+        .catch(error => {
+          console.error('Server Error', error);
+        });
+      this.setState({newFriend: {
+        id: '',
+        name: '',
+        age: '',
+        email: '',
+      }})
     })
     .catch(error =>{console.log('this error holy cow', error)})
   }
