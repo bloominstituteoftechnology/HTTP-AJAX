@@ -17,8 +17,8 @@ const Friend = (props) => {
                 <CardBody>
                     <CardTitle>{ props.friend.name }</CardTitle>
                     <CardText>
-                        <p>{ props.friend.age } years old</p>
-                        <p>Email: { props.friend.email }</p>
+                        { props.friend.age } years old<br />
+                        Email: { props.friend.email }
                     </CardText>
                 </CardBody>
                 <CardFooter>Favorite color: { props.friend.color }</CardFooter>

@@ -23,7 +23,7 @@ const PostFriend = (props) => {
                     <Button color = 'info'>View Friends List</Button>
                 </Link>
             </div>
-            
+
             <Form onSubmit = { props.handlePost }>
                 <Input name = 'friendName' type = 'text' placeholder = 'Enter name...' />
                 <Input name = 'friendAge' type = 'number' placeholder = 'Enter age...' />
@@ -37,7 +37,30 @@ const PostFriend = (props) => {
 }
 
 PostFriend.propTypes = {
-    handleSubmit: PropTypes.func
+    handleSubmit: PropTypes.func,
+    history: PropTypes.shape({
+        length: PropTypes.number,
+        action: PropTypes.string,
+        location: PropTypes.shape({
+            pathname: PropTypes.string,
+            search: PropTypes.string,
+            hash: PropTypes.string,
+            key: PropTypes.string,
+        }),
+        createHref: PropTypes.func,
+        push: PropTypes.func
+    }),
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+        search: PropTypes.string,
+        hash: PropTypes.string,
+        key: PropTypes.string,
+    }),
+    match: PropTypes.shape({
+        path: PropTypes.string,
+        url: PropTypes.string,
+        isExact: PropTypes.bool
+    })
 }
 
 export default PostFriend;

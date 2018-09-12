@@ -68,7 +68,7 @@ class App extends Component {
 			.delete(`http://localhost:5000/friends/${id}`)
 			.then(res => this.fetchData(res.data))
 			.catch(err => console.log(err));
-	}
+	} // handleDelete()
 
 	componentDidMount() {
 		axios
