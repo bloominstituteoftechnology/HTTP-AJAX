@@ -11,16 +11,24 @@ constructor(props) {
         };
       }
     
-      componentDidMount() {
-        axios
-          .get('http://localhost:5000/friends')
-          .then(response => {
-            this.setState(() => ({ friends: response.data }));
-          })
-          .catch(error => {
-            console.error('Server Error', error);
-          });
+componentDidMount() {
+    axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+        this.setState(() => ({ friends: response.data }));
+        })
+        .catch(error => {
+        console.error('Server Error', error);
+        });
       }
+
+// NameAdd = event => {
+//     event.preventDefault();
+//     const friends = this.state.friends.slice();
+//     friends.push.({id: Date.now() ,name: this.state.name, age: this.state.age, email: this.state.email});
+//     this.setState({friend:''});
+
+// }
 
 
 
