@@ -18,11 +18,20 @@ class App extends Component {
         const friends = response.data;
         this.setState({ friends});
       })
+      .catch(err => console.log(err))
   }
 
   addFriend = (newFriend) => {
     const friends = [...this.state.friends, newFriend]
     this.setState({ friends })
+    this.axiosPost(newFriend)
+  }
+
+  axiosPost = (newFriend) => {
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(console.log('Post request successful!'))
+      .catch(err => console.log(err))
   }
 
   render() {
