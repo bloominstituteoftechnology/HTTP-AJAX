@@ -8,9 +8,6 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: ''
     };
   }
 
