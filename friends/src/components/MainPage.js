@@ -16,10 +16,10 @@ const MainPage = (props) => {
             <h1>Welcome to your Friends App!</h1>
             <h3>You currently have { props.friends.length } friends.</h3>
             <Link to = '/postfriend'>
-                <Button color="primary">Add New Friend</Button>
+                <Button color = 'primary'>Add New Friend</Button>
             </Link>
             <Link to = '/friendslist'>
-                <Button color="info">View Friends List</Button>
+                <Button color = 'info'>View Friends List</Button>
             </Link>
         </div>
     );

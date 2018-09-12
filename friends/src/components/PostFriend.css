@@ -1,0 +1,12 @@
+.post-friend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.post-friend * {
+    margin: 10px;
+}
