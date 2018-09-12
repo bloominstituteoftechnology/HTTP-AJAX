@@ -17,7 +17,10 @@ class App extends Component {
           .get(`http://localhost:5000/friends`)
           .then (response => {
             // console.log(response.data);
-            this.setState({ friends: response.data })
+            this.setState({ friends: response.data });
+          })
+           .catch(err => {
+             console.log(err);
           });
   }
   render() {
