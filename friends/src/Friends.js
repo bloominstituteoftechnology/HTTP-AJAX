@@ -7,7 +7,7 @@ export default class Friends extends React.Component {
     super();
     this.state = {
       name: '',
-      age: null,
+      age: '',
       email: '',
       id: Math.floor(Math.random() * 1000)
     }
@@ -22,7 +22,7 @@ export default class Friends extends React.Component {
   newFriendPost = () => {
     axios.post('http://localhost:5000/friends', {
         name: this.state.name,
-        age: this.state.age,
+        age: parseInt(this.state.age, 10),
         email: this.state.email,
         id: this.state.id
       }
