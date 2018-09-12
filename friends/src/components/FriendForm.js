@@ -2,7 +2,6 @@ import React from 'react';
 
 function FriendForm(props) {
   return (
-    <div>
     <form>
     Name
       <input
@@ -12,19 +11,19 @@ function FriendForm(props) {
         />
         Age
       <input
-        type="text"
+        type="number"
         name="age"
         onChange={props.handleChange}
         />
         E-mail address
       <input
-        type="text"
+        type="email"
         name="email"
         onChange={props.handleChange}/>
       <button onClick={props.postNewFriend}>Save Friend</button>
       <button onClick={()=>window.reload()}>Clear All</button>
     </form>
-    </div>
+
 )}
 
 export default FriendForm;

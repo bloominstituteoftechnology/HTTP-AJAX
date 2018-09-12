@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import FriendsList from './components/FriendsList';
 import FriendForm from './components/FriendForm';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -18,7 +18,6 @@ class App extends Component {
       .get('http://localhost:5000/friends')
       .then((response) => {
         console.log('response.data', response.data);
-        console.log('response.data.message', response.data.message);
         this.setState({
           friends: response.data
         });
@@ -29,7 +28,6 @@ class App extends Component {
   }
 
   postNewFriend = (e) => {
-    e.preventDefault();
     axios
     .post("http://localhost:5000/friends", {
       name: this.state.name,
@@ -37,10 +35,10 @@ class App extends Component {
       email: this.state.email
 
     })
-    .then((response) => console.log(response))
+    .then((response) => this.setState({ friends: response.data }))
     .catch(err => console.log(err))
-    this.forceUpdate();
-    }
+
+  }
 
 
   handleChange = (e) => {
@@ -51,9 +49,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <Route path="/" render={() => <FriendsList />} />
-        <FriendForm handleChange={this.handleChange} postNewFriend={this.postNewFriend}/>
+      {this.state.friends.map}
+        <Link to="/">Home</Link>
+        <Link to="/addFriend">Add a new friend</Link>
+        <Route exact path="/" render={(props) => <FriendsList {...props} friends={this.state.friends}/>} />
+          <Route exact path="/addFriend" render={(props) => <FriendForm {...props} handleChange={this.handleChange} postNewFriend={this.postNewFriend}/>} />
       </div>
     );
   }
