@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const AddFriendForm = (props) => {
   return (
     <StyledForm>
-      <input placeholder="First Name" />
-      <input placeholder="Age" />
-      <input placeholder="email" />
+      <NameInput placeholder="First Name" />
+      <StyledInput placeholder="Age" />
+      <StyledInput placeholder="email" />
     </StyledForm>
   );
 };
@@ -19,4 +19,15 @@ const StyledForm = styled.form`
   align-items: center;
   margin: 30px 1%;
   width: 22%;
+`;
+
+const StyledInput = styled.input`
+  margin-bottom: 9px;
+  width: 50%;
+  padding-left: 2%;
+  font-size: 0.8rem;
+`;
+
+const NameInput = styled(StyledInput)`
+  font-size: 1.6rem;
 `;
