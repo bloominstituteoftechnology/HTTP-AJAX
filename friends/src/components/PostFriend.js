@@ -14,6 +14,7 @@ const PostFriend = (props) => {
                 <input name = 'friendName' type = 'text' placeholder = 'Enter name...' />
                 <input name = 'friendAge' type = 'number' placeholder = 'Enter age...' />
                 <input name = 'friendEmail' type = 'text' placeholder = 'Enter email...' />
+                <input name = 'friendColor' type = 'text' placeholder = 'Enter favorite color...' />
                 <input type = 'submit' value = 'submit' />
             </form>
         </Fragment>

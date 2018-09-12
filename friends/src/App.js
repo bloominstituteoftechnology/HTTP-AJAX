@@ -35,7 +35,8 @@ class App extends Component {
 		const newFriend = {
 			name: e.target.friendName.value,
 			age: Number(e.target.friendAge.value),
-			email: e.target.friendEmail.value
+			email: e.target.friendEmail.value,
+			color: e.target.friendColor.value
 		};
 
 		axios
@@ -50,7 +51,8 @@ class App extends Component {
 		const updatedFriend = {
 			name: e.target.friendName.value,
 			age: Number(e.target.friendAge.value),
-			email: e.target.friendEmail.value
+			email: e.target.friendEmail.value,
+			color: e.target.friendColor.value
 		};
 
 		axios

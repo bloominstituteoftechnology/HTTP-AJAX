@@ -46,9 +46,10 @@ class ViewFriend extends React.Component {
 
                 <form onSubmit = { this.props.handlePut(this.state.friend.id) }>
                     UPDATE FRIEND
-                    <input name = 'friendName' type = 'text' placeholder = 'Enter new name...' />
-                    <input name = 'friendAge' type = 'number' placeholder = 'Enter new age...' />
-                    <input name = 'friendEmail' type = 'text' placeholder = 'Enter new email...' />
+                    <input name = 'friendName' type = 'text' placeholder = 'Enter updated name...' />
+                    <input name = 'friendAge' type = 'number' placeholder = 'Enter updated age...' />
+                    <input name = 'friendEmail' type = 'text' placeholder = 'Enter udpated email...' />
+                    <input name = 'friendColor' type = 'text' placeholder = 'Enter updated fav color...' />
                     <input type = 'submit' value = 'submit' />
                 </form>
 
