@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import PropTypes from 'prop-types';
 
 import Friend from './Friend'
 
@@ -15,6 +16,15 @@ function Display(props) {
     </div>
     
   )
+}
+
+Display.propTypes = {
+  friends: PropTypes.arrayOf(PropTypes.shape({
+    age: PropTypes.number,
+    email: PropTypes.string,
+    id: PropTypes.number,
+    name: PropTypes.string
+  }))
 }
 
 export default Display;

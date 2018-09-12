@@ -18,7 +18,9 @@ class App extends Component {
     axios
     .get('http://localhost:5000/friends')
     .then(result => {
-      this.setState({ friends: result.data })
+      setTimeout(() => {
+        this.setState({ friends: result.data })
+      }, 800)
     })
     .catch(err => console.log(err));
   }
