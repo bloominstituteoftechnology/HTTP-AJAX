@@ -16,7 +16,7 @@ class App extends Component {
         .get('http://localhost:5000/friends')
         .then(response => {
           console.log(response)
-          this.setState({ friends: response.data.data});
+          this.setState({ friends: response.data});
         })
         .catch(err => console.log(err));
     }
@@ -24,7 +24,9 @@ class App extends Component {
   render() {
     return <div>
         <h1>List of Friends</h1>
-          <FriendsList/>
+          <FriendsList
+            friends={this.state.friends} 
+          />
         )}
       </div>;
   }
