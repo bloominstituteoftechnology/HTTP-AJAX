@@ -1,28 +1,25 @@
-.App {
+.app {
   text-align: center;
+  margin: 0 auto;
+  line-height: 30px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.friendContainer {
+  background: lightseagreen;
+  width: 30%;
+  padding: 10px 2%;
+  margin: 20px auto;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.friendContainer h2 {
   color: white;
+  letter-spacing: 1px;
+  font-size: 2rem;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.friendList {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }

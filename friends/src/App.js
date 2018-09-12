@@ -22,7 +22,7 @@ class App extends Component {
     }
 
   render() {
-    return <div>
+    return <div className="app">
         <h1>List of Friends</h1>
           <FriendsList
             friends={this.state.friends} 
