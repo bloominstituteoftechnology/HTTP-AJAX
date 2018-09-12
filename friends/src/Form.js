@@ -5,62 +5,49 @@ class Form extends React.Component {
     constructor() {
         super()
         this.state = {
-            "name": '',
+            "firstName": '',
             "age": '',
             "email": ''
         }
     }
 
     handleChange = e => {
-        e.preventDefault();
         this.setState({
             [e.target.name]: e.target.value
-        })
+        }) 
     }
 
     handleSubmit = () => {
+        if (this.state.firstName === '' || this.state.age === '' || this.state.email === '') {
+            return prompt("Please fill in all fields");
+        }
         axios({
             method: 'post',
             url: 'http://localhost:5000/friends',
             data: {
-                "name": `${this.state.inputText}`,
+                "name": `${this.state.firstName}`,
                 "age": this.state.age,
                 "email": `${this.state.email}`
             }
         })
         this.setState({
-            inputText: '',
+            firstName: '',
             age: '',
             email: ''
         })
     }
 
-    //   componentDidUpdate() {
-    //     axios
-    //       .get('http://localhost:5000/friends')
-    //       .then(response => {
-    //         this.setState({friends: response.data})
-    //       })
-    //       .catch(err => console.log(err))
-    //   }
-
-
     render() {
 
         return (
             <form>
-                <input name="name" placeholder="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+                <input name="firstName" placeholder="name" value={this.state.firstName} onChange={e => this.handleChange(e)} />
                 <input name="age" placeholder="age" value={this.state.age} onChange={e => this.handleChange(e)} />
                 <input name="email" placeholder="email" value={this.state.email} onChange={e => this.handleChange(e)} />
                 <button type="submit" onClick={this.handleSubmit}>Add Friend</button>
             </form>
         )
     }
-
-
 }
-
-
-
 
 export default Form;
