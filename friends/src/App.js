@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Friend from './Friend'
 
 class App extends Component {
   constructor() {
@@ -26,11 +27,7 @@ class App extends Component {
         {
           friends.map(friend => {
             return (
-              <div key={friend.id}>
-                <h1>{friend.name}</h1>
-                <h3>{friend.email}</h3>
-                <p>{friend.name} is {friend.age} years old.</p>
-              </div>
+              <Friend key={friend.id} friend={friend} />
             )
           })
         }
