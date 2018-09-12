@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Friend from './Friend';
 import Form from './Form';
+import { runInThisContext } from 'vm';
 
 class App extends Component {
   constructor() {
@@ -24,6 +25,17 @@ class App extends Component {
     })
     .catch(err => console.log(err));
   }
+
+  updateFriends = (para1) => {
+    axios.post('http://localhost:5000/friends', para1)
+    .then(response => {
+        console.log(response);
+        this.setState({
+          friends: response.data
+        })
+    })
+      .catch(err => console.log(err));
+}
   
   render() {
     return (
@@ -33,7 +45,7 @@ class App extends Component {
           {this.state.friends.map(friend => <Friend friend={friend} key={friend.id} />)}
         </ul>
         <h2>New Friend Form</h2>
-        <Form />
+        <Form friend={this.state.friend} updateFriends={this.updateFriends} />
       </div>
     );
   }
