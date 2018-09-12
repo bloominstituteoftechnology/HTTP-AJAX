@@ -1,18 +1,25 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import Friend from '../Friend';
-import '../../App.css';
+import Friend from "../Friend";
+import "../../App.css";
 
 const FriendsList = props => {
+  // make a list of friends
+  const friendsList = props.friends.slice().reverse();
+
+  // return a map of the each friend in friendsList
   return (
-    <div>
-      {props.friends.map(friend => {
+    <div className="friends">
+      {friendsList.map(friend => {
         return (
-          <Friend key={friend.id} friend={friend} />
-        )
+          <Link to={`/friends/${friend.id}`}>
+            <div className="friend-card">{friend.name}</div>
+          </Link>
+        );
       })}
     </div>
   );
-}
+};
 
 export default FriendsList;
