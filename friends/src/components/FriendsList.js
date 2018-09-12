@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendCard from './FriendCard';
+import styled from 'styled-components';
 
 class FriendsList extends Component {
   constructor(props) {
@@ -24,13 +25,18 @@ class FriendsList extends Component {
   render() {
     console.log(this.state.friends);
     return (
-      <div>
+      <List>
         {this.state.friends.map((friend) => (
           <FriendCard friend={friend} key={friend.id} />
         ))}
-      </div>
+      </List>
     );
   }
 }
 
 export default FriendsList;
+
+const List = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
