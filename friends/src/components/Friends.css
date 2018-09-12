@@ -1,0 +1,41 @@
+.friend-card-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 66%;
+    margin: 0 auto;
+}
+
+.friend-card {
+    padding: 20px;
+    background: slateblue;
+    margin: 20px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    width: 40%;
+}
+
+.new-friend-form {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 10px;
+    background: slategray;
+    padding: 10px;
+    max-width: 66%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.new-friend-form input {
+    width: 50%;
+    margin: 5px auto;
+    padding: 5px;
+}
+
+.new-friend-form button {
+    padding: 10px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
