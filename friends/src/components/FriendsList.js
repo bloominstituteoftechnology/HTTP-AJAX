@@ -10,12 +10,19 @@ import PropTypes from 'prop-types';
 
 // Styles
 import './FriendsList.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
 
 const FriendsList = (props) => {
     return(
         <div className = 'friends-list'>
-            <Link to = '/postfriend'>Add new friend</Link>
-            <Link to = '/'>Go home</Link>
+            <h1>Friends List</h1>
+            <Link to = '/postfriend'>
+                <Button color = 'primary'>Add New Friend</Button>
+            </Link>
+            <Link to = '/'>
+                <Button color = 'success'>Go Home</Button>
+            </Link>
 
             { props.friends.map(friend => <Link key = { friend.id } to = { `/friendslist/${ friend.id }` }><Friend friend = { friend } /></Link>) }
         </div>

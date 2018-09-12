@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // Dependencies
 import PropTypes from 'prop-types';
 
-// Styling
+// Styles
 import './MainPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';

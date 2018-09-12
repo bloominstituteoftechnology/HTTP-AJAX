@@ -6,14 +6,23 @@ import PropTypes from 'prop-types';
 
 // Styles
 import './Friend.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
 
 const Friend = (props) => {
     return(
         <div className = 'friend'>
-            <p>Name: { props.friend.name }</p>
-            <p>Age: { props.friend.age }</p>
-            <p>Email: { props.friend.email }</p>
-            <p>Favorite color: { props.friend.color }</p>
+            <Card>
+                <CardHeader>Friend #{ props.friend.id }</CardHeader>
+                <CardBody>
+                    <CardTitle>{ props.friend.name }</CardTitle>
+                    <CardText>
+                        <p>{ props.friend.age } years old</p>
+                        <p>Email: { props.friend.email }</p>
+                    </CardText>
+                </CardBody>
+                <CardFooter>Favorite color: { props.friend.color }</CardFooter>
+            </Card>
         </div>
     );
 }

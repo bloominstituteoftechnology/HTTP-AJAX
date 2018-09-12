@@ -4,4 +4,13 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
+    margin-top: 40px;
+}
+
+.friends-list * {
+    margin: 10px;
+}
+
+.friends-list a {
+    text-decoration: none;
 }
