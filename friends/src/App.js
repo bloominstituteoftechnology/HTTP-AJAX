@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
+import FriendsList from './components/friendslist';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: []
+    };
+  }
+
+  componentDidMount() {
+    Axios
+      .get('http://localhost:5000/friends')
+      .then( (response) => this.setFriends(response.data) )
+      .catch( (err) => console.error(err) );
+  }
+
+  setFriends(friendArr) {
+    this.setState({friends: friendArr});
+  }
+
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
+        <FriendsList friends={this.state.friends} />
       </div>
     );
   }
