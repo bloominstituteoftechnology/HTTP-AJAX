@@ -1,10 +1,13 @@
 // React
 import React, { Fragment } from 'react';
 
-const FriendsList = () => {
+// Components
+import Friend from './Friend';
+
+const FriendsList = (props) => {
     return(
         <Fragment>
-            <p>FriendsList component</p>
+            { props.friends.map(friend => <Friend key = { friend.id } friend = { friend } />) }
         </Fragment>
     );
 }
