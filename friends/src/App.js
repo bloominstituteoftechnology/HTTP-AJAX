@@ -49,11 +49,12 @@ class App extends Component {
   render() {
     return <div className="app">
         <h1>List of Friends</h1>
-        <form onSubmit={this.addNewFriend}>
-          <input onChange= {this.handleChange} name= "name" value={this.state.name} placeholder= "name" type= "text" />
-          <input onChange= {this.handleChange} name= "age" value={this.state.age} placeholder= "age" type= "number" />
-          <input onChange= {this.handleChange} name= "email" value={this.state.email} placeholder= "email" type= "email" />
-          <button onClick= {this.addNewFriend} >Add Friend</button>
+        <form className="form" onSubmit={this.addNewFriend}>
+          <input onChange= {this.handleChange} name= "name" value={this.state.name} placeholder= "Name" type= "text" />
+          <input onChange= {this.handleChange} name= "age" value={this.state.age} placeholder= "Age" type= "number" />
+          <input onChange= {this.handleChange} name= "email" value={this.state.email} placeholder= "Email" type= "email" />
+          <br/>
+          <button className="button" onClick= {this.addNewFriend} >Add Friend</button>
         </form>
           <FriendsList
             friends={this.state.friends} 

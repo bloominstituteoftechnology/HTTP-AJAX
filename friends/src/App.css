@@ -5,17 +5,22 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-.friendContainer {
-  background: lightseagreen;
-  width: 30%;
-  padding: 10px 2%;
-  margin: 20px auto;
+.app .form input{
+  margin: 0 1%;
+  padding: 5px;
+  font-size: .8rem;
 }
 
-.friendContainer h2 {
+.app .form button{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  height: 30px;
+  width: 150px;
+  margin-top: 15px;
+  font-size: .9rem;
+  background:#222;
   color: white;
   letter-spacing: 1px;
-  font-size: 2rem;
 }
 
 .friendList {
@@ -23,3 +28,18 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.friendList .friendContainer {
+  background: lightseagreen;
+  width: 30%;
+  padding: 10px 2%;
+  margin: 20px auto;
+}
+
+.friendList .friendContainer h2 {
+  color: white;
+  letter-spacing: 1px;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
