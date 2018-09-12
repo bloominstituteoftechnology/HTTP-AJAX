@@ -35,11 +35,11 @@ export default class Friends extends React.Component {
   
     return (
       <div>
-      <form onSubmit={this.newFriendPost}>
+      <form>
         <input onChange={this.onChangeHandler} name="name" type="text" placeholder="Name"/>
         <input onChange={this.onChangeHandler} name="age" type="text" placeholder="Age" />
         <input onChange={this.onChangeHandler} name="email" type="text" placeholder="Email" />
-        <button onClick={this.newFriendPost}>Submit</button>
+        <button type="submit" onClick={this.newFriendPost}>Submit</button>
       </form>
         {
           this.props.friends.map(friend => {
