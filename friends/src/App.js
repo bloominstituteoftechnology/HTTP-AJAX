@@ -3,6 +3,9 @@ import axios from 'axios';
 import CardList from './components/Cards/CardList';
 import './App.css';
 import Styled from 'styled-components';
+import CardForm from './components/Cards/CardForm';
+import { Route, Link } from 'react-router-dom';
+import Navigation from './components/Navigation/Navigation';
 
 const Container = Styled.div`
     max-width: 1024px;
@@ -36,7 +39,10 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <CardList data={this.state.friends} />
+        <Navigation />
+        <Route exact path="/" component={CardForm}/>
+        <Route exact path="/friends" render={props => <CardList data={this.state.friends} />} />
+        
       </Container>
     );
   }
