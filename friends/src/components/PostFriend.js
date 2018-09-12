@@ -10,7 +10,7 @@ const PostFriend = (props) => {
         <Fragment>
             <Link to = '/friendslist'>Go to friends list</Link>
             <Link to = '/'>Go home</Link>
-            <form onSubmit = { props.handleSubmit }>
+            <form onSubmit = { props.handlePost }>
                 <input name = 'friendName' type = 'text' placeholder = 'Enter name...' />
                 <input name = 'friendAge' type = 'number' placeholder = 'Enter age...' />
                 <input name = 'friendEmail' type = 'text' placeholder = 'Enter email...' />

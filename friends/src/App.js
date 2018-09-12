@@ -1,11 +1,12 @@
 // React
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 // Components
 import FriendsList from './components/FriendsList';
 import PostFriend from './components/PostFriend';
 import MainPage from './components/MainPage';
+import ViewFriend from './components/ViewFriend';
 
 // Dependencies
 import axios from 'axios';
@@ -28,7 +29,7 @@ class App extends Component {
 		});
 	}
 
-	handleSubmit = e => {
+	handlePost = e => {
 		e.preventDefault();
 
 		const newFriend = {
@@ -41,7 +42,22 @@ class App extends Component {
 			.post('http://localhost:5000/friends', newFriend)
 			.then(res => this.fetchData(res.data))
 			.catch(err => console.log(err))
-	}
+	} // handlePost()
+
+	handlePut = id => e => {
+		e.preventDefault();
+
+		const updatedFriend = {
+			name: e.target.friendName.value,
+			age: Number(e.target.friendAge.value),
+			email: e.target.friendEmail.value
+		};
+
+		axios
+			.put(`http://localhost:5000/friends/${id}`, updatedFriend)
+			.then(res => this.fetchData(res.data))
+			.catch(err => console.log(err));
+	} // handlePut()
 
 	componentDidMount() {
 		axios
@@ -54,8 +70,9 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Route exact path = '/' render = { props => <MainPage {...props} friends = { this.state.friends } /> } />
-				<Route path = '/postfriend' render = { props => <PostFriend {...props} handleSubmit = { this.handleSubmit } />} />
-				<Route path = '/friendslist' render = { props => <FriendsList {...props} friends = { this.state.friends } />} />
+				<Route path = '/postfriend' render = { props => <PostFriend {...props} handlePost = { this.handlePost } />} />
+				<Route exact path = '/friendslist' render = { props => <FriendsList {...props} friends = { this.state.friends } />} />
+				<Route path = '/friendslist/:id' render = { props => <ViewFriend {...props} friends = { this.state.friends } handlePut = { this.handlePut } /> } />
 			</div>
 		);
 	}

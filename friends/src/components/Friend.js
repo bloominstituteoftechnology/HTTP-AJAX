@@ -4,9 +4,12 @@ import React from 'react';
 // Dependencies
 import PropTypes from 'prop-types';
 
+// Styles
+import './Friend.css';
+
 const Friend = (props) => {
     return(
-        <div>
+        <div className = 'friend'>
             <p>Name: { props.friend.name }</p>
             <p>Age: { props.friend.age }</p>
             <p>Email: { props.friend.email }</p>
