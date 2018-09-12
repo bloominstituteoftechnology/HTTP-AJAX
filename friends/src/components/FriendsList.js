@@ -5,26 +5,40 @@ class FriendsList extends Component {
 	constructor() {
 		super();
 		this.state = {
-			friends: []
+			friends: [],
+			name: '',
+			age: '',
+			email: ''
 		};
 	}
 
+	changeHandler = event => {
+		this.setState({ [event.target.name]: event.target.value });
+	};
+
 	newFriend = event => {
 		event.preventDefault();
-		axios
-			.post('http://localhost:5000/friends', {
-				name: event.target[0].value,
-				age: event.target[1].value,
-				email: event.target[2].value
-			})
-			.then(response => {
-				this.setState({
-					friends: response.data
+		if (this.state.name && this.state.age && this.state.email) {
+			axios
+				.post('http://localhost:5000/friends', {
+					name: this.state.name,
+					age: this.state.age,
+					email: this.state.email
+				})
+				.then(response => {
+					this.setState({
+						friends: response.data,
+						name: '',
+						age: '',
+						email: ''
+					});
+				})
+				.catch(error => {
+					console.log(error);
 				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		} else {
+			alert('Please fill in missing information');
+		}
 	};
 
 	componentDidMount() {
@@ -62,15 +76,30 @@ class FriendsList extends Component {
 					<br />
 					<label>
 						Name
-						<input type="text" name="name" />
+						<input
+							type="text"
+							name="name"
+							onChange={this.changeHandler}
+							value={this.state.name}
+						/>
 					</label>
 					<label>
 						Age
-						<input type="number" name="age" />
+						<input
+							type="number"
+							name="age"
+							onChange={this.changeHandler}
+							value={this.state.age}
+						/>
 					</label>
 					<label>
 						Email
-						<input type="text" name="email" />
+						<input
+							type="text"
+							name="email"
+							onChange={this.changeHandler}
+							value={this.state.email}
+						/>
 					</label>
 					<input type="submit" value="Submit" />
 				</form>
