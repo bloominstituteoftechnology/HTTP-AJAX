@@ -29,8 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={Friends_Logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to My Friends List!</h1>
+          <img src={Friends_Logo} className="App-logo" alt="logo" />          
         </header>
         <div className='friend-list'>
           <FriendContainer friends={this.state.friendsList} />
