@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddFriendForm = (props) => {
     return (
-    <form className = "add-friend">
+    <form onSubmit={props.addFriend} className = "add-friend">
         <input onChange={props.formChange} className="name" name="name" placeholder="name"/>
         <input onChange={props.formChange} className="age" name="age" placeholder="age"/>
         <input onChange={props.formChange} className="email" name="email" placeholder="email"/>

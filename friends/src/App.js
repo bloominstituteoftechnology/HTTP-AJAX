@@ -27,25 +27,28 @@ class App extends Component {
     console.log(event.currentTarget.value)
   }
 
-  formSubmit = () => {
-    
-  }
-
-  addFriend(event) {
-
-  }
-
-  componentDidMount() {
-    axios.get('http://localhost:5000/friends').then(response => {
-        this.setState({friends:response.data})
+  addFriend = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:5000/friends', {
+      name: this.state.currentname,
+      age: this.state.currentage,
+      email: this.state.currentemail
     })
-}
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  };
+
+
 
   render() {
     return (
       <section className="App">
       <h1>Friends</h1>
-      <AddFriendForm formChange={this.formChange}/>
+      <AddFriendForm formChange={this.formChange} addFriend={this.addFriend}/>
       <Friends friends={this.state.friends}/>
 
       </section>
