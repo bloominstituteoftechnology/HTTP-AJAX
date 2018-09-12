@@ -9,7 +9,7 @@ function Friend(props) {
 
 Friend.propTypes = {
     friend: PropTypes.shape({
-        age: PropTypes.number,
+        age: PropTypes.number.isRequired,
         name: PropTypes.string,
         email: PropTypes.string
     })
