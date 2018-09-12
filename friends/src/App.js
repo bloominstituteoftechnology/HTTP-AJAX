@@ -30,19 +30,33 @@ class App extends Component {
 }
 
   handleBtnSbmt = event => {
-    let adfrd = this.state.frdlst.slice();
-    adfrd.push({
-      name: this.state.frdnme,
-      age: this.state.frdage,
-      email: this.state.frdeml
-    });
-    this.setState({
-      frdlst: adfrd,
-      frdnme: '',
-      frdage: Number,
-      frdeml: ''
-    });
-    event.preventDefault();
+    // let adfrd = this.state.frdlst.slice();
+    // adfrd.push({
+    //   name: this.state.frdnme,
+    //   age: this.state.frdage,
+    //   email: this.state.frdeml
+    // });
+    // this.setState({
+    //   frdlst: adfrd,
+    //   frdnme: '',
+    //   frdage: Number,
+    //   frdeml: ''
+    // });
+    // event.preventDefault();
+    axios
+        .post("http://localhost:5000/friends", {
+          name: this.state.frdnme,
+          age: this.state.frdage,
+          email: this.state.frdeml
+        })
+        .then((response) => {
+          this.setState({
+            frdlst: response.data
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        })
   };
 
   handleIptChange = event => {
