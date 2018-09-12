@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import CardList from './components/Cards/CardList';
 import './App.css';
+import Styled from 'styled-components';
+
+const Container = Styled.div`
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+`;
 
 class App extends Component {
   constructor() {
@@ -28,9 +35,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Container>
         <CardList data={this.state.friends} />
-      </div>
+      </Container>
     );
   }
 }
