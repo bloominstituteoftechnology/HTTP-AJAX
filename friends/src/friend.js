@@ -1,5 +1,8 @@
+
 import React from 'react';
- const Friend = props => {
+import './App.css';
+
+const Friend = props => {
   return (
     <div>
       {props.friend.name}
@@ -8,4 +11,5 @@ import React from 'react';
     </div>
   );
 };
- export default Friend;
+
+export default Friend;

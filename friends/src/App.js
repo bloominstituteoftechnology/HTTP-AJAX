@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Friend from './friend';
 import axios from 'axios';
+
+import Friend from './Friend';
+import FriendList from './FriendList';
 
 class App extends Component {
   constructor() {
@@ -26,11 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Friends!</h1>
-         //  <div className = 'friends'>
-         //  // {this.state.friends.map(friend=> {
-            return <Friend friend={friend} key={friend.id}/>
-          })}
-         </div>
+        <FriendList friends = {this.state.friends} />
       </div>
     );
   }
