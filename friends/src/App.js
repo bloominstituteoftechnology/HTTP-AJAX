@@ -42,17 +42,6 @@ class App extends Component {
       });
   }
 
-  // setInterval(updateCall, 1000)
-  // setInterval(function(){
-  // axios
-  //   .get('http://localhost:5000/friends')
-  //   .then(response => {
-  //     this.setState(() => ({ friends: response.data }));
-  //   })
-  //   .catch(error => {
-  //     console.error('Server Error', error);
-  //   })}, 1000)
-
   postRequest = e => {
     e.preventDefault()
     let newItem = this.state.newFriend
@@ -87,8 +76,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.friends);
-    // console.log(typeof this.state.friends);
     return (
       <div className="App">
         <header className="App-header">
