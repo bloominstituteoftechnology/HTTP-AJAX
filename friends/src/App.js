@@ -15,15 +15,17 @@ class App extends Component {
 
   componentDidMount() {
     axios
-    .get("http://localhost:5000/friends")
-    .then(response => {
-      this.setState({
-        friends: response.data.message
+      .get('http://localhost:5000/friends')
+      .then((response) => {
+        console.log('response.data', response.data);
+        console.log('response.data.message', response.data.message);
+        this.setState({
+          friends: response.data
+        });
       })
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   postNewFriend = (e) => {
@@ -31,12 +33,13 @@ class App extends Component {
     axios
     .post("http://localhost:5000/friends", {
       name: this.state.name,
-      age: this.state.age,
+      age: parseInt(this.state.age, 10),
       email: this.state.email
 
     })
     .then((response) => console.log(response))
     .catch(err => console.log(err))
+    this.forceUpdate();
     }
 
 
@@ -48,6 +51,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+        <Route path="/" render={() => <FriendsList />} />
         <FriendForm handleChange={this.handleChange} postNewFriend={this.postNewFriend}/>
       </div>
     );
