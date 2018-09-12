@@ -1,0 +1,10 @@
+body {
+  background: url('./space-bg.jpeg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
