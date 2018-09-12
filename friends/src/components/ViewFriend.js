@@ -8,6 +8,11 @@ import Friend from './Friend';
 // Dependencies
 import axios from 'axios';
 
+// Styles
+import './ViewFriend.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Form, Input } from 'reactstrap';
+
 class ViewFriend extends React.Component {
     constructor(props) {
         super(props);
@@ -37,23 +42,33 @@ class ViewFriend extends React.Component {
 
     render() {
         return(
-            <div className = ''>
-                <Link to = '/postfriend'>Add new friend</Link>
-                <Link to = '/friendslist'>Go to friends list</Link>
-                <Link to = '/'>Go home</Link>
+            <div className = 'view-friend'>
+                <div>
+                    <Link to = '/'>
+                        <Button color = 'success'>Go Home</Button>
+                    </Link>
+                    <Link to = '/postfriend'>
+                        <Button color = 'primary'>Add New Friend</Button>
+                    </Link>
+                    <Link to = '/friendslist'>
+                        <Button color = 'info'>View Friends List</Button>
+                    </Link>
+                </div>
 
                 <Friend friend = { this.state.friend } />
 
-                <form onSubmit = { this.props.handlePut(this.state.friend.id) }>
-                    UPDATE FRIEND
-                    <input name = 'friendName' type = 'text' placeholder = 'Enter updated name...' />
-                    <input name = 'friendAge' type = 'number' placeholder = 'Enter updated age...' />
-                    <input name = 'friendEmail' type = 'text' placeholder = 'Enter udpated email...' />
-                    <input name = 'friendColor' type = 'text' placeholder = 'Enter updated fav color...' />
-                    <input type = 'submit' value = 'submit' />
-                </form>
+                <Form onSubmit = { this.props.handlePut(this.state.friend.id) }>
+                    <h3>Update Contact Information</h3>
 
-                <button onClick = { this.props.handleDelete(this.state.friend.id) }>DELETE FRIEND</button>
+                    <Input name = 'friendName' type = 'text' placeholder = 'Enter updated name...' />
+                    <Input name = 'friendAge' type = 'number' placeholder = 'Enter updated age...' />
+                    <Input name = 'friendEmail' type = 'text' placeholder = 'Enter udpated email...' />
+                    <Input name = 'friendColor' type = 'text' placeholder = 'Enter updated fav color...' />
+                    
+                    <Button color = 'secondary' type = 'submit' value = 'submit'>Submit</Button>
+                </Form>
+
+                <Button color = 'danger' onClick = { this.props.handleDelete(this.state.friend.id) }>Delete Contact</Button>
             </div>
         );
     }

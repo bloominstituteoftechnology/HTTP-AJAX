@@ -17,12 +17,15 @@ const FriendsList = (props) => {
     return(
         <div className = 'friends-list'>
             <h1>Friends List</h1>
-            <Link to = '/postfriend'>
-                <Button color = 'primary'>Add New Friend</Button>
-            </Link>
-            <Link to = '/'>
-                <Button color = 'success'>Go Home</Button>
-            </Link>
+
+            <div>
+                <Link to = '/postfriend'>
+                    <Button color = 'primary'>Add New Friend</Button>
+                </Link>
+                <Link to = '/'>
+                    <Button color = 'success'>Go Home</Button>
+                </Link>
+            </div>
 
             { props.friends.map(friend => <Link key = { friend.id } to = { `/friendslist/${ friend.id }` }><Friend friend = { friend } /></Link>) }
         </div>

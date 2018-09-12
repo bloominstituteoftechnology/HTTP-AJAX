@@ -1,4 +1,4 @@
-.friends-list {
+.view-friend {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,10 +7,6 @@
     margin: 40px 0;
 }
 
-.friends-list * {
+.view-friend * {
     margin: 10px;
-}
-
-.friends-list a {
-    text-decoration: none;
 }

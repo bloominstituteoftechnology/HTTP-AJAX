@@ -14,12 +14,15 @@ const PostFriend = (props) => {
     return(
         <div className = 'post-friend'>
             <h1>Friends List</h1>
-            <Link to = '/'>
-                <Button color = 'success'>Go Home</Button>
-            </Link>
-            <Link to = '/friendslist'>
-                <Button color = 'info'>View Friends List</Button>
-            </Link>
+
+            <div>
+                <Link to = '/'>
+                    <Button color = 'success'>Go Home</Button>
+                </Link>
+                <Link to = '/friendslist'>
+                    <Button color = 'info'>View Friends List</Button>
+                </Link>
+            </div>
             
             <Form onSubmit = { props.handlePost }>
                 <Input name = 'friendName' type = 'text' placeholder = 'Enter name...' />
@@ -27,7 +30,7 @@ const PostFriend = (props) => {
                 <Input name = 'friendEmail' type = 'text' placeholder = 'Enter email...' />
                 <Input name = 'friendColor' type = 'text' placeholder = 'Enter favorite color...' />
 
-                <Button color='secondary' type = 'submit' value = 'submit'>Submit</Button>
+                <Button color = 'secondary' type = 'submit' value = 'submit'>Submit</Button>
             </Form>
         </div>
     );

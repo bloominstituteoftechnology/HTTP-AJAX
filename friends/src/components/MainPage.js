@@ -15,12 +15,15 @@ const MainPage = (props) => {
         <div className = 'main-page'>
             <h1>Welcome to your Friends App!</h1>
             <h3>You currently have { props.friends.length } friends.</h3>
-            <Link to = '/postfriend'>
-                <Button color = 'primary'>Add New Friend</Button>
-            </Link>
-            <Link to = '/friendslist'>
-                <Button color = 'info'>View Friends List</Button>
-            </Link>
+            
+            <div>
+                <Link to = '/postfriend'>
+                    <Button color = 'primary'>Add New Friend</Button>
+                </Link>
+                <Link to = '/friendslist'>
+                    <Button color = 'info'>View Friends List</Button>
+                </Link>
+            </div>
         </div>
     );
 }

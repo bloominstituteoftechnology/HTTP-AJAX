@@ -4,7 +4,7 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-top: 40px;
+    margin: 40px 0;
 }
 
 .main-page * {
