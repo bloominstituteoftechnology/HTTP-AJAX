@@ -9,7 +9,7 @@ class App extends Component {
       this.state = {
         friends:[],
         name: "",
-        age: null,
+        age: "",
         email: ""
       };
     }
