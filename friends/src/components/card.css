@@ -1,0 +1,22 @@
+.card{
+margin-top:15px;
+width:20%;
+margin-left:5%;
+margin-right:5%;
+margin-bottom:100px;
+border:3px solid blue;
+border-radius:20px;
+}
+
+.friends{
+margin-left:15%;
+width:70%;
+display:flex;
+flex-wrap:wrap;
+}
+
+.txt{
+font-size:18px;
+margin-top:5px;
+padding:3px;
+}

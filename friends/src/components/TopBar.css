@@ -1,0 +1,26 @@
+.navBar{
+display:flex;
+padding-left:20%;
+padding-right:20%;
+width:60%;
+justify-content:space-around;
+color:white;
+background:#727272;
+flex-direction:row;
+}
+
+a {
+text-decoration:none;
+color:white;
+font-size:30px;
+font-weight:700px;
+background:#668cff;
+}
+
+a:hover {
+font-weight:900px;
+background:#3366ff;
+color:#d9d9d9;
+cursor:pointer;
+border-radius:3px;
+}
