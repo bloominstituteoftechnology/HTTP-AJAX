@@ -4,19 +4,43 @@ class FriendForm extends React.Component {
   constructor(){
     super()
     this.state = {
-      name: '',
-      age: null,
+      realName: '',
+      age: '',
       email: '',
     }
+  }
+
+  formChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
 
   render() {
     return (
       <form>
-        <input type="text" name="name" placeholder="Name" />
-        <input type="number" name="age" placeholder="Age" />
-        <input type="email" name="email" placeholder="Email" />
-        <button type="submit" />
+        <input
+          name="realName"
+          type="text"
+          placeholder="Name"
+          value={this.state.username}
+          onChange={this.formChange}
+        />
+        <input
+          name="age"
+          type="number"
+          placeholder="Age"
+          value={this.state.age}
+          onChange={this.formChange}
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={this.state.email}
+          onChange={this.formChange}
+        />
+        <button type="submit">Submit</button>
       </form>
     )
   }
