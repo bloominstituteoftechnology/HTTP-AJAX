@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import Friend from './Friend'
-import FriendForm from './FriendForm'
+import Friend from './components/Friend'
+import FriendForm from './components/FriendForm'
 
 class App extends Component {
   constructor() {
