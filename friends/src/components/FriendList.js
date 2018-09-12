@@ -22,7 +22,7 @@ export default class FriendList extends Component {
 
   render() {
     return (
-      <div className="save-wrapper">
+      <div className="friend-list">
         {this.state.friends.map(friend => (
           <div key={friend.name} className={friend.name}>
             {friend.name}
