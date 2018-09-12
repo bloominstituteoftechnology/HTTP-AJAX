@@ -22,6 +22,10 @@ class App extends Component {
       });
   }
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   render() {
     return (
       <div className="App">
@@ -30,15 +34,22 @@ class App extends Component {
             type="text"
             placeholder="name..."
             name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="age..."
+            name="age"
+            value={this.state.age}
+            onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="email..."
             name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
           />
         </form>
         <FriendsList friends={this.state.friendsData} />
