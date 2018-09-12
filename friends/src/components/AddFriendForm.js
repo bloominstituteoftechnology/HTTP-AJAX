@@ -2,11 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AddFriendForm = (props) => {
+  console.log(props);
   return (
-    <StyledForm>
-      <NameInput placeholder="First Name" />
-      <StyledInput placeholder="Age" />
-      <StyledInput placeholder="email" />
+    <StyledForm onSubmit={props.addFriend}>
+      <NameInput
+        placeholder="First Name"
+        value={props.inputName}
+        name="inputName"
+        onChange={props.handleInput}
+      />
+      <StyledInput
+        placeholder="Age"
+        value={props.inputAge}
+        name="inputAge"
+        onChange={props.handleInput}
+      />
+      <StyledInput
+        placeholder="email"
+        value={props.inputEmail}
+        name="inputEmail"
+        onChange={props.handleInput}
+      />
+      <StyledInput type="submit" />
     </StyledForm>
   );
 };
