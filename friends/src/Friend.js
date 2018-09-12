@@ -14,8 +14,9 @@ const Friend = (props) => {
 Friend.propTypes = {
   friend: PropTypes.shape({
     name: PropTypes.string,
-    age: PropTypes.number,
     email: PropTypes.string,
+    age: PropTypes.number,
+    id: PropTypes.number,
   })
 }
 

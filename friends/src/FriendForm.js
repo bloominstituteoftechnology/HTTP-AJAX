@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class FriendForm extends React.Component {
   constructor(props) {
@@ -60,6 +61,18 @@ class FriendForm extends React.Component {
       </form>
     )
   }
+}
+
+FriendForm.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      email: PropTypes.string,
+      age: PropTypes.number,
+      id: PropTypes.number,
+    })
+  ),
+  addFriend: PropTypes.func
 }
 
 export default FriendForm
