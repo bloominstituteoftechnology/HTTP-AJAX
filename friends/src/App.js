@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
-import Display from './components/Display'
+import Display from './components/Display';
+import NewFriend from './components/NewFriend';
+import Loading from './components/Loading';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends = []
+      friends: []
     }
   }
 
   componentDidMount() {
     axios
     .get('http://localhost:5000/friends')
-    .then(result => console.log(result))
+    .then(result => {
+      this.setState({ friends: result.data })
+    })
     .catch(err => console.log(err));
   }
 
   render() {
     return (
       <div className="App">
-        <Display />
+        
+        {this.state.friends.length === 0 ? <Loading />: <Display friends={this.state.friends} /> }
+        <NewFriend />
       </div>
     );
   }
