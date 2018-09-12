@@ -45,11 +45,14 @@ class ViewFriend extends React.Component {
                 <Friend friend = { this.state.friend } />
 
                 <form onSubmit = { this.props.handlePut(this.state.friend.id) }>
+                    UPDATE FRIEND
                     <input name = 'friendName' type = 'text' placeholder = 'Enter new name...' />
                     <input name = 'friendAge' type = 'number' placeholder = 'Enter new age...' />
                     <input name = 'friendEmail' type = 'text' placeholder = 'Enter new email...' />
                     <input type = 'submit' value = 'submit' />
                 </form>
+
+                <button onClick = { this.props.handleDelete(this.state.friend.id) }>DELETE FRIEND</button>
             </div>
         );
     }

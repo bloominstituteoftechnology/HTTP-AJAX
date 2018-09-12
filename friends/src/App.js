@@ -59,6 +59,15 @@ class App extends Component {
 			.catch(err => console.log(err));
 	} // handlePut()
 
+	handleDelete = id => e => {
+		e.preventDefault();
+
+		axios
+			.delete(`http://localhost:5000/friends/${id}`)
+			.then(res => this.fetchData(res.data))
+			.catch(err => console.log(err));
+	}
+
 	componentDidMount() {
 		axios
 			.get('http://localhost:5000/friends')
@@ -72,7 +81,7 @@ class App extends Component {
 				<Route exact path = '/' render = { props => <MainPage {...props} friends = { this.state.friends } /> } />
 				<Route path = '/postfriend' render = { props => <PostFriend {...props} handlePost = { this.handlePost } />} />
 				<Route exact path = '/friendslist' render = { props => <FriendsList {...props} friends = { this.state.friends } />} />
-				<Route path = '/friendslist/:id' render = { props => <ViewFriend {...props} friends = { this.state.friends } handlePut = { this.handlePut } /> } />
+				<Route path = '/friendslist/:id' render = { props => <ViewFriend {...props} friends = { this.state.friends } handlePut = { this.handlePut } handleDelete = { this.handleDelete } /> } />
 			</div>
 		);
 	}
