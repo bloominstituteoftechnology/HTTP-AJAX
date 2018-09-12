@@ -29,6 +29,7 @@ class App extends Component {
   updateFriends = (para1) => {
     axios.post('http://localhost:5000/friends', para1)
     .then(response => {
+        console.log(para1);
         console.log(response);
         this.setState({
           friends: response.data

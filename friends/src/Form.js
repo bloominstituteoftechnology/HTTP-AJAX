@@ -8,21 +8,14 @@ class Form extends Component {
             name: '',
             age: '',
             email: '',
-            newFriend: []
         }
     }
     
 
     formHandler = event => {
        event.preventDefault();
-        this.setState({ newFriend: {
-            age: this.state.age, 
-            email: this.state.email, 
-            name: this.state.name} 
-        });
-
-        this.props.updateFriends(this.state.newFriend);
         
+        this.props.updateFriends(this.state);
     }
 
     handleInput = event => {
