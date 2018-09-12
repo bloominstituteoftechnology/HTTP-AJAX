@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
+import FriendCard from "./components/FriendCard";
 
 class App extends Component {
   constructor() {
@@ -16,14 +17,21 @@ class App extends Component {
       .catch(err => console.log(err));
   }
   render() {
+    {
+      console.log(this.state.friends);
+    }
     return (
       <div className="App">
         <h1>Friends:</h1>
-        <ul>
+        <div className="friends-container">
           {this.state.friends.map(friend => (
-            <li>{friend.name}</li>
-          ))}
-        </ul>
+            <FriendCard friend={friend} />
+          ))
+          /* {this.state.friends.map(friend => (
+            <FriendCard friend={friend} />
+          ))} */
+          }
+        </div>
       </div>
     );
   }
