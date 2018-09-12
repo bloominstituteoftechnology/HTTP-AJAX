@@ -9,6 +9,24 @@ class FriendsList extends Component {
 		};
 	}
 
+	newFriend = event => {
+		event.preventDefault();
+		axios
+			.post('http://localhost:5000/friends', {
+				name: event.target[0].value,
+				age: event.target[1].value,
+				email: event.target[2].value
+			})
+			.then(response => {
+				this.setState({
+					friends: response.data
+				});
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	};
+
 	componentDidMount() {
 		axios
 			.get('http://localhost:5000/friends')
@@ -39,7 +57,23 @@ class FriendsList extends Component {
 						<br />
 					</div>
 				))}
-				{/* <form action={this.newFriend} /> */}
+				<form onSubmit={this.newFriend}>
+					Add new friend
+					<br />
+					<label>
+						Name
+						<input type="text" name="name" />
+					</label>
+					<label>
+						Age
+						<input type="number" name="age" />
+					</label>
+					<label>
+						Email
+						<input type="text" name="email" />
+					</label>
+					<input type="submit" value="Submit" />
+				</form>
 			</div>
 		);
 	}
