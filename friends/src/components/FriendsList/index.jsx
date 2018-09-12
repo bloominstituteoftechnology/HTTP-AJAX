@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Friend from './Friend';
-import '../App.css';
+import Friend from '../Friend';
+import '../../App.css';
 
 const FriendsList = props => {
   return (
