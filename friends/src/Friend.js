@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friend = prosp => {
+const Friend = props => {
     return (
         <li>
             <h1>Name: {props.friend.name}</h1>
