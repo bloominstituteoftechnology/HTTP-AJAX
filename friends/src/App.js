@@ -11,8 +11,8 @@ import axios from 'axios';
 import './App.css';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 
 		this.state = {
 			friends: []
