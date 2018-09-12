@@ -5,6 +5,9 @@ import axios from 'axios';
 class FriendList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      friendList: []
+    };
   }
 
   componentDidMount() {

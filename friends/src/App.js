@@ -6,9 +6,6 @@ import FriendList from './Components/FriendList';
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      friendList: []
-    };
   }
 
   newFriend = friend => {
