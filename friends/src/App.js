@@ -25,16 +25,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to my HTTP-AJAX Project</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        
       {this.state.friends.map(friend => <div className={"friend"}key={friend.id} friend={friend} >
         {/* Friend's Info Here */}
-        {friend.name}
-        {friend.age}
-        {friend.email}
+        <p>Name: {friend.name}</p>
+        <p>Age: {friend.age}</p>
+        <p>Email: {friend.email}</p>
       </div>)}
       </div>
     );
