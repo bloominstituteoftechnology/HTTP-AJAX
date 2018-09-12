@@ -20,19 +20,25 @@ class App extends Component {
       })
   }
 
+  addFriend = (newFriend) => {
+    const friends = [...this.state.friends, newFriend]
+    this.setState({ friends })
+  }
+
   render() {
     const {friends} = this.state
     return (
       <div className="App">
         <h1>Axios Friends</h1>
         
-        <FriendForm />
+        <FriendForm
+          friends={this.state.friends}
+          addFriend={this.addFriend}
+        />
 
         {
           friends.map(friend => {
-            return (
-              <Friend key={friend.id} friend={friend} />
-            )
+            return <Friend key={friend.id} friend={friend} />
           })
         }
       </div>

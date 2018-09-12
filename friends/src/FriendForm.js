@@ -1,10 +1,10 @@
 import React from 'react'
 
 class FriendForm extends React.Component {
-  constructor(){
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      realName: '',
+      name: '',
       age: '',
       email: '',
     }
@@ -16,11 +16,27 @@ class FriendForm extends React.Component {
     })
   }
 
+  formSubmit = (e) => {
+    e.preventDefault()
+    const newFriend = {
+      name: this.state.name,
+      age: Number(this.state.age),
+      email: this.state.email,
+      id: this.props.friends.length + 1
+    }
+    this.props.addFriend(newFriend)
+    this.setState({
+      name: '',
+      age: '',
+      email: ''
+    })
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.formSubmit}>
         <input
-          name="realName"
+          name="name"
           type="text"
           placeholder="Name"
           value={this.state.username}
