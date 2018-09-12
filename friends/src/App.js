@@ -7,11 +7,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      savedList: []
+      friendList: []
     };
   }
 
-  addToSavedList = movie => {
+  newFriend = friend => {
     
   };
 
