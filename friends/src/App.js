@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
-import Friend from './components/Friend'
+import Friends from './components/Friends'
 import FriendForm from './components/FriendForm'
 
 class App extends Component {
@@ -43,21 +44,8 @@ class App extends Component {
         
         <Navigation />
 
-        <FriendForm
-          friends={this.state.friends}
-          addFriend={this.addFriend}
-        />
-
-        {
-          friends.map(friend => {
-            return (
-              <Friend
-                key={friend.id}
-                friend={friend}
-              />
-            )
-          })
-        }
+        <Route path='/friends' render={(props) => <Friends friends={friends} />} />
+        <Route path='/add' render={(props) => <FriendForm friends={friends} addFriend={this.addFriend} />} />
       </div>
     )
   }
