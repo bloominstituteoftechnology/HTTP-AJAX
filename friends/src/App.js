@@ -4,12 +4,19 @@ import './App.css';
 import axios from 'axios'
 
 import FriendList from './components/FriendList'
+import SubmitFriend from './components/SubmitFriend'
 
 class App extends Component {
   constructor(){
     super();
     this.state ={
-      friends: []
+      friends: [],
+      newFriend: {
+        id: '',
+        name: '',
+        age: '',
+        email: '',
+      }
     }
   }
 
@@ -24,6 +31,27 @@ class App extends Component {
       });
   }
 
+  postRequest = e => {
+    e.preventDefault()
+    let newItem = this.state.newFriend
+    axios
+    .post(newItem)
+    .then(reponse=>{
+      const response = response.response
+      console.log(response)
+    })
+    .catch(error =>{console.log('this error holy cow', error)})
+  }
+
+  updateFriend = (e) => {
+    let update = this.state.newFriend
+    update[e.target.name] = e.target.value
+    update['id'] = this.state.friends.length+1
+    this.setState({
+      newFriend: update
+    })
+  }
+
   render() {
     // console.log(this.state.friends);
     // console.log(typeof this.state.friends);
@@ -33,6 +61,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <SubmitFriend
+          postRequest={this.postRequest}
+          value={this.state.newFriend}
+          handleChange={this.updateFriend}
+        />
         <FriendList list={this.state.friends} />
       </div>
     );
