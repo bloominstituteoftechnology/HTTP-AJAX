@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Navigation from './components/Navigation'
 import Friend from './components/Friend'
 import FriendForm from './components/FriendForm'
 
@@ -40,6 +41,8 @@ class App extends Component {
       <div className="App">
         <h1>Axios Friends</h1>
         
+        <Navigation />
+
         <FriendForm
           friends={this.state.friends}
           addFriend={this.addFriend}
