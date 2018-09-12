@@ -1,9 +1,11 @@
 // React
 import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom';
 
 // Components
 import FriendsList from './components/FriendsList';
 import PostFriend from './components/PostFriend';
+import MainPage from './components/MainPage';
 
 // Dependencies
 import axios from 'axios';
@@ -51,8 +53,9 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<PostFriend handleSubmit = { this.handleSubmit } />
-				<FriendsList friends = { this.state.friends } />
+				<Route exact path = '/' render = { props => <MainPage {...props} friends = { this.state.friends } /> } />
+				<Route path = '/postfriend' render = { props => <PostFriend {...props} handleSubmit = { this.handleSubmit } />} />
+				<Route path = '/friendslist' render = { props => <FriendsList {...props} friends = { this.state.friends } />} />
 			</div>
 		);
 	}
