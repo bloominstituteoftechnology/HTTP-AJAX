@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Friend from './Friend'
+import FriendForm from './FriendForm'
 
 class App extends Component {
   constructor() {
@@ -24,6 +25,9 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Axios Friends</h1>
+        
+        <FriendForm />
+
         {
           friends.map(friend => {
             return (
