@@ -1,0 +1,25 @@
+.inputs{
+display:flex;
+flex-direction:column;
+margin-left:15%;
+width:70%;
+align-items:center;
+}
+
+input{
+	max-width:500px;
+}
+
+.submit{
+margin-top:50px;
+color:white;
+background:orange;
+border-radius:15px;
+font-size:20px;
+}
+
+.submit:hover{
+cursor:pointer;
+background:red;
+font-weight:700;
+}
