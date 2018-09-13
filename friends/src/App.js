@@ -5,7 +5,8 @@ import './App.css';
 import axios from 'axios';
 import FriendContainer from './components/FriendContainer';
 import FriendForm from './components/FriendForm';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, NavLink } from 'react-router-dom';
+import Home from './components/Home';
 
 
 const resetFormValues = {
@@ -60,17 +61,20 @@ class App extends Component {
     return (
       <div className="App">
       
-        <header className="App-header">                   
-        </header>        
-        <div className='friend-list'>        
-          <FriendContainer friends={this.state.friendsList} />
-        </div>
-
-        <div className='friend-form'>
-          <h3>Are we Missing a friend?</h3>
-          <Link to='/friend-form'>Add-A-Friend</Link>          
-        </div>
+        <header className="App-header">  
+          <NavLink exact to='/'>Home</NavLink>
+          <NavLink to='/friends'>Friends</NavLink>
+          <NavLink to='/friend-form'>Add-A-Friend</NavLink>
+        </header>                
+        
         <div>
+          <Route exact path='/' component={Home} />
+          <Route 
+            exact path='/friends'
+            render={props => (
+              <FriendContainer {...props} friends={this.state.friendsList} />
+            )}
+          />
           <Route 
             path='/friend-form' 
             render={props => (
