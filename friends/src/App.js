@@ -5,6 +5,7 @@ import './App.css';
 
 import axios from 'axios';
 import FriendForm from './components/FriendForm';
+import FriendsList from './components/FriendsList';
 
 class App extends Component {
   constructor() {
@@ -68,14 +69,7 @@ class App extends Component {
             textInputHandler={this.textInput}
         />
  
-        <div className="friends-container">
-          {this.state.friends.map(friend => <div className={"friend"} key={friend.id} friend={friend} >
-            {/* Friend's Info Here */}
-            <p>Name: {friend.name}</p>
-            <p>Age: {friend.age}</p>
-            <p>Email: {friend.email}</p>
-          </div>)}
-        </div>
+        <FriendsList  friendsList={this.state.friends}/>
     
       </div>
     );
