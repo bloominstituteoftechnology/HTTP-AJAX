@@ -11,26 +11,38 @@ class App extends Component {
     super();
     this.state = {
       friend: {
-        id: null,
+        id: 0,
         name: '',
-        age: null,
+        age: undefined,
         email: '',
       },
     };
   }
 
-  // componentDidMount(){
-  //     //fetch data from the api
-  //     axios
-  //       .get('http://localhost:5000/friends')
-  //       .then(response => {
-  //         //this.setState({doggos: response.data.message})
-  //         console.log(response);
-  //         //this.setState({doggos: response.data})
-  //       })
-  //       .catch(err => console.log(err));
-  //     //set our state with the new data
-  // }
+  handleChange = event =>{
+    //console.log('event.target.name');
+    this.setState({
+      friend:{
+        ...this.state.friend,
+        [event.target.name]: event.target.value,
+      }
+    });
+  }
+
+  handleNumberChange = event =>{
+    let input = 0;
+    if(event.target.value===null){
+      input = undefined;
+    }else{
+      input = parseInt(event.target.value, 10);
+    }
+    this.setState({
+      friend:{
+        ...this.state.friend,
+        [event.target.name]: input,
+      }
+    })
+  }
 
   render() {
     return (
@@ -40,7 +52,16 @@ class App extends Component {
           <h1 className="App-title">Friends</h1>
         </header>
         <Route path='/' component={FriendList} />
-        <Route path='/' component={FriendForm} />
+        <Route
+          path='/'
+          render={props =>(
+            <FriendForm
+            {...props}
+            friend={this.state.friend}
+            handleChange={this.handleChange}
+            handleNumberChange={this.handleNumberChange} />
+          )}
+        />
       </div>
     );
   }
