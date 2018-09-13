@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Friend from './Friends';
+import FriendForm from './FriendForm';
+
  class App extends Component {
   constructor() {
     super();
@@ -11,6 +11,9 @@ import Friend from './Friends';
       friends: []
     };
   }
+
+
+
    componentDidMount() {
     axios.get('http://localhost:5000/friends')
     .then(response => {
@@ -28,6 +31,7 @@ import Friend from './Friends';
         <ul>
           {this.state.friends.map(friend => <Friend friend={friend} key={friend.id} />)}
         </ul>
+        <FriendForm friends={this.state.friends}  />
       </div>
     );
   }
