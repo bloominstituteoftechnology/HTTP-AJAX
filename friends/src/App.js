@@ -9,9 +9,11 @@ class App extends Component {
     super();
 
     this.state = {
+      friends: "",
       currentname: "",
       currentage: "",
-      currentemail: ""
+      currentemail: "",
+      lastPostMessage: "",
     }
 
     this.state = {
@@ -24,23 +26,27 @@ class App extends Component {
       [`current${event.currentTarget.name}`]: event.currentTarget.value
     });
 
-    console.log(event.currentTarget.value)
+    console.log(event.currentTarget.value);
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends').then(response => {
+        this.setState({friends:response.data})
+    })
+}
+
   addFriend = (event) => {
-    event.preventDefault();
     axios.post('http://localhost:5000/friends', {
       name: this.state.currentname,
       age: this.state.currentage,
       email: this.state.currentemail
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
+    }).then(response => {console.log(response);}).catch(error => {
       console.log(error);
+      axios.get('http://localhost:5000/friends').then(response => {
+        this.setState({friends:response.data})
+    })
     });
-  };
+};
 
 
 
