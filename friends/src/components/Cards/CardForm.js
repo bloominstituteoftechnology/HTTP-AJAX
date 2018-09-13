@@ -11,12 +11,6 @@ class CardForm extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          friend: {
-            name: '',
-            email: '',
-            age: '',
-            date: null,
-          },
           modal14: false,
       }
     }
@@ -33,6 +27,7 @@ class CardForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        // If we are updating, set the value for each of the inputs to the friend's values
         if (this.props.isUpdating) {
             this.props.handleUpdateFriend(this.props.friend.id);
         } else {
@@ -41,8 +36,6 @@ class CardForm extends Component {
         }
     }
 
-    
-  
     render() {
       return (
         <Wrapper>

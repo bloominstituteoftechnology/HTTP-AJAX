@@ -3,6 +3,7 @@ import { Button, Card, CardBody, CardHeader, CardTitle, CardText, CardFooter, Ca
 import TimeAgo from 'react-timeago'
 import moment from 'moment';
 
+// Each friend's card
 const CardSingle = (props) => {
     let da = Date.now();
     let a = moment.utc(da).format('LL')

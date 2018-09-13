@@ -13,10 +13,11 @@ const Container = Styled.div`
     margin: 0 auto;
 `;
 
+// empty for values
 const blankFormValues = {
   name: '',
-        email: '',
-        age: '',
+  email: '',
+  age: '',
 };
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
     this.fetchData();
   }
 
+  // Fetch the data for friends list
   fetchData() {
     axios
       .get('http://localhost:5000/friends')
@@ -49,6 +51,7 @@ class App extends Component {
       })
   }
 
+  // Handles the input value's data and sets the state
   handleInput = e => {
     this.setState({
       friend: {
@@ -59,23 +62,27 @@ class App extends Component {
     });
   }
 
+  // Adds a new friend to the database
   handleAddNewFriend = e => {
     axios.post('http://localhost:5000/friends', this.state.friend)
       .then(response => this.setState({ friends: response.data, friend: this.state.friend}))
   }
 
+  // Deletes a friend from the database
   handleDeleteFriend = friendId => {
     return axios.delete(`http://localhost:5000/friends/${friendId}`)
       .then(response => this.setState({ friends: response.data}))
       .catch(error => { console.error('Server Error', error)});
   }
 
+  // Go's to the main form to edit a friend
   goToUpdateFriendForm = (event, id) => {
     event.preventDefault();
     const friendToUpdate = this.state.friends.find(friend => friend.id === id);
     this.setState({ isUpdating: true, friend: friendToUpdate }, () => this.props.history.push('/'))
   }
 
+  // Go's back to the friend form after editing a friend
   handleUpdateFriend = friendId => {
     axios.put(`http://localhost:5000/friends/${friendId}`, this.state.friend)
       .then(response => {

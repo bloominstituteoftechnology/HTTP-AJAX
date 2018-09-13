@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarNav, NavItem, NavbarToggler, Collapse } from 'mdbreact';
 import { NavLink } from 'react-router-dom';
 
+// Page Navigation
 class Navigation extends Component {
     constructor() {
         super();
@@ -9,6 +10,7 @@ class Navigation extends Component {
             collapse: false,
         }
     }
+
     render() {
         return (
             <Navbar light color="deep-orange lighten-1" expand="lg" fixed="top" scrolling>

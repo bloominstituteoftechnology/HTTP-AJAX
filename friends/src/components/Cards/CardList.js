@@ -6,8 +6,7 @@ const Wrapper = Styled.div`
     margin-top: 10%;
 `;
 
-
-
+// Create each card element
 function CardList(props) {
     return (
         <Wrapper>
