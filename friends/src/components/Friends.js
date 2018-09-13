@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Route } from 'react-router-dom'
 import Friend from './Friend'
+import PropTypes from 'prop-types'
 
 const Friends = (props) => {
   return (
@@ -21,6 +22,18 @@ const Friends = (props) => {
       }
     </div>
   )
+}
+
+Friends.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    age: PropTypes.number,
+    id: PropTypes.number,
+    }),
+  ),
+  deleteFriend: PropTypes.func
 }
 
 export default Friends

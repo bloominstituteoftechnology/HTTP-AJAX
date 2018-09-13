@@ -28,6 +28,11 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friends: response.data }), window.location.href = '/friends');
+  }
+
   render() {
     const {friends} = this.state
     return (
@@ -37,7 +42,7 @@ class App extends Component {
         <Navigation />
 
         <Route exact path='/friends' render={(props) => <Friends {...props} friends={friends} />} />
-        <Route path='/friends/:id' render={(props) => <Friend {...props} friends={friends} />} />
+        <Route path='/friends/:id' render={(props) => <Friend {...props} friends={friends} deleteFriend={this.deleteFriend} />} />
         <Route path='/add' render={(props) => <FriendForm friends={friends} addFriend={this.addFriend} />} />
       </div>
     )
