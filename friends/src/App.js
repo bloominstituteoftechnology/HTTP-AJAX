@@ -7,6 +7,7 @@ import SubmitFriend from './components/SubmitFriend'
 import DeleteFriend from './components/DeleteFriend'
 import FriendList from './components/FriendList'
 import Friend from './components/Friend'
+import FriendUpdateForm from './components/FriendUpdateForm'
 import {
   BrowserRouter as Router,
   Switch,
@@ -83,9 +84,29 @@ class App extends Component {
 
   deleteFriend = (event, friendId) => {
     event.preventDefault();
-    console.log('firing');
     axios
     .delete(`http://localhost:5000/friends/${friendId}`)
+    .then(response => this.setState({friends: response.data}))
+    .catch(error => {
+      console.error('Server Error', error);
+    });
+  }
+
+  updateFormChange = (e) => {
+    this.setState({
+      selected: {
+        ...this.state.selected,
+        [e.target.name] : e.target.value
+      }
+    })
+  }
+
+  putFriend = e => {
+    e.preventDefault();
+    console.log(this.state.selected.id);
+    axios
+    .put(`http://localhost:5000/friends/${this.state.selected.id}`,
+      this.state.selected)
     .then(response => this.setState({friends: response.data}))
     .catch(error => {
       console.error('Server Error', error);
@@ -126,6 +147,11 @@ class App extends Component {
               deleteIt={this.deleteFriend}
               selectFriend={this.selectFriend}
              />
+             <FriendUpdateForm
+               values={this.state.selected}
+               handleChange={this.updateFormChange}
+               update={this.putFriend}
+              />
           </div>
         } />
 
