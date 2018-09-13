@@ -1,45 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class FriendsList extends Component {
 	constructor() {
 		super();
 		this.state = {
-			friends: [],
-			name: '',
-			age: '',
-			email: ''
+			friends: []
 		};
 	}
-
-	changeHandler = event => {
-		this.setState({ [event.target.name]: event.target.value });
-	};
-
-	newFriend = event => {
-		event.preventDefault();
-		if (this.state.name && this.state.age && this.state.email) {
-			axios
-				.post('http://localhost:5000/friends', {
-					name: this.state.name,
-					age: this.state.age,
-					email: this.state.email
-				})
-				.then(response => {
-					this.setState({
-						friends: response.data,
-						name: '',
-						age: '',
-						email: ''
-					});
-				})
-				.catch(error => {
-					console.log(error);
-				});
-		} else {
-			alert('Please fill in missing information');
-		}
-	};
 
 	componentDidMount() {
 		axios
@@ -53,6 +22,10 @@ class FriendsList extends Component {
 				console.log(error);
 			});
 	}
+
+	newFriend = () => {
+		this.props.history.push('/newfriend');
+	};
 
 	render() {
 		return (
@@ -71,38 +44,7 @@ class FriendsList extends Component {
 						<br />
 					</div>
 				))}
-				<form onSubmit={this.newFriend}>
-					Add new friend
-					<br />
-					<label>
-						Name
-						<input
-							type="text"
-							name="name"
-							onChange={this.changeHandler}
-							value={this.state.name}
-						/>
-					</label>
-					<label>
-						Age
-						<input
-							type="number"
-							name="age"
-							onChange={this.changeHandler}
-							value={this.state.age}
-						/>
-					</label>
-					<label>
-						Email
-						<input
-							type="text"
-							name="email"
-							onChange={this.changeHandler}
-							value={this.state.email}
-						/>
-					</label>
-					<input type="submit" value="Submit" />
-				</form>
+				<button onClick={this.newFriend}>Add new friend</button>
 			</div>
 		);
 	}
