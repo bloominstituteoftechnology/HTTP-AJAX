@@ -8,12 +8,13 @@ function FriendList(props){
     }
     return(
         <div>
-            {props.friends.map(friend=><Friend friend={friend} key={friend.id}/>)}
+            {props.friends.map((friend,index)=><Friend friend={friend} key={index}/>)}
         </div>
     );
 }
 
 FriendList.propTypes = {
+    friends: PropTypes.arrayOf(PropTypes.object),
     friend: PropTypes.object,
 };
 

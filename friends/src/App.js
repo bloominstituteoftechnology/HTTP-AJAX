@@ -6,6 +6,7 @@ import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
 //import { runInThisContext } from 'vm';
 import axios from 'axios';
+import Navigation from './components/Navigation';
 
 class App extends Component {
   constructor(){
@@ -22,15 +23,14 @@ class App extends Component {
   
   componentDidMount(){
     axios
-        .get('http://localhost:5000/friends')
-        .then(response => {
-            this.setState({friends: response.data})
-        })
-        .catch(err => console.log(err));
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({friends: response.data})
+      })
+      .catch(err => console.log(err));
 }
 
   handleChange = event =>{
-    //console.log('event.target.name');
     this.setState({
       friend:{
         ...this.state.friend,
@@ -59,7 +59,7 @@ class App extends Component {
     axios
       .post('http://localhost:5000/friends', this.state.friend)
       .then(response => {
-          this.setState({friends:response.data})
+        this.setState({friends:response.data})
       })
       .catch(err => console.log(err));
   }
@@ -71,7 +71,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Friends</h1>
         </header>
+        <Navigation />
         <Route
+          exact
           path='/'
           render={props=>(
             <FriendList
@@ -81,7 +83,7 @@ class App extends Component {
           )}
         />
         <Route
-          path='/'
+          path='/Add-Friend'
           render={props =>(
             <FriendForm
               {...props}
