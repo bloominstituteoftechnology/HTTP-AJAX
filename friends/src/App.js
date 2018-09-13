@@ -60,7 +60,14 @@ class App extends Component {
     this.resetInput();
   };
 
+  deleteFriend = (friendId) => {
+    return axios
+      .delete(`http://localhost:5000/friends/${friendId}`)
+      .then((response) => this.setState({ friends: response.data }));
+  };
+
   render() {
+    console.log(this.state.friends);
     return (
       <div className="App">
         <Nav />
@@ -68,7 +75,11 @@ class App extends Component {
         <Route
           path="/friends"
           render={(props) => (
-            <FriendsList {...props} friends={this.state.friends} />
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              deleteFriend={this.deleteFriend}
+            />
           )}
         />
         <Route

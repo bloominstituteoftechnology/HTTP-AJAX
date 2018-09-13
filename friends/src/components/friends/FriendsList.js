@@ -3,11 +3,15 @@ import FriendCard from './FriendCard';
 import styled from 'styled-components';
 
 function FriendsList(props) {
-  console.log(props.friends);
+  // console.log(props.deleteFriend);
   return (
     <List>
       {props.friends.map((friend) => (
-        <FriendCard friend={friend} key={friend.id} />
+        <FriendCard
+          friend={friend}
+          key={friend.id}
+          deleteFriend={props.deleteFriend}
+        />
       ))}
     </List>
   );
