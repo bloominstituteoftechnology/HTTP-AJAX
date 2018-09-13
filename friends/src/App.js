@@ -27,7 +27,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1 className="Header">Friends List</h1>
       <div>
         <div className="friends-cards centered scrollbar" id="content">
               <Friends friends={this.state.friends}/>

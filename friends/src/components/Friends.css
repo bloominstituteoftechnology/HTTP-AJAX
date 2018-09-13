@@ -4,7 +4,10 @@
 
 h1{
   color: #fff;
+  font-weight: 200;
+  letter-spacing: 0.02rem;
 }
+
 .friend-card{
   color: #fff;
   margin: 30px;
@@ -54,7 +57,43 @@ transform: translate(-50%, -50%);
 }
 
 #content{
-background: rgba(0, 0, 0, 0.3);
-width: 300px;
+background: rgba(0, 0, 0, 0.5);
+width: 60vw;
 z-index: 990;
+display: flex;
+justify-content: center;
+}
+
+form input{
+  padding: 8px;
+  margin-top: 5px;
+  margin-right: 5px;
+  background: rgba(0,0,0,0.8);
+  width: 25%;
+  color: #fff;
+}
+
+form h2{
+  letter-spacing: 0.02rem;
+  font-weight: 100;
+  margin-top: 50px;
+}
+
+
+.submit{
+  padding:20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 100px;
+  color: #fff;
+  opacity: 0.70;
+}
+
+.submit:hover{
+  opacity: 1.0;
+}
+
+form {
+  color: #fff;
+
 }
