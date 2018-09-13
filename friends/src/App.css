@@ -1,16 +1,27 @@
+.App {
+  margin: 10px 0 0 15px;
+  max-width: 300px;
+}
 .friend-list {
   display: flex;
   width: 100%;
-  text-align: center;
   flex-direction: column;
   animation: App-logo-spin infinite 5s linear;
 }
-
-@keyframes App-logo-spin {
+.friend {
+  animation: App-logo-spin infinite 2s ease-out;
+}
+input {
+  margin-top: 10px;
+}
+button {
+  margin-top: 10px;
+}
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
