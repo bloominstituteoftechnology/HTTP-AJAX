@@ -13,8 +13,8 @@ state = {
 
 componentDidMount() {
   axios
-    .get(`${API}/friends`)
-    .then(response => this.setState({ friends: response.data }));
+    .get(API)
+    .then(promise => this.setState({ friends: promise.data }));
 }
 
   render() {
