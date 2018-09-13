@@ -14,7 +14,7 @@ class Friend extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:5000/friends/${this.props.match.params.id}`)
+      .get(`http://datasrv-tomtarpeydev687003.codeanyapp.com:5000/friends/${this.props.match.params.id}`)
       .then(response => {
         this.setState({ friend: response.data,
                         name: response.data.name,

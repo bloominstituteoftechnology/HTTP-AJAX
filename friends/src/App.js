@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
+      .get("http://datasrv-tomtarpeydev687003.codeanyapp.com:5000/friends/")
       .then(response => {
         this.setState({ friends: response.data });
       })
@@ -48,7 +48,7 @@ class App extends Component {
                         avatar: this.state.avatar };
 
     axios
-      .post("http://localhost:5000/friends", newFriend)
+      .post("http://datasrv-tomtarpeydev687003.codeanyapp.com:5000/friends/", newFriend)
       .then(response => {
         this.setState({ friends: response.data,
                         name: "",
