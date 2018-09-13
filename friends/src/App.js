@@ -17,11 +17,24 @@ class App extends Component {
          .catch(err => console.log(new Error(err)));
   }
 
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+         .then(friends => this.setState({friends: friends.data}))
+         .catch(err => console.log(new Error(err)));
+  }
+
+  updateFriend = (id, updatedFriendObj) => {
+    console.log(id);
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriendObj)
+         .then(friends => this.setState({friends: friends.data}))
+         .catch(err => new Error(err));
+  }
+
   render() {
     console.log(this.state.friends);
     return (
       <div className="App">
-        <Friends friends={this.state.friends} />
+        <Friends updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} friends={this.state.friends} />
       </div>
     );
   }

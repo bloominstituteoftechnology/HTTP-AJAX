@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import UpdateForm from './UpdateForm';
 
 export default class Friends extends React.Component {
 
@@ -8,7 +9,9 @@ export default class Friends extends React.Component {
     this.state = {
       name: '',
       age: '',
-      email: ''
+      email: '',
+      isUpdating: false,
+      newData: null,
     }
   }
 
@@ -28,6 +31,10 @@ export default class Friends extends React.Component {
     .catch(err => console.log(new Error(err)))
   }
 
+  isUpdating = () => {
+    this.setState({isUpdating: true})
+  }
+
   render() {
   
     return (
@@ -45,10 +52,13 @@ export default class Friends extends React.Component {
                 <h1>{friend.name}</h1>
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
+                <button onClick={() => this.setState({isUpdating: true})}>Update</button>
+                <button onClick={() => this.props.deleteFriend(friend.id)}>Delete {friend.name}</button>
               </React.Fragment>
             )
           })
         }
+        {this.state.isUpdating ? <UpdateForm friends={this.props.friends} updateFriend={this.props.updateFriend} /> : null}
       </div>
     )
   }
