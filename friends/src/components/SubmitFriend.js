@@ -6,17 +6,17 @@ const SubmitFriend = props => {
       <form onSubmit={props.postRequest}>
         <input type="text" name="name"
           placeholder="name"
-          value={props.value.name}
+          value={props.values.name}
           onChange={props.handleChange}
         />
         <input type="text" name="age"
           placeholder="age"
-          value={props.value.age}
+          value={props.values.age}
           onChange={props.handleChange}
         />
         <input type="text" name="email"
           placeholder="email"
-          value={props.value.email}
+          value={props.values.email}
           onChange={props.handleChange}
         />
         <input type="submit" value='Submit' />

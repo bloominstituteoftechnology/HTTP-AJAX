@@ -5,20 +5,24 @@ import axios from 'axios'
 
 import FriendList from './components/FriendList'
 import SubmitFriend from './components/SubmitFriend'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Link,
+  Route,
+} from 'react-router-dom'
 
 class App extends Component {
   constructor(){
     super();
     this.state ={
       friends: [],
-      newFriend: {
         id: '',
         name: '',
         age: '',
         email: '',
       }
     }
-  }
 
   componentDidMount() {
     axios
@@ -44,7 +48,12 @@ class App extends Component {
 
   postRequest = e => {
     e.preventDefault()
-    let newItem = this.state.newFriend
+    let newItem = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+      id: this.state.friends.length +1
+    }
     axios
     .post('http://localhost:5000/friends', newItem)
     .then(response=>{
@@ -53,21 +62,12 @@ class App extends Component {
         .catch(error => {
           console.error('Server Error', error);
         });
-      this.setState({newFriend: {
-        id: '',
-        name: '',
-        age: '',
-        email: '',
-      }})
-    // .catch(error =>{console.log('this error holy cow', error)})
+      this.setState({id: '', name: '', age: '', email: '',})
   }
 
   updateFriend = (e) => {
-    let update = this.state.newFriend
-    update[e.target.name] = e.target.value
-    update['id'] = this.state.friends.length+1
     this.setState({
-      newFriend: update
+      [e.target.name] : e.target.value
     })
   }
 
@@ -78,12 +78,17 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <SubmitFriend
+        <Route path='/' render={props =>
+        <SubmitFriend {...props}
           postRequest={this.postRequest}
-          value={this.state.newFriend}
-          handleChange={this.updateFriend}
+          values={this.state}
+          handleChange={this.updateFriend} />}
         />
-        <FriendList list={this.state.friends} />
+        <Route path='/' render={props =>
+          <FriendList {...props}
+            list={this.state.friends}
+          />}
+        />
       </div>
     );
   }
