@@ -3,13 +3,10 @@ import './App.css';
 import FriendList from './Components/FriendList';
 
 class App extends Component {
+  
   constructor() {
     super();
   }
-
-  newFriend = friend => {
-    
-  };
 
   render() {
     return (
@@ -18,6 +15,7 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 export default App;

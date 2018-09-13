@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom'
 import axios from 'axios';
+import AddFriendForm from './AddFriendForm';
 
 class FriendList extends Component {
   constructor(props) {
@@ -8,6 +9,24 @@ class FriendList extends Component {
     this.state = {
       friendList: []
     };
+  }
+
+  addNewFriend = (e) => {
+    e.preventDefault();
+    axios
+    .post("http://localhost:5000/friends", {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+     })
+    .then((response) => this.setState({ friends: response.data }))
+    .catch(err => console.log(err))
+  }
+
+  handleInput = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   componentDidMount() {
@@ -25,7 +44,8 @@ class FriendList extends Component {
   render() {
     return (
       <div className="friend-list">
-       {this.state.friendList.map(friend => (
+        <AddFriendForm />
+        {this.state.friendList.map(friend => (
           <FriendDetails key={friend.id} friend={friend} />
         ))}
       </div>
