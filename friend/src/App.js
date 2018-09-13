@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FriendList from './components/FriendList';
+import FriendForm from './components/FriendForm';
+import {Route} from 'react-router-dom';
 
 // import logo from './logo.svg';
 import './App.css';
@@ -10,49 +12,48 @@ class App extends Component {
     super();
     this.state={
       friends: [],
-      inputName:"",
-      inputAge: "",
-      inputEmail:""
+      friend: {
+        id: "",
+        name: "",
+        age: "",
+        email: ""
+      }
     }
   }
 
-  handleNameChange = event => {
-    this.setState({ inputName: event.target.value
+  handleChange = event => {
+    this.setState({ 
+      friend: { ...this.state.friend,
+                [event.target.name]: event.target.value}
     })
   }
-  handleAgeChange = event => {
-    this.setState({ inputAge: event.target.value
-    })
-  }
-  handleEmailChange = event => {
-    this.setState({ inputEmail: event.target.value
-    })
-  }
+  // handleAgeChange = event => {
+  //   this.setState({ inputAge: event.target.value
+  //   })
+  // }
+  // handleEmailChange = event => {
+  //   this.setState({ inputEmail: event.target.value
+  //   })
+  // }
   
   handleAddFriend = event => {
     event.preventDefault();
-    if (this.state.inputName && this.state.inputAge && this.state.inputEmail){
-
-      axios.post('http://localhost:5000/friends', 
-                {id: (this.state.friends.length + 1),
-                name: this.state.inputName,
-                age: this.state.inputAge,
-                email: this.state.inputEmail })
-            .then(response => {
-            // console.log(response);
-                this.setState({friends: [...response.data], 
-                              inputName:"",
-                              inputAge: "",
-                              inputEmail:""
-                              })
-                })
-            .catch(err => console.log(err));
-
-
-      
+    if (this.state.friend.name && this.state.friend.age && this.state.friend.email){
+        axios.post('http://localhost:5000/friends', 
+                  { name: this.state.friend.name,
+                    age: this.state.friend.age,
+                    email: this.state.friend.email })
+              .then(response => {
+                     this.setState({ friends: [...response.data],
+                                    friend:{  id:"",
+                                              name:"",
+                                              age: "",
+                                              email:""} 
+                                  });
+                     this.history.push("/");
+                  })
+              .catch(err => console.log(err));
     }
-    // console.log(this.state.freiends);
-   
   }
 
   componentDidMount(){
@@ -63,23 +64,24 @@ class App extends Component {
         this.setState({ friends: response.data });
       })
       .catch(err => console.log(err));
-    
   }
 
   render() {
     return (
       <div>
-          <h2>Add New Friend:</h2> 
-          <form>
-            First name: 
-            <input type="text" value={this.state.inputName} onChange={this.handleNameChange} /><br></br>
-            Age: 
-            <input type="number" name="age" value={this.state.inputAge} onChange={this.handleAgeChange} /><br></br>
-            E-mail: 
-            <input type="text" name="email" value={this.state.inputEmail} onChange={this.handleEmailChange} />
-            <button onClick={this.handleAddFriend}>Save</button>
-          </form>
-          <FriendList friends={this.state.friends} />
+          
+          <Route  exact
+                  path="/"
+                  render={props =>  
+                          <FriendList {...props}        
+                                      friends={this.state.friends} /> } />
+          <Route  path="/form"
+                  render={props =>
+                          <FriendForm {...props} 
+                                      friend={this.state.friend}
+                                      handleChange={this.handleChange}
+                                      handleAddFriend={this.handleAddFriend}/> }/>
+          
       </div>
     )
   }
