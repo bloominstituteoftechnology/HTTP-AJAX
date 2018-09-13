@@ -11,9 +11,11 @@ class App extends Component {
   state = {
     friends: [],
     name: "",
-    age: "",
+    timezone: "",
     email: "",
-    telephone: ""
+    telephone: "",
+    avatar: "",
+    search: ""
   }
 
   componentDidMount() {
@@ -40,23 +42,30 @@ class App extends Component {
     event.preventDefault();
 
     const newFriend = { name: this.state.name,
-                        age: this.state.age,
+                        timezone: this.state.timezone,
                         email: this.state.email,
-                        telephone: this.state.telephone };
+                        telephone: this.state.telephone,
+                        avatar: this.state.avatar };
 
     axios
       .post("http://localhost:5000/friends", newFriend)
       .then(response => {
         this.setState({ friends: response.data,
                         name: "",
-                        age: "",
+                        timezone: "",
                         email: "",
-                        telephone: ""});
+                        telephone: "",
+                      avatar: ""});
       })
       .catch(error => console.log(error));
 
       this.props.history.push('/');
   }
+
+  handleSearch = event => {
+    event.preventDefault();
+    // TODO: might add a search functionality at some point
+  };
 
   handleCancel = event => {
     event.preventDefault();
@@ -84,9 +93,11 @@ class App extends Component {
 
           <Route path="/friends/add" render={(props) =>
             <Form name={this.state.name}
-                  age={this.state.age}
+                  timezone={this.state.timezone}
                   email={this.state.email}
                   telephone={this.state.telephone}
+                  avatar={this.state.avatar}
+
                   handleChange={this.handleChange}
                   handleCancel={this.handleCancel}
                   handleFriendSubmit={this.handleFriendSubmit} />

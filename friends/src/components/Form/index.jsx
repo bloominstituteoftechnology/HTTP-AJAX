@@ -13,10 +13,10 @@ const Form = props => {
       />
       <input
         type="text"
-        placeholder="age..."
-        name="age"
+        placeholder="timezone..."
+        name="timezone"
         onChange={props.handleChange}
-        value={props.age}
+        value={props.timesone}
       />
       <input
         type="text"
@@ -28,9 +28,16 @@ const Form = props => {
       <input
         type="text"
         placeholder="telephone..."
-        name="email"
+        name="telephone"
         onChange={props.handleChange}
         value={props.telephone}
+      />
+      <input
+        type="text"
+        placeholder="avatar url..."
+        name="avatar"
+        onChange={props.handleChange}
+        value={props.avatar}
       />
       <button onClick={props.handleFriendSubmit}>Submit</button>
     </form>

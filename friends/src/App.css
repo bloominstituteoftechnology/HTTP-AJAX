@@ -111,7 +111,7 @@ button:hover {
 .friend-card {
   width: 200px;
   height: 80px;
-  font-size: 2rem;
+  font-size: 1.3rem;
   line-height: 80px;
   text-align: center;
   margin: 15px;
@@ -137,6 +137,7 @@ button:hover {
 }
 
 .friend {
+  display: flex;
   margin-bottom: 15px;
   border: 2px solid #000;
   border-radius: 4px;
@@ -144,6 +145,24 @@ button:hover {
   background: #fff;
 }
 
+.friendDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
 .friendDetail {
   margin: 5px 0;
+}
+
+.friend img {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+.friend button {
+  margin-top: 25px;
+  margin-left: 15px;
+  width: 100px;
 }
