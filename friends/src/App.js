@@ -4,6 +4,7 @@ import "./App.css";
 import axios from "axios";
 import FriendCard from "./components/FriendCard";
 import FriendForm from "./components/FriendForm";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -26,7 +27,6 @@ class App extends Component {
   }
 
   addNewFriend(e) {
-    console.log(" i was clicked!!!");
     e.preventDefault();
 
     axios
@@ -35,13 +35,15 @@ class App extends Component {
         this.setState({ friends: response.data }, this.clearInputs())
       )
       .catch(err => console.log(err));
-    console.log(this.state.newFriend);
   }
 
   clearInputs() {
-    this.state.newFriend.name = "";
-    this.state.newFriend.age = "";
-    this.state.newFriend.email = "";
+    let nf = {
+      name: "",
+      age: "",
+      email: ""
+    };
+    this.setState({ newFriend: nf });
   }
 
   handleChange(event) {
@@ -54,19 +56,38 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <h1>Friends:</h1>
-        <FriendForm
-          handleChange={this.handleChange.bind(this)}
-          addNewFriend={this.addNewFriend.bind(this)}
-          newFriend={this.state.newFriend}
-        />
-        <div className="friends-container">
-          {this.state.friends.map(friend => (
-            <FriendCard friend={friend} />
-          ))}
+      <Router>
+        <div className="App">
+          <h1>Fun Friends:</h1>
+          <nav>
+            <NavLink activeClassName="active" className="nav-link" to="/list">
+              Friends List
+            </NavLink>
+            <NavLink activeClassName="active" className="nav-link" to="/new">
+              Add Friend
+            </NavLink>
+          </nav>
+          <Route
+            path="/new"
+            render={props => (
+              <FriendForm
+                {...props}
+                handleChange={this.handleChange.bind(this)}
+                addNewFriend={this.addNewFriend.bind(this)}
+                newFriend={this.state.newFriend}
+              />
+            )}
+          />
+          <div className="friends-container">
+            <Route
+              path="/list"
+              render={() =>
+                this.state.friends.map(friend => <FriendCard friend={friend} />)
+              }
+            />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

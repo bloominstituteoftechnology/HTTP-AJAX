@@ -9,6 +9,7 @@ const FriendForm = props => {
         name="name"
         type="text"
         value={props.newFriend.name}
+        required
       />
       Age:
       <input
@@ -23,8 +24,17 @@ const FriendForm = props => {
         name="email"
         type="text"
         value={props.newFriend.email}
+        required
       />
-      <button onClick={event => props.addNewFriend(event)}>Submit!</button>
+      <div
+        className="nav-link button"
+        onClick={event => {
+          props.addNewFriend(event);
+          props.history.push("/list");
+        }}
+      >
+        Submit!
+      </div>
     </form>
   );
 };

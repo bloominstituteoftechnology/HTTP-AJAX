@@ -11,4 +11,13 @@ const FriendCard = props => {
     </div>
   );
 };
+
+FriendCard.propTypes = {
+  //fill out prop types
+  friend: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired
+  })
+};
 export default FriendCard;
