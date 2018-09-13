@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import Friend from "../Friend";
 import "../../App.css";
 
 const FriendsList = props => {
@@ -11,9 +9,9 @@ const FriendsList = props => {
   // return a map of the each friend in friendsList
   return (
     <div className="friends">
-      {friendsList.map(friend => {
+      {friendsList.map((friend, index) => {
         return (
-          <Link to={`/friends/${friend.id}`}>
+          <Link key={index} to={`/friends/${friend.id}`}>
             <div className="friend-card">{friend.name}</div>
           </Link>
         );

@@ -1,82 +1,104 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Route } from 'react-router-dom';
-import FriendsList from "./components/FriendsList";
-import "./App.css";
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import FriendsList from './components/FriendsList';
+import Friend from './components/Friend';
+import Form from './components/Form';
+import Header from './components/Header';
 
 class App extends Component {
   state = {
-    friendsData: [],
+    friends: [],
     name: "",
     age: "",
     email: ""
-  };
+  }
 
   componentDidMount() {
-    // use axios to send a get request to the api and pull in the friends data
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
-        this.setState({ friendsData: response.data });
+        this.setState({ friends: response.data });
       })
       .catch(err => {
         console.log(err);
-      });
+      })
   }
 
-  // handle changes to input fields : trying to do it fairly dry
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  // handle the submit of a new friend
-  handleFriendSubmit = () => {
-    // get the id of the data item
-    const id = (this.state.friendsData[this.state.friendsData.length - 1].id + 1);
+  handleFriendSubmit = e => {
+    if (this.state.name === "") {
+          this.props.history.push("/");
+          return;
+        }
 
-    // setup the data for the next friend
-    const nextFriend = { id: id, name: this.state.name, age: this.state.age, email: this.state.email };
+    e.preventDefault();
 
-    // use the axios library to send a post request to the api and update the state
+    const newFriend = { name: this.state.name,
+                        age: this.state.age,
+                        email: this.state.email };
+
     axios
-      .post("http://localhost:5000/friends", nextFriend)
+      .post("http://localhost:5000/friends", newFriend)
       .then(response => {
-        this.setState({ friendsData: response.data, name: "", age: "", email: "" });
+        this.setState({ friends: response.data,
+                        name: "",
+                        age: "",
+                        email: "" });
       })
       .catch(error => console.log(error));
+
+      this.props.history.push('/');
+  }
+
+  handleCancel = e => {
+    e.preventDefault();
+    this.setState({ name: "", age: "", email: "" });
+    this.props.history.push("/");
+  }
+
+  handleUpdateFriends = (data, deletedFriendId) => {
+    const friends = this.state.friends.filter(friend => friend.id !== deletedFriendId);
+    this.setState({ friends });
+    this.props.history.push('/');
   }
 
   render() {
     return (
-      <div className="App">
-        <form>
-          <input
-            type="text"
-            placeholder="name..."
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
+      <div className="container">
+        <Header />
+
+        <Route exact path="/" render={(props) =>
+            <FriendsList friends={this.state.friends} />
+          }
+        />
+
+        <Switch>
+
+          <Route path="/friends/add" render={(props) =>
+            <Form name={this.state.name}
+                  age={this.state.age}
+                  email={this.state.email}
+                  handleChange={this.handleChange}
+                  handleCancel={this.handleCancel}
+                  handleFriendSubmit={this.handleFriendSubmit} />
+            }
           />
-          <input
-            type="text"
-            placeholder="age..."
-            name="age"
-            value={this.state.age}
-            onChange={this.handleChange}
+
+          <Route path="/friends/:id" render={(props) =>
+            <Friend {...props} handleUpdateFriends={this.handleUpdateFriends} />
+            }
           />
-          <input
-            type="text"
-            placeholder="email..."
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </form>
-        <button onClick={this.handleFriendSubmit}>Submit</button>
-        <FriendsList friends={this.state.friendsData} />
+
+        </Switch>
+
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
