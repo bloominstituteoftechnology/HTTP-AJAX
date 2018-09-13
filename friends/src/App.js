@@ -28,6 +28,19 @@ class App extends Component {
     this.setState ({ [e.target.name]: e.target.value });
   }
 
+  handleSubmit = () => {
+    const id = (this.state.friends[this.state.friends.length - 1].id + 1);
+    const newFriend = { id: id, name: this.state.name, age: this.state.age, email: this.state.email };
+
+    axios
+      .post("http://localhost:5000/friends", newFriend)
+      .then(response => {
+        this.setState({ friends: response.data, name: '', age: '', email: '' });
+      })
+      .catch(err =>
+        console.log(err));
+      }
+
   render() {
     return (
       <div className="App">
@@ -54,6 +67,7 @@ class App extends Component {
             onChange = {this.handleFormInput}
           />
         </form>
+        <button onClick = {this.handleSubmit}>Submit new friend</button>
         <FriendList friends = {this.state.friends} />
       </div>
     );
