@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -16,11 +17,13 @@ const FriendStyle = styled.div`
 const Friend = props => {
   return (
     <Container>
-      <FriendStyle>
-        <h3>Name: {props.friend.name}</h3>
-        <h4>Age: {props.friend.age}</h4>
-        <h5>Email: {props.friend.email}</h5>
-      </FriendStyle>
+      <NavLink to={`/friends/${props.friend.id}`}>
+        <FriendStyle>
+          <h3>Name: {props.friend.name}</h3>
+          <h4>Age: {props.friend.age}</h4>
+          <h5>Email: {props.friend.email}</h5>
+        </FriendStyle>
+      </NavLink>
     </Container>
   );
 };

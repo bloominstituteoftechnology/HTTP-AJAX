@@ -1,38 +1,19 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-import Friend from './Friend';
+import { Route } from 'react-router-dom';
 
-class Friends extends Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: [],
-    };
-  }
+import FriendCard from './FriendCard';
+import FriendForm from './FriendForm';
 
-  componentDidMount() {
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        console.log(response);
-        this.setState({ friends: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Friends:</h1>
-        {this.state.friends.map(friend => (
-          <Friend key={friend.id} friend={friend} />
-        ))}
-      </div>
-    );
-  }
-}
+const Friends = props => {
+  return (
+    <div>
+      <h1>Friends:</h1>
+      {props.friends.map(friend => (
+        <FriendCard key={friend.id} friend={friend} />
+      ))}
+    </div>
+  );
+};
 
 export default Friends;
