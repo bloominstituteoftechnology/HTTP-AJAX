@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
     };
   }
 
@@ -24,6 +24,8 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
+
+  
   render() {
     return (
       <div className="App">
