@@ -1,7 +1,7 @@
 import React,{Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-function FwenForm(props){
+function FriendForm(props){
     return(
         <Fragment>
             <label>New Friend:</label>
@@ -29,11 +29,14 @@ function FwenForm(props){
                 onChange={props.handleChange}
                 required />
             </form>
+            <button onClick={props.handleAddNewFriend}>
+                Submit
+            </button>
         </Fragment>
     )
 }
 
-FwenForm.propTypes = {
+FriendForm.propTypes = {
     friend: PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
@@ -41,6 +44,7 @@ FwenForm.propTypes = {
         email: PropTypes.string,
     }),
     handleChange: PropTypes.func,
+    handleAddNewFriend: PropTypes.func,
 }
 
-export default FwenForm;
+export default FriendForm;

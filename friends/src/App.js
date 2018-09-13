@@ -5,11 +5,13 @@ import {Route} from 'react-router-dom';
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
 //import { runInThisContext } from 'vm';
+import axios from 'axios';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
+      friends: [],
       friend: {
         id: 0,
         name: '',
@@ -18,6 +20,15 @@ class App extends Component {
       },
     };
   }
+  
+  componentDidMount(){
+    axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+            this.setState({friends: response.data})
+        })
+        .catch(err => console.log(err));
+}
 
   handleChange = event =>{
     //console.log('event.target.name');
@@ -44,6 +55,31 @@ class App extends Component {
     })
   }
 
+  createID(){
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({
+          friend:{
+            ...this.state.friend,
+            id: response.data[response.data.length-1].id+1,
+          }
+        })
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleAddNewFriend = event =>{
+    event.preventDefault();
+    this.createID();
+    axios
+      .post('http://localhost:5000/friends', this.state.friend)
+      .then(response => {
+          this.setState({friends:response.data})
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
@@ -51,15 +87,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Friends</h1>
         </header>
-        <Route path='/' component={FriendList} />
+        <Route
+          path='/'
+          render={props=>(
+            <FriendList
+              {...props}
+              friends={this.state.friends}
+            />
+          )}
+        />
         <Route
           path='/'
           render={props =>(
             <FriendForm
-            {...props}
-            friend={this.state.friend}
-            handleChange={this.handleChange}
-            handleNumberChange={this.handleNumberChange} />
+              {...props}
+              friend={this.state.friend}
+              handleChange={this.handleChange}
+              handleNumberChange={this.handleNumberChange}
+              handleAddNewFriend={this.handleAddNewFriend}
+            />
           )}
         />
       </div>
