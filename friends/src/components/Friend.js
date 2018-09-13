@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 
 const Friend = props => {
@@ -13,10 +12,10 @@ const Friend = props => {
         <li>{props.item.email}</li>
       </ol>
       <button onClick={(event) => props.deleteIt(event, props.item.id)}>
-        Delete Friend</button>
-    </React.Fragment>
-  )
-} else {return ''}
+          Delete Friend</button>
+      </React.Fragment>
+    )
+  } else {return ''}
 }
 
 export default Friend

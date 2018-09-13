@@ -8,12 +8,7 @@ import DeleteFriend from './components/DeleteFriend'
 import FriendList from './components/FriendList'
 import Friend from './components/Friend'
 import FriendUpdateForm from './components/FriendUpdateForm'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Link,
-  Route,
-} from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
   constructor(){
@@ -31,7 +26,6 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response)
         this.setState(() => ({ friends: response.data }));
       })
       .catch(error => {
@@ -60,7 +54,6 @@ class App extends Component {
     axios
     .post('http://localhost:5000/friends', newItem)
     .then(response=>{
-          console.log(response)
           this.setState(({ friends: response.data,
             id: '', name: '', age: '', email: '',
            }));
@@ -103,7 +96,6 @@ class App extends Component {
 
   putFriend = e => {
     e.preventDefault();
-    console.log(this.state.selected.id);
     axios
     .put(`http://localhost:5000/friends/${this.state.selected.id}`,
       this.state.selected)
@@ -113,7 +105,8 @@ class App extends Component {
     });
   }
 
-//
+
+
 
   render() {
     return (
@@ -147,14 +140,13 @@ class App extends Component {
               deleteIt={this.deleteFriend}
               selectFriend={this.selectFriend}
              />
-             <FriendUpdateForm
-               values={this.state.selected}
-               handleChange={this.updateFormChange}
-               update={this.putFriend}
-              />
+            <FriendUpdateForm
+             values={this.state.selected}
+             handleChange={this.updateFormChange}
+             update={this.putFriend}
+            />
           </div>
         } />
-
       </div>
     );
   }
