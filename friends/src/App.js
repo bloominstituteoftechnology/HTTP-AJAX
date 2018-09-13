@@ -16,21 +16,14 @@ class App extends Component {
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
-      .then((response) => {
-        this.setState({ friends: response.data });
-      })
+      .then(response => this.setState({ friends: response.data }))
       .catch(err => console.log(err))
   }
 
   addFriend = (newFriend) => {
-    this.setState({ friends: [...this.state.friends, newFriend] })
-    this.axiosPost(newFriend)
-  }
-
-  axiosPost = (newFriend) => {
     axios
       .post('http://localhost:5000/friends', newFriend)
-      .then(console.log('Post request successful!'))
+      .then(this.setState({ friends: [...this.state.friends, newFriend] }), window.location.href = '/friends')
       .catch(err => console.log(err))
   }
 
