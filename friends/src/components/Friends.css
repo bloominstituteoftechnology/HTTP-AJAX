@@ -1,9 +1,16 @@
+body {
+    background: #3d3d3d;
+    color: white;
+}
+
+
 .friend-card-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    width: 66%;
+    width: 90%;
     margin: 0 auto;
+    
 }
 
 .friend-card {
