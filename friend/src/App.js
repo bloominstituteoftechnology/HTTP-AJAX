@@ -10,56 +10,76 @@ class App extends Component {
     super();
     this.state={
       friends: [],
-      name:"",
-      age: 0,
-      email:""
+      inputName:"",
+      inputAge: "",
+      inputEmail:""
     }
   }
 
-  handleInputChange = (event) => {
-    this.setState({
-      name: event.target.value
+  handleNameChange = event => {
+    this.setState({ inputName: event.target.value
+    })
+  }
+  handleAgeChange = event => {
+    this.setState({ inputAge: event.target.value
+    })
+  }
+  handleEmailChange = event => {
+    this.setState({ inputEmail: event.target.value
     })
   }
   
-  handleAddTodo = event => {
+  handleAddFriend = event => {
     event.preventDefault();
-    if (this.state.name && this.state.age && this.state.email){
-      this.setState({
-        todo: [...this.state.todo, 
-                {task: this.state.inputText,
-                  id: Date.now(),
-                  completed: false}
-        ],
-        inputText:""
-       })
+    if (this.state.inputName && this.state.inputAge && this.state.inputEmail){
+
+      axios.post('http://localhost:5000/friends', 
+                {id: (this.state.friends.length + 1),
+                name: this.state.inputName,
+                age: this.state.inputAge,
+                email: this.state.inputEmail })
+            .then(response => {
+            // console.log(response);
+                this.setState({friends: [...response.data], 
+                              inputName:"",
+                              inputAge: "",
+                              inputEmail:""
+                              })
+                })
+            .catch(err => console.log(err));
+
+
+      
     }
+    // console.log(this.state.freiends);
+   
   }
 
   componentDidMount(){
     axios
     .get('http://localhost:5000/friends')
-    .then(response => {
+      .then(response => {
       // console.log(response);
-      // set our state with the new data
-      this.setState({ friends: response.data });
-    })
-    .catch(err => console.log(err));
+        this.setState({ friends: response.data });
+      })
+      .catch(err => console.log(err));
+    
   }
 
   render() {
     return (
       <div>
-         {/* <form>
-           First name: 
-          <input type="text" value="Enter new friend's name" onChange={this.handleInputChange}></input>
-           Age: 
-           <input type="number" name="age" value="Enter new friend's age"></input>
-           E-mail: 
-           <input type="text" name="email" value="Enter new friend's e-mail"></input>
-           <button ></button>
-         </form> */}
-         <FriendList friends={this.state.friends} />
+          <h2>Add New Friend:</h2> 
+          <form>
+            First name: 
+            <input type="text" value={this.state.inputName} onChange={this.handleNameChange} /><br></br>
+            Age: 
+            <input type="number" name="age" value={this.state.inputAge} onChange={this.handleAgeChange} /><br></br>
+            E-mail: 
+            <input type="text" name="email" value={this.state.inputEmail} onChange={this.handleEmailChange} />
+            <button onClick={this.handleAddFriend}>Save</button>
+          </form>
+          <FriendList friends={this.state.friends} />
       </div>
     )
   }
