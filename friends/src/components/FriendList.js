@@ -5,13 +5,17 @@ import {Route, Link} from 'react-router-dom'
 
 const FriendList = props => {
   if (props.list[0]) {
-    // const item = props.list[1]
+    // console.log(props.item)
   return (
      <div className="friend-list">
        {props.list.map(item =>(
          // <Route path='/id:' render={props =>
          <Link to={`/${item.id}`}>
-         <Friend item={item}/>
+         <Friend
+           item={item}
+           deleteIt={props.deleteIt}
+           selectFriend={props.selectFriend}
+         />
           </Link>
        ))}
    </div>

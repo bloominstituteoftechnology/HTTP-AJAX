@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios'
 
 import SubmitFriend from './components/SubmitFriend'
+import DeleteFriend from './components/DeleteFriend'
 import FriendList from './components/FriendList'
 import Friend from './components/Friend'
 import {
@@ -18,7 +19,7 @@ class App extends Component {
     super();
     this.state ={
       friends: [],
-        id: '',
+      selected: {},
         name: '',
         age: '',
         email: '',
@@ -29,6 +30,7 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
+        console.log(response)
         this.setState(() => ({ friends: response.data }));
       })
       .catch(error => {
@@ -53,17 +55,18 @@ class App extends Component {
       name: this.state.name,
       age: this.state.age,
       email: this.state.email,
-      id: this.state.friends.length +1
     }
     axios
     .post('http://localhost:5000/friends', newItem)
     .then(response=>{
-          this.setState(({ friends: response.data }));
+          console.log(response)
+          this.setState(({ friends: response.data,
+            id: '', name: '', age: '', email: '',
+           }));
         })
         .catch(error => {
           console.error('Server Error', error);
         });
-      this.setState({id: '', name: '', age: '', email: '',})
   }
 
   updateFriend = (e) => {
@@ -71,6 +74,25 @@ class App extends Component {
       [e.target.name] : e.target.value
     })
   }
+
+  selectFriend = (selected) => {
+    this.setState({
+      selected
+    })
+  }
+
+  deleteFriend = (event, friendId) => {
+    event.preventDefault();
+    console.log('firing');
+    axios
+    .delete(`http://localhost:5000/friends/${friendId}`)
+    .then(response => this.setState({friends: response.data}))
+    .catch(error => {
+      console.error('Server Error', error);
+    });
+  }
+
+//
 
   render() {
     return (
@@ -86,14 +108,24 @@ class App extends Component {
           handleChange={this.updateFriend} />}
         />
         <Route path='/' render={props =>
+          <DeleteFriend {...props}
+          />}
+        />
+        <Route path='/' render={props =>
           <FriendList {...props}
             list={this.state.friends}
+            selectFriend={this.selectFriend}
+            deleteIt={this.deleteFriend}
           />}
         />
         <Route path='/:id' render={props =>
           <div className='selected'>
             <h2> Selected </h2>
-            <Friend {...props} item={this.state.friends[props.match.params.id-1]} />
+            <Friend {...props}
+              item={this.state.selected}
+              deleteIt={this.deleteFriend}
+              selectFriend={this.selectFriend}
+             />
           </div>
         } />
 
