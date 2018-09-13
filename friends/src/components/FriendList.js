@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import FriendForm from './FriendForm';
+import { Link } from 'react-router-dom';
 
 export default class FriendList extends Component {
   constructor(props) {
@@ -20,16 +20,28 @@ export default class FriendList extends Component {
         console.error(err);
       });
   }
-
+  removeCompleted = event => {
+    event.preventDefault();
+    let newTrimmedArray = [...this.state.appStateTodos];
+    newTrimmedArray = newTrimmedArray.filter(element => {
+      if (!element.completed) {
+        return element;
+      }
+    });
+    this.setState({ appStateTodos: newTrimmedArray });
+  };
   render() {
     return (
       <div className="friend-list">
         {this.state.friends.map(friend => (
-          <div key={friend.name} className="friend">
+          <Link
+            to={`/friends/${friend.name}`}
+            key={friend.name}
+            className="friend"
+          >
             {friend.name} | {friend.age} | {friend.email}
-          </div>
+          </Link>
         ))}
-        {console.log(`Friends ${this.state.friends}`)}
       </div>
     );
   }
