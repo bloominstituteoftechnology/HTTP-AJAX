@@ -17,7 +17,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      friend: {
+        name: '',
+        email: '',
+        age: '',
+      }
     }
   }
 
@@ -36,11 +41,26 @@ class App extends Component {
       })
   }
 
+  handleInput = e => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [e.target.name]: e.target.value,
+        date: Date.now(),
+      }
+    })
+  }
+
+  handleAddNewFriend = e => {
+    axios.post('http://localhost:5000/friends', this.state.friend)
+      .then(response => this.setState({ friends: response.data, friend: this.state.friend}))
+  }
+
   render() {
     return (
       <Container>
         <Navigation />
-        <Route exact path="/" component={CardForm}/>
+        <Route exact path="/" render={props => <CardForm handleInput={this.handleInput} handleSubmit={this.handleAddNewFriend} />} />
         <Route exact path="/friends" render={props => <CardList data={this.state.friends} />} />
         
       </Container>

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, Card, CardBody, CardHeader, CardTitle, CardText, CardFooter, CardGroup } from 'mdbreact';
+import TimeAgo from 'react-timeago'
+import moment from 'moment';
 
 const CardSingle = (props) => {
+    let da = Date.now();
+    let a = moment.utc(da).format('LL')
     return (
         <CardGroup>
             <Card style={{width: '22rem', marginTop: '1rem'}} className="text-center">
@@ -12,7 +16,7 @@ const CardSingle = (props) => {
                 <CardText>Email: {props.friend.email}</CardText>
             <Button color="deep-orange lighten-1" size="sm">Edit</Button>
             </CardBody>
-            <CardFooter color="deep-orange lighten-1">2 days ago</CardFooter>
+            <CardFooter color="deep-orange lighten-1"><TimeAgo date={a} /></CardFooter>
             </Card>
         </CardGroup>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Input, Button, Fa } from 'mdbreact';
+import { Container, Row, Col, Input, Button, Fa, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact';
 import Styled from 'styled-components';
 
 const Wrapper = Styled.div`
@@ -8,41 +8,35 @@ const Wrapper = Styled.div`
 `;
 
 class CardForm extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
-          name: '',
-          email: '',
-          age: '',
-      }
-    }
-
-    handleName = (e) => {
-        this.setState({
-            name: e.target.value
-        });
-    }
-
-    handleEmail = (e) => {
-        this.setState({
-            email: e.target.value
-        });
-    }
-
-    handleAge = (e) => {
-        this.setState({
-            age: e.target.value
-        });
-    }
-
-    handleSubmit = () => {
-        console.log(this.state)
-        this.setState({
+          friend: {
             name: '',
             email: '',
             age: '',
-        })
+            date: null,
+          },
+          modal14: false,
+      }
     }
+
+    // Toggles the modal for confirmation
+    toggle(nr) {
+        let modalNumber = 'modal' + nr
+        this.setState({
+          [modalNumber]: !this.state[modalNumber]
+        });
+      }
+
+    // Handles submitting the information
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleSubmit();
+        this.toggle(14);
+    }
+
+    
   
     render() {
       return (
@@ -53,17 +47,26 @@ class CardForm extends Component {
                     <form>
                     <p className="h5 text-center mb-4">Add A Friend</p>
                     <div className="grey-text">
-                        <Input value={this.state.name} onChange={this.handleName} label="Name" icon="user" group type="text" validate error="wrong" success="right"/>
-                        <Input value={this.state.email} onChange={this.handleEmail} label="Email" icon="envelope" group type="email" validate error="wrong" success="right"/>
-                        <Input value={this.state.age} onChange={this.handleAge} label="Age" icon="tag" group type="text" validate error="wrong" success="right"/>
+                        <Input value={this.state.name} onChange={this.props.handleInput} name="name" label="Name" icon="user" group type="text" validate error="wrong" success="right"/>
+                        <Input value={this.state.email} onChange={this.props.handleInput} name="email" label="Email" icon="envelope" group type="email" validate error="wrong" success="right"/>
+                        <Input value={this.state.age} onChange={this.props.handleInput} name="age" label="Age" icon="tag" group type="text" validate error="wrong" success="right"/>
                     </div>
                     <div className="text-center">
-                        <Button onClick={this.handleSubmit} outline color="secondary">Save<Fa icon="paper-plane-o" className="ml-1"/></Button>
+                        <Button onClick={event => {this.handleSubmit(event)}} outline color="secondary">Save<Fa icon="paper-plane-o" className="ml-1"/></Button>
                     </div>
                     </form>
                 </Col>
                 </Row>
             </Container>
+            <Modal isOpen={this.state.modal14} toggle={() => this.toggle(14)} centered>
+                <ModalHeader toggle={() => this.toggle(14)}>Friend</ModalHeader>
+                <ModalBody>
+                    Friend Added
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="deep-orange lighten-1" onClick={() => this.toggle(14)}>Ok</Button>
+                </ModalFooter>
+            </Modal>
         </Wrapper>
       );
     }
