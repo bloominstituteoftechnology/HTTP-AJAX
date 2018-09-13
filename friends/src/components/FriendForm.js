@@ -7,30 +7,34 @@ const FriendForm = (props) => {
       <label>
       Name:
     <input type="text"
-            onChange={this.handleTextInput}
+            onChange={props.textInputHandler}
             placeholder="name"
             name="name"
-            // value={this.state.name}
+            value={props.name}
     />
     </label>
+    <br />
     <label>
       Age:
     <input type="text"
-            onChange={this.handleTextInput}
+            onChange={props.textInputHandler}
             placeholder="age"
             name="age"
-            // value={this.state.age}
+            value={props.age}
     />
     </label>
+    <br />
     <label>
       Email:
     <input type="text"
-            onChange={this.handleTextInput}
+            onChange={props.textInputHandler}
             placeholder="email"
             name="email"
-            // value={this.state.email}
+            value={props.email}
     />
-    </label>  
+    </label> 
+    <br />
+    <button onClick={props.saveFriendData}>Add Friend</button> 
     </form>
 
    );

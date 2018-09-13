@@ -17,9 +17,7 @@ class App extends Component {
     };
   }
 
-  // handleTextInput = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
+  
   
   componentDidMount() {
     axios
@@ -32,6 +30,29 @@ class App extends Component {
         console.log(err);
       });
   }
+
+  textInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
+                  // { [e.target.age]: e.target.value },
+                  // { [e.target.email]: e.target.value });
+  };
+
+  // saveFriendData = () => {
+  //   const person = {name: this.state.name, age: this.state.age, email: this.state.email};
+
+    // axios
+    //   .post('http://localhost:5000/friends', person)
+
+    //   .then(resonse => {
+    //   console.log(response;
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    //  console.log(person); 
+    // this.setState({name: '', age: '', email: ''});
+  // };
+
   render() {
     return (
       <div className="App">
@@ -39,7 +60,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to my HTTP-AJAX Project</h1>
         </header>
-        <FriendForm />
+        <FriendForm textInputHandler={this.textInput}/>
  
         <div className="friends-container">
           {this.state.friends.map(friend => <div className={"friend"} key={friend.id} friend={friend} >
