@@ -27,7 +27,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Friends!</h1>
+        <form>
+          <input
+            type = 'text'
+            placeholder = 'Name'
+            name = 'name'
+          />
+          <input
+            type = 'text'
+            placeholder = 'Age'
+            name = 'age'
+          />
+          <input
+            type = 'text'
+            placeholder = 'Email address'
+            name = 'email'
+          />
+        </form>
         <FriendList friends = {this.state.friends} />
       </div>
     );
