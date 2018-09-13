@@ -7,12 +7,14 @@ class FriendList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friendList: []
+      friendList: [],
+      name: '',
+      age: '',
+      email: '',
     };
   }
 
   addNewFriend = (e) => {
-    e.preventDefault();
     axios
     .post("http://localhost:5000/friends", {
       name: this.state.name,
@@ -44,7 +46,9 @@ class FriendList extends Component {
   render() {
     return (
       <div className="friend-list">
-        <AddFriendForm />
+        <AddFriendForm {...this.state}
+          handleInput={this.handleInput}
+          addNewFriend={this.addNewFriend}/>
         {this.state.friendList.map(friend => (
           <FriendDetails key={friend.id} friend={friend} />
         ))}
@@ -71,6 +75,5 @@ function FriendDetails({ friend }) {
     </div>
   );
 }
-
 
 export default FriendList;
