@@ -8,6 +8,7 @@ const FriendsList = props => {
             <Friend
                 friend={friend}
                 key={friend.id}
+                handleClick = {props.handleClick}
             />
         )}
     </div>
