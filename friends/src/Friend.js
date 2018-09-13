@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 
 function Friend(props) {
     return (
-        <li>Name: {props.friend.name}, Age: {props.friend.age}, Email: {props.friend.email}</li>
+        <div>
+            <h1>Current Friends</h1>
+            <ul>
+            {props.friends.map(friend => 
+            <li>Name: {friend.name}, Age: {friend.age}, Email: {friend.email}</li>
+            )}
+            </ul>
+        </div>
     )
 }
 

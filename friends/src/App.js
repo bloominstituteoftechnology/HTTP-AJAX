@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Friend from './Friend';
 import Form from './Form';
-import { runInThisContext } from 'vm';
+import { Route, NavLink } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -41,12 +39,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Current Friends</h1>
-        <ul>
-          {this.state.friends.map(friend => <Friend friend={friend} key={friend.id} />)}
-        </ul>
-        <h2>New Friend Form</h2>
-        <Form friend={this.state.friend} updateFriends={this.updateFriends} />
+        <h1>Friends</h1>
+        <NavLink to="/current">
+          Current Friends
+        </NavLink>
+        <NavLink to="/friend-form">
+          New Friend Form 
+        </NavLink>
+        <Route exact path="/current" render={props => (
+          <Friend {...props} friends={this.state.friends} />
+        )}
+        />
+        <Route exact path="/friend-form" render={props => (
+          <Form {...props} friend={this.state.friend} updateFriends={this.updateFriends} />
+        )}
+        />
       </div>
     );
   }

@@ -30,16 +30,17 @@ class Form extends Component {
     
     render() {
         return (
-            <form action="" >
-                Name: <input type="text" name="name" value={this.state.name} onChange={this.handleInput}/>
-                Age: <input type="text" name="age" value={this.state.age} onChange={this.handleInput}/>
-                Email: <input type="text" name="email" value={this.state.email} onChange={this.handleInput}/>
-                <input type="submit" value="Submit" onClick={this.formHandler}/>
-            </form>
+            <div>
+                <h2>Add a New Friend</h2>
+                <form action="" >
+                    Name: <input type="text" name="name" value={this.state.name} onChange={this.handleInput}/>
+                    Age: <input type="text" name="age" value={this.state.age} onChange={this.handleInput}/>
+                    Email: <input type="text" name="email" value={this.state.email} onChange={this.handleInput}/>
+                    <input type="submit" value="Submit" onClick={this.formHandler}/>
+                </form>     
+            </div>
         )
     }
 }
-
-
 
 export default Form;
