@@ -12,10 +12,28 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: null
+      friends: null,
+      input: {
+        name: '',
+        age: '',
+        email: ''
+      },
+      editing: false 
     };
     console.log(this.state.friends);
   }
+
+  handleInput = (event) => {
+    this.setState({
+      input: {...this.state.input, [event.target.name]:event.target.value}
+    })
+  }
+  editingMode = () => {
+    this.setState({
+      editing: !this.state.editing,
+    })
+  }
+
   deleteFriend = (friend) => {
     let id = friend.id;
     console.log(id);
@@ -23,7 +41,7 @@ class App extends Component {
       axios
     .delete(`http://localhost:5000/friends/${id}`)
     .then(response => {
-      // response.data.map((element, i) => element.id = i+1)
+      response.data.map((element, i) => element.id = i+1)
       console.log(response.data);        
     })
     .catch(error => {
@@ -31,8 +49,25 @@ class App extends Component {
     });
     alert(`${friend.name} was removed from your friends list`)
     }
+  };
 
-    
+  postFriend = () => {
+    axios
+      .post("http://localhost:5000/friends", {
+        id: this.state.friends.length + 1,
+        name: this.state.input.name,
+        age: this.state.input.age,
+        email: this.state.input.email
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          input: {name: '', age:'', email:''}
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   componentDidMount() {
@@ -44,6 +79,7 @@ class App extends Component {
       .get("http://localhost:5000/friends")
       .then(response => {
         if(response.data !== prevState){
+          console.log('testing')
           this.setState(() => ({ friends: response.data }));
         }        
       })
@@ -69,9 +105,13 @@ class App extends Component {
     return (
       <div className="App">
         <GlobalStyle/>
-        <FriendsForm friends={this.state.friends} fetchFriends={this.fetchFriends}/>
+        <FriendsForm friends={this.state.friends} 
+        input={this.state.input} 
+        handleInput={this.handleInput} 
+        fetchFriends={this.fetchFriends}
+        postFriend={this.postFriend}/>
         
-        <FriendsList friends={this.state.friends} deleteFriend={this.deleteFriend}/>
+        <FriendsList friends={this.state.friends} deleteFriend={this.deleteFriend}  ediit/>
       </div>
     );
   }

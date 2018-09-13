@@ -53,7 +53,7 @@ class Friend extends Component {
           <Delete onClick={friend => {if(!this.state.editing){this.props.deleteFriend(this.props.friend)} else {alert("Not available while editing")}}}>
             X
           </Delete>
-          <FriendInfo editing={this.state.editing} onDoubleClick = {() => this.setState({editing: true})}>
+          <FriendInfo editing={this.state.editing} onDoubleClick = {() => {if(!this.state.editing){this.setState({editing: true})}}}>
             <Strong>NAME:</Strong> {this.state.editing ? <InfoEdit onChange={this.handeleInput} name="name" value={this.state.name}/>:this.props.friend.name }
           </FriendInfo>
             
