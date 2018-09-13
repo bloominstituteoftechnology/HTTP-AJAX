@@ -15,17 +15,17 @@ class FriendsForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
   submitNewFriend = () => {
-    let newFriend = {
+    let newFriend = ({
       name: this.state.name,
       age: this.state.age,
       email: this.state.email,
       
-    };
+    });
     axios
-      .post("http://localhost5000/friends", newFriend)
+      .post("http://localhost:5000/friends", newFriend)
       .then(() => {
         window.location.reload();
-        this.props.history.push("/friends");
+        this.props.history.push("/friends")
       })
       .catch(err => console.log(err));
   };
@@ -45,12 +45,12 @@ class FriendsForm extends React.Component {
         <input
           type="number"
           placeholder="age"
-          name="name"
+          name="age"
           value={this.state.age}
           onChange={e => this.handleInputChange(e)}
         />
         <input
-          type="text"
+          type="email"
           placeholder="email"
           name="email"
           value={this.state.email}
