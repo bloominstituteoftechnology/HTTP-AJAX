@@ -6,17 +6,16 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Styles
-import './MainPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
 const MainPage = (props) => {
     return(
-        <div className = 'main-page'>
+        <div className = 'container fade-in'>
             <h1>Welcome to your Friends App!</h1>
             <h3>You currently have { props.friends.length } friends.</h3>
 
-            <div>
+            <div className = 'slide-left'>
                 <Link to = '/postfriend'>
                     <Button color = 'primary'>Add New Friend</Button>
                 </Link>

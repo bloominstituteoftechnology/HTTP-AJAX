@@ -10,7 +10,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // Styles
-import './ViewFriend.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Input } from 'reactstrap';
 
@@ -43,8 +42,8 @@ class ViewFriend extends React.Component {
 
     render() {
         return(
-            <div className = 'view-friend'>
-                <div>
+            <div className = 'container fade-in'>
+                <div className = 'slide-right'>
                     <Link to = '/'>
                         <Button color = 'success'>Go Home</Button>
                     </Link>
@@ -58,7 +57,7 @@ class ViewFriend extends React.Component {
 
                 <Friend friend = { this.state.friend } />
 
-                <Form onSubmit = { this.props.handlePut(this.state.friend.id) }>
+                <Form className = 'slide-left' onSubmit = { this.props.handlePut(this.state.friend.id) }>
                     <h3>Update Contact Information</h3>
 
                     <Input name = 'friendName' type = 'text' placeholder = 'Enter updated name...' />

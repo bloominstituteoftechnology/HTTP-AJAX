@@ -9,16 +9,15 @@ import Friend from './Friend';
 import PropTypes from 'prop-types';
 
 // Styles
-import './FriendsList.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
 const FriendsList = (props) => {
     return(
-        <div className = 'friends-list'>
+        <div className = 'container fade-in friends-list'>
             <h1>Friends List</h1>
 
-            <div>
+            <div className = 'slide-right'>
                 <Link to = '/postfriend'>
                     <Button color = 'primary'>Add New Friend</Button>
                 </Link>
@@ -27,7 +26,7 @@ const FriendsList = (props) => {
                 </Link>
             </div>
 
-            { props.friends.map(friend => <Link key = { friend.id } to = { `/friendslist/${ friend.id }` }><Friend friend = { friend } /></Link>) }
+            { props.friends.map(friend => <Link className = { friend.id % 2 ? 'slide-left' : 'slide-right' } key = { friend.id } to = { `/friendslist/${ friend.id }` }><Friend friend = { friend } /></Link>) }
         </div>
     );
 }

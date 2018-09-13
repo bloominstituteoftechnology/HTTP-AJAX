@@ -6,16 +6,15 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Styles
-import './PostFriend.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Input } from 'reactstrap';
 
 const PostFriend = (props) => {
     return(
-        <div className = 'post-friend'>
+        <div className = 'container fade-in'>
             <h1>Friends List</h1>
 
-            <div>
+            <div className = 'slide-left'>
                 <Link to = '/'>
                     <Button color = 'success'>Go Home</Button>
                 </Link>
@@ -24,7 +23,7 @@ const PostFriend = (props) => {
                 </Link>
             </div>
 
-            <Form onSubmit = { props.handlePost }>
+            <Form className = 'slide-right' onSubmit = { props.handlePost }>
                 <Input name = 'friendName' type = 'text' placeholder = 'Enter name...' />
                 <Input name = 'friendAge' type = 'number' placeholder = 'Enter age...' />
                 <Input name = 'friendEmail' type = 'text' placeholder = 'Enter email...' />

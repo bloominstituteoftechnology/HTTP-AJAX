@@ -1,3 +1,68 @@
 .App {
   text-align: center;
+  color: white;
+  background-color: #444;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container * {
+  margin: 10px;
+}
+
+.friends-list a {
+  text-decoration: none;
+}
+
+.friend {
+  color: black;
+}
+
+.friend:hover {
+  font-weight: bold;
+}
+
+
+
+/* Animations */
+
+@keyframes fade-in-anim {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slide-left-anim {
+  0%   {left: 200px;}
+  50%  {left: -100px;}
+  100% {left: 0;}
+}
+
+@keyframes slide-right-anim {
+  0%   {right: 200px;}
+  50%  {right: -100px;}
+  100% {right: 0;}
+}
+
+.fade-in {
+  animation-name: fade-in-anim;
+  animation-duration: 3s;
+}
+
+.slide-left {
+  position: relative;
+  animation-name: slide-left-anim;
+  animation-duration: 2s;
+}
+
+.slide-right {
+  position: relative;
+  animation-name: slide-right-anim;
+  animation-duration: 2s;
 }

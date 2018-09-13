@@ -5,7 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import './Friend.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
 
