@@ -51,6 +51,7 @@ class App extends Component {
 		axios
 			.delete(`http://localhost:5000/friends/${id}`)
 			.then(res => this.fetchData(res.data))
+			.then(window.location.href = '/')
 			.catch(err => console.log(err));
 	}
 
