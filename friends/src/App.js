@@ -3,15 +3,24 @@ import logo from './logo.svg';
 import './App.css';
 
 import axios from 'axios';
+import FriendForm from './components/FriendForm';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      age: '',
+      email: ''
+
     };
   }
 
+  // handleTextInput = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
+  
   componentDidMount() {
     axios
       .get(`http://localhost:5000/friends`)
@@ -30,6 +39,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to my HTTP-AJAX Project</h1>
         </header>
+        <FriendForm />
+ 
         <div className="friends-container">
           {this.state.friends.map(friend => <div className={"friend"} key={friend.id} friend={friend} >
             {/* Friend's Info Here */}
@@ -38,8 +49,10 @@ class App extends Component {
             <p>Email: {friend.email}</p>
           </div>)}
         </div>
+    
       </div>
     );
+   
   }
 }
 
