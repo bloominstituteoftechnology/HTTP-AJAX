@@ -4,25 +4,29 @@ import PropTypes from 'prop-types';
 const Friend = props => {
   const { name, age, email } = props.friend;
 
-  return(
+  return (
     <div className="friend-card">
       <p>
-        Name: <em>{name}</em>
+      <strong>Name: </strong>{name}
       </p>
 
       <p>
-        Age: <strong>{age}</strong>
+      <strong>Age: </strong>{age}
       </p>
 
       <p>
-        Email: <strong>{email}</strong>
+      <strong>Email: </strong> {email}
       </p>
     </div>
   );
 };
 
 Friend.propTypes = {
-  friend: PropTypes.object
+  friend: PropTypes.shape({
+    name: PropTypes.string,
+    age: PropTypes.number,
+    email: PropTypes.string
+  })
 };
 
 export default Friend;

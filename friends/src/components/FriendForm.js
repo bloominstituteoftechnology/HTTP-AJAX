@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function FriendForm(props) {
+  //console.log(typeof props.newFriend.age);
   return (
     <div>
       <h2>Add a new friend!</h2>
@@ -12,16 +13,16 @@ function FriendForm(props) {
             type="text"
             name="name"
             value={props.newFriend.name}
-            onChange={props.handleChange} 
+            onChange={props.handleChange}
           />
         </label>
         <label>
           Age:
       <input
-            type="text"
+            type="number"
             name="age"
-            value={props.newFriend.age}
-            onChange={props.handleChange} 
+            //value={props.newFriend.age}
+            onChange={props.handleChange}
           />
         </label>
         <label>
@@ -30,7 +31,7 @@ function FriendForm(props) {
             type="text"
             name="email"
             value={props.newFriend.email}
-            onChange={props.handleChange} 
+            onChange={props.handleChange}
           />
         </label>
         <input
@@ -45,7 +46,11 @@ function FriendForm(props) {
 
 FriendForm.propTypes = {
   friends: PropTypes.arrayOf(PropTypes.object),
-  newFriend: PropTypes.object,
+  newFriend: PropTypes.shape({
+    name: PropTypes.string,
+    age: PropTypes.number,
+    email: PropTypes.string
+  }),
   handleChange: PropTypes.func,
   addNewFriend: PropTypes.func
 };

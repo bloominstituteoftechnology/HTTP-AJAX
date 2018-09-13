@@ -8,7 +8,7 @@ import FriendForm from './components/FriendForm';
 
 const blankFormValues = {
   name: '',
-  age: '',
+  age: 0,
   email: ''
 };
 
@@ -19,7 +19,7 @@ class App extends Component {
       friends: [],
       newFriend: {
         name: "",
-        age: "",
+        age: 0,
         email: ""
       }
     }
@@ -37,12 +37,18 @@ class App extends Component {
   }
 
   handleChange = event => {
-    this.setState({
-      newFriend: {
-        ...this.state.newFriend,
-        [event.target.name]: event.target.value,
-      }
-    });
+    if(event.target.name === "age") {
+      this.setState({
+        age: Number(event.target.value)
+      });
+    } else {
+      this.setState({
+        newFriend: {
+          ...this.state.newFriend,
+          [event.target.name]: event.target.value,
+        }
+      });
+    }
   }
 
   addNewFriend = event => {
@@ -53,6 +59,7 @@ class App extends Component {
   }
 
   render() {
+    //console.log(typeof this.state.newFriend.age);
     return (
       <div className="App">
         <FriendList 
