@@ -12,3 +12,8 @@
   color: white;
   background-color: coral;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}

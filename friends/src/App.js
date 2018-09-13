@@ -60,7 +60,11 @@ class App extends Component {
         <div className="App">
           <h1>Fun Friends:</h1>
           <nav>
-            <NavLink activeClassName="active" className="nav-link" to="/list">
+            <NavLink
+              activeClassName="active"
+              className="nav-link"
+              to="/friends"
+            >
               Friends List
             </NavLink>
             <NavLink activeClassName="active" className="nav-link" to="/new">
@@ -80,7 +84,7 @@ class App extends Component {
           />
           <div className="friends-container">
             <Route
-              path="/list"
+              path="/friends"
               render={() =>
                 this.state.friends.map(friend => <FriendCard friend={friend} />)
               }

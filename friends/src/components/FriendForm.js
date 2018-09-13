@@ -30,7 +30,7 @@ const FriendForm = props => {
         className="nav-link button"
         onClick={event => {
           props.addNewFriend(event);
-          props.history.push("/list");
+          props.history.push("/friends");
         }}
       >
         Submit!

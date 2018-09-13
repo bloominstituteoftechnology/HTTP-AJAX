@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./FriendCard.css";
+import { Link } from "react-router-dom";
 
 const FriendCard = props => {
+  {
+    console.log(props.friend);
+  }
   return (
-    <div className="friend-card">
-      <p>Name: {props.friend.name}</p>
-      <p>Age: {props.friend.age}</p>
-      <p>Email: {props.friend.email} </p>
-    </div>
+    <Link to={`/friends/${props.friend.id}`}>
+      <div className="friend-card">
+        <p>Name: {props.friend.name}</p>
+        <p>Age: {props.friend.age}</p>
+        <p>Email: {props.friend.email} </p>
+      </div>
+    </Link>
   );
 };
 
