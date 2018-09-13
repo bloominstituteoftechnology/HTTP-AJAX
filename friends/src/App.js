@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Friend from './Friend';
+import FriendDelete from './FriendDelete';
 import Form from './Form';
 import { Route, NavLink } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  updateFriends = (para1) => {
+  newFriends = (para1) => {
     axios.post('http://localhost:5000/friends', para1)
     .then(response => {
         console.log(para1);
@@ -34,7 +35,14 @@ class App extends Component {
         })
     })
       .catch(err => console.log(err));
-}
+  }
+
+  friendDelete = (id) => {
+    // console.log(e.target);
+    console.log(id);
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(response => this.setState({ friends: response.data }))
+  }
   
   render() {
     return (
@@ -46,12 +54,20 @@ class App extends Component {
         <NavLink to="/friend-form">
           New Friend Form 
         </NavLink>
-        <Route exact path="/current" render={props => (
+        <NavLink to="/friends-update">
+        Update Current Friends
+        </NavLink>
+            
+        <Route path="/current" render={props => (
           <Friend {...props} friends={this.state.friends} />
         )}
         />
         <Route exact path="/friend-form" render={props => (
-          <Form {...props} friend={this.state.friend} updateFriends={this.updateFriends} />
+          <Form {...props} newFriends={this.newFriends} />
+        )}
+        />
+        <Route exact path="/friends-update" render={props => (
+          <FriendDelete {...props} friends={this.state.friends} friendDelete={this.friendDelete} />
         )}
         />
       </div>

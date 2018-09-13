@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Form extends Component {
     constructor() {
@@ -14,13 +13,13 @@ class Form extends Component {
 
     formHandler = event => {
        event.preventDefault();
-        this.props.updateFriends(this.state);
+        this.props.newFriends(this.state);
         this.setState ({
             name: '',
             age: '',
             email: ''
         })
-        alert("a new friend has been added!");
+        alert("Success! A new friend has been added!");
         this.props.history.push('/current');
     }
 
