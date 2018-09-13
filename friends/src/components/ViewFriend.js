@@ -22,14 +22,24 @@ class ViewFriend extends React.Component {
                 id: 0,
                 name: '',
                 age: 0,
-                emali: ''
+                emali: '',
+                color: ''
+            },
+            updatedFriend: {
+                id: 0,
+                name: '',
+                age: 0,
+                email: '',
+                color: ''
             }
         };
     }
 
     fetchData = res => {
+        const friendObj = res.filter(friend => friend.id.toString() === this.props.match.params.id)[0];
         this.setState({
-			friend: res.filter(friend => friend.id.toString() === this.props.match.params.id)[0]
+            friend: friendObj,
+            updatedFriend: friendObj
 		});
 	}
 
@@ -38,7 +48,24 @@ class ViewFriend extends React.Component {
 			.get('http://localhost:5000/friends')
 			.then(res => this.fetchData(res.data))
 			.catch(err => console.log(err));
-	}
+    }
+
+    handleChange = e => {
+        e.preventDefault();
+
+        this.setState({
+            updatedFriend: {
+                ...this.state.updatedFriend,
+                [e.target.name]: e.target.name === 'age' ? Number(e.target.value) : e.target.value
+            }
+        }, () => console.log(this.state))
+    }
+
+    handlePut = e => {
+        e.preventDefault();
+        
+        this.props.putFriend(this.state.updatedFriend);
+    }
 
     render() {
         return(
@@ -57,13 +84,41 @@ class ViewFriend extends React.Component {
 
                 <Friend friend = { this.state.friend } />
 
-                <Form className = 'slide-left' onSubmit = { this.props.handlePut(this.state.friend.id) }>
+                <Form className = 'slide-left' onSubmit = { this.handlePut }>
                     <h3>Update Contact Information</h3>
 
-                    <Input name = 'friendName' type = 'text' placeholder = 'Enter updated name...' />
-                    <Input name = 'friendAge' type = 'number' placeholder = 'Enter updated age...' />
-                    <Input name = 'friendEmail' type = 'text' placeholder = 'Enter udpated email...' />
-                    <Input name = 'friendColor' type = 'text' placeholder = 'Enter updated fav color...' />
+                    <Input 
+                        required 
+                        name = 'name' 
+                        type = 'text' 
+                        placeholder = 'Enter updated name...' 
+                        value = { this.state.updatedFriend.name } 
+                        onChange = { this.handleChange }
+                    />
+                    <Input 
+                        required 
+                        name = 'age' 
+                        type = 'number' 
+                        placeholder = 'Enter updated age...' 
+                        value = { this.state.updatedFriend.age } 
+                        onChange = { this.handleChange }
+                    />
+                    <Input 
+                        required 
+                        name = 'email' 
+                        type = 'text' 
+                        placeholder = 'Enter updated email...' 
+                        value = { this.state.updatedFriend.email } 
+                        onChange = { this.handleChange }
+                    />
+                    <Input 
+                        required 
+                        name = 'color' 
+                        type = 'text' 
+                        placeholder = 'Enter updated fav color...' 
+                        value = { this.state.updatedFriend.color } 
+                        onChange = { this.handleChange }
+                    />
                     
                     <Button color = 'secondary' type = 'submit' value = 'submit'>Submit</Button>
                 </Form>

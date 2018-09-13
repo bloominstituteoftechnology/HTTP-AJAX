@@ -33,25 +33,17 @@ class App extends Component {
 		axios
 			.post('http://localhost:5000/friends', newFriend)
 			.then(res => this.fetchData(res.data))
-			.then(window.location.href = '/') // redirects to MainPage
+			.then(window.location.href = '/')
 			.catch(err => console.log(err))
-	} // handlePost()
+	}
 
-	handlePut = id => e => {
-		e.preventDefault();
-
-		const updatedFriend = {
-			name: e.target.friendName.value,
-			age: Number(e.target.friendAge.value),
-			email: e.target.friendEmail.value,
-			color: e.target.friendColor.value
-		};
-
+	putFriend = (updatedFriend) => {
 		axios
-			.put(`http://localhost:5000/friends/${id}`, updatedFriend)
+			.put(`http://localhost:5000/friends/${updatedFriend.id}`, updatedFriend)
 			.then(res => this.fetchData(res.data))
+			.then(window.location.href = '/')
 			.catch(err => console.log(err));
-	} // handlePut()
+	}
 
 	handleDelete = id => e => {
 		e.preventDefault();
@@ -60,7 +52,7 @@ class App extends Component {
 			.delete(`http://localhost:5000/friends/${id}`)
 			.then(res => this.fetchData(res.data))
 			.catch(err => console.log(err));
-	} // handleDelete()
+	}
 
 	componentDidMount() {
 		axios
@@ -75,7 +67,7 @@ class App extends Component {
 				<Route exact path = '/' render = { props => <MainPage {...props} friends = { this.state.friends } /> } />
 				<Route path = '/postfriend' render = { props => <PostFriend {...props} postNewFriend = { this.postNewFriend } />} />
 				<Route exact path = '/friendslist' render = { props => <FriendsList {...props} friends = { this.state.friends } />} />
-				<Route path = '/friendslist/:id' render = { props => <ViewFriend {...props} friends = { this.state.friends } handlePut = { this.handlePut } handleDelete = { this.handleDelete } /> } />
+				<Route path = '/friendslist/:id' render = { props => <ViewFriend {...props} friends = { this.state.friends } putFriend = { this.putFriend } handleDelete = { this.handleDelete } /> } />
 			</div>
 		);
 	}
