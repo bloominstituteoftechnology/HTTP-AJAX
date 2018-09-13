@@ -17,15 +17,13 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then((response) => {
-        const friends = response.data;
-        this.setState({ friends});
+        this.setState({ friends: response.data });
       })
       .catch(err => console.log(err))
   }
 
   addFriend = (newFriend) => {
-    const friends = [...this.state.friends, newFriend]
-    this.setState({ friends })
+    this.setState({ friends: [...this.state.friends, newFriend] })
     this.axiosPost(newFriend)
   }
 
