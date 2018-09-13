@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import axios from 'axios';
-import { render } from 'react-dom';
 
 class FriendsList extends React.Component{
     constructor(props){
@@ -12,7 +11,13 @@ class FriendsList extends React.Component{
         }
     }
     componentDidMount(){
-        axios.get('http://localhost:5000/friends').then(res=>this.setState({friends:res.data, loading:false})).catch(err=>console.log(err));
+        axios
+        .get('http://localhost:5000/friends')
+        .then(res=>this.setState({friends:res.data, loading:false}))
+        .catch(err=>console.log(err));
+    }
+    goToForm = () => {
+        this.props.history.push('/');
     }
 
 render(){
@@ -24,17 +29,19 @@ render(){
     return (
         <div className="friendsList">
             {this.state.friends.map((e,i)=>
+           
             <Link to={`/friends/${e.id}`}key={i}>
                 <div className='card'>
                         
                         <p>{e.name}</p>
                         <p>{e.age}</p>
                         <p>{e.email}</p>
-                        <p>{e.address}</p>
+                        
                     </div>
    
                 
             </Link>)}
+            <button className='homepage-btn' onClick={() => this.props.history.push('/')}>Go back to home page.</button>
         </div>
     
             
