@@ -4,14 +4,19 @@ class NewFriend extends React.Component {
   constructor() {
     super();
     this.state = {
-      inputName: '',
-      inputAge: '',
-      inputEmail: ''
+      newFriend: {
+        name: '',
+        age: '',
+        email: ''
+      }
     }
   }
 
   changeInput = (e) => {
-    this.setState( { [e.target.id]: e.target.value} )
+    this.setState({ newFriend: { 
+      ...this.state.newFriend,
+      [e.target.id]: e.target.value,
+    }})
   }
 
   render() {
@@ -19,32 +24,33 @@ class NewFriend extends React.Component {
       <form className="container">
         <h2>New Friend</h2>
         <div className="input-field">
-          <label htmlFor="inputName">Name:</label>
           <input 
-            id="inputName" 
-            placeholder="Friend name" 
-            value={this.state.inputName} 
+            id="name" 
+            type="text"
+            value={this.state.name} 
             onChange={this.changeInput} 
           />
+          <label htmlFor="name">Name:</label>
         </div>
         <div className="input-field">
-          <label htmlFor="inputAge">Age:</label>
           <input 
-            id="inputAge" 
-            placeholder="Friend age" 
-            value={this.state.inputAge}
-            type="number" 
-            onChange={this.changeInput} />
+            id="age"
+            type="number"  
+            value={this.state.age}
+            onChange={this.changeInput} 
+          />
+          <label htmlFor="age">Age:</label>
         </div>
         <div className="input-field">
-          <label htmlFor="inputEmail">Email:</label>
           <input 
-            id="inputEmail" 
-            placeholder="Friend email" 
-            value={this.state.inputEmail}  
-            onChange={this.changeInput} />
+            id="email" 
+            type="text"  
+            value={this.state.email}
+            onChange={this.changeInput} 
+          />
+          <label htmlFor="email">Email:</label>
         </div>
-        <button>Submit</button>
+        <button onClick={(event)=> this.props.stateNewFriend(event, this.state.newFriend)}>Submit</button>
       </form>
     )
   }

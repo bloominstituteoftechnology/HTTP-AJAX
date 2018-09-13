@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
     }
   }
 
@@ -20,9 +20,24 @@ class App extends Component {
     .then(result => {
       setTimeout(() => {
         this.setState({ friends: result.data })
-      }, 800)
+      }, 1000)
     })
     .catch(err => console.log(err));
+  }
+
+  handleAddNewFriends = () => {
+    console.log('firing')
+    axios.post('http://localhost:5000/friends', this.state.newFriend )
+    .then(response => {
+      console.log(response);
+      this.setState({friends: response.data})
+    });
+  }
+
+  stateNewFriend = (event, newFriend) => {
+    event.preventDefault();
+    this.setState({newFriend});
+    this.handleAddNewFriends();
   }
 
   render() {
@@ -30,7 +45,9 @@ class App extends Component {
       <div className="App">
         
         {this.state.friends.length === 0 ? <Loading />: <Display friends={this.state.friends} /> }
-        <NewFriend />
+        <NewFriend
+          stateNewFriend = {this.stateNewFriend}
+        />
       </div>
     );
   }

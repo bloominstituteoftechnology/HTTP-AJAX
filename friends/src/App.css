@@ -40,20 +40,29 @@
 }
 
 .App form .input-field {
+  position: relative;
   min-width: 250px;
   width: 60%;
   padding: 5px 15%;
 }
 
 .App form .input-field label {
-  display: block;
+  position: absolute;
   text-align: left;
-  padding-bottom: 2px;
+  top: -6px;
+  left: 25.5%;
+  transition: 0.5s;
 }
+
 
 .App form .input-field input {
   width: 100%;
   padding: 5px;
+  margin: 6px 0;
+  border: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+  font-size: 1rem;
 }
 
 .App form button {
