@@ -11,7 +11,7 @@ const Wrapper = Styled.div`
 function CardList(props) {
     return (
         <Wrapper>
-            {props.data.map(friend => ( <Card key={friend.id} friend={friend} /> ))}
+            {props.data.map(friend => ( <Card key={friend.id} friend={friend} handleDelete={props.handleDelete}/> ))}
         </Wrapper>
         
     )

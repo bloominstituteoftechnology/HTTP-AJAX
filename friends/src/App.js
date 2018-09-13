@@ -56,12 +56,18 @@ class App extends Component {
       .then(response => this.setState({ friends: response.data, friend: this.state.friend}))
   }
 
+  handleDeleteFriend = friendId => {
+    return axios.delete(`http://localhost:5000/friends/${friendId}`)
+      .then(response => this.setState({ friends: response.data}))
+      .catch(error => { console.error('Server Error', error)});
+  }
+
   render() {
     return (
       <Container>
         <Navigation />
         <Route exact path="/" render={props => <CardForm handleInput={this.handleInput} handleSubmit={this.handleAddNewFriend} />} />
-        <Route exact path="/friends" render={props => <CardList data={this.state.friends} />} />
+        <Route exact path="/friends" render={props => <CardList data={this.state.friends} handleDelete={this.handleDeleteFriend} />} />
         
       </Container>
     );
