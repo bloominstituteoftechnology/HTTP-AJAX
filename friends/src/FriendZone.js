@@ -1,5 +1,5 @@
-import React from 'react';
-import { prependOnceListener } from 'cluster';
+import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 
 
 
@@ -7,18 +7,43 @@ const FriendZone = (props) => {
 
     return (
 
-      <React.Fragment>
-            <p> Have A Friend You'd Like To Add?</p>
+      <Fragment>
+            <h2> Have A Friend You'd Like To Add?</h2>
         <form>
-          <input  ref="name" type="text" name="name" value= "props.value" placeholder="Name"> + </input>
-          <input  ref="age" type="text" name="age" value= "props.value" placeholder="Age"> + </input>
-          <input  ref="email" type="text" name="email" value= "props.value" placeholder="Email"> + </input>
-          <button type="submit"> Add A Friend </button>
+          <input  
+          type="text" 
+          required value= {props.friend.name}  
+          name="name"
+          placeholder="Name" 
+          onChange={props.handleChange} />
+          <input  
+          type="text" 
+          value= {props.friend.age} 
+          name="age"
+          placeholder="Age" 
+          onChange={props.handleChange}/> 
+          <input  
+          type="text" 
+          value= {props.friend.email} 
+          name="email" 
+          placeholder="Email" 
+          onChange={props.handleChange}/>
+          <button type="submit" onClick={props.handleNameAdd}> Add A Friend </button>
          </form>
-      
-      </React.Fragment>
+      </Fragment>
 
     );
+  }
+
+  FriendZone.propTypes = {
+      friend: PropTypes.shape({
+          name: PropTypes.string,
+          age: PropTypes.number,
+          email: PropTypes.string,
+      }),
+      handleNameAdd: PropTypes.func,
+      handleChange: PropTypes.func,
+
   }
 
 
