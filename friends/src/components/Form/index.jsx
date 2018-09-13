@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../App.css';
+import React from "react";
+import "../../App.css";
 
 const Form = props => {
   return (
@@ -25,9 +25,16 @@ const Form = props => {
         onChange={props.handleChange}
         value={props.email}
       />
+      <input
+        type="text"
+        placeholder="telephone..."
+        name="email"
+        onChange={props.handleChange}
+        value={props.telephone}
+      />
       <button onClick={props.handleFriendSubmit}>Submit</button>
     </form>
   );
-}
+};
 
 export default Form;

@@ -91,6 +91,7 @@ class Friend extends React.Component {
         <div className="friendDetails"><b>Name:</b> {this.state.friend.name}</div>
         <div className="friendDetails"><b>Age:</b> {this.state.friend.age}</div>
         <div className="friendDetails"><b>Email:</b> {this.state.friend.email}</div>
+        <div className="friendDetails"><b>Telephone:</b> {this.state.friend.telephone}</div>
         <button onClick={this.toggleEditMode}>Edit</button>
         <button onClick={this.handleDelete}>Delete</button>
       </div>

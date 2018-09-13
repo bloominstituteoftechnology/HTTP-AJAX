@@ -12,7 +12,8 @@ class App extends Component {
     friends: [],
     name: "",
     age: "",
-    email: ""
+    email: "",
+    telephone: ""
   }
 
   componentDidMount() {
@@ -26,21 +27,22 @@ class App extends Component {
       })
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleFriendSubmit = e => {
+  handleFriendSubmit = event => {
     if (this.state.name === "") {
           this.props.history.push("/");
           return;
         }
 
-    e.preventDefault();
+    event.preventDefault();
 
     const newFriend = { name: this.state.name,
                         age: this.state.age,
-                        email: this.state.email };
+                        email: this.state.email,
+                        telephone: this.state.telephone };
 
     axios
       .post("http://localhost:5000/friends", newFriend)
@@ -48,16 +50,17 @@ class App extends Component {
         this.setState({ friends: response.data,
                         name: "",
                         age: "",
-                        email: "" });
+                        email: "",
+                        telephone: ""});
       })
       .catch(error => console.log(error));
 
       this.props.history.push('/');
   }
 
-  handleCancel = e => {
-    e.preventDefault();
-    this.setState({ name: "", age: "", email: "" });
+  handleCancel = event => {
+    event.preventDefault();
+    this.setState({ name: "", age: "", email: "", telephone: "" });
     this.props.history.push("/");
   }
 
@@ -83,6 +86,7 @@ class App extends Component {
             <Form name={this.state.name}
                   age={this.state.age}
                   email={this.state.email}
+                  telephone={this.state.telephone}
                   handleChange={this.handleChange}
                   handleCancel={this.handleCancel}
                   handleFriendSubmit={this.handleFriendSubmit} />
