@@ -19,9 +19,13 @@ class Form extends Component {
     }
 
     handleInput = event => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        })
+        if(event.target.name==='age') {
+            this.setState ({[event.target.name]: Number(event.target.value),})
+        } else {
+            this.setState({
+                [event.target.name]: event.target.value,
+            })
+        }
     }
     
     render() {
