@@ -1,11 +1,17 @@
 import React, { Fragment } from "react";
 
 function FriendCard(props) {
-  const friendId = props.friendId;
+  const friend = props.friends.find(
+    friend => friend.id == parseInt(props.match.params.friendId, 10)
+  );
   return (
-    <Fragment>
-    {props.friends.filter(friendId => props.friends.id === friendId)}
-    </Fragment>
+    <div className="friend-card">
+    <h1>{friend.name}</h1>
+    <p>Age: {friend.age}</p>
+    <p>Email: {friend.email}</p>
+    <button>Update Information</button>
+    <button>Delete Friend</button>
+    </div>
   )}
 
 export default FriendCard;

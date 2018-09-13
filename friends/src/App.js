@@ -57,8 +57,22 @@ class App extends Component {
       {this.state.friends.map}
         <Link to="/">Home</Link>
         <Link to="/addFriend">Add a new friend</Link>
-        <Route exact path="/" render={(props) => <FriendsList {...props} friends={this.state.friends}/>} />
-          <Route exact path="/addFriend" render={(props) => <FriendForm {...props} handleChange={this.handleChange} postNewFriend={this.postNewFriend}/>} />
+        <Route
+        exact path="/"
+        render={(props) => <FriendsList {...props}
+        friends={this.state.friends}/>}
+        />
+        <Route
+        exact path="/addFriend"
+        render={(props) => <FriendForm {...props}
+        handleChange={this.handleChange}
+        postNewFriend={this.postNewFriend}/>}
+        />
+        <Route
+        exact path="/friends/:friendId"
+        render={(props) => <FriendCard {...props}
+        friends={this.state.friends} />}
+        />
       </div>
     );
   }
