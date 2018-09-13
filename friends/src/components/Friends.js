@@ -1,5 +1,4 @@
 import React from 'react'
-import Friend from './Friend'
 
 const Friends = (props) => {
   return (
@@ -7,10 +6,11 @@ const Friends = (props) => {
       {
         props.friends.map(friend => {
           return (
-            <Friend
-              key={friend.id}
-              friend={friend}
-            />
+            <div key={friend.id}>
+              <h1>{friend.name}</h1>
+              <h3>{friend.email || friend.email}</h3>
+              <p>{friend.name} is {friend.age} years old.</p>
+            </div>
           )
         })
       }
