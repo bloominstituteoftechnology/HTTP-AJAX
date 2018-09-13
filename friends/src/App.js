@@ -3,8 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
 
-import FriendList from './components/FriendList'
 import SubmitFriend from './components/SubmitFriend'
+import FriendList from './components/FriendList'
+import Friend from './components/Friend'
 import {
   BrowserRouter as Router,
   Switch,
@@ -89,6 +90,13 @@ class App extends Component {
             list={this.state.friends}
           />}
         />
+        <Route path='/:id' render={props =>
+          <div className='selected'>
+            <h2> Selected </h2>
+            <Friend {...props} item={this.state.friends[props.match.params.id-1]} />
+          </div>
+        } />
+
       </div>
     );
   }

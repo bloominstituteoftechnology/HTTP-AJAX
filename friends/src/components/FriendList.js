@@ -1,18 +1,19 @@
 import React from 'react';
 
+import Friend from './Friend'
+import {Route, Link} from 'react-router-dom'
+
 const FriendList = props => {
   if (props.list[0]) {
     // const item = props.list[1]
   return (
-     <div >
+     <div className="friend-list">
        {props.list.map(item =>(
-         <ol key={item.id}>
-     <li>{item.name}</li>
-     <li>{item.age}</li>
-     <li>{item.email}</li>
-     </ol>
-      ))
-     }
+         // <Route path='/id:' render={props =>
+         <Link to={`/${item.id}`}>
+         <Friend item={item}/>
+          </Link>
+       ))}
    </div>
 )} else {return <p> 'loading' </p>}
 }
