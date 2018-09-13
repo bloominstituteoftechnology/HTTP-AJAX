@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Friend from './Friend';
+import NewFriend from './NewFriend';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      newFriendInfo: []
     }
   }
 
@@ -27,6 +29,10 @@ componentDidMount() {
     return (
       <div className="App">
        <h1>Friends</h1>
+       <NewFriend 
+          value={this.state.inputText}
+          addNewFriend={this.addNewFriend}
+        />
        <div className='friends'>
        {this.state.friends.map(friend=> {
          return <Friend friend={friend} key={friend.id}/>

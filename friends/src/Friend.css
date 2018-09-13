@@ -26,3 +26,27 @@
     color: blue;
     text-decoration: underline;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-bottom: 60px;
+    margin-left: 35%;
+}
+
+input {
+    height: 24px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+button {
+    height: 24px;
+    font-size: 14px;
+    width: 50%;
+    border-radius: 5px;
+    margin-left: 25%;
+}
