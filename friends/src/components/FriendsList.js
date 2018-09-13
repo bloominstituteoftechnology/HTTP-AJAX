@@ -7,7 +7,11 @@ class FriendsList extends Component {
     constructor(){
         super();
         this.state={
-            friends:[]
+            friendsData:[],
+            friend: {
+                age:'',
+                email:'',
+            }
         }
     }
   
@@ -24,7 +28,7 @@ class FriendsList extends Component {
     render() {
         return (
             <div className="friends-list">
-                 {this.state.friends.map(friend => <Friend key={friend.id} friend={friend} />)}
+                 {this.state.friendsData.map(friend => <Friend key={friend.id} friend={friend} />)}
             </div>
         )
     }
