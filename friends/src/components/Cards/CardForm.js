@@ -32,8 +32,13 @@ class CardForm extends Component {
     // Handles submitting the information
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit();
-        this.toggle(14);
+
+        if (this.props.isUpdating) {
+            this.props.handleUpdateFriend(this.props.friend.id);
+        } else {
+            this.props.handleSubmit();
+            this.toggle(14);
+        }
     }
 
     
@@ -45,11 +50,11 @@ class CardForm extends Component {
                 <Row>
                 <Col md="6">
                     <form>
-                    <p className="h5 text-center mb-4">Add A Friend</p>
+                    <p className="h5 text-center mb-4">{this.props.isUpdating ? 'Update Friend' : 'Add New Friend'}</p>
                     <div className="grey-text">
-                        <Input value={this.state.name} onChange={this.props.handleInput} name="name" label="Name" icon="user" group type="text" validate error="wrong" success="right"/>
-                        <Input value={this.state.email} onChange={this.props.handleInput} name="email" label="Email" icon="envelope" group type="email" validate error="wrong" success="right"/>
-                        <Input value={this.state.age} onChange={this.props.handleInput} name="age" label="Age" icon="tag" group type="text" validate error="wrong" success="right"/>
+                        <Input value={this.props.friend.name} onChange={this.props.handleInput} name="name" label="Name" icon="user" group type="text" validate error="wrong" success="right"/>
+                        <Input value={this.props.friend.email} onChange={this.props.handleInput} name="email" label="Email" icon="envelope" group type="email" validate error="wrong" success="right"/>
+                        <Input value={this.props.friend.age} onChange={this.props.handleInput} name="age" label="Age" icon="tag" group type="text" validate error="wrong" success="right"/>
                     </div>
                     <div className="text-center">
                         <Button onClick={event => {this.handleSubmit(event)}} outline color="secondary">Save<Fa icon="paper-plane-o" className="ml-1"/></Button>

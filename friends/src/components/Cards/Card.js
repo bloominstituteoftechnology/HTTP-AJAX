@@ -14,7 +14,7 @@ const CardSingle = (props) => {
             <CardTitle>Information</CardTitle>
             <CardText>Age: {props.friend.age}</CardText>
                 <CardText>Email: {props.friend.email}</CardText>
-            <Button color="deep-orange lighten-1" size="sm">Edit</Button>
+            <Button color="deep-orange lighten-1" size="sm" onClick={event => {event.preventDefault; props.goToUpdateFriendForm(event, props.friend.id)}}>Edit</Button>
             <Button onClick={() => props.handleDelete(props.friend.id)} color="red accent-4" size="sm">Delete</Button>
             </CardBody>
             <CardFooter color="deep-orange lighten-1"><TimeAgo date={a} /></CardFooter>
