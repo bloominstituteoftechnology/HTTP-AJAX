@@ -29,19 +29,11 @@ class App extends Component {
 		});
 	}
 
-	handlePost = e => {
-		e.preventDefault();
-
-		const newFriend = {
-			name: e.target.friendName.value,
-			age: Number(e.target.friendAge.value),
-			email: e.target.friendEmail.value,
-			color: e.target.friendColor.value
-		};
-
+	postNewFriend = (newFriend) => {
 		axios
 			.post('http://localhost:5000/friends', newFriend)
 			.then(res => this.fetchData(res.data))
+			.then(window.location.href = '/') // redirects to MainPage
 			.catch(err => console.log(err))
 	} // handlePost()
 
@@ -81,7 +73,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Route exact path = '/' render = { props => <MainPage {...props} friends = { this.state.friends } /> } />
-				<Route path = '/postfriend' render = { props => <PostFriend {...props} handlePost = { this.handlePost } />} />
+				<Route path = '/postfriend' render = { props => <PostFriend {...props} postNewFriend = { this.postNewFriend } />} />
 				<Route exact path = '/friendslist' render = { props => <FriendsList {...props} friends = { this.state.friends } />} />
 				<Route path = '/friendslist/:id' render = { props => <ViewFriend {...props} friends = { this.state.friends } handlePut = { this.handlePut } handleDelete = { this.handleDelete } /> } />
 			</div>
