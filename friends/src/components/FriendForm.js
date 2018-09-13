@@ -1,49 +1,47 @@
-import React, {Component} from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-export default class FriendForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      newName: '',
-      newAge: 0,
-      newEmail: ''
-    }
-  }
-
-  changeInput = (e) => {
-    this.setState( { [e.target.id]: e.target.value} )
-  }
-
-  render() {
-    return(
-      <form>
-        <h2>Add A Friend</h2>
-        <span> Name: </span>
+function FriendForm(props) {
+  const {name, age, email} = props.form;
+  return(
+    <Fragment>
+      <form className='friend-form'>
+        <label>Name: </label>
         <input 
-          id="newName" 
+          type="text" 
           placeholder="Name" 
-          value={this.state.newName} 
-          onChange={this.changeInput} />
-        <span> Age: </span>
+          value={name} 
+          onChange={props.handleChange} 
+          name="name" />
+        <label>Age: </label>
         <input 
-          id="newAge" 
+          type="text" 
           placeholder="Age" 
-          value={this.state.newAge}
+          value={age}
           type="number" 
-          onChange={this.changeInput} />
-        <span> Email: </span>
+          onChange={props.handleChange} 
+          name="age" />
+        <label>Email: </label>
         <input 
-          id="newEmail" 
+          type="text" 
           placeholder="Email" 
-          value={this.state.newEmail}  
-          onChange={this.changeInput} />
-        <button>Submit</button>
+          value={email}  
+          onChange={props.handleChange} 
+          name="email" />
+        <button onClick={props.handleInput}>Submit</button>
       </form>
-    );
-  }
+    </Fragment>
+  );
+
 }
 
 FriendForm.propTypes = {
-
+  friend: PropTypes.shape({
+    name: PropTypes.string,
+    age: PropTypes.number,
+    email: PropTypes.string
+  }),
+  handleChange: PropTypes.func
 }
+
+export default FriendForm;
