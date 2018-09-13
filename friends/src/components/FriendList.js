@@ -1,5 +1,6 @@
 import React from 'react';
 import Friend from './Friend';
+import '../App.css';
 
 const FriendList = props => {
     return (

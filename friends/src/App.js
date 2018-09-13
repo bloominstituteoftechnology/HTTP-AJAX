@@ -3,8 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import Friend from './Friend';
-import FriendList from './FriendList';
+import PropTypes from 'prop-types';
+import Friend from './components/Friend';
+import FriendList from './components/FriendList';
+import AddFriendForm from './components/AddFriendForm';
 
 class App extends Component {
   constructor() {
@@ -29,7 +31,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Friends App</h1>
         <FriendList friends={this.state.friends} />
+        <AddFriendForm />
       </div>
     );
   }
