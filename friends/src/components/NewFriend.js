@@ -13,10 +13,18 @@ class NewFriend extends React.Component {
   }
 
   changeInput = (e) => {
-    this.setState({ newFriend: { 
-      ...this.state.newFriend,
-      [e.target.id]: e.target.value,
-    }})
+    if(e.target.id === 'age') {
+      this.setState({ newFriend: { 
+        ...this.state.newFriend,
+        [e.target.id]: Number(e.target.value),
+      }})
+    } else {
+      this.setState({ newFriend: { 
+        ...this.state.newFriend,
+        [e.target.id]: e.target.value,
+      }})
+    }
+    
   }
 
   render() {

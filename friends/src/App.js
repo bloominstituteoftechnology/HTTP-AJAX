@@ -29,15 +29,14 @@ class App extends Component {
     console.log('firing')
     axios.post('http://localhost:5000/friends', this.state.newFriend )
     .then(response => {
-      console.log(response);
       this.setState({friends: response.data})
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   stateNewFriend = (event, newFriend) => {
     event.preventDefault();
-    this.setState({newFriend});
-    this.handleAddNewFriends();
+    this.setState({newFriend}, () => {this.handleAddNewFriends()});
   }
 
   render() {
