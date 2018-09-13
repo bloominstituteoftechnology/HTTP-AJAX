@@ -12,37 +12,52 @@ class AddFriendForm extends React.Component {
         }
     }
 
-    modifyInput = event => {
+    modifyInput = (e) => {
         this.setState({ 
-            [event.target.name]: event.target.value
+            [e.target.name]: e.target.value
         });
     };
     
+    formSubmit = (event) => {
+        event.preventDefault()
+        const newInput = {
+            name: this.state.name,
+            age: Number(this.state.age),
+            email: this.state.email,
+            id: this.props.friends.length + 1
+        }
+        this.props.addFriend(newInput)
+        this.setState({
+            name: '',
+            age: '',
+            email: ''
+    })
+  }
     
     render() {
         return (
-            <form className="form-container">
+            <form onSubmit={this.formSubmit}>
                 
                 <input
-                    id="name"
+                    name="name"
                     type="text"
                     placeholder="Name"
                     value={this.state.name}
-                    onChange={this.modifyInput}
+                    onChange={this.state.modifyInput}
                 />
                 <input 
-                    id="age"
+                    name="age"
                     type="number"
                     placeholder="Age"
                     value={this.state.age}
                     onChange={this.state.modifyInput}
                 />
                 <input 
-                    id="email"
-                    type="email"
+                    name="email"
+                    type="text"
                     placeholder="Email"
                     value={this.state.email}
-                    onChange={this.modifyInput}
+                    onChange={this.state.modifyInput}
                 />
                 <button type="submit">Submit</button>
             </form>
