@@ -24,10 +24,10 @@ const PostFriend = (props) => {
             </div>
 
             <Form className = 'slide-right' onSubmit = { props.handlePost }>
-                <Input name = 'friendName' type = 'text' placeholder = 'Enter name...' />
-                <Input name = 'friendAge' type = 'number' placeholder = 'Enter age...' />
-                <Input name = 'friendEmail' type = 'text' placeholder = 'Enter email...' />
-                <Input name = 'friendColor' type = 'text' placeholder = 'Enter favorite color...' />
+                <Input required name = 'friendName' type = 'text' placeholder = 'Enter name...' />
+                <Input required name = 'friendAge' type = 'number' placeholder = 'Enter age...' />
+                <Input required name = 'friendEmail' type = 'text' placeholder = 'Enter email...' />
+                <Input required name = 'friendColor' type = 'text' placeholder = 'Enter favorite color...' />
 
                 <Button color = 'secondary' type = 'submit' value = 'submit'>Submit</Button>
             </Form>
