@@ -36,7 +36,7 @@ class App extends Component {
         
         <Navigation />
 
-        <Route exact path='/friends' render={(props) => <Friends friends={friends} />} />
+        <Route exact path='/friends' render={(props) => <Friends {...props} friends={friends} />} />
         <Route path='/friends/:id' render={(props) => <Friend {...props} friends={friends} />} />
         <Route path='/add' render={(props) => <FriendForm friends={friends} addFriend={this.addFriend} />} />
       </div>
