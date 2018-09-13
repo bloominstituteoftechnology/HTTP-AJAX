@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
 }
 
 .App-logo {
@@ -23,6 +26,21 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.friend-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend-card {
+  margin: 30px;
+  width: 200px;
+  border: 1px solid black;
 }

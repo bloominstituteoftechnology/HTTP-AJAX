@@ -1,14 +1,27 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
-import Friend from "./components/Friend";
+import { NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
+import FriendForm from "./components/FriendForm";
+import FriendsList from "./components/FriendsList";
+
+const blankFormValues = {
+  name: "",
+  age: "",
+  email: ""
+};
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
     };
   }
   componentDidMount() {
@@ -22,22 +35,45 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleChange = event => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [event.target.name]: event.target.value
+      }
+    });
+  };
+
+  handleAddNewFriend = event => {
+    axios
+      .post("http://localhost:5000/friends", this.state.friend)
+      .then(response =>
+        this.setState({ friends: response.data, friend: blankFormValues })
+      );
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          {this.state.friends.map(friend => (
-            <Friend key={friend.name} friend={friend} />
-          ))}
-        </div>
-        {/* <Form friends={this.state.friends} /> */}
+        <NavLink to="/add-friend">Add New</NavLink>
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <FriendsList {...props} friends={this.state.friends} />
+          )}
+        />
+        <Route
+          path="/add-friend"
+          render={props => (
+            <FriendForm
+              {...props}
+              friend={this.state.friend}
+              handleAddNewFriend={this.handleAddNewFriend}
+              handleChange={this.handleChange}
+            />
+          )}
+        />
       </div>
     );
   }
