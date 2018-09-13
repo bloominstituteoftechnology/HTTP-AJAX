@@ -8,6 +8,12 @@ import FriendForm from './components/FriendForm';
 import { Link, Route } from 'react-router-dom';
 
 
+const resetFormValues = {
+  name: '',
+  age: '',
+  email: ''
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -41,6 +47,13 @@ class App extends Component {
     });
   }
 
+  handleAddNewFriend = event => {    
+    axios.post('http://localhost:5000/friends', this.state.friendObject)
+      .then(response => this.setState({
+        friendsList: response.data,
+        friendObject: resetFormValues
+      }))
+  }
 
 
   render() {
@@ -55,8 +68,7 @@ class App extends Component {
 
         <div className='friend-form'>
           <h3>Are we Missing a friend?</h3>
-          <Link to='/friend-form'>Add-A-Friend</Link>
-          {/*Friend form here*/}
+          <Link to='/friend-form'>Add-A-Friend</Link>          
         </div>
         <div>
           <Route 
