@@ -47,11 +47,8 @@ class App extends Component {
     let newItem = this.state.newFriend
     axios
     .post('http://localhost:5000/friends', newItem)
-    .then(reponse=>{
-      axios
-        .get('http://localhost:5000/friends')
-        .then(response => {
-          this.setState(() => ({ friends: response.data }));
+    .then(response=>{
+          this.setState(({ friends: response.data }));
         })
         .catch(error => {
           console.error('Server Error', error);
@@ -62,8 +59,7 @@ class App extends Component {
         age: '',
         email: '',
       }})
-    })
-    .catch(error =>{console.log('this error holy cow', error)})
+    // .catch(error =>{console.log('this error holy cow', error)})
   }
 
   updateFriend = (e) => {
