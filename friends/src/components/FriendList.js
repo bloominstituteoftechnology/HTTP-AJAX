@@ -6,7 +6,8 @@ export default class FriendList extends Component {
     super(props);
     this.state = {
       friends: [],
-      inputText: ''
+      name: '',
+      age: ''
     };
   }
 
@@ -22,33 +23,27 @@ export default class FriendList extends Component {
   }
   addNewFriend = event => {
     event.preventDefault();
-    if (this.state.inputText) {
-      this.setState({
-        friends: [
-          ...this.state.friends,
-          {
-            name: this.state.inputText,
-            age: this.state.inputTextAge,
-            key: this.state.inputText,
-            className: 'friend',
-            id: Date.now()
-          }
-        ],
-        inputText: ''
-      });
+    if (this.state.name && this.state.age) {
+      axios
+        .post('http://localhost:5000/friends', {
+          name: this.state.name,
+          age: this.state.age
+        })
+        .then(response => {
+          this.setState(() => ({
+            friends: response.data,
+            name: '',
+            age: ''
+          }));
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   };
-  handleInput = event => {
-    this.setState({
-      inputText: event.target.value
-    });
+  changeHandler = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
-  handleInputAge = event => {
-    this.setState({
-      inputTextAge: event.target.value
-    });
-  };
-
   render() {
     return (
       <div className="friend-list">
@@ -58,19 +53,23 @@ export default class FriendList extends Component {
           </div>
         ))}
         {console.log(`Friends ${this.state.friends}`)}
-        <input
-          autoFocus
-          value={this.inputText}
-          onChange={this.handleInput}
-          placeholder={'Add New Friend'}
-        />
-        <input
-          autoFocus
-          value={this.inputTextAge}
-          onChange={this.handleInputAge}
-          placeholder={'Age'}
-        />
-        <button onClick={this.addNewFriend}>Add New Friend</button>
+        <form onSubmit={this.addNewFriend}>
+          <input
+            autoFocus
+            value={this.state.name}
+            onChange={this.changeHandler}
+            placeholder="Add New Friend"
+            name="name"
+          />
+          <input
+            autoFocus
+            value={this.state.age}
+            onChange={this.changeHandler}
+            placeholder="Age "
+            name="age"
+          />
+          <button type="submit">Add New Friend</button>
+        </form>
       </div>
     );
   }
