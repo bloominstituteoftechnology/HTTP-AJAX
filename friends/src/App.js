@@ -3,13 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 import {Route} from 'react-router-dom';
 import FriendList from './components/FriendList';
+import FriendForm from './components/FriendForm';
 //import { runInThisContext } from 'vm';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      doggos: [],
+      friend: {
+        id: null,
+        name: '',
+        age: null,
+        email: '',
+      },
     };
   }
 
@@ -34,6 +40,7 @@ class App extends Component {
           <h1 className="App-title">Friends</h1>
         </header>
         <Route path='/' component={FriendList} />
+        <Route path='/' component={FriendForm} />
       </div>
     );
   }

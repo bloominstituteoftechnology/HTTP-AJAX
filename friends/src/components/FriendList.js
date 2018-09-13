@@ -21,9 +21,11 @@ class FriendList extends Component{
     }
 
     render(){
+        if(this.state.friends.length<1){
+            return(<h1>No Data! Go get some friends.</h1>)
+        }
         return(
             <div>
-                This should be a FriendList.
                 {this.state.friends.map(friend=><Friend friend={friend} key={friend.id}/>)}
             </div>
         );
