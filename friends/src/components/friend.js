@@ -10,7 +10,7 @@ function Friend(props) {
             <div>
                 <h1>{props.friend.name}</h1>
                 <img src={editIcon} alt='edit' onClick={ () => props.handleEdit(props.friend) } />
-                <img src={deleteIcon} alt='delete' onClick={ (e) => props.deleteFriend(e, props.friend.id) } />
+                <img src={deleteIcon} alt='delete' onClick={ () => props.deleteFriend(props.friend.id) } />
             </div>
             <p>{`Age: ${props.friend.age}`}</p>
             <p><a href={`mailto:${props.friend.email}`}>{props.friend.email}</a></p>

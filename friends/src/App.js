@@ -12,6 +12,7 @@ class App extends Component {
       name: '',
       age: 0,
       email: '',
+      id: -1,
       updating: false
     };
   }
@@ -33,6 +34,7 @@ class App extends Component {
       name: '',
       age: 0,
       email: '',
+      id: -1,
       updating: false
     });
   };
@@ -51,11 +53,10 @@ class App extends Component {
     }
   };
 
-  putFriend = (event, friend) => {
+  putFriend = (event) => {
     event.preventDefault();
-    console.log(`PUT the friend ${friend.name.toUpperCase()}!`);
     Axios
-      .put(`${this.dataSource}/${friend.id}`, {
+      .put(`${this.dataSource}/${this.state.id}`, {
         name: this.state.name,
         age: this.state.age,
         email: this.state.email
@@ -64,9 +65,7 @@ class App extends Component {
       .catch( (err) => console.error(err) );
   };
 
-  deleteFriend = (event, id) => {
-    event.preventDefault();
-    console.log(`DELETE the friend with id ${id} :,(`);
+  deleteFriend = (id) => {
     Axios
       .delete(`${this.dataSource}/${id}`)
       .then( (response) => this.setFriends(response.data) )
@@ -83,9 +82,10 @@ class App extends Component {
 
   handleEdit = (friend) => {
     this.setState({
-      currentName: friend.name,
-      currentAge: friend.age,
-      currentEmail: friend.email,
+      name: friend.name,
+      age: friend.age,
+      email: friend.email,
+      id: friend.id,
       updating: true
     });
   };
