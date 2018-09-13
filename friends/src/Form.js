@@ -14,8 +14,14 @@ class Form extends Component {
 
     formHandler = event => {
        event.preventDefault();
-        
         this.props.updateFriends(this.state);
+        this.setState ({
+            name: '',
+            age: '',
+            email: ''
+        })
+        alert("a new friend has been added!");
+        this.props.history.push('/current');
     }
 
     handleInput = event => {
