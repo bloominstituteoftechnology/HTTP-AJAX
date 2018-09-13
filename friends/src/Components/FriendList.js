@@ -37,7 +37,7 @@ class FriendList extends Component {
 function FriendDetails({ friend }) {
   const { name, age, email } = friend;
   return (
-    <div className="movie-card">
+    <div className="friend-card">
       <h2>{name}</h2>
       <div className="name">
         Name: <em>{name}</em>
