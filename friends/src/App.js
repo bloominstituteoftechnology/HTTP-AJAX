@@ -3,11 +3,19 @@ import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import FriendCard from "./components/FriendCard";
+import FriendForm from "./components/FriendForm";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { friends: [] };
+    this.state = {
+      friends: [],
+      newFriend: {
+        name: "",
+        age: "", //is it fine to initiate to null ?
+        email: ""
+      }
+    };
   }
 
   componentDidMount() {
@@ -17,36 +25,46 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  addNewFriend(name, age, email) {
-    console.log(name);
+  addNewFriend(e) {
+    console.log(" i was clicked!!!");
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:5000/friends", this.state.newFriend)
+      .then(response =>
+        this.setState({ friends: response.data }, this.clearInputs())
+      )
+      .catch(err => console.log(err));
+    console.log(this.state.newFriend);
+  }
+
+  clearInputs() {
+    this.state.newFriend.name = "";
+    this.state.newFriend.age = "";
+    this.state.newFriend.email = "";
+  }
+
+  handleChange(event) {
+    // handle change
+    let nf = {
+      ...this.state.newFriend,
+      [event.target.name]: event.target.value
+    };
+    this.setState({ newFriend: nf });
   }
   render() {
-    {
-      console.log(this.state.friends);
-    }
     return (
       <div className="App">
         <h1>Friends:</h1>
-
-        <form name="form" method="post">
-          Name:
-          <input name="name" type="text" />
-          Age:
-          <input name="age" type="number" />
-          Email:
-          <input name="email" type="text" />
-          <button onSubmit={() => this.addNewFriend("alejandro", 123, "test")}>
-            New Friend!
-          </button>
-        </form>
+        <FriendForm
+          handleChange={this.handleChange.bind(this)}
+          addNewFriend={this.addNewFriend.bind(this)}
+          newFriend={this.state.newFriend}
+        />
         <div className="friends-container">
           {this.state.friends.map(friend => (
             <FriendCard friend={friend} />
-          ))
-          /* {this.state.friends.map(friend => (
-            <FriendCard friend={friend} />
-          ))} */
-          }
+          ))}
         </div>
       </div>
     );
