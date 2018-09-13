@@ -11,7 +11,8 @@ class App extends Component {
       friends: [],
       name: '',
       age: 0,
-      email: ''
+      email: '',
+      updating: false
     };
   }
 
@@ -31,7 +32,8 @@ class App extends Component {
       friends: friendArr,
       name: '',
       age: 0,
-      email: ''
+      email: '',
+      updating: false
     });
   };
 
@@ -49,6 +51,28 @@ class App extends Component {
     }
   };
 
+  putFriend = (event, friend) => {
+    event.preventDefault();
+    console.log(`PUT the friend ${friend.name.toUpperCase()}!`);
+    Axios
+      .put(`${this.dataSource}/${friend.id}`, {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then( (response) => this.setFriends(response.data) )
+      .catch( (err) => console.error(err) );
+  };
+
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    console.log(`DELETE the friend with id ${id} :,(`);
+    Axios
+      .delete(`${this.dataSource}/${id}`)
+      .then( (response) => this.setFriends(response.data) )
+      .catch( (err) => console.error(err) );
+  };
+
   handleInput = (event) => {
     if(event.target.name === 'age') {
       this.setState({ [event.target.name]: Number(event.target.value) });
@@ -57,17 +81,32 @@ class App extends Component {
     }
   };
 
+  handleEdit = (friend) => {
+    this.setState({
+      currentName: friend.name,
+      currentAge: friend.age,
+      currentEmail: friend.email,
+      updating: true
+    });
+  };
+
   render() {
     return (
       <div>
         <FriendBuilder 
           handleInput={this.handleInput} 
           postFriend={this.postFriend} 
+          putFriend={this.putFriend} 
           currentName={this.state.name} 
           currentAge={this.state.age} 
-          currentEmail={this.state.email}  
+          currentEmail={this.state.email} 
+          updating={this.state.updating} 
         />
-        <FriendsList friends={this.state.friends} />
+        <FriendsList 
+          friends={this.state.friends} 
+          handleEdit={this.handleEdit} 
+          deleteFriend={this.deleteFriend} 
+        />
       </div>
     );
   }

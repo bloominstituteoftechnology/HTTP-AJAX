@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import Friend from './friend';
 
 function FriendsList(props) {
-    return props.friends.map( (friend) => <Friend friend={friend} key={friend.id} /> );
+    return props.friends.map( (friend) => 
+        <Friend 
+            friend={friend} 
+            putFriend={props.putFriend} 
+            deleteFriend={props.deleteFriend} 
+            key={friend.id} 
+        /> 
+    );
 }
 
 FriendsList.propTypes = {
@@ -13,8 +20,10 @@ FriendsList.propTypes = {
             name: PropTypes.string,
             age: PropTypes.number,
             email: PropTypes.string
-        }).isRequired
-    )
+        })
+    ).isRequired,
+    handleEdit: PropTypes.func,
+    deleteFriend: PropTypes.func
 };
 
 export default FriendsList;

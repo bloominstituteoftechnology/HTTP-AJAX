@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function FriendBuilder(props) {
     return (
         <div>
-            <form onSubmit={props.postFriend}>
+            <form onSubmit={props.updating ? props.putFriend : props.postFriend}>
                 <label htmlFor='name'>Name: </label>
                 <input name='name' type='text' onChange={props.handleInput} value={props.currentName}></input>
                 <br />
@@ -25,7 +25,8 @@ FriendBuilder.propTypes = {
     handleInput: PropTypes.func.isRequired,
     currentName: PropTypes.string.isRequired,
     currentAge: PropTypes.number.isRequired,
-    currentEmail: PropTypes.string.isRequired
+    currentEmail: PropTypes.string.isRequired,
+    updating: PropTypes.bool.isRequired
 };
 
 export default FriendBuilder;
