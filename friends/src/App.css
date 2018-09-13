@@ -28,6 +28,22 @@
   to { transform: rotate(360deg); }
 }
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  border: 2px solid gray;
+  padding: 5px 10px;
+  margin: 12px;
+  border-radius: 5px;
+  background: mediumpurple;
+  color: white;
+}
+
 .friend {
   border: 2px solid black;
   width: 210px;
