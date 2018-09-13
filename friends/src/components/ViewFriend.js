@@ -58,13 +58,21 @@ class ViewFriend extends React.Component {
                 ...this.state.updatedFriend,
                 [e.target.name]: e.target.name === 'age' ? Number(e.target.value) : e.target.value
             }
-        }, () => console.log(this.state))
+        })
     }
 
     handlePut = e => {
         e.preventDefault();
         
         this.props.putFriend(this.state.updatedFriend);
+        this.props.history.push('/');
+    }
+
+    handleDelete = id => e => {
+        e.preventDefault();
+
+        this.props.deleteFriend(id);
+        this.props.history.push('/');
     }
 
     render() {
@@ -123,7 +131,7 @@ class ViewFriend extends React.Component {
                     <Button color = 'secondary' type = 'submit' value = 'submit'>Submit</Button>
                 </Form>
 
-                <Button color = 'danger' onClick = { this.props.handleDelete(this.state.friend.id) }>Delete Contact</Button>
+                <Button color = 'danger' onClick = { this.handleDelete(this.state.friend.id) }>Delete Contact</Button>
             </div>
         );
     }

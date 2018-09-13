@@ -34,6 +34,7 @@ export default class PostFriend extends React.Component {
         e.preventDefault();
 
         this.props.postNewFriend(this.state);
+        this.props.history.push('/');
     }
 
     render() {
