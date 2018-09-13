@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -33,25 +34,24 @@ class App extends Component {
 
   textInput = e => {
     this.setState({ [e.target.name]: e.target.value });
-                  // { [e.target.age]: e.target.value },
-                  // { [e.target.email]: e.target.value });
   };
 
-  // saveFriendData = () => {
-  //   const person = {name: this.state.name, age: this.state.age, email: this.state.email};
+  saveFriendData = (event) => {
+    event.preventDefault();
+    const id = (this.state.friends[this.state.friends.length - 1].id + 1)
+    const friend = {id: id, name: this.state.name, age: this.state.age, email: this.state.email};
 
-    // axios
-    //   .post('http://localhost:5000/friends', person)
+    axios
+      .post('http://localhost:5000/friends', friend)
 
-    //   .then(resonse => {
-    //   console.log(response;
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-    //  console.log(person); 
+      .then(response => 
+            this.setState({ friends: response.data, name: '', age: '', email: ''})
+          )
+      .catch(err => {
+        console.log(err);
+      });
     // this.setState({name: '', age: '', email: ''});
-  // };
+  };
 
   render() {
     return (
@@ -60,7 +60,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to my HTTP-AJAX Project</h1>
         </header>
-        <FriendForm textInputHandler={this.textInput}/>
+        <FriendForm 
+            name={this.state.name} 
+            age={this.state.age} 
+            email={this.state.email} 
+            saveFriendData={this.saveFriendData}
+            textInputHandler={this.textInput}
+        />
  
         <div className="friends-container">
           {this.state.friends.map(friend => <div className={"friend"} key={friend.id} friend={friend} >
