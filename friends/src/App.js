@@ -13,7 +13,6 @@ class App extends Component {
     this.state = {
       friends: [],
       friend: {
-        id: 0,
         name: '',
         age: undefined,
         email: '',
@@ -55,23 +54,8 @@ class App extends Component {
     })
   }
 
-  createID(){
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        this.setState({
-          friend:{
-            ...this.state.friend,
-            id: response.data[response.data.length-1].id+1,
-          }
-        })
-      })
-      .catch(err => console.log(err));
-  }
-
   handleAddNewFriend = event =>{
     event.preventDefault();
-    this.createID();
     axios
       .post('http://localhost:5000/friends', this.state.friend)
       .then(response => {
