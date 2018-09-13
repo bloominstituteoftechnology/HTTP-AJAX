@@ -6,7 +6,9 @@ function FriendUpdate(props) {
         <div>
             <h2>1) Click on a Friend to Update</h2>
             {props.friends.map(friend => 
-                <FriendToUpdate key={friend.id} friend={friend} onClick={() => props.history.push(`/friend-update/${friend.id}`)}/>
+                <li key={friend.id} onClick={() => props.history.push(`/friend-update/${friend.id}`)}>
+                {friend.name}
+                </li>
             )} 
         </div>
     )
