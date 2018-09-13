@@ -10,7 +10,7 @@ function FriendCard(props) {
     <p>Age: {friend.age}</p>
     <p>Email: {friend.email}</p>
     <button>Update Information</button>
-    <button>Delete Friend</button>
+    <button onClick={() => props.handleDelete(friend.id)}>Delete Friend</button>
     </div>
   )}
 

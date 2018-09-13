@@ -58,7 +58,7 @@ class App extends Component {
   }
 
   handleUpdate = friendId => {
-    axios.put(`http://localhost:5000/friends/${friendId}`, this.state)
+    axios.put(`http://localhost:5000/friends/${friendId}`, this.state.friend)
     .then(response => {
       this.setState({
         friends: response.data
@@ -77,9 +77,16 @@ class App extends Component {
       <div className="App">
       {this.state.friends.map}
         <Link to="/">Home</Link>
+        <Link to="/friends">Friends</Link>
         <Link to="/addFriend">Add a new friend</Link>
         <Route
         exact path="/"
+        render={(props) => <FriendsList {...props}
+        friends={this.state.friends}/>}
+        />
+        <Route
+        exact
+        path="/friends"
         render={(props) => <FriendsList {...props}
         friends={this.state.friends}/>}
         />
@@ -93,7 +100,8 @@ class App extends Component {
         exact path="/friends/:friendId"
         render={(props) => <FriendCard {...props}
         friends={this.state.friends}
-        handleDelete={this.handleDelete} />}
+        handleDelete={this.handleDelete}
+        goToUpdatePage={this.goToUpdatePage} />}
         />
       </div>
     );
