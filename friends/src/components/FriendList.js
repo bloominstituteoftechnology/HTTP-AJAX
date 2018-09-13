@@ -1,36 +1,22 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Friend from './Friend';
 
-export default class FriendList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            friends: []
-        };
-    }
-
-    componentDidMount() {
-        axios
-          .get('http://localhost:5000/friends')
-          .then(response => {
-            this.setState(() => ({ friends: response.data }));
-          })
-          .catch(error => {
-            console.error('Server Error', error);
-          });
-      }
-
-    render() {
-        console.log(this.state.friends);
-        return(
-            <div>
-                {this.state.friends.map(friend => (
-                    <Friend key={friend.id} friend={friend} />
-                ))}
-            </div>
-        );
-    }
+function FriendList(props) {
+    return(
+        <div>
+            <h2>Friend List</h2>
+            {props.friends.map(friend => (
+                <Friend key={friend.id} friend={friend} />
+            ))}
+        </div>
+    );
 }
+
+FriendList.propTypes = {
+    friends: PropTypes.arrayOf(PropTypes.object),
+    newFriend: PropTypes.object
+  };
+
+export default FriendList;
