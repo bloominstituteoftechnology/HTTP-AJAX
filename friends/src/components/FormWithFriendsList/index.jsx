@@ -7,8 +7,10 @@ const FormWithFriendsList = props => {
   return (
     <div className="form-with-friends-wrapper">
       <Form name={props.name}
-            age={props.age}
+            timezone={props.timezone}
             email={props.email}
+            telephone={props.telephone}
+            avatar={props.avatar}
             handleChange={props.handleChange}
             handleFriendSubmit={props.handleFriendSubmit} />
 

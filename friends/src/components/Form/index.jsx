@@ -40,6 +40,7 @@ const Form = props => {
         value={props.avatar}
       />
       <button onClick={props.handleFriendSubmit}>Submit</button>
+      <button onClick={props.handleCancel}>Cancel</button>
     </form>
   );
 };

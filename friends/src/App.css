@@ -109,9 +109,9 @@ button:hover {
 }
 
 .friend-card {
-  width: 200px;
+  width: 250px;
   height: 80px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   line-height: 80px;
   text-align: center;
   margin: 15px;
