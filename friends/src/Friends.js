@@ -8,8 +8,7 @@ export default class Friends extends React.Component {
     this.state = {
       name: '',
       age: '',
-      email: '',
-      id: Math.floor(Math.random() * 1000)
+      email: ''
     }
   }
 
@@ -24,10 +23,8 @@ export default class Friends extends React.Component {
         name: this.state.name,
         age: parseInt(this.state.age, 10),
         email: this.state.email,
-        id: this.state.id
       }
     )
-    .then((res) => console.log(res))
     .catch(err => console.log(new Error(err)))
   }
 
