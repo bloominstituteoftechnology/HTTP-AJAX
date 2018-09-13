@@ -4,6 +4,7 @@ import './App.css';
 import FriendsList from './components/FriendsList';
 import FriendForm from './components/FriendForm';
 import { Route, Link } from 'react-router-dom';
+import FriendCard from './components/FriendCard';
 
 class App extends Component {
   constructor() {
@@ -45,6 +46,10 @@ class App extends Component {
     this.setState({
       [e.target.name]: e.target.value
   });
+  }
+
+  handleUpdate = friendId => {
+    axios.put()
   }
   render() {
     return (
