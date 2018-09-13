@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import axios from 'axios';
 import Friend from './components/Friend';
-import FriendsList from './components/FriendsList';
+import FriendForm from './components/FriendForm';
+// import FriendsList from './components/FriendsList';
 
 class App extends Component {
   constructor() {
@@ -17,19 +16,39 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response);
-        this.setState({ friends: response.data });
+        const friends = response.data;
+        this.setState({ friends });
       })
       .catch(err => console.log(err));
   }
 
+  addFriend = newFriend => {
+    const friends = [...this.state.friends, newFriend];
+    this.setState({ friends });
+    this.axiosPost(newFriend);
+  };
+
+  axiosPost = newFriend => {
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(console.log('Post request successful!'))
+      .catch(err => console.log(err));
+  };
+
   render() {
+    const { friends } = this.state;
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
+        <h1>Axios Friends</h1>
+
+        <FriendForm friends={this.state.friends} addFriend={this.addFriend} />
+
+        {friends.map(friend => {
+          return <Friend key={friend.id} friend={friend} />;
+        })}
       </div>
     );
   }
 }
-// commit
+
 export default App;
