@@ -31,9 +31,9 @@ componentDidMount() {
 
 handleChange = event => {
 this.setState({
-    ...this.state.friend,
+
     friend: {
-        [event.target.name]: event.target.value,
+        ...this.state.friend,[event.target.name]: event.target.value,
     }
   })
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 
-const FriendZone = (props) => {
+function FriendZone (props) {
 
     return (
 
@@ -12,7 +12,7 @@ const FriendZone = (props) => {
         <form>
           <input  
           type="text" 
-          required value= {props.friend.name}  
+          value= {props.friend.name}  
           name="name"
           placeholder="Name" 
           onChange={props.handleChange} />
