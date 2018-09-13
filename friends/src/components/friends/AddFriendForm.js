@@ -38,13 +38,13 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   margin: 30px 1%;
-  width: 22%;
+  width: 100%;
 `;
 
 const StyledInput = styled.input`
   margin-bottom: 9px;
-  width: 50%;
-  padding-left: 2%;
+  width: 15%;
+  padding-left: 1%;
   font-size: 0.8rem;
 `;
 

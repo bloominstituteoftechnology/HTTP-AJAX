@@ -4,12 +4,7 @@ import FriendsList from '../friends/FriendsList';
 import Home from '../home/Home';
 
 const Routes = () => {
-  return (
-    <div>
-      <Route exact path="/" component={Home} />
-      <Route path="/friends" component={FriendsList} />
-    </div>
-  );
+  return <div />;
 };
 
 export default Routes;
