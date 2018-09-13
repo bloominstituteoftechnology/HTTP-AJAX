@@ -23,7 +23,7 @@ class App extends Component {
   addFriend = (newFriend) => {
     axios
       .post('http://localhost:5000/friends', newFriend)
-      .then(this.setState({ friends: [...this.state.friends, newFriend] }), window.location.href = '/friends')
+      .then(res => this.setState({ friends: res.data }), window.location.href = '/friends')
       .catch(err => console.log(err))
   }
 
