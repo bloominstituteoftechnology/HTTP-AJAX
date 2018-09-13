@@ -6,6 +6,9 @@ import './App.css';
 import axios from 'axios';
 import FriendForm from './components/FriendForm';
 import FriendsList from './components/FriendsList';
+import Home from './components/Home'
+
+import { Route, NavLink, withRouter } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -61,15 +64,46 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to my HTTP-AJAX Project</h1>
         </header>
-        <FriendForm 
+        
+ 
+        {/* <FriendsList  friendsList={this.state.friends}/> */}
+        <ul className="navbar">
+          <li>
+            <NavLink exact to="/" activeClassName="activeNavButton">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/friends" activeClassName="activeNavButton">
+              Friends
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/friends-form" activeClassName="activeNavButton">
+              Add New Friend
+            </NavLink></li>
+        </ul>
+        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/friends"
+          render={props => (
+            <FriendsList {...props} friendsList={this.state.friends} />
+          )}
+        />
+        <Route
+          path="/friends-form"
+          render={props => (
+            <FriendForm 
             name={this.state.name} 
             age={this.state.age} 
             email={this.state.email} 
             saveFriendData={this.saveFriendData}
             textInputHandler={this.textInput}
         />
- 
-        <FriendsList  friendsList={this.state.friends}/>
+            
+          )}
+        />
     
       </div>
     );
