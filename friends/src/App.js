@@ -24,6 +24,10 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleFormInput = e => {
+    this.setState ({ [e.target.name]: e.target.value });
+  }
+  
   render() {
     return (
       <div className="App">
