@@ -9,7 +9,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      newFriendInfo: []
+      name: '',
+      age: '',
+      email: ''
     }
   }
 
@@ -25,13 +27,35 @@ componentDidMount() {
     });
 }
 
+handleChange = event=> {
+  this.setState({[event.target.name]: event.target.value});
+  console.log(this.state);
+}
+
+addFriend = event=> {
+  axios
+    .post('http://localhost:5000/friends', {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    })
+    .then(response=> {
+      console.log(response);
+      this.setState({friends: response.data});
+    })
+    .catch(err=> {
+      console.log(err);
+    })
+}
+
+
   render() {
     return (
       <div className="App">
        <h1>Friends</h1>
        <NewFriend 
-          value={this.state.inputText}
-          addNewFriend={this.addNewFriend}
+         handleChange={this.handleChange}
+         addFriend={this.addFriend}
         />
        <div className='friends'>
        {this.state.friends.map(friend=> {

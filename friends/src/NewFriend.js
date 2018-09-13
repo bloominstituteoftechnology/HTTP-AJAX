@@ -3,26 +3,23 @@ import './Friend.css';
 
 const NewFriend = props=> {
     return (
-        <form onChange={props.addNewFriend}>
+        <form onChange={props.handleChange}>
             <input
                 name='name'
-                value={props.value}
                 type='text' 
                 placeholder='Name'
             />
             <input 
                 name='age'
-                value={props.value}
-                type='text' 
+                type='text'
                 placeholder='Age'
             />
             <input 
-                name='name'
-                value={props.value}
+                name='email'
                 type='text' 
                 placeholder='Email'
             />
-            <button>Add New Friend</button>
+            <button onClick={props.addFriend}>Add New Friend</button>
         </form>
     );
 }
