@@ -20,13 +20,13 @@ const AddFriendForm = (props) => {
         type="number"
       />
       <StyledInput
-        placeholder="email"
+        placeholder="Email"
         value={props.inputEmail}
         name="inputEmail"
         onChange={props.handleInput}
         type="email"
       />
-      <StyledInput type="submit" />
+      <StyledInput type="submit" value="Add Friend" />
     </StyledForm>
   );
 };
