@@ -1,5 +1,30 @@
 .App {
-  text-align: center;
+
+  background: lightgray;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+}
+.Friends{
+  display:flex;
+  justify-content: space-evenly;
+  margin: 20px auto;
+  
+  
+}
+.age-input{
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+
+
+.friend{
+  border: 1px solid black;
+  margin: 0 2%;
+  background: #222;
+  color: white;
+  text-align: left;
+  
 }
 
 .App-logo {
