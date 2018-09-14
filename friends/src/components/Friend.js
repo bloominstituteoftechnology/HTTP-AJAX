@@ -7,7 +7,7 @@ const Friend = props => {
         <h2>{props.friend.name}</h2>
         <div>Age: {props.friend.age}</div>
         <div>Email: {props.friend.email}</div>
-        <button onClick = { () => props.handleClick(props.friend) }>Edit</button>
+        <button className="button" onClick = { () => props.handleClick(props.friend) }>Edit</button>
     </div>);
 };
 

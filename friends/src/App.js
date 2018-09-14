@@ -77,7 +77,7 @@ class App extends Component {
     return (
       <div className="app">
         <h1>List of Friends</h1>
-        <form className="form" onSubmit={this.addNewFriend}>
+        <form className="form">
           <input
             onChange={this.handleChange}
             name="name"
@@ -104,7 +104,7 @@ class App extends Component {
             Add Friend
           </button>
         </form>
-        <button className="button" onClick={(id) => this.updateFriend(id)}>
+        <button className="button" onClick={id => this.updateFriend(id)}>
           Update Friend
         </button>
         <FriendsList
