@@ -11,9 +11,9 @@ const FriendList = props =>{
           ))
 
         }
-        {/* {          console.log(this.props)} */}
-        {/* <button name="form-button" 
-                onClick={()=>this.props.history.push("/form")}>Add New Friend?</button> */}
+        {          console.log(props)}
+        <button name="form-button" 
+                onClick={()=>props.history.push("/form")}>Add New Friend?</button>
       </div>
     )
 }

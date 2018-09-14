@@ -27,15 +27,7 @@ class App extends Component {
                 [event.target.name]: event.target.value}
     })
   }
-  // handleAgeChange = event => {
-  //   this.setState({ inputAge: event.target.value
-  //   })
-  // }
-  // handleEmailChange = event => {
-  //   this.setState({ inputEmail: event.target.value
-  //   })
-  // }
-  
+
   handleAddFriend = event => {
     event.preventDefault();
     if (this.state.friend.name && this.state.friend.age && this.state.friend.email){
@@ -50,17 +42,17 @@ class App extends Component {
                                               age: "",
                                               email:""} 
                                   });
-                     this.history.push("/");
+                    //  this.history.push("/");
                   })
               .catch(err => console.log(err));
     }
   }
 
   componentDidMount(){
+    // console.log(this.props.history);
     axios
     .get('http://localhost:5000/friends')
       .then(response => {
-      // console.log(response);
         this.setState({ friends: response.data });
       })
       .catch(err => console.log(err));
@@ -69,12 +61,11 @@ class App extends Component {
   render() {
     return (
       <div>
-          
           <Route  exact
                   path="/"
                   render={props =>  
                           <FriendList {...props}        
-                                      friends={this.state.friends} /> } />
+                                      friends={this.state.friends}/> }/>
           <Route  path="/form"
                   render={props =>
                           <FriendForm {...props} 

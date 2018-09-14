@@ -22,7 +22,10 @@ const FriendForm = props =>{
                 onChange={props.handleChange} />
 
         <button className="save-button" 
-                onClick={event => props.handleAddFriend(event)}>
+                onClick={event => {   
+                  props.handleAddFriend(event);
+                  props.history.push("/");
+                  }}>
                 Save</button>
       </form>
     </div>
