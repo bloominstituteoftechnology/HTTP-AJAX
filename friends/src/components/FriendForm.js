@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import Link from 'react-router-dom';
 export default class FriendForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: [],
       name: '',
       age: '',
       email: ''
@@ -28,8 +27,6 @@ export default class FriendForm extends Component {
             age: '',
             email: ''
           }));
-
-          console.log(response.data);
         })
         .catch(function(error) {
           console.log(error);
