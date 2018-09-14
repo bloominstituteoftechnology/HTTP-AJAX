@@ -3,7 +3,7 @@ import React from 'react';
  function AddFriendForm(props) {
   return (
     <form>
-      Name
+    Name
       <input
         type="text"
         name="name"
