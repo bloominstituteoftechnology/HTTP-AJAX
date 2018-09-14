@@ -8,10 +8,38 @@ import FriendForm from './FriendForm';
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      newFriend: {
+        name: '',
+        age: 0,
+        email: ''
+      }
     };
   }
 
+  addNewFriend = e => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/friends', this.state.newFriend)
+    .then(response => {
+      this.setState({
+        friends: response.data,
+        
+      
+      })
+    })
+  }
+  
+ 
+  formChange = e => {
+    this.setState({
+      newFriend: {
+        ...this.state.newFriend, 
+        [e.target.name]: e.target.value,
+      }
+    })
+  }
+
+ 
 
 
    componentDidMount() {
@@ -25,13 +53,16 @@ import FriendForm from './FriendForm';
     .catch(err => console.log(err));
   }
   
+
+
+
   render() {
     return (
       <div className="App">
         <ul>
           {this.state.friends.map(friend => <Friend friend={friend} key={friend.id} />)}
         </ul>
-        <FriendForm friends={this.state.friends}  />
+        <FriendForm  addNewFriend={this.addNewFriend} newFriend={this.state.newFriend} formChange={this.state.formChange} />
       </div>
     );
   }
