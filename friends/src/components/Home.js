@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div>
+    <div className="main-sub-container">
         <h1>Welcome!</h1>
         <h4>Wanna Meet My Friends!</h4>
         {/* <p>Warning: this data is classified!</p> */}

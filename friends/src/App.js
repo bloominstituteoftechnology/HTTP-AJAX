@@ -65,7 +65,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to my HTTP-AJAX Project</h1>
         </header>
         
- 
+      <div className="main-container">
         {/* <FriendsList  friendsList={this.state.friends}/> */}
         <ul className="navbar">
           <li>
@@ -80,7 +80,7 @@ class App extends Component {
           </li>
           <li>
             <NavLink to="/friends-form" activeClassName="activeNavButton">
-              Add New Friend
+              Add Friend
             </NavLink></li>
         </ul>
         <Route exact path="/" component={Home} />
@@ -105,7 +105,7 @@ class App extends Component {
             
           )}
         />
-    
+        </div>
       </div>
     );
    
