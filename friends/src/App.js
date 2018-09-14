@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Friends from './components/Friends'
 import Friend from './components/Friend'
@@ -24,13 +24,12 @@ class App extends Component {
   addFriend = (newFriend) => {
     axios
       .post('http://localhost:5000/friends', newFriend)
-      .then(res => this.setState({ friends: res.data }), window.location.href = '/friends')
-      .catch(err => console.log(err))
+      .then(res => this.setState({ friends: res.data }, this.props.history.push('/friends')))
   }
 
   deleteFriend = (id) => {
     axios.delete(`http://localhost:5000/friends/${id}`)
-      .then(response => this.setState({ friends: response.data }), window.location.href = '/friends');
+      .then(response => this.setState({ friends: response.data }, this.props.history.push('/friends')))
   }
 
   render() {
@@ -49,4 +48,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withRouter(App)
