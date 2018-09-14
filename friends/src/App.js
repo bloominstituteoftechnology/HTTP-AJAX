@@ -60,8 +60,7 @@ class App extends Component {
     const friendToUpdate = this.state.friends.find(friend => friend.id == id);
     this.setState({
       isUpdating: true,
-      friend: friendToUpdate,
-  }, () => this.props.history.push('/addFriend'));
+      friend: friendToUpdate }, () => this.props.history.push('/addFriend'));
 }
 
   handleChange = (e) => {
@@ -97,8 +96,7 @@ class App extends Component {
         <Link to="/addFriend">Add a new friend</Link>
         <Route
         exact path="/"
-        render={(props) => <FriendsList {...props}
-        friends={this.state.friends}/>}
+        render={() => <h1>Welcome to the Friend List!</h1>}
         />
         <Route
         exact
@@ -110,12 +108,15 @@ class App extends Component {
         path="/addFriend"
         render={(props) => <FriendForm {...props}
         handleChange={this.handleChange}
-        postNewFriend={this.postNewFriend}/>}
+        postNewFriend={this.postNewFriend}
+        friend={this.state.friend}
+        isUpdating={this.state.isUpdating}/>}
         />
         <Route
         exact path="/friends/:friendId"
         render={(props) => <FriendCard {...props}
         friends={this.state.friends}
+        friend={this.state.friend}
         handleDelete={this.handleDelete}
         goToUpdatePage={this.goToUpdatePage} />}
         />

@@ -1,23 +1,26 @@
 import React from 'react';
 
 function FriendForm(props) {
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
   return (
     <form>
-    Name
+    <label>Name</label>
       <input
         type="text"
         name="name"
         value={props.friend.name}
         onChange={props.handleChange}
         />
-        Age
+        <label>Age</label>
       <input
         type="number"
         name="age"
         value={props.friend.age}
         onChange={props.handleChange}
         />
-        E-mail address
+        <label>E-mail address</label>
       <input
         type="email"
         name="email"

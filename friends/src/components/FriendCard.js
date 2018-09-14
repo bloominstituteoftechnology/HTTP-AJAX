@@ -9,14 +9,16 @@ function FriendCard(props) {
     props.history.push('/friends')
   }
   return (
-    <div className="friend-card">
+    <Fragment>
     <h1>{friend.name}</h1>
     <p>Age: {friend.age}</p>
     <p>Email: {friend.email}</p>
-    <button onClick={event =>
-    props.goToUpdatePage(event, friend.id)}>Update Information</button>
+    <button onClick={event => {
+    event.preventDefault();
+    props.goToUpdatePage(event, friend.id)
+  }}>Update Information</button>
     <button onClick={handleFriendDelete}>Delete Friend</button>
-    </div>
+    </Fragment>
   )}
 
 export default FriendCard;
