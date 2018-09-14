@@ -34,14 +34,13 @@ export default class FriendList extends Component {
     return (
       <div className="friend-list">
         {this.state.friends.map(friend => (
-          <Link
-            to={`/friends/${friend.name}`}
-            key={friend.name}
-            className="friend"
-          >
+          <Link to={`/friends/${friend.id}`} key={friend.id} className="friend">
             {friend.name} | {friend.age} | {friend.email}
+            <button>Update</button>
+            <button>Delete</button>
           </Link>
         ))}
+        <Link to="/friendform">Friend Form</Link>
       </div>
     );
   }
