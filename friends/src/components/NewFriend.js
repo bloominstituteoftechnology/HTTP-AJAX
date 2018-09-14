@@ -24,7 +24,6 @@ class NewFriend extends React.Component {
         [e.target.id]: e.target.value,
       }})
     }
-    
   }
 
   render() {

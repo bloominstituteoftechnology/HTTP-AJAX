@@ -35,10 +35,6 @@
   align-items: center;
 }
 
-.App form h2 {
-  margin-bottom: 0;
-}
-
 .App form .input-field {
   position: relative;
   min-width: 250px;
@@ -78,4 +74,12 @@
 .App form button:hover {
   background-color: black;
   color: white;
+}
+
+.App .link {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  margin-top: 15px;
+  padding: 5px 2%; 
 }
