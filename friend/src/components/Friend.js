@@ -11,8 +11,8 @@ const Friend = props =>{
                     >Delete</button>
             <button className="button update-button"
                     onClick={(event)=>{
-                        props.handleUpdateFriend(event,props.id);
-                        props.history.push("/");}}
+                        props.handleUpdateFriend(event,props.friend.id);
+                        props.history.push("/form");}}
                     >Update</button>
             <h2>{props.friend.id+": "}</h2>
             <h2>{props.friend.name}</h2>

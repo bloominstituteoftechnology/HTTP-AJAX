@@ -18,7 +18,8 @@ class App extends Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      isUpdate:false
     }
   }
 
@@ -32,39 +33,44 @@ class App extends Component {
   handleAddFriend = event => {
     event.preventDefault();
     if (this.state.friend.name && this.state.friend.age && this.state.friend.email){
-        axios.post('http://localhost:5000/friends', 
+      if (!this.state.isUpdate){
+          axios.post('http://localhost:5000/friends', 
+                    { name: this.state.friend.name,
+                      age: this.state.friend.age,
+                      email: this.state.friend.email })
+                .then(response => {
+                      this.setState({ friends: [...response.data],
+                                      friend:{  id:"",
+                                                name:"",
+                                                age: "",
+                                                email:""} 
+                                    });
+                    })
+                .catch(err => console.log(err));
+      } else{
+          axios.put(`http://localhost:5000/friends/${this.state.friend.id}`, 
                   { name: this.state.friend.name,
                     age: this.state.friend.age,
                     email: this.state.friend.email })
               .then(response => {
-                     this.setState({ friends: [...response.data],
+                    this.setState({ friends: [...response.data],
                                     friend:{  id:"",
                                               name:"",
                                               age: "",
-                                              email:""} 
+                                              email:""},
+                                    isUpdate:false 
                                   });
                   })
               .catch(err => console.log(err));
+      }
     }
   }
 
   handleUpdateFriend=(event,friendId)=>{
     event.preventDefault();
-  //   if (this.state.friend.name && this.state.friend.age && this.state.friend.email){
-  //     axios.put(`http://localhost:5000/friends/${friendId}`, 
-  //               { name: this.state.friend.name,
-  //                 age: this.state.friend.age,
-  //                 email: this.state.friend.email })
-  //           .then(response => {
-  //                  this.setState({ friends: [...response.data],
-  //                                 friend:{  id:"",
-  //                                           name:"",
-  //                                           age: "",
-  //                                           email:""} 
-  //                               });
-  //               })
-  //           .catch(err => console.log(err));
-  // }
+    this.setState({friend: this.state.friends[friendId-1],
+                  isUpdate: true});
+    console.log(this.state);
   }
 
   handleDeleteFriend=(event, friendBeingDeleted)=>{
