@@ -6,6 +6,13 @@ import FriendForm from './components/FriendForm';
 import { Route, Link } from 'react-router-dom';
 import FriendCard from './components/FriendCard';
 
+const blankFormValues = {
+  name: '',
+  age: null,
+  email: '',
+  quote: ''
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -14,8 +21,10 @@ class App extends Component {
       friend: {
         name: '',
         age: null,
-        email: ''
+        email: '',
+        quote: '',
       },
+      isUpdating: false,
     };
   }
 
@@ -36,9 +45,10 @@ class App extends Component {
   postNewFriend = (e) => {
     axios
     .post("http://localhost:5000/friends", {
-      name: this.state.name,
-      age: parseInt(this.state.age, 10),
-      email: this.state.email
+      name: this.state.friend.name,
+      age: parseInt(this.state.friend.age, 10),
+      email: this.state.friend.email,
+      quote: this.state.friend.quote
 
     })
     .then((response) => this.setState({ friends: response.data }))
@@ -48,12 +58,18 @@ class App extends Component {
   goToUpdatePage = (event, id) => {
     event.preventDefault();
     const friendToUpdate = this.state.friends.find(friend => friend.id == id);
-    this.setState({ friendToUpdate })
-  }
+    this.setState({
+      isUpdating: true,
+      friend: friendToUpdate,
+  }, () => this.props.history.push('/addFriend'));
+}
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      friend: {
+        ...this.state.friend,
+      [e.target.name]: e.target.value,
+    }
   });
   }
 
