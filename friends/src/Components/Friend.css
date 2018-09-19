@@ -1,14 +1,58 @@
 /* Friends.js */
-
+.Friends {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-around;
+}
 /* Friend.js */
 .Friend {
-    margin: 0 auto;
+    margin-top: 4px;
+    margin-left: 4px;
     width: 100%;
-    max-width: 360px;
+    max-width: 300px;
+    height: 180px;
     text-align: center;
     background: #2F3C43;
     border: 1px solid #FAFAFA;
     color: ivory;
 }
 
+.Friend h1 {
+    font-size: 24px;
+}
+
+.Friend p {
+    font-size: 13px;
+}
+
 /* FriendForm.js */
+.FriendFormDiv {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 240px;
+    background: ivory;
+    padding: 7px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    
+}
+
+.FriendFormDiv h1 {
+    text-align: center;
+    font-size: 30px;
+}
+.FriendForm {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.FriendForm input {
+    text-align: center;
+    width: 210px;
+    margin: 2px;
+    border: 1px solid black;
+    background: #FAFAFA;
+}

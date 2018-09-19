@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Friends from './Components/Friends';
+import FriendForm from './Components/FriendForm';
+
 const axios = require('axios');
+
 class App extends Component {
   constructor() {
     super();
@@ -27,6 +30,7 @@ class App extends Component {
     console.log('Updated state:', this.state.data)
     return (
       <div className="App">
+        <FriendForm />
         <Friends friendsData={this.state.friendsData} />
       </div>
     );
