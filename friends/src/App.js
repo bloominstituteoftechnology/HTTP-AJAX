@@ -3,6 +3,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import Friendlist from "./components/Friendlist";
+import UserForm from "./components/UserForm";
 
 class App extends React.Component {
   constructor() {
@@ -33,12 +35,8 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">My React APP</h1>
         </header>
-        {this.state.friends.map(friend => (
-          <p key={friend.name}>
-            {" "}
-            {friend.name} {friend.age}{" "}
-          </p>
-        ))}
+        <Friendlist friendlist={this.state.friends} />
+        <UserForm />
       </div>
     );
   }
