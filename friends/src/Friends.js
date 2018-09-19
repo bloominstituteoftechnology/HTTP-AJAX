@@ -4,7 +4,7 @@ function Friends(props) {
   return (
     <ul className="App">
       {props.friendsProps.map(friend => {
-        <li>{friend.name}</li>;
+        return <li key={friend.id}>{friend.name}</li>;
       })}
     </ul>
   );
