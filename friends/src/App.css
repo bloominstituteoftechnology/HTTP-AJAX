@@ -26,3 +26,7 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.friend-card{
+  border: 2px grey solid;
+  padding: 20px;
+}
