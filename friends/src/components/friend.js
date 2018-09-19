@@ -1,16 +1,21 @@
 import React from 'react';
-import 
 
-const friend = () => {
+function friend (props) {
     return (
-        <div>
-            
+        <div className='friend-container' >
+        {props.friends.map(friend => 
+            <div key={friend.id} className="friend-card" >
+                <div>
+                {friend.name} 
+                </div>
+            {friend.age}
+            </div>)}
         </div>
-    );
-};
+    );  
+}
 
 export default friend;
 
-Friend.propTypes = {
-    friend.PropTypes.arrayOf(),
-}
+// Friend.propTypes = {
+//     friend.PropTypes.arrayOf(),
+// }
