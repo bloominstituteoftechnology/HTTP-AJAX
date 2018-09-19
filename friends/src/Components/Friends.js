@@ -4,12 +4,13 @@ import EachFriend from './EachFriend.js';
 
 
 class Friends extends React.Component {
-  constructor() {
-    super();
-    this.state=[{
+  constructor(props) {
+    super(props);
+    this.state= {
       friends: []
-    }]
+    }
   }
+
   componentDidMount(){
 
 
@@ -25,7 +26,13 @@ class Friends extends React.Component {
   render(){
 return(
 <div>
+  <div className="Friends">
 
+          {this.state.friends.map(friend=> (
+            <EachFriend key={friend.id} friend={friend} />
+          ))}
+
+        </div>
 
 </div>
 
