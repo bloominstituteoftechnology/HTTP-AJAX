@@ -1,0 +1,14 @@
+/* Friends.js */
+
+/* Friend.js */
+.Friend {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    background: #2F3C43;
+    border: 1px solid #FAFAFA;
+    color: ivory;
+}
+
+/* FriendForm.js */
