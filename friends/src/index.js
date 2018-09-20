@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import axios from "axios";
-import FriendList from './FriendList';
+import FriendList from './componenets/FriendList';
 
 class App extends React.Component {
     constructor() {
@@ -15,9 +15,10 @@ class App extends React.Component {
   }
 
   componenetDidMount() {
-      axios.get("http://localhost:5000/friends")
+      axios
+      .get("http://localhost:5000/friends")
       .then(response => {
-          console.log(response);
+          console.log("POST RESPONSE", response);
           this.setState({ friendsData: response.data });
       })
       .catch(err => {
@@ -30,9 +31,15 @@ class App extends React.Component {
   };
 
   handleSubmitFriend = () => {
-      const friend = {name: this.state.friend};
-      axios.post("http://localhost:5000/friends");
-  }
+      const friend = { friend: this.state.friend };
+      axios
+      .post("http://localhost:5000/friends", friend )
+      .then(response => {
+        console.log("POST RESPONSE", response);
+        this.setState({ friendsData: response.data, friend: ""});
+      })
+      .catch(error => console.log(error));
+  };
 
 
   render() {
@@ -41,7 +48,7 @@ class App extends React.Component {
               <h1>Hello!!!</h1>
               <input type="text"
               placeholder="friend name"
-              onChange={this.handlenameChange}
+              onChange={this.handleNameChange}
               name="friend"
               value={this.state.friend}
               />
