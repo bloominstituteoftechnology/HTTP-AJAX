@@ -49,7 +49,7 @@ axios
 
     render()  {
       return(
-    <div className="">
+    <div className="friendsFormContainer">
       <h4>Add New Friend</h4>
     <form className='FriendForm'>
       <div className='col'>
@@ -58,7 +58,7 @@ axios
       </div>
 
       <div className='col'>
-      <label>Age:  </label>
+      <label className= 'ageLabel'>Age:  </label>
       <input name='age'  value = {this.state.age} onChange= {this.handleChange} type= 'number'/>
       </div>
 

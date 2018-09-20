@@ -2,6 +2,20 @@
   display: flex;
   flex-direction: column;
 }
+.ageLabel{
+    margin-right: 10px;
+}
 .col{
-
+  margin-bottom: 20px;
+}
+button{
+  margin-bottom: 100px;
+width: 216px;
+/* justify-content: center; */
+/* align-content: center; */
+margin-left: 160px
+}
+.friendsFormContainer{
+  border: 1px solid black;
+  box-shadow:1px 1px grey;
 }
