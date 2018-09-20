@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import logo from './logo.svg';
+import FriendForm from './components/FriendForm';
+import FriendsList from './components/FriendsList'
 import './App.css';
+
+
+const axios = require('axios');
 
 class App extends Component {
 
