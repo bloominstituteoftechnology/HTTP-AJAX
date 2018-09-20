@@ -3,13 +3,14 @@
     display: flex;
     flex-wrap: wrap;
     align-items: space-around;
+    margin: 0 auto;
 }
 /* Friend.js */
 .Friend {
     margin-top: 4px;
     margin-left: 4px;
     width: 100%;
-    max-width: 300px;
+    max-width: 290px;
     height: 180px;
     text-align: center;
     background: #2F3C43;

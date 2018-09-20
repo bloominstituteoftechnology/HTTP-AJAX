@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friendsData: [],
       name: '',
-      age: 0,
+      age: '',
       email: '',
     }
   }
@@ -22,14 +22,15 @@ class App extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const user = {
       name: this.state.name,
-      age: this.state.age,
+      age: parseInt(this.state.age),
       email: this.state.email
     }
+    console.log('handleSubmit()')
     axios
-      .post('http://localhost:5000/friends', { user })
+      .post('http://localhost:5000/friends', user)
         .then(response => {
           console.log(response)
           console.log(response.data)
@@ -41,7 +42,9 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
         .then((response) => {
+          this.setState({ friendsData: response.data })
           console.log('Axios response received')
+
 
         })
         .catch((err) => {
@@ -52,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendForm handleChange={this.handleChange} />
+        <FriendForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         <Friends friendsData={this.state.friendsData} />
       </div>
     );
