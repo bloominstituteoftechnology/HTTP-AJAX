@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import Home from './components/Home';
@@ -97,4 +97,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
