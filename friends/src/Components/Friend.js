@@ -3,7 +3,6 @@ import './Friend.css';
 
 function Friend(props) {
     console.log(props.friend)
-    console.log(props.friend)
     return (
         <div className="Friend">
             <h1>{props.friend.name}</h1>

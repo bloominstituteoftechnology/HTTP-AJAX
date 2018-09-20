@@ -27,14 +27,16 @@
 
 /* FriendForm.js */
 .FriendFormDiv {
+    border: 1px solid black;
     margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
-    max-width: 240px;
+    max-width: 480px;
+    padding: 50px;
     background: ivory;
     padding: 7px;
-    margin-top: 12px;
-    margin-bottom: 5px;
-    
+
 }
 
 .FriendFormDiv h1 {
@@ -44,9 +46,9 @@
 .FriendForm {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 10px;
     display: flex;
-    flex-direction: column;
 }
 
 .FriendForm input {

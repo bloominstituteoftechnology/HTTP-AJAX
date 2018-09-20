@@ -9,15 +9,39 @@ class App extends Component {
     super();
     this.state = {
       friendsData: [],
+      name: '',
+      age: 0,
+      email: '',
     }
   }
+
+  handleChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value})
+    console.log(e.target.value)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios
+      .post('http://localhost:5000/friends', { user })
+        .then(response => {
+          console.log(response)
+          console.log(response.data)
+        })
+  }
+
   componentDidMount() {
     console.log('component did mount!')
     axios
       .get('http://localhost:5000/friends')
         .then((response) => {
-          console.log('Axios response received', response.data)
-          this.setState({ friendsData: response.data })
+          console.log('Axios response received')
 
         })
         .catch((err) => {
@@ -26,11 +50,9 @@ class App extends Component {
   }
 
   render() {
-    console.log('Rendering')
-    console.log('Updated state:', this.state.data)
     return (
       <div className="App">
-        <FriendForm />
+        <FriendForm handleChange={this.handleChange} />
         <Friends friendsData={this.state.friendsData} />
       </div>
     );
