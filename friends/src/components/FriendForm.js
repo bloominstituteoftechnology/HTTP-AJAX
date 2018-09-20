@@ -6,12 +6,7 @@ import '../index.css';
 function FriendForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
-
-    if (props.isUpdating) {
-      props.handleUpdateFriend(props.friend.id);
-    } else {
-      props.handleAddNewFriend();
-    }
+    props.handleAddNewFriend(event);
   }
 
   return (
@@ -66,7 +61,8 @@ FriendForm.propTypes = {
     email: PropTypes.string
   }),
   handleAddNewFriend: PropTypes.func,
-  handleChange: PropTypes.func
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export default FriendForm;

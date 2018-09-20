@@ -45,10 +45,13 @@ class App extends Component {
   };
 
   handleAddNewFriend = event => {
+    console.log(event);
     event.preventDefault();
     axios
       .post('http://localhost:5000/friends', this.state.friend)
-      .then(response => this.setState({ friends: response.data }));
+      .then(response =>
+        this.setState({ friends: response.data, friend: blankFormValues })
+      );
   };
 
   render() {
@@ -80,7 +83,7 @@ class App extends Component {
           )}
         />
         <Route
-          path="friend-form"
+          path="/friend-form"
           render={props => (
             <FriendForm
               {...props}
