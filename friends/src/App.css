@@ -26,3 +26,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.bffTitle {
+  color: teal;
+}
+.bigFriendBox {
+  border: 3px solid teal;
+    background-color: black;
+    max-width: 400px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.friendBox {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid pink;
+  background-color: lightgrey;
+  color: black;
+}
