@@ -22,7 +22,7 @@ axios
 
 
 
-      handleSubmit = (event) => {
+handleSubmit = (event) => {
             event.preventDefault()
               const newFriend = {
                 name: this.state.name,
@@ -58,7 +58,7 @@ axios
       </div>
 
       <div className='col'>
-      <label className= 'ageLabel'>Age:  </label>
+      <label>Age:  </label>
       <input name='age'  value = {this.state.age} onChange= {this.handleChange} type= 'number'/>
       </div>
 

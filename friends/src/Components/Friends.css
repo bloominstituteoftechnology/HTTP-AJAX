@@ -13,9 +13,20 @@ button{
 width: 216px;
 /* justify-content: center; */
 /* align-content: center; */
-margin-left: 160px
+margin-left: 160px;
+position: static;
+
 }
 .friendsFormContainer{
   border: 1px solid black;
   box-shadow:1px 1px grey;
+}
+.eachFriend{
+  border: 1px solid black;
+  box-shadow:20px -13px 10px grey;;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 125px;
+  margin-bottom: 50px;
 }

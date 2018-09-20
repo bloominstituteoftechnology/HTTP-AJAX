@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Friends.css'
 
 const EachFriend = (props) =>{
 console.log(props)
