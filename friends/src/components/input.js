@@ -24,7 +24,9 @@ const input = props => {
           name= 'email'
           value= {props.email}
         />
-        <button onClick={props.saveFriend}>Save</button>
+        <button 
+        onClick={props.saveFriend}
+        >Save</button>
         </div>
     );
 };

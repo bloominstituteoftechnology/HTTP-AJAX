@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {Route, NavLink} from 'react-router-dom'
 import './App.css';
 import axios from 'axios';
-import Friend from './components/friend';
+import Home from './components/home';
+import FriendsList from './components/friendsList';
 import Input from './components/input';
+import Friend from './components/friend';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: ''
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
     };
   }
 
-  handleFormInput = e => {
-    this.setState({[e.target.name]: e.target.value});
+  handleInputChange = e => {
+      this.setState({[e.target.name]: e.target.value});
   };
 
   saveFriend = () => {
@@ -29,7 +33,6 @@ class App extends Component {
       .catch(err => {
         console.log('friend did not add', err);
       })
-    this.setState({name: '', age:'', email:''});
   }
 
   componentDidMount() {
@@ -45,16 +48,50 @@ class App extends Component {
   render() { 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Friend friends={this.state.friends} />
-        <Input 
-        friend={this.state.friends} 
-        saveFriend={this.saveFriend} 
-        handleFormInput={this.handleFormInput} 
+        <ul className="navbar">
+          <li>
+            <NavLink exact to="/" activeClassName="activeNavButton">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/friends" activeClassName="activeNavButton">
+              Friends
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/input" activeClassName="activeNavButton">
+              Add New
+            </NavLink></li>
+        </ul>
+        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/friends"
+          render={props => (
+            <FriendsList {...props} friendsList={this.state.friends} />
+          )}
         />
+        <Route
+          path="/friends/:id"
+          render={props => (
+            <Friend  
+              {...props} 
+              friends={this.state.friends} />
+          )}
+        />
+        <Route
+          exact
+          path="/input"
+          render={props => (
+            <Input 
+              friend={this.state.friends} 
+              saveFriend={this.saveFriend} 
+              handleFormInput={this.handleFormInput}
+            />
+          )}
+        />
+        
       </div>
     );
   }

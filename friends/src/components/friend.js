@@ -1,21 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
-function friend (props) {
-    return (
-        <div className='friend-container' >
-        {props.friends.map(friend => 
-            <div key={friend.id} className="friend-card" >
-                <div>
-                {friend.name} 
-                </div>
-            {friend.age}
-            </div>)}
-        </div>
-    );  
+
+function Friend(props) {
+    // console.log(props);
+    const friend = props.friends.find(
+      friend => `${friend.id}` === props.match.params.id
+    );
+    return(
+        <Fragment>
+            <h1>{friend.age}</h1>
+        </Fragment>
+    )
+
 }
-
-export default friend;
-
-// Friend.propTypes = {
-//     friend.PropTypes.arrayOf(),
-// }
+export default Friend;
