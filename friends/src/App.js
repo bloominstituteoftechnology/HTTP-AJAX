@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Friends from './Components/Friends';
-import FriendForm from './Components/FriendForm';
+import React, { Component, Fragment } from 'react';
+import Friends from './Components/Friend/Friends';
+import FriendForm from './Components/Friend/FriendForm';
 
 const axios = require('axios');
 
@@ -14,6 +14,10 @@ class App extends Component {
       email: '',
     }
   }
+
+  // deleteHandler = (e) => {
+  //   axios.delete(`http://localhost:5000/friends/${}`)
+  // }
 
   handleChange = (e) => {
     e.preventDefault();
@@ -31,18 +35,21 @@ class App extends Component {
     console.log('handleSubmit()')
     axios
       .post('http://localhost:5000/friends', user)
-        .then(response => {
-          console.log(response)
-          console.log(response.data)
+        .then(res => {
+          console.log(res)
+          console.log(res.data)
         })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   componentDidMount() {
     console.log('component did mount!')
     axios
       .get('http://localhost:5000/friends')
-        .then((response) => {
-          this.setState({ friendsData: response.data })
+        .then((res) => {
+          this.setState({ friendsData: res.data })
           console.log('Axios response received')
 
 
@@ -54,10 +61,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <FriendForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-        <Friends friendsData={this.state.friendsData} />
-      </div>
+      <Fragment>
+        <Route exact path="/" component={FrontPage}/>
+      </Fragment>
+        
     );
   }
 }
