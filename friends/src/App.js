@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
-import Friends from './Friends';
+
+import Home from './components/Home';
+import Friends from './components/Friends';
+import FriendForm from './components/FriendForm';
 
 const blankFormValues = {
   name: '',
@@ -18,8 +21,7 @@ class App extends Component {
         name: '',
         age: '',
         email: ''
-      },
-      isUpdating: false
+      }
     };
   }
 
@@ -51,20 +53,47 @@ class App extends Component {
 
   render() {
     return (
-    <div className='App'>
-    <ul className='navbar'>
-    <li>
-      <NavLink exact to="/" activeClassName="activeNavButton">Home</NavLink>
-    </li>
-    <li>
-      <NavLink to="/my-friends" activeClassName="activeNavButton">My Friends</NavLink>
-    </li>
-    <li>
-      <NavLink to="/friend-form" activeClassName="activeNavButton">Be my Friend!</NavLink>
-    </li>
-    </ul>
-      <Friends friendsProps={this.state.friends} />
-    </div>
+      <div className="App">
+        <ul className="navbar">
+          <li>
+            <NavLink exact to="/" activeClassName="activeNavButton">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-friends" activeClassName="activeNavButton">
+              My Friends
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/friend-form" activeClassName="activeNavButton">
+              Be my Friend!
+            </NavLink>
+          </li>
+        </ul>
+        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/my-friends"
+          render={props => (
+            <Friends {...props} friendsProps={this.state.friends} />
+          )}
+        />
+        <Route
+          path="friend-form"
+          render={props => (
+            <FriendForm
+              {...props}
+              friend={this.state.friend}
+              handleAddNewFriend={this.handleAddNewFriend}
+              handleChange={this.handleChange}
+              handleUpdateFriend={this.handleUpdateFriend}
+              isUpdating={this.state.isUpdating}
+            />
+          )}
+        />
+      </div>
+    );
   }
 }
 
