@@ -16,25 +16,40 @@ class App extends Component {
         }
       }
 
-      componentDidMount() {
+       componentDidMount() {
+          axios
+           .get('http://localhost:5000/friends')
+             .then(response => {
+               this.setState({friends: response.data})
+            
+            
+
+          } )
+            .catch((err) => console.err(`Error! ${err}`)  )
+
+        }
         
-        console.log(axios
-          .get('http://localhost:5000/friends'));
-
-
-            }
-      
+        
+          
+         
+          
 
 
 
   render() {
+
     return (
       <React.Fragment>
-          <FriendsList friends={this.state.friends}/>
-          <FriendForm  />
+
+      
+
+          <FriendsList friends={this.state.friends} />
+          <FriendForm  /> 
+
       </React.Fragment>
     );
+    }
   }
-}
+  
 
 export default App;

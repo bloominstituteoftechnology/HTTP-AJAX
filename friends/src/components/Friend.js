@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 
-const Friend = (props) => {
+const Friend = props => {
     
     return (
-        <div className="Friend">
+        <Fragment>
             <h1>{props.friend.name}</h1>
             <p>Age : {props.friend.age}</p>
             <p>Contact : {props.friend.email}</p>
-        </div>
+        </Fragment>
     )
 }
 
