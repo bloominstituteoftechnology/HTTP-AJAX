@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import Friends from './Components/Friend/Friends';
-import FriendForm from './Components/Friend/FriendForm';
+import { Route } from 'react-router-dom';
+import FrontPage from './Components/Friend/FrontPage';
 
 const axios = require('axios');
+
 
 class App extends Component {
   constructor() {
@@ -60,10 +61,30 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
-      <Fragment>
-        <Route exact path="/" component={FrontPage}/>
-      </Fragment>
+      <div>
+        <Route 
+          path="/"
+          render={props => (
+            <FrontPage 
+              {...props}
+              stateProps={this.state}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit} 
+            /> 
+          )} 
+        />
+        <Route 
+        path="/friends/:id"
+        render={props => (
+          <FriendPage 
+            {...props}
+            friendsData={this.state.friendsData}
+          />
+        )}
+        />
+      </div>
         
     );
   }
