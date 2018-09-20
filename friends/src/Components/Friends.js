@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import EachFriend from './EachFriend.js';
+import FriendsForm from './FriendsForm';
+import './Friends.css'
 
 
 class Friends extends React.Component {
@@ -33,7 +35,7 @@ return(
           ))}
 
         </div>
-
+<FriendsForm/>
 </div>
 
 )
