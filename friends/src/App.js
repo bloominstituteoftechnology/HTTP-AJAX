@@ -28,7 +28,13 @@ class App extends Component {
     const newFriend = {name:this.state.name, age: this.state.age, email: this.state.email}
     axios.post(`http://localhost:5000/friends/`, newFriend)
       .then(friend => {
-        this.setState({friends: friend.data})
+        this.setState({friends: friend.data, 
+          friend: {
+            name: '',
+            age: '',
+            email: ''
+          } 
+        })
       })
       .catch(err => {
         console.log('friend did not add', err);
