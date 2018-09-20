@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import FrontPage from './Components/Friend/FrontPage';
-
-const axios = require('axios');
-
+import FriendPage from './Components/Friend/FriendPage';
+import axios from 'axios';
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -64,8 +64,9 @@ class App extends Component {
     console.log(this.state)
     return (
       <div>
-        <Route 
-          path="/"
+        <div><Link className="HomeLink" to="/">Home</Link></div>
+        <Route
+          exact path="/"
           render={props => (
             <FrontPage 
               {...props}
@@ -76,13 +77,13 @@ class App extends Component {
           )} 
         />
         <Route 
-        path="/friends/:id"
-        render={props => (
-          <FriendPage 
-            {...props}
-            friendsData={this.state.friendsData}
-          />
-        )}
+          path="/friends/:id"
+          render={props => (
+            <FriendPage 
+              {...props}
+              friendsData={this.state.friendsData}
+            />
+          )}
         />
       </div>
         

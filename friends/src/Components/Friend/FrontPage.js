@@ -4,14 +4,14 @@ import FriendForm from './FriendForm';
 
 function FrontPage(props) {
     return (
-        <React.Fragment>
+        <Fragment>
             <FriendForm 
             handleSubmit={props.handleSubmit} 
             handleChange={props.handleChange} 
             stateProps={props.stateProps} />
             <Friends 
             friendsData={props.stateProps.friendsData} />
-        </React.Fragment>
+        </Fragment>
     )
 }
 
