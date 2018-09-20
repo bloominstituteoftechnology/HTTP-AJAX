@@ -30,8 +30,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-          <FriendsList />
-          <FriendForm friends={this.state.friends} />
+          <FriendsList friends={this.state.friends}/>
+          <FriendForm  />
       </React.Fragment>
     );
   }
