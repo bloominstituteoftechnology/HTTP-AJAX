@@ -1,27 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import FriendForm from './components/FriendForm';
-import FriendsList from './components/FriendsList'
+import FriendsList from './components/FriendsList';
 import './App.css';
 
-
-const axios = require('axios');
+import axios from 'axios';
+//const axios = require('axios');
 
 class App extends Component {
 
       constructor(props){
         super(props);
         this.state = {
-          friendsList: [],
-          inputData: ''
+          friends: [],
+          newFriend: ''
         }
       }
 
       componentDidMount() {
         
-        axios
-          .get('http://localhost:5000/friends')
-            .then(response)
-      }
+        console.log(axios
+          .get('http://localhost:5000/friends'));
+
+
+            }
+      
 
 
 
@@ -29,7 +31,7 @@ class App extends Component {
     return (
       <React.Fragment>
           <FriendsList />
-          <FriendForm />
+          <FriendForm friends={this.state.friends} />
       </React.Fragment>
     );
   }
