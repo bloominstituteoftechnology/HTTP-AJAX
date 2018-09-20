@@ -87,7 +87,7 @@ class App extends Component {
             <Input 
               friend={this.state.friends} 
               saveFriend={this.saveFriend} 
-              handleFormInput={this.handleFormInput}
+              handleFormInput={this.handleInputChange}
             />
           )}
         />
