@@ -30,6 +30,13 @@ class App extends Component {
        })
        .catch(err => console.log("Error", err));
    }
+
+   handleChange = event => {
+     this.setState({
+       friend:  {...this.state.friend, [event.target.name]: event.target.value,}
+     });
+   }
+
   render() {
     console.log(this.state);
     return (
@@ -56,10 +63,10 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/friends" render={props => (<FriendsList {...props} friendsList={this.state.friends} /> )} />
           <Route path="/friends/:friendsId" render={props => (<Friends {...props} friendsList={this.state.friends} /> )} />
-          <Route path="/addfriends" render={props => (<NewFriendsForm {...props} friend={this.state.friend} /> )} />
+          <Route path="/addfriends" render={props => (<NewFriendsForm {...props} handleChange={this.handleChange} friend={this.state.friend} /> )} />
         </div>
       </div>
-    );
+    ); 
   }
 }
 
