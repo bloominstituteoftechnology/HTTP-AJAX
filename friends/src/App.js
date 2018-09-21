@@ -28,13 +28,19 @@ class App extends Component {
          console.log(response);
          this.setState({friends: response.data});
        })
-       .catch(err => console.log("Error", err));
+       .catch(err => {console.log("Error", err)});
    }
 
    handleChange = event => {
      this.setState({
-       friend:  {...this.state.friend, [event.target.name]: event.target.value,}
+       friend:  {...this.state.friend, [event.target.name]: event.target.value}
      });
+   }
+
+   handleAddNewFriend = event => {
+     event.preventDefault();
+     axios.post('http://localhost:5000/friends', this.state.friend)
+     .then(response => this.setState({friends: response.data}))
    }
 
   render() {
@@ -63,7 +69,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/friends" render={props => (<FriendsList {...props} friendsList={this.state.friends} /> )} />
           <Route path="/friends/:friendsId" render={props => (<Friends {...props} friendsList={this.state.friends} /> )} />
-          <Route path="/addfriends" render={props => (<NewFriendsForm {...props} handleChange={this.handleChange} friend={this.state.friend} /> )} />
+          <Route path="/addfriends" render={props => (<NewFriendsForm {...props} handleAddNewFriend={this.handleAddNewFriend} handleChange={this.handleChange} friend={this.state.friend} /> )} />
         </div>
       </div>
     ); 

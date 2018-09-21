@@ -11,7 +11,7 @@ function NewFriendsForm(props) {
                         type="text" 
                         required value={props.friend.name} 
                         name="name" 
-                        onFriendChange={props.handleChange} />
+                        onChange={props.handleChange} />
                     <label>Friends Name</label>
                 </div>
                 <div>
@@ -19,7 +19,7 @@ function NewFriendsForm(props) {
                         type="text" required 
                         value={props.friend.email} 
                         name="email" 
-                        onFriendChange={props.handleChange} />
+                        onChange={props.handleChange} />
                     <label>Friends Email</label>
                 </div>
                 <div>
@@ -28,11 +28,11 @@ function NewFriendsForm(props) {
                         required 
                         value={props.friend.age} 
                         name="age" 
-                        onFriendChange={props.handleChange} />
+                        onChange={props.handleChange} />
                     <label>Friends Age</label>
                 </div>
                 <div>
-                    <button>Enter</button>
+                    <button onClick={props.handleAddNewFriend}> Submit New Friend</button>
                 </div>
             </form>
         </Fragment>
@@ -44,6 +44,8 @@ NewFriendsForm.propTypes = {
         name: PropTypes.string,
         email: PropTypes.string,
         age: PropTypes.number
-    })
+    }),
+    handleAddNewFriend: PropTypes.function,
+    handleChange: PropTypes.function
 }
 export default NewFriendsForm;
