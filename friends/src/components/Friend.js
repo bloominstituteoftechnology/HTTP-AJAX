@@ -1,15 +1,32 @@
-import React, {Fragment} from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Friend = props => {
-    
-    return (
-        <Fragment>
-            <h1>{props.friend.name}</h1>
-            <p>Age : {props.friend.age}</p>
-            <p>Contact : {props.friend.email}</p>
-        </Fragment>
-    )
-}
+  const friend = props.friends.find(
+    friend => friend.id === parseInt(props.match.params.id, 10)
+  );
+
+  const deleteFriend = () => {
+    props.handleDelete(friend.id);
+    props.history.push('/');
+  };
+
+  return (
+    <div>
+      <h3>Name: {friend.name}</h3>
+      <h4>Age: {friend.age}</h4>
+      <h5>Email: {friend.email}</h5>
+      <button onClick={deleteFriend}>Delete Friend</button>
+    </div>
+  );
+};
+
+Friend.propTypes = {
+  friend: PropTypes.shape({
+    name: PropTypes.string,
+    age: PropTypes.number,
+    email: PropTypes.string
+  })
+};
 
 export default Friend;
