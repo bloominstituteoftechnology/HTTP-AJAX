@@ -13,7 +13,6 @@ class App extends Component {
     super();
     this.state = {
       friendsList: [],
-      url: url,
       newName: "",
       newAge: "",
       newEmail: ""
@@ -22,10 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     // console.log("testing axios")
-    axios.get(this.state.url).then(response => {
-      // console.log(response);
-
-      // console.log(response.data);
+    axios.get(url).then(response => {
       this.setState({
         friendsList: response.data
       });
@@ -36,7 +32,6 @@ class App extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  
   handleSubmit = event => {
     event.preventDefault();
     // console.log("Got to handle submit: ", event)
@@ -49,9 +44,6 @@ class App extends Component {
       .post(url, newInfo)
       .then(response => {
         this.setState({
-          newName: "",
-          newAge: "",
-          newEmail: "",
           friendsList: response.data
         });
       })
@@ -63,66 +55,71 @@ class App extends Component {
   //possibily need an if statement
 
   editFriend = id => {
-    const editInfo = {
+    // console.log("EditFriend: ", id);
+    // // const editInfo = {
+
+    // // };
+    const updatedInfo = {
       name: this.state.newName,
       age: this.state.newAge,
       email: this.state.newEmail
-    };
-    axios 
-      .put(`${url}/${id}`)
+    }
+
+    axios
+      .put(`${url}/${id}`, updatedInfo)
       .then(response => {
         this.setState({
           friendsList: response.data
-
         });
-        
       })
-      .catch( error => {
+      .catch(error => {
         console.log("Error: ", error);
       });
-
   };
-  
 
-  deleteFriend = id => {    
-    console.log("deleteFriend:" , id)  
-    axios 
+  deleteFriend = id => {
+    console.log("deleteFriend:", id);
+    axios
       .delete(`${url}/${id}`)
       .then(response => {
-        this.setState ({
+        this.setState({
           friendsList: response.data
-        })})
-        .catch(error => {
-          console.error("Error: ", error);
         });
-      
-    }
-  
-  
+      })
+      .catch(error => {
+        console.error("Error: ", error);
+      });
+  };
 
   render() {
     return (
       <div className="App">
-        component with list of friends will be displayed here
-        {/* {console.log(props.url)}; */}
         <Route
           path="/"
-          component={props => {
-            return <Friends {...props} friendsList={this.state.friendsList}
-            deleteFriend={this.deleteFriend}
-            editFriend={this.editFriend} />;
+          render={props => {
+            return (
+              <FriendForm
+                {...props}
+                nameAdd={this.state.newName}
+                ageAdd={this.state.newAge}
+                emailAdd={this.state.newEmail}
+                handleUpdate={this.handleUpdate}
+                handleSubmit={this.handleSubmit}
+              />
+            );
           }}
         />
         <Route
           path="/"
-          render={props => {
-            return <FriendForm 
-            {...props}
-            nameAdd={this.state.newName}
-            ageAdd={this.state.newAge}
-            emailAdd={this.state.newEmail}
-            handleUpdate={this.handleUpdate}
-            handleSubmit={this.handleSubmit}/>;
+          component={props => {
+            return (
+              <Friends
+                {...props}
+                friendsList={this.state.friendsList}
+                deleteFriend={this.deleteFriend}
+                editFriend={this.editFriend}
+              />
+            );
           }}
         />
         {/* <Friends friends={this.state.friendsList}/>  */}

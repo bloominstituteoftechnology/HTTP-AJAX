@@ -3,41 +3,21 @@ import React from "react";
 const Friends = props => {
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th colSpan="5">Friend Information</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td>Age</td>
-            <td>Email</td>
-          </tr>
-          {/* this point down will be mapped and filled with information */}
-          {/* {console.log(props.friendList)} */}
-          {props.friendsList.map(each => {
-            return (
-              <tr key={each.id} className="friend">
-                <td>{each.name}</td>
-                <td>{each.age}</td>
-                <td>{each.email}</td>
-                <td>
-                  <button onClick={() => props.deleteFriend(each.id)}>
-                    Delete
-                  </button>
-                </td>
-                <td>
-                  <button>Edit</button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {console.log(props.friendsList)}
+      {props.friendsList.map(each => {
+        return (
+          <div className="friend-list">
+            <div>{each.name}</div>
+            <div>{each.age}</div>
+            <div>{each.email}</div>
+            <button onClick={() => props.deleteFriend(each.id)}>Delete</button>
+            <button onClick={() => props.editFriend(each.id)}>Edit</button>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 export default Friends;
+

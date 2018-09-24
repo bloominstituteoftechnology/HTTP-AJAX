@@ -2,7 +2,7 @@ import React from "react";
 
 const FriendForm = props => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form className="input-form" onSubmit={props.handleSubmit}>
       <label className="name">
           Name:
         <input
