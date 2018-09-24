@@ -55,10 +55,7 @@ class App extends Component {
   //possibily need an if statement
 
   editFriend = id => {
-    // console.log("EditFriend: ", id);
-    // // const editInfo = {
 
-    // // };
     const updatedInfo = {
       name: this.state.newName,
       age: this.state.newAge,
