@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router} from 'react-router-dom';
-import { Route, Link} from 'react-router-dom';
+import { Route, NavLink, Link} from 'react-router-dom';
 import axios from 'axios';
 import Friend from './components/Friend';
+import FriendList from './components/FriendList';
+import Form from './components/Form';
+import FriendPage from './components/FriendPage';
 
 
 class App extends React.Component {
@@ -14,7 +17,8 @@ class App extends React.Component {
         name: '',
         age: '',
         email: ''
-    }
+    },
+    formType: ''
   }
 
   handleInput = (e) => {
@@ -25,11 +29,22 @@ class App extends React.Component {
     })
   }
 
-  submitFriend = () => {
+  submitFriend = (id) => {
     let newFriend = this.state.newFriend;
+    this.state.formType === 'add' ?
     axios
       .post('http://localhost:5000/friends', newFriend)
-      .then(response => this.setState({friends: response.data}))
+      .then(response => this.setState({friends: response.data})) :
+
+      axios.put(`http://localhost:5000/friends/${id}`, newFriend)
+
+  
+  }
+
+  activeFormType = (e) => {
+    e.target.classList.contains('add') ? this.setState({formType: 'add'}) :
+    this.setState({formType: 'change'})
+    console.log(e.target.classList.contains('add'));
   }
 
   componentDidMount(){
@@ -44,13 +59,30 @@ class App extends React.Component {
     return (
       <Router>
       <div className="App">
-        <Route exact path="/" render={()=> <Friend friends={this.state.friends}/>}/>
-        <form onSubmit={this.submitFriend}>
-          <input type='text' name='name' onChange={this.handleInput} value={this.state.newFriend.name}/>
-          <input type='text' name='age' onChange={this.handleInput} value={this.state.newFriend.age}/>
-          <input type='text' name='email' onChange={this.handleInput} value={this.state.newFriend.email}/>
-        </form>
-        <div onClick={this.submitFriend}>Submit</div>
+      <header>
+        <h1><h1>FRIENDS</h1></h1>
+
+        <h3>howmanyofushavethem</h3>
+        <nav>
+          <NavLink to='/'><div>Home</div></NavLink>
+          <div>Need Friends? Make Up Your Own <NavLink to="/friend-form"><span className='here add' onClick={this.activeFormType}>Here</span></NavLink></div>
+          <div>Dislike Your Pals? Mutate Your Homies <NavLink to="/friend-form"><span className='here change' onClick={this.activeFormType}>Here</span></NavLink> </div>
+        </nav>
+      </header>
+      
+      <Route exact path="/" render={(props)=> <FriendList {...props} friends={this.state.friends}/>}/>
+      <Route path="/friends/:id" render={(props) => <Friend {...props} formType={this.state.formType}submitFriend={this.submitFriend} friends={this.state.friends}/>}/>
+ 
+      <Route path="/friend-form" 
+           render={(props) => <Form {...props} 
+                                    
+
+                                    onChange={this.handleInput} 
+                                    newFriend={this.state.newFriend}
+                                    submitFriend={this.submitFriend}
+                                    
+                                    formType={this.state.formType} />}/>
+
 
       </div>
       </Router>

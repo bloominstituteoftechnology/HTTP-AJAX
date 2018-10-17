@@ -1,3 +1,8 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 body {
   margin: 0;
   padding: 0;
@@ -18,4 +23,40 @@ code {
   display: flex;
   
   flex-wrap: wrap;
+}
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+
+}
+header h1 {
+  padding: 0;
+ margin-bottom: 0;
+}
+header h3{
+  padding: unset;
+  margin: unset;
+}
+
+.here {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.here:hover{
+  color: rgb(146, 0, 0);
+}
+
+.active{
+  text-decoration: none;
+  color: rgb(146, 0, 0)
+}
+
+.friends-list h1 {
+  cursor: pointer;
 }
