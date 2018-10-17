@@ -28,6 +28,20 @@ body {
 }
 .friend-card {
   padding: 10px;
+  position: relative;
+}
+.friend-card_delete {
+  cursor: pointer;
+  background: #f88;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #888;
+  border-radius: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .add-card {

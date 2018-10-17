@@ -24,7 +24,11 @@ class Friends extends React.Component {
             <div className="friends">
                 <FriendAdder onSubmit={this.addFriend} />
                 {this.state.friends.map(friendData => (
-                    <FriendCard key={friendData.id} friend={friendData} />
+                    <FriendCard
+                        key={friendData.id}
+                        friend={friendData}
+                        onDelete={this.deleteFriend}
+                    />
                 ))}
             </div>
         );
@@ -33,6 +37,15 @@ class Friends extends React.Component {
     //-- Interaction ---------------------------------
     addFriend = (friendData) => {
         axios.post('http://localhost:5000/friends', friendData)
+        .then(response => {
+            let refreshedFriends = response.data;
+            this.setState({friends: refreshedFriends});
+        })
+        .catch(error => console.log(error));
+    }
+    deleteFriend = clickEvent => {
+        let friendId = clickEvent.target.dataset.id;
+        axios.delete(`http://localhost:5000/friends/${friendId}`)
         .then(response => {
             let refreshedFriends = response.data;
             this.setState({friends: refreshedFriends});

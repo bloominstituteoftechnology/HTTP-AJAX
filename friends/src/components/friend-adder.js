@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 
 class FriendAdder extends React.Component {
     constructor() {
@@ -73,7 +73,13 @@ class FriendAdder extends React.Component {
             name: this.state.name,
             email: this.state.email,
             age: this.state.age
-        }
+        };
+        this.setState({
+            showForm: false,
+            name: '',
+            email: '',
+            age: 0
+        });
         this.props.onSubmit(newFriend);
     }
 }
