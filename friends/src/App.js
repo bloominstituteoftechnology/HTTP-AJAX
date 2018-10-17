@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Friends from './components/Friends';
-import NewFriendForm from './components/NewFriendForm';
+import AddFriend from './components/NewFriendForm';
 import './App.css';
 
 class App extends Component {
@@ -38,14 +38,19 @@ class App extends Component {
       });
   }
 
+    editFriend = friend => {
+
+    }
+
 
   render() {
     return (
       <div className='app'>
         <Friends
         friendList={this.state.friendList}
+        editFriend={this.state.editFriend}
         />
-        <NewFriendForm handleInput={this.handleInput} addNewFriend={this.addNewFriend}/>
+        <AddFriend handleInput={this.handleInput} addNewFriend={this.addNewFriend}/>
       </div>
     );
   }
