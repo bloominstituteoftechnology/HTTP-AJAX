@@ -36,7 +36,7 @@ class App extends Component {
     }
 
     axios.post(`${this.state.url}/friends`, this.state.newFriend)
-      .then(({data}) => this.setState({friends: data, newFriend: {name: '', age: '', email: ''}}))
+      .then(({data}) => this.setState({friends: data, newFriend: {name: '', age: '', email: ''}, updateFriend: false}))
       .catch(err => console.error(err));
   }
 
