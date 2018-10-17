@@ -27,8 +27,8 @@ export default class FriendList extends Component {
         return(
             <div className="save-wrapper">
             {this.state.friends.map(friend => (
-            <div key={friend.name} className={friend.name}>
-                {friend.name}
+                <div key={friend.name} className="friend">
+                {friend.name} | {friend.age}
                 </div>
                 ))}
                 {console.log(`Friends ${this.state.friends}`)}
