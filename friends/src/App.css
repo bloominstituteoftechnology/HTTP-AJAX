@@ -60,7 +60,7 @@ form {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 40px;
+  margin: 20px;
   width: 400px;
   color: white;
   background: linear-gradient(to bottom right, #DB5461, #3891A6);
