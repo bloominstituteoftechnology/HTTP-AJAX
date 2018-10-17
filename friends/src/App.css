@@ -4,9 +4,11 @@ html {
   background-color: lightseagreen
 }
 .contact-container {
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;  
 }
+
+
 h1 {
   font-size: 6.5rem;
   width: 100%;
@@ -24,9 +26,10 @@ h1 {
 }
 
 .form h3 {
-  font-size: 3rem;
+  font-size: 2.4rem;
   text-decoration: underline;
   margin-bottom: 5px;
+  width: 100%;
 }
 .form input {
   font-size: 2rem;
