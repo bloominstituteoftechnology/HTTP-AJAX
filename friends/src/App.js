@@ -53,6 +53,11 @@ class App extends Component {
       );
   };
 
+  handleRemove = event => {
+    event.preventDefault();
+    axios.delete('http://localhost:5000/friends', { data: this.state.friend });
+  };
+
   render() {
     return (
       <div className="App">
@@ -78,7 +83,11 @@ class App extends Component {
           exact
           path="/my-friends"
           render={props => (
-            <FriendsList {...props} friendsProps={this.state.friends} />
+            <FriendsList
+              {...props}
+              friendsProps={this.state.friends}
+              handleRemove={this.handleRemove}
+            />
           )}
         />
         <Route
@@ -89,6 +98,8 @@ class App extends Component {
               friend={this.state.friend}
               handleAddNewFriend={this.handleAddNewFriend}
               handleChange={this.handleChange}
+              handleUpdateFriend={this.handleUpdateFriend}
+              isUpdating={this.state.isUpdating}
             />
           )}
         />

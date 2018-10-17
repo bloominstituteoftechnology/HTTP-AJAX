@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import './ComponentsStyle.css';
 
@@ -46,7 +47,9 @@ function FriendForm(props) {
           <label>Email Address</label>
         </div>
         <button className="button" onClick={handleSubmit}>
-          Submit
+          <Link to="my-friends" className="button">
+            Submit
+          </Link>
         </button>
       </form>
     </Fragment>
