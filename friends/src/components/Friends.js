@@ -1,18 +1,16 @@
 import React from 'react';
 import Friend from './Friend';
 
-class Friends extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render() {
+const Friends = props => {
     return (
       <div className='friends'>
         <p>hi i'm your friendslist!</p>
-        <Friend />
+        {props.friendList.map(friend =>
+        <Friend key={friend.id} {...friend} />)}
       </div>
     )
   }
-}
+
+
 
 export default Friends;

@@ -7,7 +7,6 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    this.url = 'http://localhost:5000/friends';
     this.state = {
       name: '',
       age: '',
@@ -17,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    const friendRequest = axios.get(this.url);
+    const friendRequest = axios.get('http://localhost:5000/friends');
     friendRequest.then(response => {
       this.setState({ friendList: response.data });
     });
@@ -27,7 +26,9 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <Friends/>
+        <Friends
+        friendList={this.state.friendList}
+        />
         <NewFriendForm/>
       </div>
     );
