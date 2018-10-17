@@ -58,9 +58,13 @@ class App extends Component {
     });
   };
 
-  handleSubmitUpdate = id => {
+  handleSubmitUpdate = event => {
+    event.preventDefault();
     axios
-      .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)
+      .put(
+        `http://localhost:5000/friends/${this.state.friendToUpdate.id}`,
+        this.state.newFriend
+      )
       .then(response =>
         this.setState({
           friends: response.data,
@@ -130,7 +134,7 @@ class App extends Component {
             <button
               onClick={
                 this.state.isUpdating
-                  ? () => this.handleSubmitUpdate(this.state.friendToUpdate.id)
+                  ? this.handleSubmitUpdate
                   : this.handleSubmit
               }
             >
