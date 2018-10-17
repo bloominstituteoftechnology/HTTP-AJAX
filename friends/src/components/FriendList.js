@@ -1,8 +1,6 @@
 import React from 'react';
 
 function FriendList(props) {
-    // iterate through received data here
-    console.log('props.friendArr', props.friendArr);
     return (
         <div className='friendContainer'> 
             {props.friendArr.map(friend => (
