@@ -31,8 +31,9 @@ class App extends Component {
   }
 
   deleteFriend = (e) => {
+    e.preventDefault();
     axios
-      .delete(`http://localhost:5000/friends`, {params: {id: e.target.id}})
+      .delete('http://localhost:5000/friends/', {params : {id: e.target.id}})
       .then(response => this.setState({friends: response.data}))
       .catch(error => console.log(error));
   }
@@ -41,8 +42,9 @@ class App extends Component {
 
   addFriend = (e) => {
     e.preventDefault();
+    const url = 'http://localhost:5000/friends';
     axios
-      .post('http://localhost:5000/friends', this.state.newFriend)
+      .post(url , this.state.newFriend)
       .then(response => this.setState({friends: response.data}))
       .catch(error => console.log(error));
   }
