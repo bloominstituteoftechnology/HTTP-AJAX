@@ -15,6 +15,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledButton = styled.button`
+    outline: none;
     height: 45px;
     width: 140px;
     border: none;

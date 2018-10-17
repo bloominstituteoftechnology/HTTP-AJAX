@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     axios.get(`${this.state.url}/friends`,)
-      .then(({data}) => this.setState({friends: data}))
+      .then(({data}) => this.setState({friends: data.reverse()}))
       .catch(err => console.error(err));
   }
 
@@ -32,13 +32,13 @@ class App extends Component {
 
     if (this.state.updateFriend) {
       axios.put(`${this.state.url}/friends/${this.state.newFriend.id}`, this.state.newFriend)
-      .then(({data}) => this.setState({friends: data, newFriend: {name: '', age: '', email: ''}}))
+      .then(({data}) => this.setState({friends: data.reverse(), newFriend: {name: '', age: '', email: ''}}))
       .catch(err => console.error(err));
       return;
     }
 
     axios.post(`${this.state.url}/friends`, this.state.newFriend)
-      .then(({data}) => this.setState({friends: data, newFriend: {name: '', age: '', email: ''}, updateFriend: false}))
+      .then(({data}) => this.setState({friends: data.reverse(), newFriend: {name: '', age: '', email: ''}, updateFriend: false}))
       .catch(err => console.error(err));
   }
 
@@ -48,7 +48,7 @@ class App extends Component {
 
   deleteFriend = (id) => {
     axios.delete(`${this.state.url}/friends/${id}`)
-      .then(({data}) => this.setState({friends: data}))
+      .then(({data}) => this.setState({friends: data.reverse()}))
       .catch(err => console.error(err));
   }
 

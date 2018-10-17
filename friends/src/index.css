@@ -19,7 +19,7 @@ code {
 
 .App { 
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: #fafafa;
   padding-top: 40px;
 }
@@ -28,12 +28,14 @@ code {
   width: 100%;
   padding: 0 20px;
   max-width: 850px;
-  background: #fff;
+  min-width: 650px;
   margin: 0 auto;
 }
 
 .form {
+  width: 100%;
   padding: 20px 100px;
+  background: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -56,3 +58,34 @@ code {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.friend {
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  background: #fff;
+  margin: 20px 0;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.friend-actions {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.friend-actions i {
+  cursor: pointer;
+}
+
+.friend-actions .fa-trash {
+  color: rgba(255,0,0,0.5)
+} 
+.friend-actions .fa-edit {
+  color: rgba(0,0,255,0.5)
+} 
+
