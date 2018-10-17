@@ -7,19 +7,35 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
+    this.url = 'http://localhost:5000/friends'
     this.state = {
-      name: '',
-      age: '',
-      email: '',
       friendList: [],
     }
   }
 
   componentDidMount = () => {
-    const friendRequest = axios.get('http://localhost:5000/friends');
+    const friendRequest = axios.get(this.url);
     friendRequest.then(response => {
       this.setState({ friendList: response.data });
     });
+  }
+
+
+  addNewFriend = (name, age, email)=> {
+    let newFriend = {
+      id: this.state.friendList.length + 1,
+      name: name,
+      age: age,
+      email: email,
+    };
+    axios
+      .post(this.url, newFriend)
+      .then(response => {
+        this.setState({ friendList: response.data })
+      })
+      .catch(response => {
+        console.log('Could not add friend ', response);
+      });
   }
 
 
@@ -29,7 +45,7 @@ class App extends Component {
         <Friends
         friendList={this.state.friendList}
         />
-        <NewFriendForm/>
+        <NewFriendForm handleInput={this.handleInput} addNewFriend={this.addNewFriend}/>
       </div>
     );
   }
