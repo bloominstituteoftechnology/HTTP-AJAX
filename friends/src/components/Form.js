@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FormContainer, FormTitle, FormText, FormInput } from '../styles/Form'
+import { FormContainer, FormTitle, FormText, FormInput, FormButton } from '../styles/Form'
 
 class Form extends Component {
   state = {
@@ -19,6 +19,9 @@ class Form extends Component {
     return (
       <FormContainer>
         <FormTitle>add a new friend!</FormTitle>
+
+        {/*all seemingly unnecessary to prevent chrome from autocompleting form*/}
+
         <input type="hidden" value="something" />
         <FormText for="name">name</FormText>
         <FormInput
@@ -49,6 +52,7 @@ class Form extends Component {
           name="email"
           onChange={handleChange}
         />
+        <FormButton type="submit">add</FormButton>
       </FormContainer>
     )
   }
