@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import Friend from './FriendsList/Friend';
 import FriendForm from './FriendsList/FriendForm';
+import FriendContainer from './FriendsList/FriendContainer';
 
 
 class App extends Component {
@@ -29,23 +29,29 @@ class App extends Component {
       });
   }
   nameHandler= event =>  {
+    event.preventDefault();
    this.setState ({newName: event.target.value});
   }
 
   ageHandler = event =>  {
+    event.preventDefault();
     this.setState ({newAge: event.target.value});
    }
 
    emailHandler = event =>  {
+    event.preventDefault();
     this.setState ({newEmail: event.target.value});
    }
 
   formFieldHandler = event => {
     event.preventDefault();
     const newId = this.state.friendList.length + 1;
-     
+    const newName= this.state.newName;
+    const newAge= this.state.newAge;
+    const newEmail= this.state.newEmail;
+    
     this.setState({
-      updatedList: [
+      friendList: [
         ...this.state.friendList,
         {
           id:newId,
@@ -56,9 +62,7 @@ class App extends Component {
         ]
       })
 
-      {this.state.updatedList.map(friend => (
-        <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email}/>
-        ))}
+ 
 
     }
 
@@ -70,10 +74,7 @@ class App extends Component {
       
       <div className="friend-list">
       <FriendForm formFieldHandler={this.formFieldHandler} emailHandler={this.emailHandler} ageHandler={this.ageHandler} nameHandler={this.nameHandler}></FriendForm>
-      {this.state.friendList.map(friend => (
-      <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email}/>
-      ))}
-      
+      <FriendContainer friendList={this.state.friendList}/>
       </div>
     );
   }
