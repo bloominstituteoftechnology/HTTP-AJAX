@@ -25,8 +25,14 @@ class FriendsList extends React.Component {
                 <h2>Loading...</h2>
             )
         } else {
-            return (
-                <Friends friend={this.state.friends} />
+            return(
+                this.state.friends.map(friend => {
+                    return (
+                        <div key={friend.id}>
+                            <Friends friend={friend} />
+                        </div>
+                    )
+                })
             )
         }}
     }
