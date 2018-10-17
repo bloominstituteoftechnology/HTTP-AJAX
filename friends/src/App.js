@@ -11,7 +11,7 @@ class App extends Component {
       friends : [],
       newFriend: {
         name: '',
-        age: 0,
+        age: '',
         email: ''
       }
     }
@@ -23,6 +23,25 @@ class App extends Component {
          .catch(error => console.log(error))
   }
 
+  addHandler = event => {
+    
+    this.setState({ 
+      newFriend: {
+      ...this.state.newFriend,
+      [event.target.name] : event.target.value
+      }
+    })
+  }
+
+ addNewFriend = (event) => {
+   event.preventDefault();
+   axios.post('http://localhost:5000/friends', this.state.newFriend)
+              .then(response => this.setState({ friends: response.data}))
+ }
+
+
+
+
 
   render() {
     return (
@@ -32,6 +51,14 @@ class App extends Component {
           return <FriendList key={i} data={friend}  />
         })
       }
+        <div className="form">
+          <form>
+            <button onClick={this.addNewFriend}>Submit</button>
+            <input onChange={this.addHandler} type="text" name="name" value={this.state.newFriend.name} placeholder="Name"></input>
+            <input onChange={this.addHandler} type="text" name="age" value={this.state.newFriend.age} placeholder="Age"></input>
+            <input onChange={this.addHandler} type="text" name="email" value={this.state.newFriend.email} placeholder="Email"></input>
+          </form>
+        </div>
       </div>
     );
   }
