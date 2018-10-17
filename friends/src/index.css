@@ -12,3 +12,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.friend-card {
+  width: 25%;
+  height: 20%;
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px auto;
+  padding: 50px 0px 50px 0px;
+  box-shadow: 4px 8px 12px rgb(228, 228, 228);
+}
+
+.age {
+  padding-bottom: 20px;
+}
+
+.email {
+  color: blue;
+}
+
+.form {
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+}

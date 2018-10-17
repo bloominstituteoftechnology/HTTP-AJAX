@@ -1,28 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
-
 import "./App.css";
 
-import Friends from "./Friends";
+import Friends from "./components/Friends";
+import AddFreind from "./components/AddFriend";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: []
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/friends")
-      .then(response => this.setState({ friends: response.data }))
-      .catch(error => console.log(error));
-  }
   render() {
     return (
       <div className="App">
-        <Friends friends={this.state.friends} />
+        <AddFreind />
+        <Friends />
       </div>
     );
   }
