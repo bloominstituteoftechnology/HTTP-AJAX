@@ -53,13 +53,14 @@
   }
   
   .friends {
-    background-color: #fff;
+    background-color: lightgray;
     color: rgba(0,0,0,0.7);
     box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
     height: 300px;
     width: 300px;
     margin: 20px 30px;
     border-radius: 15px;
+    border: 0.5px solid darkgrey;
     font-family: sans-serif;
   }
   
