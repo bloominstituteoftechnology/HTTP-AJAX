@@ -39,7 +39,7 @@ const Form = props => {
         </label>
         <button
           type='submit'>
-            Add Friend!
+            Done!
           </button>
       </form>
   )

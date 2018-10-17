@@ -13,6 +13,10 @@ class Friend extends React.Component {
     }
   }
 
+  handleDelete = event => {
+    this.props.deleteFriend(this.state.id)
+  }
+
   handleEdit = event => {
     this.setState({
       editing: true,
@@ -36,7 +40,7 @@ class Friend extends React.Component {
       };
       this.props.editFriend(editedFriend);
       this.setState({
-        editing: false, 
+        editing: false,
       })
     } else {
       alert('You seem to be missing some information');
@@ -50,7 +54,11 @@ class Friend extends React.Component {
         <p>age: {this.state.age}</p>
         <p>email: {this.state.email}</p>
         <div onClick={this.handleEdit} className='edit-button'>
-          Edit Info
+          Edit
+        </div>
+        <div onClick={this.handleDelete}
+        className='delete-button'>
+          Delete
         </div>
         {this.state.editing &&
         <Form

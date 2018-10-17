@@ -46,6 +46,14 @@ class App extends Component {
         })
     }
 
+    deleteFriend = id => {
+      axios
+        .delete(`${this.url}/${id}`)
+        .then(response => {
+          this.setState({ friendList: response.data })
+        })
+    }
+
 
   render() {
     return (
@@ -53,6 +61,7 @@ class App extends Component {
         <Friends
         friendList={this.state.friendList}
         editFriend={this.editFriend}
+        deleteFriend={this.deleteFriend}
         />
         <AddFriend handleInput={this.handleInput} addNewFriend={this.addNewFriend}/>
       </div>
