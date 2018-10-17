@@ -28,6 +28,14 @@ class FriendsList extends React.Component {
     });
   };
 
+  addNewFriend = e => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/friends", this.state.newFriend)
+      .then(response => this.setState({friends: response.data}));
+    this.setState({newFriend: {name: "", age: "", email: ""}});
+  };
+
   render() {
     return (
       <div>
@@ -56,6 +64,7 @@ class FriendsList extends React.Component {
             value={this.state.newFriend.email}
             onChange={this.changeHandler}
           />
+          <button onClick={this.addNewFriend}>Add Friend</button>
         </form>
       </div>
     );
