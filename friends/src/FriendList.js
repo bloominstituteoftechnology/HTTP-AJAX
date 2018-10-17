@@ -1,6 +1,6 @@
 import React from 'react'
 import Friend from './Friend'
-import { Link, Redirect, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const FriendList = (props) => {
     return (
@@ -15,12 +15,12 @@ const FriendList = (props) => {
                             email={friend.email}
                             id={friend.id}
                         />
-                        <button key={Math.random() * 40 + 2} id={friend.id} onClick={props.updateFriendForm}>Update</button>
+                        <Link to='/updatefriend'><button key={Math.random() * 40 + 2} id={friend.id} onClick={props.updateFriend}>Update</button></Link>
                         <button key={Math.random() * 30 + 1} id={friend.id} onClick={props.deleteFriend}>Delete</button>
                     </div>
                 )
             })}
-           <Link to="/addfriend" style={{position: "absolute", bottom: '5%', left: '47%'}}><button onClick={props.backToAdd}>Add A Friend</button></Link>
+           <Link to="/addfriend" style={{position: 'absolute', bottom: '5%', left: '47%'}}><button onClick={props.backToAdd}>Add A Friend</button></Link>
         </div>
     )
 }
