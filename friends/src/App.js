@@ -82,6 +82,11 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  handleCancelUpdate = event => {
+    event.preventDefault();
+    this.setState({ isUpdating: false, newFriend: blankFormValues });
+  };
+
   render() {
     return (
       <div className="App">
@@ -110,6 +115,16 @@ class App extends Component {
             <h2>
               {this.state.isUpdating ? "Update a Friend" : "Submit New Friend"}
             </h2>
+            <button
+              style={
+                this.state.isUpdating
+                  ? { display: "block" }
+                  : { display: "none" }
+              }
+              onClick={this.handleCancelUpdate}
+            >
+              Cancel Update
+            </button>
             <input
               type="text"
               value={this.state.newFriend.name}
