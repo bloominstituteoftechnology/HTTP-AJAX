@@ -3,13 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import {Route} from 'react-router-dom';
 import FriendList from './components/FriendList';
-import axios from 'axios';
+import FriendForm from './components/FriendForm';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      myFriends: []
+      friend: {
+        id: null,
+        name: '',
+        age: null,
+        email: '',
+      },
     }
   }
   render() {
@@ -20,6 +25,7 @@ class App extends Component {
           <h1 className="App-title">Friends</h1>
         </header>
         <Route exact path='/friend' component={FriendList} />
+        <Route path='/' component={FriendForm} />
       </div>
     );
   }
