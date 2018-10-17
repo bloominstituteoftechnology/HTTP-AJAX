@@ -9,7 +9,25 @@ class App extends Component {
     super();
     this.state = {
       friendList : [],
+      newFriend : {}
     }
+  }
+
+  onChangeHandler = e => {
+    this.setState({
+      newFriend : {
+      // ...this.friendList,
+      ...this.state.newFriend,
+      [e.target.name] : e.target.value
+    }});
+    
+  }
+
+  addNewFriend = e => {
+    e.stopPropagation();
+    axios.post('http://localhost:5000/friends', this.state.newFriend)
+      .then(response => this.setState({friendList : response.data}))
+      .catch(error => console.log(error))
   }
 
   componentDidMount() {
@@ -21,7 +39,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friendList={this.state.friendList}/>
+
+        <FriendsList 
+        addNewFriend={this.addNewFriend} 
+        onChangeHandler={this.onChangeHandler} 
+        friendList={this.state.friendList}
+        />
+
         <AddFriendForm />
       </div>
     );

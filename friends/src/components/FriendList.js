@@ -6,8 +6,9 @@ const FriendList = (props) => {
         <div className="friends-list">
         <h1>Friends</h1>
             {props.friendList.map(friend => {
+                // Need to find a better key value
                 return(
-                    <h2>{friend.name}</h2>
+                    <h2 key={friend.name}>{friend.name}</h2>
                 );
             })}
         </div>
