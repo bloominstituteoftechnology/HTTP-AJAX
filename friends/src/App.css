@@ -6,7 +6,10 @@ body, html, #root, h4, p{
 
 .App {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 80%;
+  align-items: center;
 }
 
 .App .friends-wrapper {
@@ -42,6 +45,7 @@ body, html, #root, h4, p{
   margin: 20px auto;
   border-radius: 10px;
   width: 500px;
+  height: 200px;
   padding: 10px;
 }
 

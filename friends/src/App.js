@@ -35,15 +35,40 @@ class App extends Component {
 
 	addNewFriend = (e) => {
 		e.preventDefault();
+		const { name, age, email } = this.state.friend;
+		if (name.length === 0 || Number(age).length === 0 || email.length === 0) {
+			alert('please add more info for your friend');
+		} else {
+			axios
+				.post('http://localhost:5000/friends', this.state.friend)
+				.then((res) => {
+					this.setState({
+						friends: res.data,
+						friend: {
+							name: '',
+							age: '',
+							email: '',
+							id: Date.now()
+						}
+					});
+				})
+				.catch((err) => console.log(err));
+		}
+	};
+
+	deleteFriend = (e) => {
+		e.preventDefault();
+		console.log(e);
 		axios
-			.post('http://localhost:5000/friends', this.state.friend)
+			.delete('http://localhost:5000/friends/:id')
 			.then((res) => {
 				this.setState({
 					friends: res.data,
 					friend: {
 						name: '',
 						age: '',
-						email: ''
+						email: '',
+						id: Date.now()
 					}
 				});
 			})
@@ -51,11 +76,15 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.state.friends);
 		return (
 			<div className="App">
-				<FriendsContainer friends={this.state.friends} />
 				<FriendsForm formHandler={this.formHandler} addNewFriend={this.addNewFriend} />
+				<FriendsContainer
+					key={this.state.id}
+					friends={this.state.friends}
+					updateInfo={this.updateInfo}
+					deleteFriend={this.deleteFriend}
+				/>
 			</div>
 		);
 	}
