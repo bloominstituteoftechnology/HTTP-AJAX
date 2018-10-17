@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const FriendsList = () => {
-  return <div></div>
+class FriendsList extends Component {
+  constructor(){
+    super();
+    this.state = {
+      friends: [];
+    }
+  }
+
+  render(){
+    return <div></div>
+  }
+  
 }
 
 export default FriendsList;
