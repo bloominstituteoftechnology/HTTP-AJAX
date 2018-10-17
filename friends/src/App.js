@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Card from './components/Card'
+import { ContentWrapper } from './styles/Global'
 
 class App extends Component {
   state = {
@@ -18,10 +19,10 @@ class App extends Component {
     const { friends } = this.state
 
     return (
-      <div>
+      <ContentWrapper>
         {friends.length &&
           friends.map((friend, i) => <Card key={i} {...friend} />)}
-      </div>
+      </ContentWrapper>
     )
   }
 }

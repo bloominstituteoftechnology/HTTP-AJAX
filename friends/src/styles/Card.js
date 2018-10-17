@@ -2,14 +2,20 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
-  flex-drection: column;
-  align-items: flex-start;
+  flex-direction: column;
 
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: 10px;
+
+  background: #99c0ff;
+
+  flex: 1;
+
+  border: 1px dashed #7f7f7f;
+  border-radius: 7px;
 `
 
 export const Line = styled.p`
   font-size: 16px;
-  text-decoration: none;
+  margin: 5px 0;
 `
