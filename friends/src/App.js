@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import FriendsList from './components/FriendsList';
+import FriendsForm from './components/FriendsForm';
 import './App.css';
 import axios from 'axios';
 
@@ -28,9 +29,31 @@ class App extends Component {
       })
   }
 
+  handleNameChange = event => {
+    this.setState({ newName: event.target.value });
+  };
+
+  handleAgeChange = event => {
+    this.setState({ newAge: event.target.value });
+  };
+
+  handleEmailChange = event => {
+    this.setState({ newEmail: event.target.value });
+  };
+
+
+
   render() {
     return (
       <div className="App">
+        <Route exact path='/' render={props => <FriendsForm
+          {...props}
+          newName={this.state.newName}
+          newAge={this.state.newAge}
+          newEmail={this.state.newEmail}
+          nameAdd={this.handleNameChange}
+          ageAdd={this.handleAgeChange}
+          emailAdd={this.handleEmailChange} />} />
         <Route path='/' render={props => <FriendsList
         {...props}
         friends={this.state.friends} />} />
