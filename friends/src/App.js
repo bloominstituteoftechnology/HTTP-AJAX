@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
 import axios from 'axios';
+import Navigation from './components/Navigation';
 
 
 class App extends Component {
@@ -13,7 +14,6 @@ class App extends Component {
     this.state = {
       friends: [],
       friend: {
-        id: 0,
         name: '',
         age: undefined,
         email: '',
@@ -86,8 +86,9 @@ handleAddNewFriend = event =>{
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Friends</h1>
         </header>
+        <Navigation />
         <Route
-          path='/'
+          exact path='/'
           render={props=>(
             <FriendList
               {...props}
@@ -96,7 +97,7 @@ handleAddNewFriend = event =>{
           )}
         />
         <Route
-          path='/'
+          path='/addfriend'
           render={props =>(
             <FriendForm
             {...props}

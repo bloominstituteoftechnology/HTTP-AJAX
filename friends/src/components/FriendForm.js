@@ -1,8 +1,7 @@
-import React,{Component, Fragment} from 'react';
-import axios from 'axios';
+import React,{Fragment} from 'react';
 import PropTypes from 'prop-types';
 
- function createForm(props){
+function FriendForm(props){
     return(
         <Fragment>
             <label>New Friend:</label>
@@ -36,7 +35,8 @@ import PropTypes from 'prop-types';
         </Fragment>
     )
 }
- createForm.propTypes = {
+
+FriendForm.propTypes = {
     friend: PropTypes.shape({
         name: PropTypes.string,
         age: PropTypes.number,
@@ -45,34 +45,5 @@ import PropTypes from 'prop-types';
     handleChange: PropTypes.func,
     handleAddNewFriend: PropTypes.func,
 }
- class FriendForm extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            id: null,
-            name: null,
-            age: null,
-            email: null
-        };
-    }
-     componentDidMount(){
-        axios
-            .get('http://localhost:5000/friends')
-            .then(response=> {
-                //console.log(response);
-                this.setState({id:this.getID(response)})
-            })
-            .catch(err => console.log(err));
-    }
-     render(){
-        return(
-            <div>
-                Issa FriendForm!
-            </div>
-        )
-    }
-     getID(response){
-        return response.data[response.data.length-1].id+1;
-    }
-}
- export default FriendForm; 
+
+export default FriendForm;
