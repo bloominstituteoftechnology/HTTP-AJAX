@@ -8,10 +8,10 @@ const Friend = (props) => {
     console.log(props.friend)
     return (
         <div >
-            <Button > 
+            <Button onClick = {props.handleFormEvent} > 
                 Home 
             </Button>
-            <Button onClick={() => <Form />} >
+            <Button onClick = {props.handleFormEvent} >
                 Add Friend 
             </Button>
             {props.friend.map(friend => {

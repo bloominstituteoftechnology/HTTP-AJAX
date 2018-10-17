@@ -27,15 +27,17 @@ componentDidMount() {
     .catch(error => console.log(error));
 }
 
-formLoad() {
+handleFormEvent = event => {
+  alert("I was clicked");
+}
+/*formLoad() {
     if(this.state.displayForm === true) {
       <Form />
     }
-}
+}*/
 
 changeHandler = (event) => {
     this.setState({ [event.target.name] : event.target.value})
-
 }
 
 render() {
@@ -45,6 +47,7 @@ render() {
         <h1>HTTP....</h1>
           <Friend 
               friend = {this.state.friends}
+              handleFormEvent = {this.handleFormEvent}
           />
       </div>
     );
