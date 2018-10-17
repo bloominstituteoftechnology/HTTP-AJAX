@@ -26,6 +26,7 @@ const FriendForm = props => {
           required value={props.email}  
           onChange={props.handleChange} 
           name="email" />
+        <button onClick={props.handleInput}>Submit</button>
       </form>
     </Fragment>
   );
