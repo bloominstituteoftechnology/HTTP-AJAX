@@ -34,7 +34,7 @@ const FriendsForm = props => {
                             placeholder="Email"
                         />
                     </label>
-                    <button className="submit">
+                    <button className="submit" onClick={props.submit}>
                         Submit
                     </button>
                 </form>

@@ -41,7 +41,28 @@ class App extends Component {
     this.setState({ newEmail: event.target.value });
   };
 
-
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const newFriend = {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
+    };
+    this.setState({ newName: '', newAge: '', newEmail: '' });
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(response => {
+        this.setState({
+          newName: '',
+          newAge: '',
+          newEmail: '',
+          friends: response.data
+        });
+      })
+      .catch(error => {
+        console.log('Error: ', error);
+      });
+  };
 
   render() {
     return (
@@ -53,7 +74,8 @@ class App extends Component {
           newEmail={this.state.newEmail}
           nameAdd={this.handleNameChange}
           ageAdd={this.handleAgeChange}
-          emailAdd={this.handleEmailChange} />} />
+          emailAdd={this.handleEmailChange}
+          submit={this.handleSubmit} />} />
         <Route path='/' render={props => <FriendsList
         {...props}
         friends={this.state.friends} />} />
