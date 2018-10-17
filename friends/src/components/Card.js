@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Container, Line, Close } from '../styles/Card'
+import { Container, Close } from '../styles/Card'
+import Item from './Item'
 import close from '../icons/close.png'
 
 class Card extends Component {
@@ -17,9 +18,9 @@ class Card extends Component {
 
     return (
       <Container>
-        <Line>{name}</Line>
-        <Line>{age}</Line>
-        <Line>{email}</Line>
+        <Item>{name}</Item>
+        <Item>{age}</Item>
+        <Item>{email}</Item>
         <Close onClick={() => handleClose(id)}>
           <img src={close} alt="close" />
         </Close>
