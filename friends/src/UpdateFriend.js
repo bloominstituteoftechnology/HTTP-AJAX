@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
 
-
 const FormContainer = styled.form`
     display: flex;
     flex-flow: column nowrap;
@@ -13,12 +12,11 @@ const FormContainer = styled.form`
     input[type='submit'] {
         width: 100px;
     }
-
 `
 
-const AddFriend = (props) => {
+const UpdateFriend = (props) => {
     return (
-        <FormContainer onSubmit={props.handleSubmit}>
+        <FormContainer onSubmit={props.updateFriend}>
             <label>
                 Name:
                 <input name="name" type="text" value={props.name} onChange={props.handleChange} />
@@ -32,10 +30,9 @@ const AddFriend = (props) => {
                 <input name="email" type="text" value={props.email} onChange={props.handleChange} />
             </label>
             <input type="submit" value="Submit" />
-            {props.redirect && (<Redirect to='/' />)}
+            {props.redirect && <Redirect to="/" />}
         </FormContainer>
     )
 }
 
-
-export default AddFriend
+export default UpdateFriend
