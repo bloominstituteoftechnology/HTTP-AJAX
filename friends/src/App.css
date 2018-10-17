@@ -1,4 +1,6 @@
 .App {
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 
@@ -29,4 +31,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.friends {
+  border: 1px solid black;
+  max-width: 450px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 20px;
+  margin: 15px;
 }
