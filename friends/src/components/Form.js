@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+import './Form.css';
 
-const Form = ({ handleFormSubmit, handleInputChange }) => {
+const Form = ({ handleFormSubmit, handleInputChange, name, email, age }) => {
   return (
     <form className="form" onSubmit={handleFormSubmit}>
       <h2>Add a new friend</h2>
@@ -11,6 +11,7 @@ const Form = ({ handleFormSubmit, handleInputChange }) => {
         </label>
         <input
           type="text"
+          value={name}
           name="name"
           className="text-input"
           onChange={handleInputChange}
@@ -22,6 +23,7 @@ const Form = ({ handleFormSubmit, handleInputChange }) => {
         </label>
         <input
           type="number"
+          value={age}
           name="age"
           className="text-input"
           onChange={handleInputChange}
@@ -29,16 +31,17 @@ const Form = ({ handleFormSubmit, handleInputChange }) => {
       </div>
       <div className="form-group">
         <label className="label" htmlFor="email">
-          Name:
+          Email:
         </label>
         <input
           type="text"
+          value={email}
           name="email"
           className="text-input"
           onChange={handleInputChange}
         />
       </div>
-      <button>Friended</button>
+      <button className="btn">Friended</button>
     </form>
   );
 };

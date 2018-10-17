@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friends: [],
       name: '',
-      age: null,
+      age: '',
       email: ''
     };
   }
@@ -31,7 +31,9 @@ class App extends Component {
         age: parseInt(this.state.age),
         email: this.state.email
       })
-      .then(res => this.setState({ friends: res.data }));
+      .then(res =>
+        this.setState({ friends: res.data, name: '', email: '', age: '' })
+      );
   };
 
   handleInputChange = e => {
@@ -39,10 +41,14 @@ class App extends Component {
   };
 
   render() {
+    const { name, age, email } = this.state;
     return (
       <div className="App">
         <h1>We could be friends</h1>
         <Form
+          name={name}
+          age={age}
+          email={email}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
