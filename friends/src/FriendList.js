@@ -3,11 +3,11 @@ import Friend from './Friend';
 
 const FriendList = props => {
     return (
-      <div>
+      <Fragment>
       {props.friend.map((friend, index) => (
         <Friend key={index} friend={friend} />
       ))}
-      </div>
+      </Fragment>
     );
   };
   
