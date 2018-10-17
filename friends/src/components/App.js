@@ -12,6 +12,7 @@ class App extends Component {
         email: '',
       },
       url: 'http://localhost:5000',
+      updateFriend: false,
     }
   }
 
@@ -27,13 +28,20 @@ class App extends Component {
     Object.values(this.state.newFriend).forEach(n => n === ''?empty=true:null);
     if(empty) return;
 
+    if (this.state.updateFriend) {
+      axios.put(`${this.state.url}/friends/${this.state.newFriend.id}`, this.state.newFriend)
+      .then(({data}) => this.setState({friends: data, newFriend: {name: '', age: '', email: ''}}))
+      .catch(err => console.error(err));
+      return;
+    }
+
     axios.post(`${this.state.url}/friends`, this.state.newFriend)
       .then(({data}) => this.setState({friends: data, newFriend: {name: '', age: '', email: ''}}))
       .catch(err => console.error(err));
   }
 
-  updateFriend = (ev) => {
-    
+  updateFriend = (friend) => {
+    this.setState({updateFriend: true, newFriend: {...this.state.newFriend, ...friend}})
   }
 
   deleteFriend = (id) => {
@@ -57,7 +65,7 @@ class App extends Component {
           <input type="text" name="name" placeholder="Name" value={this.state.newFriend.name} onChange={this.changeHandler}/>
           <input type="text" name="age" placeholder="Age" value={this.state.newFriend.age} onChange={this.changeHandler}/>
           <input type="text" name="email" placeholder="Email" value={this.state.newFriend.email} onChange={this.changeHandler}/>
-          <button>Add Friend</button>
+          <button>{this.state.updateFriend?'Update Friend':'Add Friend'}</button>
         </form>
         {this.state.friends.map(friend => {
          return (
@@ -65,7 +73,7 @@ class App extends Component {
             <span>{friend.name}</span>
             <span>{friend.age}</span>
             <span>{friend.email}</span>
-            <span><button>update</button></span>
+            <span><button  onClick={() => this.updateFriend(friend)}>update</button></span>
             <span><button onClick={() => this.deleteFriend(friend.id)}>delete</button></span>
           </div>
           )
