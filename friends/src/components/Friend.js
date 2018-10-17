@@ -2,7 +2,7 @@ import React from 'react';
 
 const Friend = ({friend, updateFriend, deleteFriend}) => {
     return (
-        <div>
+        <div className="container">
             <span>{friend.name}</span>
             <span>{friend.age}</span>
             <span>{friend.email}</span>

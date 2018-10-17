@@ -63,7 +63,6 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <div className="container">
           <FriendForm 
             friend={this.state.newFriend}
             changeHandler={this.changeHandler}
@@ -75,7 +74,6 @@ class App extends Component {
             updateFriend={this.updateFriend}
             deleteFriend={this.deleteFriend}
           />
-        </div>
       </div>
     );
   }

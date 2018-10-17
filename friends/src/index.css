@@ -13,10 +13,15 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .App { 
   width: 100%;
   height: 100vh;
   background: #fafafa;
+  padding-top: 40px;
 }
 
 .container {
@@ -25,4 +30,29 @@ code {
   max-width: 850px;
   background: #fff;
   margin: 0 auto;
+}
+
+.form {
+  padding: 20px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  margin-bottom: 50px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-buttons {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
