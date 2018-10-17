@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Route, NavLink, withRouter } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
+
+import Home from './Components/Home';
+import FriendsList from './Components/FriendsList';
+import FriendForm from './Components/FriendForm';
 
 import './App.css';
 
@@ -17,7 +21,13 @@ class App extends Component {
     };
   }
   render() {
-    return <div className="App" />;
+    return (
+      <div className="App">
+        <Route exact path="/" component={Home} />
+        <Route exact path="/my-friends" component={FriendsList} />
+        <Route path="/friend-form" component={FriendForm} />
+      </div>
+    );
   }
 }
 
