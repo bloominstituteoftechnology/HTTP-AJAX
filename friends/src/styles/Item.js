@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Input = styled.input`
   border: 0px solid transparent;
-  max-width: 150px;
+  max-width: 200px;
   background: inherit;
   font-size: 16px;
   margin: 5px 0;

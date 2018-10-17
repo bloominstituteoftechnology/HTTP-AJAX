@@ -9,6 +9,41 @@ class Item extends Component {
     value: this.props.children
   }
 
+  textInput = React.createRef()
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside)
+  }
+
+  componentDidUpdate() {
+    if (this.state.edit) {
+      this.focusTextInput()
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside)
+  }
+
+  // Set wrapper ref
+  setWrapperRef = node => {
+    this.wrapperRef = node
+  }
+
+  // Alert if clicked on outside of element
+  handleClickOutside = event => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({
+        edit: false,
+        value: this.props.children
+      })
+    }
+  }
+
+  focusTextInput() {
+    this.textInput.current.focus()
+  }
+
   handleClick = event => {
     this.setState({ edit: true })
   }
@@ -37,8 +72,8 @@ class Item extends Component {
         {edit === false ? (
           <Line onClick={handleClick}>{children}</Line>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <Input value={value} onChange={handleChange} />
+          <form onSubmit={handleSubmit} ref={this.setWrapperRef}>
+            <Input value={value} onChange={handleChange} ref={this.textInput} />
           </form>
         )}
       </Fragment>
