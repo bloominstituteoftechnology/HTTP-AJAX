@@ -37,6 +37,18 @@ class App extends Component {
 
   addNewFriend = ev => {
     ev.preventDefault();
+    let newFriend = {
+      name: this.state.newName,
+      age: Number(this.state.newAge),
+      email: this.state.newEmail
+    };
+    axios.post("http://localhost:5000/friends", newFriend)
+      .then(response => this.setState({ 
+        friends: response.data,
+        newName: "",
+        newAge: "",
+        newEmail: ""
+    }));
   }
 
   render() {
