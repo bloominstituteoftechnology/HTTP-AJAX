@@ -6,11 +6,12 @@ class App extends Component {
   constructor(){
     super();
     this.state={
-      items: [],        
-      name:'',
-      age:'',
-      email:''
-      
+      items: [],
+      newFriend: {
+        name:'',
+        age:'',
+        email:''
+      }  
     };
   }
   componentDidMount(){
@@ -22,10 +23,15 @@ class App extends Component {
   handleInputChange = event => this.setState({ 
     [event.target.name]: event.target.value 
   });
-  clickHandler = event => {
-    
+  clickHandler = () => {
+    console.log(this.state.newFriend)
+    // axios.post('http://localhost:5000/friends', {addFriend})
+    //   .then(response => this.setState({
+    //     ...this.state.items, response       
+    //   }))
   }
   render() {
+    console.log(this.state.newFriend)
     return (
       <div className='friends-container'>
         <h1>Contact Information</h1>
@@ -44,7 +50,7 @@ class App extends Component {
           value={this.state.email}
           placeholder='Email'
           onChange={this.handleInputChange}></input>
-        <button>Add a Contact</button>        
+        <button onClick={this.clickHandler}>Add a Contact</button>        
         {this.state.items.map(item => 
           <div key={item.id} className='friend-card'>
             <h2>{item.name}</h2>
