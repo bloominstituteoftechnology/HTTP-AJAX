@@ -6,6 +6,11 @@ class Friends extends React.Component {
         super(props);
         this.state = {
             friends: [],
+            newFriend: {
+                name: "",
+                email: "",
+                age: "",
+            }
         }
     }
 
@@ -16,6 +21,28 @@ class Friends extends React.Component {
             .catch(err => console.log(err))
     }
 
+    changeHandler = e => {
+        this.setState({ 
+            newFriend: {
+                ...this.state.newFriend,
+                [e.target.name]: e.target.value
+        }
+        });
+    }
+
+    addFriend = e => {
+        e.preventDefault();
+        axios
+            .post("http://localhost:5000/friends", this.state.newFriend)
+            .then(res => this.setState(
+                {friends: res.data,
+                newFriend: {
+                    name: "",
+                    email: "",
+                    age: "",}
+                }))
+    }
+
     render() {
         return (
         <div>
@@ -23,6 +50,12 @@ class Friends extends React.Component {
             {this.state.friends.map(friend => {
             return <div key={friend.id}><p>Name: {friend.name}</p><p>Email: {friend.email}</p><p>Age: {friend.age}</p></div>
         })}
+            <form onSubmit={this.addFriend}>
+                <input type="text" onChange={this.changeHandler} name="name" value={this.state.newFriend.name} placeholder="name" ></input>
+                <input type="text" onChange={this.changeHandler} name="email" value={this.state.newFriend.email} placeholder="email"></input>
+                <input type="text" onChange={this.changeHandler} name="age" value={this.state.newFriend.age} placeholder="age"></input>
+            </form>
+            <button onClick={this.addFriend}>Add Friend</button>
         </div>
         )
     }
