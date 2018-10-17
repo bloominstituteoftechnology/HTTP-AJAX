@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FriendsForm from './FriendsForm';
 function FriendsList(props) {
 
 return (
@@ -13,6 +13,8 @@ return (
         <p>{friend.email}</p>
             </div>
     ))}
+
+    <FriendsForm {...props} />
     </div>
 )
 }

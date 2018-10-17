@@ -39,15 +39,13 @@ componentDidMount() {
       )} />
 
       <Route
-      exact path = "/friendslist"
+      path = "/friendslist"
       render = {props => (
         <FriendsList {...props}
         items = {this.state.items}
         newFriends = {this.state.newFriends}
         />
       )} />
-
-
       </div>
     );
   }
