@@ -12,36 +12,42 @@ function getNewId() {
 let friends = [
   {
     id: 1,
+    avatar: '',
     name: 'Ben',
     age: 30,
     email: 'ben@lambdaschool.com',
   },
   {
     id: 2,
+    avatar: '',
     name: 'Austen',
     age: 32,
     email: 'austen@lambdaschool.com',
   },
   {
     id: 3,
+    avatar: '',
     name: 'Ryan',
     age: 35,
     email: 'ryan@lambdaschool.com',
   },
   {
     id: 4,
+    avatar: '',
     name: 'Sean',
     age: 35,
     email: 'sean@lambdaschool.com',
   },
   {
     id: 5,
+    avatar: '',
     name: 'Michelle',
     age: 67,
     email: 'michelle@gmail.com',
   },
   {
     id: 6,
+    avatar: '',
     name: 'Luis',
     age: 47,
     email: 'luis@lambdaschool.com',

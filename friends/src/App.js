@@ -17,13 +17,14 @@ class App extends Component {
     const friendRequest = axios.get(this.url);
     friendRequest.then(response => {
       this.setState({ friendList: response.data });
-    });
+    }).catch(response => {
+      console.log('Had issues with friends ', response)
+    })
   }
 
 
   addNewFriend = (name, age, email)=> {
     let newFriend = {
-      id: this.state.friendList.length + 1,
       name: name,
       age: age,
       email: email,
@@ -42,7 +43,10 @@ class App extends Component {
       axios
         .put(`${this.url}/${friend.id}`, friend)
         .then(response => {
-          this.setState({ friendList: response.data})
+          this.setState({ friendList: response.data })
+        })
+        .catch(response => {
+          console.log('Could not edit friend ', response.data)
         })
     }
 
@@ -51,6 +55,9 @@ class App extends Component {
         .delete(`${this.url}/${id}`)
         .then(response => {
           this.setState({ friendList: response.data })
+        })
+        .catch(response => {
+          console.log('Could not delete friend ', response)
         })
     }
 
