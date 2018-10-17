@@ -37,7 +37,15 @@ class App extends Component {
       age: this.state.age,
       email: this.state.email
     };
-    //axios.post()
+    axios.post('http://localhost:5000/friends/create', newFriend)  //passing an obj as new post request
+      .then(savedNewFriend => {
+        console.log(savedNewFriend);  //after request sent, axios gives us promise, THEN consumes promise
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      this.setState({ name: '', age: '', email: '' });  
+      //set state as empty string
   }
 
   //deleteFriend
@@ -68,6 +76,7 @@ class App extends Component {
             placeholder="email"
             value={this.state.email}
           />
+          <button onClick={this.addNewFriend}>Submit</button>
         </form>
       </div>
     );
