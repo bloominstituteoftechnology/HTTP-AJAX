@@ -11,7 +11,7 @@ const Friend = (props) => {
             <Button onClick = {props.handleFormEvent} > 
                 Home 
             </Button>
-            <Button onClick = {props.handleFormEvent} >
+            <Button >
                 Add Friend 
             </Button>
             {props.friend.map(friend => {
@@ -24,7 +24,7 @@ const Friend = (props) => {
                      )
                 })
             }
-            
+         
         </div>
     );
 }

@@ -37,7 +37,15 @@ handleFormEvent = event => {
 }*/
 
 changeHandler = (event) => {
-    this.setState({ [event.target.name] : event.target.value})
+    this.setState({ 
+        newFriend  : { [event.target.name] : event.target.value } })
+}
+
+addFriend = (event) => {
+  event.preventDefault()
+  axios
+     .post('http://localhost:5000/friends' , this.state.newFriend)
+     .then(response => this.setState({ items : response.data}))
 }
 
 render() {
@@ -49,6 +57,15 @@ render() {
               friend = {this.state.friends}
               handleFormEvent = {this.handleFormEvent}
           />
+
+          {/*TRYING FORM FOR ADD FRIEND....*/}
+          <form onSubmit={this.addFriend}>
+              <div> Name : <input type = 'text' onChange = {this.changeHandler} name = "name" value = {this.state.newFriend.name} /> </div>
+              <div> Age : <input type = 'text' onChange = {this.changeHandler} name = "age" value = {this.state.newFriend.age} /> </div>
+              <div> Email : <input type = 'text' onChange = {this.changeHandler} name = "email" value = {this.state.newFriend.email}/> </div>
+              <button >Add Friend</button>
+          </form>
+          
       </div>
     );
   } //render
