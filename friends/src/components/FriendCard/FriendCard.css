@@ -1,0 +1,36 @@
+.friend-card {
+    width: 45%;
+    height: auto;
+    border-radius: 5px;
+    background: #e4e4e4;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    -webkit-box-shadow: 3px 3px 16px -3px rgba(0,0,0,1);
+    -moz-box-shadow: 3px 3px 16px -3px rgba(0,0,0,1);
+    box-shadow: 3px 3px 16px -3px rgba(0,0,0,1);
+    margin: 10px;
+}
+
+@media(max-width: 800px) {
+    .friend-card {
+        width: 98%;
+    }
+}
+
+.friend-card-delete {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    cursor: pointer;
+}
+
+.friend-card img {
+    width: 30%;
+    height: auto;
+    border-radius: 5px 0 0 5px;
+}
+
+.friend-card-content {
+    padding: 10px;
+}

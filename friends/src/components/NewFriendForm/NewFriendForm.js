@@ -51,7 +51,7 @@ class NewFriendForm extends React.Component {
                 <input type="text" name="name" placeholder="Name" onChange={this.changeHandler} value={this.state.name} />
                 <input type="number" name="age" placeholder="Age" onChange={this.changeHandler} value={this.state.age} />
                 <input type="email" name="email" placeholder="Email" onChange={this.changeHandler} value={this.state.email} />
-                <button type="submit" onClick={(event) => this.newFriendFormSubmit(event)}>Submit</button>
+                <button onClick={(event) => this.newFriendFormSubmit(event)}>Submit</button>
             </form>
         );
     }
