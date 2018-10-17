@@ -10,7 +10,8 @@ class Friends extends React.Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      id: 0
     };
   }
 
@@ -33,7 +34,14 @@ class Friends extends React.Component {
   addFriend = e => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/friends", this.state.newFriend)
+      .delete("http://localhost:5000/friends", this.state.newFriend)
+      .then(response => this.setState({ friends: response.data }));
+  };
+
+  deleteFriend = e => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/friends/", this.state.newFriend)
       .then(response => this.setState({ friends: response.data }));
   };
 
