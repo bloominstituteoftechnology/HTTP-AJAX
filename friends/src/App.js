@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.scss";
 import axios from "axios";
+import SingleFriend from "./components/SingleFriend";
 import Friends from "./components/Friends";
+import { Route } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -11,7 +13,7 @@ class App extends Component {
       newFriend: {
         name: "",
         age: null,
-        email: "",
+        email: ""
       }
     };
   }
@@ -24,57 +26,65 @@ class App extends Component {
       })
       .catch(err => alert(err));
   }
-  handleChange = (event) =>{
+  handleChange = event => {
     this.setState({
       newFriend: {
         ...this.state.newFriend,
         [event.target.name]: event.target.value
       }
-    })
-  }
+    });
+  };
   addFriend = () => {
     let theNewFriend = {
-      id:this.state.friends.length,
-      name:this.state.newFriend.name,
-      age:this.state.newFriend.age,
-      email:this.state.newFriend.email,
-    }
-    axios
-    .post("http://localhost:5000/friends",theNewFriend)
-    .then(response => {
+      id: this.state.friends.length + 1,
+      name: this.state.newFriend.name,
+      age: this.state.newFriend.age,
+      email: this.state.newFriend.email
+    };
+    axios.post("http://localhost:5000/friends", theNewFriend).then(response => {
       this.setState({
         friends: response
+      });
+    });
+  };
+  serverUpdateMain = (data, id) => {
+    axios
+      .put(`http://localhost:5000/friends`, data)
+      .then(response => {
+        console.log(response);
+        this.setState({ friends: response.data });
       })
-    })
-    .catch(err => {alert(err)});
-  }
+      .catch(err => alert(err));
+  };
 
   render() {
-    console.log(this.state.friends);
     return (
       <div className="App">
-        <Friends friends={this.state.friends} />
-        <form onSubmit={this.addFriend}>
-          <input
-            type="text"
-            value={this.state.newFriend.name}
-            name="name"
-            onChange={this.handleChange}
-          />
-          <input
-            type="age"
-            value={this.state.newFriend.age}
-            name="age"
-            onChange={this.handleChange}
-          />
-          <input
-            type="email"
-            value={this.state.newFriend.email}
-            name="email"
-            onChange={this.handleChange}
-          />
-          <input type="submit" onSubmit={this.addFriend} />
-        </form>
+        <Route
+          exact
+          strict
+          path="/:id"
+          render={props => (
+            <SingleFriend
+              {...props}
+              friends={this.state.friends}
+              serverUpdateMain={this.serverUpdateMain}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <Friends
+              {...props}
+              friends={this.state.friends}
+              handleChange={this.handleChange}
+              addFriend={this.addFriend}
+              newFriend={this.state.newFriend}
+            />
+          )}
+        />
       </div>
     );
   }
