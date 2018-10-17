@@ -7,7 +7,13 @@ import "./App.css";
 class App extends Component {
   constructor() {
     super();
-    this.state = { friends: [] };
+    this.state = {
+      friends: [],
+
+      name: "",
+      email: "",
+      age: ""
+    };
   }
 
   componentDidMount() {
@@ -20,12 +26,35 @@ class App extends Component {
         console.error("Server Error", error);
       });
   }
+
+  addFriend = e => {
+    const newFriend={name:this.state.name, email:this.state.email, age:this.state.age};
+    axios.post(`http://localhost:5000/friends`, newFriend).then(() =>
+      this.setState({
+        
+          name: "",
+          email: "",
+          age: ""
+        
+      })
+    );
+  };
+
+  changeHandler = e => {
+    let targetName = e.target.name;
+    this.setState({ [targetName]: e.target.value } );
+  };
+
   render() {
     return (
       <div className="App">
         <h1>Lambda Friends</h1>
         <FriendsList friends={this.state.friends} />
-        <FriendForm />
+        <FriendForm
+          changeHandler={this.changeHandler}
+          addFriend={this.addFriend}
+          newFriend={{name:this.state.name, email:this.state.email, age:this.state.age}}
+        />
       </div>
     );
   }
