@@ -17,6 +17,7 @@ Topics:
                                           // Instruction for assignment
 
 1.  Inside your React application, create a component to display the list of friends coming from the server.
+
 1.  Add a form to gather information about a new friend.
 1.  Add a button to save the new friend by making a `POST` request to the same endpoint listed above.
 1.  Each `friend` should have the properties listed below.
