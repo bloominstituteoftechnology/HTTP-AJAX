@@ -30,3 +30,31 @@
     transform: rotate(360deg);
   }
 }
+
+
+.app{
+  max-width : 1000px;
+}
+
+.displayFriends{
+  width : 100%;
+  display : flex;
+  flex-wrap: wrap;
+}
+
+.friendCard{
+  width : 20%;
+  border : 1px solid black;
+  margin : 15px;
+  text-align : left;
+  padding-left : 10px;
+}
+
+.friendCard .name{
+  text-align: center;
+  font-weight: bold;
+}
+
+.addNewFriend input {
+  margin : 15px;
+}

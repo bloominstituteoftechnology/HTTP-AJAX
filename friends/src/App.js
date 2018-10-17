@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import AddNewFriend from './Components/AddNewFriend';
+import DisplayFriends from './Components/DisplayFriends';
+
 
 class App extends Component {
   constructor() {
@@ -61,14 +63,8 @@ class App extends Component {
 
        <AddNewFriend onInputChange={this.onInputChange} addFriend={this.addFriend}
         newFriend={this.state.newFriend} />
-
-         {(this.state.friends)
-          ?  this.state.friends.map( friend => <p key={friend.id}>{friend.name}</p>)
-          : 'Loading...' }
-        
-
-         
-
+      <h3> My Friends</h3>
+      <DisplayFriends friends={this.state.friends} />    
        </div>
     );
   }
