@@ -1,0 +1,7 @@
+.App {
+
+  display:flex;
+  border: 1px solid black;
+  margin: 20px;
+  background: lightblue
+}
