@@ -7,6 +7,7 @@ function Home() {
       <h1>Matt's Friends</h1>
       <h4>Meet my friends!</h4>
       <p>Maybe you can be my friend too...</p>
+      <Link to="my-friends">Enter</Link>
     </div>
   );
 }
