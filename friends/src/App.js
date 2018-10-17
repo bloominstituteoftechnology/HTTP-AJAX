@@ -3,8 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import {Route} from 'react-router-dom';
 import FriendList from './components/FriendList';
+import axios from 'axios';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      myFriends: []
+    }
+  }
   render() {
     return (
       <div className="App">
