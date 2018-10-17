@@ -2,9 +2,23 @@
   text-align: center;
 }
 
+.friends-logo {
+  max-width: 600px;
+  margin-right: 50px;
+}
+
+.header-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 1000px;
+  align-items: center;
+  margin: 60px auto 80px;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 20vmin;
+  height: 10vmin;
 }
 
 .App-header {

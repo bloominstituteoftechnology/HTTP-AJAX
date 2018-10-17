@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./FriendsList.css";
 
 class FriendsList extends React.Component {
   constructor() {
@@ -38,11 +39,24 @@ class FriendsList extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.friends.map(friend => {
-          return <div key={friend.id}>{friend.name}</div>;
-        })}
+      <div className="friends-list">
+        <div>
+          <h2>My Friends</h2>
+          <div className="my-friends">
+            {this.state.friends.map(friend => {
+              return (
+                <div key={friend.id} className="friend">
+                  <h4>{friend.name}</h4>
+                  <p>{`${friend.age} years old`}</p>
+                  <p>{friend.email}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         <form action="">
+          <h3>Add A New Friend</h3>
           <input
             type="text"
             placeholder="Name"
@@ -50,6 +64,7 @@ class FriendsList extends React.Component {
             value={this.state.newFriend.name}
             onChange={this.changeHandler}
           />
+          <br />
           <input
             type="text"
             placeholder="Age"
@@ -57,6 +72,7 @@ class FriendsList extends React.Component {
             value={this.state.newFriend.age}
             onChange={this.changeHandler}
           />
+          <br />
           <input
             type="text"
             placeholder="Email"
@@ -64,6 +80,7 @@ class FriendsList extends React.Component {
             value={this.state.newFriend.email}
             onChange={this.changeHandler}
           />
+          <br />
           <button onClick={this.addNewFriend}>Add Friend</button>
         </form>
       </div>
