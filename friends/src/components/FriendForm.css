@@ -1,0 +1,13 @@
+.addNameForm {
+    display: flex;
+    justify-content: center;
+
+}
+
+input[name='name'] {
+    width: 130px;
+}
+
+input[name='age'] {
+    width: 45px;
+}
