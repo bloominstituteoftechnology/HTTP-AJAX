@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './ComponentsStyle.css';
+
 function FriendsList(props) {
   return (
     <ul className="App">

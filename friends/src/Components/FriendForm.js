@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 
+import './ComponentsStyle.css';
+
 function FriendForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
