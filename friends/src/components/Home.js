@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Home(props) {
-  const routeToShop = event => {
+  const routeToFriend = event => {
     event.preventDefault();
     props.history.push('/list-friend');
   };
@@ -13,7 +13,7 @@ function Home(props) {
         src="https://www.uncommongoods.com/images/category/fun-fullwidth.jpg"
         alt=""
       />
-      <button onClick={routeToShop} className="md-button shop-button">
+      <button onClick={routeToFriend} className="md-button shop-button">
         Shop now!
       </button>
     </div>
