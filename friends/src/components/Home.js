@@ -2,11 +2,15 @@ import React from 'react';
 // import Route from 'react-router-dom';
 import FriendsList from './FriendsList';
 
-function Home(props) {
+const Home = (props) => {
 
     return(
         <div>
-            <FriendsList {...props}/>
+            <FriendsList {...props}
+            items = {props.items}
+            newFriends = {props.newFriends}
+            addFriend = {props.addFriend}
+            inputHandler = {props.inputHandler}/>
         </div>
     )
 }

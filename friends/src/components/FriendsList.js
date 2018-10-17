@@ -1,6 +1,8 @@
 import React from 'react';
 import FriendsForm from './FriendsForm';
-function FriendsList(props) {
+
+
+const FriendsList = (props) => {
 
 return (
     <div>
@@ -14,7 +16,7 @@ return (
             </div>
     ))}
 
-    <FriendsForm {...props} />
+        <FriendsForm {...props} />
     </div>
 )
 }

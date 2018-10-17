@@ -19,10 +19,24 @@ class App extends Component {
   }
 
 componentDidMount() {
-  axios
-    .get('http://localhost:5000/friends')
+  axios.get('http://localhost:5000/friends')
     .then(response => this.setState({items: response.data}))
     .catch(error => console.log(error));
+}
+
+inputHandler = event => {
+  this.setState({
+      newFriends: {
+          ...this.state.newFriends,
+          [event.target.name]: event.target.value
+      }
+  });
+}
+
+addFriend = event => {
+  event.preventDefault();
+  axios.post('http://localhost:5000/friends', this.state.newFriends)
+      .then(response => this.setState({items: response.data}))
 }
 
   render() {
@@ -35,6 +49,8 @@ componentDidMount() {
         <Home {...props}
         items = {this.state.items}
         newFriends = {this.state.newFriends}
+        addFriend = {this.addFriend}
+        inputHandler = {this.inputHandler}
         />
       )} />
 
@@ -44,6 +60,8 @@ componentDidMount() {
         <FriendsList {...props}
         items = {this.state.items}
         newFriends = {this.state.newFriends}
+        addFriend = {this.addFriend}
+        inputHandler = {this.inputHandler}
         />
       )} />
       </div>
