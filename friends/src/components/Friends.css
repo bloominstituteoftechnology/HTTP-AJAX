@@ -1,0 +1,87 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-weight: bold;
+  }
+  
+  .name {
+    display: flex;
+  }
+  
+  .age {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .email {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  input {
+    margin-left: 10px;
+  }
+  
+  .age > input {
+    margin-left: 23px;
+  }
+  
+  .email > input {
+    margin-left: 11px;
+  }
+  
+  .submit {
+    margin-top: 30px;
+    background-color:  #882829;
+    color: white;
+    font-weight: bold;
+    height: 35px;
+    width: 80px;
+  }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.friend-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .friends {
+    background-color: #fff;
+    color: rgba(0,0,0,0.7);
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+    height: 300px;
+    width: 300px;
+    margin: 20px 30px;
+    border-radius: 15px;
+    font-family: sans-serif;
+  }
+  
+  .friend-title {
+    color: rgba(0,0,0,0.7);
+    padding: 1rem;
+    font-weight: 300;
+    font-size: 30px;
+  }
+  
+  .friend-name {
+    font-weight: 300;
+    font-size: 20px;  
+  }
+  
+  .friend-age {
+    font-size: 12px;
+    padding-top: 8px;
+  }
+  
+  .friend-email {
+    font-size: 12px;
+    padding-top: 8px;
+  }
+  
