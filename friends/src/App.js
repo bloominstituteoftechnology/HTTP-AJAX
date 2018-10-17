@@ -20,7 +20,7 @@ class App extends Component {
   onChangeHandler = e => {
     this.setState({
       newFriend : {
-      // ...this.friendList,
+      ...this.state.newFriend,
       [e.target.name] : e.target.value
     }});
     

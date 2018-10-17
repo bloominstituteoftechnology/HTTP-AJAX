@@ -18,11 +18,14 @@ const AddFriendForm = (props)=>{
                 type="text" 
                 placeholder="Friends Age"
                 onChange={props.onChangeHandler}
+                value={props.newFriend.age} 
                 />
 
                 <input 
                 type="text" 
                 placeholder="Friends Email"
+                value={props.newFriend.email} 
+                name="email"
                 />
 
             </form>
