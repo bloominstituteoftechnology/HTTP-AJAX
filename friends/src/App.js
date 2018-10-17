@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+import FriendsList from './components/FriendsList';
 import './App.css';
 import axios from 'axios';
 
@@ -30,7 +31,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+        <Route path='/' render={props => <FriendsList
+        {...props}
+        friends={this.state.friends} />} />
       </div>
     );
   }
