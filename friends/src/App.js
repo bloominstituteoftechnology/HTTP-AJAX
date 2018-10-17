@@ -8,21 +8,58 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
     }
   }
 
-  componentDidMount() {
+ componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
       .then(response => this.setState({ friends: response.data}))
       .catch(error => console.log(error))
   }
+
+  handleChange = e => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  handleSubmitNewFriend = e => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/friends', this.state.friend)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          friend: {
+            name: '',
+            age: '',
+            email: ''
+          }
+        })
+        console.log(response)
+      })
+      .catch(error => console.log(error));
+  }
+
+ 
   render() {
-    const {friends} = this.state
+    const {friends, friend} = this.state
     return (
       <div className="App">
-        <NewFriend />
+        <NewFriend 
+          newFriend={friend}
+          handleChange={this.handleChange}
+          submitNewFriend={this.handleSubmitNewFriend}
+        />
         <ListFriend friends={friends} />
       </div>
     );
