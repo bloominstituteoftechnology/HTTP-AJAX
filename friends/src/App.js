@@ -26,6 +26,12 @@ class App extends Component {
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   }
+  componentDidUpdate() {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err));
+  }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -40,7 +46,6 @@ class App extends Component {
       .then(res => console.log(res))
       .catch(err => console.log(err));
     this.setState({ name: "", age: "", email: "" });
-    window.location.reload();
   };
   toggleUpdateForm = (id, name, age, email) => {
     this.setState({
@@ -65,14 +70,13 @@ class App extends Component {
       .then(res => console.log(res))
       .catch(err => console.log(err));
     this.setState({ uname: "", uage: "", uemail: "", update: false });
-    window.location.reload();
   };
   deleteFriend = id => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(res => console.log(res))
       .catch(err => console.log(err));
-    window.location.reload();
+    this.setState({});
   };
   render() {
     return (
