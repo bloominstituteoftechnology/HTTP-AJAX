@@ -25,6 +25,7 @@ const AddFriendForm = (props)=>{
                 type="text" 
                 placeholder="Friends Email"
                 value={props.newFriend.email} 
+                onChange={props.onChangeHandler}
                 name="email"
                 />
 

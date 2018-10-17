@@ -27,7 +27,8 @@ class App extends Component {
   }
 
   addNewFriend = e => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
     axios.post('http://localhost:5000/friends', this.state.newFriend)
       .then(response => this.setState({friendList : response.data}))
       .catch(error => console.log(error))
@@ -51,6 +52,7 @@ class App extends Component {
         <AddFriendForm 
           newFriend = {this.state.newFriend}
           onChangeHandler={this.onChangeHandler} 
+          addNewFriend={this.addNewFriend}
         />
       </div>
     );
