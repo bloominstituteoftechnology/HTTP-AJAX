@@ -1,11 +1,13 @@
 import React from "react";
 
 const Form = props => (
-  <form className="form" onSubmit={props.handleSubmit}>
-    <h2>Add Another Friend!</h2>
+  <form className={props.classatr} onSubmit={props.handleSubmit}>
+    <h2>
+      {props.title} <span onClick={props.closeUpdateForm}>{props.close}</span>
+    </h2>
     <input
       type="text"
-      name="name"
+      name={props.name1}
       placeholder="Name"
       onChange={props.handleInputChange}
       value={props.name}
@@ -14,7 +16,7 @@ const Form = props => (
     <br />
     <input
       type="text"
-      name="age"
+      name={props.name2}
       placeholder="Age"
       onChange={props.handleInputChange}
       value={props.age}
@@ -23,7 +25,7 @@ const Form = props => (
     <br />
     <input
       type="email"
-      name="email"
+      name={props.name3}
       placeholder="Email"
       onChange={props.handleInputChange}
       value={props.email}

@@ -180,11 +180,20 @@ h6 {
   box-shadow: 1px 1px 1px grey;
 }
 
-.friend span {
+.friend .update {
   position: absolute;
   font-size: 0.8rem;
   font-weight: 400;
-  top: 5px;
+  top: 2px;
+  left: 5px;
+  cursor: pointer;
+}
+
+.friend .close {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 400;
+  top: 2px;
   right: 5px;
   cursor: pointer;
 }
@@ -200,14 +209,32 @@ h6 {
 }
 
 .form h2,
-.form input {
+.form input,
+.updateForm h2,
+.updateForm input {
   margin-bottom: 5px;
 }
 
-.form input[type="submit"] {
+.form input[type="submit"],
+.updateForm input[type="submit"] {
   width: 130px;
   color: #4267B2;
   font-weight: bold;
   border: 2px solid #4267B2;
   margin-bottom: 0;
+}
+
+.updateForm {
+  position: relative;
+  padding: 10px;
+  border: 2px solid #4267B2;
+  color: grey;
+  margin-bottom: 10px;
+}
+
+.updateForm span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red
 }

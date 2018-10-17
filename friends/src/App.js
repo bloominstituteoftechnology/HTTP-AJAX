@@ -12,7 +12,12 @@ class App extends Component {
       friends: [],
       name: "",
       age: "",
-      email: ""
+      email: "",
+      uname: "",
+      uage: "",
+      uemail: "",
+      update: false,
+      id: ""
     };
   }
   componentDidMount() {
@@ -37,6 +42,31 @@ class App extends Component {
     this.setState({ name: "", age: "", email: "" });
     window.location.reload();
   };
+  toggleUpdateForm = (id, name, age, email) => {
+    this.setState({
+      update: true,
+      id: id,
+      uname: name,
+      uage: age,
+      uemail: email
+    });
+  };
+  closeUpdateForm = () => {
+    this.setState({ update: false });
+  };
+  updateFriend = e => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/friends/${this.state.id}`, {
+        name: this.state.uname,
+        age: this.state.uage,
+        email: this.state.uemail
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+    this.setState({ uname: "", uage: "", uemail: "", update: false });
+    window.location.reload();
+  };
   deleteFriend = id => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
@@ -53,8 +83,30 @@ class App extends Component {
         <FriendsList
           friends={this.state.friends}
           deleteFriend={this.deleteFriend}
+          toggleUpdateForm={this.toggleUpdateForm}
         />
+        {this.state.update && (
+          <Form
+            close="cancel"
+            classatr="updateForm"
+            title="Update Friend!"
+            name1="uname"
+            name2="uage"
+            name3="uemail"
+            name={this.state.uname}
+            age={this.state.uage}
+            email={this.state.uemail}
+            handleInputChange={this.handleInputChange}
+            closeUpdateForm={this.closeUpdateForm}
+            handleSubmit={this.updateFriend}
+          />
+        )}
         <Form
+          classatr="form"
+          title="Add Another Friend!"
+          name1="name"
+          name2="age"
+          name3="email"
           name={this.state.name}
           age={this.state.age}
           email={this.state.email}
