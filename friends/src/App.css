@@ -31,11 +31,23 @@
   }
 }
 
+body {
+  background-color: #a0001e;
+}
 .nav {
-  color: green;
+  background-color: white;
   height: 95px;
   margin-bottom: 5px;
   
+}
+
+.friend {
+  border: 1px solid gray;
+  padding-bottom: 15px;
+}
+
+h2 {
+  color: white;
 }
 
 .hamburger {
@@ -54,18 +66,198 @@
   font-family: 'Montserrat', sans-serif;
   src: url("./Montserrat-Medium.ttf") format("truetype")
 }
+
 h1 {
-  font-family: 'Montserrat', sans-serif;
   letter-spacing: 2px;
-  font-size: 40px;
+  font-size: 30px;
   background: #a0001e;
   color: white;
   padding-top: -20px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 .form {
   height: 50px;
   margin-top: -27px;
   background: #a0001e;
+}
 
+
+label {
+  color: white;
+  padding: 5px;
+  font-size: 20px;
+}
+
+input[type='text'] {
+  color: white;
+}
+
+p {
+  color: white;
+}
+/* 
+
+button {
+  touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: inline-block;
+  border: .2em solid;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.6;
+  color: gray;
+}
+
+
+button:hover {
+  opacity: 1;
+  -webkit-animation: fx-text .3s ease-out;
+          animation: fx-text .3s ease-out;
+  -webkit-animation: fx-text-bis .3s ease-out;
+          animation: fx-text-bis .3s ease-out;
+}
+
+button:active {
+  opacity: 1;
+  background: white;
+  color: inherit;
+}
+
+@-webkit-keyframes fx-mask {
+  0% {
+    -webkit-transform: translateX(-100%) rotate(45deg);
+            transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    -webkit-transform: translateX(100%) rotate(45deg);
+            transform: translateX(100%) rotate(45deg);
+  }
+}
+
+@keyframes fx-mask {
+  0% {
+    -webkit-transform: translateX(-100%) rotate(45deg);
+            transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    -webkit-transform: translateX(100%) rotate(45deg);
+            transform: translateX(100%) rotate(45deg);
+  }
+}
+@-webkit-keyframes fx-text {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1em);
+            transform: translateX(1em);
+    opacity: 0;
+  }
+}
+@keyframes fx-text {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1em);
+            transform: translateX(1em);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fx-text-bis {
+  0% {
+    -webkit-transform: translateX(-1em);
+            transform: translateX(-1em);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fx-text-bis {
+  0% {
+    -webkit-transform: translateX(-1em);
+            transform: translateX(-1em);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+ */
+ button {
+  -webkit-font-smoothing: antialiased;
+  background-color: #222;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  letter-spacing: 1px;
+  color: white;
+  padding: 20px 40px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-out;
+}
+button:hover {
+  background-color: #90feb5;
+  color: #fff;
+}
+button:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+
+@-webkit-keyframes hue-rotate {
+  from {
+    -webkit-filter: hue-rotate(0);
+    -moz-filter: hue-rotate(0);
+    -ms-filter: hue-rotate(0);
+    filter: hue-rotate(0);
+  }
+  to {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -ms-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes hue-rotate {
+  from {
+    -webkit-filter: hue-rotate(0);
+    -moz-filter: hue-rotate(0);
+    -ms-filter: hue-rotate(0);
+    filter: hue-rotate(0);
+  }
+  to {
+    -webkit-filter: hue-rotate(360deg);
+    -moz-filter: hue-rotate(360deg);
+    -ms-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+
+.form .formbutton {
+  margin: 20px;
 }

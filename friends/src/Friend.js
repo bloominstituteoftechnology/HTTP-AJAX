@@ -8,9 +8,10 @@ const Friend = props => {
       <p>Age: {age} </p>
       <p>Email: {email} </p> 
       <button onClick={() => props.handleDelete(props.friend.id)}>Delete Friend</button>
+      <button onClick={() => props.handleUpdate(props.friend.id)}>Update Friend</button>
+
       </div>
     );
   };
   
   export default Friend;
-  

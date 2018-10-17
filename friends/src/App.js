@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import FriendForm from "./FriendForm";
 import FriendList from "./FriendList";
+import NewFriend from "./NewFriend";
 import Nav from "./Nav";
 
 
@@ -58,22 +59,35 @@ class App extends Component {
     window.location.reload();
   };
 
+  handleUpdate = friendId  => {
+    axios.put(`http://localhost:5000/friends/${friendId}`, {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+          })
+         .then(response => this.setState({friends: response.data}))
+         .catch(err => console.log(err));
+  }
+
   
   render() {
     return (
       <div className="App">
         <Nav />
-        <h1>Add a Friend</h1> 
+        <h1>ADD A FRIEND</h1> 
         <FriendForm 
         form={this.state.friend}
         handleChange={this.handleChange}
         handleInput={this.handleInput}
+
         />
         <h2> Friend List: </h2>
         <FriendList 
         friend={this.state.friendData}
         handleDelete={this.handleDelete}
+
          />
+
       </div>
     )
   }
