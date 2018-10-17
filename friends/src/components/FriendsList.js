@@ -22,6 +22,12 @@ class FriendsList extends React.Component {
     });
   };
 
+  changeHandler = e => {
+    this.setState({
+      newFriend: {...this.state.newFriend, [e.target.name]: e.target.value}
+    });
+  };
+
   render() {
     return (
       <div>
@@ -34,18 +40,21 @@ class FriendsList extends React.Component {
             placeholder="Name"
             name="name"
             value={this.state.newFriend.name}
+            onChange={this.changeHandler}
           />
           <input
             type="text"
             placeholder="Age"
             name="age"
             value={this.state.newFriend.age}
+            onChange={this.changeHandler}
           />
           <input
             type="text"
             placeholder="Email"
             name="email"
             value={this.state.newFriend.email}
+            onChange={this.changeHandler}
           />
         </form>
       </div>
