@@ -13,7 +13,6 @@
 .friend-form {
   margin: 30px auto;
   width: 30%;
-  border: 1px solid #ccd9ec;
   padding: 20px;
 }
 
@@ -27,6 +26,10 @@
 .submit {
   width: 150px;
   margin: 20px auto 0;
+  background-color: white;
+  border: 1px solid #eff3ed;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 input {

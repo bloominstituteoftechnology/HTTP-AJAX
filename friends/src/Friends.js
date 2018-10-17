@@ -32,13 +32,17 @@ export default class Friends extends Component {
 
     addFriend = event => {
         event.preventDefault();
-        let newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
-        this.setState(() => ({
-            friends: [...this.state.friends, newFriend],
-            name: '',
-            age: '',
-            email: ''
-        }))
+        const { name, age, email } = this.state;
+        let newFriend = null;
+        name && age && email ? newFriend = {name: name, age: age, email: email} : alert('Please enter friend details')
+        if (newFriend) {
+            this.setState(() => ({
+                friends: [...this.state.friends, newFriend],
+                name: '',
+                age: '',
+                email: ''
+            }))
+        }   
     }
     
     render() {
