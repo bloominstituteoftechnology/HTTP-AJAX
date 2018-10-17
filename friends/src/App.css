@@ -30,3 +30,42 @@
     transform: rotate(360deg);
   }
 }
+
+.nav {
+  color: green;
+  height: 95px;
+  margin-bottom: 5px;
+  
+}
+
+.hamburger {
+  margin: 5px 10px 0px 1050px;
+  background: transparent;
+  border: gray;
+  padding: 15px 15px 15px 15px;
+  color: white;
+}
+
+.nav .logo {
+  margin: -50px 10px 10px 20px;
+}
+
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  src: url("./Montserrat-Medium.ttf") format("truetype")
+}
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  font-size: 40px;
+  background: #a0001e;
+  color: white;
+  padding-top: -20px;
+  padding-bottom: 20px;
+}
+.form {
+  height: 50px;
+  margin-top: -27px;
+  background: #a0001e;
+
+}

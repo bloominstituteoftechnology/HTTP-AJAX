@@ -3,7 +3,7 @@ import React, {Fragment} from 'react';
 const FriendForm = props => {
     return (
       <Fragment>
-      <form>
+      <form className="form">
         <label>Name: </label>
         <input 
           type="text" 
@@ -28,6 +28,9 @@ const FriendForm = props => {
           name="email" />
         <button onClick={props.handleInput}>Submit</button>
       </form>
+      
+
+
     </Fragment>
   );
 
