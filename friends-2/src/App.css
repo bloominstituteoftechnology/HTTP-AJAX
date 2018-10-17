@@ -1,0 +1,28 @@
+.App {
+  text-align: left;
+  border: 1px solid salmon;
+  width: 800px;
+  margin: 0 auto;
+}
+input {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  padding: 5px;
+  font-size: 20px;
+}
+button {
+  padding: 10px;
+  height: 35px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: palevioletred;
+  color: white;
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+li {
+  list-style-type: none;
+  line-height: 26px;
+}
