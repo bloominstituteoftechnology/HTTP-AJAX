@@ -1,0 +1,22 @@
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+}
+.form-container form {
+}
+.form-container input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px lightgrey solid;
+  text-align: center;
+  margin: auto;
+}
+.friends-container {
+  max-width: 600px;
+  margin: auto;
+}
+.form-container #submit {
+  background: green;
+  color: white;
+}
