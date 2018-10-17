@@ -11,9 +11,8 @@ class FriendsList extends React.Component {
     return ( 
       <div className="FriendsContainer">
         {friends.map(friend => {
-          return <Friend {...friend} />
+          return <Friend key={friend.id} {...friend} />
         })}
-
       </div>
     );
   }

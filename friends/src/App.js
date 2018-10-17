@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendsList from './Components/FriendsList';
+import FriendForm from './Components/FriendForm';
 import './App.css';
+
+const serverRoot = 'http://localhost:5000';
 
 class App extends Component {
   constructor() {
@@ -13,15 +16,23 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/friends')
+      .get(serverRoot + '/friends')
       .then(res => this.setState({friends: res.data}))
       .catch(error => console.log(error));
+  }
 
+  addNewFriend = (newFriendObj) => {
+    console.log(newFriendObj)
+    axios
+      .post(serverRoot + '/friends', newFriendObj)
+      .then(res => this.setState({friends: res.data}))
+      .catch(error => console.log(error));
   }
 
   render() {
     return (
       <div className="App">
+        <FriendForm addNewFriend={this.addNewFriend}/>
         <FriendsList friends={this.state.friends}></FriendsList>
       </div>
     );
