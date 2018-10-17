@@ -1,12 +1,15 @@
 import React from'react';
 
-function FriendsList (props) {
-    return (
+const FriendsList = props =>{
+    return(
         <div>
-            <h1> Friends List </h1>
-            <p className = 'friends-list'> {props.friends}</p>
+            <p>{props.friends.name}</p>
+            <p>{props.friends.age}</p>
+            <p>{props.friends.email}</p>
+            <p>{props.friends.id}</p>
         </div>
     )
 }
+
 
 export default FriendsList;
