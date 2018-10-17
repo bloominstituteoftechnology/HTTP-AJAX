@@ -50,6 +50,9 @@ class App extends Component {
            })
            .catch(err => console.log(err))
     }
+    else {
+      alert("Please enter some data about your friend.")
+    }
     document.querySelector('form').reset();
   }
 
