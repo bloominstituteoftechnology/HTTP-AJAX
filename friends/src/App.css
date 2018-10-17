@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.friends {
+  font-size: 2rem;
+  padding: 20px;
+  margin: 20px;
+  border: 4px double black;
+}
+
+.friend-form {
+  margin: 30px auto;
+  width: 50%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+input {
+  font-size: 1.6rem;
+  padding: 10px;
+  margin: 10px;
+}
+
+.friend-card {
+  padding: 20px;
+  margin: 30px auto;
+  text-align: start;
+  border: 1px solid #ccd9ec;
+  background-color: #ccd9ec;
+  border-radius: 4px;
+  width: 300px;
+  font-size: 1.8rem;
+}
