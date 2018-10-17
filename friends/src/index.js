@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import FriendsList from './components/FriendsList';
 
 class App extends React.Component {
   // add constructor and CDM
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friends: [],
       newFriend: {
@@ -21,7 +22,6 @@ class App extends React.Component {
       .get('http://localhost:5000/friends')
       .then(response => this.setState({ friends: response.data }))
       .catch(error => console.log(error));
-    //     this.setState({ items: data });
   }
 
   render() {
@@ -32,6 +32,7 @@ class App extends React.Component {
           <p>
             Welcome to the Friends App!
           </p>
+          <FriendsList friends = {this.state.friends}/>
         </header>
       </div>
     );
