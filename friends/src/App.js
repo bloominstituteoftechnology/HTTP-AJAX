@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       friends: [],
       newFriend: {
+        id: 0,
         name: "",
         age: "",
         email: ""
@@ -26,25 +27,49 @@ class App extends Component {
   addFriend = event => {
     event.preventDefault();
     let friend = this.state.newFriend;
-    if (friend.name && friend.age && friend.email) {
-      //add friend to list if all fields have had something entered
-    } else {
-      alert(
-        "You clearly don't know enough about them. Fill out all fields if they're really your friend."
-      );
+    //we'll only add the new friend to the list if all fields have had something entered
+    if (friend.name !== "" && friend.age !== "" && friend.email !== "") {
       this.setState({
         newFriend: {
+          ...this.state.newFriend,
+          id: this.state.friends.length + 1
+        }
+      });
+      //POST request that sends newFriend on state and adds it to the URL
+      axios
+        .post("http://localhost:5000/friends", this.state.newFriend)
+        .then(res => {
+          //if successful, will set state to new data returned from the response
+          //which now includes the new friend
+          this.setState({ friends: res.data });
+        })
+        .catch(err => {
+          //otherwise logs an error
+          console.log(err, "You borked it");
+        });
+      //then resets input fields by setting newFriend on state back to default
+      //ONLY do this if input was successful. nobody wants to have to re-enter
+      //all the fields in a form just because they missed one, right?
+      this.setState({
+        newFriend: {
+          id: 0,
           name: "",
           age: "",
           email: ""
         }
       });
+    } else {
+      //if not all fields have been filled, throws alert to this effect
+      alert(
+        "Are you sure you know this person? Fill out all fields if they're really your friend."
+      );
     }
   };
 
   changeHandler = (key, value) => {
     this.setState({
       newFriend: {
+        ...this.state.newFriend,
         [key]: value
       }
     });
