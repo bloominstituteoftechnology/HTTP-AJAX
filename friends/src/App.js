@@ -11,27 +11,23 @@ class App extends Component {
       friendlist: [],
     };
   }
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
+        console.log(response.data)
         this.setState(() => ({ friendList: response.data }));
       })
       .catch(error => {
         console.error('Server Error', error);
       });
-  }{
-    name: should be a string,
-    age: should be a number,
-    email: should be a string,
   }
 
   render() {
     return (
       <div className="friend-list">
-        {this.state.friendList.map(friend => (
-          <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email}/>
-        ))}
+      
       </div>
     );
   }
@@ -39,7 +35,13 @@ class App extends Component {
 
 export default App;
 
-/*<header className="App-header">
+/*
+ {this.state.friendList.map(friend => (
+          <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email}/>
+        ))}
+
+
+<header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -55,25 +57,4 @@ export default App;
         </header>*/
       
       
-      function MovieDetails({ movie }) {
-        const { title, director, metascore, stars } = movie;
-        return (
-          <div className="movie-card">
-            <h2>{title}</h2>
-            <div className="movie-director">
-              Director: <em>{director}</em>
-            </div>
-            <div className="movie-metascore">
-              Metascore: <strong>{metascore}</strong>
-            </div>
-            <h3>Actors</h3>
-      
-            {stars.map(star => (
-              <div key={star} className="movie-star">
-                {star}
-              </div>
-            ))}
-          </div>
-        );
-      }
       
