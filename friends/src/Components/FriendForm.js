@@ -11,7 +11,7 @@ function FriendForm(props) {
 
   return (
     <Fragment>
-      <h2>{'Please be my friend!'}</h2>
+      <h2>{'Will you be my friend?'}</h2>
       <form>
         <div className="group">
           <input

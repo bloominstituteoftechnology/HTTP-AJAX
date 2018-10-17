@@ -43,20 +43,33 @@ class App extends Component {
     });
   };
 
-  handleAddNewFriend = event => {
-    console.log(event);
-    event.preventDefault();
-    axios
-      .post('http://localhost:5000/friends', this.state.friend)
-      .then(response =>
-        this.setState({ friends: response.data, friend: blankFormValues })
-      );
-  };
+  // handleAddNewFriend = event => {
+  //   console.log(event);
+  //   event.preventDefault();
+  //   axios
+  //     .post('http://localhost:5000/friends', this.state.friend)
+  //     .then(response =>
+  //       this.setState({ friends: response.data, friend: blankFormValues })
+  //     );
+  // };
 
-  handleRemove = event => {
-    event.preventDefault();
-    axios.delete('http://localhost:5000/friends', { data: this.state.friend });
-  };
+  // handleUpdateFriend = event => {
+  //   event.preventDefault();
+  //   axios.put(`http://localhost:5000/friends/${this.state.friends.id}`)
+  //   .then(response =>
+  //     this.setState({ friends: response.data, friend: blankFormValues }))
+  // }
+
+  // handleRemove = event => {
+  //   event.preventDefault();
+  //   axios.delete(`http://localhost:5000/friends/${this.state.friends.id}`)
+  //   .then(response => {
+  //     this.setState({ friends: response.data, })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  //   }
+  // };
 
   render() {
     return (
