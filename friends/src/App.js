@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
+import Form from './components/Form'
 import Card from './components/Card'
-import { ContentWrapper } from './styles/Global'
+import { FormWrapper, CardsWrapper } from './styles/Global'
 
 class App extends Component {
   state = {
@@ -19,10 +20,15 @@ class App extends Component {
     const { friends } = this.state
 
     return (
-      <ContentWrapper>
-        {friends.length &&
-          friends.map((friend, i) => <Card key={i} {...friend} />)}
-      </ContentWrapper>
+      <Fragment>
+        <FormWrapper>
+          <Form />
+        </FormWrapper>
+        <CardsWrapper>
+          {friends.length &&
+            friends.map((friend, i) => <Card key={i} {...friend} />)}
+        </CardsWrapper>
+      </Fragment>
     )
   }
 }
