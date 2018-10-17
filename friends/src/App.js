@@ -56,11 +56,16 @@ class App extends Component {
     this.setState({ [targetName]: e.target.value });
   };
 
+  unFriend = e =>{
+    let friendId = e.target.id;
+    axios.delete(`http://localhost:5000/friends/${friendId}`).then(()=> this.pullFriendsData())
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Lambda Friends</h1>
-        <FriendsList friends={this.state.friends} />
+        <FriendsList friends={this.state.friends} unFriend={this.unFriend}/>
         <FriendForm
           changeHandler={this.changeHandler}
           addFriend={this.addFriend}
