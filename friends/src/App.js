@@ -33,7 +33,7 @@ class App extends Component {
   deleteFriend = (e) => {
     e.preventDefault();
     axios
-      .delete('http://localhost:5000/friends/', {params : {id: e.target.id}})
+      .delete(`http://localhost:5000/friends/${e.target.id}`)
       .then(response => this.setState({friends: response.data}))
       .catch(error => console.log(error));
   }
@@ -47,6 +47,12 @@ class App extends Component {
       .post(url , this.state.newFriend)
       .then(response => this.setState({friends: response.data}))
       .catch(error => console.log(error));
+
+    this.setState({newFriend: {
+                        name: '',
+                        age: '',
+                        email: '',
+    }})
   }
 
   updateFriend = (e) => {
@@ -55,6 +61,11 @@ class App extends Component {
       .put(`http://localhost:5000/friends/${e.target.id}`, this.state.newFriend)
       .then(response => this.setState({friends: response.data}))
       .catch(error => console.log(error));
+      this.setState({newFriend: {
+        name: '',
+        age: '',
+        email: '',
+}})
   }
 
   render() {
