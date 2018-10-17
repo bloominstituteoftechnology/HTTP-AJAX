@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import FriendsList from './components/FriendsList';
+import NewFriend from './components/NewFriend';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ class App extends Component {
     const { friends } = this.state;
     return (
       <div className="App">
+        <NewFriend />
         <FriendsList friends={friends} />
       </div>
     );
