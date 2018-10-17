@@ -13,9 +13,18 @@ export const Container = styled.div`
 
   border: 1px dashed #7f7f7f;
   border-radius: 7px;
+
+  position: relative;
 `
 
 export const Line = styled.p`
   font-size: 16px;
   margin: 5px 0;
+`
+
+export const Close = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
 `

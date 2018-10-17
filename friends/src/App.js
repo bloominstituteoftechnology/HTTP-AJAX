@@ -31,7 +31,9 @@ class App extends Component {
         </FormWrapper>
         <CardsWrapper>
           {friends.length &&
-            friends.map((friend, i) => <Card key={i} {...friend} />)}
+            friends.map((friend, i) => (
+              <Card key={i} {...friend} updateFriends={updateFriends} />
+            ))}
         </CardsWrapper>
       </Fragment>
     )
