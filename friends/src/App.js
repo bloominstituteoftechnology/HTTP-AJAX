@@ -56,12 +56,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div>
+          <div>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink to="/my-friends">My Friends</NavLink>
+          </div>
+          <div>
+            <NavLink to="/friend-form">Be Matt's Friend!</NavLink>
+          </div>
+        </div>
         <Route exact path="/" component={Home} />
         <Route
           exact
           path="/my-friends"
           render={props => (
-            <Friends {...props} friendsProps={this.state.friends} />
+            <FriendsList {...props} friendsProps={this.state.friends} />
           )}
         />
         <Route
