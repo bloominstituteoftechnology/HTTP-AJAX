@@ -3,7 +3,7 @@ import './Friends.css';
 
 const FriendsForm = props => {
     return (
-        <div>
+        <div className="form-container">
             <div className="friend-title">Friends</div>
             <div className="form">
                 <form>

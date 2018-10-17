@@ -1,3 +1,10 @@
+.form-container {
+    margin: 20px auto;
+    border: 0.5px solid black;
+    height: 280px;
+    width: 350px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
