@@ -1,12 +1,19 @@
 import React from 'react';
+import {Button} from './Styled-components.js'
 import '../App.css';
+import Form from './Form.js'
 
 
 const Friend = (props) => {
     console.log(props.friend)
     return (
         <div >
-            
+            <Button > 
+                Home 
+            </Button>
+            <Button onClick={() => <Form />} >
+                Add Friend 
+            </Button>
             {props.friend.map(friend => {
                 return (
                       <div className = "friend-card">
@@ -17,6 +24,7 @@ const Friend = (props) => {
                      )
                 })
             }
+            
         </div>
     );
 }
