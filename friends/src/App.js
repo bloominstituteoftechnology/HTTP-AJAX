@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendsList from './components/FriendsList'
-
+import NewFriendForm from './components/NewFriendForm'
 import './App.css';
 
 
@@ -30,7 +30,24 @@ changeHandler = event => {
   this.setState({[event.target.name]: event.target.value});
 }
 
+addFriendButton = event => {
+  const friend = {
+    id: null,
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email,
+  };
+  axios
+  .post('http://localhost:5000/friends', friend )
+  .then( response => console.log("Response: ", response)) 
+  .catch (error => console.log('Error: ', error ))
+}
 
+/* axios promises
+    .then - do this
+    .catch - if all .then not working then .catch will return the error response
+
+*/
 render() {
   console.log('data..', this.state.friends);
   return (
@@ -38,9 +55,15 @@ render() {
     <div className="App">
       {
        this.state.friends.map(element => {
-         return <FriendsList friends={element}/>
+         return <FriendsList key={element.id} friends={element}/>
+
        })
       }
+      <NewFriendForm 
+        addNewFriend = {this.addFriendButton}
+        changeHandler={this.changeHandler} 
+      
+      />
     </div>
   );
 }
