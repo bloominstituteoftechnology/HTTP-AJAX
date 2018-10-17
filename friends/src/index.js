@@ -1,12 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends React.Component {
+  // add constructor and CDM
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+      newFriend: {
+        age: '',
+        name: '',
+        email: ''
+      }
+    };
+  }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+    //     this.setState({ items: data });
+  }
+
+  render() {
+    console.log(this.state);
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Welcome to the Friends App!
+          </p>
+        </header>
+      </div>
+    );
+  }
+}
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App />, rootElement);
+
+
