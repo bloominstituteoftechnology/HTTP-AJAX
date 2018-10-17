@@ -32,6 +32,16 @@ class App extends Component {
       .catch(err => console.error(err));
   }
 
+  updateFriend = (ev) => {
+    
+  }
+
+  deleteFriend = (id) => {
+    axios.delete(`${this.state.url}/friends/${id}`)
+      .then(({data}) => this.setState({friends: data}))
+      .catch(err => console.error(err));
+  }
+
   changeHandler = (ev) => {
     ev.preventDefault();
     this.setState({ newFriend: { ...this.state.newFriend, [ev.target.name]: ev.target.value}});
@@ -55,6 +65,8 @@ class App extends Component {
             <span>{friend.name}</span>
             <span>{friend.age}</span>
             <span>{friend.email}</span>
+            <span><button>update</button></span>
+            <span><button onClick={() => this.deleteFriend(friend.id)}>delete</button></span>
           </div>
           )
         })}
