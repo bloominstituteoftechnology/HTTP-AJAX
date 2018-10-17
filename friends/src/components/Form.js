@@ -21,6 +21,13 @@ class Form extends Component {
   handleSubmit = event => {
     event.preventDefault()
     
+    const { name, age, email } = this.state 
+
+    if (name.trim().length && Number.isInteger(parseInt(age)) && email.trim().length) {
+      console.log('good to go')
+    } else {
+      console.log('try harder')
+    }
   }
 
   render() {
