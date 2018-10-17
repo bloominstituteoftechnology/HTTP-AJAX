@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FriendForm from './FriendForm';
+import FriendList from './FriendList';
 
 class App extends Component {
   constructor(props) {
@@ -61,23 +63,19 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <form onSubmit={this.addNewFriend}>
-          <input type="text" name="name" placeholder="Name" value={this.state.newFriend.name} onChange={this.changeHandler}/>
-          <input type="text" name="age" placeholder="Age" value={this.state.newFriend.age} onChange={this.changeHandler}/>
-          <input type="text" name="email" placeholder="Email" value={this.state.newFriend.email} onChange={this.changeHandler}/>
-          <button>{this.state.updateFriend?'Update Friend':'Add Friend'}</button>
-        </form>
-        {this.state.friends.map(friend => {
-         return (
-          <div key={friend.id}>
-            <span>{friend.name}</span>
-            <span>{friend.age}</span>
-            <span>{friend.email}</span>
-            <span><button  onClick={() => this.updateFriend(friend)}>update</button></span>
-            <span><button onClick={() => this.deleteFriend(friend.id)}>delete</button></span>
-          </div>
-          )
-        })}
+        <div className="container">
+          <FriendForm 
+            friend={this.state.newFriend}
+            changeHandler={this.changeHandler}
+            addNewFriend={this.addNewFriend}
+            updateFriend={this.state.updateFriend}
+          />
+          <FriendList 
+            friends={this.state.friends}
+            updateFriend={this.updateFriend}
+            deleteFriend={this.deleteFriend}
+          />
+        </div>
       </div>
     );
   }
