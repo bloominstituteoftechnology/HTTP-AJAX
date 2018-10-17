@@ -15,7 +15,7 @@ class Friend extends React.Component {
 
   handleEdit = event => {
     this.setState({
-      editing: true, 
+      editing: true,
     })
   }
 
@@ -28,7 +28,16 @@ class Friend extends React.Component {
   handleEditSubmit = event => {
     event.preventDefault();
     if (this.state.name && this.state.age && this.state.email) {
-      this.props.editFriend(this.state.id, this.state.name, this.state.age, this.state.email);
+      const editedFriend = {
+        id: this.state.id,
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email,
+      };
+      this.props.editFriend(editedFriend);
+      this.setState({
+        editing: false, 
+      })
     } else {
       alert('You seem to be missing some information');
     }

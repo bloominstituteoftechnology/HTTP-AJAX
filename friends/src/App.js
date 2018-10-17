@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Friends from './components/Friends';
-import AddFriend from './components/NewFriendForm';
+import AddFriend from './components/AddFriend';
 import './App.css';
 
 class App extends Component {
@@ -39,7 +39,11 @@ class App extends Component {
   }
 
     editFriend = friend => {
-
+      axios
+        .put(`${this.url}/${friend.id}`, friend)
+        .then(response => {
+          this.setState({ friendList: response.data})
+        })
     }
 
 
@@ -48,7 +52,7 @@ class App extends Component {
       <div className='app'>
         <Friends
         friendList={this.state.friendList}
-        editFriend={this.state.editFriend}
+        editFriend={this.editFriend}
         />
         <AddFriend handleInput={this.handleInput} addNewFriend={this.addNewFriend}/>
       </div>
