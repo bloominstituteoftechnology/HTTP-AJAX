@@ -5,7 +5,12 @@ class FriendsList extends React.Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      newFriend: {
+        name: "",
+        age: "",
+        email: ""
+      }
     };
   }
 
@@ -13,6 +18,7 @@ class FriendsList extends React.Component {
     axios.get("http://localhost:5000/friends").then(response => {
       console.log(response);
       this.setState({friends: response.data});
+      // .catch(err => console.log(err));
     });
   };
 
@@ -20,8 +26,28 @@ class FriendsList extends React.Component {
     return (
       <div>
         {this.state.friends.map(friend => {
-          return <div>{friend.name}</div>;
+          return <div key={friend.id}>{friend.name}</div>;
         })}
+        <form action="">
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            value={this.state.newFriend.name}
+          />
+          <input
+            type="text"
+            placeholder="Age"
+            name="age"
+            value={this.state.newFriend.age}
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={this.state.newFriend.email}
+          />
+        </form>
       </div>
     );
   }
