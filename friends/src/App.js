@@ -44,8 +44,16 @@ class App extends Component {
   }  
   handleTextChange = event =>{
     this.setState({[event.target.id]:event.target.value})
-}
+  }
+  handleDeleteFriend = event =>{
+    axios.delete(`http://localhost:5000/friends/${event.target.id}`)
+    .then(response => this.getAllFriends())
+    .catch(error => console.log('error. ',error))
 
+  } 
+  handleUpdateFriend = event =>{
+    
+  }
 
   render() {
     console.log('data..', this.state.data);
@@ -54,7 +62,7 @@ class App extends Component {
       <div className="App">
         {
          this.state.data.map(element => {
-           return <Friend key={element.id} data={element}/>
+           return <Friend handleDeleteFriend={this.handleDeleteFriend} key={element.id} data={element}/>
          })
         }
         <NewFriend handleAddNewFriend = {this.handleAddNewFriend}

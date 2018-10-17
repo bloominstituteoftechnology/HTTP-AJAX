@@ -1,13 +1,13 @@
 import React from 'react';
+import './friend.css'
 
 
 const Friend = props =>{
     return(
-        <div>
-            <p>{props.data.name}</p>
-            <p>{props.data.age}</p>
-            <p>{props.data.email}</p>
-            <p>{props.data.id}</p>
+        <div className='wrapperDiv'>
+            <button onClick={props.handleDeleteFriend} id={props.data.id}>Update</button>
+            <p>{props.data.id} {props.data.name} {props.data.age} {props.data.email}</p> 
+            <button onClick={props.handleDeleteFriend} id={props.data.id}>Delete</button>
         </div>
     )
 }
