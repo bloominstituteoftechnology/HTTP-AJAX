@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import uuid from 'uuid'
 import {
   FormContainer,
   FormTitle,
@@ -20,11 +22,30 @@ class Form extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    
-    const { name, age, email } = this.state 
 
-    if (name.trim().length && Number.isInteger(parseInt(age)) && email.trim().length) {
-      console.log('good to go')
+    const { name, age, email } = this.state
+
+    if (
+      name.trim().length &&
+      Number.isInteger(parseInt(age)) &&
+      email.trim().length
+    ) {
+      axios
+        .post('http://localhost:5000/friends', {
+          name,
+          age,
+          email,
+          id: uuid()
+        })
+        .then(res => {
+          this.props.updateFriends(res.data)
+          this.setState({
+            name: '',
+            age: '',
+            email: ''
+          })
+        })
+        .catch(err => console.log(err))
     } else {
       console.log('try harder')
     }

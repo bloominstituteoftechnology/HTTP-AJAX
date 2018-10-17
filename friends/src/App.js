@@ -16,13 +16,18 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  updateFriends = friends => {
+    this.setState({ friends })
+  }
+
   render() {
     const { friends } = this.state
+    const { updateFriends } = this
 
     return (
       <Fragment>
         <FormWrapper>
-          <Form />
+          <Form updateFriends={updateFriends} />
         </FormWrapper>
         <CardsWrapper>
           {friends.length &&
