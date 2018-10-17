@@ -10,7 +10,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
     };
   }
 
@@ -20,11 +25,41 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleChange = e => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [e.target.name]: e.target.value
+      }
+    });
+  }
+
+  handleSubmitNewFriend = e => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/friends', this.state.friend)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          friend: {
+            name: '',
+            age: '',
+            email: ''
+          }
+        });
+        console.log(response)
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
-    const { friends } = this.state;
+    const { friends, friend } = this.state;
     return (
       <div className="App">
-        <NewFriend />
+        <NewFriend
+          newFriend={friend}
+          handleChange={this.handleChange}
+          submitNewFriend={this.handleSubmitNewFriend}
+        />
         <FriendsList friends={friends} />
       </div>
     );

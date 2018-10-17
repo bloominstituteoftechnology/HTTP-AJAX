@@ -5,10 +5,10 @@ const FriendsList = (props) => {
 
   return (
     <div>
-      <h1>Friends List</h1>
+      <h2>Friends List</h2>
       {friends.map(friend => (
         <div key={friend.id}>
-          <h2>name: {friend.name}</h2>
+          <p>name: {friend.name}</p>
           <p>age: {friend.age}</p>
           <p>email: {friend.email}</p>
           <hr />
