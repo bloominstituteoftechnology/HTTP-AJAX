@@ -56,17 +56,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
+        <div className="navbar">
           <div>
-            <NavLink exact to="/">
+            <NavLink exact to="/" activeClassName="active-nav-button">
               Home
             </NavLink>
           </div>
           <div>
-            <NavLink to="/my-friends">My Friends</NavLink>
+            <NavLink to="/my-friends" activeClassName="active-nav-button">
+              My Friends
+            </NavLink>
           </div>
           <div>
-            <NavLink to="/friend-form">Be Matt's Friend!</NavLink>
+            <NavLink to="/friend-form" activeClassName="active-nav-button">
+              Be Matt's Friend!
+            </NavLink>
           </div>
         </div>
         <Route exact path="/" component={Home} />
