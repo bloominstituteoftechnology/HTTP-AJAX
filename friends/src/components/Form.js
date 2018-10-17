@@ -1,7 +1,7 @@
 import React from "react";
 
 const Form = props => (
-  <form className="form">
+  <form className="form" onSubmit={props.handleSubmit}>
     <h2>Add Another Friend!</h2>
     <input
       type="text"

@@ -172,9 +172,42 @@ h6 {
 }
 
 .friend {
+  position: relative;
   width: 200px;
   background: #fff;
   padding: 10px;
   margin: 5px 5px;
   box-shadow: 1px 1px 1px grey;
+}
+
+.friend span {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 400;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.friend span:hover {
+  color: red;
+}
+
+.form {
+  padding: 10px;
+  background: #4267B2;
+  color: #fff;
+}
+
+.form h2,
+.form input {
+  margin-bottom: 5px;
+}
+
+.form input[type="submit"] {
+  width: 130px;
+  color: #4267B2;
+  font-weight: bold;
+  border: 2px solid #4267B2;
+  margin-bottom: 0;
 }
