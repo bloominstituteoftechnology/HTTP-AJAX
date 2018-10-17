@@ -7,11 +7,11 @@ class FriendsList extends React.Component {
     this.state = {  }
   }
   render() { 
-    const { friends } = this.props;
+    const { friends, deleteFriend } = this.props;
     return ( 
       <div className="FriendsContainer">
         {friends.map(friend => {
-          return <Friend key={friend.id} {...friend} />
+          return <Friend key={friend.id} deleteFriend={deleteFriend} {...friend} />
         })}
       </div>
     );

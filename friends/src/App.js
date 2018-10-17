@@ -29,11 +29,18 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
+  deleteFriend = (event, id) => {
+     axios
+      .delete(serverRoot + '/friends/' + id)
+      .then(res => this.setState({friends: res.data}))
+      .catch(error => console.log(error));
+ }
+
   render() {
     return (
       <div className="App">
         <FriendForm addNewFriend={this.addNewFriend}/>
-        <FriendsList friends={this.state.friends}></FriendsList>
+        <FriendsList friends={this.state.friends} deleteFriend={this.deleteFriend}></FriendsList>
       </div>
     );
   }
