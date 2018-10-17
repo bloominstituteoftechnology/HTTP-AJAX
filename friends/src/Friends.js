@@ -5,11 +5,14 @@ import styles from './App.css';
 export default class Friends extends Component {
     constructor(props) {
         super(props);
+        this.url = 'http://localhost:5000/friends'
         this.state = {
             friends: [],
+            id: null,
             name: '',
             age: '',
-            email: ''
+            email: '',
+            editingId: null
         }
     }
 
@@ -32,19 +35,46 @@ export default class Friends extends Component {
 
     addFriend = event => {
         event.preventDefault();
-        const { name, age, email } = this.state;
+        const { friends, name, age, email } = this.state;
         let newFriend = null;
-        name && age && email ? newFriend = {name: name, age: age, email: email} : alert('Please enter friend details')
+
+        name && age && email ?
+        newFriend = {id: friends.length + 1, name: name, age: age, email: email} :
+        alert('Please enter friend details')
+        
         if (newFriend) {
             this.setState(() => ({
                 friends: [...this.state.friends, newFriend],
+                id: null,
                 name: '',
                 age: '',
                 email: ''
             }))
-        }   
+        }
+        axios
+            .post(this.url, newFriend) 
+            .then(response => {
+                this.setState({ friends: response.data })
+              })
+              .catch(error => {
+                console.log('Error: we\'re sorry, your friend could not added', error);
+        });  
     }
     
+    editFriend = (id, name, age, email) => {
+        this.setState(() => ({
+            editingId: id,
+            id: id,
+            age: age,
+            name: name,
+            email: email
+        }))
+    }
+
+    editSubmit = (event, friend) => {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div className='friends'>
@@ -59,11 +89,23 @@ export default class Friends extends Component {
                 <div className="friend-list">Friend List
                     {this.state.friends.map(friend => {
                         return (
-                            <div className="friend-card">
-                                <div>Name: {friend.name}</div>
-                                <div>Age: {friend.age}</div>
-                                <div>Email: {friend.email}</div>
-                            </div>)
+                        <div className="friend-card">
+                            <div>Name: {friend.name}</div>
+                            <div>Age: {friend.age}</div>
+                            <div>Email: {friend.email}</div>
+                            <div className='friend-btns'>
+                                <div className='btn' onClick={(id, name, age, email) => this.editFriend(friend.id, friend.name, friend.age, friend.email)}>edit</div>
+                                <div className='btn'>delete</div>
+                            </div>
+                            <div className={this.state.editingId === friend.id ? 'edit-form' : 'hidden'}>Update Friend
+                                <form className='form' onSubmit={(friend) => this.editSubmit(friend)}>
+                                    <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name'></input>
+                                    <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age'></input>
+                                    <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email'></input>
+                                    <input className='submit' type='submit' value='Submit'/>
+                                </form>
+                            </div>
+                        </div>)
                     })}
                 </div>
             </div>
