@@ -21,7 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 250px;
+    height: 300px;
     width: 45%;
     border: 1px solid #444444;
     margin: 20px auto;
@@ -51,7 +51,7 @@ button {
     width: 200px;
     height: 40px;
     border-radius: 10px;
-    padding-left: 5px;
+    margin: 10px 0;
     background: #ffffff;
     color: #444444;
     cursor: pointer;
