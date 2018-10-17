@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Route from 'react-router-dom';
 import axios from 'axios';
+import Home from './components/Home';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +9,7 @@ class App extends Component {
     super();
     this.state = {
       items: [],
-      newFriend: {
+      newFriends: {
         age: '',
         name: '',
         email: ''
@@ -25,6 +27,17 @@ componentDidMount() {
   render() {
     return (
       <div className="App">
+
+      <Route
+      exact path = "/"
+      render = {props => (
+        <Home {...props}
+        items = {this.state.items}
+        newFriends = {this.state.newFriends}
+        />
+      )} />
+
+
 
       </div>
     );
