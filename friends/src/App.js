@@ -7,11 +7,14 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
+      friendToUpdate: null,
       newFriend: {
         name: "",
         age: "",
-        email: ""
-      }
+        email: "",
+        id: null
+      },
+      isUpdating: false
     };
   }
   componentDidMount() {
@@ -39,6 +42,23 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  handleUpdate = id => {
+    const friendToUpdate = this.state.friends.find(friend => friend.id == id);
+    this.setState({
+      friendToUpdate,
+      newFriend: friendToUpdate,
+      isUpdating: true
+    });
+  };
+
+  handleSubmitUpdate = id => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+    this.setState({ isUpdating: false });
+  };
+
   render() {
     return (
       <div className="App">
@@ -51,33 +71,45 @@ class App extends Component {
               <p>
                 Email: <a href={`mailto:${friend.email}`}>{friend.email}</a>
               </p>
+              <a href="#update">
+                <button onClick={() => this.handleUpdate(friend.id)}>
+                  Update
+                </button>
+              </a>
             </div>
           ))}
         </div>
-        <form action="submit" method="post">
-          <h2>Add a new friend</h2>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name="age"
-            placeholder="Age"
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={this.handleChange}
-          />
-          <button type="submit" onClick={this.handleSubmit}>
-            Submit
-          </button>
-        </form>
+        <div className="form-container">
+          <form action="submit" id="update">
+            <h2>{this.state.isUpdating ? "Update a Friend" : "Submit New Friend"}</h2>
+            <input
+              type="text"
+              value={this.state.newFriend.name}
+              name="name"
+              placeholder="Name"
+              onChange={this.handleChange}
+            />
+            <input
+              type="text"
+              value={this.state.newFriend.age}
+              name="age"
+              placeholder="Age"
+              onChange={this.handleChange}
+            />
+            <input
+              type="text"
+              value={this.state.newFriend.email}
+              name="email"
+              placeholder="Email"
+              onChange={this.handleChange}
+            />
+            <button
+              onClick={this.state.isUpdating ? () => this.handleSubmitUpdate(this.state.newFriend.id) : this.handleSubmit}
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

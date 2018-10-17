@@ -1,42 +1,60 @@
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto
+    display: flex;
+    flex-direction: column;
+    width: 1024px;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto
 }
 
 .friends-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
 }
 
 .friend-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 45%;
+    border: 1px solid #444444;
+    margin: 20px auto;
+    border-radius: 5px;
+}
+.form-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  height: 180px;
-  width: 40%;
-  border: 1px solid #444444;
-  margin: 20px auto;
-  border-radius: 5px;
+  width: 600px;
 }
-
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
 }
 
-form input, form button {
-  width: 200px;
-  height: 35px;
-  margin: 10px;
-  border-radius: 10px;
-  padding-left: 5px;
+form input {
+    width: 200px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
+button {
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 5px;
+    background: #ffffff;
+    color: #444444;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
 }
