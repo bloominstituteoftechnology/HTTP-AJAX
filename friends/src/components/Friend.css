@@ -5,6 +5,15 @@
   margin: 10px auto;
 }
 
+.new-friend {
+  border: 1px solid #333;
+  background: #f8f8f8;
+  max-width: 800px;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+}
+
 p {
   margin: 5px 0;
   padding: 0;
@@ -15,4 +24,24 @@ p {
   grid-template-columns: 1fr 3fr;
   justify-items: center;
   align-content: center;
+}
+
+.new-friend .friend-row {
+  grid-template-columns: 1fr 4fr;
+}
+
+.button-cell {
+  display: flex;
+  flex-align: center;
+}
+
+button {
+  width: 100px;
+  margin: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
 }

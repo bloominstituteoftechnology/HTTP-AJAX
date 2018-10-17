@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
 
-import Friend from './Friend'
+import Friend from './Friend';
+import NewFriend from './NewFriend';
 
 class FriendsList extends React.Component {
   constructor() {
@@ -23,6 +24,7 @@ class FriendsList extends React.Component {
     return (
       <div className='friend-list'>
         {this.state.friends.map(friend => <Friend name={friend.name} age={friend.age} email={friend.email} key={friend.id}/>)}
+        <NewFriend />
       </div>
     );
   };
