@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom'
 class App extends Component {
     constructor(props) {
         super(props)
-        this.state = {friends:[], name: '', age: '', email: ''}
+        this.state = {friends:[], name: '', age: '', email: '', redirect: false}
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ class App extends Component {
         e.preventDefault()
         axios
             .post('http://localhost:5000/friends', {name: this.state.name, age: this.state.age, email: this.state.email})
-            .then((response) => this.setState({ friends: response.data, name: '', age: '', email: ''}))
+            .then((response) => this.setState({ friends: response.data, name: '', age: '', email: '', redirect: true}))
             .catch(e => console.log("ERROR", e))
     }
 
@@ -43,10 +43,11 @@ class App extends Component {
 
 
     render() {
+
         return (
             <div className="App">
                 <Route exact path="/friends" render={(props) => (<FriendList {...props} friends={this.state.friends} />)} />
-                <Route exact path="/addfriend" render={(props) => (<AddFriend {...props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} />)} />
+                <Route exact path="/addfriend" render={(props) => (<AddFriend {...props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} name={this.state.name} age={this.state.age} email={this.state.email} redirect={this.state.redirect} />)} />
             </div>
         )
     }
