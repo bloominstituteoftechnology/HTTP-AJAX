@@ -7,11 +7,10 @@ class App extends Component {
     super();
     this.state={
       items: [],        
-      newFriend: {
-        name:'',
-        age:'',
-        email:''
-      }
+      name:'',
+      age:'',
+      email:''
+      
     };
   }
   componentDidMount(){
@@ -20,16 +19,32 @@ class App extends Component {
       .then(response => this.setState({ items: response.data }))
       .catch(error => console.log(error))
   }
-  changeHandler() {
+  handleInputChange = event => this.setState({ 
+    [event.target.name]: event.target.value 
+  });
+  clickHandler = event => {
     
   }
   render() {
     return (
       <div className='friends-container'>
         <h1>Contact Information</h1>
-        <input></input>
-        <input></input>
-        <button></button>        
+        <input 
+          name='name' 
+          value={this.state.name}
+          placeholder='Name'
+          onChange={this.handleInputChange}></input>
+        <input 
+          name='age' 
+          value={this.state.age}
+          placeholder='Age'
+          onChange={this.handleInputChange}></input>
+        <input 
+          name='email' 
+          value={this.state.email}
+          placeholder='Email'
+          onChange={this.handleInputChange}></input>
+        <button>Add a Contact</button>        
         {this.state.items.map(item => 
           <div key={item.id} className='friend-card'>
             <h2>{item.name}</h2>
