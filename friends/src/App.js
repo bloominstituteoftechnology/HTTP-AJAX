@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Route from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/Home';
+import FriendsList from './components/FriendsList';
 import './App.css';
 
 class App extends Component {
@@ -37,6 +38,14 @@ componentDidMount() {
         />
       )} />
 
+      <Route
+      exact path = "/friendslist"
+      render = {props => (
+        <FriendsList {...props}
+        items = {this.state.items}
+        newFriends = {this.state.newFriends}
+        />
+      )} />
 
 
       </div>
