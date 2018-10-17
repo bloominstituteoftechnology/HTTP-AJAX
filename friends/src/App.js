@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-import FriendsList from './components/FriendsList'
-import FriendForm from './components/FriendForm'
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import FriendsList from "./components/FriendsList";
+import FriendForm from "./components/FriendForm";
+import "./App.css";
 
 class App extends Component {
-  constructor(){
-  super()
-  this.state ={friends:[]}
+  constructor() {
+    super();
+    this.state = { friends: [] };
   }
 
   componentDidMount() {
@@ -23,9 +23,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Lambda Friends</h1>
-       <FriendsList friends={this.state.friends}></FriendsList>
-       <FriendForm></FriendForm>
+        <h1>Lambda Friends</h1>
+        <FriendsList friends={this.state.friends} />
+        <FriendForm />
       </div>
     );
   }
