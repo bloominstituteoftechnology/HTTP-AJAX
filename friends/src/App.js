@@ -6,23 +6,50 @@ import axios from 'axios';
 
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      friendsData:[],
+    this.state = {
+      friendsData: [],
+      name: '',
+      age: '',
+      email: ''
     };
   }
 
-  componentDidMount(){
-    axios.get('http://localhost:5000/friends').then(response =>{
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends').then(response => {
       console.log(response);
-      this.setState({friendsData: response.data});
-    });
+      this.setState({ friendsData: response.data });
+    })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+
+  changeHandler = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+
+  addFriend = event => {
+    event.preventDefault();
+    const newFriends = { name: this.state.name, age: this.state.age, email: this.state.email }
+    axios.post('http://localhost:5000/friends', newFriends)
+      .then(response => {
+        this.setState({ friendsData: response.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friendsData}/>
+        <FriendsList friends={this.state.friendsData}
+          addFriend={this.addFriend}
+          changeHandler={this.changeHandler}
+        />
       </div>
     );
   }
