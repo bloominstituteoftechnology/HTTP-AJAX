@@ -58,6 +58,10 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
+        <div className='app-header'>
+        <h1>My Friends</h1>
+        <p>Or people I call friends who are really just acquaintances. Actually I've probably never met a lot of these people.</p>
+      </div>
         <Friends
         friendList={this.state.friendList}
         editFriend={this.editFriend}

@@ -27,7 +27,7 @@ const Form = props => {
           />
       </label>
       <label>
-        Your friend's email:
+        Your friend's email:  
           <input
             type='email'
             name='email'
