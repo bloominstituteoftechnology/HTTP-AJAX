@@ -10,10 +10,9 @@ constructor () {
   this.state = {
     friends: [],
       name: '',
-      age: null,
+      age: '',
       email: '',  
-      likes: '',
-      pronoun: '', 
+      
     
   };
 };
