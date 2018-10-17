@@ -1,5 +1,6 @@
 import React from 'react';
 import FriendsForm from './FriendsForm';
+import {Button} from 'reactstrap';
 
 
 const FriendsList = (props) => {
@@ -13,6 +14,7 @@ return (
         <h2>{friend.name}</h2>
         <p>{friend.age}</p>
         <p>{friend.email}</p>
+        <Button onClick={props.deleteFriend}>Delete</Button>
             </div>
     ))}
 

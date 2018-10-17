@@ -24,7 +24,7 @@ componentDidMount() {
     .catch(error => console.log(error));
 }
 
-inputHandler = event => {
+changeHandler = event => {
   this.setState({
       newFriends: {
           ...this.state.newFriends,
@@ -39,6 +39,12 @@ addFriend = event => {
       .then(response => this.setState({items: response.data}))
 }
 
+deleteFriend = event => {
+event.preventDefault();
+axios.delete(`http://localhost:5000/friends/${}`)
+  .then(reponse => this.setState({items: reponse.data}))
+}
+
   render() {
     return (
       <div className="App">
@@ -50,7 +56,8 @@ addFriend = event => {
         items = {this.state.items}
         newFriends = {this.state.newFriends}
         addFriend = {this.addFriend}
-        inputHandler = {this.inputHandler}
+        deleteFriend = {this.deleteFriend}
+        changeHandler = {this.changeHandler}
         />
       )} />
 
@@ -61,7 +68,8 @@ addFriend = event => {
         items = {this.state.items}
         newFriends = {this.state.newFriends}
         addFriend = {this.addFriend}
-        inputHandler = {this.inputHandler}
+        deleteFriend = {this.deleteFriend}
+        changeHandler = {this.changeHandler}
         />
       )} />
       </div>

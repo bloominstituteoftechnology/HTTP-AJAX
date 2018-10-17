@@ -10,7 +10,8 @@ const Home = (props) => {
             items = {props.items}
             newFriends = {props.newFriends}
             addFriend = {props.addFriend}
-            inputHandler = {props.inputHandler}/>
+            deleteFriend={props.deleteFriend}
+            inputHandler = {props.changeHandler}/>
         </div>
     )
 }
