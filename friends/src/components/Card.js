@@ -18,9 +18,15 @@ class Card extends Component {
 
     return (
       <Container>
-        <Item>{name}</Item>
-        <Item>{age}</Item>
-        <Item>{email}</Item>
+        <Item id={id} field="name" {...this.props}>
+          {name}
+        </Item>
+        <Item id={id} field="age" {...this.props}>
+          {age}
+        </Item>
+        <Item id={id} field="email" {...this.props}>
+          {email}
+        </Item>
         <Close onClick={() => handleClose(id)}>
           <img src={close} alt="close" />
         </Close>
