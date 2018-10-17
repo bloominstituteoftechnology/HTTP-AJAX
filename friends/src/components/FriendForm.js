@@ -1,6 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+
  function createForm(props){
     return(
         <Fragment>
@@ -14,11 +15,11 @@ import PropTypes from 'prop-types';
                     required />
             </form>
             <form>
-                <input type='text'
+                <input type='number'
                 placeholder='Age'
                 value={props.friend.age}
                 name='age'
-                onChange={props.handleChange}
+                onChange={props.handleNumberChange}
                 required />
             </form>
             <form>
@@ -32,13 +33,14 @@ import PropTypes from 'prop-types';
         </Fragment>
     )
 }
- createForm.PropTypes = {
+ createForm.propTypes = {
     friend: PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
         age: PropTypes.number,
         email: PropTypes.string,
     }),
+    handleChange: PropTypes.func,
 }
  class FriendForm extends Component{
     constructor(props){
