@@ -53,7 +53,7 @@ button:hover {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  padding: 50px;  
+  padding: 0 50px 50px;  
 }
 
 .contact-card {
