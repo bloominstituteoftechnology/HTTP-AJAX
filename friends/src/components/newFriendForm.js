@@ -4,7 +4,7 @@ import React from 'react';
 const NewFriendForm = props => {
     console.log(props);
     return (
-        <div>
+        <div className='new-friend-form'>
             <h2>Add a new Friend:</h2>
             <h3>{props.friend}</h3>
 
