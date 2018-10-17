@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { FormContainer, FormTitle, FormText, FormInput, FormButton } from '../styles/Form'
+import {
+  FormContainer,
+  FormTitle,
+  FormText,
+  FormInput,
+  FormButton
+} from '../styles/Form'
 
 class Form extends Component {
   state = {
@@ -12,18 +18,23 @@ class Form extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    
+  }
+
   render() {
     const { name, age, email } = this.state
-    const { handleChange } = this
+    const { handleChange, handleSubmit } = this
 
     return (
-      <FormContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <FormTitle>add a new friend!</FormTitle>
 
-        {/*all seemingly unnecessary to prevent chrome from autocompleting form*/}
+        {/*all seemingly unnecessary stuff to prevent chrome from autocompleting form*/}
 
         <input type="hidden" value="something" />
-        <FormText for="name">name</FormText>
+        <FormText htmlFor="name">name</FormText>
         <FormInput
           type="text"
           id="name"
@@ -33,7 +44,7 @@ class Form extends Component {
           onChange={handleChange}
         />
 
-        <FormText for="name">age</FormText>
+        <FormText htmlFor="name">age</FormText>
         <FormInput
           type="text"
           id="age"
@@ -43,7 +54,7 @@ class Form extends Component {
           onChange={handleChange}
         />
 
-        <FormText for="name">email</FormText>
+        <FormText htmlFor="name">email</FormText>
         <FormInput
           type="text"
           id="email"
