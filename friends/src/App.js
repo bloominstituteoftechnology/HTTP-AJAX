@@ -4,11 +4,14 @@ import './App.css';
 import {Route} from 'react-router-dom';
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
+import axios from 'axios';
+
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
+      friends: [],
       friend: {
         id: 0,
         name: '',
@@ -17,6 +20,16 @@ class App extends Component {
       },
     }
   }
+
+  componentDidMount(){
+    axios
+        .get('http://localhost:5000/friends')
+        .then(response => {
+            this.setState({friends: response.data})
+        })
+        .catch(err => console.log(err));
+}
+
 handleChange = e => {
   this.setState ({
     friend: {
@@ -40,7 +53,32 @@ handleNumberChange = e => {
     }
   })
 }
-  
+
+createID(){
+  axios
+    .get('http://localhost:5000/friends')
+    .then(response => {
+      this.setState({
+        friend:{
+          ...this.state.friend,
+          id: response.data[response.data.length-1].id+1,
+        }
+      })
+    })
+    .catch(err => console.log(err));
+}
+
+handleAddNewFriend = event =>{
+  event.preventDefault();
+  this.createID();
+  axios
+    .post('http://localhost:5000/friends', this.state.friend)
+    .then(response => {
+        this.setState({friends:response.data})
+    })
+    .catch(err => console.log(err));
+}
+
   render() {
     return (
       <div className="App">
@@ -48,7 +86,15 @@ handleNumberChange = e => {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Friends</h1>
         </header>
-        <Route exact path='/friend' component={FriendList} />
+        <Route
+          path='/'
+          render={props=>(
+            <FriendList
+              {...props}
+              friends={this.state.friends}
+            />
+          )}
+        />
         <Route
           path='/'
           render={props =>(
@@ -56,7 +102,9 @@ handleNumberChange = e => {
             {...props}
             friend={this.state.friend}
             handleChange={this.handleChange}
-            handleNumberChange={this.handleNumberChange} />
+            handleNumberChange={this.handleNumberChange}
+            handleAddNewFriend={this.handleAddNewFriend}
+             />
           )}
         />
       </div>

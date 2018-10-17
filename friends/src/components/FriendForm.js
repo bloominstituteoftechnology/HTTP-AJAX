@@ -30,6 +30,9 @@ import PropTypes from 'prop-types';
                 onChange={props.handleChange}
                 required />
             </form>
+            <button onClick={props.handleAddNewFriend}>
+                Submit
+            </button>
         </Fragment>
     )
 }
@@ -41,6 +44,7 @@ import PropTypes from 'prop-types';
         email: PropTypes.string,
     }),
     handleChange: PropTypes.func,
+    handleAddNewFriend: PropTypes.func,
 }
  class FriendForm extends Component{
     constructor(props){
