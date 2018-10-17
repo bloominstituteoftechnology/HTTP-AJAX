@@ -9,7 +9,11 @@ class App extends Component {
     super();
     this.state = {
       friendList : [],
-      newFriend : {}
+      newFriend : {
+        name : '',
+        age : '',
+        email : ''
+      }
     }
   }
 
@@ -17,7 +21,6 @@ class App extends Component {
     this.setState({
       newFriend : {
       // ...this.friendList,
-      ...this.state.newFriend,
       [e.target.name] : e.target.value
     }});
     
@@ -42,11 +45,13 @@ class App extends Component {
 
         <FriendsList 
         addNewFriend={this.addNewFriend} 
-        onChangeHandler={this.onChangeHandler} 
         friendList={this.state.friendList}
         />
 
-        <AddFriendForm />
+        <AddFriendForm 
+          newFriend = {this.state.newFriend}
+          onChangeHandler={this.onChangeHandler} 
+        />
       </div>
     );
   }
