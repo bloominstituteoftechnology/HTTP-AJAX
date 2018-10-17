@@ -16,7 +16,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  pullFriendsData = () => {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
@@ -25,24 +25,35 @@ class App extends Component {
       .catch(error => {
         console.error("Server Error", error);
       });
+  };
+
+  componentDidMount() {
+    this.pullFriendsData();
   }
 
   addFriend = e => {
-    const newFriend={name:this.state.name, email:this.state.email, age:this.state.age};
-    axios.post(`http://localhost:5000/friends`, newFriend).then(() =>
-      this.setState({
-        
+    e.preventDefault();
+    const newFriend = {
+      name: this.state.name,
+      email: this.state.email,
+      age: this.state.age
+    };
+    axios
+      .post(`http://localhost:5000/friends`, newFriend)
+
+      .then(() =>
+        this.setState({
           name: "",
           email: "",
           age: ""
-        
-      })
-    );
+        })
+      )
+      .then(() => this.pullFriendsData());
   };
 
   changeHandler = e => {
     let targetName = e.target.name;
-    this.setState({ [targetName]: e.target.value } );
+    this.setState({ [targetName]: e.target.value });
   };
 
   render() {
@@ -53,7 +64,11 @@ class App extends Component {
         <FriendForm
           changeHandler={this.changeHandler}
           addFriend={this.addFriend}
-          newFriend={{name:this.state.name, email:this.state.email, age:this.state.age}}
+          newFriend={{
+            name: this.state.name,
+            email: this.state.email,
+            age: this.state.age
+          }}
         />
       </div>
     );
