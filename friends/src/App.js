@@ -5,6 +5,17 @@ import axios from 'axios';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
+    };
+  }
   render() {
     return <div className="App" />;
   }
