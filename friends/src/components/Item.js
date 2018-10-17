@@ -9,28 +9,32 @@ class Item extends Component {
     value: this.props.children
   }
 
+  // create ref to set focus on input when it loads
   textInput = React.createRef()
 
+  // add listener to check for clicks outside element
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
   }
 
+  // set focus on input if editing
   componentDidUpdate() {
     if (this.state.edit) {
       this.focusTextInput()
     }
   }
 
+  // remove listenr
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside)
   }
 
-  // Set wrapper ref
+  // set wrapper ref for listener
   setWrapperRef = node => {
     this.wrapperRef = node
   }
 
-  // Alert if clicked on outside of element
+  // update state if click registers outside element
   handleClickOutside = event => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({
@@ -40,18 +44,22 @@ class Item extends Component {
     }
   }
 
+  // set focus on input with ref
   focusTextInput() {
     this.textInput.current.focus()
   }
 
+  // load input field on click
   handleClick = event => {
     this.setState({ edit: true })
   }
 
+  // update state in response to input field changes
   handleChange = event => {
     this.setState({ value: event.target.value })
   }
 
+  // update field in db on enter (submit)
   handleSubmit = event => {
     event.preventDefault()
     const { id, field, updateFriends } = this.props
