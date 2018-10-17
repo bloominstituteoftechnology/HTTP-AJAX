@@ -32,13 +32,21 @@ class App extends Component {
     }})
   }
 
+  addFriend = event => {
+    event.preventDefault();
+    axios.post('http://localhost:5000/friends', this.state.newFriend)
+    .then(response => this.setState({ friends: response.data}))
+  }
+
 
   render() {
     return (
       <div className="App">
         <header>Look at all my shiny friends!</header>
         <FriendList friendArr={this.state.friends}/>
-        <AddFriendForm newFriend={this.state.newFriend} changeHandler={this.changeHandler}/>
+        <AddFriendForm newFriend={this.state.newFriend} 
+                        changeHandler={this.changeHandler}
+                        addFriend={this.addFriend}/>
       </div>
     );
   }
