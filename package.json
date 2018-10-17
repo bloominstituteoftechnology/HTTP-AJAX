@@ -5,13 +5,14 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "concurrently": "^4.0.1",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "nodemon": "^1.14.11"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "concurrently \"nodemon server.js\" \"yarn --cwd ./friends start\""
   },
   "author": "Lambda School",
   "license": "ISC"
