@@ -34,29 +34,39 @@ class NewFriendForm extends React.Component {
   return (
     <form onSubmit={this.handleSubmit}>
       <p>Hi i'm the form</p>
-      <input
-        type='text'
-        name='name'
-        id='name'
-        placeholder='Friend name'
-        value={this.state.name}
-        onChange={this.handleInput}
-      />
-      <input
-        type='number'
-        name='age'
-        id='age'
-        value={this.state.age}
-        onChange={this.handleInput}
-      />
-      <input
-        type='email'
-        name='email'
-        id='email'
-        placeholder='Friend email'
-        value={this.state.email}
-        onChange={this.handleInput}
-      />
+      <label>
+          Your friend's name:
+        <input
+          type='text'
+          name='name'
+          id='name'
+          placeholder='name'
+          value={this.state.name}
+          onChange={this.handleInput}
+        />
+      </label>
+      <label>
+        Your friend's age:
+        <input
+          type='number'
+          name='age'
+          id='age'
+          placeholder="age"
+          value={this.state.age}
+          onChange={this.handleInput}
+        />
+    </label>
+    <label>
+      Your friend's email:
+        <input
+          type='email'
+          name='email'
+          id='email'
+          placeholder='email'
+          value={this.state.email}
+          onChange={this.handleInput}
+        />
+      </label>
       <button
         type='submit'>
           Add Friend!
