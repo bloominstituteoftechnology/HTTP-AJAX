@@ -3,15 +3,18 @@
 }
 
 .friends {
+  width: 70%;
   font-size: 2rem;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
   border: 4px double black;
 }
 
 .friend-form {
   margin: 30px auto;
-  width: 50%;
+  width: 30%;
+  border: 1px solid #ccd9ec;
+  padding: 20px;
 }
 
 .form {
@@ -19,6 +22,11 @@
   flex-direction: column;
   justify-content: center;
   margin: 10px auto;
+}
+
+.submit {
+  width: 150px;
+  margin: 20px auto 0;
 }
 
 input {
@@ -33,7 +41,6 @@ input {
   text-align: start;
   border: 1px solid #ccd9ec;
   background-color: #ccd9ec;
-  border-radius: 4px;
   width: 300px;
   font-size: 1.8rem;
 }

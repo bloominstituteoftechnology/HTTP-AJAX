@@ -31,17 +31,25 @@ export default class Friends extends Component {
     };
 
     addFriend = event => {
-        event.preventdefault();
+        event.preventDefault();
+        let newFriend = {name: this.state.name, age: this.state.age, email: this.state.email};
+        this.setState(() => ({
+            friends: [...this.state.friends, newFriend],
+            name: '',
+            age: '',
+            email: ''
+        }))
     }
     
     render() {
         return (
             <div className='friends'>
                 <div className='friend-form'>Add Friend
-                    <form className='form'>
-                        <input name='name' onChange={this.changeHandler} type='text' placeholder='Name'></input>
-                        <input name='age' onChange={this.changeHandler} type='text' placeholder='Age'></input>
-                        <input name='email' onChange={this.changeHandler} type='text' placeholder='Email'></input>
+                    <form className='form' onSubmit={this.addFriend}>
+                        <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name'></input>
+                        <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age'></input>
+                        <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email'></input>
+                        <input className='submit' type='submit' value='Submit'/>
                     </form>
                 </div>
                 <div className="friend-list">Friend List
