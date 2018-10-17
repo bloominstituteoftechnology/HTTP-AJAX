@@ -49,7 +49,7 @@ class App extends Component {
         })
       )
       .then(() => this.pullFriendsData());
-  };
+  };  
 
   changeHandler = e => {
     let targetName = e.target.name;
