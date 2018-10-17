@@ -1,5 +1,5 @@
 body {
-  background-color: #FFE8D1;
+  background-color: #efefef;
 }
 
 .app {
@@ -30,7 +30,8 @@ body {
   align-items: center;
   color: #1E3888;
   /* background: #568EA3; */
-  border: 1px solid #568ea3;
+  /* border: 1px solid #568ea3; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
   border-radius: 3px;
   margin: 10px;
   width: 300px;
@@ -88,7 +89,7 @@ form input:focus {
 
 input::-webkit-inner-spin-button{
   -webkit-appearance: none;
-  margin: 0; 
+  margin: 0;
 }
 
 
