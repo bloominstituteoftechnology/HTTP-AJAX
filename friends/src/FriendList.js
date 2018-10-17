@@ -5,7 +5,7 @@ const FriendList = props => {
     return (
       <Fragment>
       {props.friend.map((friend, index) => (
-        <Friend key={index} friend={friend} handleDelete={props.handleDelete} />
+        <Friend key={index} friend={friend} handleDelete={props.handleDelete} handleUpdate={props.handleUpdate} />
       ))}
       </Fragment>
     );

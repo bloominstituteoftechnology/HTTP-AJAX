@@ -3,7 +3,6 @@ import './App.css';
 import axios from 'axios';
 import FriendForm from "./FriendForm";
 import FriendList from "./FriendList";
-import NewFriend from "./NewFriend";
 import Nav from "./Nav";
 
 
@@ -67,7 +66,11 @@ class App extends Component {
           })
          .then(response => this.setState({friends: response.data}))
          .catch(err => console.log(err));
+    
   }
+  
+
+  
 
   
   render() {
@@ -85,7 +88,7 @@ class App extends Component {
         <FriendList 
         friend={this.state.friendData}
         handleDelete={this.handleDelete}
-
+        handleUpdate={this.handleUpdate}
          />
 
       </div>

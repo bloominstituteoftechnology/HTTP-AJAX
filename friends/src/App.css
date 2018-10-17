@@ -36,8 +36,9 @@ body {
 }
 .nav {
   background-color: white;
-  height: 95px;
+  height: 70px;
   margin-bottom: 5px;
+  border: 4px solid gray;
   
 }
 
@@ -89,7 +90,7 @@ label {
 }
 
 input[type='text'] {
-  color: white;
+  color: gray;
 }
 
 p {
@@ -216,9 +217,10 @@ button:active {
   padding: 20px 40px;
   text-transform: uppercase;
   transition: all 0.1s ease-out;
+  border: 1px solid gray;
 }
 button:hover {
-  background-color: #90feb5;
+  background-color: gray;
   color: #fff;
 }
 button:active {
@@ -260,4 +262,9 @@ button:active {
 
 .form .formbutton {
   margin: 20px;
+  padding: 5px 15px 5px 15px;
+}
+
+.logo {
+  height: 70px;
 }
