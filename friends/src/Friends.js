@@ -44,7 +44,7 @@ export default class Friends extends Component {
         
         if (newFriend) {
             this.setState(() => ({
-                friends: [...this.state.friends, newFriend],
+                friends: [...friends, newFriend],
                 id: null,
                 name: '',
                 age: '',
@@ -57,11 +57,11 @@ export default class Friends extends Component {
                 this.setState({ friends: response.data })
               })
               .catch(error => {
-                console.log('Error: we\'re sorry, your friend could not added', error);
+                alert('Error: we\'re sorry, your friend could not added', error);
         });  
     }
     
-    editFriend = (id, name, age, email) => {
+    editFriend = (id, name, age, email) => {    
         this.setState(() => ({
             editingId: id,
             id: id,
@@ -71,14 +71,36 @@ export default class Friends extends Component {
         }))
     }
 
-    editSubmit = (event, friend) => {
+    editSubmit = event => {
         event.preventDefault();
+        let id = event.target.id
+        const { friends, name, age, email } = this.state;
+        let editedFriend = null;
+
+        name && age && email ?
+        editedFriend = {id: id, name: name, age: age, email: email} :
+        alert('Please complete friend details')
+
+        if(editedFriend) {
+            this.setState(() => ({
+                friends: [...friends.map(friend => {
+                    return friend.id.toString() === id ?
+                    editedFriend :
+                    friend
+                })],
+                id: null,
+                name: '',
+                age: '',
+                email: '',
+                editingId: null
+            }))
+        }
     }
 
     render() {
         return (
             <div className='friends'>
-                <div className='friend-form'>Add Friend
+                <div className={this.state.editingId === null ? 'friend-form' : 'hidden'}>Add Friend
                     <form className='form' onSubmit={this.addFriend}>
                         <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name'></input>
                         <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age'></input>
@@ -89,7 +111,7 @@ export default class Friends extends Component {
                 <div className="friend-list">Friend List
                     {this.state.friends.map(friend => {
                         return (
-                        <div className="friend-card">
+                        <div className="friend-card" key={friend.id}>
                             <div>Name: {friend.name}</div>
                             <div>Age: {friend.age}</div>
                             <div>Email: {friend.email}</div>
@@ -98,7 +120,7 @@ export default class Friends extends Component {
                                 <div className='btn'>delete</div>
                             </div>
                             <div className={this.state.editingId === friend.id ? 'edit-form' : 'hidden'}>Update Friend
-                                <form className='form' onSubmit={(friend) => this.editSubmit(friend)}>
+                                <form className='form' id={friend.id} onSubmit={this.editSubmit}>
                                     <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name'></input>
                                     <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age'></input>
                                     <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email'></input>
