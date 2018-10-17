@@ -13,7 +13,12 @@ const FriendsContainer = (props) => {
 						<button className="update" onClick={props.updateInfo}>
 							Update
 						</button>
-						<button className="delete" onClick={props.deleteFriend}>
+						<button
+							className="delete"
+							onClick={(e) => {
+								props.deleteFriend(e, friend.id);
+							}}
+						>
 							Delete
 						</button>
 					</div>

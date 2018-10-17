@@ -56,11 +56,10 @@ class App extends Component {
 		}
 	};
 
-	deleteFriend = (e) => {
+	deleteFriend = (e, friendID) => {
 		e.preventDefault();
-		console.log(e);
 		axios
-			.delete('http://localhost:5000/friends/:id')
+			.delete(`http://localhost:5000/friends/${friendID}`)
 			.then((res) => {
 				this.setState({
 					friends: res.data,
