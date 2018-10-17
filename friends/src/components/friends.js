@@ -22,12 +22,22 @@ class Friends extends React.Component {
     render() {
         return (
             <div className="friends">
-                <FriendAdder />
+                <FriendAdder onSubmit={this.addFriend} />
                 {this.state.friends.map(friendData => (
                     <FriendCard key={friendData.id} friend={friendData} />
                 ))}
             </div>
         );
+    }
+
+    //-- Interaction ---------------------------------
+    addFriend = (friendData) => {
+        axios.post('http://localhost:5000/friends', friendData)
+        .then(response => {
+            let refreshedFriends = response.data;
+            this.setState({friends: refreshedFriends});
+        })
+        .catch(error => console.log(error));
     }
 }
 

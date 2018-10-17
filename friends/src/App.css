@@ -5,6 +5,9 @@ body, html {
 body {
   background: #eee;
 }
+* {
+  box-sizing: border-box;
+}
 
 .friends {
   display: grid;
@@ -46,4 +49,14 @@ body {
 }
 .add-card_form {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.add-card_form * {
+  width: 100%;
+}
+.add-card_form button {
+  margin-top: 1rem;
 }
