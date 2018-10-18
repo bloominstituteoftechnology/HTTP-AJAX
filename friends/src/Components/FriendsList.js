@@ -2,9 +2,11 @@ import React from "react";
 import Friends from "./friends"
 
 const FriendsList = props => {
+    
     return (
         <div>
-            {props.friendsData.map(friend => {
+            {props.Friends.map(friend => {
+                
                  return(
                 <  Friends
                 handleSetData = {props.handleSetData}
