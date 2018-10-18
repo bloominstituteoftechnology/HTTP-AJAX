@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require("path");
 
 const app = express();
 let nextId = 7;
@@ -78,6 +79,19 @@ app.put('/friends/:id', (req, res) => {
 app.delete('/friends/:id', (req, res) => {
 	friends = friends.filter(friend => friend.id != req.params.id);
 	res.status(200).json(friends);
+});
+
+
+// serve static assets
+app.use(express.static(path.resolve(__dirname, "./friends/", "build")));
+
+// handle front end routes other than "/"
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, "./friends/", "build/index.html"), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
 });
 
 app.listen(5000, () => {

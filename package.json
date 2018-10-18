@@ -14,7 +14,8 @@
   "scripts": {
     "build": "yarn --cwd ./friends build",
     "postinstall": "yarn --cwd ./friends install",
-    "start": "concurrently \"nodemon server.js\" \"yarn --cwd ./friends start\""
+    "start": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"yarn --cwd ./friends start\""
   },
   "author": "Lambda School",
   "license": "ISC"
