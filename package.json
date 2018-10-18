@@ -16,7 +16,7 @@
   "devDependencies": {},
   "scripts": {
     "build": "yarn --cwd ./friends build",
-    "postinstall": "yarn --cwd ./friends install",
+    "preinstall": "yarn --cwd ./friends install",
     "start": "nodemon server.js",
     "dev": "concurrently \"nodemon server.js\" \"yarn --cwd ./friends start\""
   },
