@@ -106,7 +106,7 @@ export default class Friends extends Component {
 
     deleteFriend = event => {    
         let id = Number(event.target.id);
-        const { friends, name, age, email } = this.state;
+        const { friends } = this.state;
 
         friends.map(friend => {
             if (friend.id === id) {
@@ -123,12 +123,12 @@ export default class Friends extends Component {
     render() {
         return (
             <div className='friends'>
-                <div className={this.state.editingId === null ? 'friend-form' : 'hidden'}>Add Friend
-                    <form className='form' onSubmit={this.addFriend}>
-                        <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name'></input>
-                        <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age'></input>
-                        <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email'></input>
-                        <input className='submit' type='submit' value='Submit'/>
+                <div className='friend-form'>
+                    <form className={this.state.editingId === null ? 'form' : 'hidden'} onSubmit={this.addFriend}>Add Friend
+                        <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name' required></input>
+                        <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age' required></input>
+                        <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email' required></input>
+                        <input className='submit' type='submit' value='submit'/>
                     </form>
                 </div>
                 <div className="friend-list">Friend List
@@ -144,10 +144,10 @@ export default class Friends extends Component {
                             </div>
                             <div className={this.state.editingId === friend.id ? 'edit-form' : 'hidden'}>Update Friend
                                 <form className='form' id={friend.id} onSubmit={this.editSubmit}>
-                                    <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name'></input>
-                                    <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age'></input>
-                                    <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email'></input>
-                                    <input className='submit' type='submit' value='Submit'/>
+                                    <input name='name' value={this.state.name} onChange={this.changeHandler} type='text' placeholder='Name' required></input>
+                                    <input name='age' value={this.state.age} onChange={this.changeHandler} type='text' placeholder='Age' required></input>
+                                    <input name='email' value={this.state.email} onChange={this.changeHandler} type='text' placeholder='Email' required></input>
+                                    <input className='submit' type='submit' value='submit'/>
                                 </form>
                             </div>
                         </div>)
