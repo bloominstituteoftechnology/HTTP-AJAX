@@ -5,6 +5,7 @@ const Nav = props => {
     <div className='nav'>
     <button class="hamburger">&#9776;</button>
     <img className="logo" src={require('./logo.png')} />
+    <p className="navs"> FRIENDS ENEMIES</p>
     </div>
   );
 }

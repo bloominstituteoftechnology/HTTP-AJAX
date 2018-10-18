@@ -78,14 +78,14 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <h1>ADD A FRIEND</h1> 
+        <h1>ADD A FRIEND: </h1> 
         <FriendForm 
         form={this.state.friend}
         handleChange={this.handleChange}
         handleInput={this.handleInput}
 
         />
-        <h2> Friend List: </h2>
+        <h2> FRIENDS: </h2>
         <FriendList 
         friend={this.state.friendData}
         handleDelete={this.handleDelete}
