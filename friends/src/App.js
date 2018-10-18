@@ -42,6 +42,7 @@ class App extends Component {
       email: this.state.newFriend.email
     };
     axios.post("http://localhost:5000/friends", theNewFriend).then(response => {
+      console.log(response);
       this.setState({
         friends: response
       });
@@ -49,7 +50,17 @@ class App extends Component {
   };
   serverUpdateMain = (data, id) => {
     axios
-      .put(`http://localhost:5000/friends`, data)
+      .put(`http://localhost:5000/friends/${id}`, data)
+      .then(response => {
+        console.log(response);
+        this.setState({ friends: response.data });
+      })
+      .catch(err => alert(err));
+  };
+  serverDeleteMain = dataid => {
+    console.log(dataid);
+    axios
+      .delete(`http://localhost:5000/friends/${dataid}`)
       .then(response => {
         console.log(response);
         this.setState({ friends: response.data });
@@ -69,6 +80,7 @@ class App extends Component {
               {...props}
               friends={this.state.friends}
               serverUpdateMain={this.serverUpdateMain}
+              serverDeleteMain={this.serverDeleteMain}
             />
           )}
         />

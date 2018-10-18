@@ -6,7 +6,7 @@ class SingleFriend extends Component {
     this.state = {
       singleFriendData: {
         name: "",
-        age: "",
+        age: null,
         email: ""
       }
     };
@@ -61,6 +61,12 @@ class SingleFriend extends Component {
       this.state.singleFriendData.id
     );
   };
+  deleteItem = event => {
+    event.preventDefault();
+    this.props.history.goBack();
+    const serverDeleteMain = this.props.serverDeleteMain;
+    serverDeleteMain(this.state.singleFriendData.id);
+  };
 
   render() {
     return (
@@ -82,9 +88,10 @@ class SingleFriend extends Component {
           <input
             value={this.state.singleFriendData.email}
             onChange={this.handleUpdate}
-            name="age"
+            name="email"
           />
           <input type="submit" onSubmit={this.serverUpdate} />
+          <button onClick={this.deleteItem}>Delete</button>
         </form>
         <button onClick={this.goBack}>Go back</button>
       </div>
