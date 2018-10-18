@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Friend from './friend'
+import {Link} from 'react-router-dom';
 
-const FriendView=(props)=> {
+const FriendsView=(props)=> {
     return props.friendsData.map((friend)=>{
         return(
-            <Friend friend={friend}/>
+            <Friend 
+                unfriend={props.unfriend}
+                friend={friend}
+                update={props.update}
+            /> 
         )
     })
       
 }
-export default FriendView;
+export default FriendsView;

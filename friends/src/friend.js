@@ -8,6 +8,8 @@ const Friend=(props)=> {
                 <div> Name: {props.friend.name}</div>
                 <div> Age: {props.friend.age}</div>
                 <div> Email: {props.friend.email}</div>
+                <button onClick={(event)=>props.unfriend(event,props.friend.id)}>Unfriend</button>
+                <button onClick={(event)=>props.update(event, props.friend.id)}>Update Friend</button>
             </div>
         );
   }

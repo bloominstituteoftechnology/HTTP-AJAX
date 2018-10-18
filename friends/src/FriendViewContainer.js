@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import FriendView from "./FriendView";
+import FriendsView from "./FriendView";
 
 class FriendViewContainer extends Component {
   constructor() {
@@ -28,21 +28,43 @@ class FriendViewContainer extends Component {
       }
     });
   };
+  unfriend = (event, id) => {
+    console.log({id})
+    event.preventDefault();
+    
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friendsData: response.data }))
+      .catch(error => console.log(error));
+  };
+  update =(event,id)=>{
+    event.preventDefault();
+    axios
+      .put(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friendsData: response.data }))
+      .catch(error => console.log(error));
+  }
   submitHandler = event => {
     event.preventDefault();
     axios
       .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => this.setState({ friendsData: response.data }));
-    this.setState({newFriend:{
-        name:'',
-        age: '',
-        email:'',
-    }})
+    this.setState({
+      newFriend: {
+        name: "",
+        age: "",
+        email: ""
+      }
+    });
   };
   render() {
     return (
       <div>
-        <FriendView friendsData={this.state.friendsData} />
+        <FriendsView
+          friendsData={this.state.friendsData}
+          unfriend={this.unfriend}
+          update={this.update}
+        />
         <form type="submit" onSubmit={this.submitHandler}>
           Name:{" "}
           <input
