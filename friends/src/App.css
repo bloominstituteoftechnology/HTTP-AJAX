@@ -210,6 +210,7 @@ form button:focus {
   /* border: 1px solid #424B54;
   background: #676e76; */
   background: #B11C1E;
+  /* background: #C80A01; */
   color: white;
   padding: 15px;
   margin: 10px;
@@ -242,23 +243,27 @@ form button:focus {
 .friend-container .five {
 
     background: #118892;
+    /* background: #12C9FD; */
 }
 
 .friend-container .four {
-
   background: #B11C1E;
+  background: #C80A01;
 }
 
 .friend-container .three {
   background: #086F48;
+  /* background: #03E06F; */
 }
 
 .friend-container .two {
   background: #B74C1C;
+  background: #D55500;
 
 }
 .friend-container .one {
   background: #552C6C;
+  background: #703798;
 
 }
 /* .friend-container .six {
