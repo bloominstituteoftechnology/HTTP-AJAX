@@ -39,7 +39,7 @@ const FriendCard = props => {
       </div>
         <p>{props.name}</p>
         <p>age: {props.age}</p>
-        <p>email: {props.email}</p>
+        <p>{props.email}</p>
         <div onClick={props.handleEdit} className='edit-button'>
           <i className="fas fa-edit"/>
         </div>
