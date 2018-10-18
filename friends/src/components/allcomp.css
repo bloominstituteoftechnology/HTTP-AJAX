@@ -1,0 +1,92 @@
+.friend {
+    display: flex;
+    flex-wrap: wrap;
+    color: rgb(121, 63, 29);
+    width: 300px;
+    margin: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(121, 63, 29);
+}
+
+.friend .delete {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    
+   
+}
+
+.friend .delete button {
+    text-align: center;
+}
+
+.friend-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.friend-content p {
+    width: 100%;
+}
+
+.friend .delete:hover {
+    background: red;
+}
+
+.friend .update {
+    height: 30px;
+    
+}
+
+.friend .update button {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.friend button {
+    text-align: center;
+    background: burlywood;
+    border: 3px solid rgb(121, 63, 29);
+    color: rgb(121, 63, 29);
+}
+
+.friend-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    padding: 20px 20px;
+    border: 3px solid rgb(121, 63, 29);
+    background: burlywood;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 200px;
+}
+
+input {
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(121, 63, 29);
+    background: burlywood;
+}
+
+input::placeholder {
+    color: rgb(121, 63, 29);
+    
+}
+
+form button {
+    width: 100%;
+    border: 2px solid rgb(121, 63, 29);
+    background: burlywood;
+    padding: 20px 10px;
+}
+
+form button:hover {
+    background:blanchedalmond;
+}
