@@ -1,7 +1,7 @@
 .App {
   display: flex;
-  justify-content: center;
   text-align: center;
+  justify-content: center;
 }
 
 .App-logo {
@@ -35,10 +35,13 @@
 
 .friends {
   border: 1px solid black;
-  max-width: 450px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
   padding: 20px;
   margin: 15px;
+}
+
+input {
+  margin: 0 2%;
 }
