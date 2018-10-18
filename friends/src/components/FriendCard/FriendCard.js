@@ -3,15 +3,14 @@ import axios from 'axios';
 import './FriendCard.css';
 
 class FriendCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     deleteFriend = (id) => {
         axios.delete(`http://localhost:5000/friends/${id}`)
             .then(response => {
-                console.log(response.data);
-                this.props.updateState();
+                this.props.updateState(response.data);
             })
             .catch(err => {
                 console.log(err);

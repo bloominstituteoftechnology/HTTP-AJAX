@@ -23,13 +23,10 @@ class App extends Component {
   }
 
   //resets state after server change
-  updateState = () => {
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        this.setState({ friends: response.data });
-      })
-      .catch(error => console.log(error));
+  updateState = (newState) => {
+    this.setState({
+      friends: newState
+    });
   }
 
   render() {
