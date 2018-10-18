@@ -66,8 +66,19 @@ class Item extends Component {
 
     axios
       .put(`http://localhost:5000/friends/${id}`, { [field]: this.state.value })
-      .then(res => updateFriends(res.data))
+      .then(res => {
+        updateFriends(res.data)
+        // close input and remove focus
+        this.resetElement()
+      })
       .catch(err => console.log(err))
+  }
+
+  resetElement = () => {
+    this.setState({
+      edit: false,
+      value: this.props.children
+    })
   }
 
   render() {

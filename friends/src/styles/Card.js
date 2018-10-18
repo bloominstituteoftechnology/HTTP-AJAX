@@ -10,6 +10,7 @@ export const Container = styled.div`
   background: #99c0ff;
 
   flex: 1;
+  max-width: 300px;
 
   border: 1px dashed #7f7f7f;
   border-radius: 7px;
@@ -20,6 +21,7 @@ export const Container = styled.div`
 export const Line = styled.p`
   font-size: 16px;
   margin: 5px 0;
+  margin-right: 20px;
 `
 
 export const Close = styled.div`
