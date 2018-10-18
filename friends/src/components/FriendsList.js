@@ -24,6 +24,7 @@ class FriendsList extends React.Component {
       .catch(error => console.log(error));
   }
 
+
   changeHandler = ev => {
     this.setState({
       newFriend: {
@@ -36,10 +37,18 @@ class FriendsList extends React.Component {
 
   addNewFriend = ev => {
     ev.preventDefault();
+
     axios
       .post('http://localhost:5000/friends', this.state.newFriend)
       .then(res => {
-        this.setState({ friends: res.data });
+        this.setState({ 
+          friends: res.data,
+          newFriend: {
+            name: '',
+            age: 0,
+            email: ''
+          }
+        });
       })
       .catch(error => console.log(error));
   };
