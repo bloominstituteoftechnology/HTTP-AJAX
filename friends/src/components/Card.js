@@ -7,7 +7,7 @@ import close from '../icons/close.png'
 class Card extends Component {
   handleClose = id => {
     axios
-      .delete(`http://localhost:5000/friends/${id}`)
+      .delete(`/friends/${id}`)
       .then(res => this.props.updateFriends(res.data))
       .catch(err => console.log(err))
   }

@@ -31,7 +31,7 @@ class Form extends Component {
       email.trim().length
     ) {
       axios
-        .post('http://localhost:5000/friends', {
+        .post('/friends', {
           name,
           age,
           email,

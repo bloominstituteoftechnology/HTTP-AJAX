@@ -65,7 +65,7 @@ class Item extends Component {
     const { id, field, updateFriends } = this.props
 
     axios
-      .put(`http://localhost:5000/friends/${id}`, { [field]: this.state.value })
+      .put(`/friends/${id}`, { [field]: this.state.value })
       .then(res => {
         updateFriends(res.data)
         // close input and remove focus

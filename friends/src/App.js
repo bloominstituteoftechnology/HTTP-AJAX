@@ -11,7 +11,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/friends')
+      .get('/friends')
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err))
   }
