@@ -4,7 +4,7 @@ const FriendDisplay = props => {
     return (
         <div className="friends-display-container">
             {props.friends.map(friend => (
-                <div className="friend-card">
+                <div className={(props.editId === friend.id) ? "friend-card active" : "friend-card"}>
                     <div className="first-line">
                         <img 
                             onClick={event => {

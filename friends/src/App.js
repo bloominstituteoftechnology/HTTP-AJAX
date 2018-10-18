@@ -10,7 +10,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      newFriend: this.getBlankFriend()
+      newFriend: this.getBlankFriend(),
+      editMode: false,
+      editId: null
     };
   }
 
@@ -63,7 +65,19 @@ class App extends Component {
 
   toggleEdit = (ev, id) => {
     ev.preventDefault();
-    
+    if (!this.state.editMode) {
+      this.setState({
+        editMode: true,
+        editId: id
+      });
+    } else if (id === this.state.editId) {
+      this.setState({
+        editMode: false,
+        editId: null
+      });
+    } else {
+      this.setState({ editId: id });
+    }
   }
 
   render() {
@@ -72,11 +86,17 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <FriendDisplay friends={this.state.friends} deleteFriend={this.deleteFriend} toggleEdit={this.toggleEdit} />
+        <FriendDisplay
+          friends={this.state.friends}
+          deleteFriend={this.deleteFriend}
+          toggleEdit={this.toggleEdit}
+          editId={this.state.editId}
+        />
         <NewFriendForm 
           changeHandler={this.formChangeHandler}
           newFriend={this.state.newFriend}
           addNewFriend={this.addNewFriend}
+          editMode={this.state.editMode}
         />
       </div>
     );

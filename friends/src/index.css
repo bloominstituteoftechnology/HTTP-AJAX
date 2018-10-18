@@ -33,6 +33,10 @@ form {
   padding: 15px;
 }
 
+.friend-card.active {
+  background: #A6C0ED;
+}
+
 .friend-card .first-line {
   display: flex;
 }
