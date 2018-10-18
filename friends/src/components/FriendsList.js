@@ -11,7 +11,6 @@ class FriendsList extends Component {
     this.state = {
       friends: [],
       newFriend: {
-        id: '',
         name: '',
         age: '',
         email: ''
@@ -38,7 +37,6 @@ class FriendsList extends Component {
         this.setState(
           { friends: response.data,
           newFriend: {
-            id:'',
             name: '',
             age: '',
             email: ''
@@ -61,7 +59,7 @@ class FriendsList extends Component {
   render(){
     return (
       <div className="friend-wrapper">
-        <div>
+        <div className="friend-list">
           {this.state.friends.map( friend => (
             <Friend key={friend.id}  friend={friend} />   ))}
         </div>
