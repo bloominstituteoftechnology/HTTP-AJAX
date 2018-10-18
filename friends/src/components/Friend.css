@@ -1,6 +1,11 @@
-.friends-list {
+
+ .list {
+     flex-wrap: wrap;
+     display: flex;
+     
+ }
+.friends {
     margin: 10px;
-    border: 1px solid lightgray;
     background: lightcyan;
 }
 

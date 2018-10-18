@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-
+import { Route, NavLink } from 'react-router-dom';
 import FriendList from './components/FriendList';
+import FriendForm from './components/FriendForm'
 
 class App extends Component {
   constructor(props){
@@ -11,7 +12,7 @@ class App extends Component {
       friends : [],
       newFriend: {
         name: '',
-        age: '',
+        age: null,
         email: ''
       }
     }
@@ -37,6 +38,15 @@ class App extends Component {
    event.preventDefault();
    axios.post('http://localhost:5000/friends', this.state.newFriend)
               .then(response => this.setState({ friends: response.data}))
+              .catch(err => {
+                console.log(err)
+              })
+ }
+
+ deleteFriend = (event, friendId) => {
+   event.preventDefault();
+   axios.delete(`http://localhost:5000/friends/${friendId}`)
+   .then(response => this.setState({ friends: response.data}))
  }
 
 
@@ -46,19 +56,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {
-        this.state.friends.map((friend, i ) => {
-          return <FriendList key={i} data={friend}  />
-        })
-      }
-        <div className="form">
-          <form>
-            <button onClick={this.addNewFriend}>Submit</button>
-            <input onChange={this.addHandler} type="text" name="name" value={this.state.newFriend.name} placeholder="Name"></input>
-            <input onChange={this.addHandler} type="text" name="age" value={this.state.newFriend.age} placeholder="Age"></input>
-            <input onChange={this.addHandler} type="text" name="email" value={this.state.newFriend.email} placeholder="Email"></input>
-          </form>
-        </div>
+      <NavLink exact to="/">Friend List</NavLink>
+      <NavLink to="/friend-form">Friend Form</NavLink>
+          <Route exact path = "/" render={props => (<FriendList {...props} friends={this.state.friends} deleteFriend={this.deleteFriend}/>) }/>
+          <Route path = "/friend-form" render={props => (<FriendForm {...props} addHandler={this.addHandler} addNewFriend={this.addNewFriend} friends={this.state.newFriend}/>)} />
       </div>
     );
   }
