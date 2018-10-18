@@ -12,7 +12,8 @@ class App extends Component {
       data:[],
       name:'',
       age:'',
-      email:''
+      email:'',
+      isUpdate:false
     }
   }
 
@@ -33,13 +34,17 @@ class App extends Component {
 
   handleAddNewFriend = event =>{
     event.preventDefault();
+    if (this.state.isUpdate){
+      console.log('is update handle it yo..')
+    } else {
+      let newFriend = {
+        name:this.state.name,
+        age:this.state.age,
+        email:this.state.email,
+        }
+        this.addFriend(newFriend)
 
-    let newFriend = {
-            name:this.state.name,
-            age:this.state.age,
-            email:this.state.email,
-            }
-    this.addFriend(newFriend)
+    }
 
   }  
   handleTextChange = event =>{
@@ -52,7 +57,17 @@ class App extends Component {
 
   } 
   handleUpdateFriend = event =>{
-    
+
+    let friend = this.state.data.find(el =>{
+      return el.id == event.target.id
+    })
+    this.setState({
+                   isUpdate:true,
+                   name:friend.name,
+                   age:friend.age,
+                   email:friend.email,
+                 })
+
   }
 
   render() {
@@ -62,11 +77,18 @@ class App extends Component {
       <div className="App">
         {
          this.state.data.map(element => {
-           return <Friend handleDeleteFriend={this.handleDeleteFriend} key={element.id} data={element}/>
+           return <Friend handleDeleteFriend={this.handleDeleteFriend} 
+                          key={element.id} 
+                          data={element}
+                          handleUpdateFriend={this.handleUpdateFriend}/>
          })
         }
         <NewFriend handleAddNewFriend = {this.handleAddNewFriend}
-                   handleTextChange = {this.handleTextChange} />
+                   handleTextChange = {this.handleTextChange} 
+                   name={this.state.name}
+                   age={this.state.age}
+                   email={this.state.email}
+                   isUpdate={this.state.isUpdate}/>
       </div>
     );
   }
