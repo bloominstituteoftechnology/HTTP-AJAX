@@ -25,6 +25,7 @@ function form(props) {
         value={props.email}
         />
         <button onClick={props.saveFriend}>Save</button>
+        <p>Note all fields are needed!</p>
     </div>
     );
 }

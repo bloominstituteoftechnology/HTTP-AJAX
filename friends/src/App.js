@@ -58,6 +58,19 @@ class App extends Component {
       })
   }
 
+  updateFriend = (id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, {name: this.state.name, age: this.state.age, email: this.state.email})
+      .then(response => {
+        console.log(response)
+        this.setState({ notes: response.data })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  //{name: this.state.name, age: this.state.age, email: this.state.email})
   //this.setState({ notes: response.data })
 
   render() {
@@ -66,6 +79,7 @@ class App extends Component {
           <Friends 
           delete={this.deleteFriends}
           notes={this.state.notes}
+          update={this.updateFriend}
           />
           <Form 
           saveFriend={this.saveFriend}
