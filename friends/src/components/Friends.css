@@ -1,6 +1,7 @@
 .form-container {
     margin: 20px auto;
     border: 0.5px solid black;
+    border-radius: 15px;
     height: 280px;
     width: 350px;
 }
@@ -91,5 +92,12 @@
   .friend-email {
     font-size: 12px;
     padding-top: 8px;
+  }
+
+  .delete-button {
+    margin-top: 10px;
+    margin-left: 350px;
+    border-radius: 5px;
+    background: white;
   }
   

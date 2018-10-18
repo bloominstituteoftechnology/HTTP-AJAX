@@ -64,6 +64,16 @@ class App extends Component {
       });
   };
 
+  deleteItem = (event, id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => console.log(error));
+  };
+
   render() {
     return (
       <div className="App">
@@ -78,7 +88,8 @@ class App extends Component {
           submit={this.handleSubmit} />} />
         <Route path='/' render={props => <FriendsList
         {...props}
-        friends={this.state.friends} />} />
+        friends={this.state.friends} 
+        deleteItem={this.deleteItem} />} />
       </div>
     );
   }
