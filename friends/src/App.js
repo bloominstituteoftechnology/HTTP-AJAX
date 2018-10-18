@@ -15,21 +15,13 @@ class App extends Component {
         email: ""
       }
     };
-    console.log(this.state.friends.id);
+    console.log(this.state.friends);
   }
-  addFriend = ev => {
-    ev.preventDefault();
-    axios
-      .post("http://localhost:5000/friends", this.state.newFriend)
-      .then(response => this.setState({ friends: response.data }))
-      .catch(error => console.log(error));
-  };
 
-  updateFriend = ev => {
+  updateFriend = (ev, id) => {
     ev.preventDefault();
-    console.log("updateDfreind fired");
     axios
-      .put(`http://localhost:5000/friends/${this.state.friends.id}`)
+      .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)
       .then(response => this.setState({ friends: response.data }));
   };
 
@@ -44,11 +36,34 @@ class App extends Component {
       .then(response => this.setState({ friends: response.data }))
       .catch(error => console.log(error));
   }
+  addFriend = ev => {
+    console.log("addDfreind fired");
+    ev.preventDefault();
+    axios
+      .post("http://localhost:5000/friends", this.state.newFriend)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+  };
+
+  deleteFriend = (ev, id) => {
+    ev.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+  };
+
   render() {
     return (
       <div className="App">
-        <Friends friends={this.state.friends} updateFriend={this.updateFriend} changeHandler={this.changeHandler} />
         <Form addFriend={this.addFriend} changeHandler={this.changeHandler} />
+        <Friends
+          addFriend={this.addFriend}
+          friends={this.state.friends}
+          changeHandler={this.changeHandler}
+          updateFriend={this.updateFriend}
+          deleteFriend={this.deleteFriend}
+        />
       </div>
     );
   }
