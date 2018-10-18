@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import FriendList from '../../../../Lambda-School/workspace/Single-Page-Applications/day3/HTTP-AJAX/friends/src/components/FriendList';
+import FriendList from './components/FriendList';
 
 class App extends Component {
   render() {
