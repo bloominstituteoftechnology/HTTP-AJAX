@@ -37,6 +37,7 @@ class App extends Component {
       .post('http://localhost:5000/friends', myObj)
       .then(saved => {
         console.log(saved)
+        this.setState({ notes: saved.data })
       })
       .catch(err => {
         console.log(err)
@@ -44,10 +45,26 @@ class App extends Component {
     this.setState({ name: '', age: '', email: '' })
   }
 
+  deleteFriends = (id) => {
+    console.log(id)
+    axios 
+      .delete(`http://localhost:5000/friends/${id}`, { data: { name: this.state.name }})
+      .then(response => {
+        console.log(response)
+        this.setState({ notes: response.data })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  //this.setState({ notes: response.data })
+
   render() {
     return (
       <div className="App">
           <Friends 
+          delete={this.deleteFriends}
           notes={this.state.notes}
           />
           <Form 
