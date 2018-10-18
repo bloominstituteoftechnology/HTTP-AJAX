@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FriendForm = props => {
   const { name, age, email } = props.friend;
@@ -42,6 +43,14 @@ const FriendForm = props => {
       </button>
     </form>
   );
+};
+
+FriendForm.propTypes = {
+  editing: PropTypes.bool,
+  friend: PropTypes.object,
+  onChangeHandler: PropTypes.func,
+  addFriend: PropTypes.func,
+  updateFriend: PropTypes.func
 };
 
 export default FriendForm;

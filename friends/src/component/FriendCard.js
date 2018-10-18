@@ -28,7 +28,9 @@ const FriendCard = props => {
 };
 
 FriendCard.propTypes = {
-  friend: PropTypes.object.isRequired
+  friend: PropTypes.object.isRequired,
+  removeFriend: PropTypes.func.isRequired,
+  isEditing: PropTypes.func.isRequired
 };
 
 export default FriendCard;

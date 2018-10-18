@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Navigation = props => {
   return (
@@ -21,6 +22,10 @@ const Navigation = props => {
       </nav>
     </header>
   );
+};
+
+Navigation.propTypes = {
+  changeEditingNav: PropTypes.func
 };
 
 export default Navigation;
