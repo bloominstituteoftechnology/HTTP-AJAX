@@ -3,13 +3,19 @@ import './App.css';
 import axios from 'axios';
 import Friend from './Components/Friend';
 import NewFriend from './Components/NewFriend';
+import { Route } from 'react-router-dom';
+import ViewFriend from './Components/ViewFriends'
 
 
 class App extends Component {
   constructor(){
     super()
+    this.handleViewFriendClick = this.handleViewFriendClick.bind(this);
+    this.handleUpdateFriend = this.handleUpdateFriend.bind(this);
+    this.handleDeleteFriend = this.handleDeleteFriend.bind(this);
     this.state = {
       data:[],
+      friend:null,
       name:'',
       id:'',
       age:'',
@@ -54,10 +60,6 @@ class App extends Component {
 
                                       }),)
       .catch(error => console.log('error. ',error))
-
-
-
-      console.log('is update handle it yo..', friend)
     } else {
       let newFriend = {
         name:this.state.name,
@@ -73,20 +75,31 @@ class App extends Component {
 
     }
 
+  }
+  handleViewFriendClick(event,id){
+    let fr = this.state.data.find(el =>{
+      return el.id===id;
+    })
+    this.setState({friend:{
+                            id:fr.id,
+                            age:fr.age,
+                            email:fr.email,
+                            name:fr.name
+                          }})
+
   }  
   handleTextChange = event =>{
     this.setState({[event.target.id]:event.target.value})
   }
-  handleDeleteFriend = event =>{
-    axios.delete(`http://localhost:5000/friends/${event.target.id}`)
+  handleDeleteFriend(event,id){
+    axios.delete(`http://localhost:5000/friends/${id}`)
     .then(response => this.getAllFriends())
     .catch(error => console.log('error. ',error))
 
   } 
-  handleUpdateFriend = event =>{
-
+  handleUpdateFriend(event,id){
     let friend = this.state.data.find(el =>{
-      return el.id == event.target.id
+      return el.id == id
     })
     this.setState({
                    isUpdate:true,
@@ -99,7 +112,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('data..', this.state.data);
     return (
       
       <div className="App">
@@ -108,7 +120,8 @@ class App extends Component {
            return <Friend handleDeleteFriend={this.handleDeleteFriend} 
                           key={element.id} 
                           data={element}
-                          handleUpdateFriend={this.handleUpdateFriend}/>
+                          handleUpdateFriend={this.handleUpdateFriend}
+                          handleViewFriendClick={this.handleViewFriendClick}/>
          })
         }
         <NewFriend handleAddNewFriend = {this.handleAddNewFriend}
@@ -118,6 +131,9 @@ class App extends Component {
                    id={this.state.id}
                    email={this.state.email}
                    isUpdate={this.state.isUpdate}/>
+
+        <Route path='/friends/:id' render={(props)=><ViewFriend {...props} data={this.state.friend}/>}></Route>
+
       </div>
     );
   }
