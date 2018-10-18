@@ -8,6 +8,7 @@ import Friend from './components/Friend';
 import FriendList from './components/FriendList';
 import Form from './components/Form';
 import FriendPage from './components/FriendPage';
+import {withRouter} from 'react-router';
 
 
 class App extends React.Component {
@@ -55,7 +56,7 @@ class App extends React.Component {
 
       axios.put(`http://localhost:5000/friends/${id}`, newFriend).then(response => this.setState({friends: response.data, newFriend: {}}));
     
-      
+    this.props.history.push('/');
   }
 
   deleteFriend = (id) => {
@@ -126,4 +127,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
