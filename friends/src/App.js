@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import Friend from './components/Friend';
+import NewFriend from './components/NewFriend';
+import { Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -11,7 +15,7 @@ class App extends Component {
         name: '',
         age: '',
         email: ''
-      }
+      },
     }
   }
 
@@ -69,23 +73,27 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.friends);
     return (
       <div className="App">
-        {this.state.friends.map(friend => {
-          return(
-          <div className = 'friend' key = {friend.id}>
-            <p>{friend.name} {friend.age} {friend.email}</p>
-            <button onClick={this.updateFriend} id={friend.id}>Update</button>
-            <button onClick={this.deleteFriend} id={friend.id}>X</button>
-          </div>
-          );
-        })}
-        <form>
-          <input onChange={this.changeHandler} name ="name" type = "text" placeholder = "Name"/>
+      <div className="nav">
+        <NavLink to='/friends' activeClassName="selected">
+            <span>Old Friends</span>
+        </NavLink>
+        <NavLink to='/newfriends' activeClassName="selected">
+            <span>Add a new Friend</span>
+        </NavLink>
+      </div>
+       <Route path='/friends' render ={(props) => (
+          <Friend {...props} friends={this.state.friends} updateFriend = {this.updateFriend} deleteFriend = {this.deleteFriend}/>
+        )}/>
+       <Route path='/newfriends' render ={(props) => (
+          <NewFriend {...props} onChange={this.changeHandler} onClick={this.addFriend}/>
+        )}/>
+
+        <input onChange={this.changeHandler} name ="name" type = "text" placeholder = "Name"/>
           <input onChange={this.changeHandler} name = "age" type = "text" placeholder = "Age"/>
           <input onChange={this.changeHandler} name= "email" type = "text" placeholder = "Email"/>
-          <button  onClick={this.addFriend}>Add New Friend</button>
-        </form>
       </div>
     );
   }

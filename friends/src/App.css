@@ -1,5 +1,30 @@
 .App {
   text-align: center;
+  margin: 0 auto;
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: burlywood;
+}
+
+.root {
+  background: burlywood;
+}
+
+.nav {
+  margin: 25px 0;
+}
+
+span {
+  margin: 0 20px;
+  text-decoration: none;
+  color: rgb(121, 63, 29);
+  font-weight: 800;
+}
+
+span:hover {
+  color: burlywood;
 }
 
 .App-logo {
@@ -30,3 +55,4 @@
     transform: rotate(360deg);
   }
 }
+
