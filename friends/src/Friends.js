@@ -52,12 +52,12 @@ export default class Friends extends Component {
             }))
         }
         axios
-            .post(this.url, newFriend) 
-            .then(response => {
-                this.setState({ friends: response.data })
-              })
-              .catch(error => {
-                alert('Error: we\'re sorry, your friend could not added', error);
+        .post(this.url, newFriend) 
+        .then(response => {
+            this.setState({ friends: response.data })
+            })
+            .catch(error => {
+            alert('Error: we\'re sorry, your friend could not added', error);
         });  
     }
     
@@ -73,7 +73,7 @@ export default class Friends extends Component {
 
     editSubmit = event => {
         event.preventDefault();
-        let id = event.target.id
+        let id = Number(event.target.id)
         const { friends, name, age, email } = this.state;
         let editedFriend = null;
 
@@ -84,10 +84,11 @@ export default class Friends extends Component {
         if(editedFriend) {
             this.setState(() => ({
                 friends: [...friends.map(friend => {
-                    return friend.id.toString() === id ?
+                    //console.log('id', friend.id);
+                    return (friend.id === id ?
                     editedFriend :
                     friend
-                })],
+                )})],
                 id: null,
                 name: '',
                 age: '',
@@ -95,7 +96,25 @@ export default class Friends extends Component {
                 editingId: null
             }))
         }
+        //this.updateServer(id)
     }
+
+    // updateServer = (id) => {
+
+    //     this.state.friends.map(friend => {
+    //         if (friend.id === id) {
+    //             axios
+    //             .put(`${this.url}/${friend.id}`, friend)
+    //             .then(response => {
+    //                 //console.log('response', response.data)
+    //                 //this.setState({ friends: response.data})
+    //             })
+    //             .catch(error => {
+    //                 alert('Error: we\'re sorry, your friend could not updated', error);
+    //             })
+    //         }
+    //     })
+    // }
 
     render() {
         return (
