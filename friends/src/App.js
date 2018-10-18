@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Friends from './components/Friends';
 import AddFriend from './components/AddFriend';
+import Friend from './components/Friend';
+import Header from './components/Header';
+import AddButton from './components/AddButton';
+import { Route } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
@@ -23,9 +27,10 @@ class App extends Component {
   }
 
 
-  addNewFriend = (name, age, email)=> {
+  addNewFriend = (name, age, email, avatar)=> {
     let newFriend = {
       name: name,
+      avatar: avatar,
       age: age,
       email: email,
     };
@@ -65,16 +70,23 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <div className='app-header'>
-        <h1>My Friends</h1>
-        <p>Or people I call friends who are really just acquaintances. Actually I've probably never met a lot of these people.</p>
-      </div>
-        <Friends
-        friendList={this.state.friendList}
-        editFriend={this.editFriend}
-        deleteFriend={this.deleteFriend}
-        />
-        <AddFriend handleInput={this.handleInput} addNewFriend={this.addNewFriend}/>
+        <Header />
+        <Route exact
+          path='/'
+          render={(props) => (<Friends
+          {...props}
+          friendList={this.state.friendList}
+          editFriend={this.editFriend}
+          deleteFriend={this.deleteFriend} />)} />
+        <Route exact
+          path='/'
+          component={AddButton} />
+        <Route
+          path='/add'
+          render={(props) => (<AddFriend
+            {...props}
+            handleInput={this.handleInput}
+            addNewFriend={this.addNewFriend} />)} />
       </div>
     );
   }

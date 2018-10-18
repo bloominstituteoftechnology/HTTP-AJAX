@@ -1,17 +1,20 @@
 import React from 'react';
-import Form from './Form'
+import Form from './Form';
+import FriendCard from './FriendCard';
 
 class Friend extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       id: this.props.id,
+      avatar: this.props.avatar,
       name: this.props.name,
       age: this.props.age,
       email: this.props.email,
       editing: false,
     }
   }
+
 
   handleDelete = event => {
     this.props.deleteFriend(this.state.id)
@@ -50,21 +53,16 @@ class Friend extends React.Component {
   render() {
     return(
       <div className='friend-container'>
-      <div className='friend-card'>
-        <div onClick={this.handleDelete}
-        className='delete-button'>
-          <i className="fas fa-trash-alt" />
-        </div>
-        <i className="fas fa-user-circle"/>
-        <p>hi i'm your friend {this.state.name}</p>
-        <p>age: {this.state.age}</p>
-        <p>email: {this.state.email}</p>
-        <div onClick={this.handleEdit} className='edit-button'>
-          <i className="fas fa-edit"/>
-        </div>
-        </div>
+      <FriendCard
+        handleDelete={this.handleDelete}
+        avatar={this.state.avatar}
+        name={this.state.name}
+        age={this.state.age}
+        email={this.state.email}
+        id={this.state.id}
+        handleEdit={this.handleEdit}
+      />
         <div className='edit-form'>
-
         {this.state.editing &&
         <Form
         handleSubmit={this.handleEditSubmit}
@@ -72,9 +70,8 @@ class Friend extends React.Component {
         name={this.state.name}
         age={this.state.age}
         email={this.state.email} />}
-
       </div>
-    </div>
+      </div>
 
     )
   }

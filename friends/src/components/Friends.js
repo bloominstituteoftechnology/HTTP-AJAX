@@ -5,12 +5,11 @@ const Friends = props => {
     return (
       <div className='friends'>
         {props.friendList.map(friend =>
-        <Friend key={friend.id} {...friend} editFriend={props.editFriend}
-        deleteFriend={props.deleteFriend}/>)}
+            <Friend key={friend.id} {...friend} editFriend={props.editFriend}
+            deleteFriend={props.deleteFriend}/>
+          )}
       </div>
     )
   }
-
-
 
 export default Friends;

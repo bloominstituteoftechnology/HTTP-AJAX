@@ -1,5 +1,6 @@
 body {
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  background-color: #2E373C;
 }
 
 .app {
@@ -9,8 +10,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color:  #3F602B;
+  /* color:  #3F602B; */
+  color: white;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
 }
 
 .friends {
@@ -29,7 +35,8 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  color: #3F602B;
+  /* color: #3F602B; */
+  color: white;
   /* background: #568EA3; */
   /* border: 1px solid #568ea3; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -39,9 +46,19 @@ body {
   padding: 15px 10px;
 }
 
-.fa-user-circle {
+/* .fa-user-circle {
   margin: 0 20px;
   font-size: 70px;
+} */
+
+.avatar {
+  font-size: 50px;
+  /* border: 2px solid #3f602b; */
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 15px;
+  height: 60px;
+  width: 60px;
 }
 
 .friend-card p {
@@ -73,6 +90,7 @@ form {
 
 form label {
   margin: 5px;
+  width: 100%;
 }
 
 form input{
@@ -94,6 +112,20 @@ input::-webkit-inner-spin-button{
   margin: 0;
 }
 
+select {
+    margin: 15px 15px 0;
+    padding: 2px;
+    border: none;
+    border: 1px solid #424B54;
+    color: #424b54;
+    background: transparent;
+    text-align: center;
+    border-radius: 3px;
+}
+
+select:focus {
+  outline: 1px solid #3f602b;
+}
 
 
 form button {
@@ -105,10 +137,69 @@ form button {
   color: #f5f5f5;
   padding: 5px;
   margin: 10px;
+  cursor: pointer;
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+
 }
 
 .add-friend p{
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 5px;
+}
+
+.add-button {
+  align-self: flex-start;
+  border-radius: 5px;
+  border: 1px solid #424B54;
+  background: #676e76;
+  color: #f5f5f5;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.add-button i{
+  margin: 0 10px 0 0;
+}
+
+.back-button {
+  align-self: flex-start;
+  border-radius: 5px;
+  border: 1px solid #424B54;
+  background: #676e76;
+  color: #f5f5f5;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.back-button i{
+  margin: 0 10px 0 0;
+}
+
+.friend-container .green {
+  background: #03E06F;
+}
+
+.friend-container .blue {
+  background: #06AEED;
+}
+
+.friend-container .red {
+  background: #FA3443;
+}
+
+.friend-container .orange {
+  background: #FF8D37;
+}
+
+.friend-container .purple {
+  background: #703798;
 }
