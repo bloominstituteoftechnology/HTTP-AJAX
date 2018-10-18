@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       friendList: [],
       activeFriend: null,
+      burned: false,
     }
   }
 
@@ -47,9 +48,11 @@ class App extends Component {
       .then(response => {
         this.setState({ friendList: response.data })
       })
+      .then(this.setState({burned: false}))
       .catch(response => {
         console.log('Could not add friend ', response);
       });
+      // this.setState({ burned: false });
   }
 
     editFriend = friend => {
@@ -76,6 +79,7 @@ class App extends Component {
 
     deleteAll = () => {
       this.state.friendList.forEach(friend => this.deleteFriend(friend.id));
+      this.setState({ burned: true })
     }
 
   render() {
@@ -95,10 +99,11 @@ class App extends Component {
           friendList={this.state.friendList}
           editFriend={this.editFriend}
           deleteFriend={this.deleteFriend} />)} />
-        <Route exact
+        {!this.state.burned && <Route exact
           path='/'
           render={(props) => (<BurnItDown {...props}
-          deleteAll={this.deleteAll} />)} />
+          deleteAll={this.deleteAll} />)} />}
+
         <Route
           path='/add'
           render={(props) => (<AddFriend
