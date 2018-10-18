@@ -7,9 +7,10 @@
   justify-content: center;
   background: burlywood;
 }
-
-.root {
-  background: burlywood;
+.friend-home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav {

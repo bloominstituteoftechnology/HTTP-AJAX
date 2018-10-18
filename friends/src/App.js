@@ -84,16 +84,17 @@ class App extends Component {
             <span>Add a new Friend</span>
         </NavLink>
       </div>
-       <Route path='/friends' render ={(props) => (
+       <Route path='/friends' render ={props => (
+         <div className='friend-home'>
           <Friend {...props} friends={this.state.friends} updateFriend = {this.updateFriend} deleteFriend = {this.deleteFriend}/>
-        )}/>
-       <Route path='/newfriends' render ={(props) => (
-          <NewFriend {...props} onChange={this.changeHandler} onClick={this.addFriend}/>
-        )}/>
-
-        <input onChange={this.changeHandler} name ="name" type = "text" placeholder = "Name"/>
+          <input onChange={this.changeHandler} name ="name" type = "text" placeholder = "Name"/>
           <input onChange={this.changeHandler} name = "age" type = "text" placeholder = "Age"/>
           <input onChange={this.changeHandler} name= "email" type = "text" placeholder = "Email"/>
+          </div>
+        )}/>
+       <Route path='/newfriends' render ={(props) => (
+          <NewFriend {...props} changeHandler = {this.changeHandler} addFriend = {this.addFriend}/>
+        )}/>
       </div>
     );
   }
