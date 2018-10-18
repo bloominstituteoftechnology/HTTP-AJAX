@@ -5,26 +5,29 @@ import Avatar from './Avatar';
 
 const FriendCard = props => {
   let classList = 'friend-card ';
-  if (props.id % 5 === 0){
-    classList += 'green'
+  if (props.id % 6 === 0){
+    classList += 'six'
   } else {
+    if (props.id % 5 === 0){
+      classList += 'five'
+    } else {
     if (props.id % 4 === 0){
-      classList += 'blue'
+      classList += 'four'
     } else {
       if (props.id % 3 === 0) {
-        classList += 'purple'
+        classList += 'three'
       } else {
         if (props.id % 2 === 0) {
-          classList += 'orange'
+          classList += 'two'
         } else {
           if (props.id % 1 === 0) {
-            classList += 'red'
+            classList += 'one'
           }
         }
       }
     }
   }
-
+}
   return(
       <div className={classList}>
         <div onClick={props.handleDelete}

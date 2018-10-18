@@ -70,7 +70,9 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <Header />
+        <Route exact
+          path='/'
+          component={Header} />
         <Route exact
           path='/'
           render={(props) => (<Friends
