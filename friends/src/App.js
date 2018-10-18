@@ -10,9 +10,15 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      newName: "",
-      newAge: "",
-      newEmail: ""
+      newFriend: this.getBlankFriend()
+    };
+  }
+
+  getBlankFriend() {
+    return {
+      name: "",
+      age: "",
+      email: ""
     };
   }
 
@@ -24,22 +30,22 @@ class App extends Component {
   }
 
   formChangeHandler = ev => {
-    this.setState({ [ev.target.name]: ev.target.value });
+    this.setState({ newFriend: {
+      ...this.state.newFriend,
+      [ev.target.name]: ev.target.value
+    }});
   }
 
   addNewFriend = ev => {
     ev.preventDefault();
-    let newFriend = {
-      name: this.state.newName,
-      age: Number(this.state.newAge),
-      email: this.state.newEmail
-    };
-    axios.post("http://localhost:5000/friends", newFriend)
+    this.setState({ newFriend: {
+      ...this.state.newFriend,
+      age: Number(this.state.newFriend.age)
+    }});
+    axios.post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => this.setState({ 
         friends: response.data,
-        newName: "",
-        newAge: "",
-        newEmail: ""
+        newFriend: this.getBlankFriend()
     }));
   }
 
@@ -52,10 +58,8 @@ class App extends Component {
         <FriendDisplay friends={this.state.friends} />
         <NewFriendForm 
           changeHandler={this.formChangeHandler}
-          newName={this.state.newName} 
-          newAge={this.state.newAge}
-          newEmail={this.state.newEmail}
-          newFriend={this.addNewFriend}
+          newFriend={this.state.newFriend}
+          addNewFriend={this.addNewFriend}
         />
       </div>
     );
