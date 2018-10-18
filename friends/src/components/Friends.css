@@ -1,0 +1,32 @@
+.friends {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    flex-direction: column-reverse;
+    margin-top: 30px;
+}
+
+.friendCard {
+    margin-bottom: 25px;
+    padding: 25px;
+    border: 1px solid black;
+}
+
+.friendForm {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 30%;
+    margin-bottom: 30px;
+}
+
+.btn {
+    width: 50%;
+    align-self: center;
+    margin-top: 20px;
+    background-color: white;
+    font-weight: bold;
+    border: 1.5px solid black;
+}
