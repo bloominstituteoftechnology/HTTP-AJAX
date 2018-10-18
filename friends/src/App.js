@@ -24,6 +24,9 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
+  handelSetData = data => this.setState({friends: data})
+
+
   handleChange = e => {
     this.setState({
       friend: {
@@ -45,7 +48,6 @@ class App extends Component {
             email: ''
           }
         })
-        console.log(response)
       })
       .catch(error => console.log(error));
   }
@@ -53,6 +55,8 @@ class App extends Component {
  
   render() {
     const {friends, friend} = this.state
+    console.log(friends)
+    console.log(friend)
     return (
       <div className="App">
         <NewFriend 
@@ -60,7 +64,7 @@ class App extends Component {
           handleChange={this.handleChange}
           submitNewFriend={this.handleSubmitNewFriend}
         />
-        <ListFriend friends={friends} />
+        <ListFriend friends={friends} handelSetData={this.handelSetData} />
       </div>
     );
   }

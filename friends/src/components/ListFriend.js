@@ -1,4 +1,5 @@
 import React from 'react';
+import Friend from './Friend'
 
 const ListFriend = (props) => {
     const {friends} = props;
@@ -8,9 +9,7 @@ const ListFriend = (props) => {
             <h2>Friend List</h2>
             {friends.map(friend => (
                 <div key={friend.id}>
-                    <p>Name: {friend.name}</p>
-                    <p>Age: {friend.age}</p>
-                    <p>Email: {friend.email}</p>
+                    <Friend friend={friend} handleSetData={props.handleSetData} />
                 </div>
             ))}
         </div>

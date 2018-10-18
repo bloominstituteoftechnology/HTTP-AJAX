@@ -2,6 +2,7 @@ import React from 'react';
 
 const NewFriend = props => {
     const { newFriend } = props;
+    console.log(newFriend);
     return (
         <div>
             <h2>Add New Friend</h2>
