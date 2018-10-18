@@ -1,8 +1,9 @@
 import React from 'react'
+import "../App.css"
 
 function form(props) {
     return (
-    <div>
+    <div className='form'>
         <input 
         type='text'
         onChange={props.handleInput}
