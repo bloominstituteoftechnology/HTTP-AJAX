@@ -14,8 +14,7 @@ let friends = [
     id: 1,
     name: 'Ben',
     age: 30,
-    email: 'ben@lambdaschool.com',
-    imageUrl: 'https://placebeard.it/320/320'
+    email: 'ben@lambdaschool.com'
   },
   {
     id: 2,
