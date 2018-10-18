@@ -63,10 +63,20 @@ class App extends Component {
     document.querySelector('form').reset();
   }
 
+  deleteHandler = id => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+       .then(res => {
+         this.setState({
+           friends: res.data,
+         })
+       })
+       .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
-        <Route exact path='/' render={props => <FriendList {...props} friends={this.state.friends}/>}/>
+        <Route exact path='/' render={props => <FriendList {...props} friends={this.state.friends} deleteHandler={this.deleteHandler}/>}/>
         <Route path='/add' render={props => <FriendForm {...props} changeHandler={this.changeHandler} submitHandler={this.submitHandler}/>}/>
       </div>
     );

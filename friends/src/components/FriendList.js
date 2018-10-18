@@ -10,7 +10,7 @@ let FriendList = props => {
                 <Link to="/add" className='button'>Add New Friend</Link>
             </div>
             <div className="friendlist">
-                {props.friends.map((friend, i) => <Friend key={i} friend={friend}/>)}
+                {props.friends.map((friend, i) => <Friend key={i} friend={friend} deleteHandler={props.deleteHandler}/>)}
             </div>
         </div>
     )

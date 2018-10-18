@@ -46,13 +46,25 @@
 
 .friend {
   color: white;
+  position: relative;
   background: linear-gradient(to bottom right, #DB5461, #3891A6);
   padding: 15px 30px;
   border-radius: 5px;
   min-height: 100px;
-  min-width: 400px;
+  width: 360px;
   margin: 20px 50px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: crimson;
 }
 
 form {
