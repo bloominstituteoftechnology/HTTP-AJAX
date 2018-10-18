@@ -22,6 +22,8 @@ const FriendsForm = props => {
        onChange={props.handleTextInput}
        />
        <button onClick={props.saveNoteData}>Save Friend</button>
+       <button onClick={props.updateNoteData}>Update Friend</button>
+       <button onClick={props.updateDeleteData}>Abolish Friend</button>
        </div>
     )
 }

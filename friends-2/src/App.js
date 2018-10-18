@@ -31,6 +31,19 @@ class App extends Component {
       .catch(err => console.log("bahhhh", err));
     this.setState({ name: "", age: "", email: "" });
   };
+  updateNoteData = () => {
+    axios
+    .put("http://localhost:5000/friends/3", {name: this.state.name,
+  age: this.state.age, email: this.state.email})
+    .then(newData => this.setState({name: newData.data.name}))
+    .catch(err => console.log(err))
+  }
+  deleteNoteData = () => {
+    axios
+    .delete("http://localhost:5000/friends/7", { data: {name: this.state.name}})
+    .then(newData => this.setState({name: newData.data.name}))
+    .catch(err => console.log(err))
+  }
 
   componentDidMount() {
     axios
@@ -42,7 +55,7 @@ class App extends Component {
     return (
       <Fragment>
         <div className="App" />
-        <NavLink to="/" activeClassName="form-link">
+        <NavLink exact to="/" activeClassName="form-link">
           Home
         </NavLink>
         <NavLink to="/form" activeClassName="form-link">
@@ -62,6 +75,8 @@ class App extends Component {
               name={this.state.name}
               age={this.state.age}
               email={this.state.email}
+              updateNoteData={this.updateNoteData}
+              updateDeleteData={this.deleteNoteData}
               {...props}
             />
           )}
