@@ -10,8 +10,7 @@ class Friends extends React.Component {
         name: "",
         age: "",
         email: ""
-      },
-      id: 0
+      }
     };
   }
 
@@ -34,14 +33,25 @@ class Friends extends React.Component {
   addFriend = e => {
     e.preventDefault();
     axios
-      .delete("http://localhost:5000/friends", this.state.newFriend)
+      .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => this.setState({ friends: response.data }));
   };
 
   deleteFriend = e => {
-    e.preventDefault();
+    let friendId = e.target.id;
     axios
-      .post("http://localhost:5000/friends/", this.state.newFriend)
+      .delete(`http://localhost:5000/friends/${friendId}`)
+      .then(response => this.setState({ friends: response.data }));
+  };
+
+  updateFriend = e => {
+    let friendId = e.target.id;
+    axios
+      .put(`http://localhost:5000/friends/`, {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
       .then(response => this.setState({ friends: response.data }));
   };
 
@@ -56,7 +66,7 @@ class Friends extends React.Component {
             value={this.state.newFriend.name}
           />
           <input
-            type="text"
+            type="number"
             onChange={this.changeHandler}
             name="age"
             value={this.state.newFriend.age}
@@ -74,6 +84,12 @@ class Friends extends React.Component {
             <h5 className="name">{friend.name}</h5>
             <span className="age">{friend.age}</span>
             <span className="email">{friend.email}</span>
+            <button id={friend.id} onClick={this.deleteFriend}>
+              Delete
+            </button>
+            <button id={friend.id} onClick={this.updateFriend}>
+              Update
+            </button>
           </div>
         ))}
       </div>
