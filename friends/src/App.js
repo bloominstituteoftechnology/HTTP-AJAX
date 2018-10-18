@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { NavLink, Route } from 'react-router-dom';
 import Form from './components/Form';
 import FriendsList from './components/FriendsList';
 import './App.css';
@@ -33,7 +34,8 @@ class App extends Component {
       })
       .then(res =>
         this.setState({ friends: res.data, name: '', email: '', age: '' })
-      );
+      )
+      .catch(err => console.log(err));
   };
 
   handleInputChange = e => {
@@ -66,7 +68,8 @@ class App extends Component {
             email: '',
             editMode: false
           })
-        );
+        )
+        .catch(err => console.log(err));
     }
   };
 
@@ -74,28 +77,50 @@ class App extends Component {
     const id = e.target.parentNode.id;
     axios
       .delete(`http://localhost:5000/friends/${id}`)
-      .then(res => this.setState({ friends: res.data }));
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err));
   };
 
   render() {
-    const { name, age, email } = this.state;
+    const { name, age, email, editMode } = this.state;
     return (
       <div className="App">
         <h1>We could be friends</h1>
-        <Form
-          name={name}
-          age={age}
-          email={email}
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
+        <nav className="nav">
+          <NavLink exact to="/">
+            Friends
+          </NavLink>
+          /<NavLink to="/add-friend">Add a Friend</NavLink>
+        </nav>
+        <Route
+          path="/add-friend"
+          render={props => (
+            <Form
+              {...props}
+              name={name}
+              age={age}
+              email={email}
+              editMode={editMode}
+              handleFormSubmit={this.handleFormSubmit}
+              handleInputChange={this.handleInputChange}
+            />
+          )}
         />
         {!this.state.friends.length ? (
           <div>Loading Friends... if you have any...</div>
         ) : (
-          <FriendsList
-            friends={this.state.friends}
-            handleDeleteClick={this.handleDeleteClick}
-            handleUpdateClick={this.handleUpdateClick}
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <FriendsList
+                {...props}
+                editMode={editMode}
+                friends={this.state.friends}
+                handleDeleteClick={this.handleDeleteClick}
+                handleUpdateClick={this.handleUpdateClick}
+              />
+            )}
           />
         )}
       </div>

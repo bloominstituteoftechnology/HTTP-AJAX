@@ -1,7 +1,12 @@
 import React from 'react';
 import './FriendsList.css';
 
-const FriendsList = ({ friends, handleDeleteClick, handleUpdateClick }) => {
+const FriendsList = ({
+  friends,
+  handleDeleteClick,
+  handleUpdateClick,
+  editMode
+}) => {
   return (
     <div className="FriendList">
       {friends.map(friend => (
@@ -13,7 +18,7 @@ const FriendsList = ({ friends, handleDeleteClick, handleUpdateClick }) => {
             X
           </div>
           <button onClick={handleUpdateClick} className="btn">
-            Edit
+            {editMode ? 'Update' : 'Edit'}
           </button>
         </div>
       ))}

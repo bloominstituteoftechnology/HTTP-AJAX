@@ -19,10 +19,11 @@
   position: absolute;
   top: 3px;
   left: 94%;
+  transition: all 200ms;
 }
 
 .delete:hover {
-  color: red;
+  color: #ff3f34;
 }
 
 .btn {

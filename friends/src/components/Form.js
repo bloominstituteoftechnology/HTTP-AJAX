@@ -1,7 +1,14 @@
 import React from 'react';
 import './Form.css';
 
-const Form = ({ handleFormSubmit, handleInputChange, name, email, age }) => {
+const Form = ({
+  handleFormSubmit,
+  handleInputChange,
+  name,
+  email,
+  age,
+  editMode
+}) => {
   return (
     <form className="form" onSubmit={handleFormSubmit}>
       <h2>Add a new friend</h2>
@@ -41,7 +48,9 @@ const Form = ({ handleFormSubmit, handleInputChange, name, email, age }) => {
           onChange={handleInputChange}
         />
       </div>
-      <button className="btn">Friended</button>
+      <button className="btn" disabled={editMode}>
+        Friended
+      </button>
     </form>
   );
 };
