@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./friends.css"
 const FriendsForm = props => {
     return (
         <div>
