@@ -42,6 +42,16 @@ class App extends Component {
       .catch((error) => console.log(error));
   };
 
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then((response) => {
+        this.setState({ friends: response.data });
+      })
+      .catch((error) => console.log(error));
+  };
+
   render() {
     return (
       <div className="App">
@@ -52,6 +62,7 @@ class App extends Component {
           email={this.state.email}
           changeHandler={this.changeHandler}
           addFriend={this.addFriend}
+          deleteFriend={this.deleteFriend}
         />
       </div>
     );

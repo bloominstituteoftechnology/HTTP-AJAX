@@ -35,6 +35,7 @@ function FriendsList(props) {
         <Friend
           friend={friend}
           key={friend.id}
+          deleteFriend={props.deleteFriend}
         />
       ))}
     </div>
