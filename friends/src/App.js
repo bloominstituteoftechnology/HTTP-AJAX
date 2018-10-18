@@ -1,28 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from "axios";
+import friendsList from './Components/friendsList';
+
+
+const URL = "http://localhost:5000/friends";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friendsData : [],  
+      name : "",
+      age: "",
+      email: "",
+    };
+  }
+  
+  componentDidMount() {
+    axios
+    .get(URL)
+    .then(response =>{
+      console.log("get response:", response);
+      this.setState({friendsData : response.data})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  handleSetData = data => {
+    this.setState({friendsData: data})
+  }
+
+
+
+ 
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h1 className="App-title">Friends</h1>
         </header>
+        <friendsList 
+        friends = {this.state.friendsData} 
+        handleSetData = {this.handleSetData}
+         />
+      
       </div>
     );
   }
 }
 
-export default App;
+export default App
