@@ -18,7 +18,7 @@ const FormContainer = styled.form`
 
 const AddFriend = (props) => {
     return (
-        <FormContainer onSubmit={props.handleSubmit}>
+        <FormContainer>
             <label>
                 Name:
                 <input name="name" type="text" value={props.name} onChange={props.handleChange} />

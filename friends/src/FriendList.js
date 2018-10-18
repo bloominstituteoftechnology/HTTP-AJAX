@@ -15,7 +15,7 @@ const FriendList = (props) => {
                             email={friend.email}
                             id={friend.id}
                         />
-                        <Link to='/updatefriend'><button key={Math.random() * 40 + 2} id={friend.id}>Update</button></Link>
+                        <Link to='/updatefriend'><button key={Math.random() * 40 + 2} id={friend.id} onClick={(event)=>{props.updateFriend(event, friend.id)}}>Update</button></Link>
                         <Link to='/'><button key={Math.random() * 30 + 1} id={friend.id} onClick={props.deleteFriend}>Delete</button></Link>
                     </div>
                 )
