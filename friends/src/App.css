@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 62.5%;
+}
+
+.addButton {
+  border: 1px solid black;
+  max-width: 100px;
+  padding: 10px 15px;
+}
+
+.cardContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friendCard {
+  border: 1px solid #000;
+  max-width: 250px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding: 10px 10px;
+  color: #000;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.friendCard img {
+  border-radius: 50%;
+  width: 50%;
+  margin: 15px 0;
+}
+
+.friendCard h1 {
+  font-size: 3rem;
+}
+
+.friendCard p {
+  font-size: 1.6rem;
+  margin-top: 10px;
+}
+
+.friendInformationForm {
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+.friendInformationForm input {
+  /* padding: 10px; */
+  padding-top: 20px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border: none;
+  border-bottom: 2px solid #6d6d6d;
+  margin: 5px 0;
+  font-size: 20px;
+  transition: border-bottom 0.2s linear;
+}
+
+.friendInformationForm input::placeholder {
+  font-size: 20px;
+}
+
+.friendInformationForm input:focus {
+  outline: none;
+  border-bottom: 2px solid #047fb9;
+}
+
+.friendInformationForm .addFriendButton {
+  width: 100%;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.1s linear;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.friendInformationForm .addFriendButton:focus,
+.cardButton:focus {
+  outline: none;
+}
+
+.friendInformationForm .addFriendButton:active,
+.cardButton:active {
+  transform: scale(0.99);
+}
+
+.friendInformationForm .addFriendButton:hover,
+.cardButton:hover,
+.updateButton:hover {
+  background: #047fb9;
+  color: #fff;
+}
+
+.cardButton {
+  padding: 8px 15px;
+  margin-right: 5px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid black;
+  transition: all 0.1s linear;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.updateLink {
+  /* border: 1px solid red; */
+  padding: 8px 25px;
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.updateLink:hover {
+  color: #fff;
+}
+
+.updateButton {
+  padding: 8px 0;
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+/* NAVIGATION */
+.mainNav {
+  background-color: #047fb9;
+  width: 100%;
+}
+
+.mainNav nav {
+  /* border: 1px solid red; */
+  padding: 15px 0;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.mainNav nav .navLink {
+  text-decoration: none;
+  color: #fff;
+  font-size: 2rem;
+  margin-right: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
