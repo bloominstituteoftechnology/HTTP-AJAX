@@ -23,16 +23,8 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
-  nameChangeHandler = ev => {
-    this.setState({ newName: ev.target.value });
-  }
-
-  ageChangeHandler = ev => {
-    this.setState({ newAge: ev.target.value });
-  }
-
-  emailChangeHandler = ev => {
-    this.setState({ newEmail: ev.target.value });
+  formChangeHandler = ev => {
+    this.setState({ [ev.target.name]: ev.target.value });
   }
 
   addNewFriend = ev => {
@@ -59,11 +51,9 @@ class App extends Component {
       <div className="App">
         <FriendDisplay friends={this.state.friends} />
         <NewFriendForm 
-          nameChangeHandler={this.nameChangeHandler}
+          changeHandler={this.formChangeHandler}
           newName={this.state.newName} 
-          ageChangeHandler={this.ageChangeHandler}
           newAge={this.state.newAge}
-          emailChangeHandler={this.emailChangeHandler}
           newEmail={this.state.newEmail}
           newFriend={this.addNewFriend}
         />
