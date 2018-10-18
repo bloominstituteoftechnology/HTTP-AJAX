@@ -18,7 +18,7 @@ let FriendForm = props => {
                 <input type="submit" />
             </form>
             <Link to="/" className='altbutton' onClick={props.failureHandler}>See Friends</Link>
-        </div>
+        </div> 
     )
 }
 

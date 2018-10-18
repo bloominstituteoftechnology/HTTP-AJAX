@@ -51,6 +51,8 @@ class App extends Component {
         likes: this.state.likes,
         pronoun: this.state.pronoun,  
       }
+      // blank out the form bc submit event is not doing it.
+      document.querySelector('form').reset();
       // If editmore is true, send edits to server via PUT. Then blank out state.
       if (this.state.editmode === true) {
         console.log(`editmode: ${this.state.editmode}`)
@@ -90,8 +92,6 @@ class App extends Component {
     else {
       alert("Please enter some data about your friend.")
     }
-  // blank out the form bc submit event is not doing it.
-  document.querySelector('form').reset();
   }
 
   // send DELETE to server based on target id
