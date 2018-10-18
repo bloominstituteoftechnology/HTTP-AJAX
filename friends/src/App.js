@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       data:[],
       name:'',
+      id:'',
       age:'',
       email:'',
       isUpdate:false
@@ -35,7 +36,28 @@ class App extends Component {
   handleAddNewFriend = event =>{
     event.preventDefault();
     if (this.state.isUpdate){
-      console.log('is update handle it yo..')
+      let friend = this.state.data.find(el =>{
+        return el.id=this.state.id;
+      })
+
+      friend.name = this.state.name
+      friend.age = this.state.age
+      friend.email = this.state.email
+
+      axios.put(`http://localhost:5000/friends/${friend.id}`,friend)
+      .then(response => this.setState({
+                                        data:response.data,
+                                        isUpdate:false,
+                                        name:'',
+                                        age:'',
+                                        email:''
+
+                                      }),)
+      .catch(error => console.log('error. ',error))
+
+
+
+      console.log('is update handle it yo..', friend)
     } else {
       let newFriend = {
         name:this.state.name,
@@ -43,6 +65,11 @@ class App extends Component {
         email:this.state.email,
         }
         this.addFriend(newFriend)
+        this.setState({
+          name:'',
+          age:'',
+          email:''
+        })        
 
     }
 
@@ -63,6 +90,7 @@ class App extends Component {
     })
     this.setState({
                    isUpdate:true,
+                   id:friend.id,
                    name:friend.name,
                    age:friend.age,
                    email:friend.email,
@@ -87,6 +115,7 @@ class App extends Component {
                    handleTextChange = {this.handleTextChange} 
                    name={this.state.name}
                    age={this.state.age}
+                   id={this.state.id}
                    email={this.state.email}
                    isUpdate={this.state.isUpdate}/>
       </div>

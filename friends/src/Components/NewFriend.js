@@ -10,7 +10,7 @@ class NewFriend extends React.Component{
         let submit = this.props.isUpdate ? "Update":"Submit";
         return(
             <div>
-                <form onSubmit={this.props.handleAddNewFriend}>
+                <form id={this.props.id} onSubmit={this.props.handleAddNewFriend}>
                     <input id='name'  onChange={this.props.handleTextChange} value={this.props.name} placeholder='Name'></input>
                     <input id='age'   onChange={this.props.handleTextChange} value={this.props.age} placeholder='Age'></input>
                     <input id='email' onChange={this.props.handleTextChange} value={this.props.email} placeholder='Email'></input>
