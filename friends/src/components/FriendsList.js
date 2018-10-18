@@ -24,17 +24,29 @@ class FriendsList extends React.Component {
       .catch(error => console.log(error));
   }
 
-  changeHandler = e => this.setState(
-    [e.target.name]: e.target.value
-  );
+  changeHandler = ev => {
+    this.setState({
+      newFriend: {
+        ...this.state.newFriend,
+        [ev.target.name]: ev.target.value
+      }
+    });
+  };
 
 
-  addNewFriend = () => {
-    const newFriend = { name: this.state.newFriend.name, age: this.state.newFriend.age, email: this.state.newFriend.email };
-  }
+  addNewFriend = ev => {
+    ev.preventDefault();
+    axios
+      .post('http://localhost:5000/friends', this.state.newFriend)
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(error => console.log(error));
+  };
 
   render() {
-    console.log(this.state.friends)
+    console.log(this.state.newFriend)
+
     return (
       <div className='friend-list'>
         {this.state.friends.map(friend => <Friend name={friend.name} age={friend.age} email={friend.email} key={friend.id} />)}
