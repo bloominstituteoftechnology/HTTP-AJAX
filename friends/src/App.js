@@ -45,9 +45,8 @@ class App extends Component {
     });
   };
 
-  handleAddNewFriend = event => {
+  addNewFriend = event => {
     console.log(event);
-    event.preventDefault();
     axios
       .post('http://localhost:5000/friends', this.state.friend)
       .then(response =>
@@ -116,7 +115,12 @@ class App extends Component {
           exact
           path="/my-friends"
           render={props => (
-            <FriendsList {...props} friendsProps={this.state.friends} />
+            <FriendsList
+              {...props}
+              friendsProps={this.state.friends}
+              deleteFriend={this.deleteFriend}
+              updateFriend={this.setUpdateForm}
+            />
           )}
         />
         <Route
@@ -125,9 +129,9 @@ class App extends Component {
             <FriendForm
               {...props}
               friend={this.state.friend}
-              handleAddNewFriend={this.handleAddNewFriend}
+              addNewFriend={this.addNewFriend}
               handleChange={this.handleChange}
-              updateFriend={this.setUpdateForm}
+              updateFriend={this.updateFriend}
               isEditing={this.state.isEditing}
               deleteFriend={this.deleteFriend}
             />

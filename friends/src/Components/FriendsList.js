@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ComponentsStyle.css';
 
-function FriendsList(props, { deleteFriend, history, updateFriend }) {
+function FriendsList(props) {
   return (
     <ul className="App">
       {props.friendsProps.map(friend => {
@@ -12,8 +12,8 @@ function FriendsList(props, { deleteFriend, history, updateFriend }) {
             <button
               className="delete-button"
               onClick={event => {
-                updateFriend(event, friend);
-                history.push('/friend-form');
+                props.updateFriend(event, friend);
+                props.history.push('/friend-form');
               }}
             >
               Update
@@ -21,8 +21,8 @@ function FriendsList(props, { deleteFriend, history, updateFriend }) {
             <button
               className="delete-button"
               onClick={event => {
-                deleteFriend(event, friend.id);
-                history.push('/my-friends');
+                props.deleteFriend(event, friend.id);
+                props.history.push('/my-friends');
               }}
             >
               Remove
