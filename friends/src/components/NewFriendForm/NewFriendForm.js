@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import './NewFriendForm.css';
+
 class NewFriendForm extends React.Component {
     constructor(props) {
         super(props);
@@ -27,6 +29,7 @@ class NewFriendForm extends React.Component {
     //posts new friend to server on form "submit"
     newFriendFormSubmit = (event) => {
         event.preventDefault();
+        event.stopPropagation();
         if (this.state.name && this.state.age && this.state.email) {
             const newFriend = this.state;
             axios.post('http://localhost:5000/friends', newFriend)
@@ -46,12 +49,18 @@ class NewFriendForm extends React.Component {
 
     render() {
         return (
-            <form className="new-friend-form">
-                <input type="text" name="name" placeholder="Name" onChange={this.changeHandler} value={this.state.name} />
-                <input type="number" name="age" placeholder="Age" onChange={this.changeHandler} value={this.state.age} />
-                <input type="email" name="email" placeholder="Email" onChange={this.changeHandler} value={this.state.email} />
-                <button onClick={(event) => this.newFriendFormSubmit(event)}>Submit</button>
-            </form>
+            <div>
+                <form className="new-friend-form" id="form">
+                {/* NOT DRY, REFACTOR */}
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" placeholder="Name" onChange={this.changeHandler} value={this.state.name} />
+                    <label for="age">Age:</label>
+                    <input type="number" name="age" id="age" placeholder="Age" onChange={this.changeHandler} value={this.state.age} />
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="Email" onChange={this.changeHandler} value={this.state.email} />
+                    <button onClick={(event) => this.newFriendFormSubmit(event)}>Add new friend</button>
+                </form>
+            </div>
         );
     }
 }

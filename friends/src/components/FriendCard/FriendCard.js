@@ -16,6 +16,7 @@ class FriendCard extends React.Component {
         }
     }
 
+    //removes friend from server and update state when X is clicked
     deleteFriend = () => {
         axios.delete(`http://localhost:5000/friends/${this.props.friend.id}`)
             .then(response => {
@@ -26,12 +27,14 @@ class FriendCard extends React.Component {
             });
     }
 
+    //boolean in state to determine if friend property is being edited
     toggleUpdate = (elementEdited) => {
         this.setState(prevState => ({
             [elementEdited]: !prevState[elementEdited]
         }));
     }
 
+    //friend property update form submit, PUT to server and update App state
     handleUpdateSubmit = (event, valueBeingEdited) => {
         event.preventDefault();
         if (document.activeElement.value) {
@@ -58,7 +61,7 @@ class FriendCard extends React.Component {
         } else {
             document.activeElement.blur();
         }
-    }
+    } 
 
     render() {
         return (
@@ -66,9 +69,10 @@ class FriendCard extends React.Component {
                 <div className="friend-card-delete" onClick={() => this.deleteFriend()}>x</div>
                 <img src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
                 <div className="friend-card-content">
-                    <h1>Name:</h1> {(this.state.nameBeingEdited) ? <form onSubmit={(event) => this.handleUpdateSubmit(event, 'nameValue')}><input type="text" placeholder={this.props.friend.name} autoFocus={true} onBlur={() => this.toggleUpdate('nameBeingEdited')} /></form> : <span onDoubleClick={() => this.toggleUpdate('nameBeingEdited')}>{this.props.friend.name}</span>}
-                    <h1>Age:</h1>{(this.state.ageBeingEdited) ? <form onSubmit={(event) => this.handleUpdateSubmit(event, 'ageValue')}><input type="number" placeholder={this.props.friend.age} autoFocus={true} onBlur={() => this.toggleUpdate('ageBeingEdited')} /></form> : <span onDoubleClick={() => this.toggleUpdate('ageBeingEdited')}>{this.props.friend.age}</span>}
-                    <h1>Email:</h1>{(this.state.emailBeingEdited) ? <form onSubmit={(event) => this.handleUpdateSubmit(event, 'emailValue')}><input type="text" placeholder={this.props.friend.email} autoFocus={true} onBlur={() => this.toggleUpdate('emailBeingEdited')} /></form> : <span onDoubleClick={() => this.toggleUpdate('emailBeingEdited')}>{this.props.friend.email}</span>}
+                {/* EXTREMELY MESSY, WILL NEED REFACTORED */}
+                    <div><h1>Name:</h1> {(this.state.nameBeingEdited) ? <form onSubmit={(event) => this.handleUpdateSubmit(event, 'nameValue')}><input type="text" placeholder={this.props.friend.name} autoFocus={true} onBlur={() => this.toggleUpdate('nameBeingEdited')} /></form> : <span onDoubleClick={() => this.toggleUpdate('nameBeingEdited')}>{this.props.friend.name}</span>}</div>
+                    <div><h1>Age:</h1>{(this.state.ageBeingEdited) ? <form onSubmit={(event) => this.handleUpdateSubmit(event, 'ageValue')}><input type="number" placeholder={this.props.friend.age} autoFocus={true} onBlur={() => this.toggleUpdate('ageBeingEdited')} /></form> : <span onDoubleClick={() => this.toggleUpdate('ageBeingEdited')}>{this.props.friend.age}</span>}</div>
+                    <div><h1>Email:</h1>{(this.state.emailBeingEdited) ? <form onSubmit={(event) => this.handleUpdateSubmit(event, 'emailValue')}><input type="text" placeholder={this.props.friend.email} autoFocus={true} onBlur={() => this.toggleUpdate('emailBeingEdited')} /></form> : <span onDoubleClick={() => this.toggleUpdate('emailBeingEdited')}>{this.props.friend.email}</span>}</div>
                 </div>
             </div>
         );

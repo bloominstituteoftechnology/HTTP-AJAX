@@ -14,7 +14,7 @@ class App extends Component {
     }
   }
 
-  //if component mounted, sets state with data from server
+  //if component mounted, sets state with GET from server
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
@@ -22,7 +22,7 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
-  //resets state after server change
+  //resets state with server response
   updateState = (newState) => {
     this.setState(() => ({
       friends: newState

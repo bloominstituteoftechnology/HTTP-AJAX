@@ -1,4 +1,46 @@
 .new-friend-form {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.new-friend-form label {
+    display: inline-block;
+    width: 20%;
+    margin: 0;
+    background: #235366;
+    padding: 5px;
+    color: white;
+    font-size: 1.4rem;
+}
+
+.new-friend-form input{
+    display: inline-block;
+    width: 80%;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid grey;
+    border-bottom: none;
+    outline-width: thin;
+}
+
+.new-friend-form input:last-of-type{
+    border-bottom: 1px solid grey;
+}
+
+.new-friend-form button {
     width: 100%;
-    display: block;
+    margin-top: 10px;
+    padding: 5px 0;
+    border: 1px solid #235366;
+    color: #235366;
+    border-radius: 0px;
+    outline: none;
+}
+
+.new-friend-form button:hover {
+    background: #235366;
+    color: white;
+    outline: none;
 }
