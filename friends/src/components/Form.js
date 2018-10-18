@@ -1,25 +1,37 @@
-import React from 'react';
+import React from "react";
 
 class Form extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    render(){
-        return (
-            <form onSubmit={this.props.saveFriend}>
-                <input onChange={e => this.props.nameHandler(e)} type="text" placeholder="name" />
-                <input onChange={e => this.props.ageHandler(e)} type="text" placeholder="age" />
-                <input onChange={e => this.props.emailHandler(e)} type="text" placeholder="email" />
-                <button type="submit">Save Friend</button>
-            </form>
-        );
-    }
-
+  render() {
+    return (
+      <form>
+        <button onClick={this.props.updateFriend}>Update Friend</button>
+        <input
+          onChange={e => this.props.eventHandler(e)}
+          type="text"
+          placeholder="name"
+          name="nameText"
+        />
+        <input
+          onChange={e => this.props.eventHandler(e)}
+          type="text"
+          placeholder="age"
+          name="ageText"
+        />
+        <input
+          onChange={e => this.props.eventHandler(e)}
+          type="text"
+          placeholder="email"
+          name="emailText"
+        />
+        <button onClick={this.props.saveFriend}>Save Friend</button>
+      </form>
+    );
+  }
 }
-
 
 export default Form;

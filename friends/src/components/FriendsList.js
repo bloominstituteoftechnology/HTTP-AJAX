@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+// import { Route } from 'react-router-dom'; 
+import { Link } from "react-router-dom"
+import Friend from "./Friend"
 
 class FriendsList extends React.Component {
     constructor(props){
@@ -15,15 +18,19 @@ class FriendsList extends React.Component {
         .catch(error => console.log("ERRORRRRR", error))
     }
 
+
+    
+
     render() {
         return (
             this.state.friends.map(friend => {
-                return <p>{friend.name}</p>
+                return <Link onClick={event => this.props.idHandler(event, friend.id)} key={friend.id} to={`/friends/${friend.id}`}> <Friend friend={friend} deleteFriend={this.props.deleteFriend}/> </Link>
             })
         )
     }
 
 }
 
+// event => {this.props.eventHandler(event,friend.id)}
 
 export default FriendsList;
