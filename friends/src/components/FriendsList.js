@@ -1,5 +1,4 @@
 import React from "react";
-import FriendsForm from "./FriendsForm";
 import "./Friends.css";
 
 const FriendsList = props => {
@@ -7,11 +6,12 @@ const FriendsList = props => {
     <React.Fragment>
       <div className="friends-container">
         <h1>My Friends</h1>
-        {props.friendsList.map(friend => (
-          <ul>
+        {props.friendsList.map((friend, index) => (
+          <ul key={index}>
+            <span onClick={() => props.deleteFriend(friend.id)}>&#10006;</span>
             <li> name: {friend.name}</li>
             <li> age: {friend.age}</li>
-            <li> email :{friend.email}</li>
+            <li> email: {friend.email}</li>
           </ul>
         ))}
       </div>

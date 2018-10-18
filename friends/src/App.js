@@ -47,11 +47,22 @@ class App extends Component {
         })
       );
   };
+  updateFriend = e => {};
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friendsList: res.data }));
+    console.log(id);
+  };
 
   render() {
     return (
       <React.Fragment>
-        <FriendsList friendsList={this.state.friendsList} />
+        <FriendsList
+          friendsList={this.state.friendsList}
+          deleteFriend={this.deleteFriend}
+        />
         <FriendsForm
           newFriend={this.state.newFriend}
           handleNewFriends={this.handleNewFriends}

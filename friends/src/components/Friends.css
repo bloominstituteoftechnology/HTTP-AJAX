@@ -15,8 +15,16 @@
 .friends-container {
   max-width: 600px;
   margin: auto;
+  position: relative;
 }
 .form-container #submit {
   background: green;
   color: white;
+}
+.friends-container span {
+  position: absolute;
+  left: -10px;
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
