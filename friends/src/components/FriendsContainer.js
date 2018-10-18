@@ -10,7 +10,12 @@ const FriendsContainer = (props) => {
 						<h4>Name: {friend.name}</h4>
 						<p>Age: {friend.age}</p>
 						<p>Email: {friend.email}</p>
-						<button className="update" onClick={props.updateInfo}>
+						<button
+							className="update"
+							onClick={(e) => {
+								props.updateInfo(e, friend.id, friend.name, friend.age, friend.email);
+							}}
+						>
 							Update
 						</button>
 						<button

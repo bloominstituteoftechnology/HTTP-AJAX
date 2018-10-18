@@ -74,6 +74,30 @@ class App extends Component {
 			.catch((err) => console.log(err));
 	};
 
+	updateInfo = (e, frID, frNm, frAge, frEmail) => {
+		e.preventDefault();
+		frNm = e.target.value;
+		frAge = e.target.value;
+		frEmail = e.target.value;
+		axios
+			.post(`http://localhost:5000/friends/${frID}`, {
+				name: frNm,
+				age: frAge,
+				email: frEmail
+			})
+			.then((res) => {
+				this.setState({
+					friends: res.data,
+					friend: {
+						name: '',
+						age: '',
+						email: ''
+					}
+				});
+			})
+			.catch((err) => console.log(err));
+	};
+
 	render() {
 		return (
 			<div className="App">
