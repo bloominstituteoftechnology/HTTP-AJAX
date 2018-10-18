@@ -61,16 +61,17 @@ body {
   font-weight: bold;
   color: white;
 }
-.add-card_form {
+
+.friend-form {
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   width: 100%;
 }
-.add-card_form * {
+.friend-form * {
   width: 100%;
 }
-.add-card_form button {
+.friend-form button {
   margin-top: 1rem;
 }

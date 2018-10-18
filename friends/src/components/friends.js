@@ -7,7 +7,8 @@ class Friends extends React.Component {
     constructor() {
         super(...arguments);
         this.state = {
-            friends: []
+            friends: [],
+            showForm: false
         };
     }
     componentDidMount() {
@@ -22,12 +23,17 @@ class Friends extends React.Component {
     render() {
         return (
             <div className="friends">
-                <FriendAdder onSubmit={this.addFriend} />
+                <FriendAdder
+                    onSubmit={this.addFriend}
+                    onClick={this.showForm}
+                    showForm={this.state.showForm}
+                />
                 {this.state.friends.map(friendData => (
                     <FriendCard
                         key={friendData.id}
                         friend={friendData}
                         onDelete={this.deleteFriend}
+                        onChange={this.editFriend}
                     />
                 ))}
             </div>
@@ -35,7 +41,13 @@ class Friends extends React.Component {
     }
 
     //-- Interaction ---------------------------------
+    showForm = () => {
+        this.setState({showForm: true});
+    }
     addFriend = (friendData) => {
+        this.setState({
+            showForm: false,
+        });
         axios.post('http://localhost:5000/friends', friendData)
         .then(response => {
             let refreshedFriends = response.data;
@@ -51,6 +63,9 @@ class Friends extends React.Component {
             this.setState({friends: refreshedFriends});
         })
         .catch(error => console.log(error));
+    }
+    editFriend = newData => {
+        
     }
 }
 
