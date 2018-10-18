@@ -45,28 +45,26 @@ class App extends Component {
 
   formFieldHandler = event => {
     event.preventDefault();
-    const newId = this.state.friendList.length + 1;
-    const newName= this.state.newName;
-    const newAge= this.state.newAge;
-    const newEmail= this.state.newEmail;
-    
-    this.setState({
-      friendList: [
-        ...this.state.friendList,
-        {
-          id:newId,
-          name:newName,
-          age: newAge,
-          email: newEmail,
-        },
-        ]
-      })
-
- 
+   
+    axios     
+    .post( 'http://localhost:5000/friends',  
+    {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
 
     }
-
-  
+    )
+    .then(response => {
+      console.log(response);
+      console.log(response.data);
+      this.setState(() => ({ friendList: response.data }));
+    })
+    .catch(error => {
+      console.error('Server Error', error);
+    });
+    }
+   
 
   render() {
   
@@ -99,7 +97,23 @@ export default App;
           >
             Learn React
           </a>
-        </header>*/
+        </header>
+         
+ this.setState({
+      friendList: [
+        ...this.state.friendList,
+        {
+          id:newId,
+          name:newName,
+          age: newAge,
+          email: newEmail,
+        },
+        ]
+      })
+    }
+       
+        
+        */
       
       
       
