@@ -19,24 +19,66 @@
 .friend-card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 300px;
+    height: 200px;
     width: 45%;
     border: 1px solid #444444;
     margin: 20px auto;
     border-radius: 5px;
+    padding: 10px 0;
 }
-.form-container {
+
+.update-delete {
+  position: relative;
+  top: -90%;
+  right: -30%;
   display: flex;
   justify-content: center;
-  width: 600px;
+  align-items: center;
 }
+
+.update-delete a, img {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.update-link {
+  text-decoration: none;
+  color:#555;
+  font-size: 14px;
+}
+
+.update-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgba(25, 25, 25, 0.9);
+  width: 100vw;
+  z-index: 111;
+  top: 0;
+  position: fixed;
+}
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 320px;
+    height: 320px;
+    background: rgba(245, 97, 97, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+form h2 {
+  color: #e5e5e5;
 }
 
 form input {
@@ -45,16 +87,42 @@ form input {
     margin: 10px;
     border-radius: 10px;
     padding-left: 5px;
+    font-size: 14px;
+}
+
+.save-cancel {
+  position: relative;
+  top: -90%;
+  right: -42.5%;
+}
+
+.save-cancel img {
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+}
+
+.open-form {
+    position: fixed;
+    right: 20px;
+    bottom: 60px;
 }
 
 button {
-    width: 200px;
-    height: 40px;
-    border-radius: 10px;
-    margin: 10px 0;
-    background: #ffffff;
-    color: #444444;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 20px;
+  display: block;
+  z-index: 2;
+  position: relative;
+  background-color: #E83D39;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  border-bottom: 0 none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 32px;
+  border: none;
+}
+
+img:hover, button:hover {
+  opacity: .8;
 }

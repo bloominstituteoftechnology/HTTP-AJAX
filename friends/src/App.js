@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
+import xCircle from "./x-circle.svg";
+import xCircleWhite from "./x-circle white.svg"
+import save from "./save.svg";
 
 const blankFormValues = {
   name: "",
@@ -19,7 +22,8 @@ class App extends Component {
         age: "",
         email: ""
       },
-      isUpdating: false
+      isUpdating: false,
+      formOpen: false
     };
   }
   componentDidMount() {
@@ -44,7 +48,7 @@ class App extends Component {
     axios
       .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response =>
-        this.setState({ friends: response.data, newFriend: blankFormValues })
+        this.setState({ friends: response.data, newFriend: blankFormValues, formOpen: false })
       )
       .catch(error => console.log(error));
   };
@@ -54,7 +58,8 @@ class App extends Component {
     this.setState({
       friendToUpdate,
       newFriend: friendToUpdate,
-      isUpdating: true
+      isUpdating: true,
+      formOpen: true
     });
   };
 
@@ -69,7 +74,8 @@ class App extends Component {
         this.setState({
           friends: response.data,
           newFriend: blankFormValues,
-          isUpdating: false
+          isUpdating: false,
+          formOpen: false,
         })
       )
       .catch(error => console.log(error));
@@ -82,14 +88,23 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
-  handleCancelUpdate = event => {
+  handleCancel = event => {
     event.preventDefault();
-    this.setState({ isUpdating: false, newFriend: blankFormValues });
+    this.setState({
+      isUpdating: false,
+      newFriend: blankFormValues,
+      formOpen: false
+    });
+  };
+
+  openForm = event => {
+    event.preventDefault();
+    this.setState({ formOpen: true });
   };
 
   render() {
     return (
-      <div className="App">
+      <div className="App">        
         <h1>Friends</h1>
         <div className="friends-list">
           {this.state.friends.map(friend => (
@@ -99,32 +114,35 @@ class App extends Component {
               <p>
                 Email: <a href={`mailto:${friend.email}`}>{friend.email}</a>
               </p>
-              <a href="#update">
-                <button onClick={() => this.handleUpdate(friend.id)}>
+              <div className="update-delete">
+                <span
+                  className="update-link"
+                  onClick={() => this.handleUpdate(friend.id)}
+                >
                   Update
-                </button>
-              </a>
-              <button onClick={() => this.handleDelete(friend.id)}>
-                Delete
-              </button>
+                </span>
+                <img
+                  className="cancel-button"
+                  src={xCircle}
+                  alt="delete"
+                  onClick={() => this.handleDelete(friend.id)}
+                />
+              </div>
             </div>
           ))}
         </div>
-        <div className="form-container">
-          <form id="update">
+        <div
+          className={`form-container ${
+            this.state.isUpdating ? "updating" : ""
+          }`}
+          style={
+            this.state.formOpen ? { display: "flex" } : { display: "none" }
+          }
+        >
+          <form className={this.state.isUpdating ? "updating-form" : null}>
             <h2>
               {this.state.isUpdating ? "Update a Friend" : "Submit New Friend"}
             </h2>
-            <button
-              style={
-                this.state.isUpdating
-                  ? { display: "block" }
-                  : { display: "none" }
-              }
-              onClick={this.handleCancelUpdate}
-            >
-              Cancel Update
-            </button>
             <input
               type="text"
               value={this.state.newFriend.name}
@@ -146,16 +164,26 @@ class App extends Component {
               placeholder="Email"
               onChange={this.handleChange}
             />
-            <button
+            <div className="save-cancel">
+            <img
+              src={save}
+              alt="save"
               onClick={
                 this.state.isUpdating
                   ? this.handleSubmitUpdate
                   : this.handleSubmit
               }
-            >
-              Submit
-            </button>
+            />
+            <img
+              className="cancel-button"
+              src={xCircleWhite}
+              onClick={this.handleCancel}
+            />
+            </div>
           </form>
+        </div>
+        <div className="open-form">
+          <button onClick={this.openForm}>+</button>
         </div>
       </div>
     );
