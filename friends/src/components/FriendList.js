@@ -8,7 +8,11 @@ const FriendList = (props) => {
             {props.friendList.map(friend => {
                 // Need to find a better key value
                 return(
-                    <h2 key={friend.name}>{friend.name}</h2>
+                    <div className="card">
+                        <h2 key={friend.name}>{friend.name}</h2>
+                        <p>{friend.age}</p>
+                        <a>{friend.email}</a>
+                    </div>
                 );
             })}
         </div>
