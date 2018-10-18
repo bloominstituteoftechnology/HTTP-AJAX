@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import shortid from 'shortid';
 
 class FriendsForm extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class FriendsForm extends Component {
     e.preventDefault();
     axios
       .post('http://localhost:5000/friends', {
-        id: this.props.id + 1,
+        id: shortid.generate(),
         name: this.state.name,
         age: this.state.age,
         email: this.state.email
