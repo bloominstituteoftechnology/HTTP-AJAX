@@ -18,7 +18,7 @@ export default class Friends extends Component {
 
     componentDidMount() {
         axios
-            .get('http://localhost:5000/friends')
+            .get(this.url)
             .then(response => {
                 this.setState(() => ({ friends: [...response.data] }));
             })
@@ -82,13 +82,19 @@ export default class Friends extends Component {
         alert('Please complete friend details')
 
         if(editedFriend) {
+            friends.map(friend => {
+                if (friend.id === id) {
+                    axios
+                    .put(`${this.url}/${id}`, editedFriend)
+                    .then(response => {
+                        this.setState({ friends: response.data})
+                    })
+                    .catch(error => {
+                        alert('Error: we\'re sorry, your friend could not updated', error);
+                    })
+                }
+            })
             this.setState(() => ({
-                friends: [...friends.map(friend => {
-                    //console.log('id', friend.id);
-                    return (friend.id === id ?
-                    editedFriend :
-                    friend
-                )})],
                 id: null,
                 name: '',
                 age: '',
@@ -96,25 +102,23 @@ export default class Friends extends Component {
                 editingId: null
             }))
         }
-        //this.updateServer(id)
     }
 
-    // updateServer = (id) => {
+    deleteFriend = event => {    
+        let id = Number(event.target.id);
+        const { friends, name, age, email } = this.state;
 
-    //     this.state.friends.map(friend => {
-    //         if (friend.id === id) {
-    //             axios
-    //             .put(`${this.url}/${friend.id}`, friend)
-    //             .then(response => {
-    //                 //console.log('response', response.data)
-    //                 //this.setState({ friends: response.data})
-    //             })
-    //             .catch(error => {
-    //                 alert('Error: we\'re sorry, your friend could not updated', error);
-    //             })
-    //         }
-    //     })
-    // }
+        friends.map(friend => {
+            if (friend.id === id) {
+                axios
+                .delete(`${this.url}/${id}`)
+                .then(response => {
+                    this.setState({ friends: response.data });
+                })
+                .catch(error => console.log(error));
+            }
+        })
+    }
 
     render() {
         return (
@@ -136,7 +140,7 @@ export default class Friends extends Component {
                             <div>Email: {friend.email}</div>
                             <div className='friend-btns'>
                                 <div className='btn' onClick={(id, name, age, email) => this.editFriend(friend.id, friend.name, friend.age, friend.email)}>edit</div>
-                                <div className='btn'>delete</div>
+                                <div className='btn' id={friend.id} onClick={this.deleteFriend}>delete</div>
                             </div>
                             <div className={this.state.editingId === friend.id ? 'edit-form' : 'hidden'}>Update Friend
                                 <form className='form' id={friend.id} onSubmit={this.editSubmit}>
