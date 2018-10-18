@@ -1,16 +1,31 @@
 import React from 'react';
 import './Form.css';
 
-const Form = ({
-  handleFormSubmit,
-  handleInputChange,
-  name,
-  email,
-  age,
-  editMode
-}) => {
+const Form = props => {
+  const {
+    handleFormSubmit,
+    handleUpdateSubmit,
+    handleInputChange,
+    name,
+    email,
+    age,
+    editMode,
+    activeFriend,
+    history
+  } = props;
+  const handleSubmit = e => {
+    console.log(activeFriend);
+    e.preventDefault();
+    if (editMode) {
+      handleUpdateSubmit(parseInt(activeFriend.id));
+    } else {
+      handleFormSubmit(e);
+    }
+    history.push('/');
+  };
+
   return (
-    <form className="form" onSubmit={handleFormSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <h2>Add a new friend</h2>
       <div className="form-group">
         <label className="label" htmlFor="name">
@@ -48,9 +63,7 @@ const Form = ({
           onChange={handleInputChange}
         />
       </div>
-      <button className="btn" disabled={editMode}>
-        Friended
-      </button>
+      <button className="btn">{editMode ? 'Update' : 'Friended'}</button>
     </form>
   );
 };

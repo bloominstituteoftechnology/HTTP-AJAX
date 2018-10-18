@@ -17,8 +17,12 @@ const FriendsList = ({
           <div onClick={handleDeleteClick} className="delete">
             X
           </div>
-          <button onClick={handleUpdateClick} className="btn">
-            {editMode ? 'Update' : 'Edit'}
+          <button
+            onClick={handleUpdateClick}
+            className="btn"
+            disabled={editMode}
+          >
+            Edit
           </button>
         </div>
       ))}

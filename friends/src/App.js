@@ -13,7 +13,8 @@ class App extends Component {
       name: '',
       age: '',
       email: '',
-      editMode: false
+      editMode: false,
+      activeFriend: {}
     };
   }
 
@@ -32,8 +33,10 @@ class App extends Component {
         age: parseInt(this.state.age),
         email: this.state.email
       })
-      .then(res =>
-        this.setState({ friends: res.data, name: '', email: '', age: '' })
+      .then(
+        res =>
+          this.setState({ friends: res.data, name: '', email: '', age: '' }),
+        this.props.history.push('/')
       )
       .catch(err => console.log(err));
   };
@@ -42,35 +45,38 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleUpdateSubmit = id => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, {
+        name: this.state.name,
+        age: parseInt(this.state.age),
+        email: this.state.email
+      })
+      .then(res =>
+        this.setState({
+          friends: res.data,
+          name: '',
+          age: '',
+          email: '',
+          editMode: false,
+          activeFriend: {}
+        })
+      )
+      .catch(err => console.log(err));
+  };
+
   handleUpdateClick = e => {
     e.preventDefault();
     const id = e.target.parentNode.id;
     const friend = this.state.friends.find(friend => `${friend.id}` === id);
-    if (!this.state.editMode) {
-      this.setState({
-        name: friend.name,
-        age: friend.age,
-        email: friend.email,
-        editMode: true
-      });
-    } else {
-      axios
-        .put(`http://localhost:5000/friends/${id}`, {
-          name: this.state.name,
-          age: parseInt(this.state.age),
-          email: this.state.email
-        })
-        .then(res =>
-          this.setState({
-            friends: res.data,
-            name: '',
-            age: '',
-            email: '',
-            editMode: false
-          })
-        )
-        .catch(err => console.log(err));
-    }
+    this.props.history.push('/add-friend');
+    this.setState({
+      name: friend.name,
+      age: friend.age,
+      email: friend.email,
+      editMode: true,
+      activeFriend: friend
+    });
   };
 
   handleDeleteClick = e => {
@@ -82,7 +88,7 @@ class App extends Component {
   };
 
   render() {
-    const { name, age, email, editMode } = this.state;
+    const { name, age, email, activeFriend, editMode } = this.state;
     return (
       <div className="App">
         <h1>We could be friends</h1>
@@ -90,7 +96,10 @@ class App extends Component {
           <NavLink exact to="/">
             Friends
           </NavLink>
-          /<NavLink to="/add-friend">Add a Friend</NavLink>
+          /
+          <NavLink to="/add-friend">
+            {this.state.editMode ? 'Update Friend' : 'Add a Friend'}
+          </NavLink>
         </nav>
         <Route
           path="/add-friend"
@@ -101,8 +110,10 @@ class App extends Component {
               age={age}
               email={email}
               editMode={editMode}
+              activeFriend={activeFriend}
               handleFormSubmit={this.handleFormSubmit}
               handleInputChange={this.handleInputChange}
+              handleUpdateSubmit={this.handleUpdateSubmit}
             />
           )}
         />
