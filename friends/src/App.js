@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom' 
+import EditForm from './components/EditForm';
+import Cards from './components/Cards';
 
 class App extends Component {
   constructor(){
@@ -39,8 +42,7 @@ class App extends Component {
     window.location.reload();
   };
 
-  deleteItem = (ev, id) => {
-    ev.preventDefault();
+  deleteItem = (id) => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
@@ -50,20 +52,24 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  editItem = id=> {
+    axios.put(`http://localhost:5000/friends/${id}`)
+  };
+
   render() {
     return (
-      <div className='contact-container'>
+      <div className='contact-container'>        
         <h1>Contact Information</h1>
-        <div className='cards'>
-          {this.state.items.map(item => 
-            <div key={item.id} className='contact-card'>
-              <h2>{item.name}</h2>
-              <p>Age:{item.age}</p>
-              <p>Email:{item.email}</p>
-              <div onClick={event =>{this.deleteItem(event, item.id)}} className='delete'>x</div>
-            </div>          
-          )}
-          <form className='form'>
+        <Route 
+          path='/' 
+          render={()=> 
+            <Cards 
+              items={this.state.items}
+              clickHandler={this.clickHandler}
+              deleteItem={this.deleteItem} />} 
+        />
+
+        <form className='form'>
           <h3>Add a contact</h3>
           <input 
             name='name' 
@@ -82,9 +88,10 @@ class App extends Component {
             placeholder='Email'
             onChange={this.handleInputChange}></input>
           <button onClick={this.clickHandler}>Submit</button>
-        </form>  
-        </div>
+        </form> 
+        <Route path='/edit-form' render={props => <EditForm />} />  
       </div>
+        
     );
   }
 }

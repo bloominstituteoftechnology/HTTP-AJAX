@@ -1,7 +1,8 @@
 html {
   font-size: 62.5%;
   font-family: 'Roboto', sans-serif;
-  background-color: lightseagreen
+  background-color: lightseagreen;
+  box-sizing: border-box;
 }
 .contact-container {
   max-width: 1000px;
@@ -97,11 +98,25 @@ button:hover {
   font-size: 2rem;
   text-align: end;
   padding-bottom: 20px;
-  margin: 0;
-  transition: 1s font-size;
+  margin-left: 10px;
+  transition: .5s font-size;
+  width: 60px;
+  height: 60px;
 }
 
 .contact-card .delete:hover {
   color: white;
-  font-size: 6rem;
+  font-size: 5rem;
+}
+
+.contact-card .edit {
+  border: 1px solid black;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  font-size: 1.1rem;
+  width: 10%;
+  border-radius: 5px;
+  margin-left: 10%;
+  text-decoration: none;
 }
