@@ -10,7 +10,8 @@ class Friends extends React.Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      editingId: null
     };
   }
 
@@ -47,51 +48,73 @@ class Friends extends React.Component {
   updateFriend = e => {
     let friendId = e.target.id;
     axios
-      .put(`http://localhost:5000/friends/`, {
-        name: this.state.name,
-        age: this.state.age,
-        email: this.state.email
-      })
-      .then(response => this.setState({ friends: response.data }));
+      .put(
+        `http://localhost:5000/friends/${this.state.editingId}`,
+        this.state.newFriend
+      )
+      .then(response =>
+        this.setState({
+          friends: response.data,
+          editingId: null
+        }).catch(error => console.log(error))
+      );
   };
 
   render() {
     return (
-      <div className="App">
+      <div className="outer-body">
         <form>
+          <h2>Add Friend</h2>
           <input
             type="text"
             onChange={this.changeHandler}
             name="name"
             value={this.state.newFriend.name}
+            placeholder="Name"
           />
           <input
             type="number"
             onChange={this.changeHandler}
             name="age"
             value={this.state.newFriend.age}
+            placeholder="Age"
           />
           <input
             type="text"
             onChange={this.changeHandler}
             name="email"
             value={this.state.newFriend.email}
+            placeholder="Email"
           />
-          <button onClick={this.addFriend}>Add</button>
+          <button onClick={this.addFriend} className="add">
+            Add
+          </button>
         </form>
-        {this.state.friends.map(friend => (
-          <div className="friend-card" key={friend.id}>
-            <h5 className="name">{friend.name}</h5>
-            <span className="age">{friend.age}</span>
-            <span className="email">{friend.email}</span>
-            <button id={friend.id} onClick={this.deleteFriend}>
-              Delete
-            </button>
-            <button id={friend.id} onClick={this.updateFriend}>
-              Update
-            </button>
-          </div>
-        ))}
+        <div className="friend-body">
+          {this.state.friends.map(friend => (
+            <div className="friend-card" key={friend.id}>
+              <h5 className="name">{friend.name}</h5>
+              <div className="a-e-box">
+                <span className="age">Age: {friend.age}</span>
+                <span className="email">Email: {friend.email}</span>
+              </div>
+              <button
+                id={friend.id}
+                onClick={this.deleteFriend}
+                className="delete"
+              >
+                X
+              </button>
+              <button
+                id={friend.id}
+                onClick={this.updateFriend}
+                className="delete"
+              >
+                Update
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
