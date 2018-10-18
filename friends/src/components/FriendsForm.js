@@ -2,15 +2,24 @@ import React from "react";
 import "./Friends.css";
 
 const FriendsForm = props => {
+  const handleEditClick = e => {
+    e.preventDefault();
+    if (props.isEditing) {
+      props.editFriend();
+    } else {
+      props.addNewFriend();
+    }
+  };
   return (
     <div className="form-container">
-      <form onSubmit={props.addNewFriend}>
+      <form onSubmit={handleEditClick}>
         <input
           type="text"
           placeholder="Friend's Name"
           value={props.newFriend.name}
           onChange={props.handleNewFriends}
           name="name"
+          required
         />
         <input
           type="text"
@@ -18,6 +27,7 @@ const FriendsForm = props => {
           value={props.newFriend.age}
           onChange={props.handleNewFriends}
           name="age"
+          required
         />
         <input
           type="text"
@@ -25,8 +35,13 @@ const FriendsForm = props => {
           value={props.newFriend.email}
           onChange={props.handleNewFriends}
           name="email"
+          required
         />
-        <input type="submit" value="Add new Friend" id="submit" />
+        <input
+          type="submit"
+          value={props.isEditing ? "Edit Friend" : "Add new Friend"}
+          id="submit"
+        />
       </form>
     </div>
   );

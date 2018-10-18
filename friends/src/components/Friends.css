@@ -10,12 +10,15 @@
   border-radius: 5px;
   border: 1px lightgrey solid;
   text-align: center;
-  margin: auto;
+  margin: 4px;
 }
 .friends-container {
   max-width: 600px;
   margin: auto;
   position: relative;
+}
+.friends-container h1 {
+  text-align: center;
 }
 .form-container #submit {
   background: green;
@@ -23,8 +26,21 @@
 }
 .friends-container span {
   position: absolute;
-  left: -10px;
+  left: -40px;
   color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.friends-container ul {
+  list-style: none;
+}
+.friends-container i {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 0px;
+  margin-top: 5px;
   font-size: 1.5rem;
   cursor: pointer;
 }

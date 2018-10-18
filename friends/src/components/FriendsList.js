@@ -9,6 +9,10 @@ const FriendsList = props => {
         {props.friendsList.map((friend, index) => (
           <ul key={index}>
             <span onClick={() => props.deleteFriend(friend.id)}>&#10006;</span>
+            <i
+              className="fas fa-edit"
+              onClick={e => props.setupEditFriendForm(e, friend)}
+            />
             <li> name: {friend.name}</li>
             <li> age: {friend.age}</li>
             <li> email: {friend.email}</li>
