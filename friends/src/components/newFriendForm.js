@@ -6,7 +6,7 @@ const NewFriendForm = props => {
     return (
         <div className='new-friend-form'>
             <h2>Add a new Friend:</h2>
-            <h3>{props.friend}</h3>
+
 
             <form>
                 <input

@@ -16,6 +16,9 @@ class App extends Component {
     };
   }
 
+  editFriendHandle = data => {
+    this.setState({ friendsData: data, name: "", age: "", email: "" })
+  }
   componentDidMount() {
     axios.get('http://localhost:5000/friends').then(response => {
       console.log(response);
@@ -37,16 +40,17 @@ class App extends Component {
     const newFriends = { name: this.state.name, age: this.state.age, email: this.state.email }
     axios.post('http://localhost:5000/friends', newFriends)
       .then(response => {
-        this.setState({ friendsData: response.data });
+        this.setState({ friendsData: response.data, name: "", age: "", email: "" });
       })
       .catch(err => {
         console.log(err);
       });
+
   }
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friendsData}
+        <FriendsList editFriendHandle={this.editFriendHandle} friends={this.state.friendsData}
           addFriend={this.addFriend}
           changeHandler={this.changeHandler}
         />

@@ -1,29 +1,20 @@
 import React from 'react';
 import NewFriendForm from './newFriendForm';
+import Friends from './friends';
 
 const FriendsList = props => {
     return (
         <div>
             <h1>My Friends</h1>
             <div className='all-friends'>
-            {props.friends.map(friend => {
-                return (
-                    <div key={friend.id} className ='friend'>
-                        < div>
-                            <h2>Name: {friend.name}</h2>
-                            <p>Age: {friend.age}</p>
-                            <p>Email: {friend.email}</p>
-                        </div>
-                        <button className='editButton'>Edit</button>
-                        <button className='editButton'>Delete</button>
-                    </div>
+                {props.friends.map(friend => {
+                    return <Friends key={friend.id} friend={friend} editFriendHandle={props.editFriendHandle} />
 
-                )
-            })}
+                })}
             </div>
             <NewFriendForm addChangeHandler={props.changeHandler}
                 newAddFriend={props.addFriend}
-                friend={props.friends.name}
+
             />
         </div>
     )
