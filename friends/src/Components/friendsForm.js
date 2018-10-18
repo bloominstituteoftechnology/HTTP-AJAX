@@ -22,7 +22,7 @@ class FriendsForm extends Component{
         .post("http://localhost:5000/friends", friend)
         .then (response => {
           console.log("post response", response);
-          this.setState({friendsData: response.data, name: "", age: "", email: ""});
+          this.setState({friendsData: response.data, name: " ", age: " ", email: " "});
         })
         .catch(error=>{
           console.log(error)

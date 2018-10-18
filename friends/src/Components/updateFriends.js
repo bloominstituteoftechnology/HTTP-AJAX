@@ -23,7 +23,7 @@ const UpdateFriends = props => {
                onChange = {props.updateHandler}
                placeholder = {props.friend.email}
              /> <br></br>
-             <button onClick = {props.submitFriendUpdate}>
+             <button onClick = {props.submitUpdate}>
                  Submit Update
             </button>
             </form>
