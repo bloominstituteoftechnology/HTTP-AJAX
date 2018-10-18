@@ -9,7 +9,11 @@ const FriendsList = (props) => {
       <h2>Friends List</h2>
       {friends.map(friend => (
         <div key={friend.id}>
-          <Friend friend={friend} handleSetData={props.handleSetData} />
+          <Friend
+            friend={friend}
+            handleSetData={props.handleSetData}
+            handleDeleteFriend={props.handleDeleteFriend}
+          />
         </div>
       ))}
     </div>

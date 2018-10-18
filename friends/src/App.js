@@ -53,6 +53,17 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleDeleteFriend = (e, id) => {
+    e.preventDefault();
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     const { friends, friend } = this.state;
     return (
@@ -62,7 +73,11 @@ class App extends Component {
           handleChange={this.handleChange}
           submitNewFriend={this.handleSubmitNewFriend}
         />
-        <FriendsList friends={friends} handleSetData={this.handleSetData} />
+        <FriendsList
+          friends={friends}
+          handleSetData={this.handleSetData}
+          handleDeleteFriend={this.handleDeleteFriend}
+        />
       </div>
     );
   }
