@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
 import Form from './components/Form'
+import Friends from './components/Friends'
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends Component {
   }
 
   saveFriend = () => {
-    const myObj = { name: this.state.name, age: this.state.age, email: this.state.email }
+    const myObj = { name: this.state.name, age: Number(this.state.age), email: this.state.email }
     axios
       .post('http://localhost:5000/friends', myObj)
       .then(saved => {
@@ -46,11 +47,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <div className='friends'>{this.state.notes.map(friends => {
-            return(
-             <div key={friends.id}>{friends.name} {friends.age}, email: {friends.email}</div>
-            );
-          })}</div>
+          <Friends 
+          notes={this.state.notes}
+          />
           <Form 
           saveFriend={this.saveFriend}
           handleInput={this.handleInput}
