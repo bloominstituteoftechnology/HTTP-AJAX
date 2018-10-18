@@ -68,12 +68,15 @@ class App extends Component {
         <FriendsList friends={this.state.friends} unFriend={this.unFriend}/>
         <FriendForm
           changeHandler={this.changeHandler}
-          addFriend={this.addFriend}
+          submitHandler={this.addFriend}
+          pullFriendsData={this.pullFriendsData}
           newFriend={{
             name: this.state.name,
             email: this.state.email,
             age: this.state.age
-          }}
+          }
+        }
+        display
         />
       </div>
     );

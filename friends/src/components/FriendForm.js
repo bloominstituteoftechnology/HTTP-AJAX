@@ -1,8 +1,9 @@
 import React from "react";
 
 const FriendForm = props => {
+    
   return (
-    <form onSubmit={props.addFriend}>
+    <form onSubmit={props.submitHandler} className={props.display ? '':'none'}>
       <input
         name="name"
         type="text"
