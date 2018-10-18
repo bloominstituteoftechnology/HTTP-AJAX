@@ -1,0 +1,55 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headline {
+  font-size: 90px;
+  padding: 20px;
+}
+
+.friend {
+  border: 8px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  margin: 50px 0;
+  background: darkgray;
+  min-width: 600px;
+}
+
+.friend__name {
+  font-size: 78px;
+}
+
+.friend__age {
+  font-size: 20px;
+}
+
+.friend__email {
+  color: paleturquoise;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.form__input {
+  width: 300px;
+  height: 75px;
+  font-size: 20px;
+}
+
+.form__btn {
+  background-color: paleturquoise;
+  color: black;
+  border: 3px solid black;
+  width: 300px;
+  height: 75px;
+}
