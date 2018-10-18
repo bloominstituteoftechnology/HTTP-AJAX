@@ -14,7 +14,7 @@ const Friend = (props) => {
                           <p> Age  : {friend.age}</p>
                           <p> Email : {friend.email}</p>
                       </div>
-                     )
+                    )
                 })
             }
          

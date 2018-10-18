@@ -12,13 +12,7 @@ class App extends Component {
   constructor() {
       super();
       this.state = {
-        friends : [],
-        newFriend : {
-                  age : '',
-                  name : '',
-                  email : ''
-              },
-        displayForm : false,
+        friends : []
       }
   }
 
@@ -30,21 +24,8 @@ componentDidMount() {
     .catch(error => console.log(error));
 }
 
-handleFormEvent = event => {
-  alert("I was clicked");
-}
-
-
-changeHandler = (event) => {
-    this.setState({ 
-        newFriend  : { [event.target.name] : event.target.value } })
-}
-
-addFriend = (event) => {
-  event.preventDefault()
-  axios
-     .post('http://localhost:5000/friends' , this.state.newFriend)
-     .then(response => this.setState({ items : response.data}))
+updateFriends = (friend) => {
+      this.setState({ friend })
 }
 
 //RENDER FUNCTION 
@@ -57,10 +38,12 @@ render() {
           <h1>Friends List</h1>
           <Friend 
               friend = {this.state.friends}
-              handleFormEvent = {this.handleFormEvent}
           />
 
-          <Form />
+          <Form 
+              updateFriends = {this.updateFriends}
+              
+          />
           
       </div>
     );
