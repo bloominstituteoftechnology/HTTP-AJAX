@@ -11,7 +11,12 @@ class App extends Component {
       friends: [],
       name: '',
       age: '',
-      email: ''
+      email: '',
+      updateName: '',
+      updateAge: '',
+      updateEmail: '',
+      update: false,
+      id: ''
     }
   }
 
@@ -27,7 +32,6 @@ class App extends Component {
   }
 
   submit = event => {
-    event.preventDefault()
     axios
       .post("http://localhost:5000/friends", {
         name: this.state.name,
@@ -36,14 +40,54 @@ class App extends Component {
       })
       .then(response => console.log(response))
       .catch(error => console.log(error))
-    this.setState({
-      name: '',
-      age: '',
-      email: ''
-    })
-    window.location.reload()
+    // this.setState({
+    //   name: '',
+    //   age: '',
+    //   email: ''
+    // })
+    // window.location.reload()
   }
 
+  delete = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error))
+  }
+
+  updateForm = (id, name, age, email) => {
+    this.setState({
+      update: true,
+      id: id,
+      name: name,
+      age: age,
+      email: email
+    })
+  }
+
+  close = event => {
+    this.setState({ update: false })
+  }
+
+  update = event => {
+    event.preventDefault()
+    axios
+      .put(`http://localhost:5000/friends/${this.state.id}`, {
+        name: this.state.updateName,
+        age: this.state.updateAge,
+        email: this.state.updateEmail
+      })
+      .then(response =>
+        this.setState({
+          friends: response.data,
+          updateName: '',
+          updateAge: '',
+          updateEmail: '',
+          update: false
+        })
+      )
+      .catch(error => console.log(error));
+  }
 
 
   render() {
@@ -52,10 +96,28 @@ class App extends Component {
         <FriendsList 
           friends={this.state.friends}
           delete={this.delete}
+          updateForm={this.updateForm}
         />
+        {this.state.update && (
+          <Form 
+            inputChange={this.inputChange}
+            submit={this.submit}
+            close={this.close}
+            nameX="update name"
+            ageX="update age"
+            emailX="update email"
+            name={this.state.updateName}
+            age={this.state.updateAge}
+            email={this.state.updateEmail}
+          />
+        )}
         <Form 
           inputChange={this.inputChange}
           submit={this.submit}
+          close={this.close}
+          nameX="name"
+          ageX="age"
+          emailX="age"
         />
       </div>
     );

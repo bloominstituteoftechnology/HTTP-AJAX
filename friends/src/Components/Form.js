@@ -5,9 +5,13 @@ const Form = props => {
     <form 
         onSubmit={props.submit}
     >
+        {/* <div>Update</div> */}
+        {/* <div
+            close={props.close}
+        >Close</div> */}
         <input
             type="text"
-            name="name"
+            name={props.nameX}
             placeholder="enter name"
             value={props.name}
             onChange={props.inputChange}
@@ -15,7 +19,7 @@ const Form = props => {
         />
         <input
             type="number"
-            name="age"
+            name={props.ageX}
             placeholder="enter age"
             value={props.age}
             onChange={props.inputChange}
@@ -23,16 +27,18 @@ const Form = props => {
         />
         <input 
             type="email"
-            name="email"
+            name={props.emailX}
             placeholder="enter email"
             value={props.email}
             onChange={props.inputChange}
             required        
         />
-        <input type="submit"/>
+        <input 
+            onClick={props.submit}
+            type="submit"
+        />
     </form>
     )
-    
 }
 
 export default Form

@@ -10,6 +10,7 @@ const FriendsList = props => {
                 friends={friend}
                 key={friend.id}
                 delete={props.delete}
+                updateForm={props.updateForm}
             />
             )
             
