@@ -7,7 +7,8 @@ export default class FriendList extends Component {
     this.state = {
       friends: [],
       name: '',
-      age: ''
+      age: '',
+      email: ''
     };
   }
 
@@ -33,7 +34,8 @@ export default class FriendList extends Component {
           this.setState(() => ({
             friends: response.data,
             name: '',
-            age: ''
+            age: '',
+            email: ''
           }));
         })
         .catch(function(error) {
@@ -73,7 +75,7 @@ export default class FriendList extends Component {
             value={this.state.email}
             onChange={this.changeHandler}
             placeholder="Email "
-            name="Email"
+            name="mail"
           />
           <button type="submit">Add New Friend</button>
         </form>

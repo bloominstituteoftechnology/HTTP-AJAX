@@ -3,12 +3,22 @@
   max-width: 300px;
 }
 .friend-list {
-  display: flex;
+  /* display: flex; */
   width: 100%;
-  flex-direction: column;
+  /* flex-direction: column; */
+  border:solid 1px black;
 }
 .friend {
+
  color: red;
+ border:1px solid blue;
+}
+
+.friend-list .friend {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  border:1px solid green;
 }
 input {
   margin-top: 10px;
