@@ -30,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+
+.friendsH1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+body {
+  background-color: grey;
+}
