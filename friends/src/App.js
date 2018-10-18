@@ -27,7 +27,7 @@ class App extends Component {
   addFriend = event => {
     event.preventDefault();
     let friend = this.state.newFriend;
-    //we'll only add the new friend to the list if all fields have had something entered
+    //we'll only add the new friend to the list if all fields are filled
     if (friend.name !== "" && friend.age !== "" && friend.email !== "") {
       this.setState({
         newFriend: {
@@ -47,7 +47,7 @@ class App extends Component {
           //otherwise logs an error
           console.log(err, "You borked it");
         });
-      //then resets input fields by setting newFriend on state back to default
+      //after POST and state reset, next reset input fields by setting newFriend on state back to default
       //ONLY do this if input was successful. nobody wants to have to re-enter
       //all the fields in a form just because they missed one, right?
       this.setState({
@@ -66,6 +66,15 @@ class App extends Component {
     }
   };
 
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err, "You totally beefed it"));
+    console.log(id);
+  };
+
   changeHandler = (key, value) => {
     this.setState({
       newFriend: {
@@ -76,55 +85,65 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <div className="App">
-        <h1>Happy Lambda Friends</h1>
-        <div className="app-container">
-          <div className="friend-container-wrapper">
-            {this.state.friends.map(friend => (
-              <div className="friend-container" key={friend.id}>
-                <h3 className="friend-name">{friend.name}</h3>
-                <p className="friend-age">{friend.age}</p>
-                <p className="friend-email">{friend.email}</p>
-              </div>
-            ))}
-          </div>
-          <div className="new-friend-form">
-            <h2>Made a new friend?</h2>
-            <form onSubmit={this.addFriend}>
-              <input
-                className="add-friend-name"
-                type="text"
-                placeholder="Name"
-                onChange={event =>
-                  this.changeHandler("name", event.target.value)
-                }
-                value={this.state.newFriend.name}
-              />
-              <input
-                className="add-friend-age"
-                type="text"
-                placeholder="Age"
-                onChange={event =>
-                  this.changeHandler("age", event.target.value)
-                }
-                value={this.state.newFriend.age}
-              />
-              <input
-                className="add-friend-email"
-                type="text"
-                placeholder="Email"
-                onChange={event =>
-                  this.changeHandler("email", event.target.value)
-                }
-                value={this.state.newFriend.email}
-              />
-              <button>Add</button>
-            </form>
+    if (!this.state.friends.length || !this.state.friends) {
+      return <h2>Wait</h2>;
+    } else {
+      return (
+        <div className="App">
+          <h1>Happy Lambda Friends</h1>
+          <div className="app-container">
+            <div className="friend-container-wrapper">
+              {this.state.friends.map(friend => (
+                <div className="friend-container" key={friend.id}>
+                  <div
+                    className="delete-button"
+                    onClick={event => this.deleteFriend(event, friend.id)}
+                  >
+                    X
+                  </div>
+                  <h3 className="friend-name">{friend.name}</h3>
+                  <p className="friend-age">{friend.age}</p>
+                  <p className="friend-email">{friend.email}</p>
+                </div>
+              ))}
+            </div>
+            <div className="new-friend-form">
+              <h2>Made a new friend?</h2>
+              <form onSubmit={this.addFriend}>
+                <input
+                  className="add-friend-name"
+                  type="text"
+                  placeholder="Name"
+                  onChange={event =>
+                    this.changeHandler("name", event.target.value)
+                  }
+                  value={this.state.newFriend.name}
+                />
+                <input
+                  className="add-friend-age"
+                  type="text"
+                  placeholder="Age"
+                  onChange={event =>
+                    this.changeHandler("age", event.target.value)
+                  }
+                  value={this.state.newFriend.age}
+                />
+                <input
+                  className="add-friend-email"
+                  type="text"
+                  placeholder="Email"
+                  onChange={event =>
+                    this.changeHandler("email", event.target.value)
+                  }
+                  value={this.state.newFriend.email}
+                />
+                <button>Add</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
