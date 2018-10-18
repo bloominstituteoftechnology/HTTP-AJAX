@@ -26,6 +26,18 @@ updateFriends = (friend) => {
     this.setState({friends : friend})
 }
 
+deleteHandler = (id) => {
+   // alert(id)
+   axios
+   .delete(`http://localhost:5000/friends/${id}`)
+   .then(response => {this.setState({
+                                friends : response.data,
+                              })
+    })
+   .catch(err => console.log(err));
+}
+
+
 //RENDER FUNCTION 
 render() {
     console.log("Rendering", this.state.friends)
@@ -34,6 +46,7 @@ render() {
 
           <Friend 
               friend =   {this.state.friends}
+              deleteHandler  = {this.deleteHandler}
           />
 
           <Form 
