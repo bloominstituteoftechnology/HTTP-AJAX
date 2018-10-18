@@ -181,3 +181,17 @@ html {
 .mainNav nav .navTitle {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 680px) {
+  .mainNav nav h1 {
+    font-size: 2rem;
+  }
+
+  .mainNav nav .homeIcon {
+    font-size: 1.8rem;
+  }
+
+  .mainNav nav .navLink {
+    font-size: 1.8rem;
+  }
+}
