@@ -3,6 +3,7 @@ import './App.css';
 import FriendsContainer from './components/FriendsContainer';
 import FriendsForm from './components/FriendsForm';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
 	constructor(props) {
@@ -99,14 +100,25 @@ class App extends Component {
 	};
 
 	render() {
+		const { friends } = this.state;
 		return (
 			<div className="App">
-				<FriendsForm formHandler={this.formHandler} addNewFriend={this.addNewFriend} />
-				<FriendsContainer
-					key={this.state.id}
-					friends={this.state.friends}
-					updateInfo={this.updateInfo}
-					deleteFriend={this.deleteFriend}
+				<Route
+					exact
+					to="/"
+					render={(props) => <FriendsForm formHandler={this.formHandler} addNewFriend={this.addNewFriend} />}
+				/>
+				<Route
+					exact
+					to="/"
+					render={(props) => (
+						<FriendsContainer
+							friends={friends}
+							{...props}
+							updateInfo={this.updateInfo}
+							deleteFriend={this.deleteFriend}
+						/>
+					)}
 				/>
 			</div>
 		);
