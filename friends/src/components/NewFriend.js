@@ -19,7 +19,7 @@ const NewFriend = props => {
 
                 <label>Age: </label>
                 <input 
-                    type='text'
+                    type='number'
                     placeholder='Enter Age'
                     onChange={props.handleChange}
                     name='age'
@@ -29,7 +29,7 @@ const NewFriend = props => {
 
                 <label>Email: </label>
                 <input 
-                    type='text'
+                    type='email'
                     placeholder='Enter Email'
                     onChange={props.handleChange}
                     name='email'
