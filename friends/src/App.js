@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Friend from './components/friend';
 import FriendsForm from './components/FriendsForm';
+import './App.css';
 
 class App extends Component {
   constructor() {

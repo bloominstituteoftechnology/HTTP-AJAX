@@ -1,0 +1,48 @@
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+    0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  height: 180px;
+  margin: 0 20px 20px 0;
+  padding: 10px 0;
+  width: 325px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fce8e6;
+  color: #d93025;
+  margin-bottom: 10px;
+  padding: 0 8px 3px 25px;
+  width: 100%;
+}
+
+.delete {
+  position: relative;
+  cursor: pointer;
+  top: 3.5px;
+}
+
+.name {
+  margin: 0;
+}
+
+.content {
+  padding: 0 10px;
+}
+
+.text {
+  background-color: #F1F3F4;
+  border-radius: 18.5px;
+  margin-bottom: 8px;
+  padding: 8px 0 8px 20px;
+}
+
+.edit {
+  color: #696969;
+  cursor: pointer;
+  margin-right: 8px;
+  text-align: right;
+}
