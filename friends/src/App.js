@@ -1,7 +1,7 @@
 // React and axios imports
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 // Components imports
 import FriendCard from './component/FriendCard';
 import FriendForm from './component/FriendForm';
@@ -110,11 +110,29 @@ class App extends Component {
       editingId: null
     });
   };
+
+  changeEditingNav = () => {
+    this.setState({
+      editing: false,
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      },
+      editingId: null
+    });
+  };
   render() {
     const { editing, friend } = this.state;
     return (
       <div className="App">
-        <Navigation />
+        {/* <Route
+          path="/"
+          render={props => (
+            <Navigation {...props} changeEditingNav={this.changeEditingNav} />
+          )}
+        /> */}
+        <Navigation changeEditingNav={this.changeEditingNav} />
         <Route
           path="/form"
           render={props => (

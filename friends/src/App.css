@@ -153,10 +153,10 @@ html {
 }
 
 .mainNav nav {
-  /* border: 1px solid red; */
   padding: 15px 0;
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mainNav nav .navLink {
@@ -166,4 +166,18 @@ html {
   margin-right: 20px;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+.mainNav nav .homeIcon {
+  margin-left: 20px;
+  color: #fff;
+}
+
+.mainNav nav h1 {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.mainNav nav .navTitle {
+  text-decoration: none;
 }
