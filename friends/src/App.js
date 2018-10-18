@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./styles.css";
 
+import FriendList from "./components/FriendList";
+
 class App extends Component {
   constructor() {
     super();
@@ -15,7 +17,6 @@ class App extends Component {
     axios
       .get("http://localhost:5000/friends")
       .then(response => this.setState({ friends: response.data }))
-      .then(response => console.log(this.state))
 
       .catch(err => {
         console.log(err);
@@ -45,13 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="headline">LOOK AT ALL OF YOUR FRIENDS</h1>
-        {this.state.friends.map(friend => (
-          <div key={friend.id} className="friend">
-            <div className="friend__name">{friend.name}</div>
-            <div className="friend__age">is {friend.age} years old.</div>
-            <div className="friend__email">{friend.email}</div>
-          </div>
-        ))}
+        <FriendList friends={this.state.friends} />
 
         <h1>I HEARD YOU MADE A NEW FRIEND</h1>
         <form className="form">
