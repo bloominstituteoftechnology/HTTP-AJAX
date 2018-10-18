@@ -12,6 +12,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "build": "yarn --cwd ./friends build",
+    "postinstall": "yard --cwd ./friends install",
     "start": "concurrently \"nodemon server.js\" \"yarn --cwd ./friends start\""
   },
   "author": "Lambda School",
