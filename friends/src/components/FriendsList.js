@@ -11,7 +11,8 @@ class FriendsList extends React.Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      showDropdown: false
     };
   }
 
@@ -45,6 +46,14 @@ class FriendsList extends React.Component {
     });
   };
 
+  showDropdown = () => {
+    this.setState({showDropdown: !this.state.showDropdown});
+  };
+
+  //   updateFriend = (id) => {
+  //      if(this.state..name)
+  //   }
+
   render() {
     return (
       <div className="friends-list">
@@ -63,14 +72,51 @@ class FriendsList extends React.Component {
                     onClick={e => this.deleteFriend(e, friend.id)}
                     title="Delete"
                   />
-                  <i className="fas fa-user-edit" title="Edit info" />
+                  <i
+                    className="fas fa-user-edit"
+                    title="Edit info"
+                    onClick={this.showDropdown}
+                  />
+                  {this.state.showDropdown ? (
+                    <form action="" className="dropdown">
+                      <h4>Update Info</h4>
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        value={this.state.newFriend.name}
+                        onChange={this.changeHandler}
+                      />
+                      <br />
+                      <input
+                        type="text"
+                        placeholder="Age"
+                        name="age"
+                        value={this.state.newFriend.age}
+                        onChange={this.changeHandler}
+                      />
+                      <br />
+                      <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={this.state.newFriend.email}
+                        onChange={this.changeHandler}
+                      />
+                      <br />
+                      <i
+                        className="fas fa-check"
+                        onClick={() => this.updateFriend(friend.id)}
+                      />
+                    </form>
+                  ) : null}
                 </div>
               );
             })}
           </div>
         </div>
 
-        <form action="">
+        <form action="" className="add-friend">
           <h3>Add A New Friend</h3>
           <input
             type="text"

@@ -14,6 +14,9 @@ class App extends Component {
             src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Friends_logo.svg"
             alt="friends logo"
           />
+          <a href="https://github.com/gsamaniego41/HTTP-AJAX" target="_blank">
+            <i className="fab fa-github" />
+          </a>
         </div>
 
         <FriendsList />
