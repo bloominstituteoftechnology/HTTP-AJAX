@@ -90,7 +90,7 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-          <h1>Happy Lambda Friends</h1>
+          <h1>Friend Face</h1>
           <div className="app-container">
             <div className="friend-container-wrapper">
               {this.state.friends.map(friend => (

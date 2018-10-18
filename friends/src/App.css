@@ -9,6 +9,19 @@
   max-width: 800px;
   margin: 0 auto;
 }
+.App h1,
+h2 {
+  background: #4867b0;
+  color: white;
+  width: 40%;
+  margin: 20px auto;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+.App h2 {
+  width: 90%;
+}
 
 .app-container {
   display: flex;
@@ -56,4 +69,15 @@
 .new-friend-form form * {
   padding: 10px;
   margin: 10px 0;
+}
+
+.new-friend-form form button {
+  width: 45%;
+  margin: 15px auto;
+  background: #4867b0;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: bold;
 }
