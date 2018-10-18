@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './FriendForm.css';
+import axios from 'axios';
 
 class FriendForm extends React.Component {
     constructor() {
@@ -16,6 +17,7 @@ class FriendForm extends React.Component {
 
     addFriend = event => {
         event.preventDefault()
+        axios.post('http://localhost:5000/friends', this.state.friend).then(response => console.log(response)).catch(err => console.log(err));
         console.log(this.state.friend)
     }
 

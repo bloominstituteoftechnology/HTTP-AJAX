@@ -20,7 +20,7 @@ class FriendsList extends React.Component {
     }
 
     render() {
-        {if (this.state.friends.length < 1) {
+        if (this.state.friends.length < 1) {
             return (
                 <h2>Loading...</h2>
             )
@@ -34,7 +34,7 @@ class FriendsList extends React.Component {
                     )
                 })
             )
-        }}
+        }
     }
 }
  
