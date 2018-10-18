@@ -22,7 +22,7 @@ class FriendsList extends React.Component {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
-        console.log(response);
+        //   console.log(response);
         this.setState({friends: response.data});
       })
       .catch(err => console.log(err));
@@ -50,76 +50,37 @@ class FriendsList extends React.Component {
     });
   };
 
+  updateFriend = (e, id) => {
+    e.preventDefault();
+    console.log(this.state.friends);
+    axios
+      .put(`http://localhost:5000/friends/${id}`, this.state.friends)
+      .then(response => {
+        console.log(response.data);
+        this.setState = {friends: response.data};
+      });
+  };
+
   render() {
     return (
       <div className="friends-list">
-        <FriendCard
-          friends={this.state.friends}
-          newFriend={this.state.newFriend}
-          deleteFriend={this.deleteFriend}
-          changeHandler={this.changeHandler}
-        />
-        {/* <div>
-          <h2>My Friends</h2>
-          <div className="my-friends">
-            {this.state.friends.map(friend => {
-              return (
-                <div key={friend.id} className="friend">
-                  <h2>{friend.name}</h2>
-                  <p>{`${friend.age} years old`}</p>
-                  <p>{friend.email}</p>
-                  <i
-                    className="fas fa-times"
-                    onClick={e => this.deleteFriend(e, friend.id)}
-                    title="Delete"
-                  />
-                  <i
-                    className="fas fa-user-edit"
-                    title="Edit info"
-                    onClick={() => this.showDropdown(friend.id)}
-                  />
-                  {this.state.showDropdown ? (
-                    <form
-                      action=""
-                      className="dropdown"
-                      onSubmit={e => this.updateFriend(e, friend.id)}
-                    >
-                      <h4>Update Info</h4>
-                      <input
-                        type="text"
-                        placeholder="Name"
-                        name="name"
-                        value={this.state.newFriend.name}
-                        onChange={this.changeHandler}
-                      />
-                      <br />
-                      <input
-                        type="text"
-                        placeholder="Age"
-                        name="age"
-                        value={this.state.newFriend.age}
-                        onChange={this.changeHandler}
-                      />
-                      <br />
-                      <input
-                        type="text"
-                        placeholder="Email"
-                        name="email"
-                        value={this.state.newFriend.email}
-                        onChange={() => this.changeHandler(friend.email)}
-                      />
-                      <br />
-                      <i
-                        className="fas fa-check"
-                        onClick={() => this.updateFriend(friend.id)}
-                      />
-                    </form>
-                  ) : null}
-                </div>
-              );
-            })}
-          </div>
-        </div> */}
+        <div className="my-friends">
+          {this.state.friends.map(friend => (
+            <FriendCard
+              friend={friend}
+              updateFriend={this.updateFriend}
+              key={friend.id}
+            />
+          ))}
+        </div>
+
+        {/* // <div className="friends-list">
+      //   <FriendCard
+      //     friends={this.state.friends}
+      //     newFriend={this.state.newFriend}
+      //     deleteFriend={this.deleteFriend}
+      //     changeHandler={this.changeHandler}
+      //   /> */}
 
         <form action="" className="add-friend">
           <h3>Add A New Friend</h3>

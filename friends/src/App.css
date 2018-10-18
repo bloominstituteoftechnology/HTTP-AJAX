@@ -2,9 +2,13 @@
   text-align: center;
 }
 
+.App a {
+  color: #444;
+  text-decoration: none;
+}
+
 .friends-logo {
   max-width: 500px;
-  margin-right: 50px;
 }
 
 .header-logo {
@@ -13,7 +17,7 @@
   justify-content: center;
   max-width: 1000px;
   align-items: center;
-  margin: 60px auto 80px;
+  margin: 60px auto 30px;
 }
 
 .App-logo {
@@ -34,6 +38,18 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.fa-github {
+  color: #444;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+footer {
+  height: 120px;
+  margin-top: 80px;
+  background: #ededed;
 }
 
 @keyframes App-logo-spin {
