@@ -10,9 +10,9 @@ class App extends Component {
     super();
     this.state = {
       friendsData: [],
-      name: '',
-      age: '',
-      email: ''
+      name: "",
+      age: "",
+      email: ""
     };
   }
 
@@ -29,6 +29,9 @@ class App extends Component {
       });
   }
 
+  deleteFriendHandle = data => {
+    this.setState({ friendsData: data })
+  }
 
   changeHandler = event => {
     this.setState({ [event.target.name]: event.target.value })
@@ -53,6 +56,7 @@ class App extends Component {
         <FriendsList editFriendHandle={this.editFriendHandle} friends={this.state.friendsData}
           addFriend={this.addFriend}
           changeHandler={this.changeHandler}
+          deleteFriendHandle={this.deleteFriendHandle}
         />
       </div>
     );

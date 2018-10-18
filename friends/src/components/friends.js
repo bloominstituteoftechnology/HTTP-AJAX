@@ -25,6 +25,17 @@ class Friends extends React.Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
+
+    deleteFriend = event => {
+        event.preventDefault();
+        axios.delete(`http://localhost:5000/friends/${this.props.friend.id}`).then(response => {
+            console.log('DELETE RESPONSE', response);
+            this.props.deleteFriendHandle(response.data)
+        })
+            .catch(err =>
+                console.log(err));
+    }
+
     saveEdits = (event) => {
         event.preventDefault();
         const friendIndex = { name: this.state.editName, age: this.state.editAge, email: this.state.editEmail }
@@ -53,7 +64,7 @@ class Friends extends React.Component {
                     ) : null}
                 </div>
                 <button onClick={this.openEditForm} className='editButton'>Edit</button>
-                <button className='editButton'>Delete</button>
+                <button onClick={this.deleteFriend} className='editButton'>Delete</button>
             </div>
         )
 
