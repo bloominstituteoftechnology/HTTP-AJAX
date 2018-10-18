@@ -26,12 +26,6 @@ class App extends Component {
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   }
-  componentDidUpdate() {
-    axios
-      .get("http://localhost:5000/friends")
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => console.log(err));
-  }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -43,9 +37,10 @@ class App extends Component {
         age: this.state.age,
         email: this.state.email
       })
-      .then(res => console.log(res))
+      .then(res =>
+        this.setState({ friends: res.data, name: "", age: "", email: "" })
+      )
       .catch(err => console.log(err));
-    this.setState({ name: "", age: "", email: "" });
   };
   toggleUpdateForm = (id, name, age, email) => {
     this.setState({
@@ -67,16 +62,22 @@ class App extends Component {
         age: this.state.uage,
         email: this.state.uemail
       })
-      .then(res => console.log(res))
+      .then(res =>
+        this.setState({
+          friends: res.data,
+          uname: "",
+          uage: "",
+          uemail: "",
+          update: false
+        })
+      )
       .catch(err => console.log(err));
-    this.setState({ uname: "", uage: "", uemail: "", update: false });
   };
   deleteFriend = id => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
-      .then(res => console.log(res))
+      .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
-    this.setState({});
   };
   render() {
     return (
@@ -90,20 +91,22 @@ class App extends Component {
           toggleUpdateForm={this.toggleUpdateForm}
         />
         {this.state.update && (
-          <Form
-            close="cancel"
-            classatr="updateForm"
-            title="Update Friend!"
-            name1="uname"
-            name2="uage"
-            name3="uemail"
-            name={this.state.uname}
-            age={this.state.uage}
-            email={this.state.uemail}
-            handleInputChange={this.handleInputChange}
-            closeUpdateForm={this.closeUpdateForm}
-            handleSubmit={this.updateFriend}
-          />
+          <div className="updateFormDiv">
+            <Form
+              close="cancel"
+              classatr="updateForm"
+              title="Update Friend!"
+              name1="uname"
+              name2="uage"
+              name3="uemail"
+              name={this.state.uname}
+              age={this.state.uage}
+              email={this.state.uemail}
+              handleInputChange={this.handleInputChange}
+              closeUpdateForm={this.closeUpdateForm}
+              handleSubmit={this.updateFriend}
+            />
+          </div>
         )}
         <Form
           classatr="form"

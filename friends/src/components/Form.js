@@ -15,7 +15,7 @@ const Form = props => (
     />
     <br />
     <input
-      type="text"
+      type="number"
       name={props.name2}
       placeholder="Age"
       onChange={props.handleInputChange}
