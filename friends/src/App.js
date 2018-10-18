@@ -42,11 +42,23 @@ class App extends Component {
       ...this.state.newFriend,
       age: Number(this.state.newFriend.age)
     }});
-    axios.post("http://localhost:5000/friends", this.state.newFriend)
+    axios
+      .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => this.setState({ 
         friends: response.data,
         newFriend: this.getBlankFriend()
-    }));
+      }))
+      .catch(error => console.log(error));
+  }
+
+  deleteFriend = (ev, id) => {
+    ev.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
@@ -55,7 +67,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <FriendDisplay friends={this.state.friends} />
+        <FriendDisplay friends={this.state.friends} deleteFriend={this.deleteFriend} />
         <NewFriendForm 
           changeHandler={this.formChangeHandler}
           newFriend={this.state.newFriend}

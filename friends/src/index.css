@@ -25,3 +25,25 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+.friend-card {
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px black;
+  margin: 5px;
+  padding: 15px;
+}
+
+.friend-card .first-line {
+  display: flex;
+}
+
+.friend-card .first-line h2 {
+  margin: 0;
+}
+
+.delX {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
