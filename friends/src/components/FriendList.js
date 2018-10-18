@@ -7,17 +7,29 @@ const FriendList = (props) => {
 
     return (
     <div className="friends-list">
-    {props.friends.map(friend => (
-    <div>
+    <Transition keys={props.friends.map(item => item.id)} 
+                from={{opacity: 0, transform: 'translateX(-100px)'}}
+                enter={{opacity: 1, transform: 'translateX(0px)'}}
+                leave={{opacity: 0, transform: 'translateY(100px)'}}>
+    {props.friends.map(friend => styles=> (
+        
+    <animated.div className="friend-card" style={styles}>
     <Link to={`/friends/${friend.id}`}><h1>{friend.name}</h1></Link>
     <p>{friend.age}</p>
     <p>{friend.email}</p>
-    </div>
+    </animated.div>
 
   ) )}
+    </Transition>
     </div>
 
     )
 }
 
 export default FriendList;
+
+{/* <Spring native
+    from={{ opacity: 0, transform: 'translate3d(-100px,0,0)' }}
+    to={{ opacity: 1, transform: 'translate3d(0px,0,0)' }}
+    config={config.molasses} 
+    keys={id}> */}

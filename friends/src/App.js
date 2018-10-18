@@ -11,15 +11,20 @@ import FriendPage from './components/FriendPage';
 
 
 class App extends React.Component {
-  state = {
-    friends: [],
-    newFriend: {
-        name: '',
-        age: '',
-        email: ''
-    },
-    formType: ''
+  constructor(props){
+    super(props);
+    this.state = {
+      friends: [],
+      newFriend: {
+          name: '',
+          age: '',
+          email: ''
+      },
+      formType: ''
+    }
+
   }
+ 
 
   handleInput = (e) => {
     this.setState({
@@ -29,16 +34,21 @@ class App extends React.Component {
     })
   }
 
-  submitFriend = (id) => {
-    let newFriend = this.state.newFriend;
+  submitFriend = (id, newFriend) => {
+   /*  let newFriend = this.state.newFriend;
     this.state.formType === 'add' ?
     axios
       .post('http://localhost:5000/friends', newFriend)
-      .then(response => this.setState({friends: response.data})) :
+      .then(response => this.setState({friends: response.data})) : */
 
-      axios.put(`http://localhost:5000/friends/${id}`, newFriend)
-
+      axios.put(`http://localhost:5000/friends/${id}`, newFriend).then(response => this.setState({friends: response.data}));
   
+  }
+
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`).then(response =>  
+     this.setState({friends: response.data})); 
+    
   }
 
   activeFormType = (e) => {
@@ -47,11 +57,18 @@ class App extends React.Component {
     console.log(e.target.classList.contains('add'));
   }
 
+  
+
   componentDidMount(){
     axios
         .get(' http://localhost:5000/friends')
         .then(response => this.setState({friends: response.data}))
   }
+  mutate = () => {
+    this.setState({formType: 'mutate'});
+  }
+
+
 
 
 
@@ -71,7 +88,13 @@ class App extends React.Component {
       </header>
       
       <Route exact path="/" render={(props)=> <FriendList {...props} friends={this.state.friends}/>}/>
-      <Route path="/friends/:id" render={(props) => <Friend {...props} formType={this.state.formType}submitFriend={this.submitFriend} friends={this.state.friends}/>}/>
+      <Route path="/friends/:id" render={(props) => <Friend {...props} formType={this.state.formType}
+                                                                       submitFriend={this.submitFriend} 
+                                                                       friends={this.state.friends}
+                                                                       handleInput={this.handleInput}
+                                                                       mutate={this.mutate}
+                                                                       deleteFriend={this.deleteFriend}
+                                                                       />} />
  
       <Route path="/friend-form" 
            render={(props) => <Form {...props} 
