@@ -23,7 +23,9 @@ class App extends Component {
         name: '',
         age: '',
         email: ''
-      }
+      },
+      editingFriend: null,
+      isEditing: false
     };
   }
 
@@ -43,33 +45,51 @@ class App extends Component {
     });
   };
 
-  // handleAddNewFriend = event => {
-  //   console.log(event);
-  //   event.preventDefault();
-  //   axios
-  //     .post('http://localhost:5000/friends', this.state.friend)
-  //     .then(response =>
-  //       this.setState({ friends: response.data, friend: blankFormValues })
-  //     );
-  // };
+  handleAddNewFriend = event => {
+    console.log(event);
+    event.preventDefault();
+    axios
+      .post('http://localhost:5000/friends', this.state.friend)
+      .then(response =>
+        this.setState({ friends: response.data, friend: blankFormValues })
+      );
+  };
 
-  // handleUpdateFriend = event => {
-  //   event.preventDefault();
-  //   axios.put(`http://localhost:5000/friends/${this.state.friends.id}`)
-  //   .then(response =>
-  //     this.setState({ friends: response.data, friend: blankFormValues }))
-  // }
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(err => console.log(err));
+  };
 
-  // handleRemove = event => {
-  //   event.preventDefault();
-  //   axios.delete(`http://localhost:5000/friends/${this.state.friends.id}`)
-  //   .then(response => {
-  //     this.setState({ friends: response.data, })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  //   }
-  // };
+  updateFriend = () => {
+    axios
+      .put(
+        `http://localhost:5000/friends/${this.state.editingFriend}`,
+        this.state.friend
+      )
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          editingFriend: null,
+          isEditing: false,
+          friend: blankFormValues
+        });
+      })
+      .catch(error => console.log(error));
+  };
+
+  setUpdateForm = (event, friend) => {
+    event.preventDefault();
+    this.setState({
+      friend: friend,
+      isEditing: true,
+      editingFriend: friend.id
+    });
+  };
 
   render() {
     return (
@@ -96,11 +116,7 @@ class App extends Component {
           exact
           path="/my-friends"
           render={props => (
-            <FriendsList
-              {...props}
-              friendsProps={this.state.friends}
-              handleRemove={this.handleRemove}
-            />
+            <FriendsList {...props} friendsProps={this.state.friends} />
           )}
         />
         <Route
@@ -111,8 +127,9 @@ class App extends Component {
               friend={this.state.friend}
               handleAddNewFriend={this.handleAddNewFriend}
               handleChange={this.handleChange}
-              handleUpdateFriend={this.handleUpdateFriend}
-              isUpdating={this.state.isUpdating}
+              updateFriend={this.setUpdateForm}
+              isEditing={this.state.isEditing}
+              deleteFriend={this.deleteFriend}
             />
           )}
         />

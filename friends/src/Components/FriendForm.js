@@ -1,17 +1,21 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 
 import './ComponentsStyle.css';
 
 function FriendForm(props) {
-  function handleSubmit(event) {
+  const handleClick = event => {
     event.preventDefault();
-    props.handleAddNewFriend(event);
-  }
+    if (props.isEditing) {
+      props.updateFriend();
+    } else {
+      props.addNewFriend();
+    }
+    props.history.push('/my-friends');
+  };
 
   return (
     <Fragment>
-      <h2>{'Will you be my friend?'}</h2>
+      <h2>{props.isEditing ? 'Edit Friend' : 'Will you be my friend?'}</h2>
       <form>
         <div className="group">
           <input
@@ -46,10 +50,8 @@ function FriendForm(props) {
           <span className="bar" />
           <label>Email Address</label>
         </div>
-        <button className="button" onClick={handleSubmit}>
-          <Link to="my-friends" className="button">
-            Submit
-          </Link>
+        <button className="button" onClick={handleClick}>
+          {props.isEditing ? 'Update Friend' : 'Add Friend'}
         </button>
       </form>
     </Fragment>
