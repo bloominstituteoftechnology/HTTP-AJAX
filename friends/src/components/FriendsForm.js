@@ -3,6 +3,16 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const FriendsForm = (props) => {
 
+const handleClick = event => {
+    event.preventDefault();
+    if(props.isEditing) {
+        props.updateFriend();
+    }
+    else{
+        props.addFriend();
+    }
+}
+
         return (
             <div>
 

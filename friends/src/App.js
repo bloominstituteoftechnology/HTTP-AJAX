@@ -11,12 +11,21 @@ class App extends Component {
     this.state = {
       items: [],
       newFriends: {
-        age: '',
+        age: Number(''),
         name: '',
         email: ''
-      }
+      },
+      editingID: '',
+      activeFriend: null,
+      isEditing: false
     }
   }
+
+// let blankField = {
+//     age: Number(''),
+//     name: '',
+//     email: ''
+// };
 
 componentDidMount() {
   axios.get('http://localhost:5000/friends')
@@ -33,17 +42,40 @@ changeHandler = event => {
   });
 }
 
-addFriend = event => {
-  event.preventDefault();
-  axios.post('http://localhost:5000/friends', this.state.newFriends)
+addFriend = () => {
+  axios.post('http://localhost:5000/friends', 
+  // this.state.newFriends
+  )
       .then(response => this.setState({items: response.data}))
+      .catch(error => console.log(error))
 }
 
-deleteFriend = event => {
+deleteFriend = (event, id) => {
 event.preventDefault();
-axios.delete(`http://localhost:5000/friends/${}`)
-  .then(reponse => this.setState({items: reponse.data}))
+axios.delete(`http://localhost:5000/friends/${id}`)
+  .then(reponse => {
+    this.setState({items: reponse.data})
+  })
+  .catch(error => console.log(error))
 }
+
+updateItem = () => {
+axios.put(`http://localhost:5000/friends/${this.state.editingID}`, this.state.item)
+.then(reponse => this.setState({
+  items: reponse.data, editingID: null, 
+  // item: blankField,
+}))
+.catch(error => console.log(error))
+}
+
+// setUpdateForm = (event, friend) => {
+//   event.preventDefault();
+//   this.setState({
+//     newFriends,
+//     isEditing: true,
+//     editingID: friend.id,
+//   })
+// }
 
   render() {
     return (
@@ -70,6 +102,7 @@ axios.delete(`http://localhost:5000/friends/${}`)
         addFriend = {this.addFriend}
         deleteFriend = {this.deleteFriend}
         changeHandler = {this.changeHandler}
+        setUpdateForm = {this.setUpdateForm}
         />
       )} />
       </div>

@@ -14,7 +14,9 @@ return (
         <h2>{friend.name}</h2>
         <p>{friend.age}</p>
         <p>{friend.email}</p>
-        <Button onClick={props.deleteFriend}>Delete</Button>
+        <Button onClick={event => props.deleteFriend(event, friend.id)}>
+        Delete
+        </Button>
             </div>
     ))}
 
