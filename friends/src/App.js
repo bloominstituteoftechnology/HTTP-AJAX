@@ -106,7 +106,9 @@ class App extends Component {
           </div>
           <div>
             <NavLink to="/friend-form" activeClassName="active-nav-button">
-              Be Matt's Friend!
+              {this.state.isEditing
+                ? "Edit Matt's Friend"
+                : "Be Matt's Friend!"}
             </NavLink>
           </div>
         </div>
