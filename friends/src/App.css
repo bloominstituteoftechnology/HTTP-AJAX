@@ -30,10 +30,18 @@
     transform: rotate(360deg);
   }
 }
+body {
+  background: #eee;
+}
+* {
+  box-sizing: border-box;
+}
 
-
-.app{
+.App{
   max-width : 1000px;
+  margin : 0 auto;
+  display : flex;
+ 
 }
 
 .displayFriends{
@@ -43,11 +51,12 @@
 }
 
 .friendCard{
-  width : 20%;
+  width : 40%;
   border : 1px solid black;
   margin : 15px;
   text-align : left;
   padding-left : 10px;
+  
 }
 
 .friendCard .name{
@@ -55,6 +64,61 @@
   font-weight: bold;
 }
 
-.addNewFriend input {
+.friendCard button {
+  margin: 10px auto;
+  margin-right : 10px;
+  padding : 5px 10px; 
+}
+
+.update-friend-form{
+  width : 40%;
+  border : 1px solid black;
   margin : 15px;
+  text-align : left;
+  padding-left : 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height : 100%;
+  font-size : 0.8rem;
+}
+.update-friend-form button{
+  width : 50%;
+}
+
+.update-friend-form input{
+  margin-left : 5px;
+}
+
+.addNewFriend{
+  width : 30%;
+  border : 1px solid black;
+  margin : 15px;
+  text-align : left;
+  padding-left : 10px;
+  height : 250px;
+  text-align : center;
+  padding-top : 20px;
+}
+
+.addNewFriend label {
+  margin : 5px 0;
+  text-align : left;
+
+}
+
+.add-card_form {
+padding-right : 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.add-card_form * {
+  width: 100%;
+  font-size : 0.8rem;
+}
+.add-card_form button {
+  margin-top: 1rem;
 }

@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
 
 
-    const AddNewFriend = props => {
+    const UpdateFriendForm = props => {
 
         return(
 
-          <div className="addNewFriend">
-          Add New Friend
-            <form onSubmit={props.addFriend} className="add-card_form">
+          <div className="updateFriend">
+     
+            <form className="update-friend-form">
                 <label>
                     Name : 
                     <input type="text" onChange={props.onInputChange} name="name"
-                 value={props.newFriend.name} placeholder="name" />
+                 value={props.updateFriend.name} placeholder={props.updateFriend.name} />
                  </label>
 
                   <label>
                 Age :
                 <input type="text" onChange={props.onInputChange} name="age"
-                 value={props.newFriend.age} placeholder="age" />
+                 value={props.updateFriend.age} placeholder={props.updateFriend.age} />
                 </label>
                 
                 <label>
                     Email : 
                     <input type="text" onChange={props.onInputChange} name="email"
-                 value={props.newFriend.email} placeholder="email" />
+                 value={props.updateFriend.email} placeholder={props.updateFriend.email} />
                 </label>
                 
-                <button onClick={props.addFriend} >Add Friend</button>
+                <button onClick={props.submitUpdate} >Update</button>
             </form>
 
 
@@ -34,4 +34,4 @@ import React, { Component } from 'react';
         );
       }
     
-    export default AddNewFriend;
+    export default UpdateFriendForm;

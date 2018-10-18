@@ -37,6 +37,7 @@ class App extends Component {
          [e.target.name]: e.target.value,
         }
       });
+     
   }
 
   addFriend = e => {
@@ -56,6 +57,33 @@ class App extends Component {
        }
      });
   }
+
+  deleteFriend = (e, id) => {
+    e.preventDefault();
+
+    axios 
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+  }
+
+  updateFriend = (friend) => {
+ 
+    axios 
+    .put(`http://localhost:5000/friends/${friend.id}`, friend)
+    .then(response => this.setState({ friends: response.data }))
+    .catch(error => console.log(error));
+  }
+
+  // updateFriend = (e, friend) => {
+  //   e.preventDefault();
+
+  //   axios 
+  //     .delete(`http://localhost:5000/friends/${id}`)
+  //     .then(response => this.setState({ friends: response.data }))
+  //     .catch(error => console.log(error));
+  // }
+
   render() {
     console.log(this.state.newFriend);
     return (
@@ -63,8 +91,9 @@ class App extends Component {
 
        <AddNewFriend onInputChange={this.onInputChange} addFriend={this.addFriend}
         newFriend={this.state.newFriend} />
-      <h3> My Friends</h3>
-      <DisplayFriends friends={this.state.friends} />    
+     
+      <DisplayFriends friends={this.state.friends} deleteFriend={this.deleteFriend}
+          updateFriend={this.updateFriend} />    
        </div>
     );
   }

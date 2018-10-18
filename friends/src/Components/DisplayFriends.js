@@ -1,27 +1,89 @@
 import React, { Component } from 'react';
+import UpdateFriendForm from './UpdateFriendForm';
+import { timingSafeEqual } from 'crypto';
+
+    class DisplayFriends extends Component {
+        constructor(props){
+            super(props);
+            this.state = {
+            updatingId : null,
+            updateFriend:{
+                name : '',
+                age : 0,
+                email:'',
+              },
+             }
+        }
 
 
-    const DisplayFriends = props => {
+        onInputChange = e => {
+            e.preventDefault();
+        
+             this.setState({ 
+                updateFriend: {
+                  ...this.state.updateFriend,
+                 [e.target.name]: e.target.value,
+                }
+              });
+          }
 
+     // once update is clicked, assign that friend to state value
+          assignUpdatingFriend = (friend) =>{
+              this.setState({
+                  updateFriend : friend,
+                  updatingId : friend.id,
+            });
+          }
+
+          // when update is done, update submit is executed
+          submitUpdate = () => {
+              this.props.updateFriend(this.state.this.updateFriend);
+              this.setState({
+                updatingId : null,
+                updateFriend:{
+                    name : '',
+                    age : 0,
+                    email:'',
+                  },
+              })
+          }
+
+
+
+        render(){
+        
+        console.log(this.state.updateFriend);
         return(
 
           <div className="displayFriends">
        
-          {(props.friends)
-          ?  props.friends.map( friend => {
-            return (
-                <div className="friendCard">
-                  <p key={friend.id} className='name'>{friend.name}</p>
-                  <p>age : {friend.age}</p>
-                  <p>email : {friend.email}</p>
-                </div>    
-            )
+          {(this.props.friends)
+          ?  this.props.friends.map( friend => {
+            if(this.state.updatingId !== friend.id){
+                return (
+                    <div className="friendCard">
+                    <p key={friend.id} className='name'>{friend.name}</p>
+                    <p>age : {friend.age}</p>
+                    <p>email : {friend.email}</p>
+                    <button onClick= {()=>this.assignUpdatingFriend(friend)}>Update</button>
+                    <button onClick= {(e) => this.props.deleteFriend(e, friend.id)}>Delete Me</button>
+                    </div>   
+                ) 
+            }
+            else{
+                return(
+                    <UpdateFriendForm submitUpdate={this.submitUpdate} 
+                    updateFriend={this.state.updateFriend} onInputChange={this.onInputChange} />
+                )
+            }
+
+
         })
-          : 'Loading...' }
-
-
-            </div>
-        );
-      }
-    
+        : 'Loading...' }
+        
+        </div>
+        )
+            
+    }
+}
     export default DisplayFriends;
