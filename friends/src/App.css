@@ -83,9 +83,25 @@ button:hover {
 .contact-card h2 {
   font-size: 3rem;
   margin: 0;
+  transition: 1s font-size;
 }
+
 
 .contact-card p {
   margin: 5px;
   font-size: 1.6rem;
+}
+
+.contact-card .delete {
+  color: white;
+  font-size: 2rem;
+  text-align: end;
+  padding-bottom: 20px;
+  margin: 0;
+  transition: 1s font-size;
+}
+
+.contact-card .delete:hover {
+  color: white;
+  font-size: 6rem;
 }

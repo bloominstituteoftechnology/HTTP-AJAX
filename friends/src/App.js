@@ -39,6 +39,17 @@ class App extends Component {
     window.location.reload();
   };
 
+  deleteItem = (ev, id) => {
+    ev.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ items: response.data });
+        // this.props.history.push('/item-list');
+      })
+      .catch(error => console.log(error));
+  };
+
   render() {
     return (
       <div className='contact-container'>
@@ -50,6 +61,7 @@ class App extends Component {
               <h2>{item.name}</h2>
               <p>Age:{item.age}</p>
               <p>Email:{item.email}</p>
+              <div onClick={event =>{this.deleteItem(event, item.id)}} className='delete'>x</div>
             </div>          
           )}
           <form className='form'>
