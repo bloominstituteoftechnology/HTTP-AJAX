@@ -46,7 +46,17 @@ class App extends Component {
           newFriend: blankFriend, 
         })
       });
-    
+  }
+
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ items: response.data })
+      })
+      .catch(error => console.log(error))
+      
   }
 
   render() {
@@ -67,6 +77,14 @@ class App extends Component {
           <p>{friend.name}</p>
           <p>{friend.age}</p>
           <p>{friend.email}</p>
+          <button 
+            onClick={event => {
+              this.deleteFriend(event, friend.id);
+              window.location.reload(true);
+            }}
+          >
+            Delete
+          </button>
         </div>
       ))}
       </div>
