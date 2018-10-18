@@ -37,7 +37,8 @@ import { timingSafeEqual } from 'crypto';
 
           // when update is done, update submit is executed
           submitUpdate = () => {
-              this.props.updateFriend(this.state.this.updateFriend);
+              console.log("submitUpdate in DisplayFriend");
+              this.props.updateFriend(this.state.updateFriend);
               this.setState({
                 updatingId : null,
                 updateFriend:{
@@ -61,7 +62,7 @@ import { timingSafeEqual } from 'crypto';
           ?  this.props.friends.map( friend => {
             if(this.state.updatingId !== friend.id){
                 return (
-                    <div className="friendCard">
+                    <div className="friendCard" key={friend.id}>
                     <p key={friend.id} className='name'>{friend.name}</p>
                     <p>age : {friend.age}</p>
                     <p>email : {friend.email}</p>

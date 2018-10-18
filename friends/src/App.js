@@ -68,7 +68,7 @@ class App extends Component {
   }
 
   updateFriend = (friend) => {
- 
+
     axios 
     .put(`http://localhost:5000/friends/${friend.id}`, friend)
     .then(response => this.setState({ friends: response.data }))
@@ -85,7 +85,7 @@ class App extends Component {
   // }
 
   render() {
-    console.log(this.state.newFriend);
+    // console.log(this.state.newFriend);
     return (
       <div className="App">
 
