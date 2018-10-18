@@ -54,7 +54,6 @@ class App extends Component {
     return (
       <div className='contact-container'>
         <h1>Contact Information</h1>
-
         <div className='cards'>
           {this.state.items.map(item => 
             <div key={item.id} className='contact-card'>
@@ -72,6 +71,7 @@ class App extends Component {
             placeholder='Name'
             onChange={this.handleInputChange}></input>
           <input 
+            type='number'
             name='age' 
             value={this.state.age}
             placeholder='Age'

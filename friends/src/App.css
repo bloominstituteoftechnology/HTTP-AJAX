@@ -52,8 +52,8 @@ button:hover {
 .cards {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
-  padding: 0 50px 50px;  
+  justify-content: space-between;
+  padding: 0 75px;  
 }
 
 .contact-card {
