@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import "./FriendsList.css";
 
+import FriendCard from "./FriendCard";
+
 class FriendsList extends React.Component {
   constructor() {
     super();
@@ -11,8 +13,8 @@ class FriendsList extends React.Component {
         name: "",
         age: "",
         email: ""
-      },
-      showDropdown: false
+      }
+      // showDropdown: false
     };
   }
 
@@ -46,19 +48,17 @@ class FriendsList extends React.Component {
     });
   };
 
-  showDropdown = () => {
-    this.setState({showDropdown: !this.state.showDropdown});
-  };
-
-  //   updateFriend = (id) => {
-  //      if(this.state..name)
-  //   }
-
   render() {
     return (
       <div className="friends-list">
         {/* Extract Component - My Friends */}
-        <div>
+        <FriendCard
+          friends={this.state.friends}
+          newFriend={this.state.newFriend}
+          deleteFriend={this.deleteFriend}
+          changeHandler={this.changeHandler}
+        />
+        {/* <div>
           <h2>My Friends</h2>
           <div className="my-friends">
             {this.state.friends.map(friend => {
@@ -75,10 +75,14 @@ class FriendsList extends React.Component {
                   <i
                     className="fas fa-user-edit"
                     title="Edit info"
-                    onClick={this.showDropdown}
+                    onClick={() => this.showDropdown(friend.id)}
                   />
                   {this.state.showDropdown ? (
-                    <form action="" className="dropdown">
+                    <form
+                      action=""
+                      className="dropdown"
+                      onSubmit={e => this.updateFriend(e, friend.id)}
+                    >
                       <h4>Update Info</h4>
                       <input
                         type="text"
@@ -101,7 +105,7 @@ class FriendsList extends React.Component {
                         placeholder="Email"
                         name="email"
                         value={this.state.newFriend.email}
-                        onChange={this.changeHandler}
+                        onChange={() => this.changeHandler(friend.email)}
                       />
                       <br />
                       <i
@@ -114,7 +118,7 @@ class FriendsList extends React.Component {
               );
             })}
           </div>
-        </div>
+        </div> */}
 
         <form action="" className="add-friend">
           <h3>Add A New Friend</h3>
