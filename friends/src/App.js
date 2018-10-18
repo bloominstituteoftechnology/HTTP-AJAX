@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import FriendsContainer from './components/FriendsContainer';
 import FriendsForm from './components/FriendsForm';
+import Navigation from './components/Navigation';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
+
+const blankFriend = {
+	name: '',
+	age: null,
+	email: ''
+};
 
 class App extends Component {
 	constructor(props) {
@@ -80,18 +87,28 @@ class App extends Component {
 
 	updateInfo = (e, friendID) => {
 		e.preventDefault();
-
-		axios.put(`http://localhost:3333/items/${friendID}`, this.state.friend).then((res) => {
-			console.log(res.data);
-		});
+		axios
+			.put(`http://localhost:5000/friends/${friendID}`, this.state.friend)
+			.then((res) => {
+				this.setState({
+					friends: res.data,
+					friend: {
+						name: '',
+						age: '',
+						email: '',
+						friend: blankFriend,
+						isEditing: false
+					}
+				});
+			})
+			.catch((err) => console.log(err));
 	};
 
 	setUpUpdateForm = (e, friend) => {
 		e.preventDefault();
 		this.setState({
 			friend,
-			isEditing: true,
-			editingId: friend.id
+			isEditing: true
 		});
 	};
 
@@ -99,19 +116,19 @@ class App extends Component {
 		const { friends, isEditing } = this.state;
 		return (
 			<div className="App">
+				<Route path="/" render={(props) => <Navigation {...props} />} />
 				<Route
 					exact
-					to="/"
+					path="/"
 					render={(props) => <FriendsForm formHandler={this.formHandler} addNewFriend={this.addNewFriend} />}
 				/>
 				<Route
 					exact
-					to="/"
+					path="/"
 					render={(props) => (
 						<FriendsContainer
 							friends={friends}
 							{...props}
-							setUpUpdateForm={this.setUpUpdateForm}
 							isEditing={isEditing}
 							deleteFriend={this.deleteFriend}
 							updateInfo={this.updateInfo}

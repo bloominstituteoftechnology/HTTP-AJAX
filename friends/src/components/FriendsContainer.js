@@ -17,7 +17,7 @@ const FriendsContainer = ({ friends, deleteFriend, updateInfo, setUpUpdateForm }
 						<button
 							className="update"
 							onClick={(e) => {
-								updateInfo(e, friend);
+								updateInfo(e, friend.id);
 							}}
 						>
 							Update
