@@ -53,6 +53,24 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
+  finishEdit = ev => {
+    ev.preventDefault();
+    axios
+      .put(
+        `http://localhost:5000/friends/${this.state.editId}`,
+        this.state.newFriend
+      )
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          newFriend: this.getBlankFriend(),
+          editMode: false,
+          editId: null
+        });
+      })
+      .catch(error => console.log(error));
+  }
+
   deleteFriend = (ev, id) => {
     ev.preventDefault();
     axios
@@ -65,18 +83,28 @@ class App extends Component {
 
   toggleEdit = (ev, id) => {
     ev.preventDefault();
+    // If not editing, enter editing mode:
     if (!this.state.editMode) {
+      const friendInfo = this.state.friends.find(obj => obj.id === id);
       this.setState({
         editMode: true,
-        editId: id
+        editId: id,
+        newFriend: {...friendInfo}
       });
+    // If active edit button clicked again, turn off editing mode:
     } else if (id === this.state.editId) {
       this.setState({
         editMode: false,
-        editId: null
+        editId: null,
+        newFriend: this.getBlankFriend()
       });
+    // Switch to editing a new friend-card:
     } else {
-      this.setState({ editId: id });
+      const friendInfo = this.state.friends.find(obj => obj.id === id);
+      this.setState({
+        editId: id,
+        newFriend: {...friendInfo}
+      });
     }
   }
 
@@ -96,6 +124,7 @@ class App extends Component {
           changeHandler={this.formChangeHandler}
           newFriend={this.state.newFriend}
           addNewFriend={this.addNewFriend}
+          finishEdit={this.finishEdit}
           editMode={this.state.editMode}
         />
       </div>
