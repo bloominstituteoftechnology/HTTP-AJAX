@@ -211,22 +211,26 @@ form button:focus {
 }
 
 .friend-container .five {
-  background: #086F48;
+
+    background: #118892;
 }
 
 .friend-container .four {
-  background: #B74C1C;
+
+  background: #B11C1E;
 }
 
 .friend-container .three {
-  background: #552C6C;
+  background: #086F48;
 }
 
 .friend-container .two {
-  background: #118892;
+  background: #B74C1C;
+
 }
 .friend-container .one {
-  background: #B11C1E;
+  background: #552C6C;
+
 }
 /* .friend-container .six {
 

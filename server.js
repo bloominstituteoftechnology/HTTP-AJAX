@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-let nextId = 7;
+let nextId = 10;
 
 function getNewId() {
   return nextId++;
@@ -51,6 +51,27 @@ let friends = [
     name: 'Luis',
     age: 47,
     email: 'luis@lambdaschool.com',
+  },
+  {
+    id: 7,
+    avatar: 'kiwi',
+    name: 'Sam',
+    age: 24,
+    email: 'sam@lambdaschool.com',
+  },
+  {
+    id: 8,
+    avatar: 'otter',
+    name: 'Stephanie',
+    age: 57,
+    email: 'stephanie@lambdaschool.com',
+  },
+  {
+    id: 9,
+    avatar: 'horse',
+    name: 'Jasmine',
+    age: 22,
+    email: 'jasmine@lambdaschool.com',
   },
 ];
 
