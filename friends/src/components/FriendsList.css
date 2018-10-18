@@ -24,6 +24,11 @@
   padding-left: 5px;
   width: 250px;
   position: relative;
+  height: 167px;
+}
+
+.friend h2 {
+  margin-top: 30px;
 }
 
 .friend:hover {
@@ -50,7 +55,14 @@
 
 .fa-user-edit {
   color: #888;
-  margin-top: 10px;
+  margin-top: 30px;
+}
+
+. {
+  position: absolute;
+  right: 15px;
+  color: #5cb85c;
+  bottom: 20px;
 }
 
 .add-friend {
@@ -58,6 +70,7 @@
   width: 250px;
   padding: 30px 25px;
   margin-right: 60px;
+  margin-top: 40px;
   /* margin: 40px auto 80px; */
 }
 
@@ -77,7 +90,7 @@ button:hover {
   background: #06c5ff;
 }
 
-input[type="text"] {
+input {
   border: none;
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -87,10 +100,49 @@ p {
   margin: 5px 0;
 }
 
-h2 {
+h2,
+h4 {
   margin: 0;
 }
 
-form .dropdown {
+h4 {
+  margin-bottom: 15px;
+}
+
+.edit-mode {
   width: 250px;
+  padding-bottom: 20px;
+  /* height: 155px; */
+}
+
+.edit-mode input {
+  border: 1px solid #eee;
+  width: 80%;
+  margin-bottom: 5px;
+}
+
+.accept {
+  color: #5cb85c;
+  background: none;
+  padding: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.accept:hover {
+  color: #3f863f;
+  background: none;
+}
+
+.cancel {
+  color: #e82328;
+  background: none;
+  padding: 0;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.cancel:hover {
+  color: #aa2025;
+  background: none;
 }

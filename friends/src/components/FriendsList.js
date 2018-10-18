@@ -19,11 +19,13 @@ class FriendsList extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:5000/friends").then(response => {
-      console.log(response);
-      this.setState({friends: response.data});
-      // .catch(err => console.log(err));
-    });
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        console.log(response);
+        this.setState({friends: response.data});
+      })
+      .catch(err => console.log(err));
   };
 
   changeHandler = e => {
@@ -51,7 +53,6 @@ class FriendsList extends React.Component {
   render() {
     return (
       <div className="friends-list">
-        {/* Extract Component - My Friends */}
         <FriendCard
           friends={this.state.friends}
           newFriend={this.state.newFriend}
@@ -139,7 +140,7 @@ class FriendsList extends React.Component {
           />
           <br />
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             name="email"
             value={this.state.newFriend.email}
