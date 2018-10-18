@@ -3,6 +3,9 @@ import './App.css';
 import axios from 'axios';
 import Friend from './components/Friend.js'
 import Form from './components/Form.js'
+import Home from './components/Home.js';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+
 
 
 class App extends Component {
@@ -30,11 +33,7 @@ componentDidMount() {
 handleFormEvent = event => {
   alert("I was clicked");
 }
-/*formLoad() {
-    if(this.state.displayForm === true) {
-      <Form />
-    }
-}*/
+
 
 changeHandler = (event) => {
     this.setState({ 
@@ -48,23 +47,20 @@ addFriend = (event) => {
      .then(response => this.setState({ items : response.data}))
 }
 
+//RENDER FUNCTION 
 render() {
     console.log("Rendering", this.state.friends)
     return (
       <div className="App">
-        <h1>HTTP....</h1>
+        <Route exact path="/" component={Home} />
+        
+          <h1>Friends List</h1>
           <Friend 
               friend = {this.state.friends}
               handleFormEvent = {this.handleFormEvent}
           />
 
-          {/*TRYING FORM FOR ADD FRIEND....*/}
-          <form onSubmit={this.addFriend}>
-              <div> Name : <input type = 'text' onChange = {this.changeHandler} name = "name" value = {this.state.newFriend.name} /> </div>
-              <div> Age : <input type = 'text' onChange = {this.changeHandler} name = "age" value = {this.state.newFriend.age} /> </div>
-              <div> Email : <input type = 'text' onChange = {this.changeHandler} name = "email" value = {this.state.newFriend.email}/> </div>
-              <button >Add Friend</button>
-          </form>
+          <Form />
           
       </div>
     );

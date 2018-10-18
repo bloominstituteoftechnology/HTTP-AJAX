@@ -1,51 +1,22 @@
 import React from 'react';
-import {Button, Formdiv, Input} from './Styled-components.js'
-import Styled from 'styled-components';
 
-const Fieldwrap = Styled.div`
-    margin-top : 20px;
-`;
+
 
 const Form = (props) => {
     return (
-        <Formdiv>
-            <form>
-                    <Fieldwrap>
-                        <label>Name : </label>
-                        <Input 
-                            type = "text"
-                            name = "name"
-                            value = ""
-                            onChange = {props.changeHandler}                            
-                        />
-                    </Fieldwrap>
-     
-                    <Fieldwrap>
-                        <label>Age : </label>
-                        <Input 
-                            type = "text"
-                            name = "age"
-                            value = ""
-                            onChange = {props.changeHandler}
-                        />
-                    </Fieldwrap>
-
-                    <Fieldwrap>
-                        <label>Email : </label>
-                        <Input 
-                           type = "text"
-                           name = "email"
-                           value = ""
-                           onChange = {props.changeHandler} 
-                        />
-                    </Fieldwrap>
-                   
-                    <Button > 
-                        Add 
-                    </Button>
-                </form>
-        </Formdiv>
+        <div className = "form-div">
+            <form >
+                <div> Name : <input type = 'text'  /> </div>
+                <div> Age : <input type = 'text' /> </div>
+                <div> Email : <input type = 'text' /> </div>
+                <button >Add Friend</button>
+            </form>
+        </div>
     )
 }
 
 export default Form;
+
+{/*onChange = {this.changeHandler} name = "name" value = {this.state.newFriend.name}*/}
+{/*} onChange = {this.changeHandler} name = "age" value = {this.state.newFriend.age} */}
+{/*onChange = {this.changeHandler} name = "email" value = {this.state.newFriend.email} */}
