@@ -24,9 +24,9 @@ class App extends Component {
 
   //resets state after server change
   updateState = (newState) => {
-    this.setState({
+    this.setState(() => ({
       friends: newState
-    });
+    }));
   }
 
   render() {
