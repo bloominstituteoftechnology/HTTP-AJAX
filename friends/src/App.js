@@ -14,7 +14,10 @@ class App extends Component {
 				name: '',
 				age: '',
 				email: ''
-			}
+			},
+			editingId: null,
+			activeFriend: null,
+			isEditing: false
 		};
 	}
 
@@ -37,7 +40,7 @@ class App extends Component {
 	addNewFriend = (e) => {
 		e.preventDefault();
 		const { name, age, email } = this.state.friend;
-		if (name.length === 0 || Number(age).length === 0 || email.length === 0) {
+		if (name.length <= 0 || Number.isInteger(parseInt(age)).length <= 0 || email.length <= 0) {
 			alert('please add more info for your friend');
 		} else {
 			axios
@@ -75,32 +78,25 @@ class App extends Component {
 			.catch((err) => console.log(err));
 	};
 
-	updateInfo = (e, frID, frNm, frAge, frEmail) => {
+	updateInfo = (e, friendID) => {
 		e.preventDefault();
-		frNm = e.target.value;
-		frAge = e.target.value;
-		frEmail = e.target.value;
-		axios
-			.post(`http://localhost:5000/friends/${frID}`, {
-				name: frNm,
-				age: frAge,
-				email: frEmail
-			})
-			.then((res) => {
-				this.setState({
-					friends: res.data,
-					friend: {
-						name: '',
-						age: '',
-						email: ''
-					}
-				});
-			})
-			.catch((err) => console.log(err));
+
+		axios.put(`http://localhost:3333/items/${friendID}`, this.state.friend).then((res) => {
+			console.log(res.data);
+		});
+	};
+
+	setUpUpdateForm = (e, friend) => {
+		e.preventDefault();
+		this.setState({
+			friend,
+			isEditing: true,
+			editingId: friend.id
+		});
 	};
 
 	render() {
-		const { friends } = this.state;
+		const { friends, isEditing } = this.state;
 		return (
 			<div className="App">
 				<Route
@@ -115,8 +111,10 @@ class App extends Component {
 						<FriendsContainer
 							friends={friends}
 							{...props}
-							updateInfo={this.updateInfo}
+							setUpUpdateForm={this.setUpUpdateForm}
+							isEditing={isEditing}
 							deleteFriend={this.deleteFriend}
+							updateInfo={this.updateInfo}
 						/>
 					)}
 				/>
