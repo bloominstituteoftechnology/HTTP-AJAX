@@ -4,7 +4,33 @@ import Avatar from './Avatar';
 
 
 const FriendCard = props => {
+  // let number = props.id;
+  // let colorPicker = Math.floor(Math.random() * 6) + 1;
+  // console.log(colorPicker);
   let classList = 'friend-card ';
+  //   if (colorPicker === 6){
+  //     classList += 'six'
+  //   } else {
+  //     if (colorPicker === 5){
+  //       classList += 'five'
+  //     } else {
+  //     if (colorPicker === 4){
+  //       classList += 'four'
+  //     } else {
+  //       if (colorPicker === 3) {
+  //         classList += 'three'
+  //       } else {
+  //         if (colorPicker === 2) {
+  //           classList += 'two'
+  //         } else {
+  //           if (colorPicker === 1) {
+  //             classList += 'one'
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   if (props.id % 6 === 0){
     classList += 'six'
   } else {

@@ -5,11 +5,12 @@ body {
 .app {
   text-align: center;
   font-family: 'Noto Sans', sans-serif;
-
   text-align: center;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   color: white;
   margin: 0 auto;
 }
@@ -64,7 +65,7 @@ a {
 .avatar {
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   font-size: 50px;
   border: 2px solid white;
   border-radius: 50%;
@@ -178,8 +179,17 @@ form button:focus {
   text-transform: uppercase;
 }
 
+/* .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+  border: 1px solid white;
+  margin-top: -30px;
+} */
+
 .add-button {
-  align-self: flex-start;
+
   border-radius: 5px;
   /* border: 1px solid #424B54;
   background: #676e76; */
@@ -191,6 +201,22 @@ form button:focus {
 }
 
 .add-button i{
+  margin: 0 10px 0 0;
+}
+
+.burn-it {
+
+  border-radius: 5px;
+  /* border: 1px solid #424B54;
+  background: #676e76; */
+  background: #B11C1E;
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.burn-it i{
   margin: 0 10px 0 0;
 }
 

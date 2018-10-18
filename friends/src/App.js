@@ -5,6 +5,7 @@ import AddFriend from './components/AddFriend';
 import Friend from './components/Friend';
 import Header from './components/Header';
 import AddButton from './components/AddButton';
+import BurnItDown from './components/BurnItDown';
 import { Route } from 'react-router-dom';
 import './App.css';
 
@@ -14,6 +15,7 @@ class App extends Component {
     this.url = 'http://localhost:5000/friends'
     this.state = {
       friendList: [],
+      activeFriend: null,
     }
   }
 
@@ -24,6 +26,12 @@ class App extends Component {
     }).catch(response => {
       console.log('Had issues with friends ', response)
     })
+  }
+
+  getFriendById = id => {
+    axios
+      .get(`http://localhost:5000/friendById/${id}`)
+      .then(response => (this.setState({ activeFriend: response.data })))
   }
 
 
@@ -66,6 +74,9 @@ class App extends Component {
         })
     }
 
+    deleteAll = () => {
+      this.state.friendList.forEach(friend => this.deleteFriend(friend.id));
+    }
 
   render() {
     return (
@@ -75,20 +86,28 @@ class App extends Component {
           component={Header} />
         <Route exact
           path='/'
+          component={AddButton} />
+        <Route exact
+          path='/'
           render={(props) => (<Friends
           {...props}
+          getFriendById={this.getFriendById}
           friendList={this.state.friendList}
           editFriend={this.editFriend}
           deleteFriend={this.deleteFriend} />)} />
         <Route exact
           path='/'
-          component={AddButton} />
+          render={(props) => (<BurnItDown {...props}
+          deleteAll={this.deleteAll} />)} />
         <Route
           path='/add'
           render={(props) => (<AddFriend
             {...props}
             handleInput={this.handleInput}
             addNewFriend={this.addNewFriend} />)} />
+        <Route
+          path='/friends/:id'
+          render={(props) => (<Friend {...props} item={this.state.activeFriend} />)} />
       </div>
     );
   }

@@ -6,11 +6,11 @@ class Friend extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      id: this.props.id,
-      avatar: this.props.avatar,
-      name: this.props.name,
-      age: this.props.age,
-      email: this.props.email,
+      id: this.props.friend.id,
+      avatar: this.props.friend.avatar,
+      name: this.props.friend.name,
+      age: this.props.friend.age,
+      email: this.props.friend.email,
       editing: false,
     }
   }
@@ -69,7 +69,8 @@ class Friend extends React.Component {
         handleInput={this.handleInput}
         name={this.state.name}
         age={this.state.age}
-        email={this.state.email} />}
+        email={this.state.email}
+        avatar={this.state.avatar}/>}
       </div>
       </div>
 

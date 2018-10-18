@@ -82,6 +82,19 @@ app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
 
+app.get('/friendById/:id', (req, res) => {
+  const { id } = req.params;
+  const findFriendById = friend => {
+    return friend.id == id;
+  };
+  const foundFriend = friends.find(findFriendById);
+  if (!foundFriend) {
+    return sendUserError('No friend found by that ID', res);
+  } else {
+    res.json(foundFriend); 
+  }
+})
+
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
