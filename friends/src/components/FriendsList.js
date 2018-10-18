@@ -37,18 +37,33 @@ class FriendsList extends React.Component {
     this.setState({newFriend: {name: "", age: "", email: ""}});
   };
 
+  deleteFriend = (e, id) => {
+    e.preventDefault();
+    console.log(id);
+    axios.delete(`http://localhost:5000/friends/${id}`).then(response => {
+      this.setState({friends: response.data});
+    });
+  };
+
   render() {
     return (
       <div className="friends-list">
+        {/* Extract Component - My Friends */}
         <div>
           <h2>My Friends</h2>
           <div className="my-friends">
             {this.state.friends.map(friend => {
               return (
                 <div key={friend.id} className="friend">
-                  <h4>{friend.name}</h4>
+                  <h2>{friend.name}</h2>
                   <p>{`${friend.age} years old`}</p>
                   <p>{friend.email}</p>
+                  <i
+                    className="fas fa-times"
+                    onClick={e => this.deleteFriend(e, friend.id)}
+                    title="Delete"
+                  />
+                  <i className="fas fa-user-edit" title="Edit info" />
                 </div>
               );
             })}

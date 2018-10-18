@@ -11,7 +11,7 @@
 .my-friends {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 600px;
 }
 
@@ -22,10 +22,32 @@
   border-bottom: 3px solid #fabb1d;
   padding: 20px 0;
   width: 250px;
+  position: relative;
 }
 
 .friend:hover {
-  background: #f9f9f9;
+  transform: translateY(-6px);
+  transition: 0.2s;
+}
+
+.fa-times {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  color: #ccc;
+}
+
+.fa-times:hover {
+  color: #e82328;
+}
+
+.fa-user-edit {
+  color: #888;
+  margin-top: 10px;
+}
+
+.fa-user-edit:hover {
+  color: #08b1e6;
 }
 
 form {
