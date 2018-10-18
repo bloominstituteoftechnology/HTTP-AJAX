@@ -7,7 +7,8 @@ const Friend = (props) => {
     console.log(props.friend)
     return (
         <div >
-            {props.friend.map(friend => {
+            <h1>Friends List</h1>
+            {props.friend.map((friend, index) => {
                 return (
                       <div className = "friend-card">
                           <h3>Name  :  {friend.name}</h3>
@@ -23,3 +24,4 @@ const Friend = (props) => {
 }
 
 export default Friend;
+

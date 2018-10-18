@@ -14,6 +14,8 @@ class Form extends React.Component {
 }
 
   changeHandler = event => {
+    event.preventDefault();
+
         this.setState({ [event.target.name]: event.target.value })
   }
 
@@ -24,12 +26,12 @@ class Form extends React.Component {
       axios 
       .post('http://localhost:5000/friends', { name,
                                                age,
-                                               name })
+                                               email })
       .then(response => {
             this.props.updateFriends(response.data)
             this.setState({ name : '',
                             age : '',
-                            email : ''
+                            email : ' ',
                           })
        })
        .catch(err => console.log(err)) 
@@ -42,7 +44,7 @@ class Form extends React.Component {
     return (
         <div className = "form-div">
             <form onSubmit = {this.handleSubmit}>
-                <div> Name : <input type = 'text'  onChange = {this.changeHandler}  name = "name"   value = {this.state.name} />          </div>
+                <div> Name : <input type = 'text'  onChange = {this.changeHandler}  name = "name"   value = {this.state.name} /> </div>
                 <div> Age :  <input type = 'text'  onChange = {this.changeHandler}  name = "age"    value = {this.state.age}/>  </div>
                 <div> Email : <input type = 'text' onChange = {this.changeHandler}  name = "email"  value = {this.state.email}/>  </div>
                 <button >Add Friend</button>
@@ -54,6 +56,3 @@ class Form extends React.Component {
 
 export default Form;
 
-{/*onChange = {this.changeHandler} name = "name" value = {this.state.newFriend.name}*/}
-{/*} onChange = {this.changeHandler} name = "age" value = {this.state.newFriend.age} */}
-{/*onChange = {this.changeHandler} name = "email" value = {this.state.newFriend.email} */}
