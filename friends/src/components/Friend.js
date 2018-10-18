@@ -6,7 +6,7 @@ import Form from './Form';
 
 
 export default class Friend extends React.Component {
-    state ={
+    state = {
         friend: {},
         mutate: false,
         friendPage: true,

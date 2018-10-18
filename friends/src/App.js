@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state = {
       friends: [],
       newFriend: {
-          name: '',
+          name: 'brian',
           age: '',
           email: ''
       },
@@ -27,6 +27,16 @@ class App extends React.Component {
  
 
   handleInput = (e) => {
+    console.log('hi1');
+    this.setState({
+      newFriend: { ...this.state.newFriend,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  handleInput2 = (e) => {
+    console.log('hi2');
     this.setState({
       newFriend: { ...this.state.newFriend,
         [e.target.name]: e.target.value
@@ -35,14 +45,17 @@ class App extends React.Component {
   }
 
   submitFriend = (id, newFriend) => {
-   /*  let newFriend = this.state.newFriend;
+   
     this.state.formType === 'add' ?
     axios
-      .post('http://localhost:5000/friends', newFriend)
-      .then(response => this.setState({friends: response.data})) : */
+      .post('http://localhost:5000/friends', this.state.newFriend)
+      .then(response => {
+        this.setState({friends: response.data})
+        }) :
 
-      axios.put(`http://localhost:5000/friends/${id}`, newFriend).then(response => this.setState({friends: response.data}));
-  
+      axios.put(`http://localhost:5000/friends/${id}`, newFriend).then(response => this.setState({friends: response.data, newFriend: {}}));
+    
+      
   }
 
   deleteFriend = (id) => {
@@ -74,7 +87,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
+      
       <div className="App">
       <header>
         <h1><h1>FRIENDS</h1></h1>
@@ -100,7 +113,7 @@ class App extends React.Component {
            render={(props) => <Form {...props} 
                                     
 
-                                    onChange={this.handleInput} 
+                                    handleInput={this.handleInput} 
                                     newFriend={this.state.newFriend}
                                     submitFriend={this.submitFriend}
                                     
@@ -108,7 +121,7 @@ class App extends React.Component {
 
 
       </div>
-      </Router>
+      
     );
   }
 }
