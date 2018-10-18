@@ -9,7 +9,16 @@ class App extends Component {
     super()
     this.state = {
       friends: [],
+      friend: {
+				name: '',
+				age: '',
+				email: '',
+			}
     }
+  }
+
+  addFriendData() {
+   console.log("test")
   }
 
   componentDidMount() {
@@ -21,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <FriendsListForm />
+      <FriendsListForm addFriendData= {this.addFriendData} />
       <FriendCard friends= {this.state.friends} />
 
       </div>
