@@ -41,6 +41,14 @@ class App extends Component {
     
   }
 
+  deleteFriend = (e , id) => {
+    e.preventDefault();
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({friendList : response.data})
+      })
+  }
+
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
       .then((response) => this.setState({friendList : response.data}))
@@ -54,6 +62,7 @@ class App extends Component {
         <FriendsList 
         addNewFriend={this.addNewFriend} 
         friendList={this.state.friendList}
+        deleteFriend={this.deleteFriend}
         />
 
         <AddFriendForm 

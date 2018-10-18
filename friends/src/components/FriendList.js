@@ -9,9 +9,10 @@ const FriendList = (props) => {
                 // Need to find a better key value
                 return(
                     <div className="card">
-                        <h2 key={friend.name}>{friend.name}</h2>
+                        <h2 key={friend.id}>{friend.name}</h2>
                         <p>{friend.age}</p>
                         <a>{friend.email}</a>
+                        <button onClick={(e)=>props.deleteFriend(e,friend.id)}>Delete</button>
                     </div>
                 );
             })}
