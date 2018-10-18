@@ -8,7 +8,7 @@ export default class FriendList extends Component {
       friends: [],
       name: '',
       age: '',
-      email: ''
+      Email: ''
     };
   }
 
@@ -35,7 +35,7 @@ export default class FriendList extends Component {
             friends: response.data,
             name: '',
             age: '',
-            email: ''
+            Email: ''
           }));
         })
         .catch(function(error) {
@@ -57,6 +57,7 @@ export default class FriendList extends Component {
         {console.log(`Friends ${this.state.friends}`)}
         <form onSubmit={this.addNewFriend}>
           <input
+            autoComplete='Add New Friend'          
             autoFocus
             value={this.state.name}
             onChange={this.changeHandler}
@@ -69,13 +70,14 @@ export default class FriendList extends Component {
             onChange={this.changeHandler}
             placeholder="Age "
             name="age"
+            autoComplete='Age'
           />
           <input
             autoFocus
             value={this.state.email}
             onChange={this.changeHandler}
             placeholder="Email "
-            name="mail"
+            name="Email"
           />
           <button type="submit">Add New Friend</button>
         </form>

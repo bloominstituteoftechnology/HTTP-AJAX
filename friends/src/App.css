@@ -2,35 +2,31 @@
   margin: 10px 0 0 15px;
   max-width: 300px;
 }
-.friend-list {
-  /* display: flex; */
-  width: 100%;
-  /* flex-direction: column; */
-  border:solid 1px black;
-}
-.friend {
 
+.friend-list {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  /* flex-direction: column; */
+  /* border:solid 1px black; */
+}
+.friend:hover {
  color: red;
- border:1px solid blue;
+ font-size: 40px;
+ /* border:1px solid blue; */
 }
 
 .friend-list .friend {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-content: flex-start;
+  align-content: flex-start; */
   border:1px solid green;
+  background: gray;
 }
+
 input {
   margin-top: 10px;
 }
 button {
   margin-top: 10px;
 }
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
