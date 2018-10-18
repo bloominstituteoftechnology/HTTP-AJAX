@@ -7,7 +7,7 @@ class FriendForm extends React.Component {
   }
 
   handleChange = (event) => {
-    const inputType = String(event.target.parentNode.childNodes[0].nodeValue).slice(0, -1).toLowerCase();
+    const inputType = event.target.placeholder;
     let tempObj = {};
     tempObj[inputType] = event.target.value;
     this.setState( tempObj );
@@ -15,7 +15,7 @@ class FriendForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addNewFriend(this.state);
+    this.props.submit(this.state);
   }
 
   render() { 
@@ -25,20 +25,31 @@ class FriendForm extends React.Component {
 
           <label>
             Name:
-            <input type='text' placeholder='name' onChange={this.handleChange}/> 
+            <input 
+              type='text' 
+              placeholder='name' 
+              onChange={this.handleChange}/> 
           </label> 
 
           <label>
             Email:
-            <input type='text' placeholder='email' onChange={this.handleChange}/> 
+            <input 
+              type='text' 
+              placeholder='email' 
+              onChange={this.handleChange}/> 
           </label>
 
            <label>
             Age:
-            <input type='text' placeholder='age' onChange={this.handleChange}/> 
+            <input 
+              type='text' 
+              placeholder='age' 
+              onChange={this.handleChange}/> 
           </label>
 
-          <input type="submit" value="Submit" />
+          <input 
+            type="submit" 
+            value="Submit" />
 
         </form> 
       </div>
