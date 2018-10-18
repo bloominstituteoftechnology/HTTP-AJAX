@@ -44,12 +44,19 @@ class App extends Component {
  }
 
  deleteFriend = (event, friendId) => {
+   console.log(friendId)
    event.preventDefault();
    axios.delete(`http://localhost:5000/friends/${friendId}`)
    .then(response => this.setState({ friends: response.data}))
  }
 
-
+editFriend = (event, friendId) => {
+  event.preventDefault();
+  axios.put(`http://localhost:5000/friends/${friendId}`, this.state.newFriend)
+        .then(response => this.setState({
+          friends: response.data
+        }))
+}
 
 
 
@@ -58,8 +65,8 @@ class App extends Component {
       <div className="App">
       <NavLink exact to="/">Friend List</NavLink>
       <NavLink to="/friend-form">Friend Form</NavLink>
-          <Route exact path = "/" render={props => (<FriendList {...props} friends={this.state.friends} deleteFriend={this.deleteFriend}/>) }/>
-          <Route path = "/friend-form" render={props => (<FriendForm {...props} addHandler={this.addHandler} addNewFriend={this.addNewFriend} friends={this.state.newFriend}/>)} />
+          <Route exact path = "/" render={props => (<FriendList {...props} friends={this.state.friends} editFriend={this.editFriend} deleteFriend={this.deleteFriend}/>) }/>
+          <Route path = "/friend-form" render={props => (<FriendForm {...props} addHandler={this.addHandler} editFriend={this.editFriend} addNewFriend={this.addNewFriend} friend={this.state.friends} friends={this.state.newFriend}/>)} />
       </div>
     );
   }
