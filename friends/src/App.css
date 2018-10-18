@@ -50,10 +50,10 @@
   color: white;
   position: relative;
   background: linear-gradient(to bottom right, #DB5461, #3891A6);
-  padding: 15px 30px;
+  padding: 0 30px;
   border-radius: 5px;
-  min-height: 100px;
-  width: 360px;
+  height: 200px;
+  width: 350px;
   margin: 20px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
