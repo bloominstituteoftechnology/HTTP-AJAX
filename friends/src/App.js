@@ -3,6 +3,8 @@ import './App.css';
 
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
+import NewFriendForm from './components/NewFriendForm';
+import Friend from './components/Friend';
 
 class App extends Component {
   constructor(){
@@ -37,37 +39,27 @@ class App extends Component {
     event.preventDefault();
     axios
       .post('http://localhost:5000/friends', this.state.newFriend)
-      .then(response => this.setState({friends: response.data}))
+      .then(response => this.setState({ friends: response.data}))
   }
 
+  deleteFriend = (event,id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({friends: response.data}))
+      .catch(error => console.log(error));
+  }
   render() {
     return (
       <div className="App">
-        <form>
-          <input 
-          type="text"
-          placeholder="name" 
-          onChange={this.changeHandler} 
-          name="name" 
-          value={this.state.newFriend.name}/>
-
-          <input 
-          type="text"
-          placeholder="age" 
-          onChange={this.changeHandler} 
-          name="age" 
-          value={this.state.newFriend.age} />
-
-          <input 
-          type="text"
-          placeholder="email" 
-          onChange={this.changeHandler} 
-          name="email" 
-          value={this.state.newFriend.email} />
-        </form>
-
-        <button onClick={this.addFriend}>Add new friend</button>
-        <FriendsList friend={this.state.friends}/>
+        <NewFriendForm 
+          changeHandler={this.changeHandler}
+          newName={this.state.newFriend.name}
+          newAge={this.state.newFriend.age}
+          newEmail={this.state.newFriend.email}
+          addFriend={this.addFriend}
+        />
+        <FriendsList friend={this.state.friends} deleteFriend={this.deleteFriend} />
       </div>
     );
   }
