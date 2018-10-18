@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Friend from './components/friend';
-import FriendsForm from './components/FriendsForm';
-import './App.css';
+import Friend from './components/friends/friend';
+import FriendsForm from './components/friends/FriendsForm';
+import styles from './App.module.css';
 
 class App extends Component {
   constructor() {
@@ -42,9 +42,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={styles.container}>
+        <ul className={styles.list}>{this.renderFriends()}</ul>
         <FriendsForm id={this.state.friends.length} updateFriends={this.updateFriends} />
-        <ul className="friend-list">{this.renderFriends()}</ul>
       </div>
     );
   }
