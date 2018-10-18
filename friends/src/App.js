@@ -8,7 +8,12 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [],
+      newFriend: {
+        name:"",
+        age: "",
+        email:""
+      }
     }
   }
 
@@ -19,9 +24,35 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
+  const changeHandler = event => {
+    this.setState({[event.target.name]:event.target.value});
+  }
+
   render() {
     return (
       <div className="App">
+        <form>
+          <input 
+          type="text"
+          placeholder="name" 
+          onChange={this.changeHandler} 
+          name="name" 
+          value={this.state.newFriend.name}/>
+
+          <input 
+          type="text"
+          placeholder="age" 
+          onChange={this.changeHandler} 
+          name="age" 
+          value={this.state.newFriend.age} />
+
+          <input 
+          type="text"
+          placeholder="email" 
+          onChange={this.changeHandler} 
+          name="email" 
+          value={this.state.newFriend.email} />
+        </form>
         <FriendsList friend={this.state.friends}/>
       </div>
     );
