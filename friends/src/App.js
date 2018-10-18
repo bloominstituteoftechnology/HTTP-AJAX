@@ -22,7 +22,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/friends').then(response => {
       console.log(response);
-      this.setState({ friendsData: response.data });
+      this.setState({ friendsData: response.data, name: '', age: '', email: '' });
     })
       .catch(err => {
         console.log(err);
@@ -43,6 +43,7 @@ class App extends Component {
     const newFriends = { name: this.state.name, age: this.state.age, email: this.state.email }
     axios.post('http://localhost:5000/friends', newFriends)
       .then(response => {
+        console.log(response);
         this.setState({ friendsData: response.data, name: "", age: "", email: "" });
       })
       .catch(err => {

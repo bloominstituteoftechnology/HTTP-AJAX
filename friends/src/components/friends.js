@@ -52,7 +52,7 @@ class Friends extends React.Component {
         return (
 
             <div className='friend'>
-                <div>
+                <div className={this.props.friend.id}>
                     <h2>Name: {this.props.friend.name}</h2>
                     <p>Age: {this.props.friend.age}</p>
                     <p>Email: {this.props.friend.email}</p>
@@ -69,7 +69,6 @@ class Friends extends React.Component {
         )
 
     }
-
 
 }
 
