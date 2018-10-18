@@ -14,7 +14,7 @@ class App extends Component {
       name: '',
       age: '',
       email: '',
-      redirect: false
+
     }
   }
 
@@ -37,13 +37,13 @@ class App extends Component {
   }
 
   handleSubmit = e => {
-    e.preventDefault()
+  
     axios
             .post('http://localhost:5000/friends', {
               name: this.state.name,
               age: this.state.age,
               email: this.state.email,
-              id: this.state.id
+ 
             })
             .then(response =>
                 this.setState({
@@ -52,7 +52,7 @@ class App extends Component {
                   name: '',
                   age: '',
                   email: '',
-                  redirect: true
+             
                 })
             )
             .catch(e => console.log('ERROR', e))
@@ -78,17 +78,13 @@ class App extends Component {
             .delete(`http://localhost:5000/friends/${e.target.id}`)
             .then(response =>
                 console.log(
-                    this.setState({ friends: response.data, redirect: true, name: '', age: '', email: '' })
+                    this.setState({ friends: response.data, name: '', age: '', email: '' })
                 )
             )
             .catch(e => console.log(e, 'ERROR'))
   }
 
-  backToAdd = e => {
-    this.setState({
-      redirect: !this.state.redirect
-    })
-  }
+
 
   render () {
     return (
@@ -117,7 +113,7 @@ class App extends Component {
               name={this.state.name}
               age={this.state.age}
               email={this.state.email}
-              redirect={this.state.redirect}
+              
                         />
                     )}
                 />
@@ -132,7 +128,7 @@ class App extends Component {
               name={this.state.name}
               age={this.state.age}
               email={this.state.email}
-              redirect={this.state.redirect}
+              
            
                         />
                     )}

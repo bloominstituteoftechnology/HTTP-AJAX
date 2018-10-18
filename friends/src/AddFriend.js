@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const FormContainer = styled.form`
@@ -31,8 +31,7 @@ const AddFriend = (props) => {
                 Email:
                 <input name="email" type="text" value={props.email} onChange={props.handleChange} />
             </label>
-            <input type="submit" value="Submit" />
-            {props.redirect && (<Redirect to='/' />)}
+            <Link to='/'><input type="submit" value="Submit" onClick={props.handleSubmit} /></Link>
         </FormContainer>
     )
 }

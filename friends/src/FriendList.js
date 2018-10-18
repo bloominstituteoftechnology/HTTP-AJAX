@@ -15,12 +15,12 @@ const FriendList = (props) => {
                             email={friend.email}
                             id={friend.id}
                         />
-                        <Link to='/updatefriend'><button key={Math.random() * 40 + 2} id={friend.id} onClick={props.updateFriend}>Update</button></Link>
-                        <button key={Math.random() * 30 + 1} id={friend.id} onClick={props.deleteFriend}>Delete</button>
+                        <Link to='/updatefriend'><button key={Math.random() * 40 + 2} id={friend.id}>Update</button></Link>
+                        <Link to='/'><button key={Math.random() * 30 + 1} id={friend.id} onClick={props.deleteFriend}>Delete</button></Link>
                     </div>
                 )
             })}
-           <Link to="/addfriend" style={{position: 'absolute', bottom: '5%', left: '47%'}}><button onClick={props.backToAdd}>Add A Friend</button></Link>
+           <Link to="/addfriend" style={{position: 'relative', marginRight: 'auto'}}><button>Add A Friend</button></Link>
         </div>
     )
 }
