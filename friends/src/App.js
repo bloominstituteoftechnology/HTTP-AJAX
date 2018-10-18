@@ -17,7 +17,13 @@ class App extends Component {
         name: '',
         age: '',
         email: '',
-      }
+      },
+      updateFriend: {
+        name: '',
+        age: '',
+        email: '',
+      },
+      updateId: null
     }
   }
 
@@ -32,6 +38,13 @@ class App extends Component {
   changeHandler = (event) => {
     this.setState({ newFriend: {
       ...this.state.newFriend,
+      [event.target.name]: event.target.value
+    } })
+  }
+
+  changeHandler2 = (event) => {
+    this.setState({ updateFriend: {
+      ...this.state.updateFriend,
       [event.target.name]: event.target.value
     } })
   }
@@ -59,6 +72,29 @@ class App extends Component {
       
   }
 
+  updateFriend = () => {
+    axios
+      .put(
+        `http://localhost:5000/friends/${this.state.updateId}`,
+        this.state.updateFriend
+      )
+      .then(response => {
+        this.this.setState({
+          friends: response.data,
+          updateFriend: blankFriend
+        })
+      })
+      .catch(error => console.log(error));
+  }
+
+  setUpForm = (event, friend) => {
+    event.preventDefault();
+    this.setState({
+      updateFriend: friend,
+      updateId: friend.id
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -66,7 +102,14 @@ class App extends Component {
           <input name="name" onChange={this.changeHandler} value={this.state.newFriend.name} type="text" placeholder="name" />
           <input name="age" onChange={this.changeHandler} value={this.state.newFriend.age} type="number" placeholder="age" />
           <input name="email" onChange={this.changeHandler} value={this.state.newFriend.email} type="text" placeholder="email" />
-          <input onClick={this.addFriend} value="Submit" type="submit" />
+          <input onClick={this.addFriend} value="Add" type="submit" />
+        </form>
+
+        <form onSubmit={this.updateFriend}>
+          <input name="name" onChange={this.changeHandler2} value={this.state.updateFriend.name} type="text" placeholder="name" />
+          <input name="age" onChange={this.changeHandler2} value={this.state.updateFriend.age} type="number" placeholder="age" />
+          <input name="email" onChange={this.changeHandler2} value={this.state.updateFriend.email} type="text" placeholder="email" />
+          <input onClick={this.updateFriend} value="Update" type="submit" />
         </form>
 
         {this.state.friends.map(friend => (
@@ -84,6 +127,13 @@ class App extends Component {
             }}
           >
             Delete
+          </button>
+          <button 
+            onClick={event => {
+              this.setUpForm(event, friend);
+            }}
+          >
+            Update
           </button>
         </div>
       ))}
