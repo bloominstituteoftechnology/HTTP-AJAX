@@ -49,7 +49,7 @@ class Friend extends Component {
     }
 
     render() {
-        const {friend} = this.props;
+        const {friend, handleDeleteFriend} = this.props;
         const {editForm, editFriend} = this.state;
 
         return (
@@ -65,6 +65,7 @@ class Friend extends Component {
                 /> : null}
 
                 <button onClick={this.toggleForm}>Edit</button>
+                <button onClick={e => (handleDeleteFriend(e, friend.id))}>Delete</button>
                 <hr />
             </div>
         )
