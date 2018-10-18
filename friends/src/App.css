@@ -268,3 +268,7 @@ button:active {
 .logo {
   height: 70px;
 }
+
+.form-button {
+  margin: 26px;
+}

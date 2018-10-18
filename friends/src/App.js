@@ -15,6 +15,7 @@ class App extends Component {
         name: '',
         age: 0,
         email:'',
+        
       },
       friendToUpdate:''
     };
