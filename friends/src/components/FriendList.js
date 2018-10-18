@@ -49,7 +49,7 @@ export default class FriendList extends Component {
       <div className="friend-list">
         {this.state.friends.map(friend => (
           <div key={friend.name} className="friend">
-            {friend.name} | {friend.age}
+            {friend.name} | {friend.age} | {friend.email}
           </div>
         ))}
         {console.log(`Friends ${this.state.friends}`)}
@@ -67,6 +67,13 @@ export default class FriendList extends Component {
             onChange={this.changeHandler}
             placeholder="Age "
             name="age"
+          />
+          <input
+            autoFocus
+            value={this.state.email}
+            onChange={this.changeHandler}
+            placeholder="Email "
+            name="Email"
           />
           <button type="submit">Add New Friend</button>
         </form>
