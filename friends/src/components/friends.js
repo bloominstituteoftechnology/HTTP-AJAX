@@ -64,8 +64,13 @@ class Friends extends React.Component {
         })
         .catch(error => console.log(error));
     }
-    editFriend = newData => {
-        
+    editFriend = friendData => {
+        axios.put(`http://localhost:5000/friends/${friendData.id}`, friendData)
+        .then(response => {
+            let refreshedFriends = response.data;
+            this.setState({friends: refreshedFriends});
+        })
+        .catch(error => console.log(error));
     }
 }
 

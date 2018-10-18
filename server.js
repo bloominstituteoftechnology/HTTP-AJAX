@@ -62,6 +62,7 @@ app.post('/friends', (req, res) => {
 });
 
 app.put('/friends/:id', (req, res) => {
+  console.log('getting friendsddd')
   const { id } = req.params;
   let friendIndex = friends.findIndex(friend => friend.id == id);
 
@@ -81,5 +82,6 @@ app.delete('/friends/:id', (req, res) => {
 });
 
 app.listen(5000, () => {
+  console.log("Derping")
   console.log('server listening on port 5000');
 });

@@ -19,16 +19,22 @@ body {
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   min-height: 20vw;
   background: white;
 }
+
 .friend-card {
   padding: 10px;
   position: relative;
+}
+.friend-card_stats {
+  display: flex;
+  flex-direction: column;
+}
+.friend-card_stats * {
+  margin: 1rem;
 }
 .friend-card_delete {
   cursor: pointer;
@@ -42,6 +48,19 @@ body {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+.friend-card_update {
+  cursor: pointer;
+  background: #8f8;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #888;
+  border-radius: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 3.2rem;
 }
 
 .add-card {

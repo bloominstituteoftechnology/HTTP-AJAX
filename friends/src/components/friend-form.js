@@ -2,13 +2,23 @@ import React from 'react';
 //import axios from 'axios';
 
 class FriendForm extends React.Component {
-    constructor() {
+    constructor(props) {
         super(...arguments);
-        this.state = {
-            name: '',
-            email: '',
-            age: null
-        };
+        if(!props.friend){
+            this.state = {
+                id: null,
+                name: '',
+                email: '',
+                age: null
+            };
+        } else{
+            this.state = {
+                id: props.friend.id,
+                name: props.friend.name,
+                email: props.friend.email,
+                age: props.friend.age
+            };
+        }
     }
     //-- Rendering -----------------------------------
     render() {
@@ -58,6 +68,9 @@ class FriendForm extends React.Component {
             email: this.state.email,
             age: this.state.age
         };
+        if(this.state.id !== null){
+            newFriend.id = this.state.id;
+        }
         this.setState({
             name: '',
             email: '',
