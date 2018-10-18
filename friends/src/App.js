@@ -31,6 +31,8 @@ changeHandler = event => {
 }
 
 addFriendButton = event => {
+  // event.preventDefault();
+  //How do i make it where the page doesnt refresh every time i click the button?
   const friend = {
     id: null,
     name: this.state.name,
@@ -40,6 +42,13 @@ addFriendButton = event => {
   axios
   .post('http://localhost:5000/friends', friend )
   .then( response => console.log("Response: ", response)) 
+  .catch (error => console.log('Error: ', error ))
+}
+
+deleteFriendButton = event => {
+  axios
+  .delete(`http://localhost:5000/friends/${event.target.id}`)
+  .then( ({data}) => this.setState({friends: data})) 
   .catch (error => console.log('Error: ', error ))
 }
 
@@ -53,9 +62,10 @@ render() {
   return (
     
     <div className="App">
+    {/* how do i refactor this? */}
       {
        this.state.friends.map(element => {
-         return <FriendsList key={element.id} friends={element}/>
+         return <FriendsList deleteFriendButton = {this.deleteFriendButton} key={element.id} friends={element}/>
 
        })
       }

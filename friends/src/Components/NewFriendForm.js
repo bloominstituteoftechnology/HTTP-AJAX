@@ -8,6 +8,7 @@ const NewFriendForm = props => {
                 <input  onChange= {props.changeHandler} type = 'number' placeholder = 'age' name='age'/>
                 <input  onChange= {props.changeHandler} type = 'email' placeholder = 'email' name='email'/>
                 <button> Add New Friend</button>
+                
             </form>
             
         </div> 
