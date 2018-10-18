@@ -29,8 +29,9 @@ const AddFriendForm = (props)=>{
                 name="email"
                 />
 
+                <button type="reset" onClick={props.addNewFriend}>Add New Friend</button>
+
             </form>
-            <button onClick={props.addNewFriend}>Add New Friend</button>
         </div>
     )
 }
