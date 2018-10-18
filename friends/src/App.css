@@ -12,10 +12,11 @@
   margin: 0 auto;
 }
 
-form {
-  margin: 80px; 
+.form-wrapper {
+  margin-top: 80px; 
   border: 1px solid lightgray;
   padding: 30px;
+  height: 220px;
 }
 
 input{

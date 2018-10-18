@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Friend from './Friend';
-//import Form from './Form';
+import Form from './Form';
 
 
 class FriendsList extends Component {
@@ -64,30 +64,13 @@ class FriendsList extends Component {
             <Friend key={friend.id}  friend={friend} />   ))}
         </div>
         <div className="form-wrapper">
-          <form onSubmit={this.addFriend}>
-            <input 
-              name="name" 
-              placeholder="Name"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.newFriend.name}
-            />
-            <input
-              name="age" 
-              placeholder="Age"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.newFriend.age} 
-            />
-            <input
-              name="email" 
-              placeholder="Email"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.newFriend.email} 
-            />
-            <button onClick={this.addFriend}>Add Friend</button> 
-          </form>
+            <Form>
+              onSubmit={this.addFriend}
+              handleChange={this.state.handleChange}
+              value={this.state.newFriend}
+              
+            </Form>
+            <button onClick={this.addFriend}>Add Friend</button>
         </div>
       </div>
     );

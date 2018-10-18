@@ -1,21 +1,30 @@
-// import React from 'react';
+import React from 'react';
 
-// import '../App.css';
+import '../App.css';
 
-// const Form = (props) => {
-//   return(
-//     <form>
-//       <input 
-//         name="name" 
-//         placeholder="Name"
-//         type="text"
-//         onChange={props.handleChange}
-//         value={props.value}
-//          />
-//       <input name="age" placeholder="Age" />
-//       <input name="email" placeholder="Email" />
-//       <button onClick={props.addFriend}>Add Friend</button>
-//     </form>
-//   )
-// }
-// export default Form;
+const Form = (props) => {
+  return(
+    <form>
+            <input 
+              name="name" 
+              placeholder="Name"
+              type="text"
+              onChange={props.handleChange}
+            />
+            <input
+              name="age" 
+              placeholder="Age"
+              type="text"
+              onChange={props.handleChange}
+            />
+            <input
+              name="email" 
+              placeholder="Email"
+              type="text"
+              onChange={props.handleChange}
+            />
+    </form>
+  )
+}
+export default Form;
+
