@@ -10,6 +10,7 @@ constructor () {
   super ();
   this.state = {
     friends: [],
+      id: null,
       name: '',
       age: '',
       email: '',  
@@ -31,17 +32,17 @@ changeHandler = event => {
 }
 
 addFriendButton = event => {
-  // event.preventDefault();
+  event.preventDefault();
   //How do i make it where the page doesnt refresh every time i click the button?
   const friend = {
-    id: null,
+    id: event.target.value,
     name: this.state.name,
     age: this.state.age,
     email: this.state.email,
   };
   axios
   .post('http://localhost:5000/friends', friend )
-  .then( response => console.log("Response: ", response)) 
+  .then( response => this.setState({ friends: response.data })) 
   .catch (error => console.log('Error: ', error ))
 }
 
@@ -52,23 +53,43 @@ deleteFriendButton = event => {
   .catch (error => console.log('Error: ', error ))
 }
 
-/* axios promises
-    .then - do this
-    .catch - if all .then not working then .catch will return the error response
 
-*/
-render() {
+updateFriend = (event) => {
+  // event.preventDefault();
+  const friend = {
+    id: event.target.id,
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email,
+  };
+  axios
+    .put(`http://localhost:5000/friends/${event.target.id}`, friend )
+    .then(response => this.setState({ friends: response.data }))
+    .catch (error => console.log('Error: ', error ))
+    
+}
+
+ render() {
   console.log('data..', this.state.friends);
   return (
     
     <div className="App">
     {/* how do i refactor this? */}
-      {
+      {/* {
        this.state.friends.map(element => {
-         return <FriendsList deleteFriendButton = {this.deleteFriendButton} key={element.id} friends={element}/>
+         return <FriendsList
+          deleteFriendButton = {this.deleteFriendButton} key={element.id} 
+          friends={element}
+          updateFriend = {this.updateFriend}/>
 
        })
-      }
+      } */}
+      <FriendsList 
+      deleteFriendButton={this.deleteFriendButton} 
+      key={this.state.id} 
+      friends={this.state.friends} 
+      updateFriend = {this.updateFriend}  
+      />
       <NewFriendForm 
         addNewFriend = {this.addFriendButton}
         changeHandler={this.changeHandler} 
