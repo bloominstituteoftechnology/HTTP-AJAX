@@ -11,7 +11,8 @@ class App extends Component {
       friends: [],
       name: '',
       age: '',
-      email: ''
+      email: '',
+      editMode: false
     };
   }
 
@@ -24,7 +25,6 @@ class App extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log('submitted');
     axios
       .post('http://localhost:5000/friends', {
         name: this.state.name,
@@ -40,6 +40,43 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleUpdateClick = e => {
+    e.preventDefault();
+    const id = e.target.parentNode.id;
+    const friend = this.state.friends.find(friend => `${friend.id}` === id);
+    if (!this.state.editMode) {
+      this.setState({
+        name: friend.name,
+        age: friend.age,
+        email: friend.email,
+        editMode: true
+      });
+    } else {
+      axios
+        .put(`http://localhost:5000/friends/${id}`, {
+          name: this.state.name,
+          age: parseInt(this.state.age),
+          email: this.state.email
+        })
+        .then(res =>
+          this.setState({
+            friends: res.data,
+            name: '',
+            age: '',
+            email: '',
+            editMode: false
+          })
+        );
+    }
+  };
+
+  handleDeleteClick = e => {
+    const id = e.target.parentNode.id;
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }));
+  };
+
   render() {
     const { name, age, email } = this.state;
     return (
@@ -52,7 +89,15 @@ class App extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        <FriendsList friends={this.state.friends} />
+        {!this.state.friends.length ? (
+          <div>Loading Friends... if you have any...</div>
+        ) : (
+          <FriendsList
+            friends={this.state.friends}
+            handleDeleteClick={this.handleDeleteClick}
+            handleUpdateClick={this.handleUpdateClick}
+          />
+        )}
       </div>
     );
   }

@@ -24,3 +24,7 @@
 .delete:hover {
   color: red;
 }
+
+.btn {
+  margin-top: 2rem;
+}
