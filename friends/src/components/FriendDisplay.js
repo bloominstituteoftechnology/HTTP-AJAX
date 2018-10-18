@@ -12,12 +12,21 @@ const FriendDisplay = props => {
                             }} 
                             className="delX" 
                             src="./images/Red_x.png" 
-                            alt="Delete" />
+                            alt="Delete" 
+                        />
+                        <img
+                            onClick={event => {
+                                props.toggleEdit(event, friend.id);
+                            }}
+                            className="edit"
+                            src="./images/pencil.png"
+                            alt="Edit" 
+                        />
                         <h2>{friend.name}</h2>
                     </div>
                     <p>Age: <strong>{friend.age}</strong></p>
                     <p>{friend.email}</p>
-                    <p>{JSON.stringify(friend)}</p>
+                    {/* <p>{JSON.stringify(friend)}</p> */}
                 </div>
             ))}
         </div>

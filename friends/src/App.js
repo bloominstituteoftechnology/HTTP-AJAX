@@ -61,13 +61,18 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
+  toggleEdit = (ev, id) => {
+    ev.preventDefault();
+    
+  }
+
   render() {
     if (!this.state.friends.length) {
       return (<h2>Loading ...</h2>);
     }
     return (
       <div className="App">
-        <FriendDisplay friends={this.state.friends} deleteFriend={this.deleteFriend} />
+        <FriendDisplay friends={this.state.friends} deleteFriend={this.deleteFriend} toggleEdit={this.toggleEdit} />
         <NewFriendForm 
           changeHandler={this.formChangeHandler}
           newFriend={this.state.newFriend}

@@ -29,7 +29,7 @@ form {
 .friend-card {
   border-radius: 10px;
   box-shadow: 1px 1px 5px black;
-  margin: 5px;
+  margin: 10px;
   padding: 15px;
 }
 
@@ -41,7 +41,7 @@ form {
   margin: 0;
 }
 
-.delX {
+.friend-card .first-line img {
   width: 20px;
   height: 20px;
   margin-right: 10px;
