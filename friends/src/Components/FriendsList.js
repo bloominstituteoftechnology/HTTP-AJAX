@@ -1,15 +1,16 @@
 import React from "react";
-import friends from "./friends"
+import Friends from "./friends"
 
 const FriendsList = props => {
     return (
         <div>
-            {props.friends.map(friend => {
+            {props.friendsData.map(friend => {
                  return(
-                < friends 
+                <  Friends
                 handleSetData = {props.handleSetData}
                 key = {friend.id} 
                 friend ={friend} 
+                handleDelete = {props.handleDelete}
                 />
                 
                  )

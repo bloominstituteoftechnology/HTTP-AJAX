@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
-import friendsList from './Components/friendsList';
+import FriendsList from './Components/friendsList';
+import FriendsForm from './Components/friendsForm';
 
 
 const URL = "http://localhost:5000/friends";
@@ -20,7 +21,7 @@ class App extends Component {
   componentDidMount() {
     axios
     .get(URL)
-    .then(response =>{
+    .then(response => {
       console.log("get response:", response);
       this.setState({friendsData : response.data})
     })
@@ -33,6 +34,15 @@ class App extends Component {
     this.setState({friendsData: data})
   }
 
+  handleDelete = id => {
+    axios
+    .delete(`${URL}/${id}`)
+    .then(response => this.handleSetData(response.data))
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
 
 
  
@@ -43,10 +53,12 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Friends</h1>
         </header>
-        <friendsList 
-        friends = {this.state.friendsData} 
+        <FriendsList 
+        Friends = {this.state.friendsData} 
         handleSetData = {this.handleSetData}
+        handleDelete = {this.handleDelete}
          />
+         <FriendsForm handleSetData = {this.handleSetData} />
       
       </div>
     );
