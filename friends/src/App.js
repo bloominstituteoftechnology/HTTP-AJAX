@@ -89,9 +89,6 @@ class App extends Component {
       )
       .then(response => {
         this.setState({
-          newName: '',
-          newAge: '',
-          newEmail: '',
           friends: response.data,
           editingId: null,
           isEditing: false,
