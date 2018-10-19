@@ -1,0 +1,31 @@
+.FriendList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 2rem;
+  border-radius: 2px;
+  width: 30%;
+  margin-bottom: 3rem;
+  position: relative;
+  font-size: 1.3rem;
+}
+
+.delete {
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  left: 94%;
+  transition: all 200ms;
+}
+
+.delete:hover {
+  color: #ff3f34;
+}
+
+.btn {
+  margin-top: 2rem;
+}
