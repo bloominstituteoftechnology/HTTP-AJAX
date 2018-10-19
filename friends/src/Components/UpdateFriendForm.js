@@ -16,7 +16,7 @@ import React, { Component } from 'react';
 
                   <label>
                 Age :
-                <input type="text" onChange={props.onInputChange} name="age"
+                <input type="number" onChange={props.onInputChange} name="age"
                  value={props.updateFriend.age} placeholder={props.updateFriend.age} />
                 </label>
                 

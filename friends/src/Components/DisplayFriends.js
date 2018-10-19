@@ -63,7 +63,7 @@ import { timingSafeEqual } from 'crypto';
             if(this.state.updatingId !== friend.id){
                 return (
                     <div className="friendCard" key={friend.id}>
-                    <p key={friend.id} className='name'>{friend.name}</p>
+                    <p key={friend.id} className='name'>name : {friend.name}</p>
                     <p>age : {friend.age}</p>
                     <p>email : {friend.email}</p>
                     <button onClick= {()=>this.assignUpdatingFriend(friend)}>Update</button>

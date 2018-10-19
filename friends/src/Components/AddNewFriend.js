@@ -26,6 +26,7 @@ import React, { Component } from 'react';
                  value={props.newFriend.email} placeholder="email" />
                 </label>
                 
+              
                 <button onClick={props.addFriend} >Add Friend</button>
             </form>
 

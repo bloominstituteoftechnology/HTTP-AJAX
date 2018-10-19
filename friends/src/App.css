@@ -50,7 +50,7 @@ body {
   flex-wrap: wrap;
 }
 
-.friendCard{
+.friendCard, .updateFriend{
   width : 40%;
   border : 1px solid black;
   margin : 15px;
@@ -59,11 +59,14 @@ body {
   
 }
 
-.friendCard .name{
-  text-align: center;
-  font-weight: bold;
-}
 
+
+.friendCard p{
+background : lightblue;
+margin-right : 10px;
+padding : 5px;
+border-radius: 5%;
+}
 .friendCard button {
   margin: 10px auto;
   margin-right : 10px;
@@ -71,24 +74,33 @@ body {
 }
 
 .update-friend-form{
-  width : 40%;
-  border : 1px solid black;
+  width : 100%;
+  /* border : 1px solid black;
   margin : 15px;
-  text-align : left;
+  text-align : left; */
   padding-left : 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 100%;
-  height : 100%;
+
+  height : 85%;
   font-size : 0.8rem;
 }
-.update-friend-form button{
-  width : 50%;
-}
+
 
 .update-friend-form input{
+  margin : 15px;
   margin-left : 5px;
+}
+
+.update-friend-form input:focus {
+  background-color: lightblue;
+}
+
+.update-friend-form button{
+  width : 50%;
+  height : 60px;
+
 }
 
 .addNewFriend{
@@ -97,7 +109,7 @@ body {
   margin : 15px;
   text-align : left;
   padding-left : 10px;
-  height : 250px;
+  height : 300px;
   text-align : center;
   padding-top : 20px;
 }
