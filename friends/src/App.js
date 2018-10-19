@@ -13,6 +13,8 @@ class App extends Component {
       newName: '',
       newAge: '',
       newEmail: '',
+      editingId: null,
+      isEditing: false
     }
   }
 
@@ -42,7 +44,6 @@ class App extends Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
     const newFriend = {
       name: this.state.newName,
       age: this.state.newAge,
@@ -74,6 +75,40 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  updateItem = () => {
+    const newFriends = {
+      name: this.state.newName,
+      age: this.state.newAge,
+      email: this.state.newEmail
+    };
+    this.setState({ newName: '', newAge: '', newEmail: '' });
+    axios
+      .put(
+        `http://localhost:5000/friends/${this.state.editingId}`,
+        newFriends
+      )
+      .then(response => {
+        this.setState({
+          newName: '',
+          newAge: '',
+          newEmail: '',
+          friends: response.data,
+          editingId: null,
+          isEditing: false,
+        });
+      })
+      .catch(error => console.log(error));
+  };
+
+  setUpUpdateForm = (ev, friend) => {
+    ev.preventDefault();
+    this.setState({
+      friend, // same as item: item,
+      isEditing: true,
+      editingId: friend.id
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -85,11 +120,14 @@ class App extends Component {
           nameAdd={this.handleNameChange}
           ageAdd={this.handleAgeChange}
           emailAdd={this.handleEmailChange}
-          submit={this.handleSubmit} />} />
+          submit={this.handleSubmit} 
+          isEditing={this.state.isEditing}
+          updateItem={this.updateItem} />} />
         <Route path='/' render={props => <FriendsList
         {...props}
         friends={this.state.friends} 
-        deleteItem={this.deleteItem} />} />
+        deleteItem={this.deleteItem} 
+        updateItem={this.setUpUpdateForm} />} />
       </div>
     );
   }

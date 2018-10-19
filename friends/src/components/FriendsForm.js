@@ -1,10 +1,20 @@
 import React from 'react';
 import './Friends.css';
 
-const FriendsForm = props => {
+function FriendsForm(props) {
+    const handleClick = ev => {
+        ev.preventDefault();
+        if (props.isEditing) {
+          props.updateItem();
+        } else {
+          props.submit();
+        }
+        props.history.push('/');
+      };
+
     return (
         <div className="form-container">
-            <div className="friend-title">Friends</div>
+            <div className="friend-title">{props.isEditing ? 'Edit Friend' : 'Add New Friend'}</div>
             <div className="form">
                 <form>
                     <label className="name">
@@ -34,8 +44,8 @@ const FriendsForm = props => {
                             placeholder="Email"
                         />
                     </label>
-                    <button className="submit" onClick={props.submit}>
-                        Submit
+                    <button className="submit" onClick={handleClick}>
+                        {props.isEditing ? 'Update Friend' : 'Add Friend'}
                     </button>
                 </form>
             </div>
