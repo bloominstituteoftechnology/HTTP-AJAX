@@ -179,25 +179,41 @@ form button:focus {
   text-transform: uppercase;
 }
 
-/* .buttons {
+.buttons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-around;
   width: 80%;
-  border: 1px solid white;
   margin-top: -30px;
-} */
+}
 
-.add-button {
-
+.undo-button {
   border-radius: 5px;
-  /* border: 1px solid #424B54;
-  background: #676e76; */
   background: #118892;
   color: white;
   padding: 15px;
   margin: 10px;
   cursor: pointer;
+  width: 160px;
+}
+
+.undo-button i{
+  margin: 0 10px 0 0;
+}
+
+.add-button {
+  border-radius: 5px;
+  /* border: 1px solid #424B54;
+  background: #676e76; */
+  background: #118892;
+  /* background: #1b81e5; */
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  width: 160px;
 }
 
 .add-button i{
@@ -238,12 +254,14 @@ form button:focus {
 
 .friend-container .six {
   background: #971463;
+  background: #C71585;
 }
 
 .friend-container .five {
 
     background: #118892;
-    /* background: #12C9FD; */
+    /* background: 	#1E90FF; */
+    /* background: 	#00CED1; */
 }
 
 .friend-container .four {
@@ -253,17 +271,17 @@ form button:focus {
 
 .friend-container .three {
   background: #086F48;
-  /* background: #03E06F; */
+  background: 	#228B22;
 }
 
 .friend-container .two {
   background: #B74C1C;
-  background: #D55500;
+  background: #FF4500;
 
 }
 .friend-container .one {
   background: #552C6C;
-  background: #703798;
+  background: #800080;
 
 }
 /* .friend-container .six {
@@ -313,3 +331,10 @@ background: #03E06F;
 .six .avatar {
   background: #03E06F;
 } */
+
+.loading {
+  width: 90%;
+  margin: 30% auto;
+  color: white;
+  text-align: center;
+}

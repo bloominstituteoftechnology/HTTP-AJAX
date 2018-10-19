@@ -3,11 +3,11 @@ import Friend from './Friend';
 
 
 const Friends = props => {
-  const routeToFriend = (ev, friend)  => {
-    ev.preventDefault();
-    props.history.push(`/friends/${friend.id}`);
-    props.getFriendById(friend.id)
-  }
+  // const routeToFriend = (ev, friend)  => {
+  //   ev.preventDefault();
+  //   props.history.push(`/friends/${friend.id}`);
+  //   props.getFriendById(friend.id)
+  // }
     return (
       <div className='friends'>
         {props.friendList.map(friend =>
