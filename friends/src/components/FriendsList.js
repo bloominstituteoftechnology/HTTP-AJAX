@@ -12,7 +12,7 @@ class FriendsList extends Component {
       friends: [],
       newFriend: {
         name: '',
-        age: '',
+        age: null,
         email: ''
       }
     }
@@ -38,7 +38,7 @@ class FriendsList extends Component {
           { friends: response.data,
           newFriend: {
             name: '',
-            age: '',
+            age: null,
             email: ''
           }}
         )
@@ -56,19 +56,35 @@ class FriendsList extends Component {
       }
     });
   }
+
+  handleDelete = (event, id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then( response => this.setState({ 
+        friends: response.data }))
+      .catch( error => {
+        console.error(error)
+      })
+
+  }
+
   render(){
     return (
       <div className="friend-wrapper">
         <div className="friend-list">
           {this.state.friends.map( friend => (
-            <Friend key={friend.id}  friend={friend} />   ))}
+              <Friend 
+                key={friend.id}  
+                friend={friend} 
+                handleDelete={this.handleDelete}
+              />  
+          ))}
         </div>
         <div className="form-wrapper">
             <Form>
               onSubmit={this.addFriend}
               handleChange={this.state.handleChange}
-              value={this.state.newFriend}
-              
+              friend={this.state.newFriend}
             </Form>
             <button onClick={this.addFriend}>Add Friend</button>
         </div>

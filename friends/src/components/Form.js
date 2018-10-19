@@ -14,7 +14,7 @@ const Form = (props) => {
             <input
               name="age" 
               placeholder="Age"
-              type="text"
+              type="number"
               onChange={props.handleChange}
             />
             <input
