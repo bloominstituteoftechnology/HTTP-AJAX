@@ -6,18 +6,16 @@ const Form = props => {
     handleFormSubmit,
     handleUpdateSubmit,
     handleInputChange,
-    name,
-    email,
-    age,
+    friend,
     editMode,
     activeFriend,
     history
   } = props;
+
   const handleSubmit = e => {
-    console.log(activeFriend);
     e.preventDefault();
     if (editMode) {
-      handleUpdateSubmit(parseInt(activeFriend.id));
+      handleUpdateSubmit(activeFriend.id);
     } else {
       handleFormSubmit(e);
     }
@@ -26,14 +24,14 @@ const Form = props => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <h2>Add a new friend</h2>
+      <h2>{editMode ? 'Update friend info...' : 'Add a new friend'}</h2>
       <div className="form-group">
         <label className="label" htmlFor="name">
           Name:
         </label>
         <input
           type="text"
-          value={name}
+          value={friend.name}
           name="name"
           className="text-input"
           onChange={handleInputChange}
@@ -45,7 +43,7 @@ const Form = props => {
         </label>
         <input
           type="number"
-          value={age}
+          value={friend.age}
           name="age"
           className="text-input"
           onChange={handleInputChange}
@@ -57,7 +55,7 @@ const Form = props => {
         </label>
         <input
           type="text"
-          value={email}
+          value={friend.email}
           name="email"
           className="text-input"
           onChange={handleInputChange}

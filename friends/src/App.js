@@ -10,54 +10,96 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: '',
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      },
       editMode: false,
       activeFriend: {}
     };
   }
 
   componentDidMount() {
+    // GET REQUEST
     axios
       .get('http://localhost:5000/friends')
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   }
 
+  // Handles Input State Change
+  handleInputChange = e => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  // Prepares form for PUT REQUEST
+  handleUpdateClick = e => {
+    e.preventDefault();
+    const id = e.target.parentNode.id;
+    const friend = this.state.friends.find(friend => `${friend.id}` === id);
+    this.props.history.push('/add-friend');
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        name: friend.name,
+        email: friend.email,
+        age: friend.age
+      },
+      editMode: true,
+      activeFriend: friend
+    });
+  };
+
+  // Clear out of edit mode
+  clearEditMode = () => {
+    return this.state.editMode
+      ? this.setState({
+          editMode: false,
+          friend: {
+            ...this.state.friend,
+            name: '',
+            age: '',
+            email: ''
+          }
+        })
+      : null;
+  };
+
+  // POST REQUEST
   handleFormSubmit = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:5000/friends', {
-        name: this.state.name,
-        age: parseInt(this.state.age),
-        email: this.state.email
-      })
+      .post('http://localhost:5000/friends', this.state.friend)
       .then(
         res =>
-          this.setState({ friends: res.data, name: '', email: '', age: '' }),
+          this.setState({
+            friends: res.data,
+            friend: { ...this.state.friend, name: '', email: '', age: '' }
+          }),
         this.props.history.push('/')
       )
       .catch(err => console.log(err));
   };
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
+  // PUT REQUEST
   handleUpdateSubmit = id => {
     axios
-      .put(`http://localhost:5000/friends/${id}`, {
-        name: this.state.name,
-        age: parseInt(this.state.age),
-        email: this.state.email
-      })
+      .put(`http://localhost:5000/friends/${id}`, this.state.friend)
       .then(res =>
         this.setState({
           friends: res.data,
-          name: '',
-          age: '',
-          email: '',
+          friend: {
+            ...this.state.friend,
+            name: '',
+            age: '',
+            email: ''
+          },
           editMode: false,
           activeFriend: {}
         })
@@ -65,20 +107,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  handleUpdateClick = e => {
-    e.preventDefault();
-    const id = e.target.parentNode.id;
-    const friend = this.state.friends.find(friend => `${friend.id}` === id);
-    this.props.history.push('/add-friend');
-    this.setState({
-      name: friend.name,
-      age: friend.age,
-      email: friend.email,
-      editMode: true,
-      activeFriend: friend
-    });
-  };
-
+  // DELETE REQUEST
   handleDeleteClick = e => {
     const id = e.target.parentNode.id;
     axios
@@ -88,12 +117,12 @@ class App extends Component {
   };
 
   render() {
-    const { name, age, email, activeFriend, editMode } = this.state;
+    const { friend, activeFriend, editMode } = this.state;
     return (
       <div className="App">
         <h1>We could be friends</h1>
         <nav className="nav">
-          <NavLink exact to="/">
+          <NavLink exact to="/" onClick={this.clearEditMode}>
             Friends
           </NavLink>
           /
@@ -106,9 +135,7 @@ class App extends Component {
           render={props => (
             <Form
               {...props}
-              name={name}
-              age={age}
-              email={email}
+              friend={friend}
               editMode={editMode}
               activeFriend={activeFriend}
               handleFormSubmit={this.handleFormSubmit}
