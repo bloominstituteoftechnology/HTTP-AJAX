@@ -14,7 +14,6 @@ class FriendsList extends React.Component {
         age: "",
         email: ""
       }
-      // showDropdown: false
     };
   }
 
@@ -36,6 +35,7 @@ class FriendsList extends React.Component {
 
   addNewFriend = e => {
     e.preventDefault();
+    console.log(this.state.friends);
     axios
       .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => this.setState({friends: response.data}));
@@ -50,15 +50,16 @@ class FriendsList extends React.Component {
     });
   };
 
-  updateFriend = (e, id) => {
+  updateFriend = (e, id, obj) => {
     e.preventDefault();
+    //  console.log(this.state.friends);
+    console.log(obj);
+    axios.put(`http://localhost:5000/friends/${id}`, obj).then(response => {
+      console.log(response.data);
+      this.setState({friends: response.data});
+    });
+    //  this.setState({newFriend: {name: "", age: "", email: ""}});
     console.log(this.state.friends);
-    axios
-      .put(`http://localhost:5000/friends/${id}`, this.state.friends)
-      .then(response => {
-        console.log(response.data);
-        this.setState = {friends: response.data};
-      });
   };
 
   render() {
@@ -70,17 +71,10 @@ class FriendsList extends React.Component {
               friend={friend}
               updateFriend={this.updateFriend}
               key={friend.id}
+              friendsData={this.state.friends}
             />
           ))}
         </div>
-
-        {/* // <div className="friends-list">
-      //   <FriendCard
-      //     friends={this.state.friends}
-      //     newFriend={this.state.newFriend}
-      //     deleteFriend={this.deleteFriend}
-      //     changeHandler={this.changeHandler}
-      //   /> */}
 
         <form action="" className="add-friend">
           <h3>Add A New Friend</h3>

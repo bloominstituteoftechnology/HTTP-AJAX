@@ -22,8 +22,9 @@ class FriendCard extends React.Component {
   };
 
   updateHandler = e => {
+    console.log(e.target.value);
     this.setState({
-      updateInfo: {[e.target.name]: e.target.value}
+      updateInfo: {...this.state.updateInfo, [e.target.name]: e.target.value}
     });
   };
 
@@ -52,27 +53,22 @@ class FriendCard extends React.Component {
               </div>
             ) : (
               <div>
-                <form
-                  action=""
-                  className="edit-mode"
-                  //   onSubmit={e => this.updateFriend(e, friend.id)}
-                >
+                <form action="" className="edit-mode">
                   <h4>
                     {`Update ${friend.name}'s Info`}{" "}
                     <i className="fas fa-pencil-alt" />
                   </h4>
                   <input
                     type="text"
-                    placeholder="Name"
                     name="name"
                     placeholder={friend.name}
+                    //   value={this.state.updateInfo.name}
                     value={this.state.updateInfo.name}
                     onChange={this.updateHandler}
                   />
                   <br />
                   <input
                     type="text"
-                    placeholder="Age"
                     name="age"
                     placeholder={friend.age}
                     value={this.state.updateInfo.age}
@@ -81,21 +77,23 @@ class FriendCard extends React.Component {
                   <br />
                   <input
                     type="email"
-                    placeholder="Email"
                     name="email"
                     placeholder={friend.email}
                     value={this.state.updateInfo.email}
                     onChange={this.updateHandler}
                   />
                   <br />
-                  <button
-                    onClick={e => this.toggleEdit(e, friend.id)}
-                    className="cancel"
-                  >
+                  <button onClick={this.toggleEdit} className="cancel">
                     Cancel
                   </button>
                   <button
-                    onClick={e => this.props.updateFriend(e, friend.id)}
+                    onClick={e =>
+                      this.props.updateFriend(
+                        e,
+                        friend.id,
+                        this.state.updateInfo
+                      )
+                    }
                     className="accept"
                     type="submit"
                   >
