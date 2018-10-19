@@ -23,6 +23,7 @@
 .form-container #submit {
   background: green;
   color: white;
+  cursor: pointer;
 }
 .friends-container span {
   position: absolute;

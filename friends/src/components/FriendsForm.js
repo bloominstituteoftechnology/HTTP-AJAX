@@ -39,7 +39,7 @@ const FriendsForm = props => {
         />
         <input
           type="submit"
-          value={props.isEditing ? "Edit Friend" : "Add new Friend"}
+          value={props.isEditing ? "Update Friend" : "Add new Friend"}
           id="submit"
         />
       </form>
