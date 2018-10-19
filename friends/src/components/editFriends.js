@@ -3,7 +3,7 @@ import React from 'react';
 
 const EditFriends = props => {
     return (
-        <form>
+        <form className='edit-friend-form'>
             <input
                 placeholder={props.friend.name}
                 name='editName'

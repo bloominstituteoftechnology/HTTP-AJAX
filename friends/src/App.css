@@ -35,7 +35,7 @@ width:40%;
 }
 
 .new-friend-form{
-  margin:20px 0;
+  margin:20px 0 40px 0;
   text-align: center;
 }
 
@@ -55,4 +55,16 @@ margin: 20px 5px 20px 5px;
   
 }
 
+.edit-friend-form{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
 
+.edit-friend-form input{
+  margin:10px 10px;
+}
+
+.edit-friend-form button{
+  margin: 10px 10px;
+}
