@@ -18,6 +18,7 @@ class App extends Component {
         age: undefined,
         email: '',
       },
+      
     }
   }
 
@@ -29,6 +30,7 @@ class App extends Component {
         })
         .catch(err => console.log(err));
 }
+
 
 handleChange = e => {
   this.setState ({
@@ -78,6 +80,16 @@ handleAddNewFriend = event =>{
     })
     .catch(err => console.log(err));
 }
+  handleButtonClick = (e , id) => {
+    // console.log(`http://localhost:5000/friends/${id}`);
+      e.preventDefault();
+      axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(res=> this.setState({friends: res.data}))
+        .catch(error => console.log(error));
+   
+    }
+
 
   render() {
     return (
@@ -93,6 +105,9 @@ handleAddNewFriend = event =>{
             <FriendList
               {...props}
               friends={this.state.friends}
+              // deleteFriend={this.deleteFriend}
+              friend={this.state.friend}
+              handleButtonClick={this.handleButtonClick}
             />
           )}
         />
