@@ -132,7 +132,7 @@ class App extends Component {
                    email={this.state.email}
                    isUpdate={this.state.isUpdate}/>
 
-        <Route path='/friends/:id' render={(props)=><ViewFriend {...props} data={this.state.friend}/>}></Route>
+        <Route exact path='/friends/:id' render={(props)=><ViewFriend {...props} data={this.state.friend}/>}></Route>
 
       </div>
     );
