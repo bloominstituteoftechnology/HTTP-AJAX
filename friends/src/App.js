@@ -13,7 +13,8 @@ class App extends Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      isEditing: false
     };
     console.log(this.state.friends);
   }
@@ -45,6 +46,11 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  toggleEditFriend = (ev, id) => {
+    ev.preventDefault();
+    this.setState({ isEditing: !this.state.isEditing });
+  };
+
   deleteFriend = (ev, id) => {
     ev.preventDefault();
     axios
@@ -56,6 +62,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Friends</h1>
         <Form addFriend={this.addFriend} changeHandler={this.changeHandler} />
         <Friends
           addFriend={this.addFriend}
@@ -63,6 +70,8 @@ class App extends Component {
           changeHandler={this.changeHandler}
           updateFriend={this.updateFriend}
           deleteFriend={this.deleteFriend}
+          toggleEditFriend={this.toggleEditFriend}
+          isEditing={this.state.isEditing}
         />
       </div>
     );

@@ -1,4 +1,9 @@
 .App {
+  margin: 0 auto;
+  background: #61dafb;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
 }
 
@@ -29,4 +34,81 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.friend-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+}
+
+.friend-form-input {
+  width: 80%;
+}
+
+button {
+  margin-top: 5px;
+}
+
+.friends-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend-card {
+  width: 150px;
+  margin: 30px;
+  border-radius: 10px;
+  background: white;
+  -webkit-box-shadow: -2px 10px 48px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -2px 10px 48px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -2px 10px 48px 0px rgba(0, 0, 0, 0.75);
+}
+
+.trash-can-contianer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fa-times-circle {
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.add-friend-form-container {
+  width: auto;
+  border-radius: 10px;
+  background: white;
+  -webkit-box-shadow: -2px 10px 48px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -2px 10px 48px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -2px 10px 48px 0px rgba(0, 0, 0, 0.75);
+}
+
+.add-friend-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.add-friend-form input {
+  margin: 0 5px;
+}
+
+.robot-container {
+  align-items: center;
+  margin-top: -25px;
+}
+
+.robot {
+  width: 80px;
+}
+
+p {
+  font-size: 0.5rem;
 }
