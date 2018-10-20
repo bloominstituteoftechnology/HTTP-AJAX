@@ -35,11 +35,12 @@ class FriendsList extends React.Component {
 
   addNewFriend = e => {
     e.preventDefault();
-    console.log(this.state.friends);
+
     axios
       .post("http://localhost:5000/friends", this.state.newFriend)
       .then(response => this.setState({friends: response.data}));
     this.setState({newFriend: {name: "", age: "", email: ""}});
+    console.log(this.state.friends);
   };
 
   deleteFriend = (e, id) => {
@@ -50,15 +51,13 @@ class FriendsList extends React.Component {
     });
   };
 
-  updateFriend = (e, id, obj) => {
-    e.preventDefault();
+  updateFriend = (id, obj) => {
     //  console.log(this.state.friends);
-    console.log(obj);
+    console.log(obj); // {name: "Gabe", age: "31", email: "gabe@me.com"}
     axios.put(`http://localhost:5000/friends/${id}`, obj).then(response => {
       console.log(response.data);
       this.setState({friends: response.data});
     });
-    //  this.setState({newFriend: {name: "", age: "", email: ""}});
     console.log(this.state.friends);
   };
 
@@ -72,6 +71,7 @@ class FriendsList extends React.Component {
               updateFriend={this.updateFriend}
               key={friend.id}
               friendsData={this.state.friends}
+              deleteFriend={this.deleteFriend}
             />
           ))}
         </div>
