@@ -3,13 +3,17 @@ import axios from 'axios';
 import shortid from 'shortid';
 
 import add from '../../assets/images/add.png';
-import _ from './FriendsForm.module.css';
+import styles from './FriendsForm.module.css';
 
 class FriendsForm extends Component {
   constructor(props) {
     super(props);
     this.state = { name: '', age: '', email: '' };
   }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -27,16 +31,12 @@ class FriendsForm extends Component {
       .catch(err => console.log(err));
   };
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
   render() {
     return (
       <div>
-        <div className={_.add}>
+        <div className={styles.add}>
           <img src={add} alt="add icon" />
-          <div className={_.post}>Post</div>
+          <div className={styles.post}>Post</div>
         </div>
         <form onSubmit={this.handleSubmit}>
           <input

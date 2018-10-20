@@ -46,3 +46,9 @@
   margin-right: 8px;
   text-align: right;
 }
+
+@media (max-width: 1050px) {
+  .card {
+    margin: 0 2% 20px 2%;
+  }
+}

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
-import Friend from './components/friends/friend';
+import Friends from './components/friends/friends';
 import FriendsForm from './components/friends/FriendsForm';
-import styles from './App.module.css';
 
 class App extends Component {
   constructor() {
@@ -34,18 +33,12 @@ class App extends Component {
     this.setState({ friends });
   };
 
-  renderFriends = () => {
-    return this.state.friends.map(friend => (
-      <Friend key={friend.id} friend={friend} deleteFriend={this.deleteFriend} />
-    ));
-  };
-
   render() {
     return (
-      <div className={styles.container}>
-        <ul className={styles.list}>{this.renderFriends()}</ul>
+      <Fragment>
+        <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
         <FriendsForm id={this.state.friends.length} updateFriends={this.updateFriends} />
-      </div>
+      </Fragment>
     );
   }
 }
