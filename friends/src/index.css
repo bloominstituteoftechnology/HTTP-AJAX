@@ -14,6 +14,7 @@ body {
 ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   list-style-type: none;
   margin: 2% auto 50px auto;
   max-width: 1035px;

@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <Fragment>
         <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
-        <FriendsForm id={this.state.friends.length} updateFriends={this.updateFriends} />
+        <FriendsForm updateFriends={this.updateFriends} />
       </Fragment>
     );
   }

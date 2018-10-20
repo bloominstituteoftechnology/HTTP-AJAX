@@ -12,8 +12,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fce8e6;
-  color: #d93025;
   margin-bottom: 10px;
   padding: 0 8px 3px 25px;
   width: 100%;
@@ -37,7 +35,11 @@
   background-color: #F1F3F4;
   border-radius: 18.5px;
   margin-bottom: 8px;
-  padding: 8px 0 8px 20px;
+  overflow: hidden;
+  padding: 7px 15px 10px 15px;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  width: 100%;
 }
 
 .edit {
@@ -50,5 +52,11 @@
 @media (max-width: 1050px) {
   .card {
     margin: 0 2% 20px 2%;
+  }
+}
+
+@media (max-width: 300px) {
+  .card {
+    width: 95%;
   }
 }
