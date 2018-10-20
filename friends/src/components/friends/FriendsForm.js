@@ -63,6 +63,7 @@ class FriendsForm extends Component {
             name="email"
             required
           />
+          <button type="submit">Post</button>
         </form>
       </div>
     );

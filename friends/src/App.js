@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
+import Portal from './portal';
 import Friends from './components/friends/friends';
 import FriendsForm from './components/friends/FriendsForm';
 
@@ -37,7 +38,9 @@ class App extends Component {
     return (
       <Fragment>
         <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
-        <FriendsForm updateFriends={this.updateFriends} />
+        <Portal>
+          <FriendsForm updateFriends={this.updateFriends} />
+        </Portal>
       </Fragment>
     );
   }
