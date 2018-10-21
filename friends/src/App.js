@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Portal from './portal';
 import Friends from './components/friends/friends';
-import FriendsForm from './components/friends/FriendsForm';
+import FriendsModal from './components/friends/FriendsModal';
 
 class App extends Component {
   constructor() {
@@ -12,9 +12,7 @@ class App extends Component {
     this.url = 'http://localhost:5000/friends';
   }
 
-  componentDidMount() {
-    this.getFriends(this.url);
-  }
+  componentDidMount = () => this.getFriends(this.url);
 
   getFriends = URL => {
     axios
@@ -30,16 +28,14 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  updateFriends = friends => {
-    this.setState({ friends });
-  };
+  updateFriends = friends => this.setState({ friends });
 
   render() {
     return (
       <Fragment>
         <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
         <Portal>
-          <FriendsForm updateFriends={this.updateFriends} />
+          <FriendsModal updateFriends={this.updateFriends} />
         </Portal>
       </Fragment>
     );

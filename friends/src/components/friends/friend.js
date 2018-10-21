@@ -8,9 +8,7 @@ const bC = ['#e3f2fd', '#fce8e6', '#fff8e1', '#e8f5e9'];
 const c = ['#4285f4', '#db4437', '#f4b400', '#0f9d58'];
 
 const Friend = ({ friend, index, deleteFriend }) => {
-  const handleClick = () => {
-    deleteFriend(friend.id);
-  };
+  const handleClick = () => deleteFriend(friend.id);
 
   return (
     <li className={styles.card}>
