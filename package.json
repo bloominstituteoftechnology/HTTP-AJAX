@@ -7,12 +7,13 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "nodemon": "^1.14.11",
-    "shortid": "^2.2.13"
+    "nodemon": "^1.14.11"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "yarn --cwd ./friends build",
+    "postinstall": "yarn --cwd ./friends install && yarn --cwd ./friends build"
   },
   "author": "Lambda School",
   "license": "ISC"
