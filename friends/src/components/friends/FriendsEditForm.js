@@ -12,7 +12,7 @@ class FriendsEditForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/friends/${this.state.id}`, {
+      .put(`${this.props.URL}/${this.state.id}`, {
         name: this.state.name,
         age: this.state.age,
         email: this.state.email

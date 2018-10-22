@@ -29,9 +29,9 @@ class FriendsModal extends Component {
           <Close />
         </div>
         {this.state.edit ? (
-          <FriendsEditForm updateFriends={this.props.updateFriends} />
+          <FriendsEditForm updateFriends={this.props.updateFriends} URL={this.props.URL} />
         ) : (
-          <FriendsForm updateFriends={this.props.updateFriends} />
+          <FriendsForm updateFriends={this.props.updateFriends} URL={this.props.URL} />
         )}
       </Fragment>
     ) : (

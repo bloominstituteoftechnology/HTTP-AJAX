@@ -13,7 +13,7 @@ class FriendsForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:5000/friends', {
+      .post(this.props.URL, {
         id: shortid.generate(),
         name: this.state.name,
         age: this.state.age,

@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = { friends: [] };
-    this.url = 'http://localhost:5000/friends';
+    this.url = '/friends';
   }
 
   componentDidMount = () => this.getFriends(this.url);
@@ -35,7 +35,7 @@ class App extends Component {
       <Fragment>
         <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
         <Portal>
-          <FriendsModal updateFriends={this.updateFriends} />
+          <FriendsModal updateFriends={this.updateFriends} URL={this.url} />
         </Portal>
       </Fragment>
     );
