@@ -8,7 +8,7 @@ import styles from './FriendsModal.module.css';
 class FriendsModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { visible: false };
+    this.state = { visible: false, edit: false };
   }
 
   handleOpen = () => {
