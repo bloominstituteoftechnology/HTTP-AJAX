@@ -3,7 +3,9 @@ import React, { Component, Fragment } from 'react';
 import Friend from './friend';
 
 class Friends extends Component {
-  componentDidUpdate = () => this.scrollDown();
+  componentDidUpdate = prevProps => {
+    return this.props.friends.length !== prevProps.friends.length ? this.scrollDown() : null;
+  };
 
   scrollDown = () => this.refs.end.scrollIntoView({ behavior: 'smooth' });
 

@@ -41,6 +41,12 @@
   width: 100%;
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+}
+
 .edit {
   color: #3c4043;
   cursor: pointer;
