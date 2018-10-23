@@ -5,6 +5,13 @@ import axios from 'axios';
 
 class App extends Component {
 
+  state = {
+    friendData: [],
+    name: '',
+    age: '',
+    email: '',
+  }
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends');
