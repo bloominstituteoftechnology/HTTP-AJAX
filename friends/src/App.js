@@ -16,7 +16,7 @@ class App extends Component {
         this.setState({ friends: response.data });
       })
       .catch(err => {
-        console.log("IN CATCH", err);
+        console.log("I will catch you my pretty! And your little dog too!", err);
       });
   }
 
