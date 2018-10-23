@@ -1,12 +1,4 @@
 import React from 'react';
-import Button from '@atlaskit/button';
-import FieldText from '@atlaskit/field-text';
-import Form, {
-    Field,
-    FieldGroup,
-    FormHeader,
-    FormFooter,
-  } from '@atlaskit/form';
 
 import styled from 'styled-components';
 
@@ -20,33 +12,17 @@ const Container = styled.div`
 const FriendForm = props => {
         return (
             <Container>
-                <Form>
-                    <FormHeader
-                        title="New Friend Submission"
-                        description="Please enter your information."
-                    />
-                    <FieldGroup label="Details">
-                        <Field label="Full Name">
-                            <FieldText name="name" placeholder="🤡" />
-                        </Field>
-                        <Field label="Email Address">
-                            <FieldText name="email" placeholder="📧" />
-                        </Field>
-                        <Field label="Age" helperText="Your data won't be stored anywhere.">
-                            <FieldText name="age" placeholder="👴🏼" />
-                        </Field>
-                    </FieldGroup>
-                    <FormFooter
-                        actionsContent={[
-                            {
-                                id: 'submit-button',
-                            },
-                            {},
-                        ]}
-                    >
-                        <Button type="submit" appearance="primary">Submit</Button>
-                    </FormFooter>
-                </Form>
+                <form>
+                    <fieldset>
+                        <label for="nameField">Name</label>
+                        <input type="text" placeholder="John Spraul" id="nameField" />
+                        <label for="emailField">Email</label>
+                        <input type="text" placeholder="🧖🏼‍♂️@gmail.com" id="emailField"/>
+                        <label for="ageField">Age</label>
+                        <input type="text" placeholder="100" id="ageField" />
+                        <input class="button-primary" type="submit" value="Send" />
+                    </fieldset>
+                </form>
             </Container>
         )
 }

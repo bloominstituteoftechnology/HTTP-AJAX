@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import Nav from './components/Nav';
@@ -39,8 +39,8 @@ class App extends Component {
         <Route exact path="/friends" render={ props => (
           <Friends {...props} friends={this.state.friends} />
         )} />
-        <Route path="/friends/:id" render={ props => (
-          <Friend {...props} friends={this.state.friends} />
+        <Route exact path="/friends/:id" render={ props => (
+          <Friend {...props} />
         )} />
         <Route path="/add" render={ props => (
           <FriendForm friends={this.state.friends} />
