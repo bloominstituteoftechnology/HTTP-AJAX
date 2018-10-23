@@ -26,7 +26,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-
+        {this.state.friends.map( (friend) => {
+          return(
+            <div>{friend.name}</div>
+          )
+        } )}
         </header>
       </div>
     );
