@@ -1,27 +1,64 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from "axios";
+import FriendsList from "./components/friendsList";
+import AddFriend from "./components/AddFriend";
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: [],
+      name: "",
+      age: 0,
+      email: ""
+    };
+    console.log(this.state)
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        console.log(response.data)
+        this.setState(() => ({ friends: response.data }));
+        console.log(this.state.friends)
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  
+    axios.post('http://localhost:5000/friends', {
+        name: this.props.name,
+        age: this.props.age,
+        email: this.props.email
+    })
+        .then(response => {
+          console.log(response.data)
+            this.setState(() => ({ friends: response.data }));
+                        
+            console.log(this.state);
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+   console.log("in the handleSubmit")
+}
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-
-        
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="App"><h1 className="title">HTTP/AJAX Friends App</h1><p>
+      {/* <button className="title-button">Add/Remove Friend</button> */}</p>
+        <div className="friends-container"><div className="friends-list">{this.state.friends.map((friend, index) => {
+          return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} />
+        })}</div><div className="friend-form"><AddFriend friends={this.props.friends} name={this.props.name} age={this.props.age} email={this.props.email} handleSubmit={this.handleSubmit}/></div>
+        </div>
       </div>
     );
   }

@@ -1,32 +1,71 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+    text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.friends-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2000px;
+    width: 60%;
+    text-align: left;
+    padding-left: 5%;
+    /* border: 2px solid blue; */
+}
+
+.title {
+    display: inline-block;
+    width: 50%;
+    padding-top: 4px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgba(132, 203, 221, 0.521);
+    box-shadow: 3px 5px 10px 2px #888888;
+    /*  border: 2px solid green; */
+}
+
+.add-friend-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20%;
+    /* border: 2px solid red; */
+}
+
+.friend-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border: 2px solid aqua; */
+}
+
+.friends-list {
+    /* border: 2px solid gray; */
+    width: 50%;
+}
+
+h3 {
+    text-align: center;
+}
+
+.submit-button {
+    margin-top: 10px;
 }
