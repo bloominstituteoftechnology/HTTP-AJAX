@@ -7,9 +7,26 @@ import FriendList from './components/FriendList';
 
 
 class App extends Component {
+  constructor() {
+    super();
 
+    this.state = {
+      friends: [];
+    }
 
+  }
 
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({friends: response.data});
+
+        console.log(friends);
+      })
+
+      .catch(e => console.log(e));
+  }
 
 
 
