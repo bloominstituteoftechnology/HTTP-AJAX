@@ -10,10 +10,17 @@ class FriendList extends Component {
     }
 
     componentDidMount() {
+        const self = this;
         axios.get('http://localhost:5000/friends')
             .then(function (response) {
-                this.setState({
-                    friends: response.data
+
+                const friendArr = [];
+                response.data.map(friend => {
+                    friendArr.push([friend.id, friend.name, friend.age, friend.email])
+                });
+
+                self.setState({
+                    friends: friendArr
                 });
             })
             .catch(function (error) {
@@ -23,7 +30,11 @@ class FriendList extends Component {
 
     render() {
         return (
-            <p>Hello World</p>
+            <div>
+                {this.state.friends.map(friend => {
+                    return <p>{friend}</p>
+                })}
+            </div>
         );
     }
 }
