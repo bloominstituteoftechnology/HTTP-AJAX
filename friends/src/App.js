@@ -1,25 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Axios from "axios";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      friends: []
+    };
+  }
+  componentDidMount() {
+    Axios.get("http://localhost:5000/friends")
+      .then(response => {
+        console.log(response);
+        this.setState({ friends: response.data });
+      })
+      .catch(err => {
+        console.log("IN CATCH", err);
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Friends</h1>
+        {this.state.friends.map(friend => {
+          return (
+            <div>
+              <h3>{friend.name}</h3> {""}
+              <span>{friend.age} {""}</span>
+              <br/>
+              <span>{friend.email}</span>
+            </div>
+          );
+        })}
       </div>
     );
   }
