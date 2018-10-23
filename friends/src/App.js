@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   componentDidMount(){
+
     axios.get("http://localhost:5000/friends")
       .then(response =>{
         this.setState({
@@ -22,10 +23,15 @@ class App extends Component {
   }
 
   render(){
+
+    const result = (!this.state.friends)
+      ? <div>Loading Friends...</div>
+      : <div className="App">
+          <FriendsList friends={this.state.friends}/>
+        </div>
+
     return (
-      <div className="App">
-        {console.log(this.state.friends)}
-      </div>
+      result
     )
   }
 
