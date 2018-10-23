@@ -33,6 +33,9 @@ class App extends Component {
     })
   }
 
+  preventDefault = (e) => {
+    e.preventDefault();
+  }
 
   submit = (e) => {
     e.preventDefault();
@@ -69,7 +72,7 @@ class App extends Component {
           change={this.handleChange}
           submit={this.submit} />
         {this.state.data.map(item => (
-          <Friend key={item.id} friend={item} />
+          <Friend no={this.preventDefault} key={item.id} friend={item} />
         ))}
       </div>
     );

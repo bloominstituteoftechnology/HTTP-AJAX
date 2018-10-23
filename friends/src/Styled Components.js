@@ -43,9 +43,36 @@ export const FriendStyle = styled.div`
 export const FriendHeader = styled.h1`
     font-size: 30px;
     margin-bottom: 13px;
+    margin-top: -15px;
 `;
 
 export const Text = styled.div`
     font-size: 20px;
     margin-bottom: 10px;
+`;
+
+export const X = styled.p`
+    text-align: right;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: rbg(45,45,45);
+    margin-bottom: 0;
+    width: 5%;
+    align-self: flex-end;
+
+    &:hover{
+        color: gray;
+        cursor: pointer;
+    }
+`;
+
+export const Email = styled.a`
+    color: black;
+
+    &:hover{
+        color: gray;
+        cursor: pointer;
+    }
 `;
