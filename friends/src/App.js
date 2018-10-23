@@ -47,7 +47,11 @@ class App extends Component {
             })}
           </div>
         </header>
-        
+        <section className='App-form'>
+            <h1>Form</h1>
+            <input placeholder="Input text"/>
+            <button>save</button>
+        </section>
       </div>
     );
   }
