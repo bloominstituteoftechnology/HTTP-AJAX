@@ -43,7 +43,7 @@ class App extends Component {
           {/* render list of friends here */}
           <div>
             {this.state.friends.map(friend => {
-              return <Friend name={friend.name} />
+              return <Friend name={friend.name} id={friend.id} age={friend.age} email={friend.email}/>
             })}
           </div>
         </header>
