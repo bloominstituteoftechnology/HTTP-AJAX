@@ -13,21 +13,27 @@ import styled from 'styled-components';
 const Container = styled.div`
     align-items: center;
     margin: 0 auto;
-    max-width: 250px;
+    max-width: 400px;
     width: 100%;
 `;
 
 const FriendForm = props => {
         return (
             <Container>
-                <Form onSubmit={this.login}>
+                <Form>
                     <FormHeader
-                        title="Friend List"
+                        title="New Friend Submission"
                         description="Please enter your information."
                     />
                     <FieldGroup label="Details">
-                        <Field label="Full Name" helperText="Your data won't be stored anywhere." onChange={this.changeHandler}>
-                            <FieldText name="fullname" placeholder=" 🤡" />
+                        <Field label="Full Name">
+                            <FieldText name="name" placeholder="🤡" />
+                        </Field>
+                        <Field label="Email Address">
+                            <FieldText name="email" placeholder="📧" />
+                        </Field>
+                        <Field label="Age" helperText="Your data won't be stored anywhere.">
+                            <FieldText name="age" placeholder="👴🏼" />
                         </Field>
                     </FieldGroup>
                     <FormFooter
@@ -38,7 +44,7 @@ const FriendForm = props => {
                             {},
                         ]}
                     >
-                        <Button type="submit" appearance="primary">Login</Button>
+                        <Button type="submit" appearance="primary">Submit</Button>
                     </FormFooter>
                 </Form>
             </Container>
