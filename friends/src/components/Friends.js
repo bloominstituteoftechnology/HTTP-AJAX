@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
-// import Friend from './Friend';
+import Friend from './Friend';
 
 import styled from 'styled-components';
 
@@ -27,17 +27,17 @@ const Friends = (props) => {
                 <tbody>
                     {props.friends.map( friend => {
                         return (
-                            <div key={friend.id}>
+                            <div>
                                 <td>{friend.name}</td>
                                 <td>{friend.age}</td>
                                 <td>{friend.email}</td>
                                 <td>
-                                    <Link to={`/friends/${friend.id}`} style={{textDecoration: 'none'}}>More...</Link>
+                                    <Link to={`${props.match.url}/${friend.id}`} style={{textDecoration: 'none'}}>More...</Link>
                                 </td>
 
-                                {/* <Route path={`/${props.match.path}/${friend.id}`} render={ props =>
-                                    <Friend {...props} friends={props.friends}/>
-                                }/> */}
+                                <Route path={`${props.match.path}/${friend.id}`} render={(props) =>
+                                    <Friend {...props} friends={props.friends} />} 
+                                />
                             </div>
                         )
                     })}
