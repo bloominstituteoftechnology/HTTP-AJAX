@@ -6,7 +6,10 @@ class FriendsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      age: '',
+      email: ''
     };
   }
 
@@ -17,6 +20,36 @@ class FriendsList extends React.Component {
       console.log(this.state);
     });
   }
+
+  handleInput = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log('Clicked');
+    console.log(this.state.friends);
+    if (this.state.name && this.state.age && this.state.email) {
+      this.setState({
+        friends: [
+          ...this.state.friends,
+          {
+            id: this.state.friends.length + 1,
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+          }
+        ],
+        name: '',
+        age: '',
+        email: ''
+      });
+    } else {
+      alert('Please enter name, age and email');
+    }
+  };
+
   render() {
     return (
       <div>
@@ -26,21 +59,24 @@ class FriendsList extends React.Component {
             type="text"
             placeholder="Name"
             name="name"
-            onChange={this.props.handleInput}
+            onChange={this.handleInput}
+            value={this.state.name}
           />
           <input
             type="text"
             placeholder="Age"
             name="age"
-            onChange={this.props.handleInput}
+            onChange={this.handleInput}
+            value={this.state.age}
           />
           <input
             type="text"
             placeholder="Email"
             name="email"
-            onChange={this.props.handleInput}
+            onChange={this.handleInput}
+            value={this.state.email}
           />
-          <button>Add Friend</button>
+          <button onClick={this.handleSubmit}>Add Friend</button>
         </form>
         {this.state.friends.map(friend => {
           return (
