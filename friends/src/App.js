@@ -1,26 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+// import logo from './logo.svg';
+
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      friends: [],
+    }
+  }
+
+  componentDidMount(){
+    axios
+      .get("https://dog.ceo/api/breed/pyrenees/images")
+      .then(response => {
+        console.log(response);
+        this.setState({friends: response.data.message });
+      })
+      .catch(err => {
+        console.log("IN CATCH", err);
+      })
+  }
+
+ 
+
+
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <p>
             Edit <code>src/App.js</code> and save to reload.
             AJAX Assignment.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <div>Side of header <h1>App</h1> starts here.</div>
+          {/* render list of friends here */}
+          <div>
+            {this.state.friends.map(friend => {
+              return <img src={friend} />
+            })}
+          </div>
         </header>
+        
       </div>
     );
   }
