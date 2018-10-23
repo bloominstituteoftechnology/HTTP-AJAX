@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
 
+import Friend from './components/Friend';
+
 import './App.css';
 
 class App extends Component {
@@ -14,10 +16,10 @@ class App extends Component {
 
   componentDidMount(){
     axios
-      .get("https://dog.ceo/api/breed/pyrenees/images")
+      .get("http://localhost:5000/friends")
       .then(response => {
         console.log(response);
-        this.setState({friends: response.data.message });
+        this.setState({friends: response.data });
       })
       .catch(err => {
         console.log("IN CATCH", err);
@@ -41,7 +43,7 @@ class App extends Component {
           {/* render list of friends here */}
           <div>
             {this.state.friends.map(friend => {
-              return <img src={friend} />
+              return <Friend name={friend.name} />
             })}
           </div>
         </header>
