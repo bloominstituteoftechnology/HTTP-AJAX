@@ -12,16 +12,22 @@ import Paper from "@material-ui/core/Paper";
 const styles = theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   root: {
     width: "70%",
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto",
-    margin:"auto"
+    margin: "0 auto"
   },
   table: {
     minWidth: 700
+  },
+
+  row: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: "#EEEEEE",
+    }
   }
 });
 
@@ -67,7 +73,7 @@ class App extends Component {
 
             <TableBody>
               {this.state.friends.map(friend => {
-                return <TableRow key={friend.id}>
+                return <TableRow className={classes.row} key={friend.id}>
                     <TableCell component="th" scope="row">
                       {friend.name}
                     </TableCell>
