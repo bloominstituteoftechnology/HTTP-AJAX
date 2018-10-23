@@ -5,6 +5,7 @@ import { Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
+import Nav from './components/Nav';
 import Friends from './components/Friends';
 import Friend from './components/Friend';
 import FriendForm from './components/FriendForm';
@@ -32,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Nav />
         <h1>Axios Friends</h1>
 
         <Route exact path="/friends" render={ props => (
