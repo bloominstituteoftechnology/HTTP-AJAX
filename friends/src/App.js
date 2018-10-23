@@ -56,6 +56,9 @@ class App extends Component {
         })
       })
       .catch( err=>console.log("Couldn't update axios"))
+
+    document.getElementById('form').reset();
+
   }
 
   render() {
@@ -76,34 +79,6 @@ class App extends Component {
 export default App;
 
 
-
-// submit = (e) => {
-//   e.preventDefault();
-//   console.log(this.state.id)
-//   let newID = this.state.data.length+1;
-//   this.setState({
-//     id: newID
-//   })
-
-//   let newObj = {
-//       id: this.state.id,
-//       name: this.state.name,
-//       age: this.state.age,
-//       email: this.state.email
-//   }
-
-//   axios.post('http://localhost:5000/friends', {data: newObj} )
-//     .then(response=>{
-//         axios.get('http://localhost:5000/friends')
-//       .then( response => {
-//         if(typeof response.data.message === 'string'){
-//           Promise.reject("Error: Friends not found :( ")
-//         }
-//         this.setState({ data: response.data})
-//       })
-//       .catch( err=> console.log(err))
-//     })
-//     .catch( err=>console.log("Couldn't update axios"))
-
-//     console.log(this.state.data)
-// }
+//use router so when user goes to edit, 
+//the friend fields become input fields
+//1:46:00
