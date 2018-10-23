@@ -4,7 +4,7 @@ Topics:
 
 * `axios` package
 * AJAX
-* Promises
+* Promises .
 
 ## Instructions
 
