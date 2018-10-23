@@ -26,25 +26,10 @@ class App extends Component {
       })
       .catch( err=> console.log(err))
     }
-  
-  setName = (e) => {
-    const {value} = e.target;
-    this.setState({
-      name: value
-    })
-  }
 
-  setAge = (e) => {
-    const {value} = e.target;
+  handleChange = (event)=>{
     this.setState({
-      age: value
-    })
-  }
-
-  setEmail = (e) => {
-    const {value} = e.target;
-    this.setState({
-      email: value
+      [event.target.id]: event.target.value
     })
   }
 
@@ -78,9 +63,8 @@ class App extends Component {
       <div className="App">
         <h1>{this.state.data.id}</h1>
         < Form 
-          setName={this.setName}
-          setEmail={this.setEmail}
-          setAge={this.setAge} submit={this.submit}/>
+          change={this.handleChange}
+          submit={this.submit} />
         {this.state.data.map(item => (
           <Friend key={item.id} friend={item} />
         ))}
