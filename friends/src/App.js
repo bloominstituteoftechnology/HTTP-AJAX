@@ -14,8 +14,9 @@ class App extends Component {
   componentDidMount = () => {
     axios.get('http://localhost:5000/friends')
       .then( response => {
-        console.log('It works');
-        console.log(response.data)
+        if(typeof response.data.message === 'string'){
+          Promise.reject("Error: Friends not found :( ")
+        }
         this.setState({ data: response.data})
       })
       .catch( err=> console.log(err))
