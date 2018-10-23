@@ -49,7 +49,11 @@ class App extends Component {
         </header>
         <section className='App-form'>
             <h1>Form</h1>
-            <input placeholder="Input text"/>
+            <form>
+              <input placeholder="Name"/>
+              <input placeholder="Age"/>
+              <input placeholder="Email"/>
+            </form>
             <button>save</button>
         </section>
       </div>
