@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from '@atlaskit/button';
 import FieldText from '@atlaskit/field-text';
 import Form, {
@@ -17,28 +17,7 @@ const Container = styled.div`
     width: 100%;
 `;
 
-class FriendForm extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            fullname: "",
-        }
-    }
-
-    submitHandler = (event) => {
-        this.setState({
-            [event.target.name] : event.target.value
-        })
-    }
-
-    login = () => {
-        const person = this.state.fullname;
-        localStorage.setItem('fullname', person) // https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
-        window.location.reload();
-    }
-
-    render() {
+const FriendForm = props => {
         return (
             <Container>
                 <Form onSubmit={this.login}>
@@ -47,7 +26,7 @@ class FriendForm extends Component {
                         description="Please enter your information."
                     />
                     <FieldGroup label="Details">
-                        <Field label="Full Name" helperText="Your data won't be stored anywhere." onChange={this.submitHandler}>
+                        <Field label="Full Name" helperText="Your data won't be stored anywhere." onChange={this.changeHandler}>
                             <FieldText name="fullname" placeholder=" 🤡" />
                         </Field>
                     </FieldGroup>
@@ -64,7 +43,6 @@ class FriendForm extends Component {
                 </Form>
             </Container>
         )
-    }
 }
 
 export default FriendForm;
