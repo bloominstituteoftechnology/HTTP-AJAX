@@ -20,9 +20,37 @@ class FriendsList extends React.Component {
   render() {
     return (
       <div>
-        <h1>Friends List</h1>
+        <h1>Friends List:</h1>
+        <form>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            onChange={this.props.handleInput}
+          />
+          <input
+            type="text"
+            placeholder="Age"
+            name="age"
+            onChange={this.props.handleInput}
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            onChange={this.props.handleInput}
+          />
+          <button>Add Friend</button>
+        </form>
         {this.state.friends.map(friend => {
-          return <Friend name={friend.name} />;
+          return (
+            <Friend
+              key={friend.id}
+              name={friend.name}
+              age={friend.age}
+              email={friend.email}
+            />
+          );
         })}
       </div>
     );

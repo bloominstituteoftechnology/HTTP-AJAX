@@ -6,7 +6,12 @@ class Friend extends React.Component {
   }
 
   render() {
-    return <p>{this.props.name}</p>;
+    return (
+      <p>
+        Name: {this.props.name} <br /> Age: {this.props.age} <br /> email:{' '}
+        {this.props.email}
+      </p>
+    );
   }
 }
 
