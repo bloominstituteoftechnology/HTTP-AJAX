@@ -6,7 +6,7 @@ Topics:
 * AJAX
 * Promises
 
-## Instructions
+## Instructions!
 
 1.  Run `yarn install or npm install` inside the root directory of this project1Run `yarn start or npm start` to start the server.
 1.  The provided server returns a list of friends when a `GET` request is made to [`http://localhost:5000/friends`](http://localhost:5000/friends).
