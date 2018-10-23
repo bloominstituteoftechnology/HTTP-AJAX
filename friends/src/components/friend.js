@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { FriendCard } from "./style";
 
 
 class Friend extends Component {
 
   render() { 
-    const { name, age , email } = this.props.friend
+    const { name, age ,email } = this.props.friend
     return ( 
-      <>
-      <h3>{name}</h3>
-      <h3>{age}</h3>
-      <h3>{email}</h3>
-      </>
+      <FriendCard>
+      <h3>Name: {name}</h3>
+      <h3>age :{age}</h3>
+      <h3>Email :{email}</h3>
+      </FriendCard>
     );
   }
 }
