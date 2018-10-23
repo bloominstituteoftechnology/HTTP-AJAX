@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import FriendsList from './Components/FriendsList';
 
 class App extends Component {
 
@@ -24,11 +25,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload, Mr. Spraul.
-          </p>
-        </header>
+        <FriendsList friends={this.state.friendData} />
+
       </div>
     );
   }
