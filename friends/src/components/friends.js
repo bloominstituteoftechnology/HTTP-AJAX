@@ -19,7 +19,7 @@ const styles = theme => ({
         margin: "0 auto"
     },
     table: {
-        minWidth: 700
+        minWidth: 500
     },
 
     row: {
@@ -34,30 +34,31 @@ const Friends = props => {
     const { classes } = props
     return (
         <>
-      
-        <Paper className={classes.root}>
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.head}>Name</TableCell>
-                        <TableCell className={classes.head} numeric>Age</TableCell>
-                        <TableCell className={classes.head}>Email</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow className={classes.row} key={props.id}>
-                            <TableCell component="th" scope="row">
-                                {props.name}
-                            </TableCell>
-                            <TableCell numeric>{props.age}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {props.email}
-                            </TableCell>
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell className={classes.head}>Name</TableCell>
+                            <TableCell className={classes.head} numeric>Age</TableCell>
+                            <TableCell className={classes.head}>Email</TableCell>
                         </TableRow>
+                    </TableHead>
 
-                </TableBody>
-            </Table>
-        </Paper>
+                    <TableBody>
+                        {props.friends.map(friend => {
+                            return <TableRow className={classes.row} key={friend.id}>
+                                <TableCell component="th" scope="row">
+                                    {friend.name}
+                                </TableCell>
+                                <TableCell numeric>{friend.age}</TableCell>
+                                <TableCell component="th" scope="row">
+                                    {friend.email}
+                                </TableCell>
+                            </TableRow>;
+                        })}
+                    </TableBody>
+                </Table>
+            </Paper>
         </>
     )
 };
