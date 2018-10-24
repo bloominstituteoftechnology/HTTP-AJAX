@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 export default class FriendList extends Component {
   render() {
     return (
-      <div className='friends'>
+      <div className='friendsList'>
+        <h1>Friends List </h1>
         <ol>
-          <h1>Friends List </h1>
           {this.props.data.map((friend) => {
             return (
               <div key={friend.id}>

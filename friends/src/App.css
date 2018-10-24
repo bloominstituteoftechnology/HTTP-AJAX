@@ -8,12 +8,14 @@
 }
 
 .friendsList{
+  display:flex;
+  flex-direction: column;
   border: 2px solid navy;
   width:50%;
 }
 
 .friendsList h1{
-  text-align: center;
+  align-self: center;
   margin-bottom: 10px;
 }
 
