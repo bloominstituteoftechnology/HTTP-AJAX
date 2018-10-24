@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios';
 import { NavLink } from 'react-router-dom'
 
 class HomePage extends React.Component {
@@ -16,7 +15,7 @@ class HomePage extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-        console.log(event.target.value)
+
     }
     handleSubmit = event => {
         event.preventDefault();
@@ -29,6 +28,7 @@ class HomePage extends React.Component {
         event.target.reset();
 
     }
+
     render() {
 
         return (
@@ -36,7 +36,7 @@ class HomePage extends React.Component {
                 <div>
                     <h1>Welcome to Your FriendList</h1>
                     <NavLink className="link" to='/friendlist/'>
-                        <p>Click Here To See Your Freinds.</p>
+                        <p>Click Here To See Your Friends.</p>
                     </NavLink>
                 </div>
                 <div>

@@ -13,7 +13,7 @@ class App extends Component {
       friendlist: []
     };
   }
-  
+
   componentDidMount() {
     axios
       .get('http://localhost:5000/friends')
@@ -26,8 +26,8 @@ class App extends Component {
       });
   }
   addNewFriend = friend => {
-    
-    
+
+
     axios.post('http://localhost:5000/friends', friend)
       .then((response) => {
         console.log(response);
@@ -36,24 +36,34 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
-    
+
     console.log(friend)
   }
- 
+
   delete = (key) => {
     axios.delete(`http://localhost:5000/friends/${key}`)
       .then((response) => {
-        console.log('delete',response);
+        console.log('delete', response);
         this.setState(() => ({ friendlist: response.data }));
       })
       .catch(error => {
         console.log(error);
       });
-      console.log('thi',key)
+
+  }
+  update = (key) => {
+    axios.put(`http://localhost:5000/friends/${key}`)
+      .then((response) => {
+        console.log(response);
+        this.setState(() => ({ friendlist: response.data }));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    console.log('thi', key)
   }
 
   render() {
-    console.log(this.state.friendlist)
     return (
       <div className="App">
         <Route exact path="/" render={(props) => <HomePage {...props} newFriend={this.addNewFriend} />} />

@@ -13,9 +13,9 @@ class FriendList extends React.Component {
                 </NavLink>
                 {this.props.friends.map(obj => {
                     return (
-                       
-                            <Friend key={obj.id} friends={obj} delete={this.props.delete} />
-                        
+
+                        <Friend key={obj.id} friends={obj} delete={this.props.delete} />
+
                     );
                 })}
             </div>
