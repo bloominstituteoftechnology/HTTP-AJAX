@@ -6,8 +6,12 @@ class Friends extends React.Component {
 
     render(){
         return(
+
+            
             <div>
-                <Form/>
+                <img src="./public/asset/lambda-2.png" alt="Lambda Logo" />
+                <h1>Lambda Student List</h1><br/>
+                <Form/><br/>
             {this.props.friends.map(friend => {
                 return(
                     <table className="table">
