@@ -1,0 +1,39 @@
+.friends-page {
+    max-width: 800px;
+    width: 100%;
+}
+
+.friend-form {
+    width: 100%;
+}
+
+.friends-list {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+}
+
+.friend-name {
+    width: 30%;
+    text-align: left;
+}
+
+.friend-age {
+    width: 12%;
+    text-align: left;
+}
+
+.friend-email {
+    width: 38%;
+    text-align: left;
+}
+
+.friend-controls {
+    width: 20%;
+}
+
+.friend-controls button {
+    width: 90%;
+}

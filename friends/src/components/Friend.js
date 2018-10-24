@@ -1,11 +1,15 @@
 import React from 'react';
+import './Friends.css';
 
 
 const Friend = (props) => {
     return (
-        <div className="friend">
-            <h2>{props.friend.name} - {props.friend.age} - {props.friend.email}</h2>
-        </div>
+        <tr className="friend-row">
+            <td className="friend-name">{props.friend.name}</td>
+            <td className="friend-age">{props.friend.age}</td>
+            <td className="friend-email">{props.friend.email}</td>
+            <td className="friend-controls">&nbsp;</td>
+        </tr>
     )
 }
 
