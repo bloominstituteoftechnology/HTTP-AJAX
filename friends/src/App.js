@@ -41,19 +41,30 @@ class App extends Component {
     return (
       <div className="App">
 
+        <h1> dats my Friend List</h1>
 
 
-        <div>
+        <div className = 'friendlist-container'>
+        {this.state.friends.map( friend => (
+          <FriendList key = {friend.email} friend = {friend}  />
+
+          )
+        )}
+        </div>
+
+
+        <div className = 'friendform-container'>
           <FriendForm
-
-
-
-
+            addNewFriend = {this.addNewFriend}
+            input_name = {this.state.name}
+            input_age = {this.state.age}
+            input_email = {this.state.email}
+            handleInput = {this.handleInput}
           />
 
         </div>
 
-      </div>
+      </div>   // end App
     );
   }
 }
