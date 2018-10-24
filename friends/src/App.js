@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 import FriendsList from './components/FriendsList.js'
+import NewFriendForm from './components/NewFriendForm'
 import Loading from './components/Loading.js'
 import './App.css';
+import { FriendsHeader } from './components/styledComponents.js';
 
 class App extends Component {
   constructor(){
@@ -26,6 +28,7 @@ class App extends Component {
       })
   }
 
+
   render(){
     const result = (!this.state.friends.length)
       ? <div><Loading /></div>
@@ -34,7 +37,17 @@ class App extends Component {
         </div>
 
     return (
-      result
+      <div>
+        <FriendsHeader>
+            FRIENDS
+        </FriendsHeader>
+        <NewFriendForm />
+
+        <>
+          {result}
+        </>
+      </div>
+
     )
   }
 

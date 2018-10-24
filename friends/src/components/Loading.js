@@ -28,9 +28,9 @@ class Loading extends Component {
 
     render() {
         return (
-        <LoadingText>
-            <h1>{this.state.text}</h1>
-        </LoadingText>
+        <div>
+            <LoadingText>{this.state.text}</LoadingText>
+        </div>
         )
     }
 }
