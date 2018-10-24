@@ -6,7 +6,7 @@ const app = express();
 let nextId = 7;
 
 function getNewId() {
-  return nextId++;
+  return Math.floor(Math.random()*90000) + 10000;
 }
 
 let friends = [
@@ -56,6 +56,7 @@ app.get('/friends', (req, res) => {
 });
 
 app.post('/friends', (req, res) => {
+  delete req.body.id;
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
   res.status(201).json(friends);

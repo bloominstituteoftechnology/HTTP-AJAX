@@ -44,6 +44,9 @@ class App extends Component {
                 if (ind === -1) {
                     friends.slice(ind, 1);
                     this.setState({friends: friends});
+                } else {
+                    friends[ind].id = response.data[ind].id;
+                    this.setState({friends: friends});
                 }
             })
             .catch(error => {
