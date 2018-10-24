@@ -9,7 +9,7 @@ class Form extends React.Component {
 
             <form className="form-inline">
   <label className="sr-only" for="inlineFormInputName2">First Name</label>
-  <input type="text" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane"/>
+  <input type="text" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="First Name"/>
 
   <label className="sr-only" for="inlineFormInputName2">Age</label>
   <input type="text" className="form-control mb-2 sm-sm-2" id="inlineFormInputName2" placeholder="Age"/>
