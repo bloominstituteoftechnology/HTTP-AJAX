@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Friend from './Friend.js';
 import Form from './Form.js';
+import {Route} from 'react-router-dom';
 
 class App extends Component {
   constructor(){
@@ -67,7 +68,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.state.data.id}</h1>
         < Form 
           change={this.handleChange}
           submit={this.submit} />
