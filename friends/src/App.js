@@ -5,7 +5,7 @@ import FriendsList from './components/FriendsList.js'
 import NewFriendForm from './components/NewFriendForm'
 import Loading from './components/Loading.js'
 import './App.css';
-import { FriendsHeader } from './components/styledComponents.js';
+import { FriendsHeader, AppContainer } from './components/styledComponents.js';
 
 class App extends Component {
   constructor(){
@@ -37,7 +37,7 @@ class App extends Component {
         </div>
 
     return (
-      <div>
+      <AppContainer>
         <FriendsHeader>
             FRIENDS
         </FriendsHeader>
@@ -46,7 +46,7 @@ class App extends Component {
         <>
           {result}
         </>
-      </div>
+      </AppContainer>
 
     )
   }
