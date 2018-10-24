@@ -1,7 +1,28 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 class AddFriendForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+      name: '',
+      age: '',
+      email: '',
+    };
+    this.addFriendHandler = this.addFriendHandler.bind(this);
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      })
+  }
 
   addFriendHandler = e => {
     this.setState({ 
@@ -9,7 +30,6 @@ class AddFriendForm extends Component {
       age: e.target.age,
       email: e.target.email,
      });
-     this.addFriendHandler = this.addFriendHandler.bind(this);
   }
 
   submitFriendHandler = e => {
