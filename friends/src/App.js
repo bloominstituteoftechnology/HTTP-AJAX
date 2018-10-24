@@ -14,6 +14,11 @@ class App extends Component {
     super(props);
     this.state = {
       friends: [],
+      friend: {
+        name: '',
+        age: '',
+        email: '',
+      },
     }
   }
 
@@ -29,10 +34,28 @@ class App extends Component {
       })
   }
 
+  handleChange = event => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [event.target.name]: event.target.value,
+      }
+    });
+  }
+
+  handleAddNewFriend = () => {
+    axios
+      .post("http://localhost:5000/friends", this.state.friend)
+      .then(response => console.log(response))
+      .catch(err => {
+        console.log("COULD NOT ADD NEW FRIEND", err);
+      })
+  }
+
   //post getItemById axios POST here? 
   // POST PUT DELETE are 'user' interaction, will be in a button or something
   
-// Post - (url, body)
+// Post - (url, body)     body is an object
 // Get - (url)
 // Put - (url/:id, id, body)
 // Delete - (url/:id)
@@ -80,7 +103,15 @@ class App extends Component {
 
         <Route
             path="/add-friend"
-            render={props => (<FriendForm />)}
+            render={props => (
+            <FriendForm 
+              {...props} 
+              handleAddNewFriend={this.handleAddNewFriend}
+              handleChange={this.handleChange} 
+              newfriend={this.state.friend}
+
+              />
+            )}
         />
       </div>
     );

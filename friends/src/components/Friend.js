@@ -1,24 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class Friend extends React.Component {
-    constructor(props){
-        super(props);
+// class Friend extends React.Component {
+//     constructor(props){
+//         super(props);
 
-    }
-    render(){
-        return(
-        <div>
-            {this.props.friends.map(friend => (
-                <div>
-                    <h1>{friend.name}</h1>
-                    <p>ID: {friend.id}</p>
-                    <p>AGE: {friend.age}</p>
-                    <p>EMAIL: {friend.email}</p>
-                </div>
-            ))}
-        </div>
-        )
-    }
+//     }
+//     render(){
+//     }
+// }
+
+const Friend = props => {
+    return(
+            <div>
+                {props.friends.map(friend => (
+                    <div key={friend.id}>
+                        <h1>{friend.name}</h1>
+                        <p>ID: {friend.id}</p>
+                        <p>AGE: {friend.age}</p>
+                        <p>EMAIL: {friend.email}</p>
+                    </div>
+                ))}
+            </div>
+    )
 }
+
+
+
+Friend.propTypes = {
+    friend: PropTypes.shape({
+        name: PropTypes.string,
+        age: PropTypes.number,
+        email: PropTypes.string,
+    })
+}
+
 
 export default Friend
