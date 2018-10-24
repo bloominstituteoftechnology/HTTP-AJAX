@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Friends from "./components/Friends.js";
+import axios from 'axios';
 
 class App extends Component {
     constructor(props)  {
@@ -12,16 +13,18 @@ class App extends Component {
     componentDidMount() {
         // this.setState((state)   =>  ({
         // }))
-        fetch("http://localhost:5000/friends")
-        .then( data =>  data.json())
+        axios.get("http://localhost:5000/friends")
         .then(data  =>  this.setState((state)   =>  ({
-            friends: data
-        })));
+            friends: data.data
+        })))
+        .catch(err  =>  {
+            console.log("In Catch", err);
+        });
     }
   render() {
     return (
       <div className="App">
-
+        <Friends friends={this.state.friends} />
       </div>
     );
   }
