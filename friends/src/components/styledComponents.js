@@ -13,6 +13,7 @@ export const FriendsHeader = styled.h1`
     max-width: 900px;
     margin: 0 auto;
     text-align: center;
+    letter-spacing: .2rem;
 `;
 
 
@@ -47,9 +48,24 @@ export const FriendFormContainer = styled.div`
     padding: 15px 0;
     color: #FFF;
 
+
+
         input {
             margin-right: 2%;
             outline: none;
+            background: #F8F8F8;
+            border: none;
+
+            &:focus {
+                background: #FFFFE6;
+            }
+        }
+
+        input[name="age"] {
+            width: 50px;
+        }
+        input[name="name"] {
+            width: 25%;
         }
         label {
             margin-right: 1%;
