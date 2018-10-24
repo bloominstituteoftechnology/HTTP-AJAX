@@ -22,7 +22,7 @@ class FriendsList extends React.Component {
         this.setState({ friends: data.data });
         console.log(this.state);
       })
-      .catch(() => alert('Error'));
+      .catch(() => alert('GET Error'));
   }
 
   handleInput = event => {
@@ -35,6 +35,17 @@ class FriendsList extends React.Component {
     console.log('Clicked');
     console.log(this.state.friends);
     if (this.state.name && this.state.age && this.state.email) {
+      const name = this.state.name;
+      const age = +this.state.age;
+      const email = this.state.email;
+
+      axios
+        .post('http://localhost:5000/friends', { name, age, email })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+        .catch(() => alert('POST Error'));
       this.setState({
         friends: [
           ...this.state.friends,
