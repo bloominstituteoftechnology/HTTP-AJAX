@@ -13,9 +13,7 @@ class FriendsList extends Component {
   }
 
   handleInput = (event) => {
-    // console.log(`This is the state: ${this.state}`);
-    // console.log(`This is the target name: ${event.target.name}`);
-    // console.log(`This is the target value: ${event.target.value}`)
+
     this.setState({ [event.target.name]: event.target.value });
   };
 
