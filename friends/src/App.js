@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 import Friend from './components/Friend';
 import FriendForm from './components/FriendForm';
@@ -30,6 +30,17 @@ class App extends Component {
   }
 
   //post getItemById axios POST here? 
+  // POST PUT DELETE are 'user' interaction, will be in a button or something
+  
+// Post - (url, body)
+// Get - (url)
+// Put - (url/:id, id, body)
+// Delete - (url/:id)
+// Patch ??
+
+// const body = {name: 'chris', age: 22}       note: just setting long object, many key-value  pairs into a variable
+
+// axios.post(url, body)
 
 
   render() {
@@ -37,31 +48,40 @@ class App extends Component {
       <div className="App">
         <ul className="navbar">
             <li>
-              <h1>Home</h1>
+              <NavLink to="/">
+                <h1>Home</h1>
+              </NavLink>
             </li>
             <li>
-              <h1>Friends</h1>
+              <NavLink to="/friends">
+              <h1>Friends </h1>
+              </NavLink>
             </li>
             <li>
-              <h1>Add New Friends</h1>
+              <NavLink to="/add-friend">
+                <h1>Add New Friends</h1>
+              </NavLink>
             </li>
         </ul>
 
-        <Route exact path='/' component={Home} />
+        <Route exact path="/" component={Home} />
 
+        <Route exact path="/friends"
+          render={props => (<Friend {...props} friends={this.state.friends}/> )}
+         />
 
-        <header className="App-header">
-          <div>Side of header <h1>App</h1> starts here.</div>
-         
-          <div>
+     
+          {/* <div>
             {this.state.friends.map(friend => {
               return <Friend name={friend.name} id={friend.id} age={friend.age} email={friend.email}/>
             })}
-          </div>
-        </header>
-        <div>
-            <FriendForm />
-        </div>
+          </div> */}
+
+
+        <Route
+            path="/add-friend"
+            render={props => (<FriendForm />)}
+        />
       </div>
     );
   }
