@@ -6,15 +6,7 @@ export default class FriendList extends Component {
       <div className='friendsList'>
         <h1>Friends List </h1>
         <ol>
-          {this.props.data.map((friend) => {
-            return (
-              <div key={friend.id}>
-                <li> <span>Name: {friend.name} , Age: {friend.age}, Email: {friend.email} </span> </li>
-
-              </div>
-            )
-
-          })}
+          {this.props.data.map((friend) => <li key={friend.id}> <span>Name: {friend.name} , Age: {friend.age}, Email: {friend.email} </span> </li>)}
         </ol>
 
       </div>
