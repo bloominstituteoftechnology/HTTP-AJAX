@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import axios from 'axios';
 import FriendsList from './FriendsList/FriendsList.js'
@@ -18,7 +18,6 @@ class App extends React.Component {
         this.setState({
           friends: response.data
         });
-        console.log(this.state.friends);
       })
       .catch(err => console.log(err))
   }
