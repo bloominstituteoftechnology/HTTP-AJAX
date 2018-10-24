@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import FriendCard from './FriendCard';
 
 export default class FriendList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             friends: [],
         };
@@ -11,7 +14,7 @@ export default class FriendList extends Component {
 
     componentDidMount() {
         axios
-            .get('http://localhost:5000/friends')
+            .get(`http://localhost:5000/friends`)
             .then(response => {
                 this.setState(() => ({ friends: response.data }));
             })
@@ -24,6 +27,11 @@ export default class FriendList extends Component {
         return (
             <div>
                 FriendList!
+                {this.state.friends.map(friend => (
+                    <Link to={`/friends/${friend.id}`}>
+                        <FriendCard key={friend.id} friend={friend} />
+                    </Link>
+                ))}
             </div>
         );
     }
