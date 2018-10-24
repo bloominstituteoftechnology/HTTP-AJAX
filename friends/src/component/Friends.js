@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Friends = (props) => {
     return (
@@ -10,4 +11,10 @@ const Friends = (props) => {
     )
 }
 
+Friends.propTypes = {
+    name: PropTypes.string,
+    email: PropTypes.string,
+    age: PropTypes.number,
+  };
+  
 export default Friends;
