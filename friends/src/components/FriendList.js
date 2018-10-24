@@ -1,5 +1,6 @@
-import React from 'react'
-import Friend from './Friend'
+import React from 'react';
+import Friend from './Friend';
+
 
 const FriendList = (props) => {
   return (
@@ -15,5 +16,6 @@ const FriendList = (props) => {
     </div>
   )
 }
+
 
 export default FriendList;

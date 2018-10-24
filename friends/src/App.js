@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendsList from './components/FriendList';
+import AddFriendForm from './components/AddFriendForm';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      friend: ''
     };
   }
 
@@ -22,11 +24,18 @@ class App extends Component {
       })
   }
 
+  addFriendHandler = e => {
+    this.setState({ friend: e.target.value })
+  }
+
 
   render() {
     return (
       <div className="App">
-      <FriendsList friends={this.state.friends}/>
+        <FriendsList friends={this.state.friends} />
+        <AddFriendForm 
+        friend={this.state.friends}
+        addFriendHandler={() => console.log("")} />
       </div>
     );
   }
