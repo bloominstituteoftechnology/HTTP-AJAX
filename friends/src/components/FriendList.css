@@ -1,0 +1,18 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-right: 8px;
+}
+
+span {
+  font-weight: bold;
+}
+
+div {
+  display: flex;
+  border-bottom: 1px solid black;
+  justify-content: center;
+  padding: 10px 0;
+}
