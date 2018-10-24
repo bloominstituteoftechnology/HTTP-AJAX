@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import FriendForm from "./FriendForm";
 import FriendList from "./FriendList";
  class App extends Component {
   constructor() {
@@ -23,10 +24,34 @@ import FriendList from "./FriendList";
      .catch(err => 
       console.log(err)); 
    }
+   handleChange = event => {
+    this.setState({
+      friend: {
+        ...this.state.friend, 
+        [event.target.name]: event.target.value,
+      }
+    })
+  }
+    handleInput = event => {
+    event.preventDefault();
+    axios.post('http://localhost:5000/friends', 
+    this.state.friend)
+    .then(response => {
+      this.setState({ friendData: response.data })
+    })
+    .catch(err => 
+      console.log(err)); 
+  }	  
+  
    render() {
     return (
       <div classNmae="App">
-         <h2> Friend List: </h2>
+         <h1>Add Friend</h1> 
+        <FriendForm form={this.state.friend}
+        handleChange={this.handleChange}
+        handleInput={this.handleInput}
+        />
+        <h2> Friend List: </h2>
         <FriendList friend={this.state.friendData} /> 
       </div>
     )
