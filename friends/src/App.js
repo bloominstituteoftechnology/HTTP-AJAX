@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import FriendList from './components/friendList'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import Form from './components/form'
 
 class App extends React.Component {
   constructor() {
@@ -29,6 +30,7 @@ class App extends React.Component {
       {this.state.friends.map(friends => (
         <FriendList key={friends.id} friends = {friends} />
       ))}
+       <Form />
         {/* <nav> */}
         
             {/* <NavLink exact to = '/'>

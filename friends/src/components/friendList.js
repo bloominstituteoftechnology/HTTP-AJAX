@@ -9,13 +9,14 @@ class FriendList extends React.Component {
          }
     }
     render() { 
-        return (  
+        return ( 
+             
             <div>
-                <h4> Name: {this.props.friends.name}</h4>
-                <p> Age: {this.props.friends.age}</p>
-                <p> Email: {this.props.friends.email}</p>
-
+                <h4> <strong>Name:</strong> {this.props.friends.name}</h4>
+                <p> <strong>Age:</strong> {this.props.friends.age}</p>
+                <p> <strong>Email:</strong> {this.props.friends.email}</p>
             </div>
+           
         );
     }
 }
