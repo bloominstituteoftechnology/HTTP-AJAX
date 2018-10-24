@@ -61,7 +61,7 @@ class Friends extends Component{
 
     render(){
         return(
-            <div>
+            <div className='mainCont'>
                 <div className='friendList'>
                     <h1>Friends List</h1>
                     <div className='friendCard'>
@@ -70,13 +70,13 @@ class Friends extends Component{
                         })}
                     </div>
                 </div>
-                <form>
-                    <h1>Add a Friend</h1>
+                <h1 className='formTitle'>Add a Friend</h1>
+                <form className='addForm'>
                     <span>Name: </span><input type='text' placeholder='Name' name='name' value={this.state.name} onChange={this.inputHandle}></input>
                     <span>Age: </span><input type='text' placeholder='Age' name='age' value={this.state.age} onChange={this.inputHandle}></input>
                     <span>Email: </span><input type='text' placeholder='Email' name='email' value={this.state.email} onChange={this.inputHandle}></input>
-                    <input type='submit' onClick={this.submitHandle}></input>
                 </form>
+                <input type='submit' onClick={this.submitHandle}></input>
             </div>
         )
     }

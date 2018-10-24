@@ -1,9 +1,9 @@
 .singleFriend{
-    border: 1px solid black;
+    border: 2px solid black;
     width: 300px;
     padding: 10px;
     margin: 5px;
-    background-color: #eaeeef;
+    background-color: #abcfd8;
 }
 
 .singleFriend li{
