@@ -13,8 +13,7 @@ export default class DisplayFriends extends React.Component {
         name: "",
         age: 18,
         email: "",
-      },
-      text: "",
+      }
     }
   }
 
@@ -29,7 +28,7 @@ export default class DisplayFriends extends React.Component {
     })
   }
 
-  //adds new friend to the friend server
+  //adds new friend to the friend server and resets newFriend values
   addFriend = (e) => {
     e.preventDefault();
     axios
@@ -37,7 +36,12 @@ export default class DisplayFriends extends React.Component {
       .then(response => {
         console.log(response)
         this.setState({
-          input: "",
+          newFriend: {
+            id: 3,
+            name: "",
+            age: 18,
+            email: "",
+          }
         })
       })
       .catch(err => {
@@ -58,7 +62,7 @@ export default class DisplayFriends extends React.Component {
   }
 
   render(){
-    console.log(this.state)
+    //console.log(this.state)
     return(
         <div className="display">
           <h1>Here are my friends!</h1>
@@ -71,7 +75,7 @@ export default class DisplayFriends extends React.Component {
             friends={this.state.friends}
             add={this.addFriend}
             input={this.handleInput}
-            text={this.state.input}
+            value={this.state.newFriend}
           />
         </div>
     )
