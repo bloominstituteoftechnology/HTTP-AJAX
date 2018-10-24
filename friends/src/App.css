@@ -1,32 +1,83 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.titleHeader{
+  margin: 0 auto;
+  background-color: lightpink;
+  border: 1px solid firebrick;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.friendlist-container{
+
+
+}
+
+.friend-container{
+  display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: aliceblue;
+  border: 1px solid rebeccapurple;
+  margin:5px auto;
+  width: 45%;
+  border-radius: 5px;
+  padding:5px 0;
+}
+
+form{
+  background-color: plum;
+  border: 1px solid purple;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 45%;
+}
+
+input {
+  border: 1px solid darkslategrey;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px auto;
+}
+
+.button_addNewFriend {
+  background-color: cornflowerblue;
   color: white;
+  width: 25%;
+  border: 1px solid darkblue;
+  margin: 1px 5px;
+  font-size: 15px;
+  border-radius: 3px;
 }
 
-.App-link {
-  color: #61dafb;
+.button_addNewFriend:hover{
+  background-color: seagreen;
+  border: 1px solid darkslategrey;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button_delete{
+  color: white;
+  background-color: hotpink;
+  padding: 5px;
+  align-items: center;
+  margin: 0 15px;
+  border-radius: 5px;
+}
+
+.button_delete:hover{
+  background-color: deeppink;
+}
+
+.button-container{
+  border: 1px solid green;
+}
+
+.friend{
+  padding-left: 85px;
+  width: 60%;
+  margin: 0 auto;
 }

@@ -35,13 +35,35 @@ class App extends Component {
   }
 
 
+  addNewFriend = ev => {
+    ev.preventDefault();
+    if(this.state.name) {
+      axios.post('http://localhost:5000/friends', {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(response => {
+        this.setState({friends: response.data, name: '', age: '', email: ''})
+      })
+        .catch(error => console.log('ERROR: ', error));
+    }
 
+
+  };
+
+  handleInput = ev => {
+    this.setState({[ev.target.name]: ev.target.value})
+  };
 
   render() {
     return (
       <div className="App">
 
-        <h1> dats my Friend List</h1>
+        <h1 className = 'titleHeader'> {"\u2764"}{"\u2665"}{"\u2665"}{"\u00a0"}
+              dats my Bestie List
+          {"\u00a0"}{"\u2665"}{"\u2665"}{"\u2764"}
+         </h1>
 
 
         <div className = 'friendlist-container'>
@@ -64,7 +86,7 @@ class App extends Component {
 
         </div>
 
-      </div>   // end App
+      </div>
     );
   }
 }

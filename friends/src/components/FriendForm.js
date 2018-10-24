@@ -4,6 +4,7 @@ const FriendForm = (props) => {
 
   return (
     <form>
+
       <input
          value = {props.input_name}
          name = 'name'
@@ -25,7 +26,7 @@ const FriendForm = (props) => {
         placeholder = 'friend_email'
       />
 
-      <button onClick={props.addNewFriend}> Add new friend </button>
+      <button className = 'button_addNewFriend' onClick={props.addNewFriend}> Add new friend </button>
 
     </form>
 
