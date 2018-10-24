@@ -1,18 +1,22 @@
+.friend {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
 ul {
   list-style-type: none;
 }
 
 li {
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
-span {
-  font-weight: bold;
+button {
+  width: 70px;
 }
 
-div {
+div form {
   display: flex;
-  border-bottom: 1px solid black;
   justify-content: center;
-  padding: 10px 0;
 }
