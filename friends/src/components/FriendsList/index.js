@@ -58,12 +58,15 @@ componentDidMount() {
        .catch(err => console.log(err));
 }
 add = (obj) => {
-  const friends = JSON.parse(JSON.stringify(this.state.friends));
   const index = this.state.friends.length+1;
   obj.id = index;
-  this.setState({
-  friends: friends.concat(obj)
-});
+  axios.post('http://localhost:3020/friends/', obj)
+    .then(response => {
+      this.setState({friends: response.data})
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
 }
   render() {
     return (
