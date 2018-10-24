@@ -13,17 +13,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/friends").then(res => {
-      this.setState({
-        friends: res.data
+    axios
+      .get("http://localhost:5000/friends")
+      .then(res => {
+        this.setState({
+          friends: res.data
+        })
       })
-    })
+      .catch(error => console.log("error"))
   }
   render() {
     console.log(this.state.friends)
     return (
       <div className="App">
-        <h1>let's make a friends list</h1>
+        <h1>Friends List</h1>
         <FriendsList friends={this.state.friends} />
       </div>
     )

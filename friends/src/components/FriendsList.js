@@ -7,7 +7,7 @@ const FriendsList = props => {
 		return <Friend key={friend.id} friend={friend} />
 	})
 
-	return <React.Fragment>{friends}</React.Fragment>
+	return <div className="friends-container">{friends}</div>
 }
 
 export default FriendsList
