@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import FriendsList from './Components/FriendsList';
+// import FriendsList from './Components/FriendsList';
+
 
 class App extends Component {
-
+  constructor(props) {
+    super(props);
+  
   state = {
     friendData: [],
     name: '',
     age: '',
     email: '',
-  }
+  };
+}
 
   componentDidMount() {
-    axios
-      .get('http://localhost:5000/friends').then(response => {
-        this.setState({ friendData: response.data});
-      }).catch(err => {
+    axios.get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState({ friends: response.data});
+      })
+      .catch(err => {
         console.log(err);
       });
   }
@@ -25,8 +30,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friendData} />
-
+      <h2>A list of friends, forthwith:</h2>
+        {this.state.friends.map(friend => {
+          return (
+            <div>
+            <h1>{friend.name}</h1>
+            <p>, hello.</p>
+            </div>
+          )
+        })}
       </div>
     );
   }
