@@ -20,7 +20,7 @@ class Form extends React.Component {
       <div className="input-group-text">@</div>
     </div>
 
-    <input type="text" className="form-control" id="inlineFormInputGroupUsername2" placeholder="Username"/>
+    <input type="text" className="form-control" id="inlineFormInputGroupUsername2" placeholder="Email"/>
   </div>
 
   <button type="submit" className="btn btn-primary mb-2">Submit</button>
