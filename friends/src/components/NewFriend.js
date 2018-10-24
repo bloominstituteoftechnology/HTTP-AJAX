@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class NewFriend extends Component {
     constructor() {
@@ -56,21 +57,24 @@ class NewFriend extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                </label>
-                <label>
-                    Age:
-                    <input type="number" value={this.state.age} onChange={this.handleAgeChange} />
-                </label>
-                <label>
-                    Email:
-                    <input type="email" value={this.state.email} onChange={this.handleEmailChange} />
-                </label>
-                <input type='submit' value='Submit' />
-            </form>
+            <div>
+                <Link to='/'>Home</Link>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+                    </label>
+                    <label>
+                        Age:
+                        <input type="number" value={this.state.age} onChange={this.handleAgeChange} />
+                    </label>
+                    <label>
+                        Email:
+                        <input type="email" value={this.state.email} onChange={this.handleEmailChange} />
+                    </label>
+                    <input type='submit' value='Submit' />
+                </form>
+            </div>
         );
     }
 }
