@@ -15,21 +15,18 @@ class AddFriend extends Component {
         console.log(this.state)
     }
 
-    changeHandler = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state)
-    }
+  
 
     render() {
         return (
             <form className="add-friend-form" onSubmit={this.props.handleSubmit}>
                 <h3>Add/Remove Friend</h3>
                 <div className="add-text">Name: </div>
-                <input type="text" className="add-input" value={this.state.value} onChange={this.changeHandler} name="name" />
+                <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="name" />
                 <div className="add-text">Age: </div>
-                <input type="text" className="add-input" value={this.state.value} onChange={this.changeHandler} name="age" />
+                <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="age" />
                 <div className="add-text">Email: </div>
-                <input type="text" className="add-input" value={this.state.value} onChange={this.changeHandler} name="email" />
+                <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="email" />
                 <button type="submit" className="submit-button" onClick={this.props.handleSubmit}>Add Friend</button>
             </form>
 

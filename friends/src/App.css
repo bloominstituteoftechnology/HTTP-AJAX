@@ -68,4 +68,18 @@ h3 {
 
 .submit-button {
     margin-top: 10px;
+    border-radius: 10px;
+   /*  box-shadow: 2px 4px 6px 2px #b4b4b4; */
+}
+
+.add-input {
+margin-bottom: 10px;
+border-radius: 10px;
+background-color: rgba(132, 203, 221, 0.521);
+    box-shadow: 3px 5px 10px 2px #888888;
+}
+
+.add-text {
+font-weight: bold;
+
 }

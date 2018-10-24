@@ -29,35 +29,40 @@ class App extends Component {
       });
   }
 
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state)
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-  
+
     axios.post('http://localhost:5000/friends', {
-        name: this.props.name,
-        age: this.props.age,
-        email: this.props.email
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
     })
-        .then(response => {
-          console.log(response.data)
-            this.setState(() => ({ friends: response.data }));
-                        
-            console.log(this.state);
+      .then(response => {
+        console.log(response.data)
+        this.setState(() => ({ friends: response.data }));
 
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        console.log("this.props.name", this.props.name);
 
-   console.log("in the handleSubmit")
-}
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+  }
 
   render() {
     return (
       <div className="App"><h1 className="title">HTTP/AJAX Friends App</h1><p>
-      {/* <button className="title-button">Add/Remove Friend</button> */}</p>
+        {/* <button className="title-button">Add/Remove Friend</button> */}</p>
         <div className="friends-container"><div className="friends-list">{this.state.friends.map((friend, index) => {
           return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} />
-        })}</div><div className="friend-form"><AddFriend friends={this.props.friends} name={this.props.name} age={this.props.age} email={this.props.email} handleSubmit={this.handleSubmit}/></div>
+        })}</div><div className="friend-form"><AddFriend friends={this.props.friends} name={this.props.name} age={this.props.age} email={this.props.email} changeHandler={this.changeHandler} handleSubmit={this.handleSubmit} /></div>
         </div>
       </div>
     );
