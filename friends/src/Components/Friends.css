@@ -1,0 +1,22 @@
+/* Style for each friend line */
+.friend {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    width: 600px;
+}
+
+.friendName {
+    width: 150px;
+    border: 1px solid yellow;
+}
+
+.friendAge {
+    width: 50px;
+    border: 1px solid purple;
+}
+
+.friendEmail{
+    width: 350px;
+    border: 1px solid blue;
+}

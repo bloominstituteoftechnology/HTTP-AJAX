@@ -14,16 +14,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(`http://localhost:5000/friends`)
-      .then( response => {
-        this.setState( () => ({ friends: response.data }))
-      })
-      .catch( error => {
-        console.error( error );
-      });
+    this.getData();
   };
   
+  getData = () => {
+    axios
+    .get(`http://localhost:5000/friends`)
+    .then( response => {
+      this.setState( () => ({ friends: response.data }))
+    })
+    .catch( error => {
+      console.error( error );
+    });
+  };
+
   render() {
     return (
       <div className="App">

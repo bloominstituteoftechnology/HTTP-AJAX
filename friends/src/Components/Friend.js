@@ -1,4 +1,6 @@
 import React from 'react';
+import './Friends.css';
+
 
 // Takes in props:
 // - key: 0 
@@ -7,10 +9,10 @@ import React from 'react';
 // - email: ""
 const Friend = (props) => {
     return (
-        <div className='Friend'>
-            <div>{props.name}</div>
-            <div>{props.age}</div>
-            <div>{props.email}</div>
+        <div className='friend'>
+            <div className='friendName'>{props.name}</div>
+            <div className='friendAge'>{props.age}</div>
+            <div className='friendEmail'>{props.email}</div>
         </div>
     );
 };
