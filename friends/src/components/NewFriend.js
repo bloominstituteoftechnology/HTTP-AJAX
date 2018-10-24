@@ -43,15 +43,18 @@ class NewFriend extends Component {
         })
         .then(function (response) {
             console.log(response);
+
+            self.setState({
+                name: '',
+                age: 0,
+                email: ''
+            });
+
+            
+            self.props.history.push('/')
         })
         .catch(function (error) {
             console.log(error);
-        });
-        
-        this.setState({
-            name: '',
-            age: 0,
-            email: ''
         });
     }
 
