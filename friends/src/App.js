@@ -49,8 +49,8 @@ class App extends Component {
     axios
       .post("http://localhost:5000/friends", this.state.friend)
       .then(response => {
-        console.log(response)
-        // this.setState({ friends: response.data })
+        // console.log(response)
+        this.setState({ friends: response.data })
       })
       // .catch(err => {
       //   console.log("COULD NOT ADD NEW FRIEND", err);
@@ -106,10 +106,11 @@ class App extends Component {
         <Route path="/friendslist/:id"
           render={props => (
           <FriendPage 
-          name={this.state.friend.name} 
-          id={this.state.friend.id}
-          age={this.state.friend.age}
-          email={this.state.friend.email}
+          {...props}
+          // name={this.state.friend.name} 
+          // id={this.state.friend.id}
+          // age={this.state.friend.age}
+          // email={this.state.friend.email}
 
           friends={this.state.friends}
           /> )}
