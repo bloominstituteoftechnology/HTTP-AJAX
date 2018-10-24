@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // class Friend extends React.Component {
 //     constructor(props){
@@ -15,7 +16,7 @@ const FriendList = props => {
             <div>
                 {props.friends.map(friend => (
                     <div key={friend.id}>
-                        <h1>{friend.name}</h1>
+                        <Link to={`/friendslist/${friend.id}`}>{friend.name}</Link>
                         <p>ID: {friend.id}</p>
                         <p>AGE: {friend.age}</p>
                         <p>EMAIL: {friend.email}</p>

@@ -5,6 +5,7 @@ import { Route, NavLink } from 'react-router-dom';
 
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
+import FriendPage from './components/FriendPage';
 import Home from './components/Home';
 
 import './App.css';
@@ -53,6 +54,8 @@ class App extends Component {
       })
   }
 
+  // handleDeleteFriend = 
+
   //post getItemById axios POST here? 
   // POST PUT DELETE are 'user' interaction, will be in a button or something
   
@@ -93,6 +96,10 @@ class App extends Component {
         <Route exact path="/friendslist"
           render={props => (<FriendList {...props} friends={this.state.friends}/> )}
          />
+
+        <Route path="/friendslist/:id"
+          render={props => (<FriendPage {...props} friends={this.state.friends}/> )}
+          />
 
      
           {/* <div>
