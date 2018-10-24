@@ -11,8 +11,16 @@ class App extends Component {
     super();
 
     this.state = {
-      friends: []
-    }
+      friends: [{
+        id: '',
+        name: '',
+        age: '',
+        email: ''
+      }],
+        name: '',
+        age: '',
+        email: ''
+    };
 
   }
 
@@ -22,9 +30,7 @@ class App extends Component {
       .then(response => {
         this.setState({friends: response.data});
 
-        console.log(friends);
       })
-
       .catch(error => console.log('ERROR: ', error));
   }
 
