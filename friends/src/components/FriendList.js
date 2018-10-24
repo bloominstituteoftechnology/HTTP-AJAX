@@ -24,9 +24,9 @@ const FriendList  = (props) => {
 };
 
 FriendList.propTypes = {
-
-
-
+  name: propTypes.string,
+  age: propTypes.number,
+  email: propTypes.string
 };
 
 
