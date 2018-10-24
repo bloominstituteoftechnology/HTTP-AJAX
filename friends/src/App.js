@@ -3,7 +3,7 @@ import "./App.css";
 import axios from "axios";
 import Friends from "./components/friends";
 import { Route } from "react-router-dom";
-import { Input, Button } from "@material-ui/core";
+import { Input, Button, FormControl } from "@material-ui/core";
 
 class App extends Component {
   constructor(props) {
@@ -85,21 +85,21 @@ class App extends Component {
           render={() => <Friends friends={this.state.friends} />}
         />
 
-        <form onSubmit={this.addNewFriend}>
+        <FormControl onSubmit={this.addNewFriend}>
           <Input
             onChange={this.handleChange}
             name="name"
             value={this.state.name}
             type="text"
             placeholder="Name"
-          />
+          /> {""}
           <Input
             onChange={this.handleChange}
             name="age"
             value={this.state.age}
             type="number"
             placeholder="age"
-          />
+          /> {" "}
           <Input
             onChange={this.handleChange}
             name="email"
@@ -107,7 +107,7 @@ class App extends Component {
             type="email"
             placeholder="Email"
           />
-        </form>
+        </FormControl>
         <Button onClick={this.addNewFriend}> Add</Button>
       </div>
     );
