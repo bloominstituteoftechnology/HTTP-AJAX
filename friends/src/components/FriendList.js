@@ -1,11 +1,20 @@
 import React from 'react';
-import FriendForm from './FriendList';
+
 
 const FriendList  = (props) => {
   return (
-    <div>
-      {props.f}
+    <div className = 'friend-container'>
+      <div className = 'friend_name'>
+        NAME: {name}
+      </div>
 
+      <div className = 'friend_age'>
+        AGE: {age}
+      </div>
+
+      <div className = 'friend_email'>
+        EMAIL: {email}
+      </div>
 
     </div>
   );
@@ -13,5 +22,12 @@ const FriendList  = (props) => {
 
 
 };
+
+FriendList.propTypes = {
+
+
+
+};
+
 
 export default FriendList;
