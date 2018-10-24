@@ -3,8 +3,7 @@ import "./App.css";
 import axios from "axios";
 import Friends from "./components/friends";
 import { Route } from "react-router-dom";
-import { Input, Button, FormControl } from "@material-ui/core";
-
+import { Input, Button, FormControl, FormGroup } from "@material-ui/core";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -81,11 +80,12 @@ class App extends Component {
       <div className="App">
         <h1>Friends</h1>
         <Route
-          path="/"
+          path="/friends"
           render={() => <Friends friends={this.state.friends} />}
         />
 
-        <FormControl onSubmit={this.addNewFriend}>
+        {/* <Route path="/friends/:id" render={() => (<FriendsProfile friends={this.state.friends} {...props} />)} /> */}
+        <FormGroup row>
           <Input
             onChange={this.handleChange}
             name="name"
@@ -107,7 +107,7 @@ class App extends Component {
             type="email"
             placeholder="Email"
           />
-        </FormControl>
+        </FormGroup>
         <Button onClick={this.addNewFriend}> Add</Button>
       </div>
     );
