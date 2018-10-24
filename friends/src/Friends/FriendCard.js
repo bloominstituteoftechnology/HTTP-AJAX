@@ -1,7 +1,7 @@
 import React from 'react';
 import FriendInfo from './FriendInfo';
 
-const FriendList = (props) => {
+const FriendCard = (props) => {
     return (
         <div className="friend-container">
             {props.friends.map(friend => {
@@ -16,4 +16,4 @@ const FriendList = (props) => {
     )
 }
 
-export default FriendList;
+export default FriendCard;

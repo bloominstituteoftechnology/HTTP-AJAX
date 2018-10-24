@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-import FriendList from './Friends/FriendList';
+import FriendCard from './Friends/FriendCard';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: []
+      friends: [],
     };
   }
 
@@ -24,7 +24,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendList friends={this.state.friends} />
+        <h1>You're not alone! :)</h1>
+        <h2>Friends List:</h2>
+        <FriendCard friends={this.state.friends} />
       </div>
     );
   }
