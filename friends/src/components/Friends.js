@@ -13,6 +13,7 @@ const Container = styled.div`
 `;
 
 const Friends = (props) => {
+    console.log(props)
     const TableRow = ({row}) => (
             <tr>
                 <td>{row.name}</td>

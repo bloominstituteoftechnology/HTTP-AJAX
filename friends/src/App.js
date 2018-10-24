@@ -47,8 +47,8 @@ class App extends Component {
     axios
       .post('http://localhost:5000/friends', newFriend)
       .then(response => 
-        this.setState({ friend : response.data }));
-        // this.setState({ friend : response.data }, this.props.history.push('/friends')));
+        this.setState({ friends : response.data }));
+        this.props.history.push('/friends');
   }
 
   // updateFriend = (id) => {
@@ -62,11 +62,13 @@ class App extends Component {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(response =>
-        this.setState({ friend : response.data }));
-        // this.setState({ friend : response.data }, this.props.history.push('/friends')));
+        this.setState({ friends : response.data }));
+        this.props.history.push('/friends');
   }
 
+
   render() {
+    console.log(this.state.friends)
     return (
       <div className="App">
         <Nav />

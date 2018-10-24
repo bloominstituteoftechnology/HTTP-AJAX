@@ -46,6 +46,7 @@ class FriendForm extends React.Component {
             age: '',
             email: '',
         })
+        event.target.reset();
     }
 
     render() {
