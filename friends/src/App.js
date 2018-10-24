@@ -17,6 +17,7 @@ componentDidMount() {
   .then(response => {
     this.setState({friends: response.data })
   })
+  .catch(error => console.log('Error!'))
 }
 
 
@@ -30,10 +31,10 @@ componentDidMount() {
       <div className="App">
         
       </div>
+      );
+    }
+  }
 
       
-    );
-  }
-}
  
 export default App;
