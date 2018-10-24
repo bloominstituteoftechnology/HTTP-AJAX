@@ -47,7 +47,6 @@ export default class Friend extends React.Component {
     render() {
         return (
             <FrndCntnr>
-                <DelBtn onClick={this.delete}>Delete</DelBtn>
                 <FrNm>{this.props.friend.name}</FrNm>
                 <div>{`Age: ${this.props.friend.age}`}</div>
                 <div>{`Email: ${this.props.friend.email}`}</div>
@@ -57,6 +56,7 @@ export default class Friend extends React.Component {
                 <input placeholder='Email' onChange={this.inputChange} value={this.state.newInfo.email} name='email' />
                 <button type='submit' onClick={this.submitUpdate}>Update Friend</button>
                 </form>
+                <DelBtn onClick={this.delete}>Delete</DelBtn>
             </FrndCntnr>
         )
     }

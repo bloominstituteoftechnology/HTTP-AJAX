@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Friend from "./Friend";
 import Form from "./Form";
+import { FrndBox } from './styles';
 
 export default class Friends extends React.Component {
     constructor() {
@@ -78,7 +79,7 @@ export default class Friends extends React.Component {
 
     render() {
         return (
-            <>
+            <FrndBox>
                 {this.state.friends.map(friend => (
                     <Friend
                         key={friend.id}
@@ -93,7 +94,7 @@ export default class Friends extends React.Component {
                     numberInputChange={this.numberInputChange}
                     newFriend={this.state.newFriend}
                 />
-            </>
+            </FrndBox>
         );
     }
 }
