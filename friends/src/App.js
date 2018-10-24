@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
+import { Route } from 'react-router-dom';
 
 import Friend from './components/Friend';
 import FriendForm from './components/FriendForm';
+import Home from './components/Home';
 
 import './App.css';
 
@@ -33,14 +35,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ul className="navbar">
+            <li>
+              <h1>Home</h1>
+            </li>
+            <li>
+              <h1>Friends</h1>
+            </li>
+            <li>
+              <h1>Add New Friends</h1>
+            </li>
+        </ul>
+
+        <Route exact path='/' component={Home} />
+
+
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-            AJAX Assignment.
-          </p>
           <div>Side of header <h1>App</h1> starts here.</div>
-          {/* render list of friends here */}
+         
           <div>
             {this.state.friends.map(friend => {
               return <Friend name={friend.name} id={friend.id} age={friend.age} email={friend.email}/>
