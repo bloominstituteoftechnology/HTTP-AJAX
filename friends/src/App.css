@@ -30,3 +30,14 @@
     transform: rotate(360deg);
   }
 }
+
+.AddToFriendsForm { 
+  display: flex;
+  flex-direction: column;
+  margin: 100px;
+}
+
+.AddToFriendsForm form { 
+  display: flex;
+  flex-direction: column;
+}
