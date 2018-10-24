@@ -4,12 +4,16 @@ import axios from 'axios';
 import './App.css';
 import './components/FriendsList';
 import FriendsList from './components/FriendsList';
+import AddFriend from './components/forms/AddFriend';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: {}
+      friends: {},
+      newFriendName: '',
+      newFriendEmail: '',
+
     }
   }
 
@@ -22,6 +26,22 @@ class App extends Component {
     })
   }
 
+  addFriendNameUpdate = (e) => {
+    this.setState({
+      newFriendName: e.target.value,
+    })
+  }
+
+  addFriendEmailUpdate = (e) => {
+    this.setState({
+      newFriendEmail: e.target.value,
+    })
+  }
+
+  addFriendHandler = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     if (!this.state.friends.length) {
       return <h1>Loading...</h1>
@@ -32,6 +52,13 @@ class App extends Component {
           <div>
             <FriendsList friends={this.state.friends} />
           </div>
+          <AddFriend 
+            onNameChange={this.addFriendNameUpdate} 
+            onEmailChange={this.addFriendEmailUpdate} 
+            friendName={this.state.newFriendName}
+            friendEmail={this.state.newFriendEmail}
+            addFriend={this.addFriendHandler}
+            />
       </div>
     );
     }
