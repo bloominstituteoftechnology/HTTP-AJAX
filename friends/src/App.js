@@ -62,7 +62,7 @@ handleSubmit = event => {
       Email:
     <input type="text" name="email" onChange={this.handleChange}/>
   </label>
-  <input type="submit" value="Submit" />
+  <button type="submit">ADD</button>
 </form>
       </div>
 
