@@ -9,8 +9,12 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      friend: ''
+      name: '',
+      age: '',
+      email: '',
+
     };
+    this.addFriendHandler = this.addFriendHandler.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +29,17 @@ class App extends Component {
   }
 
   addFriendHandler = e => {
-    this.setState({ friend: e.target.value })
+    this.setState({ 
+      name : e.target.value
+     });
+  }
+
+  submitFriendHandler = e => {
+    const name = {name: this.state.name}
+    axios
+      .post('http://localhost:5000/friends', { name })
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   }
 
 

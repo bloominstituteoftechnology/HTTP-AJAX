@@ -8,19 +8,22 @@ const AddFriendForm = (props) => {
         Name: <input 
                 value={props.friend.name} 
                 type='text'
-                placeholder="name"
+                name="friendName"
+                placeholder="enter name"
                 onChange={props.addFriendHandler} />
         <br></br>
         Age: <input 
                 value={props.friend.age}
                 type='text'
-                placeholder="age"
+                name="friendAge"
+                placeholder="enter age"
                 onChange={props.addFriendHandler}  />
         <br></br>
         Email: <input 
                 value={props.friend.email}
                 type='text'
-                placeholder="email"
+                name="friendEmail"
+                placeholder="enter email"
                 onChange={props.addFriendHandler}  />
         <br></br>
         <button type="submit" onClick={props.submitFriendHandler}>Submit</button>
