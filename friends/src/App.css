@@ -30,3 +30,13 @@
     transform: rotate(360deg);
   }
 }
+/***********************
+   Form Styles
+**********************/
+.form {
+   width: 60%;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   background: rgba(255,255,0,0.9);
+}   
