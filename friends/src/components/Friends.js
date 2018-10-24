@@ -1,4 +1,17 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const FriendsContainer    =   styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const Friend    =   styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+`
 
 class Friends extends Component {
     constructor(props)  {
@@ -14,13 +27,13 @@ class Friends extends Component {
     }
     render()    {
         return(
-            <div>
+            <FriendsContainer>
             {this.state.friends.map((friend, index) =>  {
                 return(
-                    <div key={index}>{friend.name} {friend.age} {friend.email}</div>
+                    <Friend key={index}>{friend.name} {friend.age} {friend.email} {friend.id} <div  onClick={() =>  this.props.deleteFriend(friend.id)}>X</div></Friend>
                 )
             })}
-            </div>
+            </FriendsContainer>
         )
     }
 }
