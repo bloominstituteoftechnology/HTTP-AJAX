@@ -10,60 +10,25 @@ const AddForm = styled.div`
 `
 
 class Add extends React.Component {
-  state = {
-    name: '',
-    age: '',
-    email: ''
-  }
 
-  handleNameChange = event => {
-    this.setState({ name: event.target.value });
-  }
-
-  handleAgeChange = event => {
-    this.setState({ age: event.target.value });
-  }
-
-  handleEmailChange = event => {
-    this.setState({ email: event.target.value });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-
-
-    axios.post('http://localhost:5000/friends', {
-        name: this.state.name,
-        age: this.state.age,
-        email: this.state.email
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-  }
 
   render() {
     return (
       <AddForm>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="addForm">
           <label>
             Name:
-            <input type="text" name="name" onChange={this.handleNameChange} />
+            <input type="text" name="name" onChange={this.props.name} />
           </label>
           <label>
             Age:
-            <input type="text" name="age" onChange={this.handleAgeChange} />
+            <input type="text" name="age" onChange={this.props.age} />
           </label>
           <label>
             Email:
-            <input type="text" name="email" onChange={this.handleEmailChange} />
+            <input type="text" name="email" onChange={this.props.email} />
           </label>
-          <button type="submit">Add</button>
+          <button type="submit" onClick={this.props.submit}>Add</button>
         </form>
       </AddForm>
     )
