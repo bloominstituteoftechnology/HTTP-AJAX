@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGroup } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGroup, Tooltip } from 'reactstrap';
 
 const Container = styled.div`
     width: 90%;
@@ -24,27 +23,50 @@ align-items: center;
 `
 const Icon = styled.i`
 cursor: pointer;
+color: darkcyan;
 `
 export class FriendsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modal: false,
+            tooltipOpen: false,
+            tooltipOpenTwo: false,
             name: "",
             age: "",
             email: "",
             id: null
         };
-        this.toggle = this.toggle.bind(this);
     }
 
-        toggle() {
+        toggleToolTip = () => {
+            this.setState({
+            tooltipOpen: !this.state.tooltipOpen
+            });
+        }
+
+        toggleToolTipTwo = () => {
+            this.setState({
+            tooltipOpenTwo: !this.state.tooltipOpenTwo
+            });
+        }
+
+        toggle = () => {
         this.setState({
             modal: !this.state.modal
         });
         }
 
-        resetState = () => this.setState({name: "", age:"", email:"", id:null})
+        clickHandler = () => {
+            const friend = {
+                name:this.state.name,
+                age:this.state.age,
+                email:this.state.email
+            }
+            this.props.updateFriendInfo(this.state.id, friend);
+            this.toggle();
+            this.setState({name: "", age:"", email:"", id:null})
+        }
 
         idHandler = id => this.setState({id: id})
 
@@ -57,7 +79,7 @@ export class FriendsList extends React.Component {
                         <h4>{friend.name}</h4>
                         <IconsContainer>
                             <Icon onClick={() => {this.toggle(); this.idHandler(friend.id)}} className="fas fa-edit"></Icon>
-                            <Icon onClick={() => this.props.deleteFriend(friend.id)} className="fas fa-trash-alt"></Icon>
+                            <Icon onClick={() => this.props.deleteFriend(friend.id)} className="fas fa-trash-alt"></Icon>                            
                         </IconsContainer>                                                                
                     </Friend>)}
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -76,12 +98,16 @@ export class FriendsList extends React.Component {
                             </Form>  
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="primary" 
-                            onClick={() => {this.props.updateFriendInfo(this.state.id,{name:this.state.name,age:this.state.age,email:this.state.email});
-                            this.toggle();this.resetState()}}>Update Info</Button>
-                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                            <Button id="update" color="primary" onClick={this.clickHandler}>Update Info</Button>
+                            <Button id="cancel" color="secondary" onClick={this.toggle}>Cancel</Button>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="update" toggle={this.toggleToolTip}>
+                                Submit Update!
+                            </Tooltip>
+                            <Tooltip placement="bottom" isOpen={this.state.tooltipOpenTwo} target="cancel" toggle={this.toggleToolTipTwo}>
+                                Go Back!
+                            </Tooltip>
                         </ModalFooter>
-                    </Modal>
+                    </Modal>                    
                 </Container>
         }
 }
