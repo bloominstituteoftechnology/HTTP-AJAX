@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 import FriendsList from './FriendsList.js';
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+`
 
 class FriendsContent extends Component {
   constructor() {
@@ -25,9 +32,9 @@ class FriendsContent extends Component {
 
   render() {
     return (
-      <div>
+      <ContentWrapper>
         <FriendsList friends={this.state.friends} />
-      </div>
+      </ContentWrapper>
     )
   }
 }
