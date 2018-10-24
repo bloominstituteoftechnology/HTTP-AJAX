@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import FriendList from './components/FriendList';
+import FriendForm from "./components/FriendForm";
 
 
 
@@ -11,7 +11,7 @@ class App extends Component {
     super();
 
     this.state = {
-      friends: [];
+      friends: []
     }
 
   }
@@ -25,7 +25,7 @@ class App extends Component {
         console.log(friends);
       })
 
-      .catch(e => console.log(e));
+      .catch(error => console.log('ERROR: ', error));
   }
 
 
@@ -37,7 +37,15 @@ class App extends Component {
 
 
 
+        <div>
+          <FriendForm
 
+
+
+
+          />
+
+        </div>
 
       </div>
     );

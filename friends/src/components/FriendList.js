@@ -1,5 +1,5 @@
 import React from 'react';
-import Friend from './Friend';
+import FriendForm from './Friend';
 
 const FriendList  = (props) => {
   return (
