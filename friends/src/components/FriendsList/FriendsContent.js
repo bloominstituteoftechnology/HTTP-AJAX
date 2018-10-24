@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import axios from 'axios';
 
 import FriendsList from './FriendsList.js';
 
 class FriendsContent extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       friends: []
     }
@@ -18,7 +17,7 @@ class FriendsContent extends Component {
       .get('http://localhost:5000/friends')
       .then(response => {
         console.log(response);
-        this.setState({ friends: response.data.friends});
+        this.setState({ friends: response.data });
       })
       .catch(err => {
         console.log('Error', err);
