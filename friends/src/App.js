@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import FriendList from './components/friendList';
 
 class App extends Component {
   constructor(props) {
@@ -29,8 +30,12 @@ componentDidMount() {
   render() { 
     return (  
       <div className="App">
-        
+      {this.state.friends.map(friends => (
+     
+        <FriendList key={friends.id} friends={friends} />
+         ))}
       </div>
+
       );
     }
   }
