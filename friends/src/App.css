@@ -34,9 +34,28 @@
    Form Styles
 **********************/
 .form {
-   width: 60%;
+   width: 80%;
    display:flex;
+   margin: 20px auto;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
    background: rgba(255,255,0,0.9);
-}   
+} 
+.header, .friend-data {
+   width: 100%;
+   display:flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 7px 10px;
+   background: rgba(0,200,0, .8);
+   font-size: 1.8rem;
+   font-weight: bold;
+}
+
+.friend-data {
+   background: gray;
+   color: black;
+   font-size: 1.6rem;
+   font-weight: normal;
+}
