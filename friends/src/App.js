@@ -9,6 +9,10 @@ class App extends Component {
 
     this.state = {
       friends: [],
+      id: '',
+      name: '',
+      age: '',
+      email: '',
     }
   }
 
@@ -20,6 +24,53 @@ class App extends Component {
         console.log(response.data);
         this.setState({ friends: response.data })
       })
+      .catch(console.log('error!'))
+  }
+
+  name = (event) => {
+    const newName = event.target.value;
+    this.setState({
+      name: newName
+    })
+  }
+
+  age = (event) => {
+    const newAge = event.target.value;
+    this.setState({
+      age: newAge
+    })
+  }
+
+  email = (event) => {
+    const newEmail = event.target.value;
+    this.setState({
+      email: newEmail
+    })
+  }
+
+  addFriend = (event) => {
+    event.preventDefault();
+    let newId = this.state.friends.length + 1;
+    this.setState({
+      id: newId
+    })
+
+    const newFriend = {
+      id: this.state.id,
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    }
+
+    axios
+      .post(`http://localhost:5000/friends`, newFriend)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+        })
+      })
+      .catch(error => { console.log('error!') })
+
   }
 
   render() {
@@ -29,10 +80,10 @@ class App extends Component {
           <FriendList key={friend.id} friend={friend} />
         ))}
         <form>
-          <input placeholder='Name'></input>
-          <input placeholder='Age'></input>
-          <input placeholder='Email'></input>
-          <button>Save</button>
+          <input placeholder='Name' onChange={this.name}></input>
+          <input placeholder='Age' onChange={this.age}></input>
+          <input placeholder='Email' onChange={this.email}></input>
+          <button onClick={this.addFriend}>Save</button>
         </form>
       </div>
     );
