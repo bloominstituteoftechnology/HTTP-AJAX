@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Friend from "./Friend"
 
 class Friends extends Component{
     constructor(){
@@ -14,9 +15,9 @@ class Friends extends Component{
             .get('http://localhost:5000/friends')
             .then(response =>{
                 console.log(response.data)
-                this.setState = {
+                this.setState({
                     friends: response.data
-                }
+                })
             })
             .catch(err => console.log(err));
     }
@@ -24,7 +25,9 @@ class Friends extends Component{
     render(){
         return(
             <div>
-                A list of Friends
+                {this.state.friends.map(item => {
+                    return (<Friend key={item.id} friend={item}/>)
+                })}
             </div>
         )
     }
