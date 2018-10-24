@@ -8,9 +8,9 @@ class Friend extends React.Component {
                 <p className="text">
                     Name: {this.props.friends.name}<br />
                     Age: {this.props.friends.age}yrs<br />
-                    Email: {this.props.friends.email}<br />
-                    
+                    Email: {this.props.friends.email}<br />            
                 </p>
+                <button onClick={() => this.props.delete(this.props.friends.id)}>Delete Friend</button>
             </div>
         );
     }

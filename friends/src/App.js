@@ -18,23 +18,46 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        this.setState(() => ({ friendlist: response.data }));
+        this.setState({ friendlist: response.data });
       })
       .catch(error => {
         console.error('Server Error', error);
 
       });
   }
-
+  addNewFriend = friend => {
+    
+    
+    axios.post('http://localhost:5000/friends', friend)
+      .then((response) => {
+        console.log(response);
+        this.setState(() => ({ friendlist: response.data }));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
+    console.log(friend)
+  }
  
-  
+  delete = (key) => {
+    axios.delete(`http://localhost:5000/friends/${key}`)
+      .then((response) => {
+        console.log('delete',response);
+        this.setState(() => ({ friendlist: response.data }));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      console.log('thi',key)
+  }
 
   render() {
     console.log(this.state.friendlist)
     return (
       <div className="App">
-        <Route exact path="/" render={(props) => <HomePage {...props} newFriend={this.newFriend} />} />
-        <Route path="/friendlist/" render={(props) => <FriendList {...props} friends={this.state.friendlist} />} />
+        <Route exact path="/" render={(props) => <HomePage {...props} newFriend={this.addNewFriend} />} />
+        <Route path="/friendlist/" render={(props) => <FriendList {...props} delete={this.delete} friends={this.state.friendlist} />} />
       </div>
     );
   }
