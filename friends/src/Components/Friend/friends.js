@@ -2,7 +2,7 @@ import React from 'react';
 
 const FriendData = props => {
     return (
-        <div>
+    <div>
             <p>{props.friend.name}</p>
             <p>{props.friend.age}</p>
             <p>{props.friend.email}</p>
