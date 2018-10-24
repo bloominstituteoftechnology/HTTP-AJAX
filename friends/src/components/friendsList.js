@@ -7,8 +7,8 @@ const FriendsList = props => {
  
 
   return (
-    <div className="friend-list">
-        <h1 className="header friend-header">{props.name}</h1>
+    <div className="friend-list" onClick={() => props.clickHandler(props.keyIndex)} >
+        <h4  className="header friend-header">{props.name}</h4>
         <ol className="friend-data">
           <li>Name: {props.name}</li>
           <li>Age: {props.age}</li>

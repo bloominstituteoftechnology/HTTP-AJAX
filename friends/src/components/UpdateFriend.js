@@ -3,7 +3,7 @@ import axios from "axios";
 /* import FriendsList from "./friendsList" */
 import '../App.css';
 
-class AddFriend extends Component {
+class UpdateFriend extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,28 +25,20 @@ class AddFriend extends Component {
 
     render() {
         return (
-            <form className="add-friend-form" onSubmit={this.props.handleSubmit}>
-                <h3>Add/Update Friend</h3>
-                <h5>Select Friend to update or Add a new Friend</h5>
-               {/*  <div className="select">
-                    <select value={this.state.value} name="selected" onChange={this.props.changeHandler}>
-                        
-                        
-                        <option value="vscode">VsCode</option>
-                        <option value="atom">Atom</option>
-                    </select>
-                </div> */}
+            <form className="update-friend-form" onSubmit={this.props.handleUpdate}>
+                <h3>Update Friend</h3>
+                           
                 <div className="add-text">Name: </div>
                 <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="name" />
                 <div className="add-text">Age: </div>
                 <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="age" />
                 <div className="add-text">Email: </div>
                 <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="email" />
-                <button type="submit" className="submit-button" onClick={this.props.handleSubmit}>Add Friend</button>
+                <button type="submit" className="submit-button" onClick={this.props.handleUpdate}>Update Friend</button>
             </form>
 
 
         )
     }
 }
-export default AddFriend;
+export default UpdateFriend;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import FriendsList from "./components/friendsList";
 import AddFriend from "./components/AddFriend";
+import UpdateFriend from "./components/UpdateFriend";
 import './App.css';
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
       friends: [],
       name: "",
       age: 0,
-      email: ""
+      email: "",
+      selected: ""
     };
     console.log(this.state)
   }
@@ -32,6 +34,16 @@ class App extends Component {
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state)
+  }
+  
+  clickHandler = selected => {
+   console.log("in the clickhandler:", selected)
+   
+   this.setState({ selected: selected });
+   console.log(this.state)
+
+
+
   }
 
   handleSubmit = (e) => {
@@ -61,9 +73,9 @@ class App extends Component {
       <div className="App"><h1 className="title">HTTP/AJAX Friends App</h1><p>
         {/* <button className="title-button">Add/Remove Friend</button> */}</p>
         <div className="friends-container"><div className="friends-list">{this.state.friends.map((friend, index) => {
-          return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} />
-        })}</div><div className="friend-form"><AddFriend friends={this.props.friends} name={this.props.name} age={this.props.age} email={this.props.email} changeHandler={this.changeHandler} handleSubmit={this.handleSubmit} /></div>
-        </div>
+          return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} keyIndex={index} clickHandler={this.clickHandler} />
+        })}</div><div className="both-friends-container"><div className="update-form"><UpdateFriend friends={this.state.friends} name={this.props.name} age={this.props.age} email={this.props.email} changeHandler={this.changeHandler} handleSubmit={this.handleSubmit} /></div><div className="friend-form"><AddFriend friends={this.state.friends} name={this.props.name} age={this.props.age} email={this.props.email} changeHandler={this.changeHandler} handleSubmit={this.handleSubmit} /></div>
+        </div></div>
       </div>
     );
   }
