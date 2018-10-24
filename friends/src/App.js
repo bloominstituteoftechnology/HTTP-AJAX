@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Friend from './Friends/Friend';
+
 class App extends Component {
   constructor() {
     super();
@@ -21,6 +23,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.state.friends.map(friend => {
+          return <Friend friend={friend} />;
+        })}
       </div>
     );
   }
