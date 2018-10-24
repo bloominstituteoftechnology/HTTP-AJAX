@@ -28,6 +28,20 @@ class App extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
+  saveFormData = () => {
+    const id = (this.state.friends[this.state.friends.length -1].id +1)
+    const nextFriend = { id: id, name: this.state.name, age: this.state.age, email: this.state.email };
+
+    axios.post(`http://localhost:5000/friends/`, nextFriend)
+    .then(response => {
+      this.setState({ friends: response.data, name: "", age: "", email: ""});
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  } 
+
   render() {
     return (
       <div className="App">
@@ -62,6 +76,7 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </form>
+          <button onClick={this.saveFormData}>Add friend</button>
         </div>
       </div>
     );
