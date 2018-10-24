@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 //     }
 // }
 
-const Friend = props => {
+const FriendList = props => {
     return(
             <div>
                 {props.friends.map(friend => (
@@ -27,7 +27,7 @@ const Friend = props => {
 
 
 
-Friend.propTypes = {
+FriendList.propTypes = {
     friend: PropTypes.shape({
         name: PropTypes.string,
         age: PropTypes.number,
@@ -36,4 +36,4 @@ Friend.propTypes = {
 }
 
 
-export default Friend
+export default FriendList

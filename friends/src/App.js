@@ -3,7 +3,7 @@ import axios from 'axios';
 // import logo from './logo.svg';
 import { Route, NavLink } from 'react-router-dom';
 
-import Friend from './components/Friend';
+import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
 import Home from './components/Home';
 
@@ -43,7 +43,8 @@ class App extends Component {
     });
   }
 
-  handleAddNewFriend = () => {
+  handleAddNewFriend = (event) => {
+    event.preventDefault();
     axios
       .post("http://localhost:5000/friends", this.state.friend)
       .then(response => console.log(response))
@@ -76,7 +77,7 @@ class App extends Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/friends">
+              <NavLink to="/friendslist">
               <h1>Friends </h1>
               </NavLink>
             </li>
@@ -89,8 +90,8 @@ class App extends Component {
 
         <Route exact path="/" component={Home} />
 
-        <Route exact path="/friends"
-          render={props => (<Friend {...props} friends={this.state.friends}/> )}
+        <Route exact path="/friendslist"
+          render={props => (<FriendList {...props} friends={this.state.friends}/> )}
          />
 
      
