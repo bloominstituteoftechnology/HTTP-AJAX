@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 
 import FriendCard from './Friends/FriendCard';
+import NewFriend from './Friends/NewFriend';
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends Component {
         <h1>You're not alone! :)</h1>
         <h2>Friends List:</h2>
         <FriendCard friends={this.state.friends} />
+        <NewFriend />
       </div>
     );
   }
