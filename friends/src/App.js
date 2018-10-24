@@ -15,7 +15,7 @@ componentDidMount() {
   axios
   .get('http://localhost:5000/friends')
   .then(response => {
-    this.setState({friends: })
+    this.setState({friends: response.data })
   })
 }
 
@@ -26,7 +26,13 @@ componentDidMount() {
 
 
   render() { 
-    return (  );
+    return (  
+      <div className="App">
+        
+      </div>
+
+      
+    );
   }
 }
  
