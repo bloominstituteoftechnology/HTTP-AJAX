@@ -21,10 +21,18 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="App">
         {this.state.data.map( friend => {
           return <div>{friend.name}</div>
         })}
+        
+
+        <form>
+          <h2>Add friend:</h2>
+          <input type="text" placeholder="name"></input>
+          <input type="number" placeholder="age"></input>
+          <input type="email" placeholder="email"></input>
+        </form>
       </div>
     );
   }
