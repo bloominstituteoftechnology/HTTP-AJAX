@@ -1,8 +1,11 @@
 import React from 'react';
+
 import Friend from './Friend';
+import AddFriend from './AddFriend';
 
 // Takes in props:
 // - friends: []
+// - handleSubmit: fn()
 
 const FriendsList = (props) => {
     return(
@@ -13,6 +16,7 @@ const FriendsList = (props) => {
                     <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email} />
                 );
             } )}
+            <AddFriend handleSubmit={props.handleSubmit}/>
         </div>
     );
 };

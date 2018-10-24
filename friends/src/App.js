@@ -28,12 +28,17 @@ class App extends Component {
     });
   };
 
+  handleSubmit(event) {
+    event.preventDefault();
+    alert("Submitted");
+  };
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
         {/* Pass friends array to FriendsList */}
-        <FriendsList friends={this.state.friends} />
+        <FriendsList friends={this.state.friends} handleSubmit={this.handleSubmit}/>
         </header>
       </div>
     );
