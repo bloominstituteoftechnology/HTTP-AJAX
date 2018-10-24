@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import axios from 'axios';
 
-import FriendList from './components/FriendList';
-
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
-        savedList: [],
-    }
+      friends: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      });
   }
 
   render() {
     return (
       <div className="App">
-        <Route exact path="/" component={FriendList} />
+        HI!
       </div>
-    );
-  };
-};
+    )
+  }
+}
+
+export default App;
+
+
+
