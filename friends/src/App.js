@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
+import Form from './Components/Form';
+
 
 class App extends Component {
   constructor(props) {
@@ -19,20 +21,16 @@ class App extends Component {
     })
     .catch( err=> console.log(err))
   }
+
+
   render() {
     return (
       <div className="App">
         {this.state.data.map( friend => {
           return <div>{friend.name}</div>
         })}
+        <Form />
         
-
-        <form>
-          <h2>Add friend:</h2>
-          <input type="text" placeholder="name"></input>
-          <input type="number" placeholder="age"></input>
-          <input type="email" placeholder="email"></input>
-        </form>
       </div>
     );
   }
