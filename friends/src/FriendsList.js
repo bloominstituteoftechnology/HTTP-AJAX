@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Friend from './Friend';
+import FriendListHeader from './FriendListHeader';
 import { ListWrapper, StyledForm } from './Styled';
 
 class FriendsList extends React.Component {
@@ -32,8 +33,7 @@ class FriendsList extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('Clicked');
-    console.log(this.state.friends);
+    // console.log(this.state.friends);
     if (this.state.name && this.state.age && this.state.email) {
       const name = this.state.name;
       const age = +this.state.age;
@@ -46,6 +46,7 @@ class FriendsList extends React.Component {
           console.log(res.data);
         })
         .catch(() => alert('POST Error'));
+
       this.setState({
         friends: [
           ...this.state.friends,
@@ -63,6 +64,16 @@ class FriendsList extends React.Component {
     } else {
       alert('Please enter name, age and email');
     }
+  };
+
+  deleteFriend = event => {
+    console.log(event.target.id);
+    const id = event.target.id;
+    axios.delete(`http://localhost:5000/friends/${id}`).then(res => {
+      console.log(res);
+      console.log(res.data);
+      this.setState({ friends: res.data });
+    });
   };
 
   render() {
@@ -98,14 +109,16 @@ class FriendsList extends React.Component {
         <br />
         <br />
         <ListWrapper>
-          <Friend name="Name" age="Age" email="Email" />
+          <FriendListHeader name="Name" age="Age" email="Email" />
           {this.state.friends.map(friend => {
             return (
               <Friend
                 key={friend.id}
+                id={friend.id}
                 name={friend.name}
                 age={friend.age}
                 email={friend.email}
+                deleteFriend={this.deleteFriend}
               />
             );
           })}

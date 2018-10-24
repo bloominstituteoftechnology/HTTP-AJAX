@@ -4,7 +4,7 @@ export const StyledFriendsList = styled.div`
   // color: red;
   // border: 1px solid black;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
@@ -25,6 +25,29 @@ export const StyledFriendsList = styled.div`
     // border: 1px solid red;
     width: 30%;
     text-align: center;
+  }
+
+  span {
+    display: flex;
+    visibility: hidden;
+    cursor: pointer;
+    height: 50px;
+    width: 40px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    position: fixed;
+    right: calc(10% + 1px);
+  }
+
+  :hover {
+    span {
+      display: flex;
+      visibility: visible;
+      background-color: red;
+      color: white;
+    }
   }
 `;
 
