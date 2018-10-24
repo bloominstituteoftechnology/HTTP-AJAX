@@ -8,8 +8,29 @@ class App extends Component {
     super(props);
     this.state = {
       friends: [{}],
+      newFriend: [],
     }
   }
+
+
+  addToList(e) {
+    this.setState({
+      newFriend: e.target.vaule
+    })
+  }
+
+  submitToList (e) {
+    e.preventDefault();
+    this.setState({
+      friends: [...this.state.friends, newFriend]
+    })
+  }
+
+
+
+
+
+
     componentDidMount() {
       Axios
         .get("//localhost:5000/friends")
