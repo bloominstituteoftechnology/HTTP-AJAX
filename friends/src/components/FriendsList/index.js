@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Styled from 'styled-components';
+import axios from 'axios';
+
+import FriendForm from '..//FriendForm';
+
+const FriendContainer = Styled.section`
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+`;
+
+const Container = Styled.section`
+    width: 100%;
+`;
 
 const FriendsList = Styled.section`
     display: flex;
     flex-direction: column;
-    width: 50%;
 `;
 
 const Friend = Styled.section`
@@ -34,32 +45,45 @@ const FriendPara = Styled.p`
 `
 
 export default class extends Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state = {
-      friends: []
-    }
+      friends: [],
+      newFriend: {}
   }
-  componentDidMount() {
-    axios.get('http://localhost:3020/friends/')
-         .then(response => {this.setState({friends: response.data})})
-         .catch(err => console.log(err));
-  }
+}
+componentDidMount() {
+  axios.get('http://localhost:3020/friends/')
+       .then(response => {this.setState({friends: response.data})})
+       .catch(err => console.log(err));
+}
+add = (obj) => {
+  const friends = JSON.parse(JSON.stringify(this.state.friends));
+  const index = this.state.friends.length+1;
+  obj.id = index;
+  this.setState({
+  friends: friends.concat(obj)
+});
+}
   render() {
     return (
-      <FriendsList>
+      <Container>
         <Title>Friends</Title>
+      <FriendContainer >
+        <FriendsList>
         {this.state.friends.map(friend => {
-        return  (
-          <Friend key={friend.id}>
-            <FriendHeader>{friend.name}</FriendHeader>
-            <FriendPara>Age: {friend.age}</FriendPara>
-            <FriendPara>Email: <strong>{friend.email}</strong></FriendPara>
-          </Friend>
-        )
-        })}
-      </FriendsList>
+          return  (
+            <Friend key={friend.id}>
+              <FriendHeader>{friend.name}</FriendHeader>
+              <FriendPara>Age: {friend.age}</FriendPara>
+              <FriendPara>Email: <strong>{friend.email}</strong></FriendPara>
+            </Friend>
+          )
+          })}
+        </FriendsList>
+        <FriendForm addFriend={this.add}/>
+      </FriendContainer>
+    </Container>
     );
   }
 }

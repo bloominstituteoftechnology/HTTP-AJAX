@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Styled from 'styled-components';
 
 import Input from './InputWithLabel';
@@ -8,7 +7,7 @@ const Form = Styled.form`
     background-color: rgb(44, 47, 43);
     height: 400px;
     position: sticky;
-    top: 150px;
+    top: 50px;
     width: 40%;
 `;
 const Title = Styled.h1`
@@ -36,7 +35,7 @@ export default class extends Component {
     e.preventDefault();
     const children = e.target.childNodes;
     let inputAreas = [];
-    let inputs = [];
+    let inputs = {};
 
     // get the sections that the inputs are located in
     Array.from(children).filter(child => {
@@ -49,10 +48,10 @@ export default class extends Component {
       return Array.from(nodes).filter(input => {
         const name = input.name;
         const value = input.value;
-        return input.localName === 'input' ? inputs.push({name, value}) : null;
+        return input.localName === 'input' ? inputs[name ]= value: null;
       })
     })
-    console.log(inputs);
+    return this.props.addFriend(inputs);
   }
   render() {
     return (
