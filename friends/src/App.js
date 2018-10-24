@@ -32,10 +32,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
-        <AddFriendForm 
+      <FriendsList friends={this.state.friends} />
+      <AddFriendForm 
         friend={this.state.friends}
-        addFriendHandler={() => console.log("")} />
+        addFriendHandler={this.addFriendHandler}
+        friendName={this.state.friends.name}
+        friendAge={this.state.friends.age}
+        friendEmail={this.state.friends.email}
+      />
       </div>
     );
   }

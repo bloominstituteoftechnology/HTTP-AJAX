@@ -23,7 +23,7 @@ const AddFriendForm = (props) => {
                 placeholder="email"
                 onChange={props.addFriendHandler}  />
         <br></br>
-        <button onClick={props.submitFriendHandler}>Submit</button>
+        <button type="submit" onClick={props.submitFriendHandler}>Submit</button>
       </form>    
     </div>
 
