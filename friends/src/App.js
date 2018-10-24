@@ -3,6 +3,7 @@ import axios from 'axios';
 // import logo from './logo.svg';
 
 import Friend from './components/Friend';
+import FriendForm from './components/FriendForm';
 
 import './App.css';
 
@@ -26,8 +27,7 @@ class App extends Component {
       })
   }
 
- 
-
+  //post getItemById axios POST here? 
 
 
   render() {
@@ -47,15 +47,9 @@ class App extends Component {
             })}
           </div>
         </header>
-        <section className='App-form'>
-            <h1>Form</h1>
-            <form>
-              <input placeholder="Name"/>
-              <input placeholder="Age"/>
-              <input placeholder="Email"/>
-            </form>
-            <button>save</button>
-        </section>
+        <div>
+            <FriendForm />
+        </div>
       </div>
     );
   }
