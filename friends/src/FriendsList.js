@@ -16,7 +16,7 @@ export default class FriendsList extends Component {
                 this.setState(() => ({ friends: response.data }));
             })
             .catch(error => {
-              console.error('Server Error', error);
+              console.error('Ummm...what...!?!', error);
             });
     }
       
