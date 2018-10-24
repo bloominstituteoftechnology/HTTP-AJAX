@@ -18,17 +18,14 @@ export default class FriendList extends React.Component {
         name: '',
         age: '',
         email: ''
-      },
-      editingFriend: null,
-      isEditing: false
+      }
     };
   }
 
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
       .then(res => {
-        const friends = res.data;
-        this.setState({ friends })
+        this.setState({ friends: res.data })
       })
   }
 
@@ -36,11 +33,13 @@ export default class FriendList extends React.Component {
     this.setState({ friend: { ...this.state.friend, [event.target.name]: event.target.value } })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     axios.post('http://localhost:5000/friends', this.state.friend)
       .then(res => {
         this.setState({ friends: res.data, friend: blankFormValues })
       })
+      event.target.reset();
   }
 
   deleteFriend = (event, id) => {

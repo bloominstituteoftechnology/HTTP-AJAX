@@ -6,15 +6,15 @@ const AddFriend = props => {
       <div>
         <form onSubmit={props.handleSubmit}>
           <label>
-            Name:
+            <span>Name:</span>
             <input type="text" name='name' onChange={props.handleChange}/>
           </label>
           <label>
-            Age:
+            <span>Age:</span>
             <input type="text" name='age' onChange={props.handleChange}/>
           </label>
           <label>
-            Email:
+            <span>Email:</span>
             <input type="text" name='email' onChange={props.handleChange}/>
           </label>
           <button type='submit'>Add Friend</button>

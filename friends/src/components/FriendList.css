@@ -19,4 +19,21 @@ button {
 div form {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+label {
+  margin-right: 10px;
+}
+
+span {
+  font-weight: bold;
+}
+
+form span {
+  margin-right: 10px;
+}
+
+form button {
+  width: 100px;
 }
