@@ -14,18 +14,19 @@ const Container = styled.div`
 
 const Friends = (props) => {
     const TableRow = ({row}) => (
-        <tr>
-            <td>{row.name}</td>
-            <td>{row.age}</td>
-            <td>{row.email}</td>
-            <td>
-                <Link to={`${props.match.url}/${row.id}`} style={{textDecoration: 'none'}}>More...</Link>
-            </td>
+            <tr>
+                <td>{row.name}</td>
+                <td>{row.age}</td>
+                <td>{row.email}</td>
+                <td>
+                    <Link to={`${props.match.url}/${row.id}`} style={{textDecoration: 'none'}}>More...</Link>
+                </td>
+                {/* <td onClick={props.delete(props.match.params.id)}><RemovePerson>❌</RemovePerson></td> */}
 
-            <Route path={`${props.match.path}/${row.id}`} render={(props) =>
-                                    <Friend {...props} friends={props.friends} />} 
-                                />
-        </tr>
+                <Route path={`${props.match.path}/${row.id}`} render={(props) =>
+                                        <Friend {...props} friends={props.friends} />} 
+                                    />
+            </tr>
     )
 
     return (
