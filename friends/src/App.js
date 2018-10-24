@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import FriendList from './components/FriendList';
 import axios from 'axios';
+
+import FriendList from './components/FriendList';
+import NewFriend from './components/NewFriend';
 
 class App extends Component {
   constructor() {
@@ -34,6 +36,7 @@ class App extends Component {
     return (
       <div>
         <Route exact path='/' render={ props => <FriendList friends={this.state.friends} {...props}/>}></Route>
+        <Route path='/addfriend' component={NewFriend}></Route>
       </div>
     );
   }
