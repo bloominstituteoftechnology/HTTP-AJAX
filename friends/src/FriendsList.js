@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Friend from './Friend';
+import { ListWrapper, StyledForm } from './Styled';
 
 class FriendsList extends React.Component {
   constructor(props) {
@@ -14,11 +15,14 @@ class FriendsList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/friends').then(data => {
-      console.log(data.data);
-      this.setState({ friends: data.data });
-      console.log(this.state);
-    });
+    axios
+      .get('http://localhost:5000/friends')
+      .then(data => {
+        console.log(data.data);
+        this.setState({ friends: data.data });
+        console.log(this.state);
+      })
+      .catch(() => alert('Error'));
   }
 
   handleInput = event => {
@@ -53,8 +57,9 @@ class FriendsList extends React.Component {
   render() {
     return (
       <div>
-        <h1>Friends List:</h1>
-        <form>
+        {/* <h1>Friends List:</h1> */}
+        <StyledForm>
+          <h3>Add a friend</h3>
           <input
             type="text"
             placeholder="Name"
@@ -77,17 +82,23 @@ class FriendsList extends React.Component {
             value={this.state.email}
           />
           <button onClick={this.handleSubmit}>Add Friend</button>
-        </form>
-        {this.state.friends.map(friend => {
-          return (
-            <Friend
-              key={friend.id}
-              name={friend.name}
-              age={friend.age}
-              email={friend.email}
-            />
-          );
-        })}
+        </StyledForm>
+        <br />
+        <br />
+        <br />
+        <ListWrapper>
+          <Friend name="Name" age="Age" email="Email" />
+          {this.state.friends.map(friend => {
+            return (
+              <Friend
+                key={friend.id}
+                name={friend.name}
+                age={friend.age}
+                email={friend.email}
+              />
+            );
+          })}
+        </ListWrapper>
       </div>
     );
   }

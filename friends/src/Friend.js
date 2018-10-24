@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledFriendsList } from './Styled';
 
 class Friend extends React.Component {
   constructor(props) {
@@ -7,10 +8,11 @@ class Friend extends React.Component {
 
   render() {
     return (
-      <p>
-        Name: {this.props.name} <br /> Age: {this.props.age} <br /> email:{' '}
-        {this.props.email}
-      </p>
+      <StyledFriendsList>
+        <p>{this.props.name}</p>
+        <p>{this.props.age}</p>
+        <p>{this.props.email}</p>
+      </StyledFriendsList>
     );
   }
 }
