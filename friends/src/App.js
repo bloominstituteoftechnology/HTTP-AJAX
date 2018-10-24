@@ -41,7 +41,7 @@ class App extends Component {
   addFriendHandler = (e) => {
     e.preventDefault();
     let newFriend = {
-      id: this.state.friends.length,
+      id: this.state.friends.length +1,
       name: this.state.newFriendName,
       email: this.state.newFriendEmail,
     }
