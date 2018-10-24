@@ -37,7 +37,7 @@ export const StyledFriendsList = styled.div`
     justify-content: center;
     align-items: center;
     align-self: flex-end;
-    position: fixed;
+    position: absolute;
     right: calc(10% + 1px);
   }
 
@@ -45,8 +45,12 @@ export const StyledFriendsList = styled.div`
     span {
       display: flex;
       visibility: visible;
-      background-color: red;
+      background-color: rgb(255, 165, 165);
       color: white;
+
+      :hover {
+        background-color: rgb(255, 30, 30);
+      }
     }
   }
 `;
