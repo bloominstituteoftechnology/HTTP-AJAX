@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { LoadingText } from './styledComponents';
 
 class Loading extends Component {
     constructor(){
@@ -27,9 +28,9 @@ class Loading extends Component {
 
     render() {
         return (
-        <div>
-            {this.state.text}
-        </div>
+        <LoadingText>
+            <h1>{this.state.text}</h1>
+        </LoadingText>
         )
     }
 }

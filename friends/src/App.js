@@ -17,12 +17,12 @@ class App extends Component {
 
     axios.get("http://localhost:5000/friends")
       .then(response =>{
-        //create mock loading time of 2 seconds
+        //create mock loading time
         window.setTimeout(()=>{
           this.setState({
             friends: response.data
           })
-        }, 2000)
+        }, 1000)
       })
   }
 

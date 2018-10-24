@@ -1,14 +1,21 @@
 import React from 'react'
+import {FriendsContainer, ListItem} from './styledComponents'
 
 const FriendsList = (props) =>{
-
     return (
+
         <div>
-            <ul>
-                {props.friends.map(friend =>{
-                    return <li key={friend.name}>{friend.name}</li>
-                })}
-            </ul>
+            <FriendsContainer>
+                {props.friends.map((friend) => (
+                    <ListItem key={friend.id}>
+                        <h2>Name: {friend.name}</h2>
+                        <h4>Age: {friend.age}</h4>
+                        <h4>Email: {friend.email}</h4>
+                    </ListItem>
+
+
+                ))}
+            </FriendsContainer>
         </div>
     )
 
