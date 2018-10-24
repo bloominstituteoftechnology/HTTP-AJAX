@@ -64,17 +64,33 @@ export default class FriendList extends React.Component {
       })
     }
 
+    updateFriend = (friend) => {
+      axios.put(`http://localhost:5000/friends/${friend.id}`, friend)
+        .then(response => this.setState({friends: response.data}))
+        .catch(error => console.log(error))
+    };
+
+    deleteFriend = (friend) => {
+      axios.delete(`http://localhost:5000/friends/${friend.id}`)
+        .then(response => this.setState({ friends: response.data}))
+        .catch(error => console.log(error))
+    }
+
     render(){
       return(
         <div>
           {this.state.friends.map(friend => 
-            <Friend key={friend.id} friend={friend} />)}
+            <Friend 
+              key={friend.id} 
+              friend={friend} 
+              updateFriend={this.updateFriend}
+              deleteFriend={this.deleteFriend}/>)}
             <FriendForm 
               inputChange={this.inputChange} 
               addNewFriend={this.addNewFriend} 
               numberInputChange={this.numberInputChange} 
               newFriend={this.state.newFriend}/>
-          </div>
-        )
+        </div>
+      )
     }
 }
