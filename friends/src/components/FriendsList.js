@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
+import FriendCard from './FriendCard';
 
 const FriendsList = (props) =>{
     return (
-        props.friends.map(friend=>{
-            return (
-                <div key={friend.id}>
-                    {/* TODO: change to link and allow update delete when selected */}
-                    <div>{friend.name}</div>
-                    <div>{friend.age}</div>
-                    <div>{friend.email}</div>
-                    {/* TODO: this should only render when individual friend has been selected */}
-                    <div>Temp Update/Delete Menu</div>
-                </div>
-            )
-        })
+        <div>
+            {props.friends.map(friend=>{
+                return (
+                    <Link key={friend.id} to={`/${friend.id}`}><FriendCard friend={friend}/></Link>
+                )
+            })}
+            <Link to="/addfriend">Add a friend</Link>
+        </div>
     )
 }
 

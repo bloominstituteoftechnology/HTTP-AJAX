@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
 import FriendsList from './components/FriendsList';
+import FriendCard from './components/FriendCard';
 import AddFriend from './components/AddFriend';
 
 class App extends Component {
@@ -42,22 +43,25 @@ class App extends Component {
       this.setState({
         friends: response.data
       })
-      // This shows the Object returned has the new friend in it
-      console.log(response);
     })
     .catch((error)=>{
       console.log("Error:", error);
     })
   }
 
+  parseFriend = (id)=>{
+    const test = this.state.friends.find(friend=>{
+      return `${friend.id}` === id;
+    });
+    return test;
+  }
+
   render() {
     return (
       <div className="App">
         <h1>My Friends</h1>
-        <Route path="/" render={()=><FriendsList friends={this.state.friends}/>}/>
-
-        <Link to="/addfriend">Add a friend</Link>
-        
+        <Route exact path="/" render={(props)=><FriendsList friends={this.state.friends}/>}/>
+        <Route path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} update delete/>}/>
         <Route path="/addfriend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
       </div>
     );
