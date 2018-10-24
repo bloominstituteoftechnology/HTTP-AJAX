@@ -12,7 +12,7 @@ import FriendList from "./FriendList";
         name: '',
         age: 0,
         email:''
-      }
+      },
     };
   }
     componentDidMount() {
@@ -41,18 +41,28 @@ import FriendList from "./FriendList";
     })
     .catch(err => 
       console.log(err)); 
-  }	  
+    }	 
+    handleDelete= friendId => {
+      axios
+        .delete(`http://localhost:5000/friends/${friendId}`)
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
+      window.location.reload();
+    };	  
   
    render() {
     return (
-      <div classNmae="App">
+      <div className="App">
          <h1>Add Friend</h1> 
         <FriendForm form={this.state.friend}
         handleChange={this.handleChange}
         handleInput={this.handleInput}
         />
         <h2> Friend List: </h2>
-        <FriendList friend={this.state.friendData} /> 
+        <FriendList 
+        friend={this.state.friendData}
+        handleDelete={this.handleDelete}
+         /> 
       </div>
     )
   }
