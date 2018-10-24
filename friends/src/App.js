@@ -40,6 +40,23 @@ class App extends Component {
 
   addFriendHandler = (e) => {
     e.preventDefault();
+    let newFriend = {
+      id: this.state.friends.length,
+      name: this.state.newFriendName,
+      email: this.state.newFriendEmail,
+    }
+    axios.post('http://localhost:5000/friends/', newFriend)
+    .then(() => {
+      axios.get('http://localhost:5000/friends/')
+      .then((friends) => {
+        this.setState({
+          newFriendName: '',
+          newFriendEmail: '',
+          friends: friends.data,
+        })
+      })
+    })
+
   }
 
   render() {
