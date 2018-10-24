@@ -44,17 +44,23 @@ class App extends Component {
     });
   }
 
-  handleAddNewFriend = (event) => {
+  handleAddNewFriend = event => {
     event.preventDefault();
     axios
       .post("http://localhost:5000/friends", this.state.friend)
-      .then(response => console.log(response))
-      .catch(err => {
-        console.log("COULD NOT ADD NEW FRIEND", err);
+      .then(response => {
+        console.log(response)
+        // this.setState({ friends: response.data })
       })
+      // .catch(err => {
+      //   console.log("COULD NOT ADD NEW FRIEND", err);
+      // })
   }
 
-  // handleDeleteFriend = 
+  handleDeleteFriend = id => {
+    axios.delete(`/friendslist/${id}`)
+    .then(response => this.setState({ friends: response.data }));
+  }
 
   //post getItemById axios POST here? 
   // POST PUT DELETE are 'user' interaction, will be in a button or something
@@ -98,7 +104,15 @@ class App extends Component {
          />
 
         <Route path="/friendslist/:id"
-          render={props => (<FriendPage {...props} friends={this.state.friends}/> )}
+          render={props => (
+          <FriendPage 
+          name={this.state.friend.name} 
+          id={this.state.friend.id}
+          age={this.state.friend.age}
+          email={this.state.friend.email}
+
+          friends={this.state.friends}
+          /> )}
           />
 
      

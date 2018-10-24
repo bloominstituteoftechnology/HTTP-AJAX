@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import FriendsList from './FriendList';
+// import FriendsList from './FriendList';
 import PropTypes from 'prop-types';
 
 class FriendForm extends React.Component {
