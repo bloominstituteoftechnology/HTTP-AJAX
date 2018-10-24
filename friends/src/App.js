@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
+import FriendsList from './Components/FriendsList';
+
 class App extends Component {
   constructor() {
     super();
@@ -26,11 +28,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        {this.state.friends.map( (friend) => {
-          return(
-            <div>{friend.name}</div>
-          )
-        } )}
+        {/* Pass friends array to FriendsList */}
+        <FriendsList friends={this.state.friends} />
         </header>
       </div>
     );
