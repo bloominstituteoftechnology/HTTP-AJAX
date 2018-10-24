@@ -1,18 +1,19 @@
 import React from 'react'
+import {List, Container, Paragraph} from './Styled-Components'
 
 const FriendsList = props => {
     return (
-      <div>
+      <Container>
         {props.data.map(friend => {
           return (
-            <div key={friend.id}>
+            <List>
               <h1>Name: {friend.name}</h1>
-              <p>Age: {friend.age}</p>
-              <p>Email: {friend.email}</p>
-            </div>
+              <Paragraph>Age: {friend.age}</Paragraph>
+              <Paragraph>Email: {friend.email}</Paragraph>
+            </List>
           );
         })}
-      </div>
+      </Container>
     );
   };
    export default FriendsList;

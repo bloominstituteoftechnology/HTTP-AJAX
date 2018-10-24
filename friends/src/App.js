@@ -12,10 +12,14 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:5000/friends").then(response => {
-      this.setState({
-        data: response.data
-      });
+    axios
+    .get("http://localhost:5000/friends")
+    .then(response => {
+      console.log(response);
+      this.setState({data: response.data});
+  })
+      .catch(err=>{
+        console.log("ERROR", err);
     });
   }
 
