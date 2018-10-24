@@ -1,37 +1,59 @@
-import React from 'react'
+import React, {Component} from 'react';
+import axios from 'axios'
 
-const AddFriendForm = (props) => {
-  return (
-    <div>
-      <h1>Add Friend:</h1>
-      <form>
-        Name: <input 
-                value={props.friend.name} 
-                type='text'
-                name="friendName"
-                placeholder="enter name"
-                onChange={props.addFriendHandler} />
-        <br></br>
-        Age: <input 
-                value={props.friend.age}
-                type='text'
-                name="friendAge"
-                placeholder="enter age"
-                onChange={props.addFriendHandler}  />
-        <br></br>
-        Email: <input 
-                value={props.friend.email}
-                type='text'
-                name="friendEmail"
-                placeholder="enter email"
-                onChange={props.addFriendHandler}  />
-        <br></br>
-        <button type="submit" onClick={props.submitFriendHandler}>Submit</button>
-      </form>    
-    </div>
+class AddFriendForm extends Component {
 
-  )
+  addFriendHandler = e => {
+    this.setState({ 
+      name : e.target.name,
+      age: e.target.age,
+      email: e.target.email,
+     });
+     this.addFriendHandler = this.addFriendHandler.bind(this);
+  }
+
+  submitFriendHandler = e => {
+    e.preventDefault();
+    const friend = {
+      name: e.state.name,
+      age: e.target.age,
+      email: e.target.email,
+    }
+    axios
+      .post('http://localhost:5000/friends', { friend })
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+  }
+
+  render(){
+    return (
+      <div>
+        <h1>Add Friend:</h1>
+        <form>
+          Name: <input 
+                  value={this.name} 
+                  type='text'
+                  placeholder="enter name"
+                  onChange={this.addFriendHandler} />
+          <br></br>
+          Age: <input 
+                  value={this.age}
+                  type='text'
+                  placeholder="enter age"
+                  onChange={this.addFriendHandler}  />
+          <br></br>
+          Email: <input 
+                  value={this.email}
+                  type='text'
+                  placeholder="enter email"
+                  onChange={this.addFriendHandler}  />
+          <br></br>
+          <button type="submit" onClick={this.submitFriendHandler}>Submit</button>
+        </form>    
+      </div>
+  
+    )
+  }
 }
-
 
 export default AddFriendForm;

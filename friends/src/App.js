@@ -14,7 +14,6 @@ class App extends Component {
       email: '',
 
     };
-    this.addFriendHandler = this.addFriendHandler.bind(this);
   }
 
   componentDidMount() {
@@ -28,19 +27,26 @@ class App extends Component {
       })
   }
 
-  addFriendHandler = e => {
-    this.setState({ 
-      name : e.target.value
-     });
-  }
+  // addFriendHandler = e => {
+  //   this.setState({ 
+  //     name : e.target.name,
+  //     age: e.target.age,
+  //     email: e.target.email,
+  //    });
+  // }
 
-  submitFriendHandler = e => {
-    const name = {name: this.state.name}
-    axios
-      .post('http://localhost:5000/friends', { name })
-      .then(response => console.log(response))
-      .catch(error => console.log(error));
-  }
+  // submitFriendHandler = e => {
+  //   e.preventDefault();
+  //   const friend = {
+  //     name: this.state.name,
+  //     age: e.target.age,
+  //     email: e.target.email,
+  //   }
+  //   axios
+  //     .post('http://localhost:5000/friends', { friend })
+  //     .then(response => console.log(response))
+  //     .catch(error => console.log(error));
+  // }
 
 
   render() {
@@ -50,9 +56,6 @@ class App extends Component {
       <AddFriendForm 
         friend={this.state.friends}
         addFriendHandler={this.addFriendHandler}
-        friendName={this.state.friends.name}
-        friendAge={this.state.friends.age}
-        friendEmail={this.state.friends.email}
       />
       </div>
     );
