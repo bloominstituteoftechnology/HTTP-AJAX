@@ -13,6 +13,21 @@ const Container = styled.div`
 `;
 
 const Friends = (props) => {
+    const TableRow = ({row}) => (
+        <tr>
+            <td>{row.name}</td>
+            <td>{row.age}</td>
+            <td>{row.email}</td>
+            <td>
+                <Link to={`${props.match.url}/${row.id}`} style={{textDecoration: 'none'}}>More...</Link>
+            </td>
+
+            <Route path={`${props.match.path}/${row.id}`} render={(props) =>
+                                    <Friend {...props} friends={props.friends} />} 
+                                />
+        </tr>
+    )
+
     return (
         <Container>
             <table>
@@ -26,20 +41,7 @@ const Friends = (props) => {
                 </thead>
                 <tbody>
                     {props.friends.map( friend => {
-                        return (
-                            <div>
-                                <td>{friend.name}</td>
-                                <td>{friend.age}</td>
-                                <td>{friend.email}</td>
-                                <td>
-                                    <Link to={`${props.match.url}/${friend.id}`} style={{textDecoration: 'none'}}>More...</Link>
-                                </td>
-
-                                <Route path={`${props.match.path}/${friend.id}`} render={(props) =>
-                                    <Friend {...props} friends={props.friends} />} 
-                                />
-                            </div>
-                        )
+                        return ( <TableRow row={friend}/>)
                     })}
                 </tbody>
             </table>
