@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Route, Link} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
@@ -39,7 +40,7 @@ class App extends Component {
     axios.post('http://localhost:5000/friends', friend)
     .then((response)=>{
       this.setState({
-        friends: tempArray
+        friends: response.data
       })
       // This shows the Object returned has the new friend in it
       console.log(response);
@@ -52,8 +53,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends}/>
-        <AddFriend addFriend={this.addFriend}/>
+        <h1>My Friends</h1>
+        <Route path="/" render={()=><FriendsList friends={this.state.friends}/>}/>
+
+        <Link to="/addfriend">Add a friend</Link>
+        
+        <Route path="/addfriend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
       </div>
     );
   }

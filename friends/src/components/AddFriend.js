@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 class AddFriend extends React.Component{
     constructor(props){
@@ -37,7 +38,6 @@ class AddFriend extends React.Component{
     render(){
         return (
             <div>
-                <h2>Add a friend</h2>
                 <div>
                     <label>Name:</label>
                     <input onChange={this.changeName} type="text" placeholder="Enter friend's name..." value={this.state.name}/>
@@ -45,7 +45,7 @@ class AddFriend extends React.Component{
                     <input onChange={this.changeAge} type="number" placeholder="Enter friend's age..."/>
                     <label>Email:</label>
                     <input onChange={this.changeEmail} type="email" placeholder="Enter friend's email..." value={this.state.email}/>
-                    <div onClick={this.addFriend}>Submit</div>
+                    <Link to="/" onClick={this.addFriend}>Submit</Link>
                 </div>
             </div>
         )

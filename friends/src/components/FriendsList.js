@@ -6,9 +6,12 @@ const FriendsList = (props) =>{
         props.friends.map(friend=>{
             return (
                 <div key={friend.id}>
+                    {/* TODO: change to link and allow update delete when selected */}
                     <div>{friend.name}</div>
                     <div>{friend.age}</div>
                     <div>{friend.email}</div>
+                    {/* TODO: this should only render when individual friend has been selected */}
+                    <div>Temp Update/Delete Menu</div>
                 </div>
             )
         })
