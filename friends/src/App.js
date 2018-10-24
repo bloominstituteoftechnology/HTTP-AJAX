@@ -42,9 +42,30 @@ class App extends Component {
       .then(response => {
         this.setState({
           friends: response.data,
-          name: '',
-          age: '',
-          email: ''
+          name: "",
+          age: "",
+          email: "",
+          editFriendid: "",
+          deleteFriendId:""
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  updateFriend = (id) => {
+    const friendUpdateObj = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friendUpdateObj)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          name: "",
+          age: "",
+          email: ""
         });
       })
       .catch(err => console.log(err));
