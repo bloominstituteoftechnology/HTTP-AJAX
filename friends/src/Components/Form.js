@@ -5,6 +5,7 @@ export default class  Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: this.data,
             
         }
     }
@@ -15,7 +16,7 @@ export default class  Form extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
+    
         const newfriend = {
             name: this.state.name,
             age: this.state.age,
@@ -24,13 +25,18 @@ export default class  Form extends React.Component {
         axios.post(`http://localhost:5000/friends`, newfriend)
         .then (response => {
             console.log(response.data);
-            return response.data;
+            this.props.state.setState({ data: response.data})
         })
+        .catch( err=>console.log("Failed to update."))
+
+        // document.getElementById('form').rest();
     }
 
     render ()  {
         return (
-        <form onSubmit={this.handleSubmit}>
+
+        
+        <form id='form' onSubmit={this.handleSubmit}>
           <h2>Add friend:</h2>
           <input type="text" id='name' placeholder="name" onChange={this.handleChange}></input>
           <input type="number" id='age' placeholder="age" onChange={this.handleChange}></input>

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
 import Form from './Components/Form';
+import Friend from './Components/Friend';
 
 
 class App extends Component {
@@ -23,14 +24,16 @@ class App extends Component {
   }
 
 
+
   render() {
     return (
       <div className="App">
-        {this.state.data.map( friend => {
-          return <div>{friend.name}</div>
-        })}
-        <Form />
-        
+       
+        <Form  />
+
+        {this.state.data.map(friend => (
+          <Friend friend={friend} />
+        ))}
       </div>
     );
   }
