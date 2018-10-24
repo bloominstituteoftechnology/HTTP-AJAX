@@ -80,6 +80,7 @@ export default class Friends extends React.Component {
     render() {
         return (
             <FrndBox>
+                <h1>List of Friends</h1>
                 {this.state.friends.map(friend => (
                     <Friend
                         key={friend.id}

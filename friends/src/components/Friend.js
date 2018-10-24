@@ -2,6 +2,9 @@ import React from 'react';
 import { FrNm } from './styles';
 import { DelBtn } from './styles';
 import { FrndCntnr } from './styles';
+import { FrndAge } from './styles';
+import { FrndInfo } from './styles';
+import { Form } from './styles';
 
 export default class Friend extends React.Component {
     constructor(props) {
@@ -48,14 +51,18 @@ export default class Friend extends React.Component {
         return (
             <FrndCntnr>
                 <FrNm>{this.props.friend.name}</FrNm>
-                <div>{`Age: ${this.props.friend.age}`}</div>
+                <FrndInfo>
+                <FrndAge>{`Age: ${this.props.friend.age}`}</FrndAge>
                 <div>{`Email: ${this.props.friend.email}`}</div>
+                </FrndInfo>
+                <Form>
                 <form>
                 <input placeholder='Name' onChange={this.inputChange} value={this.state.newInfo.name} name='name' />
                 <input type='number' placeholder='Age' onChange={this.numberInputChange} value={this.state.newInfo.age} name='age' />
                 <input placeholder='Email' onChange={this.inputChange} value={this.state.newInfo.email} name='email' />
                 <button type='submit' onClick={this.submitUpdate}>Update Friend</button>
                 </form>
+                </Form>
                 <DelBtn onClick={this.delete}>Delete</DelBtn>
             </FrndCntnr>
         )
