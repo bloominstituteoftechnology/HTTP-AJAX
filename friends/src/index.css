@@ -5,7 +5,7 @@
 body {
 	background-image: linear-gradient(
 			to right bottom,
-			rgba(192, 57, 43, 0.25),
+			rgba(52, 73, 94, 1) /* rgba(192, 57, 43, 0.25) */,
 			rgba(211, 84, 0, 0.1)
 		),
 		url(deadpool.png);
