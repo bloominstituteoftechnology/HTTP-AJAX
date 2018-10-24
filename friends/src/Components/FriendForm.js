@@ -1,40 +1,38 @@
 import React from "react";
 
+//friend form collects new friend information
 export default class FriendForm extends React.Component {
-   constructor(props){
-      super(props)
-      this.state = {
-         newFriends: {
-            id: this.props.friends.length + 1,
-            name: "",
-            age: 0,
-            email: "", 
-         },
-      }
-    }
-   render(){
-      console.log(this.props.text)
-      return(
-         <div className="form">
-            <h2>Join the DarkSide</h2>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <span>Name:</span>
-              <input type="text" 
-                placeholder="Enter your name..." 
-                onChange={this.props.input}/> 
-              <br/>
-              <span>Age:</span>
-              <input type="number" 
-                placeholder="Age" 
-                min="18" max="80" 
-                onChange={this.props.input}/>
-              <br/>
-              <span>Email:</span>
-              <input type="email" 
-                placeholder="Email" 
-                onChange={this.props.input}/>
-            </form>
-         </div>
-      )
-   }
+  render(){
+    return(
+      <div className="form">
+        <h2>Join the DarkSide</h2>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <label>Name:</label>
+          <input type="text"
+            name="name"
+            value={this.props.text} 
+            placeholder="Enter your name..." 
+            onChange={this.props.input}
+          />
+          <br/>
+          <label>Age:</label>
+          <input type="number" 
+            name="age"
+            value={this.props.text}
+            placeholder="Age" 
+            min="18" max="80" 
+            onChange={this.props.input}/>
+          <br/>
+          <label>Email:</label>
+          <input type="email" 
+            value={this.props.text}
+            name="email"
+            placeholder="Email" 
+            onChange={this.props.input}/>
+          <input type="submit" onClick={(e) =>
+          this.props.add(e)}/>
+        </form>
+      </div>
+    )
+  }
 }

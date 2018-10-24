@@ -2,42 +2,70 @@ import React from "react";
 import axios from "axios"
 import FriendForm from "./FriendForm";
 
+//Display Friends displays the current friends from the server to the screen
 export default class DisplayFriends extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       friends: [],
-      newfriends: [],
-      input: "",
+      newFriend: {
+        id: 3,
+        name: "",
+        age: 18,
+        email: "",
+      },
+      text: "",
     }
   }
 
-  handleInput = (event) =>{
-    this.setState({input: event.target.value})
+//handle input handles all form boxes and updates the new friend's information
+  handleInput = (event) => {
+    this.setState({
+      newFriend: {
+        ...this.state.newFriend,
+        id: this.state.friends.length + 1,
+        [event.target.name]: event.target.value
+      }
+    })
   }
 
-  addFriend = () =>{
-    
+  //adds new friend to the friend server
+  addFriend = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/friends", this.state.newFriend)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          input: "",
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
-  componentDidMount(){
+  //fetches original friends from server
+  componentDidMount() {
     axios
     .get("http://localhost:5000/friends")
     .then(response => {
-        console.log(response)
-        this.setState({friends: response.data})
+      this.setState({friends: response.data})
     })
     .catch(err => {
-        console.log(err)
+      console.log(err)
     })
   }
 
   render(){
+    console.log(this.state)
     return(
         <div className="display">
-          <h1>Here are my friends</h1>
+          <h1>Here are my friends!</h1>
           {this.state.friends.map(friend => {
-              return <div key={friend.id}>{friend.name}</div>
+              return (<div key={friend.id}>
+                  {friend.id}. {friend.name} {friend.age} {friend.email}
+                </div>)
           })}
           <FriendForm 
             friends={this.state.friends}
