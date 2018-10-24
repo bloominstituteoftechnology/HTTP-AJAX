@@ -8,8 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
   
-  state = {
-    friendData: [],
+    this.state = {
+    friends: [],
     name: '',
     age: '',
     email: '',
