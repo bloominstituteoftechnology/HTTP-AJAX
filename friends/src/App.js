@@ -49,7 +49,11 @@ export default class App extends Component {
         })
       ).catch(err => console.error(err))
     }        
-  }  
+  }
+
+  updateFriendInfo = (id, friend) => axios.put(`http://localhost:5000/friends/${id}`, friend)
+  .then(response => this.setState({friendsList: [...response.data]}))
+  .catch(err => console.error(err))
 
   deleteFriend = id => axios.delete(`http://localhost:5000/friends/${id}`)
   .then(response => this.setState({friendsList: [...response.data]}))

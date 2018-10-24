@@ -29,7 +29,6 @@ export class FriendsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            friendsList: [],
             modal: false,
             name: "",
             age: "",
@@ -37,27 +36,15 @@ export class FriendsList extends React.Component {
             id: null
         };
         this.toggle = this.toggle.bind(this);
-    }        
-
-        componentDidMount() {
-            this.setState({
-                friendsList: this.props.friends
-            })
-        }
+    }
 
         toggle() {
         this.setState({
             modal: !this.state.modal
         });
         }
-        
-        updateFriendInfo = id => axios.put(`http://localhost:5000/friends/${id}`, {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-            })
-            .then(response => this.setState({friendsList: [...response.data],name:"",age:"",email:"",id: null}))
-            .catch(err => console.error(err))
+
+        resetState = () => this.setState({name: "", age:"", email:"", id:null})
 
         idHandler = id => this.setState({id: id})
 
@@ -89,7 +76,9 @@ export class FriendsList extends React.Component {
                             </Form>  
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="primary" onClick={() => {this.updateFriendInfo(this.state.id);this.toggle()}}>Update Info</Button>
+                            <Button color="primary" 
+                            onClick={() => {this.props.updateFriendInfo(this.state.id,{name:this.state.name,age:this.state.age,email:this.state.email});
+                            this.toggle();this.resetState()}}>Update Info</Button>
                             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
