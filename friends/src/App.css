@@ -26,7 +26,7 @@
     width: 60%;
     text-align: left;
     padding-left: 5%;
-     border: 2px solid blue; 
+     /* border: 2px solid blue; */ 
 }
 
 .title {
@@ -47,7 +47,7 @@
     margin-left: auto;
     margin-right: auto;
     padding-top: 20%;
-    border: 2px solid red; 
+    /* border: 2px solid red;  */
 }
 
 .update-friend-form {
@@ -61,7 +61,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-     border: 2px solid aqua;
+    /*  border: 2px solid aqua; */
 }
 
 .friends-list {
@@ -70,13 +70,21 @@
 }
 
 .friend-list {
-  border: 2px solid gray; 
+ /*  border: 2px solid gray;  */
    width: 100%; 
    margin-bottom: 14px;
    border-radius: 10px;
    cursor: pointer;
    background-color: rgba(216, 223, 231, 0.5);
    box-shadow: 1px 1px 6px 1px #888888;
+}
+
+.friend-list:hover {
+    background-color: rgb(216, 223, 231);
+}
+
+.friend-selected {
+    background-color: rgb(216, 223, 231);
 }
 
 h3 {
@@ -108,7 +116,7 @@ margin-left: 10%;
 
 .update-form {
   width: 60%;
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -117,6 +125,6 @@ margin-left: 10%;
   display: flex;
   flex-direction: column;
 width: 60%;
-border: 2px solid fuchsia;
+/* border: 2px solid fuchsia; */
 
 }

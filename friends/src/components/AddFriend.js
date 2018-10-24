@@ -26,8 +26,8 @@ class AddFriend extends Component {
     render() {
         return (
             <form className="add-friend-form" onSubmit={this.props.handleSubmit}>
-                <h3>Add/Update Friend</h3>
-                <h5>Select Friend to update or Add a new Friend</h5>
+                <h3>Add Friend</h3>
+                <h5>Enter new Friend Data</h5>
                {/*  <div className="select">
                     <select value={this.state.value} name="selected" onChange={this.props.changeHandler}>
                         
