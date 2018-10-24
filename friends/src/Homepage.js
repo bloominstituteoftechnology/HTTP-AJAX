@@ -19,7 +19,7 @@ class HomePage extends React.Component {
         console.log(event.target.value)
     }
     newFriend = event => {
-        event.preventDefault();
+        // event.preventDefault();
         const friend = {
             name:this.state.name,
             age:this.state.age,
