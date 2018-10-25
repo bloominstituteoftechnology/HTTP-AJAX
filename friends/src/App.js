@@ -4,7 +4,10 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    lists:[]
+    lists:[],
+    name: " ",
+    age:" ",
+    email:" "
   }
 
   componentDidMount() {
@@ -26,7 +29,9 @@ handleSubmit = event => {
   event.preventDefault();
 
   const friend = {
-    name: this.state.name
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email
   };
 
   axios.post(`http://localhost:5000/friends`, {friend})
@@ -34,8 +39,27 @@ handleSubmit = event => {
     console.log(response);
     console.log(response.data);
   })
+  .catch(err=> {
+    console.log(err);
+  });
 }
 
+// deleteHandler = (id) => {
+//   return () => {
+//     axios.delete(`/${id}`)
+//     .then(response => {
+//       this.setState({friends: response.data})
+//       console.log(response)
+//     })
+//     .catch(err=> {
+//       console.log(err);
+//     });
+//   }
+// }
+
+// updateListHandler = (id, name, email) {
+//     console.log(id, name, email)
+// }
   render() {
     return (
       <div>
@@ -50,6 +74,7 @@ handleSubmit = event => {
           )
         })}</ul>
 <form onSubmit={this.handleSubmit}>
+<h3>Add a new person</h3>
   <label>
     Name:
     <input type="text" name="name" onChange={this.handleChange}/>
