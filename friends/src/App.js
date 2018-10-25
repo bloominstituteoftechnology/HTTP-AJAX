@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom';
+import {Route,Link} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
@@ -63,7 +63,15 @@ class App extends Component {
 
   updateFriend = (id, friend)=>{
     console.log(id, friend);
-    // TODO: Use notes from lecture below to finish this method
+    axios.put(`http://localhost:5000/friends/${id}`, friend)
+    .then(response=>{
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch(error=>{
+      console.log(error);
+    })
   }
 
   parseFriend = (id)=>{
@@ -77,6 +85,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>My Friends</h1>
+        <Link to="/">Home</Link>
         <Route exact path="/" render={(props)=><FriendsList friends={this.state.friends}/>}/>
         <Route exact path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} update delete/>}/>
         <Route path="/addfriend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
@@ -87,16 +96,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-update
-axios.put(`full URL/plus id from data base`, pass object like post)
-.then(response=>{
-  this.setState({
-    state: response.data
-  })
-})
-.catch(error=>{
-  console.log(error);
-})
-*/

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class UpdateFriendCard extends React.Component{
     constructor(props){
@@ -48,7 +49,7 @@ class UpdateFriendCard extends React.Component{
                 <input onChange={this.changeName} type="text" placeholder={this.props.friend.name} value={this.state.name}/>
                 <input onChange={this.changeAge} type="number" placeholder={this.props.friend.age}/>
                 <input onChange={this.changeEmail} type="email" placeholder={this.props.friend.email} value={this.state.email}/>
-                <div onClick={this.updateFriend}>Update</div>
+                <Link to={`/${this.props.friend.id}`} onClick={this.updateFriend}>Update</Link>
             </div>
         )
     }
