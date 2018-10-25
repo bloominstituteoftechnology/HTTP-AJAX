@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <AppContainer className="App">
         <AddFriend />
-        <Route exact path='/' component={Friends} />
+        <Route exact path='/' render={Friends} />
       </AppContainer>
     );
   }
