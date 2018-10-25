@@ -8,14 +8,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      friends: []
+      friends: [],
+      newFriend: {
+        name: '',
+        age: '',
+        email: '',
+      }
      }
   }
 
 componentDidMount() {
   axios
   .get('http://localhost:5000/friends')
-  .then(response => {
+    .then(response => {
     this.setState({friends: response.data })
   })
   .catch(error => console.log('Error!'))
@@ -30,15 +35,15 @@ componentDidMount() {
   render() { 
     return (  
       <div className="App">
-      {this.state.friends.map(friends => (
-     
+        {this.state.friends.map(friends => (
         <FriendList key={friends.id} friends={friends} />
          ))}
       </div>
-
-      );
-    }
+    );
   }
+}
+     
+
 
       
  
