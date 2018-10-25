@@ -23,6 +23,7 @@ class App extends Component {
     }
   }
 
+  //http://localhost:5000/friends
   componentDidMount(){
     axios
       .get("http://localhost:5000/friends")
@@ -64,7 +65,8 @@ class App extends Component {
 
   handleDeleteFriend = id => {
     console.log(id)
-     return axios.delete(`http://localhost:5000/friendslist/${id}`)
+     return axios.delete(`http://localhost:5000/friends/${id}`)
+     console.log(id)
     .then(response => this.setState({ friends: response.data }));
    
   }
