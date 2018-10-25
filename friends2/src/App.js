@@ -32,12 +32,13 @@ class App extends Component {
   }
 
   addNewFriend = () => {
-    axios.post('http://localhost:5000/friends', {friend: {
+    axios.post('http://localhost:5000/friends',{
       name: this.state.name,
       age: this.state.age,
       email: this.state.email
-    }})
+    })
     .then(response => {
+      console.log(response);
       this.setState({friends: response.data})
     })
     .catch(err => {console.log(err)})
