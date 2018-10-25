@@ -6,10 +6,9 @@ class App extends Component {
     super(props);
     this.state = { 
       friends: [],
-        name: '',
-        age: '',
-        email: ''
-      
+      name: '',
+      age: '',
+      email: ''
      }
   }
   componentDidMount () {
@@ -26,8 +25,13 @@ class App extends Component {
   
   addFriend = event => {
     event.preventDefault();
-    axios.post('http://localhost:5000/friends', this.state.newFriend)
-    .then(response => console.log(response.data))
+    const newFriend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    }
+    axios.post('http://localhost:5000/friends', newFriend)
+    .then(response => this.setState({friends: response.data}))
     .catch(err => console.log(err))
   }
 
@@ -45,7 +49,7 @@ class App extends Component {
         }
       </div>
       <form>
-        <input type="text" onChange={this.changeHandler} name='friends' value={this.state.name} placeholder='name'></input>
+        <input type="text" onChange={this.changeHandler} name='name' value={this.state.name} placeholder='name'></input>
         <input type="text" onChange={this.changeHandler} name='age' value={this.state.age} placeholder='age'></input>
         <input type="text" onChange={this.changeHandler} name='email' value={this.state.email} placeholder='email'></input>
       </form> 
