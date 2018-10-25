@@ -11,7 +11,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: null
     }
   }
 
@@ -26,6 +26,9 @@ class App extends Component {
           })
         }, 500)
       })
+      .catch((err) =>{
+        console.log(err)
+      })
   }
 
   addFriend = (friend) =>{
@@ -35,15 +38,29 @@ class App extends Component {
           friends: response.data
         })
       })
+      .catch((err) =>{
+        console.log(err)
+      })
 
+  }
+
+  deleteFriend = (friendId) => {
+    axios.delete(`http://localhost:5000/friends/${friendId}`)
+      .then((response) => {
+        this.setState({
+          friends: response.data
+        })
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
 
   render(){
-    const result = (!this.state.friends.length)
+    const result = (this.state.friends === null)
       ? <div><Loading /></div>
       : <div className="App">
-          <FriendsList friends={this.state.friends}/>
+          <FriendsList friends={this.state.friends} deleteFriend={this.deleteFriend}/>
         </div>
 
     return (

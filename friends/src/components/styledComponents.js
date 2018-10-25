@@ -32,6 +32,17 @@ export const ListItem = styled.li`
     ${props => (String(props.color % 2) === '0' ? `background: #C1DFF0;` : `background: #88CCF1;`)}
 `;
 
+export const RemoveButton = styled.div`
+    width: 10%;
+    margin: 0 auto 10px;
+    padding-bottom: 3px;
+    border: 1px solid #222;
+    cursor: pointer;
+    font-weight: bold;
+    background: #576066;
+    color: #FFF;
+`
+
 export const LoadingText = styled.h1`
     position: absolute;
     left: 50%;
