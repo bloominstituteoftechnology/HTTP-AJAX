@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FriendForm from './FriendForm';
@@ -68,9 +67,7 @@ export default class FriendList extends Component {
                 />
                 <CardForFlex>
                 {this.state.friends.map(friend => (
-                        <Link to={`/friends/${friend.id}`} style={{textDecoration: 'none', color: 'black'}}>
                             <FriendCard key={friend.id} friend={friend} />
-                        </Link>
                 ))}    
                 </CardForFlex>
             </div>

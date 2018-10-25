@@ -2,31 +2,44 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { Card, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const CardContainer = styled.div`
-    border: 1px solid purple;
-    padding: 20px;
-    margin: 20px;
-    border: 1px solid dodgerblue;
+    padding: 10px;
+    margin: 10px;
     width: 300px;
 `;
 
 const StyledCard = styled(Card)`
-    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+`;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    margin-top: 10px;
+`;
+
+const ButtonContainer = styled.div`
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
 `;
 
 const FriendCard = props => {
-    const { name, age, email } = props.friend;
+    const { id, name, age, email } = props.friend;
     return (
         <CardContainer>
             <StyledCard> 
+            <StyledLink to={`/friends/${id}`}>
                 <CardTitle>{name}</CardTitle>
+            </StyledLink>
                 <CardSubtitle>{age}</CardSubtitle>
                 <CardText>{email}</CardText>
-                <div>
+                <ButtonContainer>
                     <Button color="danger">Delete</Button> 
                     <Button color="secondary">Edit</Button>   
-                </div>
+                </ButtonContainer>
             </StyledCard>
         </CardContainer>   
     );
