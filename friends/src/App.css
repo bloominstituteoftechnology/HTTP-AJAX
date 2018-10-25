@@ -44,13 +44,14 @@
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20%;
+    padding-top: 5%;
 }
 
 .update-friend-form {
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* border: 2px solid blue; */
 }
 
 .friend-form {
@@ -70,11 +71,16 @@
     cursor: pointer;
     background-color: rgba(216, 223, 231, 0.5);
     box-shadow: 1px 1px 6px 1px #888888;
+    transition: transform 0.3s linear;
+    /* transform: rotate(-2deg); */
 }
 
 .friend-list:hover {
+    transform: scale(1.2) rotate(-5deg) translate(50px,30px);
     background-color: rgb(216, 223, 231);
 }
+
+
 
 .friend-selected {
     background-color: rgb(216, 223, 231);
@@ -87,6 +93,8 @@ h3 {
 .submit-button {
     margin-top: 10px;
     border-radius: 10px;
+    height: 28px;
+    font-weight: bold;
 }
 
 .add-input {
@@ -101,7 +109,7 @@ h3 {
 }
 
 .friend-header {
-    margin-left: 10%;
+    margin-left: 5%;
 }
 
 .update-form {

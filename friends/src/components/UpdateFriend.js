@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
+/* import axios from "axios"; */
 import '../App.css';
 
 class UpdateFriend extends Component {
@@ -24,7 +24,7 @@ class UpdateFriend extends Component {
 
     render() {
         return (
-            <div>
+            
             <form className="update-friend-form" onClick={this.props.handleUpdate}>
                 <h3>Update Friend</h3>
                 <p>Select the friend to update, then enter the new data. Press the Update Button when you are finished.</p>                        
@@ -36,7 +36,7 @@ class UpdateFriend extends Component {
                 <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="email" />
                 <button type="submit" className="submit-button" onClick={this.props.handleUpdate}>Update Friend</button>
             </form>
-            </div>
+           
         )
     }
 }

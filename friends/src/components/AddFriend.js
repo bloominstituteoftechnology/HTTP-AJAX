@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
+/* import axios from "axios"; */
 import '../App.css';
 
 class AddFriend extends Component {
@@ -22,7 +22,7 @@ class AddFriend extends Component {
         return (
             <form className="add-friend-form" onSubmit={this.props.handleSubmit}>
                 <h3>Add Friend</h3>
-                <h5>Enter new Friend Data</h5>    
+                <p>Enter your new friends info and then press the Add Friends Button.</p>    
                 <div className="add-text">Name: </div>
                 <input type="text" className="add-input" value={this.state.value} onChange={this.props.changeHandler} name="name" />
                 <div className="add-text">Age: </div>

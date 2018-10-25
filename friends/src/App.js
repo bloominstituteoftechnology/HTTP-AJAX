@@ -12,6 +12,7 @@ class App extends Component {
       friends: [],
       name: null,
       age: null,
+      id: null,
       email: null,
       selected: null,
       highLight: null,
@@ -40,12 +41,7 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  clickHandler = selected => {
-    selected = selected + 1
-    this.setState({ keyIndex: this.selected });
-    let currentFriend = this.state.friends.find(friend => friend.id === selected)
-    this.setState({ currentFriend: currentFriend });
-  }
+ 
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -82,24 +78,14 @@ class App extends Component {
 
 
   render() {
-    let classNames = require('classnames');
-    let highLight = false;
-
-    if (this.state.selected) {
-      this.setState = ({ highLight: true })
-    };
-
-    let formClass = classNames({
-      'friend-list': true,
-      'friend-selected': highLight
-    })
+  
 
 
     return (
       <div className="App"><h1 className="title">HTTP/AJAX Friends App</h1>
         <div className="friends-container">
           <div className="friends-list">{this.state.friends.map((friend, index) => {
-            return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} selected={friend.id} keyIndex={index} clickHandler={this.clickHandler} formClass={formClass} />
+            return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} friends={this.state.friends}  id={friend.id} selected={friend.id} keyIndex={index} clickHandler={this.clickHandler}  />
           })}</div>
           <div className="both-friends-container">
             <div className="update-form"><UpdateFriend friends={this.state.friends} selectedFriend={this.props.selectedFriend} name={this.props.name} age={this.props.age} email={this.props.email} changeHandler={this.changeHandler} handleUpdate={this.handleUpdate} /></div>
