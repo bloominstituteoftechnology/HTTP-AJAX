@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Friend from './Friend';
 import AddFriend from './AddFriend';
@@ -16,7 +17,9 @@ const FriendsList = (props) => {
             {props.friends.map( friend => {
                 // Pass friend.id, friend.name, friend.email, friend.age to Friend
                 return(
-                    <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email} />
+                    <Link to={`/edit/${friend.id}`}>
+                        <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email} />
+                    </Link>
                 );
             } )}
         </div>

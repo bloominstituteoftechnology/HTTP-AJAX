@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
 import FriendsList from './Components/FriendsList';
+import EditFriend from './Components/EditFriend';
 
 class App extends Component {
   constructor() {
@@ -63,6 +65,8 @@ class App extends Component {
         {/* Pass friends array, handleSubmit & handleChange to FriendsList */}
         <FriendsList friends={this.state.friends} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         </header>
+        {/* <Route exact path="/" component="{FriendsList}" /> */}
+        <Route path="/edit/:id" component="{EditFriend}" />
       </div>
     );
   }
