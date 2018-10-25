@@ -8,6 +8,7 @@ import FriendCard from './FriendCard';
 const CardForFlex = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 `;
 
 export default class FriendList extends Component {
@@ -66,9 +67,9 @@ export default class FriendList extends Component {
                 handleTextInput={this.changeHandler}
                 />
                 <CardForFlex>
-                {this.state.friends.map(friend => (
-                            <FriendCard key={friend.id} friend={friend} />
-                ))}    
+                    {this.state.friends.map(friend => (
+                                <FriendCard key={friend.id} friend={friend} />
+                    ))}    
                 </CardForFlex>
             </div>
         );

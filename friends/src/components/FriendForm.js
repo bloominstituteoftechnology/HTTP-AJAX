@@ -11,6 +11,14 @@ const StyledForm = styled(Form)`
     margin-top: 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media (max-width:786px) {
+        width: 400px;
+    }
+
+    @media (max-width:500px) {
+        width: 350px;
+    }
 `;
 
 const StyledButton = styled(Button)`
