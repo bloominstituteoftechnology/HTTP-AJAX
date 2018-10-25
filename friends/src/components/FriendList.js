@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import FriendForm from './FriendForm';
 import FriendCard from './FriendCard';
+
+const CardForFlex = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
 
 export default class FriendList extends Component {
     constructor(props) {
@@ -60,11 +66,13 @@ export default class FriendList extends Component {
                 email={this.state.email}
                 handleTextInput={this.changeHandler}
                 />
+                <CardForFlex>
                 {this.state.friends.map(friend => (
-                    <Link to={`/friends/${friend.id}`} style={{textDecoration: 'none', color: 'black'}}>
-                        <FriendCard key={friend.id} friend={friend} />
-                    </Link>
-                ))}
+                        <Link to={`/friends/${friend.id}`} style={{textDecoration: 'none', color: 'black'}}>
+                            <FriendCard key={friend.id} friend={friend} />
+                        </Link>
+                ))}    
+                </CardForFlex>
             </div>
         );
     }
