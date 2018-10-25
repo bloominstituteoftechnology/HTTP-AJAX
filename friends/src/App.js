@@ -91,11 +91,11 @@ class App extends Component {
             name="age"
             value={this.state.age}
           />
-          <button className="button" onClick={this.addFriend}>
+          <button className="btn" onClick={this.addFriend}>
             Add Friend
           </button>
         </form>
-        <button className='button' onClick={id => this.updateFriend(id)}>Update Friend</button>
+        <button className='btn' onClick={id => this.updateFriend(id)}>Update Friend</button>
         <FriendsList friends={this.state.friends}
         handleClick={this.getFriend} />
       </div>
