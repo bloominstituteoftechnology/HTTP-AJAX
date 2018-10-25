@@ -24,7 +24,45 @@ class App extends Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+  
+  getFriend = friend => {
+    const selectedFriend = {
+      name: friend.name,
+      email: friend.email,
+      age: friend.age
+    };
+    this.setState(selectedFriend);
+  };
 
+  addFriend = () => {
+    const newFriend = {
+      name: this.state.name,
+      email: this.state.email,
+      age: this.state.age
+    };
+
+    axios
+      .post("http://localhost:5000/friends", newFriend)
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  updateFriend = id => {
+    const friendUpdate = {
+      name: this.state.name,
+      email: this.state.email,
+      age: this.state.age
+    };
+  
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friendUpdate)
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+    }
 
 
   render() {
