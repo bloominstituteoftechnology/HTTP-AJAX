@@ -1,12 +1,54 @@
 import React, { Component } from 'react';
 import {Route,Link} from 'react-router-dom';
 import axios from 'axios';
-import './App.css';
+import styled from 'styled-components';
 
 import FriendsList from './components/FriendsList';
 import FriendCard from './components/FriendCard';
 import AddFriend from './components/AddFriend';
 import UpdateFriendCard from './components/UpdateFriendCard';
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 880px;
+`;
+
+const TopNavBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: mediumslateblue;
+  border-radius: 0 0 10px 10px;
+
+  h1{
+    width: 25%;
+    margin: 20px 0;
+    text-align: center;
+    color: white;
+    font-size: 3.2rem;
+  }
+
+  a{
+    width: 10%;
+    text-align: center;
+    color: white;
+    background-color: mediumslateblue;
+    text-decoration: none;
+    padding: 5px;
+    margin: 0 20px;
+    border: 2px solid white;
+    border-radius: 8px;
+
+    &:hover{
+      color: mediumslateblue;
+      background-color: white;
+    }
+  }
+`;
 
 class App extends Component {
   constructor(){
@@ -83,14 +125,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>My Friends</h1>
-        <Link to="/">Home</Link>
+      <AppContainer>
+        <TopNavBar>
+          <Link to="/">Home</Link>
+          <h1>My Friends</h1>
+          {/* TODO: Ask Jacob about this routing paradox */}
+          <Link to="/add/friend">Add a friend</Link>
+        </TopNavBar>
+        <Route path="/add/friend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
         <Route exact path="/" render={(props)=><FriendsList friends={this.state.friends}/>}/>
         <Route exact path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} update delete/>}/>
-        <Route path="/addfriend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
         <Route path="/:id/update" render={(props)=><UpdateFriendCard friend={this.parseFriend(props.match.params.id)} updateFriend={this.updateFriend}/>}/>
-      </div>
+      </AppContainer>
     );
   }
 }

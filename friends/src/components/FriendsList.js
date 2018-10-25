@@ -1,19 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components';
 
 import FriendCard from './FriendCard';
 
+const FriendsListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`;
+
 const FriendsList = (props) =>{
     return (
-        <div>
+        <FriendsListContainer>
             {props.friends.map(friend=>{
                 return (
                     <Link key={friend.id} to={`/${friend.id}`}><FriendCard friend={friend}/></Link>
                 )
             })}
-            <Link to="/addfriend">Add a friend</Link>
-        </div>
+        </FriendsListContainer>
     )
 }
 
