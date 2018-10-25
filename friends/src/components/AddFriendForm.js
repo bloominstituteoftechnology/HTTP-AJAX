@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 class AddFriendForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      friends: [],
+      friends: this.props.friends,
       name: '',
       age: '',
       email: '',
     };
-    this.addFriendHandler = this.addFriendHandler.bind(this);
+    //this.addFriendHandler = this.addFriendHandler.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +26,7 @@ class AddFriendForm extends Component {
 
   addFriendHandler = e => {
     this.setState({ 
-      name : e.target.name,
+      name: e.target.name,
       age: e.target.age,
       email: e.target.email,
      });
@@ -51,7 +51,8 @@ class AddFriendForm extends Component {
         <h1>Add Friend:</h1>
         <form>
           Name: <input 
-                  value={this.name} 
+                  value={this.props.name}
+                  name='name' 
                   type='text'
                   placeholder="enter name"
                   onChange={this.addFriendHandler} />
