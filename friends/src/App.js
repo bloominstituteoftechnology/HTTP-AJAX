@@ -24,8 +24,18 @@ class App extends Component {
           this.setState({
             friends: response.data
           })
-        }, 1000)
+        }, 500)
       })
+  }
+
+  addFriend = (friend) =>{
+    axios.post("http://localhost:5000/friends", friend)
+      .then((response) => {
+        this.setState({
+          friends: response.data
+        })
+      })
+
   }
 
 
@@ -41,7 +51,7 @@ class App extends Component {
         <FriendsHeader>
             FRIENDS
         </FriendsHeader>
-        <NewFriendForm />
+        <NewFriendForm addFriend={this.addFriend}/>
 
         <>
           {result}

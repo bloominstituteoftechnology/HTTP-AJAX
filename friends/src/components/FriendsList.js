@@ -2,7 +2,6 @@ import React from 'react'
 import {FriendsContainer, ListItem} from './styledComponents'
 
 const FriendsList = (props) =>{
-    console.log(props)
     return (
         <div>
             <FriendsContainer >
