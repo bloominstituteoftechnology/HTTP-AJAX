@@ -3,7 +3,6 @@ import React from "react";
 //friend form collects new friend information
 export default class FriendForm extends React.Component {
   render(){
-    console.log(this.props.value)
     return(
       <div className="form">
         <h2>Join the DarkSide</h2>
