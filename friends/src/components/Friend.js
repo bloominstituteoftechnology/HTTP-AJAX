@@ -34,6 +34,7 @@ export default class Friend extends Component {
         return (
             <div>
                 <FriendCard key={this.state.friend.id} friend={this.state.friend} />
+                <button>Edit</button>
             </div>
         )
     }

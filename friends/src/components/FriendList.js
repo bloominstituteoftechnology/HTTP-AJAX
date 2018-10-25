@@ -10,6 +10,9 @@ export default class FriendList extends Component {
         super(props);
         this.state = {
             friends: [],
+            name: '',
+            age: '',
+            email: '',
         };
     }
 
@@ -37,6 +40,7 @@ export default class FriendList extends Component {
         };
         axios
             .post('http://localhost:5000/friends', friend)
+
             .then(response => {
                 this.setState({ name: '', age: '', email: ''});
                 this.componentDidMount()
@@ -64,4 +68,4 @@ export default class FriendList extends Component {
             </div>
         );
     }
-} 
+}

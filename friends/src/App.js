@@ -4,11 +4,11 @@ import { Route } from 'react-router-dom';
 import FriendList from './components/FriendList';
 import Friend from './components/Friend';
 
-export default class APP extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
-
+    
     };
   }
 

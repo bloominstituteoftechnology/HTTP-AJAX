@@ -4,7 +4,8 @@ const FriendCard = props => {
     const { name, age, email } = props.friend;
     return (
         <div>
-            {name}, {age}, {email}
+                {name}, {age}, {email}
+            <button>Delete</button>
         </div>
     );
 };
