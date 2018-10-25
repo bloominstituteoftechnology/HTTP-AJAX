@@ -8,7 +8,7 @@ align-items:center;
 margin: 0 auto;
 width:100;
 max-width:960px;
-// border:1px solid red;
+//border:1px solid red;
 `;
 
 export const FriendCard = styled.div`
@@ -22,9 +22,16 @@ margin-bottom: 10px;
 `;
 
 export const ListContainer = styled.div`
- display:flex;
- flex-flow:row wrap;
- justify-content:space-around;
- width:100%;
- height:auto;
+display:flex;
+flex-direction:column;
+width:100%;
+height:auto;
+`;
+
+export const Column = styled.div`
+display:flex;
+flex-direction:row;
+height:auto ;
+//border:1px solid #e1e5e9;
+margin-bottom:15px;
 `;
