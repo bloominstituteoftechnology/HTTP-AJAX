@@ -44,23 +44,14 @@ class FriendsList extends React.Component {
         .then(res => {
           console.log(res);
           console.log(res.data);
+          this.setState({
+            friends: res.data,
+            name: '',
+            age: '',
+            email: ''
+          });
         })
         .catch(() => alert('POST Error'));
-
-      this.setState({
-        friends: [
-          ...this.state.friends,
-          {
-            id: this.state.friends.length + 1,
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-          }
-        ],
-        name: '',
-        age: '',
-        email: ''
-      });
     } else {
       alert('Please enter name, age and email');
     }
