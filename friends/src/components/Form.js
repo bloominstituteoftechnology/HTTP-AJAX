@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Friend from './Friend';
+
+
 
 class Form extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
-        console.log(this.props.friends);
-        return (
-            <div>
-               <form className="form">
-                  <Header />  
-                  {this.props.friends.map( friend => <Friend className="friend" key={friend.id} friend={friend} />)}
-               </form> 
-            </div>
-        );
+    console.log(this.props);
+    return (
+        <>
+            <form className="form" onSubmit={this.props.submitHandler}>
+                <input type="text" placeholder="name" name="name" value={this.props.name} onChange ={this.props.inputChangeHandler} />
+                <input type="text" placeholder="age"  name="age" value={this.props.age} onChange ={this.props.inputChangeHandler} />
+                <input type="email" placeholder="email" name="email" value={this.props.email} onChange ={this.props.inputChangeHandler} />
+                <input type="submit" value="Add" />
+            </form> 
+        </>
+        
+    )
     }
 }
 

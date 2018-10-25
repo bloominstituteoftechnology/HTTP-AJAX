@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-import Form from './components/Form';
+import Friends from './components/Friends';
 import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state ={
-       friends:[]
+       friends:[],
+       name: '',
+       age: '',
+       email: ''
     }
   }
   componentDidMount() {
     axios.get('http://localhost:5000/friends')
          .then(response => {
-             console.log(response.data);
+            //  console.log(response.data);
              this.setState({
                  friends:response.data
              });
@@ -23,10 +26,36 @@ class App extends Component {
          })
   }
 
+  inputChangeHandler = (event) => {
+      const name = event.target.name;
+      this.setState({
+         [name] : event.target.value
+      })
+      
+  }
+
+  submitHandler = (event) => {
+     event.preventDefault();
+     
+     axios.post("http://localhost:5000/friends", {
+      friend: {
+        name : this.state.name,
+        age : this.state.age, 
+        email: this.state.email
+      }
+     })
+       .then( response =>  {
+            this.setState({friends : response.data})
+      })
+      .catch( error => console.log(error))
+  }
+
   render() {
+     const {name, age, email } = this.state;
     return (
       <div className="App">
-         <Form className="form" friends={this.state.friends} />
+         <Friends className='friends' friends={this.state.friends} inputChangeHandler={this.inputChangeHandler }
+                                  submitHandler = {this.submitHandler} name = {name} age ={age} email = {email} />
       </div>
     );
   }
