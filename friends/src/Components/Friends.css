@@ -5,18 +5,29 @@
     justify-content: space-between;
     width: 600px;
 }
+.addFriend {
+    width: 600px;
+}
+
+fieldset {
+    margin-bottom: 25px;
+}
 
 .friendName {
     width: 150px;
-    border: 1px solid yellow;
+    cursor: pointer;
 }
 
 .friendAge {
     width: 50px;
-    border: 1px solid purple;
+    cursor: pointer;
 }
 
 .friendEmail{
     width: 350px;
-    border: 1px solid blue;
+    cursor: pointer;
+}
+
+input {
+    margin: 0px 15px;
 }

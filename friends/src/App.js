@@ -14,10 +14,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData();
-  };
-  
-  getData = () => {
     axios
     .get(`http://localhost:5000/friends`)
     .then( response => {
@@ -27,7 +23,8 @@ class App extends Component {
       console.error( error );
     });
   };
-
+  
+  /* Handle submitting new friends to the list */
   handleSubmit(event) {
     event.preventDefault();
     alert("Submitted");

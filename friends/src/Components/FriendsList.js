@@ -10,13 +10,13 @@ import AddFriend from './AddFriend';
 const FriendsList = (props) => {
     return(
         <div className='friendsList'>
+            <AddFriend handleSubmit={props.handleSubmit}/>
             {props.friends.map( friend => {
                 // Pass friend.id, friend.name, friend.email, friend.age to Friend
                 return(
                     <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email} />
                 );
             } )}
-            <AddFriend handleSubmit={props.handleSubmit}/>
         </div>
     );
 };
