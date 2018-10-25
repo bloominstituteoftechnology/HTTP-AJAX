@@ -42,7 +42,7 @@ const FriendForm = props => {
                 <Input type="text" name="email" onChange={props.handleTextInput} value={props.email} placeholder="Add email..." />
             </InputGroup>
             <br />
-            <StyledButton color="success" type="submit">Add Friend</StyledButton>
+            <StyledButton color="success" type="submit">Add Friend!</StyledButton>
         </StyledForm>
     );
 };

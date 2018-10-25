@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendCard from './FriendCard';
+import styled from 'styled-components';
+
+const CenteredDiv = styled.div`
+    margin: auto;
+    display: flex;
+    justify-content: center;
+`;
 
 export default class Friend extends Component {
     constructor(props) {
@@ -28,13 +35,13 @@ export default class Friend extends Component {
 
     render() {
         if (!this.state.friend) {
-            return <div>Loading...</div>;
+            return <CenteredDiv style={{margin: "200px"}}>Loading...</CenteredDiv>;
         }
     
         return (
-            <div>
+            <CenteredDiv>
                 <FriendCard key={this.state.friend.id} friend={this.state.friend} />
-            </div>
+            </CenteredDiv>
         )
     }
 }

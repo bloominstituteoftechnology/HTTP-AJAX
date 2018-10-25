@@ -56,6 +56,10 @@ export default class FriendList extends Component {
             });
     };
 
+    deleteHandler = () => {
+        alert("Are you positive you want to delete this friend?")
+        };
+
     render() {
         return (
             <div>
@@ -68,7 +72,7 @@ export default class FriendList extends Component {
                 />
                 <CardForFlex>
                     {this.state.friends.map(friend => (
-                                <FriendCard key={friend.id} friend={friend} />
+                                <FriendCard key={friend.id} friend={friend} handleDelete={this.deleteHandler} />
                     ))}    
                 </CardForFlex>
             </div>
