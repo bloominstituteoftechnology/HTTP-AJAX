@@ -1,121 +1,150 @@
-import React from 'react';
-import './App.css';
-import axios from 'axios';
-import { Button, FormGroup, Label, Input } from 'reactstrap';
+import React from "react";
+import "./App.css";
+import axios from "axios";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends:[],
-      error: '', 
-      name: '',
-      age: '',
-      email: '',
+      friends: [],
+      error: "",
+      name: "",
+      age: "",
+      email: ""
     };
   }
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/friends')
+      .get("http://localhost:5000/friends")
       .then(response => {
-        this.setState({ friends: response.data })
+        this.setState({ friends: response.data });
       })
       .catch(err => {
-        this.setState({ error: "Something doesn't feel right."})
-      })
+        this.setState({ error: "Something doesn't feel right." });
+        console.log(this.state.error, err);
+      });
   }
 
-  targetChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+  targetChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
-  submitNewFriend = (e) => {
+  submitNewFriend = e => {
     e.preventDefault();
     const newFriend = {
       name: this.state.name,
       email: this.state.email,
       age: this.state.age,
-      id: (this.state.friends.length + 1)
-    }
-    axios.post('http://localhost:5000/friends', newFriend)
+      id: this.state.friends.length + 1
+    };
+    axios
+      .post("http://localhost:5000/friends", newFriend)
       .then(response => {
-        this.setState({ 
-          friends: response.data,
-          name: '',
-          email: '',
-          age: ''
-        })
+        this.setState({
+            friends: response.data,
+            name: "",
+            email: "",
+            age: ""
+          }
+        );
       })
       .catch(err => {
-        console.log('Error:', err);
+        console.log("Error:", err);
       });
-  }
+  };
 
-  deleteFriend = (id) => {
-    axios.delete(`http://localhost:5000/friends/${id}`)
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
-        this.setState({ friends: response.data })
+        this.setState({ friends: response.data });
       })
       .catch(err => {
-        console.log('Error:', err);
-      })
-  }
+        console.log("Error:", err);
+      });
+  };
 
-  updateFriend = (id) => {
+  updateFriend = id => {
     const updatedFriend = {
       name: this.state.name,
       email: this.state.email,
-      age: this.state.age,
-    }
-    axios.put(`http://localhost:5000/friends/${id}`, {
-      updatedFriend
-    })
+      age: this.state.age
+    };
+    axios
+      .put(`http://localhost:5000/friends/${id}`, updatedFriend)
       .then(response => {
-        console.log("this worked", updatedFriend, response.data)
-        this.setState({ 
+        this.setState({
           friends: response.data,
-          name: '',
-          email: '',
-          age: ''
-        })
+          name: "",
+          email: "",
+          age: ""
+        });
       })
       .catch(err => {
-        console.log('Error:', err);
-      })
-  }
+        console.log("Error:", err);
+      });
+  };
 
   render() {
     return (
       <div className="App">
         <h1>'Sup?</h1>
         <p>Please add more friends. I'm lonely.</p>
-        <FormGroup>
-          <Label for='name' >Name  </Label>
-          <Input type='text' name='name' label={this.state.name} onChange={this.targetChange}/>
-        </FormGroup>
-        <FormGroup>
-          <Label>Email  </Label>
-          <Input type='email' name='email' label={this.state.email} onChange={this.targetChange}/>
-        </FormGroup>
-        <FormGroup>
-          <Label>Age  </Label>
-          <Input type='text' name='age' label={this.state.age} onChange={this.targetChange}/>
-        </FormGroup>
-        <Button onClick={this.submitNewFriend} >Submit</Button>
-        <p>    To Update a Friend's Info: Fill in the boxes above and click "Update" on the friend below</p>
+        <form onSubmit={this.submitNewFriend}>
+          <div>
+            <label>Name </label>
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.targetChange}
+            />
+          </div>
+          <div>
+            <label>Email </label>
+            <input
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.targetChange}
+            />
+          </div>
+          <div>
+            <label>Age </label>
+            <input
+              type="text"
+              name="age"
+              value={this.state.age}
+              onChange={this.targetChange}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <p>
+          {" "}
+          To Update a Friend's Info: Fill in the boxes above and click "Update"
+          on the friend below
+        </p>
         <p>--------</p>
         <p>Here are the friends I already have.</p>
         {this.state.friends.map(item => {
           return (
-            <div key={item.id} >
-              <p>{item.name} --> Age: {item.age} </p>
-              <p>{item.email} {}</p>
-              <Button onClick={() => this.deleteFriend(item.id)} >X Delete</Button>
-              <Button onClick={() => this.updateFriend(item.id)} >Update</Button>
+            <div key={item.id}>
+              <p>
+                {item.name} --> Age: {item.age}{" "}
+              </p>
+              <p>
+                {item.email} {}
+              </p>
+              <button onClick={() => this.deleteFriend(item.id)}>
+                X Delete
+              </button>
+              <button onClick={() => this.updateFriend(item.id)}>Update</button>
               <p>--------</p>
             </div>
-        )})}
+          );
+        })}
       </div>
     );
   }
