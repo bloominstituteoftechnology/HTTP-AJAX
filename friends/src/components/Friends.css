@@ -32,8 +32,22 @@ input {
 
 .friend-controls {
     width: 20%;
+    text-align: center;
 }
 
 .friend-controls button {
     width: 90%;
+}
+
+.friend-controls span {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.friend-controls .friend-update {
+    color: green;
+}
+
+.friend-controls .friend-delete {
+    color: red;
 }
