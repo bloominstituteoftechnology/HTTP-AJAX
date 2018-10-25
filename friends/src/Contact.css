@@ -46,6 +46,7 @@ p {
   font-size: 1.7rem;
   color: #082ae9;
   padding-left: 5%;
+  padding-right: 15px;
   margin: 0 5px;
   border-top: 1px solid black;
 }
