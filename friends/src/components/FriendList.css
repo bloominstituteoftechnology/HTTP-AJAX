@@ -1,0 +1,39 @@
+.friend {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-right: 10px;
+}
+
+button {
+  width: 70px;
+}
+
+div form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  margin-right: 10px;
+}
+
+span {
+  font-weight: bold;
+}
+
+form span {
+  margin-right: 10px;
+}
+
+form button {
+  width: 100px;
+}
