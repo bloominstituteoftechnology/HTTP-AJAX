@@ -53,10 +53,7 @@ class App extends Component {
     return (
       <div className="App">
       <FriendsList friends={this.state.friends} />
-      <AddFriendForm 
-        friend={this.state.friends}
-        addFriendHandler={this.addFriendHandler}
-      />
+      <AddFriendForm />
       </div>
     );
   }
