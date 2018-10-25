@@ -4,17 +4,18 @@ import './App.css';
 import axios from 'axios';
 import FriendList from './components/friendList'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import Form from './components/form'
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       friends: [],
+      newFriend:{
       name: '',
       age: '',
       email: ''
-      }
+      }}
     };
   
 
@@ -29,16 +30,15 @@ class App extends Component {
 
   changeHandler = event => {
     this.setState({
+        newFriend: {
+          ...this.state.newFriend,
+        
       [event.target.name]: event.target.value
-    })
+    }})
   }
 
-  addNewFriend = event => {
-    const newFriend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email,
-    }
+  newFriend = event => {
+    event.preventDefault();
     axios
     .post('http://localhost:5000/friends', this.state.newFriend)
     .then(response => {
@@ -56,19 +56,37 @@ class App extends Component {
     this.setState(selectedFriend)
   } 
 
-//  updateFriend
+  // updateFriend = () =>{
+  //   axios
+  //     .put(`http://localhost:5000/friends${this.state.newFriend}`,
+  //     this.state.newFriend
+  //     )
+  //     .then(response => {
+  //       this.setState({friends: response.data});
+  //     })
+  //     .catch(error => console.log('It\'s over! Turn back now!'))
+  //   }
+    
+    deleteFriend = (event, id) =>{
+      event.preventDefault();
+      axios
+        .put(`http://localhost:5000/friends${id}`,
+        this.state.newFriend
+        )
+        .then(response => {
+          this.setState({friends: response.data});
+        })
+        .catch(error => console.log('It\'s over! Turn back now!'))
+      }
 
   render() {
     return (
       <div className="App">
-      {this.state.friends.map(friends => (
-        <FriendList friends = {this.state.friends} 
-        handleClick = {this.selectedFriend}/>
-      ))}
       <form>
       <input 
           type='text' 
           placeholder='name' 
+          name='name'
           onChange={this.changeHandler}
           value={this.state.name} >
       </input> <br/>
@@ -76,6 +94,7 @@ class App extends Component {
       <input 
           type='number' 
           placeholder='age' 
+          name='age'
           onChange={this.changeHandler}
           value={this.state.age}>
       </input> <br/>
@@ -83,6 +102,7 @@ class App extends Component {
       <input 
           type='text' 
           placeholder='email' 
+          name='email'
           onChange={this.changeHandler}
           value={this.state.email}>
       </input> <br/>
@@ -91,6 +111,10 @@ class App extends Component {
       Add Friend
       </button>
   </form>
+  {this.state.friends.map(friends => (
+    <FriendList friends = {friends} 
+    handleClick = {this.selectedFriend}/>
+  ))}
           </div>
     );
   }
