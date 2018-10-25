@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import logo from './logo.svg';
 import './App.css';
 import FriendsList from './FriendsList';
 import Form from './Form';
+import Friend from './Friend'
 
 class App extends Component {
   constructor(props){
@@ -66,13 +67,18 @@ class App extends Component {
               </FriendHeader>
         {this.state.friends.map((friend) => {
           return (
-              <Route 
+            <Link to={`/friends/${friend.id}`}> 
+              <Route
+                exact
                 path="/" 
-                render={(props) => <FriendsList 
+                render={(props) => 
+                                  
+                                    <FriendsList 
                                       name={friend.name} 
                                       age={friend.age} 
                                       email={friend.email} 
                                       id={friend.id} /> } /> 
+              </Link>
               )})}
             </Container>
 
@@ -82,6 +88,8 @@ class App extends Component {
               email={this.state.email} 
               inputHandler={this.inputHandler} 
               addNewFriend={this.addNewFriend} />
+
+              <Route path="./friends/:id" component={Friend} />
       </div>
     );
   }
