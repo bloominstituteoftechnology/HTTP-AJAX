@@ -55,6 +55,14 @@ app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
 
+// I had to add this to the server to give the React Router Functionality.
+//I didn't realize I would have to do something on the backend until I started playing around with it.
+
+app.get('/friends/:id', (req, res) => {
+	const friend = friends.filter(friend => friend.id.toString() === req.params.id)[0];
+	res.status(200).json(friend);
+});
+
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];

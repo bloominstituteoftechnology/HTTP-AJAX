@@ -6,7 +6,7 @@ export default class Friend extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friend: '',
+            friend: ''
         };
     }
 
@@ -19,7 +19,7 @@ export default class Friend extends Component {
         axios
             .get(`http://localhost:5000/friends/${id}`)
             .then(response => {
-                this.setState(() => ({ friend: response.data }));
+                this.setState(() => ({ friend: response.data }))
             })
             .catch(error => {
                 console.error(error);
