@@ -32,24 +32,44 @@ const Friend = Styled.section`
 const Title = Styled.h1`
     font-size: 36px;
 `;
-const FriendHeader = Styled.h1`
+const FriendHeader = Styled.section`
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     background-color: gray;
     border-top: 2px solid aqua;
-    font-size: 24px;
     margin: 0;
     width: 100%;
+`;
+const FriendName = Styled.p`
+    font-size: 24px;
+    margin: 0;
+    padding-left: 10px;
+    width: auto;
 `;
 
 const FriendPara = Styled.p`
     padding: 0 10px;
-`
+`;
+
+const Edit = Styled.p`
+    &:hover {background-color: black; color: white; cursor: pointer;}
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 5px;
+    width: 70px;
+`;
 
 export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
       friends: [],
-      newFriend: {}
+      newFriend: {},
+      editFriend: false
   }
 }
 componentDidMount() {
@@ -58,8 +78,6 @@ componentDidMount() {
        .catch(err => console.log(err));
 }
 add = (obj) => {
-  const index = this.state.friends.length+1;
-  obj.id = index;
   axios.post('http://localhost:3020/friends/', obj)
     .then(response => {
       this.setState({friends: response.data})
@@ -68,6 +86,18 @@ add = (obj) => {
       console.log(error);
     })
 }
+edit = (e) => {
+  console.log(e);
+}
+delete = (e) => {
+  console.log(e);
+  const friendID = e.target.parentNode.parentNode.id;
+
+  axios.delete(`http://localhost:3020/friends/${friendID}`)
+        .then(response => {this.setState({friends: response.data})})
+        .catch(err => console.log(err));
+}
+
   render() {
     return (
       <Container>
@@ -76,8 +106,12 @@ add = (obj) => {
         <FriendsList>
         {this.state.friends.map(friend => {
           return  (
-            <Friend key={friend.id}>
-              <FriendHeader>{friend.name}</FriendHeader>
+            <Friend key={friend.id} id={friend.id}>
+              <FriendHeader>
+                <FriendName>{friend.name}</FriendName>
+                <Edit onClick={this.edit}>Edit</Edit>
+              <button onClick={this.delete}>delete</button>
+              </FriendHeader>
               <FriendPara>Age: {friend.age}</FriendPara>
               <FriendPara>Email: <strong>{friend.email}</strong></FriendPara>
             </Friend>
