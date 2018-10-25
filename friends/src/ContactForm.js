@@ -3,28 +3,8 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import './ContactForm.css';
 
 
-class ContactForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      newFriend: {
-        name: '',
-        email: '',
-        age: ''
-      }
-    }
-  }
-
-  changeHandler = event => {
-    this.setState({ 
-      newFriend: {
-        ...this.state.newFriend,
-        [event.target.name]: event.target.value
-      }
-    });
-  }
-
- render() {
+function ContactForm(props) {
+  
   return(
     <div className="newContactForm">
       <h1>Add New Contact</h1>
@@ -32,22 +12,21 @@ class ContactForm extends React.Component {
         <FormGroup>
           <Label className="formLabel"for="exampleName">Name</Label>
           <Input 
-            type="name" 
-            onChange={this.changeHandler}
+            type="text" 
+            onChange={props.formInputHandler}
             name="name" 
             id="newName" 
-            value={this.state.newFriend.name} 
+            value={props.newFriend.name} 
             placeholder="John Doe" 
           />
         </FormGroup>
         <FormGroup>
           <Label className="formLabel"for="exampleEmail">Email</Label>
           <Input 
-            type="email" 
-            onChange={this.changeHandler}
+            type="email" onChange={props.formInputHandler}
             name="email" 
             id="newEmail" 
-            value={this.state.newFriend.email} 
+            value={props.newFriend.email} 
             placeholder="myaddress@email.com" 
           />
         </FormGroup>
@@ -55,10 +34,10 @@ class ContactForm extends React.Component {
           <Label className="formLabel"for="exampleSelect">Age</Label>
           <Input 
             type="select" 
-            onChange={this.changeHandler}
+            onChange={props.formInputHandler}
             name="age" 
             id="newAge" 
-            value={this.state.newFriend.age} >
+            value={props.newFriend.age} >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -181,10 +160,13 @@ class ContactForm extends React.Component {
             <option>120</option>
           </Input>
         </FormGroup>
-        <Button className="submitButton"size="lg">Submit Contact</Button>
+        <Button 
+          onClick={props.addNew}
+          className="submitButton"
+          size="lg">Submit Contact</Button>
       </Form>  
     </div>
   )
-  } 
+   
 }
 export default ContactForm;

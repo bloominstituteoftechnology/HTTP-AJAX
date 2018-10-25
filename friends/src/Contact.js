@@ -6,8 +6,8 @@ function Contact(props) {
   <div className="contactCard">
     <h3>{props.name}</h3>
     <table className="info">
-      <table className="age">{props.age} years old</table>  
-      <table className="email">{props.address}</table>
+      <p className="age">{props.age} years old</p>  
+      <p className="email">{props.address}</p>
     </table>  
   </div>  
   )

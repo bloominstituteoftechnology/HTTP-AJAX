@@ -33,13 +33,11 @@ p {
   font-style: italic;
   font-weight: bold;
   background-color: rgba(208, 208, 219, 0.267);
-  padding: 0 1%;
 }
 
 .age {
   margin-top: 5px;
   margin-left: 5px;
-  padding: 5px;
   color: black;
 }
 
@@ -47,7 +45,7 @@ p {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.7rem;
   color: #082ae9;
-  padding: 5%;
+  padding-left: 5%;
   margin: 0 5px;
   border-top: 1px solid black;
 }

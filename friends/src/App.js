@@ -8,7 +8,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      newFriend: {
+        name: '',
+        email: '',
+        age: ''
+      }
     }
   }
 
@@ -17,6 +22,24 @@ class App extends Component {
       .get('http://localhost:5000/friends')
       .then(response => this.setState({ friends: response.data }))
   }
+  
+
+  changeHandler = event => {
+    this.setState({ 
+      newFriend: {
+        ...this.state.newFriend,
+        [event.target.name]: event.target.value,
+      }
+    });
+  }
+
+
+  addContact = ev => {
+    ev.preventDefault();
+    axios.post('http://localhost:5000/friends', this.state.newFriend)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+  };
 
   render() {
     return (
@@ -32,7 +55,10 @@ class App extends Component {
                 address={friend.email} />
             ))}
           </div>
-          <ContactForm />
+          <ContactForm 
+            addNew={this.addContact}
+            formInputHandler={this.changeHandler}
+            newFriend={this.state.newFriend} />
         </section>
       </div>
     );
