@@ -13,6 +13,8 @@ class App extends Component {
     this.state = {
      friends: [],
      name: '',
+     age: '',
+     email: '',
       }
   }
 
@@ -22,6 +24,11 @@ class App extends Component {
         .then(res => this.setState({friends: res.data}))
   }
 
+  handleFriendFormInput = event => {
+    const name = event.target.name;
+    this.setState({ [name]: event.target.value });  
+  }
+
   render() {
     return (
       <div className="App">
@@ -29,7 +36,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
         </header> 
         <FriendsList friends= {this.state.friends} />
-        <FriendInfoForm />
+        <FriendInfoForm handleFriendFormInput = {this.handleFriendFormInput}/>
         <br/>
       </div>
     );

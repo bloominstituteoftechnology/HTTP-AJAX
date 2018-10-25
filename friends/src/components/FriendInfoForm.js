@@ -12,24 +12,12 @@ width: 100%;
 function FriendInfoForm (props) {
     return (
         <FriendInputForm>
-            {/* <form className= 'friend-input'> */}
-                <input type="text" placeholder="Friend Name"/>
-                <br/>
-                <input type="text" placeholder="Friend Country"/>
-                <br/>
-                <input type="text" placeholder="Friend City"/>
-                <br/>
-                <input type="email" placeholder="Friend Email"/>
-                <br/>
-                <input type="tel" placeholder="Friend Numbers"/>
-            {/* </form> */}
-            {/* <form className= 'friend-input'>
-                <input type="text" placeholder="Placeholder Friend Info Form - FRIEND Name "/>
-                <input type="text" placeholder="Placeholder Friend Info Form - FRIEND Country "/>
-                <input type="text" placeholder="Placeholder Friend Info Form - FRIEND City "/>
-                <input type="email" placeholder="Placeholder Friend Info Form - FRIEND Email"/>
-                <input type="tel" placeholder="Placeholder Friend Info Form - FRIEND Numbers"/>
-            </form> */}
+            <input type="text" placeholder="Enter Friend's Name" name= "name" onKeyPress= {props.handleFriendFormInput}/>
+            <br/>
+            <input type="text" placeholder="Enter Friend's Age" name= "age" onKeyPress= {props.handleFriendFormInput}/>
+            <br/>
+            <input type="text" placeholder="Enter Friend's Email" name= "email" onKeyPress= {props.handleFriendFormInput}/>
+            <br/>
         </FriendInputForm>
         )
     }
