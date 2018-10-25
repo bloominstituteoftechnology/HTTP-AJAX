@@ -42,11 +42,12 @@ class App extends Component {
 
   } 
 
-  deleteFriend = id => {
-    axios
-      .delete(`http://localhost:5000/friends/${id}`)
-      .then(response =>
-        this.setState({friends: response.data}))
+  deleteFriend = (event, id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({ friends: res.data })
+        // god bless housemates and https://stackoverflow.com/questions/39680773/how-do-i-access-data-returned-from-an-axios-get-to-display-on-a-web-page-using-r
+      })
   }
 
 
@@ -60,7 +61,7 @@ class App extends Component {
             <h3>{friend.name}</h3>
             <p>{friend.age}</p>
             <p>{friend.email}</p>
-            <button onDelete={this.deleteFriend} onClick={this.deleteFriend}>X</button>
+           <div className="xrated" onClick={event => this.deleteFriend(event, friend.id)}>x</div>
             </div>
 
           )
