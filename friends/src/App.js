@@ -18,6 +18,7 @@ class App extends Component {
         console.log(response.data);
         this.setState({friends: response.data})
       })
+      .catch(err => console.log(err))
   }
 
   submitBtn = (input) => {
@@ -26,6 +27,7 @@ class App extends Component {
       .then(response => {
         this.setState({friends: response.data})
       })
+      .catch(err => console.log(err))
   }
 
   render() {
