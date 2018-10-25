@@ -9,7 +9,9 @@ const FriendList = (props) => {
       {props.friends.map((x) => {
         return (
           <div>
-            <Friend friend={x}/>
+            <Friend 
+              friend={x}
+            />
           </div>
         )
       })}

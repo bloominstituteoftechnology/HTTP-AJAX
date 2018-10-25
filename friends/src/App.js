@@ -27,28 +27,6 @@ class App extends Component {
       })
   }
 
-  // addFriendHandler = e => {
-  //   this.setState({ 
-  //     name : e.target.name,
-  //     age: e.target.age,
-  //     email: e.target.email,
-  //    });
-  // }
-
-  // submitFriendHandler = e => {
-  //   e.preventDefault();
-  //   const friend = {
-  //     name: this.state.name,
-  //     age: e.target.age,
-  //     email: e.target.email,
-  //   }
-  //   axios
-  //     .post('http://localhost:5000/friends', { friend })
-  //     .then(response => console.log(response))
-  //     .catch(error => console.log(error));
-  // }
-
-
   render() {
     return (
       <div className="App">

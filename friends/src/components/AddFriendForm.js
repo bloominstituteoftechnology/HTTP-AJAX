@@ -10,19 +10,7 @@ class AddFriendForm extends Component {
       age: '',
       email: '',
     };
-    //this.addFriendHandler = this.addFriendHandler.bind(this);
   }                     
-
-  // componentDidMount() {
-  //   axios
-  //     .get('http://localhost:5000/friends')
-  //     .then(response => {
-  //       this.setState(() => ({ friends: response.data }));
-  //     })
-  //     .catch(error => {
-  //       console.error('Server Error', error);
-  //     })
-  // }
 
   addFriendHandler = e => {
     this.setState({ 
@@ -38,6 +26,25 @@ class AddFriendForm extends Component {
     }
     axios
       .post('http://localhost:5000/friends', friend )
+      .then(response => {
+        this.setState({ friends:response.data })
+      })
+      .catch(error => console.log(error));
+  }
+
+  editFriend = (id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friend )
+      .then(response => {
+        this.setState({ friends:response.data })
+      })
+      .catch(error => console.log(error));
+  }
+
+  deleteFriend = (e, id) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
         this.setState({ friends:response.data })
       })
@@ -71,6 +78,7 @@ class AddFriendForm extends Component {
                   onChange={this.addFriendHandler}  />
           <br></br>
           <button type="submit" onClick={this.submitFriendHandler}>Submit</button>
+          <button type="submit" onClick={() => this.editFriend(this.state.editId)}>Edit</button>
         </form>    
       </div>
   
