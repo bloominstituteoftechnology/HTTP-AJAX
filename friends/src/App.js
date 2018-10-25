@@ -85,13 +85,13 @@ render() {
      />
    </form>
    <button onClick={this.addFriend}>Add Friend</button>
-   <button onClick={this.updateFriend}>Update Friend</button> 
-   <button onClick={this.deleteFriend}>Delete Friend</button>  
       {this.state.friends.map(friends => (
       <FriendList key={friends.id} friends={friends} />
        ))}
     </div>
   );
+   
+    
 }
 }
 export default App;
