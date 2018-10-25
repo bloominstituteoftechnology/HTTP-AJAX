@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -40,6 +41,12 @@ class App extends Component {
       }
     }
 
+    updateHandler = (id) => {
+      return () => {
+        
+      }
+    }
+
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value
@@ -49,16 +56,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavLink to="/" >Friends</NavLink>
+        <NavLink to="/friends">Update</NavLink>      
         <h1>You're not alone! :)</h1>
-        <NewFriend 
-            submitHandler={this.submitHandler}
-            handleChange={this.handleChange}
-            name={this.state.name}
-            age={this.state.age}
-            email={this.state.email}
+        <Route path="/friends" render={(props) => <NewFriend {...props}
+                                        submitHandler={this.submitHandler}
+                                        handleChange={this.handleChange}
+                                        name={this.state.name}
+                                        age={this.state.age}
+                                        email={this.state.email}
+                                      />}
         />
-        <h2>Friends List:</h2>
-        <FriendCard friends={this.state.friends} deleteHandler={this.deleteHandler} /> 
+        <Route exact path="/" render={(props) => <FriendCard {...props} friends={this.state.friends} deleteHandler={this.deleteHandler} />} />
       </div>
     );
   }

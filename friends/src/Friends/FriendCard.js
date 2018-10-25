@@ -4,6 +4,7 @@ import FriendInfo from './FriendInfo';
 const FriendCard = (props) => {
     return (
         <div className="friend-container">
+        <h2>Friends:</h2>
             {props.friends.map(friend => {
                 return <FriendInfo 
                         key={friend.id}

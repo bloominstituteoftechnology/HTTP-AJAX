@@ -8,6 +8,7 @@ const NewFriend = (props) => {
             <input type="text" name="age" placeholder="Age" onChange={props.handleChange} value={props.age} />
             <input type="text" name="email" placeholder="Email" onChange={props.handleChange} value={props.email} />
             <button type="submit">Submit</button>
+            <h4>Go back to your friends list to see them there!</h4>
         </form>
     )
 }
