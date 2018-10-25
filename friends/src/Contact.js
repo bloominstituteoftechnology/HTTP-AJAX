@@ -1,5 +1,6 @@
 import React from 'react';
 import './Contact.css';
+import { Trash, Edit } from 'react-feather';
 
 function Contact(props) {
   return(
@@ -8,7 +9,13 @@ function Contact(props) {
     <div className="info">
       <p className="age">{props.age} years old</p>  
       <p className="email">{props.address}</p>
-    </div>  
+    </div>
+    <div className="editAndTrash">
+      <Edit size={35}/>
+      <Trash 
+        size={35}
+        onClick={props.delete}/>
+    </div>
   </div>  
   )
 }

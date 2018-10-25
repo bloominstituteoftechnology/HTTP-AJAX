@@ -48,6 +48,14 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
+  deleteContact = (event, id) => {
+    event.preventDefault();
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends: response.data})
+      })
+  }
+
   render() {
     return (
       <div className="App">
@@ -59,7 +67,8 @@ class App extends Component {
                 key={friend.id}
                 name={friend.name}
                 age={friend.age}
-                address={friend.email} />
+                address={friend.email}
+                delete={this.deleteContact} />
             ))}
           </div>
           <ContactForm 
