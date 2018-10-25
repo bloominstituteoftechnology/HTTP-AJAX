@@ -6,12 +6,16 @@ import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 import FriendsList from './FriendsList';
+import Form from './Form';
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state ={
       friends: [],
+      name: '',
+      age: '',
+      email: ''
     }
   }
   
@@ -25,6 +29,22 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  addNewFriend = () => {
+    axios.post('http://localhost:5000/friends', {friend: {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }})
+    .then(response => {
+      this.setState({friends: response.data})
+    })
+    .catch(err => {console.log(err)})
+  }
+
+  inputHandler = (e) => {
+    this.setState({[e.target.name]: e.target.value})
   }
 
 
@@ -54,6 +74,13 @@ class App extends Component {
                                       id={friend.id} /> } /> 
               )})}
             </Container>
+
+            <Form 
+              name={this.state.name} 
+              age={this.state.age} 
+              email={this.state.email} 
+              inputHandler={this.inputHandler} 
+              addNewFriend={this.addNewFriend} />
       </div>
     );
   }
