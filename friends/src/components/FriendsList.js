@@ -1,11 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 function FriendsList (props) {
     return (
-        <div>
-            <ul>
-                <li>Friends List - Comming Soon!</li>
-            </ul>
+        <div className = 'friendList-wrapper'>
+            {props.friends.map(friend => {
+                return (
+                <div>
+                <ul>
+                   <li>Name: {friend.name}</li>
+                   <li>Age: {friend.age}</li>
+                   <li>Email: {friend.email}</li>
+               </ul>
+               </div>
+                )
+            })}
         </div>
     )
 }
