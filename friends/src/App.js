@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button} from 'reactstrap';
 import Friends from './components/Friends'
 import axios from 'axios';
 import './App.css';
@@ -34,13 +35,9 @@ class App extends Component {
 
   addFriend = (event) => {
     event.preventDefault();
-    let newId = this.state.friends.length + 1;
-    this.setState({
-      id:newId
-    })
-
+  
     const Friendz = {
-      id:this.state.id,
+      id:this.state.friends.length + 1,
       name:this.state.name,
       age:this.state.age,
       email:this.state.email
@@ -49,7 +46,12 @@ class App extends Component {
     axios
     .post("http://localhost:5000/friends", Friendz)
     .then(response => {
-      this.setState({friends:response.data})
+      this.setState({
+        friends:response.data,
+         name: '', 
+         age:'', 
+         email:''
+        })
     })
     .catch( error => console.log(error))
   }
@@ -62,11 +64,11 @@ render() {
           {this.state.friends.map(item => (
               <Friends key={item.id} friends={item} />
           ))}
-          <form>
-            <input type="text" placeholder="name" name="name" onChange={this.changeHandler}></input>
-            <input type="text" placeholder="age" name="age" onChange={this.changeHandler}></input>
-            <input type="email" placeholder="email" name="email" onChange={this.changeHandler}></input>
-            <button onClick={this.addFriend}>Save</button>
+          <form >
+            <input type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler}></input>
+            <input type="text" placeholder="age" name="age" value={this.state.age} onChange={this.changeHandler}></input>
+            <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.changeHandler}></input>
+            <Button  color="success" onClick={this.addFriend} >Save</Button>
           </form>
         </div>
         )
