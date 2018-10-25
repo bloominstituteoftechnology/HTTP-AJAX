@@ -1,22 +1,30 @@
 import React from "react";
-// import { Route, Link } from "react-router-dom";
 
-// import Friend from "./friend";
-// import Details from "./details";
+import FriendCard from "./friendCard";
+
 // import friendsData from "./friends_data";
 
 export default class FriendProfile extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    clickHandler = e => {
-        // e.preventDefault();
-        // this.props.history.push(`/friends/${this.props.match.params.id}/details`);
-    };
+  clickHandler = e => {
+    e.preventDefault();
+    this.props.history.push(`/friends/${this.props.match.params.id}/details`);
+  };
 
-    render() {
+  render() {
 
-        return
-    }
+      const friend = this.props.friends.filter(item => {
+        return item.id === parseInt(this.props.match.params.id);
+
+    })[0];
+
+    return (
+      <div>
+        <FriendCard {...friend} />
+      </div>
+    );
+  }
 }

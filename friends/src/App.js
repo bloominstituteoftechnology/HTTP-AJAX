@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-import Friends from "./components/friends";
+import FriendsList from "./components/friendslist";
 import { Route } from "react-router-dom";
-import { Input, Button, FormControl, FormGroup } from "@material-ui/core";
+import { Input, Button, FormGroup } from "@material-ui/core";
+import FriendProfile from './components/friendProfile';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       friends: [],
       name: "",
-      age: null,
+      age:'',
       email: ""
     };
   }
@@ -19,7 +20,7 @@ class App extends Component {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
-        console.log(response);
+
         this.setState({ friends: response.data });
       })
       .catch(err => {
@@ -80,10 +81,13 @@ class App extends Component {
       <div className="App">
         <h1>Friends</h1>
         <Route
-          path="/friends"
-          render={() => <Friends friends={this.state.friends} />}
+         exact path="/friends"
+          render={props => <FriendsList friends={this.state.friends} {...props} />}
         />
-
+        <Route
+         path="/friends/:id"
+          render={props => <FriendProfile friends={this.state.friends} {...props} />}
+        />
         {/* <Route path="/friends/:id" render={() => (<FriendsProfile friends={this.state.friends} {...props} />)} /> */}
         <FormGroup row>
           <Input
