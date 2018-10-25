@@ -30,3 +30,31 @@
     transform: rotate(360deg);
   }
 }
+
+.Friends {
+  background-color:black;
+  display:flex;
+  justify-content: center;
+}
+.Info {
+  font-weight: bold;
+  width: 700px;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 30px;
+  padding: 20px;
+  background-image: linear-gradient(to right, black,yellow, yellow, yellow, yellow, yellow, black);
+}
+
+.field {
+  background-color: yellow;
+  width: 300px;
+  height:40px;
+  font-size: 2rem;
+  margin: 10px;
+}
+
+.form {
+  background-color: black;
+  padding-top:30px;
+}

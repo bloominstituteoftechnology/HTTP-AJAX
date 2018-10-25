@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Friends from './Friends'
 import axios from '../node_modules/axios'
 
 class App extends Component {
@@ -13,6 +14,8 @@ class App extends Component {
     }
   }
 
+  
+
   componentDidMount() {
         axios
         .get("http://localhost:5000/friends")
@@ -22,11 +25,15 @@ class App extends Component {
         .catch (err => console.log(err));
     }
   render() {
-    console.log(this.state.friends)
+    // console.log(this.state.friends)
     return (
       <div className="App">
+      <form className='form' action="">
+        <input className='field' type="text"></input>
+        <input className='field' type="text"></input>
+      </form>
         <section className="Friends">
-         {this.state.friends}
+        <Friends friends={this.state.friends} />
         </section>
       </div>
     );
