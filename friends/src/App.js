@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 import logo from './logo.svg';
-import './App.css';// import jaklundun from 'govi'; initial commit
+import './App.css';
 import axios from 'axios';
 
 import FriendInfoForm from './components/FriendInfoForm';
@@ -29,6 +29,23 @@ class App extends Component {
     this.setState({ [name]: event.target.value });  
   }
 
+  handleSubmitBtn = event => {
+    event.preventDefualt();
+
+    axios.post('http://localhost:5000/friends', {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    })
+      .then(res => {
+        this.setState({ friends: res.data})
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -37,7 +54,7 @@ class App extends Component {
         </header> 
         <FriendsList friends= {this.state.friends} />
         <FriendInfoForm handleFriendFormInput = {this.handleFriendFormInput}/>
-        <AddFriendButton />
+        <AddFriendButton handleSubmitBtn = {this.handleSubmitBtn} handleFriendFormInput= {this.handleFriendFormInput}/>
         <br/>
       </div>
     );

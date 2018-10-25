@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react'; //
 import styled from 'styled-components';
 
 const AddButton = styled.div`
@@ -14,7 +14,7 @@ const AddButton = styled.div`
 
 function AddFriendButton (props) {
     return (
-        <AddButton>
+        <AddButton handleSubmitBtn = {props.handleSubmitBtn} handleFriendFormInput = {props.handleFriendFormInput}>
             Submit
         </AddButton>
     )
