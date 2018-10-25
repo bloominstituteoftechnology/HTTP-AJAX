@@ -7,17 +7,17 @@ function FriendForm(props) {
         <input
             value={props.inputName}
             name="name"
-            onChange={props.handleInput}
+            onChange={props.inputHandler}
             placeholder="Name" />
         <input 
             value={props.inputAge} 
             name="age"
-            onChange={props.handleInput}
+            onChange={props.inputHandler}
             placeholder="Age" />
         <input 
             value={props.inputEmail}
             name="email" 
-            onChange={props.handleInput}
+            onChange={props.inputHandler}
             placeholder="Email" />
         <button onClick={props.addFriend}>Add Friend</button>
       </form>
