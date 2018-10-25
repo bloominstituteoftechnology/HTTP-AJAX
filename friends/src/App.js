@@ -24,7 +24,7 @@ class App extends Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  
+
   getFriend = friend => {
     const selectedFriend = {
       name: friend.name,
@@ -67,7 +67,38 @@ class App extends Component {
 
   render() {
     return (
-      
+      <div className="app">
+        <h1>Friends List</h1>
+        <form>
+          <input
+            type="text"
+            placeholder="name"
+            onChange={this.handleChange}
+            name="name"
+            value={this.state.name}
+          />
+          <input
+            type="email"
+            placeholder="email"
+            onChange={this.handleChange}
+            name="email"
+            value={this.state.email}
+          />
+          <input
+            type="number"
+            placeholder="age"
+            onChange={this.handleChange}
+            name="age"
+            value={this.state.age}
+          />
+          <button className="button" onClick={this.addFriend}>
+            Add Friend
+          </button>
+        </form>
+        <button className='button' onClick={id => this.updateFriend(id)}>Update Friend</button>
+        <FriendsList friends={this.state.friends}
+        handleClick={this.getFriend} />
+      </div>
     )
   }
 }
