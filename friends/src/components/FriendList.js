@@ -61,7 +61,7 @@ export default class FriendList extends Component {
                 handleTextInput={this.changeHandler}
                 />
                 {this.state.friends.map(friend => (
-                    <Link to={`/friends/${friend.id}`}>
+                    <Link to={`/friends/${friend.id}`} style={{textDecoration: 'none', color: 'black'}}>
                         <FriendCard key={friend.id} friend={friend} />
                     </Link>
                 ))}
