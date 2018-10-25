@@ -13,6 +13,7 @@ class App extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.youAreNotMyFriend = this.youAreNotMyFriend.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,23 @@ class App extends Component {
 
   youAreNotMyFriend(e, id) {
       e.preventDefault();
+      const self = this;  
+
+      axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log(response);
+
+        const friendArr = [];
+              response.data.map(friend => {
+                  return friendArr.push([friend.id, friend.name, friend.age, friend.email])
+        });
+
+        self.setState({
+            friends: friendArr
+        });
+
+      })
+      .catch(err => console.log(err))
   }
 
   handleSubmit(e, name, age, email) {
@@ -49,7 +67,7 @@ class App extends Component {
         age: age,
         email: email
     })
-    .then(function (response) {
+    .then(response => {
         console.log(response);
 
         const friendArr = [];
@@ -62,7 +80,7 @@ class App extends Component {
         });
 
     })
-    .catch(function (error) {
+    .catch(error => {
         console.log(error);
     });
   }
@@ -70,7 +88,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route exact path='/' render={ props => <FriendList friends={this.state.friends} {...props}/>}></Route>
+        <Route exact path='/' render={ props => <FriendList friends={this.state.friends} youAreNotMyFriend={this.youAreNotMyFriend} {...props}/>}></Route>
         <Route path='/addfriend' render={ props => <NewFriend handleSubmit={this.handleSubmit}  {...props} />}></Route>
       </div>
     );

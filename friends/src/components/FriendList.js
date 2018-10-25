@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const FriendList = props =>  (
     <div>
         {props.friends.map(friend => {
-            return <Friend key={friend[0]} friend={friend} />
+            return <Friend key={friend[0]} friend={friend} youAreNotMyFriend={props.youAreNotMyFriend} />
         })}
         <Link to='/addfriend'>Have a new friend?</Link>
     </div>
