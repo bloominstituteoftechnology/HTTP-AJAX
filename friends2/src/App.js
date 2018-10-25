@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 import logo from './logo.svg';
 import './App.css';
@@ -30,13 +31,29 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <Container>
+        <FriendHeader>
+                  <HeaderDiv>
+                      <p>Name</p>
+                  </HeaderDiv>
+                  <HeaderDiv>
+                      <p>Age</p>
+                  </HeaderDiv>
+                  <HeaderDiv>
+                      <p>Email Address</p>
+                  </HeaderDiv>
+              </FriendHeader>
         {this.state.friends.map((friend) => {
           return (
-          <Route path="/" render={(props) => <FriendsList name={friend.name} age={friend.age} email={friend.email} id={friend.id} /> } /> 
-          )
-        })
-    
-        }
+              <Route 
+                path="/" 
+                render={(props) => <FriendsList 
+                                      name={friend.name} 
+                                      age={friend.age} 
+                                      email={friend.email} 
+                                      id={friend.id} /> } /> 
+              )})}
+            </Container>
       </div>
     );
   }
@@ -44,3 +61,24 @@ class App extends Component {
 
 
 export default App;
+
+const Container = styled.div`
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    
+`
+const HeaderDiv = styled.div`
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    color: white;
+`;
+
+const FriendHeader = styled.div`
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+`
