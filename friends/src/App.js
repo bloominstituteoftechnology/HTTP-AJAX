@@ -4,8 +4,9 @@ import axios from 'axios';
 import Friend from './Friend.js';
 import Form from './Form.js';
 import {Route} from 'react-router-dom';
+import { AddFriend } from './AddFriend';
 
-class App extends Component {
+export default class App extends Component {
   constructor(){
     super();
     this.state = {
@@ -13,7 +14,8 @@ class App extends Component {
       id: 0,
       name: '',
       age: 0,
-      email: ''
+      email: '',
+      addFriend: false
     }
   }
 
@@ -36,6 +38,13 @@ class App extends Component {
 
   preventDefault = (e) => {
     e.preventDefault();
+  }
+  
+  addFriend = (e, prevState) => {
+    e.preventDefault();
+    this.setState({
+      addFriend: !prevState.addFriend
+    })
   }
 
   submit = (e) => {
@@ -65,21 +74,39 @@ class App extends Component {
 
   }
 
+  delete = (id) => {
+    return()=>{
+      console.log(id)
+      axios.delete(`http://localhost:5000/friends/${id}`)
+        .then( response=>{
+          this.setState({
+            data: response.data
+          })
+        })
+        .catch(err=>console.log(err))
+    }
+  }
+
   render() {
     return (
       <div className="App">
+        <h1>Welcome to Our Friends!</h1>
+        {/* <Route render={props =><AddFriend {...props} />} /> */}
+        {/* <AddFriend /> */}
         < Form 
           change={this.handleChange}
           submit={this.submit} />
         {this.state.data.map(item => (
-          <Friend no={this.preventDefault} key={item.id} friend={item} />
+          <Friend no={this.preventDefault} delete={this.delete} id={item.id} key={item.id} friend={item} />
         ))}
       </div>
     );
   }
 }
 
-export default App;
+
+
+
 
 
 //use router so when user goes to edit, 
