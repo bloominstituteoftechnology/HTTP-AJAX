@@ -1,5 +1,7 @@
 import React from 'react';
 
+import DeleteFriend from './DeleteFriend';
+
 const FriendCard = (props)=>{
     // This allows displays while App reloads data from server
     if(props.friend === undefined){
@@ -13,7 +15,7 @@ const FriendCard = (props)=>{
             <div>{props.friend.email}</div>
             {/* TODO: this should only render when individual friend has been selected */}
             {props.update ? <div>Update</div> : null}
-            {props.delete ? <div>Delete</div> : null}
+            {props.delete ? <DeleteFriend id={props.friend.id} deleteFriend={props.deleteFriend}/> : null}
         </div>
     )
 }

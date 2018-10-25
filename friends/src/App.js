@@ -29,7 +29,6 @@ class App extends Component {
 
   addFriend = (name, age, email)=>{
     const friend = {
-      id: this.state.friends[this.state.friends.length - 1].id + 1,
       name: name,
       age: parseInt(age),
       email: email
@@ -49,6 +48,18 @@ class App extends Component {
     })
   }
 
+  deleteFriend = (id)=>{
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(response=>{
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch(error=>{
+      console.log("Error:", error);
+    })
+  }
+
   parseFriend = (id)=>{
     const test = this.state.friends.find(friend=>{
       return `${friend.id}` === id;
@@ -61,7 +72,7 @@ class App extends Component {
       <div className="App">
         <h1>My Friends</h1>
         <Route exact path="/" render={(props)=><FriendsList friends={this.state.friends}/>}/>
-        <Route path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} update delete/>}/>
+        <Route path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} update delete/>}/>
         <Route path="/addfriend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
       </div>
     );
@@ -69,3 +80,16 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+update
+axios.put(`full URL/plus id from data base`, pass object like post)
+.then(response=>{
+  this.setState({
+    state: response.data
+  })
+})
+.catch(error=>{
+  console.log(error);
+})
+*/
