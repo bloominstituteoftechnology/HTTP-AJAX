@@ -30,3 +30,32 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+form {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 1%;
+  font-size: 1rem;
+  border: 1px solid;
+}
+form h3 {
+  margin: 0%;
+  text-decoration: underline;
+}
+form p {
+  margin: 0%;
+  text-decoration: underline;
+}
+.friend-box {
+  border: 1px solid;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 2%;
+  padding: 1%;
+  font-size: 2rem;
+}
