@@ -18,15 +18,15 @@ class Add extends React.Component {
         <form onSubmit={this.handleSubmit} id="addForm">
           <label>
             Name:
-            <input type="text" name="name" onChange={this.props.name} />
+            <input type="text" name="name" onChange={this.props.change} />
           </label>
           <label>
             Age:
-            <input type="text" name="age" onChange={this.props.age} />
+            <input type="text" name="age" onChange={this.props.change} />
           </label>
           <label>
             Email:
-            <input type="text" name="email" onChange={this.props.email} />
+            <input type="text" name="email" onChange={this.props.change} />
           </label>
           <button type="submit" onClick={this.props.submit}>Add</button>
         </form>

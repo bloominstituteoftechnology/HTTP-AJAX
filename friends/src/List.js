@@ -23,11 +23,26 @@ const FriendCard = styled.div`
     text-align: center;
 `
 
+const Close = styled.button`
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: white;
+    margin: 5px;
+    cursor: pointer;
+`
+
 
 const List = (props) => {
     return (
       <FriendContainer>
+          
         {props.friends.map(friend => <FriendCard>
+            <Close onClick={props.delete(friend.id)}>X</Close>
             <p>Name: {friend.name}</p>
             <p>Age: {friend.age}</p>
             <p>Email: {friend.email}</p>

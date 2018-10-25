@@ -14,17 +14,20 @@ class App extends Component {
   }
 
 
-  handleNameChange = event => {
-    this.setState({ name: event.target.value });  
+  handleChange = event => {
+    const name = event.target.name;
+    this.setState({ [name]: event.target.value });  
   }
 
-  handleAgeChange = event => {
-    this.setState({ age: event.target.value });  
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`),
+    axios.get(`http://localhost:5000/friends`)
+    .then(res => {
+      const friends = res.data;
+      this.setState({ friends });
+    })
   }
-
-  handleEmailChange = event => {
-    this.setState({ email: event.target.value });
-  }
+  
 
   handleSubmit = event => {
     event.preventDefault();
@@ -39,9 +42,6 @@ class App extends Component {
           const friends = res.data;
           this.setState({ friends: friends})
         })})
-      .then(function (response) {
-        console.log(response);
-      })
       .catch(function (error) {
         console.log(error);
       });
@@ -67,8 +67,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Add submit={this.handleSubmit} name={this.handleNameChange} age={this.handleAgeChange} email={this.handleEmailChange}/>
-        <List friends={this.state.friends} />
+        <Add submit={this.handleSubmit} change={this.handleChange} />
+        <List friends={this.state.friends} delete={this.deleteFriend}/>
       </div>
     )
   }
