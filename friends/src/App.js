@@ -12,7 +12,7 @@ class App extends Component {
       newFriend: {
         name: '',
         age: '',
-        email: ','
+        email: ''
       }
      }
   }
@@ -43,39 +43,65 @@ axios.post('http://localhost:5000/friends', this.state.newFriend)
 
 }
 
+updateFriend = (event, id) => {
+  event.preventDefault();
+  axios
+    .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)
+    .then(response => this.setState({ friends: response.data }));
+};
 
+deleteFriend = (event, id) => {
+  event.preventDefault();
+  axios
+    .delete(`http://localhost:5000/friends/${id}`)
+    .then(response => this.setState({ friends: response.data }))
+    .catch(error => console.log(error));
+};
 
-
-
-
-  render() { 
-    return (  
-      <div className="App">
-        <form>
-       <input type='text' 
-       onChange={this.changeHandler} 
-       name='name' 
-       value={this.state.newFriend.name} /> 
-       <input type='text' 
-       onChange={this.changeHandler}  
-       name='age' 
-       value={this.state.newFriend.age} />
-       <input type='text' 
-       onChange={this.changeHandler}  
-       name='email' 
-       value={this.state.newFriend.email} />
-     </form>
-     <button onClick={this.addFriend}>Add Friend</button> 
-        {this.state.friends.map(friends => (
-        <FriendList key={friends.id} friends={friends} />
-         ))}
-      </div>
-    );
-  }
+render() { 
+  return (  
+    <div className="App">
+      <form>
+     <input 
+     type='text'
+     placeholder='Name' 
+     onChange={this.changeHandler} 
+     name='name' 
+     value={this.state.newFriend.name} 
+     /> 
+     <input 
+     type='number' 
+     placeholder='Age' 
+     onChange={this.changeHandler}  
+     name='age' 
+     value={this.state.newFriend.age} 
+     />
+     <input 
+     type='text' 
+     placeholder='Email' 
+     onChange={this.changeHandler}  
+     name='email' 
+     value={this.state.newFriend.email} 
+     />
+   </form>
+   <button onClick={this.addFriend}>Add Friend</button>
+   <button onClick={this.updateFriend}>Update Friend</button> 
+   <button onClick={this.deleteFriend}>Delete Friend</button>  
+      {this.state.friends.map(friends => (
+      <FriendList key={friends.id} friends={friends} />
+       ))}
+    </div>
+  );
 }
+}
+export default App;
+
+
+
+
+
      
 
 
       
  
-export default App;
