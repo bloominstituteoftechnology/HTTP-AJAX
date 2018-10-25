@@ -7,7 +7,7 @@
   align-items: center;
   margin: 2%;
   border-radius: 20px;
-  width: 500px;
+  width: 600px;
 }
 
 h3 {
@@ -23,21 +23,31 @@ h3 {
 }
 
 .info {
-  margin-left: 2%;
+  margin-left: 2%;  
+  background-color: aliceblue;
 }
 
 p {
   font-size: 20px;
-  color: rgb(244, 249, 250);
+  color: #0b219e;
   font-style: italic;
   font-weight: bold;
-  background-color: rgba(22, 22, 95, .2);
-  padding: 0 5%;
+  background-color: rgba(208, 208, 219, 0.267);
+  padding: 0 1%;
+}
+
+.age {
+  margin-top: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  color: black;
 }
 
 .email {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.7rem;
-  color: #9ca7e9;
+  color: #082ae9;
   padding: 5%;
+  margin: 0 5px;
+  border-top: 1px solid black;
 }

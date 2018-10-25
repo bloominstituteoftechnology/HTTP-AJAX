@@ -4,22 +4,61 @@ import './ContactForm.css';
 
 
 class ContactForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      newFriend: {
+        name: '',
+        email: '',
+        age: ''
+      }
+    }
+  }
+
+  changeHandler = event => {
+    this.setState({ 
+      newFriend: {
+        ...this.state.newFriend,
+        [event.target.name]: event.target.value
+      }
+    });
+  }
+
  render() {
   return(
     <div className="newContactForm">
       <h1>Add New Contact</h1>
-      <Form>
+      <Form action="">
         <FormGroup>
           <Label className="formLabel"for="exampleName">Name</Label>
-          <Input type="name" name="name" id="exampleName" placeholder="John Doe" />
+          <Input 
+            type="name" 
+            onChange={this.changeHandler}
+            name="name" 
+            id="newName" 
+            value={this.state.newFriend.name} 
+            placeholder="John Doe" 
+          />
         </FormGroup>
         <FormGroup>
           <Label className="formLabel"for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="address@email.com" />
+          <Input 
+            type="email" 
+            onChange={this.changeHandler}
+            name="email" 
+            id="newEmail" 
+            value={this.state.newFriend.email} 
+            placeholder="myaddress@email.com" 
+          />
         </FormGroup>
         <FormGroup>
           <Label className="formLabel"for="exampleSelect">Age</Label>
-          <Input type="select" name="select" id="exampleSelect">
+          <Input 
+            type="select" 
+            onChange={this.changeHandler}
+            name="age" 
+            id="newAge" 
+            value={this.state.newFriend.age} >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -142,8 +181,8 @@ class ContactForm extends React.Component {
             <option>120</option>
           </Input>
         </FormGroup>
+        <Button className="submitButton"size="lg">Submit Contact</Button>
       </Form>  
-      <Button className="submitButton"size="lg">Submit Contact</Button>{' '}
     </div>
   )
   } 

@@ -5,10 +5,10 @@ function Contact(props) {
   return(
   <div className="contactCard">
     <h3>{props.name}</h3>
-    <div className="info">
-      <p>{props.age} years old</p>  
-      <p className="email">{props.address}</p>
-    </div>  
+    <table className="info">
+      <table className="age">{props.age} years old</table>  
+      <table className="email">{props.address}</table>
+    </table>  
   </div>  
   )
 }
