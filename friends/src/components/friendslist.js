@@ -7,6 +7,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Friend from "./friend";
+import Forms from "./form";
+
 
 const styles = theme => ({
   head: {
@@ -51,7 +53,7 @@ const Friends = props => {
               return (
                 <TableRow className={classes.row} key={friend.id}>
                   <TableCell component="th" scope="row">
-                    <Friend id={friend.id} name={friend.name} key={friend.id} />
+                    <Friend id={friend.id} name={friend.name} key={friend.id} deleteFriend={props.deleteFriend}/>
                   </TableCell>
                   <TableCell numeric>{friend.age}</TableCell>
                   <TableCell component="th" scope="row">
@@ -63,6 +65,9 @@ const Friends = props => {
           </TableBody>
         </Table>
       </Paper>
+
+      <Forms handleChange={props.handleChange} addNewFriend={props.addNewFriend} />
+
     </>
   );
 };

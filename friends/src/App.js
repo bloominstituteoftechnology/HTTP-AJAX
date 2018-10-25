@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import FriendsList from "./components/friendslist";
-import { Route } from "react-router-dom";
-import { Input, Button, FormGroup } from "@material-ui/core";
-import FriendProfile from './components/friendProfile';
+import { Route, Link } from "react-router-dom";
+import FriendProfile from "./components/friendProfile";
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       friends: [],
       name: "",
-      age:'',
+      age: "",
       email: ""
     };
   }
@@ -20,7 +19,6 @@ class App extends Component {
     axios
       .get("http://localhost:5000/friends")
       .then(response => {
-
         this.setState({ friends: response.data });
       })
       .catch(err => {
@@ -31,7 +29,8 @@ class App extends Component {
       });
   }
 
-  addNewFriend = () => {
+  addNewFriend = e => {
+    e.preventDefault();
     const newFriendObj = {
       name: this.state.name,
       age: this.state.age,
@@ -44,31 +43,34 @@ class App extends Component {
           friends: response.data,
           name: "",
           age: "",
-          email: "",
-          editFriendid: "",
-          deleteFriendId:""
+          email: ""
         });
       })
       .catch(err => console.log(err));
   };
 
-  updateFriend = (id) => {
-    const friendUpdateObj = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
+  updateFriend = (id, name, age) => {
+
+  console.log(id, name, age)
+
+  };
+
+  deleteFriend = id => {
+    return () => {
+      axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(response =>
+          this.setState({
+            friends: response.data,
+            name: "",
+            age: "",
+            email: ""
+          })
+        )
+        .catch(err => console.log(err));
+
+      console.log(id);
     };
-    axios
-      .put(`http://localhost:5000/friends/${id}`, friendUpdateObj)
-      .then(response => {
-        this.setState({
-          friends: response.data,
-          name: "",
-          age: "",
-          email: ""
-        });
-      })
-      .catch(err => console.log(err));
   };
 
   handleChange = event => {
@@ -80,39 +82,31 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Friends</h1>
+        <Link to="/friends">View Friends List</Link>
         <Route
-         exact path="/friends"
-          render={props => <FriendsList friends={this.state.friends} {...props} />}
+          exact
+          path="/friends"
+          render={props => (
+            <FriendsList
+              friends={this.state.friends}
+              {...props}
+              deleteFriend={this.deleteFriend}
+              handleChange={this.handleChange}
+              addNewFriend={this.addNewFriend}
+            />
+          )}
         />
         <Route
-         path="/friends/:id"
-          render={props => <FriendProfile friends={this.state.friends} {...props} />}
+          path="/friends/:id"
+          render={props => (
+            <FriendProfile
+              friends={this.state.friends}
+              {...props}
+              deleteFriend={this.deleteFriend}
+              updateFriend={this.updateFriend}
+            />
+          )}
         />
-        {/* <Route path="/friends/:id" render={() => (<FriendsProfile friends={this.state.friends} {...props} />)} /> */}
-        <FormGroup row>
-          <Input
-            onChange={this.handleChange}
-            name="name"
-            value={this.state.name}
-            type="text"
-            placeholder="Name"
-          /> {""}
-          <Input
-            onChange={this.handleChange}
-            name="age"
-            value={this.state.age}
-            type="number"
-            placeholder="age"
-          /> {" "}
-          <Input
-            onChange={this.handleChange}
-            name="email"
-            value={this.state.email}
-            type="email"
-            placeholder="Email"
-          />
-        </FormGroup>
-        <Button onClick={this.addNewFriend}> Add</Button>
       </div>
     );
   }

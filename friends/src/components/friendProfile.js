@@ -5,15 +5,25 @@ import FriendCard from "./friendCard";
 // import friendsData from "./friends_data";
 
 export default class FriendProfile extends React.Component {
+
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      name: '',
+      age: '',
+      email:''
+    }
+   }
+  updateHandler = (e) => {
+    e.preventDefault()
+    const id = this.props.friend.id
+  this.props.updateFriend(id, this.state.name, this.state.age)
   }
-
-  clickHandler = e => {
-    e.preventDefault();
-    this.props.history.push(`/friends/${this.props.match.params.id}/details`);
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
-
   render() {
 
       const friend = this.props.friends.filter(item => {
@@ -23,7 +33,7 @@ export default class FriendProfile extends React.Component {
 
     return (
       <div>
-        <FriendCard {...friend} />
+        <FriendCard {...friend} deleteFriend={this.props.deleteFriend} updateHandler={this.updateHandler} handleChange={this.handleChange}  />
       </div>
     );
   }
