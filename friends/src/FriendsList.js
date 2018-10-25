@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Friend from './Friend';
+import UpdateFriend from './UpdateFriend';
 import FriendListHeader from './FriendListHeader';
 import { ListWrapper, StyledForm } from './Styled';
 
@@ -11,7 +12,8 @@ class FriendsList extends React.Component {
       friends: [],
       name: '',
       age: '',
-      email: ''
+      email: '',
+      id: ''
     };
   }
 
@@ -67,6 +69,14 @@ class FriendsList extends React.Component {
     });
   };
 
+  updateFriend = e => {
+    const fid = e.target.id;
+    console.log(fid);
+    console.log(e.target.parentNode.parentNode);
+    this.setState({ id: fid });
+    console.log(this.state);
+  };
+
   render() {
     return (
       <div>
@@ -102,6 +112,18 @@ class FriendsList extends React.Component {
         <ListWrapper>
           <FriendListHeader name="Name" age="Age" email="Email" />
           {this.state.friends.map(friend => {
+            console.log(friend.id);
+            console.log(this.state.id);
+            if (friend.id === +this.state.id) {
+              return (
+                <UpdateFriend
+                  name={friend.name}
+                  age={friend.age}
+                  email={friend.email}
+                  //   submitUpdate={}
+                />
+              );
+            }
             return (
               <Friend
                 key={friend.id}
@@ -110,6 +132,7 @@ class FriendsList extends React.Component {
                 age={friend.age}
                 email={friend.email}
                 deleteFriend={this.deleteFriend}
+                updateFriend={this.updateFriend}
               />
             );
           })}

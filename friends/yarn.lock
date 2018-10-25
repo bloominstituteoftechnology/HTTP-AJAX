@@ -836,6 +836,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.6.tgz#004b98298d04c7ca3b4f50ca2035d4f60d2eed1b"
   integrity sha512-h4t4jFjtm1YV7UirAFuSuFGyLa+NNxjdkq6DpFLANNQY5rHueFZHVY+8Cu1HYVP6DrheB0kv4m5xPjo7eKT7yQ==
 
+"@fortawesome/fontawesome-free@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.4.1.tgz#6194786c1a705ab84253e06429834466670e3c3f"
+  integrity sha512-ZcxfUmLFl4RLG71cPeZcTXRa6rt3xLnMmomAb7aYKRzUmlRRj7E8EVqSwYSXBiV2x6XpSQmGOQmNQx6HSeSwVQ==
+
 "@svgr/core@^2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@svgr/core/-/core-2.4.1.tgz#03a407c28c4a1d84305ae95021e8eabfda8fa731"

@@ -27,6 +27,25 @@ export const StyledFriendsList = styled.div`
     text-align: center;
   }
 
+  form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+    input {
+      width: 30%;
+      text-align: center;
+      height: 30px;
+      margin: 10px 0;
+      font-size: 1.6rem;
+      outline-color: #000;
+      background-color: #333;
+      color: white;
+      border: none;
+    }
+  }
+
   span {
     display: flex;
     visibility: hidden;
@@ -41,8 +60,36 @@ export const StyledFriendsList = styled.div`
     right: calc(10% + 1px);
   }
 
+  .delete {
+    display: flex;
+    visibility: hidden;
+    cursor: pointer;
+    height: 50px;
+    width: 40px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    position: absolute;
+    // right: calc(1% + 0px);
+  }
+
+  .update {
+    display: flex;
+    visibility: hidden;
+    cursor: pointer;
+    height: 50px;
+    width: 40px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    position: absolute;
+    right: calc(100% + 0px);
+  }
+
   :hover {
-    span {
+    .delete {
       display: flex;
       visibility: visible;
       background-color: rgb(255, 165, 165);
@@ -52,6 +99,15 @@ export const StyledFriendsList = styled.div`
         background-color: rgb(255, 30, 30);
       }
     }
+    .update {
+      display: flex;
+      visibility: visible;
+      background-color: rgb(175, 255, 168);
+      color: white;
+
+      :hover {
+        background-color: rgb(93, 255, 79);
+      }
   }
 `;
 

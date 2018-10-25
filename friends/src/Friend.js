@@ -13,8 +13,22 @@ class Friend extends React.Component {
         <p>{this.props.name}</p>
         <p>{this.props.age}</p>
         <p>{this.props.email}</p>
-        <span id={this.props.id} onClick={this.props.deleteFriend}>
-          X
+
+        <span>
+          <p
+            className="update"
+            id={this.props.id}
+            onClick={this.props.updateFriend}
+          >
+            U
+          </p>
+          <p
+            className="delete"
+            id={this.props.id}
+            onClick={this.props.deleteFriend}
+          >
+            X
+          </p>
         </span>
       </StyledFriendsList>
     );
