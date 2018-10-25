@@ -1,29 +1,38 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 export default class FriendCard extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            newInfo: {
-                name: props.friend.name,
-                age: props.friend.age,
-                email: props.friend.email,
-                id: props.friend.id
-            }
+            // newInfo: {
+            //     name: this.props.friend.name,
+            //     age: this.props.friend.age,
+            //     email: this.props.friend.email,
+            //     id: this.props.friend.id
+            // },
         }
     }
 
-    componentDidMount() {
-        this.props.match.params.id = this.state.match;
-        
+    componentWillMount() {
+    //     const current = this.props.friends.map(friend => {
+    //         // this.props.match.params.id === `${friend.id}`, 
+    //         // [0]
+    //         console.log(friend)
+    //     });
+    //     this.setState({userInfo: current})
+    //     console.log(current)
+    const friends = this.props.friends;
+        console.log(friends)
     }
+    
 
     inputChange = e => {
     e.preventDefault();
     this.setState({
       newInfo: {
-        ...this.state.newInfo,
+        ...this.state.userInfo,
         [e.target.name]: e.target.value
       }
     });
@@ -33,30 +42,45 @@ export default class FriendCard extends React.Component {
     e.preventDefault();
     this.setState({
       newInfo: {
-        ...this.state.newInfo,
+        ...this.state.userInfo,
         [e.target.name]: parseInt(e.target.value)
       }
     });
+    console.log(this.state.userInfo)
   };
 
   
 
-  submitUpdate = () => {
-      this.props.updateFriend(this.state.newInfo)
+  submitUpdate = (e) => {
+      e.preventDefault();
+      this.props.updateFriend(this.state.userInfo)
   }
+
+  
 
     render() {
         return (
             <div>
-                <h1>{this.props.friend.name}</h1>
-                <div>{`Age: ${this.props.friend.age}`}</div>
-                <div>{`Email: ${this.props.friend.email}`}</div>
-                <form>
-                <input placeholder='Name' onChange={this.inputChange} value={this.state.newInfo.name} name='name' />
-                <input type='number' placeholder='Age' onChange={this.numberInputChange} value={this.state.newInfo.age} name='age' />
-                <input placeholder='Email' onChange={this.inputChange} value={this.state.newInfo.email} name='email' />
-                <button type='submit' onClick={this.submitUpdate}>Update Friend</button>
-                </form>
+            
+                <Link to='/friends'>Home</Link>
+                <h1>
+                {/* {this.state.userInfo.name} */}
+                name
+                </h1>
+                <div>
+                {/* {`Age: ${this.state.userInfo.age}`} */}
+                age
+                </div>
+                <div>
+                {/* {`Email: ${this.state.userInfo.email}`} */}
+                email
+                </div>
+                {/* <form onSubmit={this.submitUpdate}> */}
+                {/* <input placeholder='Name' onChange={this.inputChange} value={this.state.userInfo.name} name='name' /> */}
+                {/* <input type='number' placeholder='Age' onChange={this.numberInputChange} value={this.state.userInfo.age} name='age' /> */}
+                {/* <input placeholder='Email' onChange={this.inputChange} value={this.state.userInfo.email} name='email' /> */}
+                {/* <button type='submit'>Update Friend</button> */}
+                {/* </form> */}
             </div>
         )
     }
