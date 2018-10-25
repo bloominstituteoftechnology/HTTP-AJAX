@@ -1,29 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGroup, Tooltip } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGroup, Tooltip, Table } from 'reactstrap';
 
-const Container = styled.div`
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-const Friend = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 60%;    
-`
 
-const IconsContainer = styled.div`
-display: flex;
-width: 30%;
-justify-content: space-around;
-align-items: center;
-`
 const Icon = styled.i`
 cursor: pointer;
 color: darkcyan;
+margin-right: 10px;
 `
 export class FriendsList extends React.Component {
     constructor(props) {
@@ -73,32 +56,48 @@ export class FriendsList extends React.Component {
         changeHandler = e => this.setState({[e.target.name]: e.target.value});
 
         render() {
-        return  <Container>
-                    {this.props.friends.map(friend => <Friend 
-                        key={friend.id}>
-                        <h4>{friend.name}</h4>
-                        <IconsContainer>
-                            <Icon onClick={() => {this.toggle(); this.idHandler(friend.id)}} className="fas fa-edit"></Icon>
-                            <Icon onClick={() => this.props.deleteFriend(friend.id)} className="fas fa-trash-alt"></Icon>                            
-                        </IconsContainer>                                                                
-                    </Friend>)}
+        return  <>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.friends.map(friend =>   <tr key={friend.id}>
+                                                                    <th scope="row">{friend.id}</th>
+                                                                        <td>{friend.name}</td>
+                                                                        <td>{friend.age}</td>
+                                                                        <td>{friend.email}</td>
+                                                                        <td>
+                                                                            <Icon onClick={() => {this.toggle(); this.idHandler(friend.id)}} className="fas fa-edit"></Icon>
+                                                                            <Icon onClick={() => this.props.deleteFriend(friend.id)} className="fas fa-trash-alt"></Icon>
+                                                                        </td>
+                                                                </tr>
+                                        
+                            )}
+                        </tbody>
+                    </Table>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                         <ModalHeader toggle={this.toggle}>Update Friend Info</ModalHeader>
                         <ModalBody>
                             <Form>
                                 <FormGroup>
-                                    <Input placeholder="Name" onChange={this.changeHandler} name="name" value={this.state.name}></Input>
+                                    <Input placeholder="Edit your friend's name here" onChange={this.changeHandler} name="name" value={this.state.name}></Input>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input placeholder="Age" onChange={this.changeHandler} name="age" value={this.state.age}></Input>
+                                    <Input placeholder="Edit your friend's age here" onChange={this.changeHandler} name="age" value={this.state.age}></Input>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input placeholder="Email" type="email" onChange={this.changeHandler} name="email"  value={this.state.email}></Input>
+                                    <Input placeholder="Edit your friend's email here" type="email" onChange={this.changeHandler} name="email"  value={this.state.email}></Input>
                                 </FormGroup>
                             </Form>  
                         </ModalBody>
                         <ModalFooter>
-                            <Button id="update" color="primary" onClick={this.clickHandler}>Update Info</Button>
+                            <Button id="update" color="success" onClick={this.clickHandler}>Update Info</Button>
                             <Button id="cancel" color="secondary" onClick={this.toggle}>Cancel</Button>
                             <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} target="update" toggle={this.toggleToolTip}>
                                 Submit Update!
@@ -108,6 +107,6 @@ export class FriendsList extends React.Component {
                             </Tooltip>
                         </ModalFooter>
                     </Modal>                    
-                </Container>
+                </>
         }
 }
