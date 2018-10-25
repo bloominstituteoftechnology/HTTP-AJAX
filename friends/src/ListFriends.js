@@ -9,10 +9,10 @@ export default function ListFriends(props) {
             <h1>This friend is named {friend.name}</h1>
             <h3>Their age is {friend.age}</h3>
             <h3>Their email is: {friend.email}</h3>
+            <div onClick={ () => props.deleteFriend(friend.id)}>Delete</div>
           </div>
         )
       })}
     </div>
   )
 }
-

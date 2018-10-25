@@ -30,11 +30,20 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  deleteFriend = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then( response => {
+        this.setState({friends: response.data})
+      })
+      .catch( err => console.log(err))
+  }
+
   render() {
     return (
       <div className="App">
       <Add submit={this.submitBtn} friends={this.state.friends}/>
-      <ListFriends friends={this.state.friends} />
+      <ListFriends friends={this.state.friends} deleteFriend={this.deleteFriend} />
       </div>
     );
   }
