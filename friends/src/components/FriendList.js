@@ -15,7 +15,7 @@ export default class FriendList extends Component {
 
     componentDidMount() {
         axios
-            .get(`http://localhost:5000/friends`)
+            .get('http://localhost:5000/friends')
             .then(response => {
                 this.setState(() => ({ friends: response.data }));
             })
@@ -24,11 +24,38 @@ export default class FriendList extends Component {
             });
     }
 
+    changeHandler = event => {
+        event.preventDefault();
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    submitHandler = () => {
+        const friend = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email,
+        };
+        axios
+            .post('http://localhost:5000/friends', friend)
+            .then(response => {
+                this.setState({ name: '', age: '', email: ''});
+                this.componentDidMount()
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     render() {
         return (
             <div>
-                FriendList!
-                <FriendForm />
+                <FriendForm 
+                handleSubmit={this.submitHandler}
+                name={this.state.name}
+                age={this.state.age}
+                email={this.state.email}
+                handleTextInput={this.changeHandler}
+                />
                 {this.state.friends.map(friend => (
                     <Link to={`/friends/${friend.id}`}>
                         <FriendCard key={friend.id} friend={friend} />
