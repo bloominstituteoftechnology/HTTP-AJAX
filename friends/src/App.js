@@ -20,10 +20,18 @@ class App extends Component {
       })
   }
 
+  submitBtn = (input) => {
+    axios
+      .post('http://localhost:5000/friends', {...input})
+      .then(response => {
+        this.setState({friends: response.data})
+      })
+  }
+
   render() {
     return (
       <div className="App">
-      <Add />
+      <Add submit={this.submitBtn} friends={this.state.friends}/>
       <ListFriends friends={this.state.friends} />
       </div>
     );
