@@ -1,9 +1,13 @@
 import React from 'react';
 
-const AddFriend = props => {
-    return(
-      <div>
-        <form onSubmit={props.handleSubmit}>
+const UpdateFriend = props => {
+  return(
+    <div>
+        <form onSubmit={props.handleUpdateSubmit}>
+          <label>
+            <span>ID:</span>
+            <input type="text" name='id' onChange={props.handleUpdateChange}/>
+          </label>
           <label>
             <span>Name:</span>
             <input type="text" name='name' onChange={props.handleChange}/>
@@ -16,10 +20,10 @@ const AddFriend = props => {
             <span>Email:</span>
             <input type="text" name='email' onChange={props.handleChange}/>
           </label>
-          <button type='submit'>Add Friend</button>
+          <button type='submit'>Update Friend</button>
         </form>
-      </div>
-    )
-  }
+    </div>
+  )
+}
 
-export default AddFriend;
+export default UpdateFriend;

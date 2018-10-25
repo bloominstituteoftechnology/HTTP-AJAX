@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './FriendList.css';
 import AddFriend from './AddFriend';
+import UpdateFriend from './UpdateFriend';
 
 const blankFormValues = {
   name: '',
@@ -9,7 +10,7 @@ const blankFormValues = {
   email: ''
 };
 
-export default class FriendList extends React.Component {
+export default class FriendList extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,7 +19,8 @@ export default class FriendList extends React.Component {
         name: '',
         age: '',
         email: ''
-      }
+      },
+      updateID: null
     };
   }
 
@@ -36,6 +38,19 @@ export default class FriendList extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     axios.post('http://localhost:5000/friends', this.state.friend)
+      .then(res => {
+        this.setState({ friends: res.data, friend: blankFormValues })
+      })
+      event.target.reset();
+  }
+
+  handleUpdateChange = (event) => {
+    this.setState({ updateID: event.target.value })
+  }
+
+  handleUpdateSubmit = event => {
+    event.preventDefault();
+    axios.put(`http://localhost:5000/friends/${this.state.updateID}`, this.state.friend)
       .then(res => {
         this.setState({ friends: res.data, friend: blankFormValues })
       })
@@ -64,6 +79,7 @@ export default class FriendList extends React.Component {
           ))}
       </ul>
       <AddFriend handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+      <UpdateFriend handleUpdateChange={this.handleUpdateChange} handleChange={this.handleChange} handleUpdateSubmit={this.handleUpdateSubmit}/>
     </div>   
     )     
   }
