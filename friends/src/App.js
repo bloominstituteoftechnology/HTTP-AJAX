@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
@@ -14,6 +14,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      friendToUpdate: null,
       friends: [],
       friend: {
         name: '',
@@ -23,7 +24,8 @@ class App extends Component {
     }
   }
 
-  //http://localhost:5000/friends
+  //http://localhost:5000/friends is where the data is located, hence
+  // .get() .post() .delete() methods have to reference this
   componentDidMount(){
     axios
       .get("http://localhost:5000/friends")
@@ -68,8 +70,15 @@ class App extends Component {
      return axios.delete(`http://localhost:5000/friends/${id}`)
      console.log(id)
     .then(response => this.setState({ friends: response.data }));
-   
   }
+
+  handleUpdateFriend = (event, id) => {
+    console.log('firing', id);
+    event.preventDefault();
+    const friendToUpdate = this.state.friends.find(friend => friend.id === id);
+    this.setState({ friendToUpdate: friendToUpdate, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));
+  }
+
 
   // handleUpdateFriend = id => {
   //   return () => {
@@ -116,7 +125,7 @@ class App extends Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/add-friend">
+              <NavLink to="/friend-form">
                 <h1>Add New Friends</h1>
               </NavLink>
             </li>
@@ -139,6 +148,7 @@ class App extends Component {
 
           friends={this.state.friends}
           handleDeleteFriend={this.handleDeleteFriend}
+          handleUpdateFriend={this.handleUpdateFriend}
           /> )}
           />
 
@@ -151,13 +161,14 @@ class App extends Component {
 
 
         <Route
-            path="/add-friend"
+            path="/friend-form"
             render={props => (
             <FriendForm 
               {...props} 
               handleAddNewFriend={this.handleAddNewFriend}
               handleChange={this.handleChange} 
               newfriend={this.state.friend}
+              friendToUpdate={this.state.friendToUpdate}
 
               />
             )}
@@ -167,4 +178,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

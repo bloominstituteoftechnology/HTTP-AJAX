@@ -49,6 +49,7 @@ FriendForm.propTypes = {
         age: PropTypes.number,
         email: PropTypes.string,
     }),
+    isUpdating: PropTypes.bool,
     handleAddNewFriend: PropTypes.func,
     handleChange: PropTypes.func, 
 }

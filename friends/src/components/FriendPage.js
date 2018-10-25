@@ -20,6 +20,7 @@ const FriendPage = props => {
                     <p>EMAIL: {friend.email}</p>
                     {/* <h3 style={{cursor: "pointer"}} onClick={() => props.handleDeleteFriend(friend.id)}>X</h3> */}
                     <h3 style={{cursor: "pointer"}} onClick={handleDelete}>X</h3>
+                    <h3 style={{cursor: "pointer"}} onClick={(event) => props.handleUpdateFriend(event, friend.id)}> Update</h3>
                 </div>
                
         </div>
@@ -33,6 +34,7 @@ FriendPage.propTypes = {
         })
     }),
     handleDeleteFriend: PropTypes.func,
+    handleUpdateFriend: PropTypes.func,
 };
 
 // FriendPage.propTypes = {
