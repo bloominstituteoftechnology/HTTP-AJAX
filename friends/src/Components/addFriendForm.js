@@ -10,73 +10,33 @@ import { Button,
     } from 'reactstrap';
 import axios from 'axios';
 
-class AddFriend extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
-      newFriend:{
-          name: '',
-          age: null,
-          email: ''
-      }
-    };
+const AddFriend = props => {
 
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
-  inputChangeHandler=(e)=>{
-    console.log(e.target.value)
-    this.setState({ [e.target.name]: e.target.value });
-}
-  onSubmitHandler=(e)=>{
-      e.prevent.default();
-      const{ name, age, email} = this.state;
-      const friend = {
-          name,
-          age,
-          email
-      }
-      axios.post('http://localhost:5000/friends', ...this.state).then(friends=>{
-          this.setState({
-
-          })
-      })
-  }
-
-  render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>Add a new Friend</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Lets Get the Deets</ModalHeader>
+        <Button color="danger" onClick={props.toggle}>Add a new Friend</Button>
+        <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
+          <ModalHeader toggle={props.toggle}>Lets Get the Deets</ModalHeader>
           <ModalBody>
           <Form>
               <FormGroup>
-                <Input type="text" name='name' value={this.state.name} placeholder="Friend's Name" onChange={this.props.inputChange}/>
+                <Input type="text" name='name' value={props.friendsData.name} placeholder="Friend's Name" onChange={props.inputChange}/>
               </FormGroup>
               <FormGroup>
-                <Input type="age" name='age' value={this.state.age} placeholder="How old are they" onChange={this.props.inputChange}/>
+                <Input type="age" name='age' value={props.friendsData.age} placeholder="How old are they" onChange={props.inputChange}/>
               </FormGroup>
               <FormGroup>
-                <Input type="text" name='email' value={this.state.email} placeholder="What is their e-mail" onChange={this.props.inputChage} />
+                <Input type="text" name='email' value={props.email} placeholder="What is their e-mail" onChange={props.inputChange} />
               </FormGroup>
           </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            <Button color="primary" onClick={props.toggle}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={props.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
       </div>
     );
   }
-}
 
 export default AddFriend;
