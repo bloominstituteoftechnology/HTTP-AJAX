@@ -23,7 +23,10 @@ const FriendCard = props => {
                 <CardTitle>{name}</CardTitle>
                 <CardSubtitle>{age}</CardSubtitle>
                 <CardText>{email}</CardText>
-                <Button color="danger">Delete</Button> 
+                <div>
+                    <Button color="danger">Delete</Button> 
+                    <Button color="secondary">Edit</Button>   
+                </div>
             </StyledCard>
         </CardContainer>   
     );
