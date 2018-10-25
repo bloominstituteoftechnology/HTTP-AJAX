@@ -11,6 +11,7 @@ class FriendList extends Component {
                 <p>Name: {this.props.friend.name}</p>
                 <p>Age: {this.props.friend.age}</p>
                 <p>Email: {this.props.friend.email}</p>
+                <button onClick={this.props.deleteFriend(this.props.friend.id)}>X</button>
             </div>
         )
     }
