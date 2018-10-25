@@ -9,11 +9,11 @@ class App extends Component {
     super(props);
     this.state = { 
       friends: [],
-      newFriend: {
-        name: '',
-        age: '',
-        email: '',
-      }
+      // newFriend: {
+      //   name: '',
+      //   age: '',
+      //   email: ','
+      // }
      }
   }
 
