@@ -20,6 +20,7 @@ const FriendList = props => {
                         <p>ID: {friend.id}</p>
                         <p>AGE: {friend.age}</p>
                         <p>EMAIL: {friend.email}</p>
+                        <h3 style={{cursor: "pointer"}}>X</h3>
                     </div>
                 ))}
             </div>

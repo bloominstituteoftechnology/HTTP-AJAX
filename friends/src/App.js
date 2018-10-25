@@ -47,20 +47,43 @@ class App extends Component {
   handleAddNewFriend = event => {
     event.preventDefault();
     axios
+      // .post("http://localhost:5000/friends", this.state.friend)
       .post("http://localhost:5000/friends", this.state.friend)
+      // try changing this
+
+
       .then(response => {
-        // console.log(response)
         this.setState({ friends: response.data })
+        //redirect to main page after adding a friend
+        // history.push('/friendslist')
       })
-      // .catch(err => {
-      //   console.log("COULD NOT ADD NEW FRIEND", err);
-      // })
+      .catch(err => {
+        console.log("COULD NOT ADD NEW FRIEND", err);
+      })
   }
 
   handleDeleteFriend = id => {
-    axios.delete(`/friendslist/${id}`)
+    console.log(id)
+     return axios.delete(`http://localhost:5000/friendslist/${id}`)
     .then(response => this.setState({ friends: response.data }));
+   
   }
+
+  // handleUpdateFriend = id => {
+  //   return () => {
+  //     // dan creates a new closure for both Delete and Update functions
+  //   }
+  // }
+
+  // new way NON-CLOSURE WAY (Dan't epiphany)
+
+  // handleUpdateFriend = (id, name, email, age) => {
+
+  // }
+
+  // C R U D
+  // Post = Ccreate
+  // Put = Update
 
   //post getItemById axios POST here? 
   // POST PUT DELETE are 'user' interaction, will be in a button or something
@@ -113,6 +136,7 @@ class App extends Component {
           // email={this.state.friend.email}
 
           friends={this.state.friends}
+          handleDeleteFriend={this.handleDeleteFriend}
           /> )}
           />
 
