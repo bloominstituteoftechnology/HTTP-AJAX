@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import FriendsList from './components/FriendsList';
+import FriendsForm from './components/FriendsForm';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       friends: [],
+      friend: {
+        name: "",
+        age: "",
+        email: "",
+      },
+      editingId: null,
+      activeFriend: null,
+      isEditing: false
     }
   }
 
@@ -16,25 +25,79 @@ class App extends React.Component {
       .get('http://localhost:5000/friends')
       .then(response => this.setState({ friends: response.data }))
       .catch(error => console.log(error));
-    //     this.setState({ items: data });
+    //     this.setState({ friends: data });
   }
 
-  // getItemById = id => {
-  //   axios
-  //     .get(`http://localhost:3333/itemById/${id}`)
-  //     .then(response => this.setState({ activeItem: response.data }));
-  // };
+  getItemById = id => {
+    axios
+      .get(`http://localhost:5000/${id}`)
+      .then(res => this.setState({ activeFriend: res.data }))
+      .catch(err => console.log(err));
+  };
 
+  changeHandler = event => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [event.target.name]: event.target.value
+      }
+    });
+  }
 
+  addNewItem = () => {
+    axios
+      .post('http://localhost:5000/friends', this.state.friend)
+      .then(response => {
+        this.setState({ friends: response.data });
+        //         this.props.history.push('/item-list');
+      })
+      .catch(error => console.log(error));
+  };
+
+  deleteItem = (ev, id) => {
+    ev.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ items: response.data });
+        // this.props.history.push('/item-list');
+      })
+      .catch(error => console.log(error));
+  };
+
+  updateItem = () => {
+    axios
+      .put(
+        `http://localhost:5000/friends/${this.state.editingId}`,
+        this.state.friend
+      )
+      .then(response => {
+        this.setState({
+          items: response.data,
+          editingId: null,
+          isEditing: false,
+          friend: blankItem
+        });
+      })
+      .catch(error => console.log(error));
+  };
 
   render() {
     console.log(this.state.friends);
     return (
       <div className="App">
         <div>
-        <FriendsList
-        friendly = {this.state.friends}
-        />
+          <FriendsList
+          friendly = {this.state.friends}
+          getItemById={this.getItemById}
+          />
+          <FriendsForm
+          addNewItem = {this.addNewItem}
+          changeHandler = {this.changeHandler}
+          friend = {this.state.friend}
+          isEditing = {this.state.isEditing}
+          updateItem = {this.updateItem}          
+          />
         </div>
       </div>
     );
