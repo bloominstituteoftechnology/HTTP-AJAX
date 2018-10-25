@@ -1,57 +1,73 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class FriendForm extends React.Component {
+class FriendForm extends Component {
   // put state here?
   state = {
     name: "",
     age: "",
-    email: "",
+    email: ""
   };
 
   render() {
     return (
       <form onSubmit={this.submitHandler}>
-        <label>Name</label>
+        <label>Name: </label>
         <input
           type="text"
           name="name"
           value={this.state.name}
-          onchange={handleInputChange}
+          onChange={this.handleInputChange}
         />
 
-        <label>Age</label>
+        <label>Age: </label>
         <input
           type="number"
-          name="Age"
+          name="age"
           value={this.state.age}
-          onchange={handleInputChange}
+          onChange={this.handleInputChange}
         />
 
-        <label>Email</label>
+        <label>Email: </label>
         <input
           type="email"
-          name="Email"
+          name="email"
           value={this.state.email}
-          onchange={handleInputChange}
+          onChange={this.handleInputChange}
         />
 
         <button type="submit">Save Friend</button>
       </form>
     );
   }
-  submitHandler = (event) => {
-    event.preventDefault(); // prevents reload
-    const newFriend = { ...this.state, age } // makes copy of state then overrides age
-    axios.post('http://localhost:5000/friends', this.state) // command to create the data
-    .then(response =>{
-      console.log('response from post', response);
-    })
-    .catch(error => {
-      console.log('response from post', response);
-    })
-  }
-  }
 
-   
+  submitHandler = event => {
+    event.preventDefault(); // prevents reload
+    // const newFriend = { ...this.state.name, this.state.age }; // makes copy of state then overrides age
+    // REMOVED additional copy  of state is NOT NEEDED.
+
+    // command to create the data
+    axios
+    .post("http://localhost:5000/friends", this.state) 
+      .then(response => {
+        console.log("post worked", response);
+      })
+      .catch(error => {
+        console.error("Error making post", error);
+      });
+  };
+  handleInputChange = event => {
+    // event.target is an object that represents the input
+    const { name, value } = event.target;  // destructuring
+
+    // const name = event.target.name;
+    // let value = event.target.value; // using `let` because value will change
+
+    // console.log("input name:", event.target.name); // show the value of input when it changes
+    console.log(this.state, name, value)
+
+    this.setState({ [name]: value, }); // name is a variable 
+  };
+}
+
 export default FriendForm;
