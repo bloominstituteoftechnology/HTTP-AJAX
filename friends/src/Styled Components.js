@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+//FORM 
+
+
 export const FormStyle = styled.form`
     display: flex;
     flex-direction: column;
@@ -29,6 +32,8 @@ export const Submit = styled.button`
         background-color: lightgreen;
     }
 `;
+
+//FRIEND
 
 export const FriendStyle = styled.div`
     background-color: lightblue;
@@ -75,4 +80,63 @@ export const Email = styled.a`
         color: gray;
         cursor: pointer;
     }
+`;
+
+export const UpdateButton = styled.button`
+font-size: 16px;
+font-weight: bold;
+background-color: white;
+width: 25%;
+height: 5vh;
+border: 1px solid darkgray;
+border-radius: 5px;
+align-self: center;
+margin-top: 10px;
+
+&:hover{
+    background-color: lightgreen;
+}
+`;
+
+//UPDATE FORM 
+
+export const Background = styled.div`
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(30,30,30);
+    background-color: rgba(30,30,30,0.4);
+`;
+
+export const UpdateFormStyle = styled.form`
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+`;
+
+export const UpdateSubmit = styled.button`
+    font-size: 16px;
+    font-weight: bold;
+    background-color: lightblue;
+    width: 40%;
+    height: 5vh;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    align-self: center;
+
+    &:hover{
+        background-color: lightgreen;
+    }
+`;
+
+export const UpdateHeader = styled.h1`
+    margin-top: -15px;
 `;
