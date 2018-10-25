@@ -9,7 +9,10 @@ class App extends Component {
     super();
 
     this.state = {
-      friends: []
+      friends: [],
+      name: "",
+      age: 0,
+      email: ""
     };
   }
 
@@ -25,17 +28,40 @@ class App extends Component {
   };
   
   /* Handle submitting new friends to the list */
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
-    alert("Submitted");
+    let name = this.state.name;
+    name = name[0].toUpperCase() + name.substr(1);
+    axios
+      .post("http://localhost:5000/friends", {
+        name: name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then( response => {
+        this.setState( () => ({
+          friends: response.data,
+          name: "",
+          age: "",
+          email: ""
+        }));
+      })
+      .catch( error => { console.error(error) });
+  };
+
+  /* Needs a change handler to set the state for submitting */
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-        {/* Pass friends array to FriendsList */}
-        <FriendsList friends={this.state.friends} handleSubmit={this.handleSubmit}/>
+        {/* Pass friends array, handleSubmit & handleChange to FriendsList */}
+        <FriendsList friends={this.state.friends} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         </header>
       </div>
     );

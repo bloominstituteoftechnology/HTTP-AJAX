@@ -6,11 +6,13 @@ import AddFriend from './AddFriend';
 // Takes in props:
 // - friends: []
 // - handleSubmit: fn()
+// - handleChange: fn()
 
 const FriendsList = (props) => {
     return(
         <div className='friendsList'>
-            <AddFriend handleSubmit={props.handleSubmit}/>
+            {/* Pass handlers to AddFriend */}
+            <AddFriend handleSubmit={props.handleSubmit} handleChange={props.handleChange}/>
             {props.friends.map( friend => {
                 // Pass friend.id, friend.name, friend.email, friend.age to Friend
                 return(
