@@ -6,11 +6,13 @@ class FriendsForm extends React.Component {
         super();
         this.state = {
             name: '',
-            age: 0,
+            age: '',
             email: '',
             friends: []
         }
     }
+
+    //handle change to input in form
 
     inputChangehandler = (e) => {
         this.setState({
@@ -18,7 +20,9 @@ class FriendsForm extends React.Component {
         }, console.log(this.state))
     }
 
-    onSubmit = (e) => {
+    //add new friend through past and pass up friend data to app 
+
+    addNew = (e) => {
         e.preventDefault();
         axios
         .post(`http://localhost:5000/friends`, {
@@ -29,31 +33,39 @@ class FriendsForm extends React.Component {
         .then(response => {
             this.props.addFriend(response.data);
         })
-        .catch(err => console.log(err))  
+        .catch(err => console.log(err));
+        this.setState({
+            name: '',
+            age: '',
+            email: ''
+        });  
     }
 
     render() {
         return (
             <div>
                 <h2>Add a friend!</h2>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.addNew}>
                     <input
                         type='text'
                         name='name'
                         placeholder='Name'
                         onChange={this.inputChangehandler}
+                        value={this.state.name}
                     />
                     <input
                         type='text'
                         name='age'
                         placeholder='Age'
                         onChange={this.inputChangehandler}
+                        value={this.state.age}
                     />
                     <input
                         type='text'
                         name='email'
                         placeholder='Email'
                         onChange={this.inputChangehandler}
+                        value={this.state.email}
                     />
                     <button type='submit'>Yay! New friend!</button>
                 </form>

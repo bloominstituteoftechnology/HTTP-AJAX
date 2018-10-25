@@ -1,6 +1,8 @@
 import React from 'react';
 import Friend from './Friend.js'
 
+//component to map over and display list of friends
+
 class FriendsList extends React.Component {
     render() {
         return (

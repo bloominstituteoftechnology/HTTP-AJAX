@@ -44,6 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>Who are your friends?</h1>
         <FriendsList 
           friends={this.state.friends}
           deleteFriend={this.deleteFriend} 
