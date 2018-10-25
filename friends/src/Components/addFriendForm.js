@@ -31,7 +31,7 @@ const AddFriend = props => {
           </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={props.toggle}>Do Something</Button>{' '}
+            <Button color="primary" onClick={props.addMyDude}>Add My Dude?</Button>{' '}
             <Button color="secondary" onClick={props.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>

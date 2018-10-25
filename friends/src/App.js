@@ -50,17 +50,32 @@ inputChangeHandler=(e)=>{
   console.log(e.target.value)
   this.setState({ [e.target.name]: e.target.value });
 }
-onSubmitHandler=(e)=>{
-    e.prevent.default();
+addSubmitHandler=(e)=>{
+    e.preventDefault();
     const{ name, age, email} = this.state;
     const friend = {
         name,
         age,
         email
     }
-    axios.post('http://localhost:5000/friends', ...this.state).then(friends=>{
-        this.setState({friendsData: friends.data})
+    axios.post('http://localhost:5000/friends', friend).then(friends=>{
+        this.setState({
+          friendsData: friends.data,
+          name: '',
+          age: '',
+          email: '',
+          modal: !this.state.modal
+        })
     })
+}
+deleteSubmitHandler=(id)=>{
+axios.delete(`http://localhost:5000/friends/${id}`)
+  .then(response =>{
+    this.setState({
+      friendsData: response.data
+    })
+  })
+
 }
   render() {
     const { friendsData, name, modal} = this.state;
@@ -74,8 +89,9 @@ onSubmitHandler=(e)=>{
           name={name}
           age={this.state.age}
           email={this.state.email}
+          addMyDude={this.addSubmitHandler}
         />
-        <Route exact path='/' render={props => <Friends friendsData={friendsData}/>} />
+        <Route exact path='/' render={props => <Friends friendsData={friendsData} deleteHOE={this.deleteSubmitHandler}/>} />
       </AppContainer>
     );
   }
