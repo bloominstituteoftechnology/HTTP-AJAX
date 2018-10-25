@@ -9,7 +9,7 @@ const FriendCard = (props) => {
                         key={friend.id}
                         name={friend.name}
                         age={friend.age}
-                        email={friend.age}
+                        email={friend.email}
                        />
             })}
         </div>

@@ -1,55 +1,15 @@
 import React from 'react';
 
-class NewFriend extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        name: '',
-        age: '',
-        email: '',
-    }
-  }
-
-  handleChange = (event) => {
-      this.setState({
-        name: event.target.value,
-      }) 
-  }
-
-  handleChange2 = (event) => {
-    this.setState({
-      age: event.target.value,
-    }) 
-  }
-
-  handleChange3 = (event) => {
-    this.setState({
-      email: event.target.value
-    }) 
-  }
-
-  submitHandler = (event) => {
-      this.setState({
-        name: '',
-        age: '',
-        email: ''
-      })
-  }
-
-  render() {
+const NewFriend = (props) => {
     return (
-        <form>
+        <form onSubmit={props.submitHandler}>
             <h3>New Friend? Enter their info: </h3>
-            <p>Name: {this.state.name}</p>
-            <p>Age: {this.state.age}</p>
-            <p>Email: {this.state.email}</p>
-            <input type="text" name="name" placeholder="Name" onChange={this.handleChange} />
-            <input type="text" name="age" placeholder="Age" onChange={this.handleChange2} />
-            <input type="text" name="email" placeholder="Email" onChange={this.handleChange3} />
-            <button onClick={this.submitHandler}>Submit</button>
+            <input type="text" name="name" placeholder="Name" onChange={props.handleChange} value={props.name} />
+            <input type="text" name="age" placeholder="Age" onChange={props.handleChange} value={props.age} />
+            <input type="text" name="email" placeholder="Email" onChange={props.handleChange} value={props.email} />
+            <button type="submit">Submit</button>
         </form>
     )
-  }
 }
 
 export default NewFriend;
