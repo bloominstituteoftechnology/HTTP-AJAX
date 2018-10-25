@@ -1,0 +1,24 @@
+.newContactForm {
+  background-color: #282c34;
+  padding: 4%;
+  margin-top: 2%;
+  margin-bottom: 40%;
+  border-radius: 5%;
+}
+
+.formLabel {
+  color: white;
+
+}
+
+.submitButton {
+  margin: 3%;
+  color: white;
+  font-size: 35px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  box-shadow: 5px 5px 15px 5px #000000;
+  padding: 3%;
+  background-color: rgb(22, 22, 95);
+  border-radius: 10px;
+}

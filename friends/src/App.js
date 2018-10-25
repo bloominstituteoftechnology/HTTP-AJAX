@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import Contact from './Contact'
+import Contact from './Contact';
+import ContactForm from './ContactForm';
 
 class App extends Component {
   constructor() {
@@ -21,12 +22,18 @@ class App extends Component {
     return (
       <div className="App">
         <h1>My Contacts</h1>
-          {this.state.friends.map( friend => (
-            <Contact 
-              name={friend.name}
-              age={friend.age}
-              address={friend.email} />
-          ))}
+        <section className="contacts">
+          <div className="contactCards">
+            {this.state.friends.map( friend => (
+              <Contact 
+                key={friend.id}
+                name={friend.name}
+                age={friend.age}
+                address={friend.email} />
+            ))}
+          </div>
+          <ContactForm />
+        </section>
       </div>
     );
   }

@@ -1,7 +1,19 @@
 .App {
   text-align: center;
-  color: blue;
-  background-color: bisque;
+  color: #36a7c4;
+  background-color: gray;
+}
+
+h1 {
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border-bottom: 6px solid #1C6EA4;
+  background-color: #282c34
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .App-logo {
