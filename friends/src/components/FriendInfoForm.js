@@ -7,7 +7,15 @@ flex-direction:column;
 align-items: center;
 justify-content:space-around;
 width: 100%;
-`
+// `
+
+// const FriendFormSubmit = styled.div`
+//     width: 150px;
+//     height: 75px;
+//     display: flex;
+//     justify-content: center;
+//     border: 1x solid black;
+// `   
 
 function FriendInfoForm (props) {
     return (
