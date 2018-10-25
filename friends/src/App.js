@@ -11,6 +11,8 @@ class App extends Component {
     this.state = {
         friends: []
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -32,11 +34,44 @@ class App extends Component {
           });
   }
 
+  youAreNotMyFriend(e, id) {
+      e.preventDefault();
+  }
+
+  handleSubmit(e, name, age, email) {
+    const random = Math.floor((Math.random() * 1000000000000000) + 1);
+    e.preventDefault();
+    const self = this;
+    
+    axios.post('http://localhost:5000/friends', {
+        id: random,
+        name: name,
+        age: age,
+        email: email
+    })
+    .then(function (response) {
+        console.log(response);
+
+        const friendArr = [];
+              response.data.map(friend => {
+                  return friendArr.push([friend.id, friend.name, friend.age, friend.email])
+        });
+
+        self.setState({
+            friends: friendArr
+        });
+
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+  }
+
   render() {
     return (
       <div>
         <Route exact path='/' render={ props => <FriendList friends={this.state.friends} {...props}/>}></Route>
-        <Route path='/addfriend' component={NewFriend}></Route>
+        <Route path='/addfriend' render={ props => <NewFriend handleSubmit={this.handleSubmit}  {...props} />}></Route>
       </div>
     );
   }

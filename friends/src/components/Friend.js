@@ -6,6 +6,7 @@ const Friend = (props) => (
             <li>Name: {props.friend[1]}</li>
             <li>Age: {props.friend[2]}</li>
             <li>Email: {props.friend[3]}</li>
+            <button>Delete</button>
         </ul>
     </div>
 );
