@@ -27,9 +27,9 @@ class FriendsForm extends React.Component {
             email: this.state.email
         })
         .then(response => {
-            this.props.updateFriends(response.data);
+            this.props.addFriend(response.data);
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err))  
     }
 
     render() {
@@ -55,7 +55,7 @@ class FriendsForm extends React.Component {
                         placeholder='Email'
                         onChange={this.inputChangehandler}
                     />
-                    <button type='submit'>Submit friend</button>
+                    <button type='submit'>Yay! New friend!</button>
                 </form>
             </div>
         );

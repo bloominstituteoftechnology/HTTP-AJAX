@@ -18,22 +18,37 @@ class App extends React.Component {
       .then(response => {
         this.setState({
           friends: response.data
-        }, console.log(this.state.friends));
+        });
       })
       .catch(err => console.log(err))
   }
 
-  updateFriends = (response) => {
+  addFriend = (response) => {
     this.setState({
       friends: response
     })
+  }
+  
+  deleteFriend = (id) => {
+    return () => {
+      axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(response => 
+          this.setState({
+            friends: response.data
+        }, console.log(this.state.friends)))
+        .catch(err => console.log(err))
+    }
   }
 
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
-        <FriendsForm updateFriends={this.updateFriends}/>
+        <FriendsList 
+          friends={this.state.friends}
+          deleteFriend={this.deleteFriend} 
+        />
+        <FriendsForm addFriend={this.addFriend}/>
       </div>
     );
   }
