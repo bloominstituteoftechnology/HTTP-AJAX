@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import FriendForm from './FriendForm';
 import FriendCard from './FriendCard';
 
 export default class FriendList extends Component {
@@ -27,6 +28,7 @@ export default class FriendList extends Component {
         return (
             <div>
                 FriendList!
+                <FriendForm />
                 {this.state.friends.map(friend => (
                     <Link to={`/friends/${friend.id}`}>
                         <FriendCard key={friend.id} friend={friend} />
