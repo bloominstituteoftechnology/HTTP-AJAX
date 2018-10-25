@@ -7,9 +7,11 @@ const FriendCard = (props) => {
             {props.friends.map(friend => {
                 return <FriendInfo 
                         key={friend.id}
+                        id={friend.id}
                         name={friend.name}
                         age={friend.age}
                         email={friend.email}
+                        deleteHandler={props.deleteHandler}
                        />
             })}
         </div>

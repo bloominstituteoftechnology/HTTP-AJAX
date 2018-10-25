@@ -32,6 +32,14 @@ class App extends Component {
         .catch(err => console.log(err))
     }
 
+    deleteHandler = (id) => {
+      return () => {
+        axios.delete(`http://localhost:5000/friends/${id}`)
+          .then(response => this.setState({ friends: response.data }))
+          .catch(err => console.log(err))
+      }
+    }
+
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value
@@ -50,7 +58,7 @@ class App extends Component {
             email={this.state.email}
         />
         <h2>Friends List:</h2>
-        <FriendCard friends={this.state.friends} /> 
+        <FriendCard friends={this.state.friends} deleteHandler={this.deleteHandler} /> 
       </div>
     );
   }
