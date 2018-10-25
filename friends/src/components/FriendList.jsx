@@ -71,6 +71,7 @@ export default class FriendList extends Component {
         <ul>
           {this.state.friends.map(friend => (
             <div className='friend' key={friend.id}>
+              <li><span>ID:</span> {friend.id}</li>
               <li><span>Name:</span> {friend.name}</li>
               <li><span>Age:</span> {friend.age}</li>
               <li><span>Email:</span> {friend.email}</li>
