@@ -21,6 +21,7 @@ class App extends Component {
         console.log(response.data);
         this.setState({ friends: response.data })
       })
+      .catch(error => (console.log('this sucks')))
   }
 
   name = (event) => {
@@ -47,7 +48,6 @@ class App extends Component {
     this.setState({
       id: newId
     })
-
     const newFriend = {
       id: this.state.id,
       name: this.state.name,
@@ -61,27 +61,57 @@ class App extends Component {
         this.setState({
           friends: response.data,
         })
-          
+
       })
       .catch(error => { console.log('error!') })
-  }
-  render() {
-    return (
-      <div className="App">
-        {this.state.friends.map(friend => (
-          <Friends key={friend.id} friend={friend} />
-        ))}
-        <form>
-          <input placeholder='Name' onChange={this.name}></input>
-          <input placeholder='Age' onChange={this.age}></input>
-          <input placeholder='Email' onChange={this.email}></input>
-          <button onClick={this.addFriend}>Save</button>
 
-        </form>
 
-      </div>
-    );
+
+
   }
+
+  deleteFriendHandler = (id) => {
+    return () => {
+      axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(response => {
+          this.setState({
+            friends: response.data,
+          })
+        })
+        .catch(error => { console.log('error3') })
+      console.log(id)
+    }
+  }
+  updateFriendHandler = (id) => {
+    axios.put(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(error => {
+        console.log("errorUpdate")
+      })
+  }
+
+
+render() {
+  return (
+    <div className="App">
+      {this.state.friends.map(friend => (
+        <Friends key={friend.id} friend={friend} deleteFriendHandler={this.deleteFriendHandler} />
+      ))}
+      <form>
+        <input placeholder='Name' onChange={this.name}></input>
+        <input placeholder='Age' onChange={this.age}></input>
+        <input placeholder='Email' onChange={this.email}></input>
+        <button onClick={this.addFriend}>Save</button>
+        <button onClick={() => this.updateFriend}>Update</button>
+      </form>
+
+    </div>
+  );
+}
 }
 
 export default App;

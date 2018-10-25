@@ -11,6 +11,7 @@ class Friends extends Component {
             <p>Name:{this.props.friend.name}</p>
             <p>Age:{this.props.friend.age}</p>
             <p>Email:{this.props.friend.email}</p>
+            <p onClick={this.props.deleteFriendHandler(this.props.friend.id)}>X</p>
         </div>
     )
 }
