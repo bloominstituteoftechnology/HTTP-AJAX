@@ -1,0 +1,17 @@
+.contactCard {
+  display: flex;
+  flex-direction: row;
+  margin: 3%;
+  padding: 3%;
+  background-color: aqua
+}
+
+.nameAndAge {
+  display: flex;
+  flex-direction: column
+}
+
+h3 {
+  font-size: 25px;
+  font-family: Oxygen;
+}
