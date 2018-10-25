@@ -1,37 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class FriendCard extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            // newInfo: {
-            //     name: this.props.friend.name,
-            //     age: this.props.friend.age,
-            //     email: this.props.friend.email,
-            //     id: this.props.friend.id
-            // },
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      userInfo: null
+    };
+  }
 
-    componentWillMount() {
-    //     const current = this.props.friends.map(friend => {
-    //         // this.props.match.params.id === `${friend.id}`, 
-    //         // [0]
-    //         console.log(friend)
-    //     });
-    //     this.setState({userInfo: current})
-    //     console.log(current)
-    const friends = this.props.friends;
-        console.log(friends)
-    }
-    
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.fetchFriend(id);
+  }
 
-    inputChange = e => {
+  fetchFriend = id => {
+    axios
+      .get(`http://localhost:5000/friends`)
+      .then(response => {
+        const found = response.data.find(friend => `${friend.id}` === id);
+        this.setState(() => ({ userInfo: found }));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  inputChange = e => {
     e.preventDefault();
     this.setState({
-      newInfo: {
+      userInfo: {
         ...this.state.userInfo,
         [e.target.name]: e.target.value
       }
@@ -41,47 +40,53 @@ export default class FriendCard extends React.Component {
   numberInputChange = e => {
     e.preventDefault();
     this.setState({
-      newInfo: {
+      userInfo: {
         ...this.state.userInfo,
         [e.target.name]: parseInt(e.target.value)
       }
     });
-    console.log(this.state.userInfo)
   };
 
-  
+  submitUpdate = e => {
+    e.preventDefault();
+    this.props.updateFriend(this.state.userInfo);
+  };
 
-  submitUpdate = (e) => {
-      e.preventDefault();
-      this.props.updateFriend(this.state.userInfo)
-  }
-
-  
-
-    render() {
-        return (
-            <div>
-            
-                <Link to='/friends'>Home</Link>
-                <h1>
-                {/* {this.state.userInfo.name} */}
-                name
-                </h1>
-                <div>
-                {/* {`Age: ${this.state.userInfo.age}`} */}
-                age
-                </div>
-                <div>
-                {/* {`Email: ${this.state.userInfo.email}`} */}
-                email
-                </div>
-                {/* <form onSubmit={this.submitUpdate}> */}
-                {/* <input placeholder='Name' onChange={this.inputChange} value={this.state.userInfo.name} name='name' /> */}
-                {/* <input type='number' placeholder='Age' onChange={this.numberInputChange} value={this.state.userInfo.age} name='age' /> */}
-                {/* <input placeholder='Email' onChange={this.inputChange} value={this.state.userInfo.email} name='email' /> */}
-                {/* <button type='submit'>Update Friend</button> */}
-                {/* </form> */}
-            </div>
-        )
+  render() {
+    const friendProfile = this.state.userInfo;
+    if (!friendProfile) {
+      return <div />;
+    } else {
+      return (
+        <div>
+          <Link to="/friends">Home</Link>
+          <h1>{this.state.userInfo.name}</h1>
+          <div>{`Age: ${this.state.userInfo.age}`}</div>
+          <div>{`Email: ${this.state.userInfo.email}`}</div>
+          <form onSubmit={this.submitUpdate}>
+            <input
+              placeholder="Name"
+              onChange={this.inputChange}
+              value={this.state.userInfo.name}
+              name="name"
+            />
+            <input
+              type="number"
+              placeholder="Age"
+              onChange={this.numberInputChange}
+              value={this.state.userInfo.age}
+              name="age"
+            />
+            <input
+              placeholder="Email"
+              onChange={this.inputChange}
+              value={this.state.userInfo.email}
+              name="email"
+            />
+            <button type="submit">Update Friend</button>
+          </form>
+        </div>
+      );
     }
+  }
 }

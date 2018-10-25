@@ -4,9 +4,7 @@ import axios from "axios";
 
 import NewFriendForm from "./components/NewFriendForm";
 import FriendCard from "./components/FriendCard";
-
 import FriendList from "./components/FriendList";
-// import './App.css';
 
 class App extends Component {
   constructor() {
@@ -83,7 +81,7 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{paddingBottom: '20px'}}>
+      <div style={{ paddingBottom: "20px" }}>
         <Switch>
           <Route exact path="/">
             <Link to="/friends">
@@ -91,31 +89,32 @@ class App extends Component {
             </Link>
           </Route>
         </Switch>
-        
-          <Route
-            exact path="/friends"
-            render={props => (
-              <FriendList
-                {...props}
-                friends={this.state.friends}
-                updateFriend={this.updateFriend}
-                deleteFriend={this.deleteFriend}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/friends/:id"
-            render={props => (
-              <FriendCard
-                {...props}
-                friends={this.state.friends}
-                updateFriend={this.updateFriend}
-                deleteFriend={this.deleteFriend}
-              />
-            )}
-          />
-        
+
+        <Route
+          exact
+          path="/friends"
+          render={props => (
+            <FriendList
+              {...props}
+              friends={this.state.friends}
+              updateFriend={this.updateFriend}
+              deleteFriend={this.deleteFriend}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/friends/:id"
+          render={props => (
+            <FriendCard
+              {...props}
+              friends={this.state.friends}
+              updateFriend={this.updateFriend}
+              deleteFriend={this.deleteFriend}
+            />
+          )}
+        />
+
         <Route
           exact
           path="/friends"
