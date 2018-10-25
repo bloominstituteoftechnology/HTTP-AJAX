@@ -26,7 +26,6 @@
     width: 60%;
     text-align: left;
     padding-left: 5%;
-     /* border: 2px solid blue; */ 
 }
 
 .title {
@@ -37,7 +36,6 @@
     border-radius: 10px;
     background-color: rgba(132, 203, 221, 0.521);
     box-shadow: 3px 5px 10px 2px #888888;
-    /*  border: 2px solid green; */
 }
 
 .add-friend-form {
@@ -47,36 +45,31 @@
     margin-left: auto;
     margin-right: auto;
     padding-top: 20%;
-    /* border: 2px solid red;  */
 }
 
 .update-friend-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .friend-form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    /*  border: 2px solid aqua; */
 }
 
 .friends-list {
-    /* border: 2px solid gray;  */
     width: 50%;
 }
 
 .friend-list {
- /*  border: 2px solid gray;  */
-   width: 100%; 
-   margin-bottom: 14px;
-   border-radius: 10px;
-   cursor: pointer;
-   background-color: rgba(216, 223, 231, 0.5);
-   box-shadow: 1px 1px 6px 1px #888888;
+    width: 100%;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(216, 223, 231, 0.5);
+    box-shadow: 1px 1px 6px 1px #888888;
 }
 
 .friend-list:hover {
@@ -94,37 +87,31 @@ h3 {
 .submit-button {
     margin-top: 10px;
     border-radius: 10px;
-   /*  box-shadow: 2px 4px 6px 2px #b4b4b4; */
 }
 
 .add-input {
-margin-bottom: 10px;
-border-radius: 10px;
-background-color: rgba(132, 203, 221, 0.521);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgba(132, 203, 221, 0.521);
     box-shadow: 3px 5px 10px 2px #888888;
 }
 
 .add-text {
-font-weight: bold;
-
+    font-weight: bold;
 }
 
 .friend-header {
-margin-left: 10%;
-
+    margin-left: 10%;
 }
 
 .update-form {
-  width: 60%;
-  /* border: 2px solid orange; */
-  margin-left: auto;
-  margin-right: auto;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .both-friends-container {
-  display: flex;
-  flex-direction: column;
-width: 60%;
-/* border: 2px solid fuchsia; */
-
+    display: flex;
+    flex-direction: column;
+    width: 60%;
 }

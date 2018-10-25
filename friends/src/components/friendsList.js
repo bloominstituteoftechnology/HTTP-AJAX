@@ -3,9 +3,6 @@ import '../App.css';
 
 const FriendsList = props => {
    
- 
- 
-
   return (
     <div className={props.formClass} onClick={() => props.clickHandler(props.keyIndex)} >
         <h4  className="header friend-header">{props.name}</h4>
