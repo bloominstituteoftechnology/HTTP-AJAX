@@ -7,6 +7,7 @@ const Friends = props => {
       <div>Email: {props.friend.email}</div>
       <div>Age: {props.friend.age}</div>
       <button className='btn' onClick={ () => props.handleClick(props.friend) }>Edit</button>
+      {/* <button className='btn'onClick={this.deleteFriends}>Delete</button> */}
     </div>
   )
 }
