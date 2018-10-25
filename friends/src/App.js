@@ -29,13 +29,11 @@ class App extends Component {
    this.setState({
      [event.target.name]:event.target.value
    })
-   
-
   }
+
 
   addFriend = (event) => {
     event.preventDefault();
-  
     const Friendz = {
       id:this.state.friends.length + 1,
       name:this.state.name,
@@ -56,13 +54,25 @@ class App extends Component {
     .catch( error => console.log(error))
   }
 
+  deleteFriend = (id) => {
+    return () => {
+      axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(response => {
+          this.setState({
+            friends:response.data
+          })
+        })
+        .catch( error => console.log(error))
+    }
+  }
+
 
 
 render() {
     return(
         <div className="App">
           {this.state.friends.map(item => (
-              <Friends key={item.id} friends={item} />
+              <Friends key={item.id} friends={item} delete={this.deleteFriend}/>
           ))}
           <form >
             <input type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler}></input>
