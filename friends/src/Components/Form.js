@@ -9,20 +9,20 @@ class Form extends React.Component {
 
             <form className="form-inline">
   <label className="sr-only" for="inlineFormInputName2">First Name</label>
-  <input type="text" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="First Name"/>
+  <input type="text" onChange={this.props.addNameToList} className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="First Name"/>
 
   <label className="sr-only" for="inlineFormInputName2">Age</label>
-  <input type="text" className="form-control mb-2 sm-sm-2" id="inlineFormInputName2" placeholder="Age"/>
+  <input type="text" onChange={this.props.addAgeToList} className="form-control mb-2 sm-sm-2" id="inlineFormInputName2" placeholder="Age"/>
   
   <label className="sr-only" for="inlineFormInputGroupUsername2">Email</label>
   <div className="input-group mb-2 mr-sm-2">
     <div className="input-group-prepend">
       <div className="input-group-text">@</div>
     </div>
-    <input type="text" className="form-control" id="inlineFormInputGroupUsername2" placeholder="Email"/>
+    <input type="text" onChange={this.props.addEmailToList} className="form-control" id="inlineFormInputGroupUsername2" placeholder="Email"/>
   </div>
 
-  <button type="submit" className="btn btn-primary mb-2">Submit</button>
+  <button type="submit" onClick={this.props.submitToList} className="btn btn-primary mb-2">Submit</button>
 </form>
         )
     }

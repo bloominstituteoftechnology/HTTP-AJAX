@@ -8,26 +8,47 @@ class App extends Component {
     super(props);
     this.state = {
       friends: [{}],
-      newFriend: [],
+      name: '',
+      age: 0,
+      email: '',
     }
   }
 
 
-  addToList(e) {
-    this.setState({
-      newFriend: e.target.vaule
-    })
-  }
-
-  submitToList (e) {
+  addNameToList = (e) => {
     e.preventDefault();
-    this.setState({
-      friends: [...this.state.friends, newFriend]
+    this.setState({name: e.target.value,
     })
   }
 
+  addAgeToList = (e) => {
+    e.preventDefault();
+    this.setState({age: e.target.value,
+    })
+  }
+
+  addEmailToList = (e) => {
+    e.preventDefault();
+    this.setState({email: e.target.value,
+    })
+  }
+
+  submitToList = (e) => {
+    e.preventDefault();
+
+    const newFriend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,
+    }
 
 
+    Axios.post("//localhost:5000/friends", newFriend)
+    .then(response => {
+      this.setState({friends: response.data})
+    })
+    .catch(err => console.log(err));
+  }
 
 
 
@@ -35,9 +56,9 @@ class App extends Component {
       Axios
         .get("//localhost:5000/friends")
         .then(Response => {
-          console.log(Response);
           this.setState({ friends: Response.data});
         })
+        .catch( err => console.log(err));
     }
 
   render() {
@@ -45,7 +66,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div>
-            <Friends friends={this.state.friends}/>
+            <Friends friends={this.state.friends}
+             addNameToList={this.addNameToList}
+             addAgeToList={this.addAgeToList}
+             addEmailToList={this.addEmailToList}
+              submitToList={this.submitToList}
+              />
           </div>
         </header>
       </div>

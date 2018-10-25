@@ -11,7 +11,13 @@ class Friends extends React.Component {
             <div>
                 <img src="./public/asset/lambda-2.png" alt="Lambda Logo" />
                 <h1>Lambda Student List</h1><br/>
-                <Form/><br/>
+                <Form 
+                    friends={this.props.friends}
+                    submitToList={this.props.submitToList}
+                    addNameToList={this.props.addNameToList}
+                    addAgeToList={this.props.addAgeToList}
+                    addEmailToList={this.props.addEmailToList}
+                    /><br/>
             {this.props.friends.map(friend => {
                 return(
                     <table className="table">
