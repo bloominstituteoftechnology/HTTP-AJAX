@@ -42,6 +42,14 @@ class App extends Component {
 
   } 
 
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response =>
+        this.setState({friends: response.data}))
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -52,9 +60,13 @@ class App extends Component {
             <h3>{friend.name}</h3>
             <p>{friend.age}</p>
             <p>{friend.email}</p>
+            <button onDelete={this.deleteFriend} onClick={this.deleteFriend}>X</button>
             </div>
+
           )
         })}
+
+        
          <div className="AddToFriendsForm">
           <form>
             <input
