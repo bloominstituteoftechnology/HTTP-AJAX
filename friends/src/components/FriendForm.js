@@ -8,11 +8,20 @@ class FriendForm extends React.Component {
 
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if (this.props.isUpdating) {
+            this.props.handleUpdateFriend(this.props.id);
+        } else {
+            this.props.handleAddNewFriend(event);
+        }
+    }
+
     render(){
         return(
             <Fragment>
                 <section className='App-form'>
-                    <h1>Add new Friend</h1>
+                    <h1>{this.props.isUpdating ? 'Update existing Friend' : 'Add new Friend'}</h1>
                     <form>
                         <input type="text" 
                             required 
@@ -36,7 +45,7 @@ class FriendForm extends React.Component {
                             onChange={this.props.handleChange}
                         />
                     </form>
-                    <button onClick={this.props.handleAddNewFriend}>save</button>
+                    <button onClick={this.handleSubmit}>save</button>
                 </section>
             </Fragment>
         )
@@ -52,6 +61,7 @@ FriendForm.propTypes = {
     isUpdating: PropTypes.bool,
     handleAddNewFriend: PropTypes.func,
     handleChange: PropTypes.func, 
+    handleUpdateFriend: PropTypes.func,
 }
 
 export default FriendForm

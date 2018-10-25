@@ -10,18 +10,25 @@ import Home from './components/Home';
 
 import './App.css';
 
+const blankFormValues = {
+  name: '',
+  age: '',
+  email: '',
+}
+
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      friendToUpdate: null,
+      // friendToUpdate: null,
       friends: [],
       friend: {
         name: '',
         age: '',
         email: '',
       },
-    }
+      isUpdating: false,
+    };
   }
 
   //http://localhost:5000/friends is where the data is located, hence
@@ -56,7 +63,7 @@ class App extends Component {
 
 
       .then(response => {
-        this.setState({ friends: response.data })
+        this.setState({ friends: response.data, friend: blankFormValues })
         //redirect to main page after adding a friend
         // history.push('/friendslist')
       })
@@ -72,11 +79,24 @@ class App extends Component {
     .then(response => this.setState({ friends: response.data }));
   }
 
-  handleUpdateFriend = (event, id) => {
+  goToUpdateFriendForm = (event, id) => {
     console.log('firing', id);
     event.preventDefault();
     const friendToUpdate = this.state.friends.find(friend => friend.id === id);
-    this.setState({ friendToUpdate: friendToUpdate, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));
+    // this.setState({ friendToUpdate: friendToUpdate, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));
+    this.setState({ isUpdating: true, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));
+  }
+
+  handleUpdateFriend = id => {
+    axios.put(`http://localhost:5000/friends/${id}`, this.state.friend)
+    .then(response => {
+      this.setState({ 
+          friends: response.data, 
+          isUpdating: false,
+          friend: blankFormValues, 
+        })
+      }
+    )
   }
 
 
@@ -148,7 +168,7 @@ class App extends Component {
 
           friends={this.state.friends}
           handleDeleteFriend={this.handleDeleteFriend}
-          handleUpdateFriend={this.handleUpdateFriend}
+          goToUpdateFriendForm={this.goToUpdateFriendForm}
           /> )}
           />
 
@@ -168,7 +188,9 @@ class App extends Component {
               handleAddNewFriend={this.handleAddNewFriend}
               handleChange={this.handleChange} 
               newfriend={this.state.friend}
-              friendToUpdate={this.state.friendToUpdate}
+              handleUpdateFriend={this.handleUpdateFriend}
+              // friendToUpdate={this.state.friendToUpdate}
+              isUpdating={this.state.isUpdating}
 
               />
             )}
