@@ -8,7 +8,9 @@ function FriendsList(props){
         props.friendly.map(friend => {
             return(
   
-              <div>
+              <div
+              key={friend.id}
+              >
                 <div>{friend.id}</div>
                 <div>{friend.name}</div>
                 <div>{friend.age}</div>

@@ -44,6 +44,17 @@ class App extends React.Component {
     });
   }
 
+  // handleSubmitFriend = () => {
+  //   const newFriend = {
+  //     name: this.state.name,
+  //     age: this.state.age,
+  //     email: this.state.email,
+  //   }
+
+
+    
+  // }
+
   addNewItem = () => {
     axios
       .post('http://localhost:5000/friends', this.state.friend)
@@ -76,7 +87,7 @@ class App extends React.Component {
           items: response.data,
           editingId: null,
           isEditing: false,
-          friend: blankItem
+          friend: "blankItem"
         });
       })
       .catch(error => console.log(error));
@@ -87,6 +98,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div>
+          {/* <Route path='/' render = {(props) => {<FriendsList />}} */}
           <FriendsList
           friendly = {this.state.friends}
           getItemById={this.getItemById}

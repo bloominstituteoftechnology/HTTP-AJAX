@@ -1,7 +1,7 @@
 import React from 'react';
-import { prependOnceListener } from 'cluster';
+// import { prependOnceListener } from 'cluster';
 
-function FriendsForm(){
+function FriendsForm(props){
     return(
     <form className = "friends-form">
         <input 
@@ -32,7 +32,7 @@ function FriendsForm(){
         onChange = {props.changeHandler}
         value = {props.friend.email}
         />
-        <button onClick={handleClick} className="md-button">
+        <button onClick={props.addNewItem}>
           Add Friend
         </button>
     </form>        
