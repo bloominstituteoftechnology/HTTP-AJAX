@@ -1,12 +1,11 @@
 import React from 'react';
 
-const Friend = (props) => {
+export default props =>{
     return(
-        <div>
+    <div style={{border: '1px solid black'}}>
+            <p style={{cursor: "pointer"}} onClick={props.deleteFriendHandler(props.friend.id)} >X</p>
             <p>{props.friend.name}</p>
             <p>- {props.friend.age}</p>
         </div>
-    )
-}
-
-export default Friend;
+    );
+  }

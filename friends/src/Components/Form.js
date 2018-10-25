@@ -7,8 +7,11 @@ export default class  Form extends React.Component {
         this.state = {
             data: this.data,
             
+            
         }
     }
+
+   
 
     handleChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -24,12 +27,13 @@ export default class  Form extends React.Component {
         }
         axios.post(`http://localhost:5000/friends`, newfriend)
         .then (response => {
-            console.log(response.data);
-            this.props.state.setState({ data: response.data})
+            this.props.setState({ data: response.data});
+            
         })
-        .catch( err=>console.log("Failed to update."))
+        .catch( err=>console.log(err))
+        
 
-        // document.getElementById('form').rest();
+        // this.setState({name:'', age: '', email: ''})
     }
 
     render ()  {
@@ -44,6 +48,8 @@ export default class  Form extends React.Component {
           <hr></hr>
           <button type='submit'>Add</button>
         </form>
+
+    
         )
     }
 

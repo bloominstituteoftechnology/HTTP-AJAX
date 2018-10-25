@@ -23,16 +23,26 @@ class App extends Component {
     .catch( err=> console.log(err))
   }
 
+  deleteFriendHandler = (id) => {
+    return () => {
+      axios.delete(`http://localhost:5000/friends/${id}`)
+      .then( response => {
+        this.setState({data: response.data})
+      } )
+      .catch( err=> console.log(err))
+    }
+    
+  }
 
 
   render() {
     return (
       <div className="App">
        
-        <Form  />
+        <Form data={this.state.data} componentDidMount={this.componentDidMount} />
 
         {this.state.data.map(friend => (
-          <Friend friend={friend} />
+          <Friend friend={friend} deleteFriendHandler={this.deleteFriendHandler} />
         ))}
       </div>
     );
