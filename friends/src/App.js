@@ -62,27 +62,27 @@ render() {
   return (  
     <div className="App">
       <form>
-     <input 
-     type='text'
-     placeholder='Name' 
-     onChange={this.changeHandler} 
-     name='name' 
-     value={this.state.newFriend.name} 
-     /> 
-     <input 
-     type='number' 
-     placeholder='Age' 
-     onChange={this.changeHandler}  
-     name='age' 
-     value={this.state.newFriend.age} 
-     />
-     <input 
-     type='text' 
-     placeholder='Email' 
-     onChange={this.changeHandler}  
-     name='email' 
-     value={this.state.newFriend.email} 
-     />
+          <input 
+              type='text'
+              placeholder='Name' 
+              onChange={this.changeHandler} 
+              name='name' 
+              value={this.state.newFriend.name} 
+          /> 
+          <input 
+              type='number' 
+              placeholder='Age' 
+              onChange={this.changeHandler}  
+              name='age' 
+              value={this.state.newFriend.age} 
+          />
+          <input 
+              type='text' 
+              placeholder='Email' 
+              onChange={this.changeHandler}  
+              name='email' 
+              value={this.state.newFriend.email} 
+          />
    </form>
    <button onClick={this.addFriend}>Add Friend</button>
       {this.state.friends.map(friends => (
