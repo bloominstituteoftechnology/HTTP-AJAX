@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const FriendsList = props => {
 
@@ -13,6 +13,8 @@ const FriendsList = props => {
                        
                     )}
             )} 
+
+            <h2>Add Friend</h2>
             </div>
     );
 
