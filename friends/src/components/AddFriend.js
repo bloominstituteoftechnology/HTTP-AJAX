@@ -6,7 +6,6 @@ class AddFriend extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id: 0,
             name: '',
             age: undefined,
             email: ''

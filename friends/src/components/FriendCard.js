@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import DeleteFriend from './DeleteFriend';
 
@@ -14,7 +15,7 @@ const FriendCard = (props)=>{
             <div>{props.friend.age}</div>
             <div>{props.friend.email}</div>
             {/* TODO: this should only render when individual friend has been selected */}
-            {props.update ? <div>Update</div> : null}
+            {props.update ? <Link to={`/${props.friend.id}/update`}>Update</Link> : null}
             {props.delete ? <DeleteFriend id={props.friend.id} deleteFriend={props.deleteFriend}/> : null}
         </div>
     )

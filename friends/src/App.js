@@ -6,6 +6,7 @@ import './App.css';
 import FriendsList from './components/FriendsList';
 import FriendCard from './components/FriendCard';
 import AddFriend from './components/AddFriend';
+import UpdateFriendCard from './components/UpdateFriendCard';
 
 class App extends Component {
   constructor(){
@@ -60,6 +61,11 @@ class App extends Component {
     })
   }
 
+  updateFriend = (id, friend)=>{
+    console.log(id, friend);
+    // TODO: Use notes from lecture below to finish this method
+  }
+
   parseFriend = (id)=>{
     const test = this.state.friends.find(friend=>{
       return `${friend.id}` === id;
@@ -72,8 +78,9 @@ class App extends Component {
       <div className="App">
         <h1>My Friends</h1>
         <Route exact path="/" render={(props)=><FriendsList friends={this.state.friends}/>}/>
-        <Route path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} update delete/>}/>
+        <Route exact path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} update delete/>}/>
         <Route path="/addfriend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
+        <Route path="/:id/update" render={(props)=><UpdateFriendCard friend={this.parseFriend(props.match.params.id)} updateFriend={this.updateFriend}/>}/>
       </div>
     );
   }
