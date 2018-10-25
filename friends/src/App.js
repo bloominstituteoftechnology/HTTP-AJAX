@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import logo from './d2rdDroidEmoji.png';
 import './App.css';
 
+import FriendForm from './FriendForm';
+import FriendList from './FriendList';
+
 class App extends Component {
   render() {
     return (
@@ -22,6 +25,10 @@ class App extends Component {
             About D2rd
           </a>
         </header>
+        <div className="App">
+        <FriendForm />
+        <FriendList />
+      </div>
       </div>
     );
   }

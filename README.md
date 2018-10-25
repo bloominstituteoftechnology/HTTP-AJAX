@@ -1,3 +1,5 @@
+// MY PR - https://github.com/LambdaSchool/HTTP-AJAX/pull/500
+
 # HTTP/AJAX
 
 Topics:
@@ -18,7 +20,7 @@ Topics:
 
 [x] 5.  CD into `friends` and run `yarn start or npm start` to fire up your React Dev Server.
 
-[] 6.  Inside your React application, create a component to display the list of friends coming from the server.
+[x] 6.  Inside your React application, create a component to display the list of friends coming from the server.
 
 [] 7.  Add a form to gather information about a new friend.
 
