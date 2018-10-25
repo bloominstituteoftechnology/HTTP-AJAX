@@ -7,7 +7,7 @@ class AddFriendForm extends Component {
     this.state = {
       friends: this.props.friends,
       name: '',
-      age: '',
+      age: null,
       email: '',
     };
     //this.addFriendHandler = this.addFriendHandler.bind(this);
@@ -51,20 +51,22 @@ class AddFriendForm extends Component {
         <h1>Add Friend:</h1>
         <form>
           Name: <input 
-                  value={this.props.name}
-                  name='name' 
+                  //value={this.props.name}
+                  name='friendName' 
                   type='text'
                   placeholder="enter name"
                   onChange={this.addFriendHandler} />
           <br></br>
           Age: <input 
-                  value={this.age}
+                  //value={this.age}
+                  name='friendAge'
                   type='text'
                   placeholder="enter age"
                   onChange={this.addFriendHandler}  />
           <br></br>
           Email: <input 
-                  value={this.email}
+                  //value={this.email}
+                  name='friendEmail'
                   type='text'
                   placeholder="enter email"
                   onChange={this.addFriendHandler}  />
