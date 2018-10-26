@@ -11,7 +11,7 @@
   display:flex;
   flex-direction: column;
   border: 2px solid navy;
-  width:50%;
+  width:100%;
 }
 
 .friendsList h1{
@@ -30,10 +30,12 @@ align-items:center;
   border: 1px solid black;
   margin-bottom: 10px;
   height:20px;
+ 
 }
 
 .form{
   display:flex;
   flex-direction: column;
+  width: 400px;
   
 }
