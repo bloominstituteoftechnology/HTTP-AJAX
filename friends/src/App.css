@@ -1,4 +1,18 @@
+.app-container {
+  margin: 0 auto;
+  width: 880px;
+}
+
 .friend {
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
+}
+
+.delete-friend {
+  cursor: pointer;
+}
+
+.delete-friend span {
+  color: red;
 }

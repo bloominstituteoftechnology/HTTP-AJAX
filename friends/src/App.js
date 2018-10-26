@@ -28,12 +28,29 @@ export default class App extends Component {
     this.setState({ friends });
   };
 
+  deleteFriend = id => {
+    return () => {
+      axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(response => {
+          this.setState({ friends: response.data });
+        })
+        .catch(err => console.log(err));
+    };
+  };
+
   render() {
     return (
-      <div>
+      <div className="app-container">
         <Route
           path="/"
-          render={props => <Friends {...props} friends={this.state.friends} />}
+          render={props => (
+            <Friends
+              {...props}
+              friends={this.state.friends}
+              deleteFriend={this.deleteFriend}
+            />
+          )}
         />
         <Route
           path="/"
