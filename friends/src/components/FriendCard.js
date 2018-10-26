@@ -37,7 +37,7 @@ const FriendCard = props => {
                 <CardSubtitle>{age}</CardSubtitle>
                 <CardText>{email}</CardText>
                 <ButtonContainer>
-                    <Button color="danger" onClick={props.handleDelete}>Delete</Button> 
+                    <Button color="danger" onClick={props.handleDelete(id)}>Delete</Button> 
                     <Button color="secondary">Edit</Button>   
                 </ButtonContainer>
             </StyledCard>

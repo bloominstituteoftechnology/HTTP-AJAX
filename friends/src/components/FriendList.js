@@ -56,9 +56,19 @@ export default class FriendList extends Component {
             });
     };
 
-    deleteHandler = () => {
-        alert("Are you positive you want to delete this friend?")
-        };
+    deleteHandler = (id) => {
+        return () => {
+            alert("Are you positive you want to delete this friend?")
+            axios
+                .delete(`http://localhost:5000/friends/${id}`)
+                .then( response => {
+                    this.setState({ friends: response.data });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    };
 
     render() {
         return (
@@ -72,7 +82,7 @@ export default class FriendList extends Component {
                 />
                 <CardForFlex>
                     {this.state.friends.map(friend => (
-                                <FriendCard key={friend.id} friend={friend} handleDelete={this.deleteHandler} />
+                            <FriendCard key={friend.id} friend={friend} handleDelete={this.deleteHandler} />
                     ))}    
                 </CardForFlex>
             </div>
