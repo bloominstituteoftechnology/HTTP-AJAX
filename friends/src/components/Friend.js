@@ -7,6 +7,7 @@ const Friend = (props) =>{
             <li className='friendName'>{props.friend.name}</li>
             <li>Age: {props.friend.age}</li>
             <li>Email: {props.friend.email}</li>
+            <li className='deleteButton' onClick={props.deleteHandler(props.friend.id)}>Delete</li>
         </ul>
     )
 }

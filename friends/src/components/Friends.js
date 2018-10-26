@@ -19,7 +19,6 @@ class Friends extends Component{
         axios
             .get('http://localhost:5000/friends')
             .then(response =>{
-                console.log(response.data)
                 this.setState({
                     friends: response.data,
                 })
@@ -34,6 +33,7 @@ class Friends extends Component{
     }
 
     submitHandle = (event) =>{
+        event.preventDefault()
         axios
             .post('http://localhost:5000/friends',{
                 name: this.state.name,
@@ -41,7 +41,6 @@ class Friends extends Component{
                 email: this.state.email
             })
             .then(response =>{
-                console.log(response);
                 this.setState({
                     name: "",
                     age: "",
@@ -53,6 +52,13 @@ class Friends extends Component{
             })
     }
 
+    deleteHandler = (id) =>{
+        return () =>{
+            console.log(id)
+        }
+        
+    }
+
     render(){
         return(
             <div className='mainCont'>
@@ -60,7 +66,7 @@ class Friends extends Component{
                     <h1>Friends List</h1>
                     <div className='friendCard'>
                         {this.state.friends.map(item => {
-                            return (<Friend key={item.id} friend={item}/>)
+                            return (<Friend key={item.id} friend={item} deleteHandler={this.deleteHandler}/>)
                         })}
                     </div>
                 </div>
