@@ -9,6 +9,7 @@ class App extends Component {
         super(props);
         this.state = {
             friends: [],
+            nextId: null,
         }
     }
     componentDidMount() {
@@ -23,9 +24,12 @@ class App extends Component {
             name: name,
             age: age,
             email: email,
-            id: this.state.friends.length + 1
+            id: this.state.nextId,
         })
         .then(data    =>  this.getFriends())
+        .then(data  =>  this.setState((state)   =>  ({
+            nextId: this.state.nextId + 1,
+        })))
         .catch(err    =>  {
             console.log("In Catch", err);
         })
@@ -68,6 +72,13 @@ class App extends Component {
         .then(data  =>  this.setState((state)   =>  ({
             friends: data.data
         })))
+        .then(data  =>  {
+            if(this.state.nextId === null)  {
+                this.setState((state)   =>  ({
+                    nextId: this.state.friends.length + 1
+                }))
+            }
+        })
         .catch(err  =>  {
             console.log("In Catch", err);
         });
