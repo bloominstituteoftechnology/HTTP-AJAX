@@ -41,7 +41,17 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
- 
+  deleteHandler = id => {
+    console.log("in the delete handler")
+        
+          axios.delete(`http://localhost:5000/friends/${id}`)
+          .then( response => {
+            this.setState({friends: response.data})
+            console.log(this.state)
+          })
+          .catch(err => console.log(err))
+         
+      }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -85,7 +95,7 @@ class App extends Component {
       <div className="App"><h1 className="title">HTTP/AJAX Friends App</h1>
         <div className="friends-container">
           <div className="friends-list">{this.state.friends.map((friend, index) => {
-            return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} friends={this.state.friends}  id={friend.id} selected={friend.id} keyIndex={index} clickHandler={this.clickHandler}  />
+            return <FriendsList key={index} name={friend.name} age={friend.age} email={friend.email} friends={this.state.friends}  id={friend.id} selected={friend.id} keyIndex={index} clickHandler={this.clickHandler} deleteHandler={this.deleteHandler} />
           })}</div>
           <div className="both-friends-container">
             <div className="update-form"><UpdateFriend friends={this.state.friends} selectedFriend={this.props.selectedFriend} name={this.props.name} age={this.props.age} email={this.props.email} changeHandler={this.changeHandler} handleUpdate={this.handleUpdate} /></div>

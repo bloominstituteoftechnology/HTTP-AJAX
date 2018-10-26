@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import axios from "axios";
 
 /* const FriendsList = props => { */
 
@@ -31,11 +32,11 @@ import '../App.css';
      /* console.log("selected:", selected) */
     /* selected = selected + 1 */
     this.setState({ keyIndex: selected });
-    
    /*  let currentFriend = this.state.friends.find(friend => friend.id === selected) */
-    /* this.setState({ currentFriend: currentFriend }); */
-   
-  }
+   }
+
+  
+
   render() {
     let classNames = require('classnames');
     let highLight = false;
@@ -58,7 +59,8 @@ import '../App.css';
           <li>Age: {this.props.age}</li>
           <li>Email: {this.props.email}</li>
           <li>Index: {this.props.id}</li>
-        </ol>  
+        </ol> 
+        <p className="delete"  onClick={() => this.props.deleteHandler(this.props.id)}>X</p> 
     </div>
   );
 }
