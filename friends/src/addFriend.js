@@ -9,7 +9,7 @@ export default class Add extends React.Component {
       name: '',
       age: '',
       email: '',
-      id: ''
+      id: this.props.friends.length + 1
     } 
   }
   
