@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, FriendStyle, FriendHeader, X, Email, UpdateButton} from './Styled Components';
 import UpdateForm from './UpdateForm';
-import {Route} from 'react-router-dom';
 
 
 export default class Friend extends React.Component {
@@ -15,9 +14,24 @@ export default class Friend extends React.Component {
         }
     }
 
+    updateFriend = (e) => {
+        e.preventDefault();
+        const id = this.props.id
+        this.props.update(id, this.state.name, this.state.age, this.state.email);
+        this.setState({
+            updateStatus: !this.state.updateStatus
+        })
+        // console.log(id, this.state.name, this.state.age, this.state.email)
+    }
+
+    inputHandler = (e) =>{
+        this.setState({
+            [e.target.id]: e.target.value
+          })
+    }
+
     updateHandler = (e) => {
         e.preventDefault();
-        console.log(this.state.updateStatus)
         this.setState({
           updateStatus: !this.state.updateStatus
         })
@@ -30,7 +44,6 @@ export default class Friend extends React.Component {
       }
 
     render(){
-        console.log(this.state.updateStatus)
         return(
             <FriendStyle>
                 <X onClick={this.props.delete(this.props.id)}>X</X>
@@ -39,7 +52,7 @@ export default class Friend extends React.Component {
                 <Text>You can contact me at <Email onClick={this.props.no} href='#'>{this.props.friend.email}</Email></Text>
                 <UpdateButton onClick={this.updateHandler}>Update</UpdateButton>
 
-                {this.state.updateStatus ? <UpdateForm exitForm={this.exitForm} /> : null }
+                {this.state.updateStatus ? <UpdateForm update={this.updateFriend} change={this.inputHandler} exitForm={this.exitForm} /> : null }
             </FriendStyle>
         )
     }

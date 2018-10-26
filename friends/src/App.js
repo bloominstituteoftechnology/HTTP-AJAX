@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
-import Friend from './Friend.js';
-import Form from './Form.js';
 import {Route} from 'react-router-dom';
-import { AddFriend } from './AddFriend';
-import UpdateForm from './UpdateForm';
 import Home from './Home';
 
 export default class App extends Component {
@@ -92,11 +88,24 @@ export default class App extends Component {
   updateFriend = (id, name, age, email) => {
     return()=>{
       console.log(id, name, age, email)
+      console.log('success!')
+      axios.put(`http://localhost:5000/friends/${id}`, {
+        friend: {
+          name: name,
+          age: age,
+          email: email
+        }
+      })
+      .then( response=>{
+        this.setState({
+          data: response.data
+        })
+      })
+      .catch( err=>console.log(err))
     }
   }
 
   render() {
-    console.log(this.state.data)
     return (
       <div className="App">
         <Route path='/' render={(props) => <Home {...props} 
