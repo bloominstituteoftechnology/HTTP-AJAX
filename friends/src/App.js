@@ -31,18 +31,12 @@ class App extends React.Component {
     })
   }
 
-  //remove friend by passing entire function down to Friend component
-  
-  deleteFriend = (id) => {
-    return () => {
-      axios
-        .delete(`http://localhost:5000/friends/${id}`)
-        .then(response => 
-          this.setState({
-            friends: response.data
-        }))
-        .catch(err => console.log(err))
-    }
+  //remove friend by taking up response information from FriendForm component
+
+  deleteFriendFromList = (response) => {
+    this.setState({
+      friends: response
+    })
   }
 
   //update friend by taking up response information from Friend component
@@ -61,6 +55,7 @@ class App extends React.Component {
           friends={this.state.friends}
           deleteFriend={this.deleteFriend} 
           updateFriendList={this.updateFriendList}
+          deleteFriendFromList={this.deleteFriendFromList}
         />
         <FriendsForm addFriend={this.addFriend}/>
       </div>

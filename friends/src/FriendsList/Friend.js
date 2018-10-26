@@ -18,24 +18,38 @@ class Friend extends React.Component {
         })
     }
 
+    //delete friend
+
+    deleteFriend = (e) => {
+        e.preventDefault();
+        axios
+            .delete(`http://localhost:5000/friends/${this.props.friend.id}`)
+            .then(response => {
+                this.props.deleteFriendFromList(response.data)
+            })
+            .catch(err => console.log(err));
+        
+    }
+
+    //update friend information
+
     updateFriend = (e) => {
         e.preventDefault();
         axios
-        .put(`http://localhost:5000/friends/${this.props.friend.id}`, {
-            name: this.props.friend.name,
-            age: this.state.age,
-            email: this.state.email
-        })
-        .then(response => {
-            this.props.updateFriendList(response.data);
-        })
-        .catch(err => console.log(err));
+            .put(`http://localhost:5000/friends/${this.props.friend.id}`, {
+                name: this.props.friend.name,
+                age: this.state.age,
+                email: this.state.email
+            })
+            .then(response => {
+                this.props.updateFriendList(response.data);
+            })
+            .catch(err => console.log(err));
         this.setState({
             age: '',
             email: ''
         }); 
     }
-
 
     render() {
         return (
@@ -62,7 +76,7 @@ class Friend extends React.Component {
                     <button type='submit'>Update!</button>
                 </form>
                 {/* delete friend info */}
-                <button onClick={this.props.deleteFriend(this.props.friend.id)}>We're not friends anymore!</button>
+                <button onClick={this.deleteFriend}>We're not friends anymore!</button>
             </div>
         )
     }
