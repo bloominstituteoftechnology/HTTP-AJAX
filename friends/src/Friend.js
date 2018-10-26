@@ -1,10 +1,11 @@
 import React from 'react'
+import './App.css';
 
 
 const Friend = (props) => {
     
     return(
-<div>
+<div id={props.key}>
 <p>
 {props.friend.name}
 </p>
@@ -16,6 +17,8 @@ const Friend = (props) => {
 <p>
 {props.friend.email}
 </p>
+
+<span> Ø </span>
 </div>
 
 )}
