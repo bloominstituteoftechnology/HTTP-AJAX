@@ -1,0 +1,79 @@
+.friends-page {
+    max-width: 800px;
+    width: 100%;
+}
+
+.friend-form {
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+}
+
+.friends-list {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    font-size: 20px;
+    padding: 3px;
+}
+
+button {
+    font-size: 20px;
+    padding: 3px 0;
+}
+
+.friend-heading {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.friend-row {
+    width: 100%;
+    display: flex;
+    margin: 5px 0;
+}
+
+.friend-name {
+    width: 30%;
+    text-align: left;
+}
+
+.friend-age {
+    width: 12%;
+    text-align: left;
+}
+
+.friend-email {
+    width: 38%;
+    text-align: left;
+}
+
+.friend-controls {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.friend-controls button {
+    width: 100%;
+}
+
+.friend-controls span {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.friend-controls .friend-update {
+    color: green;
+}
+
+.friend-controls .friend-delete {
+    color: red;
+}

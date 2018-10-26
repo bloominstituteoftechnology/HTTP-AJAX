@@ -38,7 +38,7 @@ let friends = [
     id: 5,
     name: 'Michelle',
     age: 67,
-    email: 'michelle@gmail.com',
+    email: 'michelle@lambdaschool.com',
   },
   {
     id: 6,
