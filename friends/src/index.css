@@ -1,3 +1,11 @@
+
+.home {
+  text-align: left;
+   background-image: url("https://i.ytimg.com/vi/9qOFe_4ZnpU/maxresdefault.jpg");
+    background-repeat: no-repeat;
+    height: 900px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +14,34 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+ 
+ }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.link{
+  text-decoration: none;
+  color:black;
+  
+}
+.link:active{
+  color:black;
+}
+
+.pic{
+  width:80%;
+}
+.form{
+  width:100px;
+}
+
+.friendInfo{
+  text-align: center;
+  font-weight: bold;
+  background-color: blanchedalmond;
+}
+.card{
+  text-align:center;
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
+import './index.css'
 class HomePage extends React.Component {
     constructor() {
         super();
@@ -40,7 +40,7 @@ class HomePage extends React.Component {
                     </NavLink>
                 </div>
                 <div>
-                    <form onSubmit={this.handleSubmit}>
+                    <form className="form" onSubmit={this.handleSubmit}>
                         <fieldset >
                             <legend>Add New Friend:</legend>
                             Name: <input onChange={this.changeHandler} name="name" type="text" id="uniqueID" /><br />
