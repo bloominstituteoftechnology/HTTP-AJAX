@@ -22,7 +22,6 @@ class Friends extends Component{
                 console.log(response.data)
                 this.setState({
                     friends: response.data,
-                    id: response.data.length
                 })
             })
             .catch(err => console.log(err));
@@ -32,15 +31,11 @@ class Friends extends Component{
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state.name);
-        console.log(this.state.age);
-        console.log(this.state.email)
     }
 
     submitHandle = (event) =>{
         axios
             .post('http://localhost:5000/friends',{
-                id: this.state.id +1,
                 name: this.state.name,
                 age: this.state.age,
                 email: this.state.email
@@ -51,7 +46,6 @@ class Friends extends Component{
                     name: "",
                     age: "",
                     email: "",
-                    id: this.state.friend.length
                 })
             })
             .catch(err =>{
@@ -75,8 +69,9 @@ class Friends extends Component{
                     <span>Name: </span><input type='text' placeholder='Name' name='name' value={this.state.name} onChange={this.inputHandle}></input>
                     <span>Age: </span><input type='text' placeholder='Age' name='age' value={this.state.age} onChange={this.inputHandle}></input>
                     <span>Email: </span><input type='text' placeholder='Email' name='email' value={this.state.email} onChange={this.inputHandle}></input>
+                    <input type='submit' onClick={this.submitHandle}></input>
                 </form>
-                <input type='submit' onClick={this.submitHandle}></input>
+                
             </div>
         )
     }
