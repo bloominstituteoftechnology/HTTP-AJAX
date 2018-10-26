@@ -39,6 +39,7 @@ const CardLinks = styled.div`
         &:hover{
             color: mediumslateblue;
             background-color: white;
+            border: 2px solid mediumslateblue;
         }
     }
 `;
@@ -55,8 +56,6 @@ const FriendCard = (props)=>{
             <div>{props.friend.name}</div>
             <div>{props.friend.age}</div>
             <div>{props.friend.email}</div>
-            {/* TODO: this should only render when individual friend has been selected */}
-
             <CardLinks updatedelete={props.updatedelete}>
                 <Link to={`/${props.friend.id}/update`}>Update</Link>
                 <DeleteFriend id={props.friend.id} deleteFriend={props.deleteFriend}/>
