@@ -21,36 +21,18 @@ class App extends Component {
       .then(response => {
         this.setState({ friends: response.data })
       })
-      .catch( error => console.log('error!'))
+      .catch(error => console.log('error!'))
   }
 
-  name = (event) => {
-    const newName = event.target.value;
+  inputHandler = (event) => {
     this.setState({
-      name: newName
+      [event.target.id]: (event.target.value)
     })
-  }
 
-  age = (event) => {
-    const newAge = event.target.value;
-    this.setState({
-      age: newAge
-    })
-  }
-
-  email = (event) => {
-    const newEmail = event.target.value;
-    this.setState({
-      email: newEmail
-    })
   }
 
   addFriend = (event) => {
     event.preventDefault();
-    // const newId = this.state.friends.length + 1;
-    // this.setState({
-    //   id: newId
-    // })
 
     const newFriend = {
       name: this.state.name,
@@ -69,8 +51,7 @@ class App extends Component {
 
   }
 
-  deleteFriend = (id) => {
-    console.log('click')
+  deleteFriend = id => {
     return () => {
       axios
         .delete(`http://localhost:5000/friends/${id}`)
@@ -83,20 +64,32 @@ class App extends Component {
     }
   }
 
+  updateFriend = (id, name, location) => {
+    console.log('clicked')
+    console.log(id, name, location)
+    // return () => {
+    //   axios
+    //   .update
+    // }
+
+  }
+
   render() {
     return (
       <div className="App">
         <form>
-          <input placeholder='Name' onChange={this.name}></input>
-          <input placeholder='Age' onChange={this.age}></input>
-          <input placeholder='Email' onChange={this.email}></input>
+          <input placeholder='Name' onChange={this.inputHandler} id='name'></input>
+          <input placeholder='Age' onChange={this.inputHandler} id='age'></input>
+          <input placeholder='Email' onChange={this.inputHandler} id='email'></input>
           <button onClick={this.addFriend}>Save</button>
         </form>
         {this.state.friends.map(friend => (
           <FriendList
             key={friend.id}
             friend={friend}
-            deleteFriend={this.deleteFriend} />
+            deleteFriend={this.deleteFriend}
+            updateFriend={this.updateFriend}
+          />
         ))}
       </div>
     );
