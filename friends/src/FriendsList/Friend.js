@@ -42,7 +42,7 @@ class Friend extends React.Component {
             <div>
             {/* friend information */}
                 <p>{this.props.friend.name} is {this.props.friend.age} years old. Their email address is <a href={`mailto:${this.props.friend.email}`}>{this.props.friend.email}</a>.</p>
-                {/* delete friend button */}
+                {/* update friend info */}
                 <h4>Update your friend's info!</h4>
                 <form onSubmit={this.updateFriend}>
                     <input
@@ -61,6 +61,7 @@ class Friend extends React.Component {
                     />
                     <button type='submit'>Update!</button>
                 </form>
+                {/* delete friend info */}
                 <button onClick={this.props.deleteFriend(this.props.friend.id)}>We're not friends anymore!</button>
             </div>
         )

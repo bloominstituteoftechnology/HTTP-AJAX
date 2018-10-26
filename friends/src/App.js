@@ -40,10 +40,12 @@ class App extends React.Component {
         .then(response => 
           this.setState({
             friends: response.data
-        }, console.log(this.state.friends)))
+        }))
         .catch(err => console.log(err))
     }
   }
+
+  //update friend by taking up response information from Friend component
 
   updateFriendList = (response) => {
     this.setState({

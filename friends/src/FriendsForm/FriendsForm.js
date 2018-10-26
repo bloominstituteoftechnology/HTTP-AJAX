@@ -17,7 +17,7 @@ class FriendsForm extends React.Component {
     inputChangehandler = (e) => {
         this.setState({
             [e.target.name]: e.target.value
-        }, console.log(this.state))
+        })
     }
 
     //add new friend through past and pass up friend data to app 
