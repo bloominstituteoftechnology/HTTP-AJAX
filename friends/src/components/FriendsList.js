@@ -3,7 +3,6 @@ import axios from 'axios';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import Forms from './Forms';
 
-
 export default class FriendsList extends Component {
   constructor(props) {
     super(props);
@@ -15,23 +14,6 @@ export default class FriendsList extends Component {
     };
   }
 
-  submitNewFriend = (e) => {
-
-    const friend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    }
-    axios.post('http://localhost:5000/friends', {friend: friend})
-  .then(response => {
-      this.setState({friends: response.data})
-         console.log(this.state)})
-    .catch(error => {
-      console.error('Server Error', error);
-    });
-}
-
-
   componentDidMount() {
     axios.get('http://localhost:5000/friends').then(response => {
       this.setState(() => ({friends: response.data}));
@@ -39,11 +21,33 @@ export default class FriendsList extends Component {
       console.error('Server Error', error);
     });
   }
+
+  submitNewFriend = (e) => {
+    e.preventDefault()
+    const friend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.post('http://localhost:5000/friends', {friend: friend}).then(response => {
+      this.setState({friends: response.data})
+      console.log(response.data)
+    }).catch(error => {
+      console.error('Server Error', error);
+    });
+  }
+
+  inputChangeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+
+  }
+
+
   render() {
     return (<div className="friend-list">
-        <Forms submitNewFriend ={this.submitNewFriend }  />
-
-    {this.state.friends.map(friend => (<FriendDetails key={friend.email} friend={friend}/>))}
+      <Forms submitNewFriend={this.submitNewFriend} inputChangeHandler={this.inputChangeHandler}/> {this.state.friends.map(friend => (<FriendDetails key={friend.email} friend={friend}/>))}
     </div>);
   }
 }
@@ -62,5 +66,4 @@ function FriendDetails({friend}) {
       <em>{email}</em>
     </div>
   </div>);
-   console.log(this.state)
 }
