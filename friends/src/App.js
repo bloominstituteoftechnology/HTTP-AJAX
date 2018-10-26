@@ -1,18 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
 import FriendList from './components/FriendList';
 import Friend from './components/Friend';
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-    
-    };
-  }
-
-  render() {
+const App = () => {
     return (
       <div>
         <Route exact path="/" component={FriendList} />
@@ -21,5 +13,6 @@ export default class App extends Component {
         />
       </div>
     );
-  }
 }
+
+export default App;

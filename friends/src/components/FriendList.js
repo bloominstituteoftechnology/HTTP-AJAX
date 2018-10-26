@@ -86,24 +86,6 @@ export default class FriendList extends Component {
         }
     };
 
-    // updateHandler = (id, name, age, email) => {
-    //     console.log(id, name, age, email)
-    //     axios
-    //         .put(`http://localhost:5000/friends/${id}`, {
-    //             friend: {
-    //                 name: name,
-    //                 age: age,
-    //                 email: email
-    //             }
-    //         })
-    //         .then( response => {
-    //             this.setState({ friend: response.data })
-    //         })
-    //         .catch(error => (
-    //             console.log(error)
-    //         ));
-    // }
-
     render() {
         return (
             <div>
@@ -119,7 +101,6 @@ export default class FriendList extends Component {
                             <div key={friend.id}>
                                 <StyledCard>
                                     <FriendCard friend={friend} 
-                                    // handleUpdate={this.updateHandler} 
                                     />
                                     <ButtonContainer>
                                         <Button color="danger" onClick={this.deleteHandler(friend.id)}>Delete</Button>
