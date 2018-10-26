@@ -25,7 +25,6 @@ class App extends Component {
       .get("http://localhost:5000/friends")
       .then( response => {
         this.setState({friends: response.data})
-        console.log(this.state.friends)
       })
       .catch(err => {
         console.log(err);
@@ -39,7 +38,6 @@ class App extends Component {
       email: this.state.email
     })
     .then(response => {
-      console.log(response);
       this.setState({friends: response.data})
     })
     .catch(err => {console.log(err)})
@@ -54,6 +52,7 @@ class App extends Component {
     return (
       <div className="App">
       <Container>
+        <Link to='/'>Home</Link>
         <FriendHeader>
                   <HeaderDiv>
                       <p>Name</p>
@@ -80,16 +79,18 @@ class App extends Component {
                                       id={friend.id} /> } /> 
               </Link>
               )})}
+              <Route exact path="/friends/:id" render={(props) => <Friend {...props} friends={this.state.friends} />} />
             </Container>
 
-            <Form 
-              name={this.state.name} 
-              age={this.state.age} 
-              email={this.state.email} 
-              inputHandler={this.inputHandler} 
-              addNewFriend={this.addNewFriend} />
+            <Route exact path="/" render={(props) => <Form {...props}
+                                                        name={this.state.name} 
+                                                        age={this.state.age} 
+                                                        email={this.state.email} 
+                                                        inputHandler={this.inputHandler} 
+                                                        addNewFriend={this.addNewFriend} />} />
+            
 
-              <Route path="./friends/:id" component={Friend} />
+              
       </div>
     );
   }

@@ -1,35 +1,33 @@
 import React from 'react';
 import axios from 'axios';
+import FriendProfile from './FriendProfile';
 
 class Friend extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            friend: null
         }
     }
 
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        this.getFriend(id);
-    }
 
-    getFriend = id => {
-        axios 
-            .get(`http://localhost:5000/friends/${id}`)
-            .then(response => {
-                this.setState(() => ({friend: response.data}));
-            })
-            .catch(err => {console.log(err)})
-    }
+ 
 
     render() {
         return(
             <div>
-                {this.state.friend.name}
+            {this.props.friends.map(item => {
+                if (this.props.match.params.id === `${item.id}`) {
+                    return (
+                        <FriendProfile name={item.name} age={item.age} email={item.email} />
+                    )
+                }
+            })}
             </div>
         )
     }
 };
 
 export default Friend;
+
+// const id = this.props.match.params.id;
+//         this.getFriend(id);
