@@ -29,7 +29,6 @@ class App extends Component {
       .get('http://localhost:5000/friends')
       .then(response => {
         this.setState({friends: response.data});
-
       })
       .catch(error => console.log('ERROR: ', error));
   }
@@ -46,15 +45,41 @@ class App extends Component {
       .then(response => {
         this.setState({friends: response.data, name: '', age: '', email: ''})
       })
-        .catch(error => console.log('ERROR: ', error));
+      .catch(error => console.log('ERROR: ', error));
     }
-
-
   };
 
   handleInput = ev => {
     this.setState({[ev.target.name]: ev.target.value})
   };
+
+
+   deleteFriend = (id) => {
+     axios.delete(`http://localhost:5000/friends/{$id}`)
+       .then(response => {
+         this.setState({friends: response.data});
+       })
+       .catch(error => console.log('ERROR: ', error));
+   };
+
+  updateFriend = friend => {
+    axios.put(`http://localhost:5000/friends/${friend.id}`, friend)
+      .then(response => {
+        this.setState({
+          friends: response.data, friend: {
+            name: '',
+            age: '',
+            email: ''
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+
+
 
   render() {
     return (
@@ -64,7 +89,6 @@ class App extends Component {
               dats my Bestie List
           {"\u00a0"}{"\u2665"}{"\u2665"}{"\u2764"}
          </h1>
-
 
         <div className = 'friendlist-container'>
         {this.state.friends.map( friend => (
@@ -82,6 +106,7 @@ class App extends Component {
             input_age = {this.state.age}
             input_email = {this.state.email}
             handleInput = {this.handleInput}
+            deleteFriend = {this.deleteFriend}
           />
 
         </div>
@@ -90,5 +115,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

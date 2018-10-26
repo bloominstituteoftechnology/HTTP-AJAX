@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const FriendList  = ({friend}) => {
+const FriendList  = ({friend}, props) => {
 
-  const {name, age, email} = friend;
 
-  console.log({name});
+
+  const {id, name, age, email} = friend;
+
 
   return (
     <div className = 'friend-container'>
@@ -24,13 +25,14 @@ const FriendList  = ({friend}) => {
         </div>
      </div>
 
-     <button className = 'button_delete'> Delete</button>
+     <button className = 'button_delete'  > Delete</button>
 
     </div>
   );
 
 
-
+            // onClick = {props.deleteFriend(friend.id)}
+            // onClick = {props.deleteFriend({id})}
 };
 
 FriendList.propTypes = {

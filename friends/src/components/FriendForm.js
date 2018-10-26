@@ -2,6 +2,8 @@ import React from 'react';
 
 const FriendForm = (props) => {
 
+  console.log(props);
+
   return (
     <form>
 
@@ -26,7 +28,8 @@ const FriendForm = (props) => {
         placeholder = 'friend_email'
       />
 
-      <button className = 'button_addNewFriend' onClick={props.addNewFriend}> Add new friend </button>
+      <button className = 'button_addNewFriend' onClick = {props.addNewFriend} > Add new friend </button>
+      <button className = 'button_updateFriend' onClick = {props.updateFriend}> Update friend </button>
 
     </form>
 
@@ -34,4 +37,6 @@ const FriendForm = (props) => {
 
 };
 
+
+// <button className = 'button_updateFriend' > Update friend </button>
 export default FriendForm;
