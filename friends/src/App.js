@@ -27,8 +27,15 @@ class App extends Component {
     }
     submitNewFriend = e => {
         e.preventDefault();
-        console.log(this.state);
-    }
+    
+    
+    axios.post("http://localhost:5000/friends", {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email,})
+      .then( response => this.setState({data: response.data})) 
+      .catch(err => console.log(err))
+  }
 
 	render() {
 		return (
@@ -43,14 +50,14 @@ class App extends Component {
 						/>
 						<input
 							type="text"
-							name="name"
+							name="age"
 							onChange={this.inputChangeHandler}
 							value={this.state.age}
 							placeholder="Age"
 						/>
 						<input
 							type="text"
-							name="name"
+							name="email"
 							onChange={this.inputChangeHandler}
 							value={this.state.email}
 							placeholder="Email"
@@ -58,7 +65,7 @@ class App extends Component {
 						<button type="submit">Add Friend</button>
 					</form>
 			<div>
-				<FriendsList data={this.state.data} />
+				<FriendsList data={this.state.data}/>
 				</div>
 					
           </div>
