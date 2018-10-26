@@ -50,7 +50,8 @@ deleteHandler = (id) => {
     axios.delete(`http://localhost:5000/friends/${id}`)
     .then(response => {
       console.log(response)
-      this.setState({friends: response.data})  
+      // this.setState({friends: response.data})  
+      this.setState({ lists: response.data });
     })
     .catch(err=> {
       console.log(err);
