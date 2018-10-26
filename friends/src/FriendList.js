@@ -40,7 +40,7 @@ export default class FriendList extends React.Component {
       })
     }
 
-    numberInputChange= e => {
+    numberInputChange = e => {
       e.preventDefault();
       this.setState({
         newFriend: {
@@ -79,17 +79,20 @@ export default class FriendList extends React.Component {
     render(){
       return(
         <div>
+          <h1>Add Friend</h1> 
+          <FriendForm 
+              inputChange={this.inputChange} 
+              addNewFriend={this.addNewFriend} 
+              numberInputChange={this.numberInputChange} 
+              newFriend={this.state.newFriend}/>
+
           {this.state.friends.map(friend => 
             <Friend 
               key={friend.id} 
               friend={friend} 
               updateFriend={this.updateFriend}
               deleteFriend={this.deleteFriend}/>)}
-            <FriendForm 
-              inputChange={this.inputChange} 
-              addNewFriend={this.addNewFriend} 
-              numberInputChange={this.numberInputChange} 
-              newFriend={this.state.newFriend}/>
+            
         </div>
       )
     }
