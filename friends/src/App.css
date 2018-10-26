@@ -102,3 +102,7 @@
       width: 30%;
       margin-top:10px;
  }
+
+ update-input {
+   display: none;
+ }

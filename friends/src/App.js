@@ -68,13 +68,29 @@ class App extends Component {
       })
   }
 
+  updateFriendHandler = (id, name, age, email) => {
+      this.setState({
+         name: '',
+         age: '',
+         email: ''
+      })
+     axios.put(`http://localhost:5000/friends/${id}`, {
+         name : name,
+         age : age,
+         email : email
+      })
+      .then(response => console.log(response.data))
+      .catch( error => console.log(error))
+  }
+
   render() {
      const {name, age, email } = this.state;
     return (
       <div className="App">
          <Friends className='friends' friends={this.state.friends} inputChangeHandler={this.inputChangeHandler }
                                   submitHandler = {this.submitHandler} name = {name} age ={age} email = {email}
-                                  deleteFriendHandler = {this.deleteFriendHandler} />
+                                  deleteFriendHandler = {this.deleteFriendHandler} 
+                                  updateFriendHandler = {this.updateFriendHandler} />
       </div>
     );
   }
