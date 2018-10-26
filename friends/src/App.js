@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Route, Link} from 'react-router-dom';
 
 import './App.css';
 import './components/FriendsList';
@@ -57,6 +58,9 @@ class App extends Component {
     axios.post('http://localhost:5000/friends/', newFriend)
     .then(res => {
       this.setState({
+        newFriendAge: '',
+        newFriendEmail: '',
+        newFriendName: '',
         friends: res.data,
       })
     })
@@ -82,11 +86,18 @@ class App extends Component {
     if (!this.state.friends.length) {
       return <h1>Loading...</h1>
     }
-    else {
+
     return (
       <div className="App">
           <div>
-          <AddFriend 
+            <nav className='main-menu'>
+              <Link className='active' to=''>Home</Link>
+              <Link to='/friends'>My friends list!</Link>
+              <Link to='/addfriend'>Add a friend!</Link>
+            </nav>
+          <Route
+            path='/addfriend'
+            render={(props) => <AddFriend {...props}
             onNameChange={this.addFriendNameUpdate} 
             onEmailChange={this.addFriendEmailUpdate} 
             onAgeChange={this.addFriendAgeUpdate}
@@ -95,12 +106,16 @@ class App extends Component {
             friendAge={this.state.newFriendAge}
             addFriend={this.addFriendHandler}
             />
-            <FriendsList friends={this.state.friends} />
+            }
+          />
+            <Route
+              path='/friends'
+              render={(props) => <FriendsList {...props} friends={this.state.friends} />}
+            />
           </div>
           
       </div>
     );
-    }
   }
 }
 

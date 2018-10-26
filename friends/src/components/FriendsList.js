@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import Friend from './Friend';
 
@@ -12,7 +13,11 @@ const FriendsList = (props) => {
                 <div>Email</div>
             </div>
             {props.friends.map(friend => {
-                return <Friend key={friend.name + friend.id} friend={friend} />
+                return (
+                    <Link key={friend.name + friend.id} to={`/friend/${friend.id}`}>
+                        <Friend key={friend.name + friend.id} friend={friend} />
+                    </Link>
+                )
             })}
         </div>
     )

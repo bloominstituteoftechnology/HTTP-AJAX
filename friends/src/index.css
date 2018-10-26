@@ -1,11 +1,7 @@
 body {
-  display: flex;
-  max-width: 1024px;
-  width: 100%;
-  margin: auto;
-  background-color: antiquewhite;
   font-size: 1.6rem;
   text-shadow: 1px 1px 1px grey;
+  background-color: antiquewhite;
 }
 
 code {
