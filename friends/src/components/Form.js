@@ -7,7 +7,7 @@ class Form extends Component {
         super(props)
     }
     render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
         <>
             <form className="form" onSubmit={this.props.submitHandler}>

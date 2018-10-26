@@ -28,26 +28,44 @@ class App extends Component {
 
   inputChangeHandler = (event) => {
       const name = event.target.name;
+      const value = event.target.value;
+      if(value) {
       this.setState({
-         [name] : event.target.value
+         [name] : value
       })
+    }
       
   }
 
   submitHandler = (event) => {
      event.preventDefault();
-     
+     if(this.state.name && this.state.age && this.state.email) {
      axios.post("http://localhost:5000/friends", {
-      friend: {
+       
         name : this.state.name,
         age : this.state.age, 
         email: this.state.email
-      }
+      
      })
        .then( response =>  {
             this.setState({friends : response.data})
+            console.log(response);
       })
       .catch( error => console.log(error))
+      this.setState({name: '', age: '', email: ''});
+    } 
+  }
+
+  deleteFriendHandler = (id) => {
+      axios.delete(`http://localhost:5000/friends/${id}`)
+      .then( response => {
+         this.setState({
+               friends:response.data
+          });
+      })
+      .catch( error => {
+          console.log(error);
+      })
   }
 
   render() {
@@ -55,7 +73,8 @@ class App extends Component {
     return (
       <div className="App">
          <Friends className='friends' friends={this.state.friends} inputChangeHandler={this.inputChangeHandler }
-                                  submitHandler = {this.submitHandler} name = {name} age ={age} email = {email} />
+                                  submitHandler = {this.submitHandler} name = {name} age ={age} email = {email}
+                                  deleteFriendHandler = {this.deleteFriendHandler} />
       </div>
     );
   }

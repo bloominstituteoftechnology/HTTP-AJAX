@@ -34,28 +34,71 @@
    Form Styles
 **********************/
 .form {
-   width: 80%;
+   width: 70%;
    display:flex;
    margin: 20px auto;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   background: rgba(255,255,0,0.9);
+   
 } 
+
 .header, .friend-data {
-   width: 100%;
+   width: 40%;
    display:flex;
-   justify-content: space-between;
-   align-items: center;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: flex-start;
    padding: 7px 10px;
-   background: rgba(0,200,0, .8);
-   font-size: 1.8rem;
+   background: rgba(8, 142, 151, 0.8);
+   font-size: 1.6rem;
    font-weight: bold;
+   text-shadow:  1px 2px 2px rgba(0,0,0,.3);
+   margin: 20px auto;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 1.4%;
 }
 
 .friend-data {
    background: gray;
    color: black;
-   font-size: 1.6rem;
+   font-size: 1.0rem;
    font-weight: normal;
+   padding:30px 20px;
+   text-shadow:  1px 2px 2px rgba(0,0,0,.3);
 }
+
+.delete, .update {
+   padding: 7px 10px;
+   background: rgba(250,10,0,.9);
+   border-radius: 3px;
+   cursor: pointer;
+   font-size: 12px;
+   margin-right:15px;
+   text-shadow:  1px 2px 2px rgba(0,0,0,.3);
+}
+
+.change {
+  display:flex;
+  justify-content: center;
+  margin-top: 15px;
+
+}
+
+/*********************
+ Input styles
+ ********************/
+
+ input {
+   width: 58%;
+   padding: 10px 10px;
+   margin-bottom: 10px;
+   border-radius: 5px;
+ }
+ input[type="submit"] {
+      width: 30%;
+      margin-top:10px;
+ }
