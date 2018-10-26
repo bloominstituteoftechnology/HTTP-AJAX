@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 
-import Friend from './Friends/Friend';
+import Friends from './Friends/Friends';
+import FriendForm from './Friends/FriendForm';
 
-class App extends Component {
+import './App.css';
+
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
     };
   }
 
@@ -20,15 +24,24 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  updateFriends = friends => {
+    this.setState({ friends });
+  };
+
   render() {
     return (
-      <div className="App">
-        {this.state.friends.map(friend => {
-          return <Friend friend={friend} />;
-        })}
+      <div>
+        <Route
+          path="/"
+          render={props => <Friends {...props} friends={this.state.friends} />}
+        />
+        <Route
+          path="/"
+          render={props => (
+            <FriendForm {...props} updateFriends={this.updateFriends} />
+          )}
+        />
       </div>
     );
   }
 }
-
-export default App;
