@@ -68,7 +68,7 @@ class App extends Component {
         })}
 
         
-         <div className="AddToFriendsForm">
+         <div className="form">
           <form>
             <input
               type="text"
@@ -89,7 +89,31 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </form>
-          <button onClick={this.saveFormData}>Add friend</button>
+          <button onClick={this.saveFormData}>Add friend info</button>
+        </div>
+        <br></br>
+        <div className="form">
+          <form>
+            <input
+              type="text"
+              placeholder="name"
+              name="name"
+              onChange={this.handleChange}
+            />
+             <input
+              type="text"
+              placeholder="age"
+              name="age"
+              onChange={this.handleChange}
+            />
+             <input
+              type="text"
+              placeholder="email"
+              name="email"
+              onChange={this.handleChange}
+            />
+          </form>
+          <button onClick={this.saveFormData}>Update friend info</button>
         </div>
       </div>
     );
