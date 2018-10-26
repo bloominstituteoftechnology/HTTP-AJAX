@@ -34,7 +34,7 @@ class App extends Component {
         			<div className = "Friend-Name">{friend.name}</div>
         			<div className = "Friend-Age">{friend.age}</div>
         			<div className = "Friend-Email">{friend.email}</div>
-        			<div>  </div>
+        			<button className = "Add-Button"> ADD_FRIEND </button>
         		</div>
         	)
         })}
