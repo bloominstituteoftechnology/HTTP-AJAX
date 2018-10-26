@@ -4,7 +4,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Label,
@@ -80,11 +79,6 @@ export default class NewFriendForm extends React.Component {
               <Button type="submit">Submit</Button>
             </Form>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Exit
-            </Button>
-          </ModalFooter>
         </Modal>
       </div>
     );
