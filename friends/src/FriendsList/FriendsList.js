@@ -13,6 +13,7 @@ class FriendsList extends React.Component {
                             key={friend.id} 
                             friend={friend}
                             deleteFriend={this.props.deleteFriend}
+                            updateFriendList={this.props.updateFriendList}
                         />  
                     )
                 })}

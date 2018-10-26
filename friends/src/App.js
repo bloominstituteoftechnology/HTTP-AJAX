@@ -23,11 +23,15 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
+  //add friend by taking up response information from FriendForm component
+
   addFriend = (response) => {
     this.setState({
       friends: response
     })
   }
+
+  //remove friend by passing entire function down to Friend component
   
   deleteFriend = (id) => {
     return () => {
@@ -41,6 +45,12 @@ class App extends React.Component {
     }
   }
 
+  updateFriendList = (response) => {
+    this.setState({
+      friends: response
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -48,6 +58,7 @@ class App extends React.Component {
         <FriendsList 
           friends={this.state.friends}
           deleteFriend={this.deleteFriend} 
+          updateFriendList={this.updateFriendList}
         />
         <FriendsForm addFriend={this.addFriend}/>
       </div>
