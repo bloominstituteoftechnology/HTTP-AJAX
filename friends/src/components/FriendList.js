@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Button } from 'reactstrap';
+import { Button, Card } from 'reactstrap';
 import { Link } from 'react-router-dom'; 
 
 import FriendForm from './FriendForm';
@@ -11,6 +11,20 @@ const CardForFlex = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+`;
+
+const StyledCard = styled(Card)`
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
 `;
 
 export default class FriendList extends Component {
@@ -100,21 +114,23 @@ export default class FriendList extends Component {
                 email={this.state.email}
                 handleTextInput={this.changeHandler}
                 />
-                <CardForFlex>
-                    {this.state.friends.map(friend => (
-                        <div key={friend.id}>
-                            <FriendCard friend={friend} 
-                            // handleUpdate={this.updateHandler} 
-                            />
-                            <div>
-                                <Button color="danger" onClick={this.deleteHandler(friend.id)}>Delete</Button>
-                                <Link to={`/friends/${friend.id}`}>
-                                    <Button color="secondary">Edit</Button>
-                                </Link>
+                    <CardForFlex>
+                        {this.state.friends.map(friend => (
+                            <div key={friend.id}>
+                                <StyledCard>
+                                    <FriendCard friend={friend} 
+                                    // handleUpdate={this.updateHandler} 
+                                    />
+                                    <ButtonContainer>
+                                        <Button color="danger" onClick={this.deleteHandler(friend.id)}>Delete</Button>
+                                        <Link to={`/friends/${friend.id}`}>
+                                            <Button color="secondary">Edit</Button>
+                                        </Link>
+                                    </ButtonContainer>
+                                </StyledCard>
                             </div>
-                        </div>
-                    ))}
-                </CardForFlex>  
+                        ))}
+                    </CardForFlex>
             </div>
         );
     }
