@@ -10,7 +10,7 @@ Topics:
 
 1. [x]  Run `yarn install or npm install` inside the root directory of this project1Run `yarn start or npm start` to start the server.
 
-2. []  The provided server returns a list of friends when a `GET` request is made to [`http://localhost:5000/friends`](http://localhost:5000/friends).
+2. [x]  The provided server returns a list of friends when a `GET` request is made to [`http://localhost:5000/friends`](http://localhost:5000/friends).
 
 3. [x] In a separate terminal window, run `yarn create react-app friends` to create your starter React application.
 
@@ -18,13 +18,13 @@ Topics:
 
 5. [x] CD into `friends` and run `yarn start or npm start` to fire up your React Dev Server.
 
-6. [] Inside your React application, create a component to display the list of friends coming from the server.
+6. [x] Inside your React application, create a component to display the list of friends coming from the server.
 
-7. [] Add a form to gather information about a new friend.
+7. [x] Add a form to gather information about a new friend.
 
-8. [] Add a button to save the new friend by making a `POST` request to the same endpoint listed above.
+8. [x] Add a button to save the new friend by making a `POST` request to the same endpoint listed above.
 
-9. [] Each `friend` should have the properties listed below.
+9. [x] Each `friend` should have the properties listed below.
 
 10. [] Implement `Update` and `Delete` functionality.
     * for `update` pass the friend id as a URL parameter, and the information you want to update about the friend inside the body. You can build a new form in the UI for this, or, if you set it up correctly, reuse the form you made for the `POST` request.
