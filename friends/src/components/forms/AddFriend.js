@@ -13,6 +13,10 @@ const AddFriend = (props) => {
                 <input type='text' onChange={props.onEmailChange} value={props.friendEmail}/>
             </div>
             <div>
+                <label>Age</label>
+                <input type='text' onChange={props.onAgeChange} value={props.friendAge}/>
+            </div>
+            <div>
                 <button onClick={props.addFriend}>Add new friend</button>
             </div>
         </form>

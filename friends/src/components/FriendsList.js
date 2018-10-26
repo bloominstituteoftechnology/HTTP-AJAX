@@ -7,6 +7,7 @@ const FriendsList = (props) => {
         <div>
             <div className='friend'>
                 <div className='friendID'>ID</div>
+                <div>Age</div>
                 <div>Name</div>
                 <div>Email</div>
             </div>
