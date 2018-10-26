@@ -26,7 +26,8 @@ handleChange = event => {
 }
 
 handleSubmit = event => {
-  event.preventDefault();
+  // event.preventDefault();
+  console.log(event)
 
   const friend = {
     name: this.state.name,
@@ -34,7 +35,7 @@ handleSubmit = event => {
     email: this.state.email
   };
 
-  axios.post(`http://localhost:5000/friends`, {friend})
+  axios.post(`http://localhost:5000/friends`, {...friend})
   .then(response => {
     console.log(response);
     console.log(response.data);
@@ -81,11 +82,11 @@ handleSubmit = event => {
     </label>
     <label>
       Age:
-    <input type="text" name="age" onChange={this.handleChange}/>
+    <input type="text" age="age" onChange={this.handleChange}/>
     </label>
     <label>
       Email:
-    <input type="text" name="email" onChange={this.handleChange}/>
+    <input type="text" email="email" onChange={this.handleChange}/>
   </label>
   <button type="submit">ADD</button>
 </form>
