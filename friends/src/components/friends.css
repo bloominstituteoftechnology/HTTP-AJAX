@@ -1,0 +1,21 @@
+.friend {
+    min-width: 1024px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1% auto;
+}
+
+.friend div {
+    min-width: 100px;
+    width: 10%;
+    margin-left: 4%;
+    text-align: left;
+}
+
+.friend div.friendID {
+    max-width: 50px;
+    width: 5%;
+    border: 1px solid black;
+    margin: 0;
+    text-align: center;
+}

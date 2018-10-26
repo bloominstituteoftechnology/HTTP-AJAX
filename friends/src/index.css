@@ -1,0 +1,10 @@
+body {
+  font-size: 1.6rem;
+  text-shadow: 1px 1px 1px grey;
+  background-color: antiquewhite;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

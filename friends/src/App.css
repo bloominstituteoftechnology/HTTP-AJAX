@@ -1,0 +1,47 @@
+.App {
+  min-width: 1024px;
+  max-width: 1024px;
+  min-height: 800px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: flex-start;
+  margin: 1% auto;
+  border: 2px inset black;
+}
+
+.main-menu {
+  background-color: grey;
+  min-width: 1024px;
+  max-width: 1024px;
+  min-height: 100px;
+  width: 100%;
+  border-bottom: 1px inset black;
+}
+
+.main-menu a {
+  position: relative;
+  min-width: 250px;
+  min-height: 50px;
+  top: 5%;
+  margin: 5%;
+  padding: 15px;
+  color: darkkhaki;
+  text-decoration: none;
+  text-align: center;
+  border: 2px inset transparent;
+}
+
+.main-menu a:hover {
+  border: 2px inset black;
+  color: black;
+  background-color: antiquewhite;
+}
+
+.main-menu .active {
+  border: 2px inset black;
+  color: black;
+  background-color: antiquewhite;
+}
