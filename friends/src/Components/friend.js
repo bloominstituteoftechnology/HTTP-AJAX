@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Button } from 'reactstrap'
+import { Button } from 'reactstrap';
 
 const FriendDiv = styled.div`
     display: flex;
@@ -14,6 +14,10 @@ const FriendDiv = styled.div`
     }
 
 `
+const ButtonContainer = styled.div `
+display:flex;
+
+`
 
  const Friend=(props)=>{
 return(
@@ -23,8 +27,11 @@ return(
         </h1>
         
         <h4>{props.item.email}</h4>
-        <Button outline color="primary" size="sm" onClick={()=>{props.deleteHOE(props.item.id)}}>Delete this HOE!</Button>{' '}
-    </FriendDiv>
+        <ButtonContainer>
+        <Button outline color="primary" size="sm" onClick={()=>{props.deleteHOE(props.item.id)}}>Delete EM!</Button>{' '}
+        <ModalComponent />
+        </ButtonContainer>
+        </FriendDiv>
 )
 }
 export default Friend;

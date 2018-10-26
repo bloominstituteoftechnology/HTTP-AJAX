@@ -13,6 +13,7 @@ width:100%;
 display: flex;
 margin: 0 auto;
 margin-top: 60px;
+
 `
 
 
@@ -58,7 +59,8 @@ addSubmitHandler=(e)=>{
         age,
         email
     }
-    axios.post('http://localhost:5000/friends', friend).then(friends=>{
+    axios
+    .post('http://localhost:5000/friends', friend).then(friends=>{
         this.setState({
           friendsData: friends.data,
           name: '',
@@ -78,18 +80,20 @@ axios.delete(`http://localhost:5000/friends/${id}`)
 
 }
   render() {
-    const { friendsData, name, modal} = this.state;
+    const { friendsData, name, modal, age, email} = this.state;
     return (
       <AppContainer className="App" friends={friendsData}>
         <AddFriend 
+          className='addBtn'
           friendsData={friendsData}
           inputChange={this.inputChangeHandler}
           toggle={this.toggle}
           modal={modal}
           name={name}
-          age={this.state.age}
-          email={this.state.email}
-          addMyDude={this.addSubmitHandler}
+          age={age}
+          email={email}
+          click={this.addSubmitHandler}
+          
         />
         <Route exact path='/' render={props => <Friends friendsData={friendsData} deleteHOE={this.deleteSubmitHandler}/>} />
       </AppContainer>
