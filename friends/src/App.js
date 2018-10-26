@@ -29,11 +29,12 @@ class App extends Component {
         <h1> FRIENDS </h1>
         {this.state.friends.map(friend => {
         	return(
-        		<div>
-        			<div>{friend.id}</div>
-        			<div>{friend.name}</div>
-        			<div>{friend.age}</div>
-        			<div>{friend.email}</div>
+        		<div className = "Friend">
+        			<div className = "Friend-ID">{friend.id}</div>
+        			<div className = "Friend-Name">{friend.name}</div>
+        			<div className = "Friend-Age">{friend.age}</div>
+        			<div className = "Friend-Email">{friend.email}</div>
+        			<div>  </div>
         		</div>
         	)
         })}

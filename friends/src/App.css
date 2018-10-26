@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  color:white;
+  background:#222222;
 }
 
 .App-logo {
@@ -22,11 +24,48 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*.Friend{
+	background:red;
+} */
+
+.Friend{
+	position:relative;
+	left:75px;
+	display:flex;
+	flex-direction:row;
+	margin: 0 auto;
+	margin:50px;
+	font-weight:bold;
+	justify-content:center;
+	justify-content:space-evenly;
+	padding:50px;
 }
+
+.Friend-ID{
+	display:none;
+}
+
+.Friend-Name{
+	color:green;
+}
+
+.Friend-Age{
+	color:red;
+}
+
+.Friend-Email{
+	color:cyan;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
