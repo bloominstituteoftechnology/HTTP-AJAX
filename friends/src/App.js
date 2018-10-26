@@ -23,7 +23,7 @@ class App extends Component {
 
   submitBtn = (input) => {
     axios
-      .post('http://localhost:5000/friends', {...input})
+      .post('http://localhost:5000/friends', input)
       .then(response => {
         this.setState({friends: response.data})
       })
