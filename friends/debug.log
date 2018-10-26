@@ -3,3 +3,6 @@
 [1025/180247.729:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
 [1025/180247.729:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
 [1025/180247.770:ERROR:exception_snapshot_win.cc(88)] thread ID 11364 not found in process
+[1025/191925.922:ERROR:process_info.cc(359)] UncheckedAllocate
+[1025/191926.099:ERROR:process_info.cc(359)] UncheckedAllocate
+[1025/193029.837:ERROR:process_info.cc(359)] UncheckedAllocate

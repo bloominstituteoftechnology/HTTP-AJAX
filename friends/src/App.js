@@ -22,7 +22,7 @@ class App extends Component {
   }
 
 handleChange = event => {
-  this.setState({ name: event.target.value});
+  this.setState({ [event.target.name]: event.target.value});
 }
 
 handleSubmit = event => {
@@ -45,22 +45,32 @@ handleSubmit = event => {
   });
 }
 
-// deleteHandler = (id) => {
-//   return () => {
-//     axios.delete(`/${id}`)
-//     .then(response => {
-//       this.setState({friends: response.data})
-//       console.log(response)
-//     })
-//     .catch(err=> {
-//       console.log(err);
-//     });
-//   }
+deleteHandler = (id) => {
+  return () => {
+    axios.delete(`http://localhost:5000/friend/${id}`)
+    .then(response => {
+      this.setState({friends: response.data})
+      console.log(response)
+    })
+    .catch(err=> {
+      console.log(err);
+    });
+  }
+}
+
+updateListHandler = (id, name, email) => {
+    console.log(id, name, email)
+}
+
+// deleteHandler = event => {
+//   this.setState({id: event.target.value})
 // }
 
-// updateListHandler = (id, name, email) {
-//     console.log(id, name, email)
+// updateHandler = event => {
+//   event.preventDefault();
 // }
+
+// axios.delete()
   render() {
     return (
       <div>
@@ -71,6 +81,7 @@ handleSubmit = event => {
             <div>Name:{list.name}</div>
             <div>Age:{list.age}</div>
             <div>Email:{list.email}</div>
+            <button type="submit" onChange={this.deleteHandler}>Remove</button>
             </li>
           )
         })}</ul>
@@ -82,16 +93,17 @@ handleSubmit = event => {
     </label>
     <label>
       Age:
-    <input type="text" age="age" onChange={this.handleChange}/>
+    <input type="text" name="age" onChange={this.handleChange}/>
     </label>
     <label>
       Email:
-    <input type="text" email="email" onChange={this.handleChange}/>
+    <input type="text" name="email" onChange={this.handleChange}/>
   </label>
   <button type="submit">ADD</button>
-</form>
-      </div>
-
+  </form>
+  <br></br>
+  <br></br>
+  </div>
     );
   }
 }
