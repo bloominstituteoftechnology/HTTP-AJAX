@@ -67,6 +67,12 @@ class Friends extends Component{
         
     }
 
+    updateHandler = (id, age, email) =>{
+        
+        console.log(id, age, email)
+
+    }
+
     render(){
         return(
             <div className='mainCont'>
@@ -74,7 +80,7 @@ class Friends extends Component{
                     <h1>Friends List</h1>
                     <div className='friendCard'>
                         {this.state.friends.map(item => {
-                            return (<Friend key={item.id} friend={item} deleteHandler={this.deleteHandler}/>)
+                            return (<Friend key={item.id} id={item.id} friend={item} deleteHandler={this.deleteHandler} updateHandler={this.updateHandler}/>)
                         })}
                     </div>
                 </div>
