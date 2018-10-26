@@ -3,6 +3,9 @@ import './App.css';
 import axios from 'axios';
 import FriendsList from './FriendsList/FriendsList.js'
 import FriendsForm from './FriendsForm/FriendsForm.js'
+import Friend from './FriendsList/Friend.js'
+import { Route } from 'react-router-dom';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -51,11 +54,31 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Who are your friends?</h1>
-        <FriendsList 
+        <Route
+          exact
+          path='/friends'
+          render={props => 
+            <FriendsList 
+              {...props}
+              friends={this.state.friends}
+              updateFriendList={this.updateFriendList}
+              deleteFriendFromList={this.deleteFriendFromList}
+            />
+          }
+        />
+        {/* <FriendsList 
           friends={this.state.friends}
           updateFriendList={this.updateFriendList}
           deleteFriendFromList={this.deleteFriendFromList}
-        />
+        /> */}
+        {/* <Route
+          path='/friends/:id' 
+          render={props => 
+            <Friend 
+              {...props} 
+            />
+          }
+        /> */}
         <FriendsForm addFriendToList={this.addFriendToList}/>
       </div>
     );

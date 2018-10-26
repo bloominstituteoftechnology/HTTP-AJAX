@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
 
 //individual friend component
 
@@ -8,8 +10,25 @@ class Friend extends React.Component {
         super(props);
         this.state = {
             age: '',
-            email: ''
+            email: '',
+            friend: null
         }
+    }
+
+    componentDidMount() {
+        const id = this.props.friend.id;
+        this.fetchFriend(id);
+    }
+
+    fetchFriend = id => {
+        axios
+            .get(`http://localhost:5000/friends/${id}`)
+            .then(response => {
+                this.setState(() => ({ friend: response.data }))
+            })
+            .catch(err => {
+                console.log(err)
+            });
     }
 
     inputChangehandler = (e) => {
@@ -37,7 +56,6 @@ class Friend extends React.Component {
         e.preventDefault();
         axios
             .put(`http://localhost:5000/friends/${this.props.friend.id}`, {
-                name: this.props.friend.name,
                 age: this.state.age,
                 email: this.state.email
             })
