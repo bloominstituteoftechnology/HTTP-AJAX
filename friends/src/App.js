@@ -35,7 +35,6 @@ class App extends Component {
   addFriend = (event) => {
     event.preventDefault();
     const Friendz = {
-      id:this.state.friends.length + 1,
       name:this.state.name,
       age:this.state.age,
       email:this.state.email
@@ -66,19 +65,36 @@ class App extends Component {
     }
   }
 
+    updateFriend = (id,name,age, email) => {
+      axios.put(`http://localhost:5000/friends/${id}`,{
+        friends: {
+          name: name,
+          age:age,
+          email:email
+        }
+      })
+      .then( response => {
+        this.setState({
+          friends:response.data
+        })
+      })
+      .catch( error => console.log(error))
+    }
+
 
 
 render() {
     return(
         <div className="App">
           {this.state.friends.map(item => (
-              <Friends key={item.id} friends={item} delete={this.deleteFriend}/>
+              <Friends key={item.id} friends={item} delete={this.deleteFriend} update={this.updateFriend}/>
           ))}
           <form >
             <input type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler}></input>
             <input type="text" placeholder="age" name="age" value={this.state.age} onChange={this.changeHandler}></input>
             <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.changeHandler}></input>
             <Button  color="success" onClick={this.addFriend} >Save</Button>
+            <Button  color="success" onClick={this.updateFriend} >Update</Button>
           </form>
         </div>
         )
