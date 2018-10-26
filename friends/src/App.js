@@ -5,6 +5,7 @@ import {Route, Link} from 'react-router-dom';
 import './App.css';
 import './components/FriendsList';
 import FriendsList from './components/FriendsList';
+import Friend from './components/Friend';
 import AddFriend from './components/forms/AddFriend';
 
 class App extends Component {
@@ -95,7 +96,7 @@ class App extends Component {
               <Link to='/friends'>My friends list!</Link>
               <Link to='/addfriend'>Add a friend!</Link>
             </nav>
-          <Route
+          <Route exact
             path='/addfriend'
             render={(props) => <AddFriend {...props}
             onNameChange={this.addFriendNameUpdate} 
@@ -108,10 +109,11 @@ class App extends Component {
             />
             }
           />
-            <Route
-              path='/friends'
-              render={(props) => <FriendsList {...props} friends={this.state.friends} />}
+            <Route exact
+              path='/friends/'
+              render={(props) => <FriendsList {...props} friends={this.state.friends} deleteFriend={this.deleteFriendHandler}/>}
             />
+            
           </div>
           
       </div>

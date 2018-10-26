@@ -14,8 +14,9 @@ const FriendsList = (props) => {
             </div>
             {props.friends.map(friend => {
                 return (
-                    <Link key={friend.name + friend.id} to={`/friend/${friend.id}`}>
+                    <Link key={friend.name + friend.id} to={`/friends/`}>
                         <Friend key={friend.name + friend.id} friend={friend} />
+                        <button onClick={() => props.deleteFriend(friend.id)}>X</button>
                     </Link>
                 )
             })}
