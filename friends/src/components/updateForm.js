@@ -17,8 +17,7 @@ const styles = theme => ({
 });
 
 const UpdateForm = props => {
-    const { classes } = props;
-     console.log(props)
+    const { classes } = props
     return (
         <>
             <FormGroup className={classes.container}>

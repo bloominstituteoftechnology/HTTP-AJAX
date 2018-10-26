@@ -15,6 +15,7 @@ export default class FriendProfile extends React.Component {
 
   }
   updateHandler = (id) => {
+
     this.props.updateFriend(id, this.state.name, this.state.age, this.state.email);
 
 

@@ -32,7 +32,7 @@ const styles = theme => ({
 class FriendCard extends Component {
 
   render() {
-    console.log(this.props.id)
+
     const { classes } = this.props;
     return (
       <div>
