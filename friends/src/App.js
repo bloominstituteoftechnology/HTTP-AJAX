@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friends: [],
       name: "",
-      age: "",
+      age: null,
       email: ""
     };
   }

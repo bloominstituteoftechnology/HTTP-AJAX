@@ -10,9 +10,16 @@ export default class FriendProfile extends React.Component {
     this.state = {
       name: "",
       age: "",
-      email: ""
+      email: "",
+      friend: {}
     };
 
+  }
+  componentDidMount() {
+    const friend = this.props.friends.filter(item => {
+      return item.id === parseInt(this.props.match.params.id);
+    })[0];
+    this.setState({friend })
   }
   updateHandler = (id) => {
 
@@ -28,14 +35,12 @@ export default class FriendProfile extends React.Component {
 
   };
   render() {
-    const friend = this.props.friends.filter(item => {
-      return item.id === parseInt(this.props.match.params.id);
-    })[0];
+
 
     return (
       <div>
         <FriendCard
-          {...friend}
+          {...this.state.friend}
           deleteFriend={this.props.deleteFriend}
           updateHandler={this.updateHandler}
           handleChange={this.handleChange}
