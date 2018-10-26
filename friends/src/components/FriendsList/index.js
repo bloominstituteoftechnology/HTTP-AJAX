@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Styled from 'styled-components';
 import axios from 'axios';
 
-import FriendForm from '..//FriendForm';
+import FriendForm from '../FriendForm';
+import EditModal from '../editModal';
 
 const FriendContainer = Styled.section`
     display:flex;
@@ -69,7 +70,11 @@ export default class extends Component {
     this.state = {
       friends: [],
       newFriend: {},
-      editFriend: false
+      editFriend: false,
+      id: '',
+      name: '',
+      age: '',
+      email: ''
   }
 }
 componentDidMount() {
@@ -87,10 +92,13 @@ add = (obj) => {
     })
 }
 edit = (e) => {
-  console.log(e);
+  const friendID = e.target.parentNode.parentNode.id;
+  this.setState({editFriend: true, id: friendID});
+}
+updateFriends = (friends) => {
+  this.setState({friends: friends})
 }
 delete = (e) => {
-  console.log(e);
   const friendID = e.target.parentNode.parentNode.id;
 
   axios.delete(`http://localhost:3020/friends/${friendID}`)
@@ -102,6 +110,7 @@ delete = (e) => {
     return (
       <Container>
         <Title>Friends</Title>
+      {this.state.editFriend ? <EditModal id={this.state.id} updateFriends={this.updateFriends}/> : null}
       <FriendContainer >
         <FriendsList>
         {this.state.friends.map(friend => {

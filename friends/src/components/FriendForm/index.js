@@ -28,7 +28,10 @@ export default class extends Component {
 
     this.state = {
       formData: {},
-      formError: ''
+      formError: '',
+      name: '',
+      age: '',
+      email: ''
     }
   }
   createFriend = (e) => {
