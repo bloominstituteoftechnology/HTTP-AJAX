@@ -42,12 +42,12 @@ class App extends Component {
   }
 
   deleteHandler = id => {
-    console.log("in the delete handler")
+    
         
           axios.delete(`http://localhost:5000/friends/${id}`)
           .then( response => {
             this.setState({friends: response.data})
-            console.log(this.state)
+           
           })
           .catch(err => console.log(err))
          

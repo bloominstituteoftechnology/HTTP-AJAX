@@ -21,21 +21,18 @@ import axios from "axios";
       };
     
 
- /*  console.log("this.props.formclass:", formClass) */
+
     }
     componentDidMount() {
       this.setState(() => ({ friends: this.props.friends })); 
      
    }
   
-   clickHandler = selected => {
-     /* console.log("selected:", selected) */
-    /* selected = selected + 1 */
+   clickHandler = selected => {  
+    
     this.setState({ keyIndex: selected });
-   /*  let currentFriend = this.state.friends.find(friend => friend.id === selected) */
-   }
 
-  
+   }
 
   render() {
     let classNames = require('classnames');
