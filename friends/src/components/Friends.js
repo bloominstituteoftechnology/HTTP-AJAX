@@ -67,10 +67,24 @@ class Friends extends Component{
         
     }
 
-    updateHandler = (id, age, email) =>{
-        
-        console.log(id, age, email)
-
+    updateHandler = (id, name, age, email) =>{
+        axios
+            .put(`http://localhost:5000/friends/${id}`,{ 
+                name: name,
+                age: age,
+                email: email,
+            })
+            .then(response =>{
+                this.setState({
+                    friends: response.data,
+                    name: "",
+                    age: "",
+                    email: "",
+                })
+            })
+            .catch( err => {
+                console.log(err)
+            })
     }
 
     render(){
