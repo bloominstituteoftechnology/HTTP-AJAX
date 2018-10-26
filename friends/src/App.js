@@ -6,14 +6,13 @@ import './App.css';
 import FriendsList from './Components/FriendsList';
 import EditFriend from './Components/EditFriend';
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
-
     this.state = {
       friends: [],
       name: "",
-      age: 0,
+      age: "",
       email: ""
     };
   }
@@ -28,27 +27,27 @@ class App extends Component {
       console.error( error );
     });
   };
-  
+
   /* Handle submitting new friends to the list */
   handleSubmit = (event) => {
     event.preventDefault();
     let name = this.state.name;
     name = name[0].toUpperCase() + name.substr(1);
     axios
-      .post("http://localhost:5000/friends", {
+        .post("http://localhost:5000/friends", {
         name: name,
         age: this.state.age,
         email: this.state.email
-      })
-      .then( response => {
+        })
+        .then( response => {
         this.setState( () => ({
-          friends: response.data,
-          name: "",
-          age: "",
-          email: ""
+            friends: response.data,
+            name: "",
+            age: "",
+            email: ""
         }));
-      })
-      .catch( error => { console.error(error) });
+        })
+        .catch( error => { console.error(error) });
   };
 
   /* Needs a change handler to set the state for submitting */
@@ -60,16 +59,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        {/* Pass friends array, handleSubmit & handleChange to FriendsList */}
-        <FriendsList friends={this.state.friends} handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
-        </header>
-        {/* <Route exact path="/" component="{FriendsList}" /> */}
-        <Route path="/edit/:id" component="{EditFriend}" />
+      <div className='App-header'>    
+        <Route path="/edit/:id" component={EditFriend} />
+        <Route exact path="/" component={()=>
+          <FriendsList 
+            friends={this.state.friends} 
+            handleSubmit={this.handleSubmit} 
+            handleChange={this.handleChange} />
+        } />
       </div>
     );
   }
 }
-
-export default App;
