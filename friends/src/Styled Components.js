@@ -141,3 +141,20 @@ export const UpdateSubmit = styled.button`
 export const UpdateHeader = styled.h1`
     margin-top: -15px;
 `;
+
+export const UpdateX = styled.p`
+    text-align: right;
+    margin-right: -5px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: -10px;
+    color: rbg(45,45,45);
+    margin-bottom: 0;
+    width: 5%;
+    align-self: flex-end;
+
+    &:hover{
+        color: gray;
+        cursor: pointer;
+    }
+`;

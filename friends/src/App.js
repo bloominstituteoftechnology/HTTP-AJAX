@@ -17,7 +17,8 @@ export default class App extends Component {
       name: '',
       age: 0,
       email: '',
-      addFriend: false
+      addFriend: false,
+      updateStatus: false
     }
   }
 
@@ -89,6 +90,26 @@ export default class App extends Component {
     }
   }
 
+  updateHandler = (e) => {
+    e.preventDefault();
+    console.log(this.state.updateStatus)
+    this.setState({
+      updateStatus: !this.state.updateStatus
+    })
+  }
+
+  exitForm = (e) => {
+    this.setState({
+      updateStatus: !this.state.updateStatus
+    })    
+  }
+
+  updateFriend = (id, name, age, email) => {
+    return()=>{
+      console.log(id, name, age, email)
+    }
+  }
+
   render() {
     console.log(this.state.data)
     return (
@@ -98,22 +119,12 @@ export default class App extends Component {
            submit={this.submit}
            no={this.preventDefault}
            delete={this.delete}
-            data={this.state.data} /> } />
-
-
-        {/* <UpdateForm /> */}
-        {/* <Route render={props =><AddFriend {...props} />} /> */}
-        {/* <AddFriend /> */}
-        {/* {this.state.data.map(item => (
-          <Friend no={this.preventDefault} delete={this.delete} id={item.id} key={item.id} friend={item} />
-        ))} */}
+           updateHandler={this.updateHandler}
+           update={this.updateFriend}
+           data={this.state.data}
+           exitForm={this.state.UpdateForm} /> } 
+          />
       </div>
     );
   }
 }
-
-
-
-//use router so when user goes to edit, 
-//the friend fields become input fields
-//1:46:00

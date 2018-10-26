@@ -11,7 +11,7 @@ const Home = (props) => {
              <Form change={props.change} submit={props.submit} />
 
         {props.data.map(item => (
-          <Friend no={props.no} delete={props.delete} id={item.id} key={item.id} friend={item} />
+          <Friend no={props.no} delete={props.delete} id={item.id} key={item.id} friend={item} updateStatus={props.updateStatus} update={props.update} updateHandler={props.updateHandler} exitForm={props.exitForm} />
         ))}
 
         </div>

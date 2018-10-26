@@ -1,12 +1,12 @@
 import React from 'react';
-import {X, InputStyle, UpdateSubmit, Background, UpdateFormStyle, UpdateHeader} from './Styled Components';
+import {UpdateX, InputStyle, UpdateSubmit, Background, UpdateFormStyle, UpdateHeader} from './Styled Components';
 import {Route} from 'react-router-dom';
 
 const UpdateForm = (props) => {
     return(
         <Background>
         <UpdateFormStyle id="updateForm">
-            <X>X</X>
+            <UpdateX onClick={props.exitForm} >X</UpdateX>
           <UpdateHeader>Update Your friend!</UpdateHeader>
           <InputStyle onChange={props.change} id='name' type='text' placeholder='name'></InputStyle>
           <InputStyle onChange={props.change} id='age' type='number' placeholder='age'></InputStyle>
