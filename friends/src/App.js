@@ -83,30 +83,38 @@ class App extends Component {
     }
   }
   updateFriendHandler = (id) => {
-    axios.put(`http://localhost:5000/friends/${id}`)
+    
+    axios.put(`http://localhost:5000/friends/${id}`, {
+      
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      
+    })
       .then(response => {
         this.setState({
-          friends: response.data
+          friends: response.data,
+
         })
       })
-      .catch(error => {
-        console.log("errorUpdate")
-      })
+      // .catch(error => {
+      //   console.log("errorUpdate")
+      // })
   }
-
+  
 
 render() {
   return (
     <div className="App">
       {this.state.friends.map(friend => (
-        <Friends key={friend.id} friend={friend} deleteFriendHandler={this.deleteFriendHandler} />
+        <Friends key={friend.id} friend={friend} deleteFriendHandler={this.deleteFriendHandler} updateFriendHandler={this.updateFriendHandler} />
       ))}
       <form>
         <input placeholder='Name' onChange={this.name}></input>
         <input placeholder='Age' onChange={this.age}></input>
         <input placeholder='Email' onChange={this.email}></input>
         <button onClick={this.addFriend}>Save</button>
-        <button onClick={() => this.updateFriend}>Update</button>
+        
       </form>
 
     </div>
