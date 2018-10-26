@@ -5,10 +5,10 @@ const Form = props => {
     return (
         <>
             <form >
-                <input type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler}></input>
-                <input type="text" placeholder="age" name="age" value={this.state.age} onChange={this.changeHandler}></input>
-                <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.changeHandler}></input>
-                <Button  color="success" onClick={this.addFriend} >Save</Button>
+                <input type="text" placeholder="name" name="name" value={props.nameVal} onChange={props.changeHandler}></input>
+                <input type="text" placeholder="age" name="age" value={props.ageVal} onChange={props.changeHandler}></input>
+                <input type="email" placeholder="email" name="email" value={props.emailVal} onChange={props.changeHandler}></input>
+                <Button  color="success" onClick={props.addFriend} >Save</Button>
             </form>
         </>
     )

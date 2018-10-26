@@ -12,7 +12,7 @@ const Friends = (props) => {
             <p>Age: {age} </p>
             <p>Email:{email} </p>
             <Button color="danger" onClick={props.delete(id)}> Delete</Button>
-            <Button  color="success" onClick={props.update(name,age,email)} >Update</Button>
+            <Button id={id}  color="success" onClick={props.update} >Update</Button>
             </div>
             )
 }

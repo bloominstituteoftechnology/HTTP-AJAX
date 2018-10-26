@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button} from 'reactstrap';
 import Friends from './components/Friends'
+import Form from './components/Form';
 import axios from 'axios';
 import './App.css';
 
@@ -65,17 +66,20 @@ class App extends Component {
     }
   }
 
-    updateFriend = (id,name,age, email) => {
-      axios.put(`http://localhost:5000/friends/${id}`,{
+    updateFriend = (event) => {
+      axios.put(`http://localhost:5000/friends/${event.target.id}`,{
         friends: {
-          name: name,
-          age:age,
-          email:email
+          name: this.state.name,
+          age:this.state.age,
+          email:this.state.email
         }
       })
       .then( response => {
         this.setState({
-          friends:response.data
+          friends:response.data,
+          name: '', 
+          age:'', 
+          email:''
         })
       })
       .catch( error => console.log(error))
@@ -89,13 +93,14 @@ render() {
           {this.state.friends.map(item => (
               <Friends key={item.id} friends={item} delete={this.deleteFriend} update={this.updateFriend}/>
           ))}
-          <form >
+
+          <Form changeHandler={this.changeHandler} nameVal={this.state.name} ageVal={this.state.age} emailVal={this.state.email} addFriend={this.addFriend}/>
+          {/* <form >
             <input type="text" placeholder="name" name="name" value={this.state.name} onChange={this.changeHandler}></input>
             <input type="text" placeholder="age" name="age" value={this.state.age} onChange={this.changeHandler}></input>
             <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.changeHandler}></input>
             <Button  color="success" onClick={this.addFriend} >Save</Button>
-            <Button  color="success" onClick={this.updateFriend} >Update</Button>
-          </form>
+          </form> */}
         </div>
         )
       }
