@@ -34,11 +34,11 @@ export default class FriendList extends Component {
     }
 
     changeHandler = event => {
-        event.preventDefault();
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    submitHandler = () => {
+    submitHandler = event => {
+        event.preventDefault();
         const friend = {
             name: this.state.name,
             age: this.state.age,
@@ -49,7 +49,7 @@ export default class FriendList extends Component {
 
             .then(response => {
                 this.setState({ name: '', age: '', email: ''});
-                this.componentDidMount()
+                this.setState({ friends: response.data });
             })
             .catch(error => {
                 console.log(error);
