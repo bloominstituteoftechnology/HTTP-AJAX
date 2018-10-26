@@ -23,18 +23,20 @@ export const FrNm = styled.div`
 `
 export const FrndInfo = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
     width: 100%;
-`
-export const FrndAge = styled.div`
-    border: 1px solid black;
+    div {
+        border: 1px solid black;
+    }
 `
 export const Form = styled.div`
     display: flex;
     flex-direction: column;
     border: 1px solid black;
+    margin: 5% 0;
 `
 export const DelBtn = styled.button`
     border: none;

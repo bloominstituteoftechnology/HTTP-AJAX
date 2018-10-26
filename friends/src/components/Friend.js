@@ -2,7 +2,6 @@ import React from 'react';
 import { FrNm } from './styles';
 import { DelBtn } from './styles';
 import { FrndCntnr } from './styles';
-import { FrndAge } from './styles';
 import { FrndInfo } from './styles';
 import { Form } from './styles';
 
@@ -14,6 +13,7 @@ export default class Friend extends React.Component {
                 name: props.friend.name,
                 age: props.friend.age,
                 email: props.friend.email,
+                gender: props.friend.gender,
                 id: props.friend.id
             }
         }
@@ -50,19 +50,23 @@ export default class Friend extends React.Component {
     render() {
         return (
             <FrndCntnr>
-                <FrNm>{this.props.friend.name}</FrNm>
                 <FrndInfo>
-                <FrndAge>{`Age: ${this.props.friend.age}`}</FrndAge>
+                <FrNm>{`Name: ${this.props.friend.name}`}</FrNm>
+                <div>{`Age: ${this.props.friend.age}`}</div>
                 <div>{`Email: ${this.props.friend.email}`}</div>
+                <div>{`Gender: ${this.props.friend.gender}`}</div>
                 </FrndInfo>
-                <Form>
+                
                 <form>
+                <Form>
                 <input placeholder='Name' onChange={this.inputChange} value={this.state.newInfo.name} name='name' />
                 <input type='number' placeholder='Age' onChange={this.numberInputChange} value={this.state.newInfo.age} name='age' />
                 <input placeholder='Email' onChange={this.inputChange} value={this.state.newInfo.email} name='email' />
+                <input placeholder='Gender' onChange={this.inputChange} value={this.state.newInfo.gender} name='gender' />
                 <button type='submit' onClick={this.submitUpdate}>Update Friend</button>
-                </form>
                 </Form>
+                </form>
+                
                 <DelBtn onClick={this.delete}>Delete</DelBtn>
             </FrndCntnr>
         )
