@@ -63,7 +63,7 @@ class App extends Component {
 
 
       .then(response => {
-        this.setState({ friends: response.data, friend: blankFormValues })
+        this.setState({ friends: response.data, friend: blankFormValues }, () => this.props.history.push('/friendslist'))
         //redirect to main page after adding a friend
         // history.push('/friendslist')
       })
@@ -74,9 +74,8 @@ class App extends Component {
 
   handleDeleteFriend = id => {
     console.log(id)
-     return axios.delete(`http://localhost:5000/friends/${id}`)
-     console.log(id)
-    .then(response => this.setState({ friends: response.data }));
+    return axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(response => this.setState({ friends: response.data }, () => this.props.history.push('/friendslist')));
   }
 
   goToUpdateFriendForm = (event, id) => {
@@ -84,19 +83,19 @@ class App extends Component {
     event.preventDefault();
     const friendToUpdate = this.state.friends.find(friend => friend.id === id);
     // this.setState({ friendToUpdate: friendToUpdate, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));
-    this.setState({ isUpdating: true, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));
+    this.setState({ isUpdating: true, friend: friendToUpdate }, () => this.props.history.push('/friend-form'));  //'/friend-form'
   }
 
   handleUpdateFriend = id => {
     axios.put(`http://localhost:5000/friends/${id}`, this.state.friend)
     .then(response => {
-      this.setState({ 
-          friends: response.data, 
-          isUpdating: false,
-          friend: blankFormValues, 
-        })
+      console.log(response.data)
+      this.setState({ friends: response.data, isUpdating: true, friend: this.state.friend }, () => this.props.history.push('/friendslist'))
       }
     )
+    .catch(err => {
+      console.log("COULD NOT UPDATE EXISTING FRIEND", err);
+    })
   }
 
 

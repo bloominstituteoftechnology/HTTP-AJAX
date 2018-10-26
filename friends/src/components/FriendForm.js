@@ -11,7 +11,8 @@ class FriendForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.props.isUpdating) {
-            this.props.handleUpdateFriend(this.props.id);
+            this.props.handleUpdateFriend(this.props.newfriend.id);
+            // console.log(this.props)
         } else {
             this.props.handleAddNewFriend(event);
         }
