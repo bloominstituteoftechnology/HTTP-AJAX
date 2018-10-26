@@ -14,7 +14,7 @@ export default class Add extends React.Component {
   }
   
   changeHandler = (e) => {
-    this.setState({[e.target.name]: e.target.value, id: this.props.friends.length + 1})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   submitHandler = (e) => {
