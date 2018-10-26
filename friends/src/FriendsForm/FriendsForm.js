@@ -31,7 +31,7 @@ class FriendsForm extends React.Component {
             email: this.state.email
         })
         .then(response => {
-            this.props.addFriend(response.data);
+            this.props.addFriendToList(response.data);
         })
         .catch(err => console.log(err));
         this.setState({
