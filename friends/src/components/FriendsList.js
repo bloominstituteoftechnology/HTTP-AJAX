@@ -1,6 +1,8 @@
 import React from 'react'
 import {List, Container, Paragraph} from './Styled-Components'
 
+
+
 const FriendsList = props => {
     return (
       <Container>
