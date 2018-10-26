@@ -5,10 +5,7 @@ import './App.css';
 import FriendsList from './components/FriendsList';
 import Forms from './components/Forms';
 
-
-
 class App extends Component {
-
 
   render() {
     return (<div className="App">
@@ -16,7 +13,5 @@ class App extends Component {
     </div>);
   }
 }
-
-
 
 export default App;

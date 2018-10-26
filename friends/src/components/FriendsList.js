@@ -29,9 +29,9 @@ export default class FriendsList extends Component {
       age: this.state.age,
       email: this.state.email
     }
-    axios.post('http://localhost:5000/friends', {friend: friend}).then(response => {
-      this.setState({friends: response.data})
-      console.log(response.data)
+    axios.post('http://localhost:5000/friends', friend).then(response => {
+      this.setState({friends: response.data}, () => console.log(this.state.friends))
+
     }).catch(error => {
       console.error('Server Error', error);
     });
