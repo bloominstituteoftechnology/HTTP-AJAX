@@ -2,13 +2,6 @@ import React from "react";
 
 //returns friend data
 class FriendsList extends React.Component {
-   constructor(props){
-      super(props)
-      this.state = {
-         selected: false
-      }
-   }
-
    render(){
       return (
          <>

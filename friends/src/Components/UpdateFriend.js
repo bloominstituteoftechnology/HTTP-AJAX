@@ -55,23 +55,23 @@ in either case the input is cleared using this.setState
          <div className="update">
             <h2>Edit A User</h2>
             <form onSubmit={(e) => e.preventDefault()}>
-               <label>Name:</label>
+               <label> Name: </label>
                <input type="text"
                   name="name"
                   value={this.state.friend.name} 
-                  placeholder="Enter your name..." 
+                  placeholder="Enter name..." 
                   onChange={this.handleUpdateInput}
                />
-               <br/>
-               <label>Age:</label>
+               <label> Age: </label>
                <input type="number" 
                   name="age"
                   value={this.state.friend.age}
                   placeholder="Age" 
                   min="18" max="80" 
-                  onChange={this.handleUpdateInput}/>
-               <br/>
-               <label>Email:</label>
+                  onChange={this.handleUpdateInput}
+               />
+               <br />
+               <label> Email: </label>
                <input type="email" 
                   value={this.state.friend.email}
                   name="email"
