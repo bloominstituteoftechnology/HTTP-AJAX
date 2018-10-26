@@ -1,18 +1,27 @@
 import React from 'react'
 import FriendRow from './FriendRow'
 
-const FriendTable = (props) =>{
-   
-    return(
-        <div>
-            {props.friends.map(friend =>{
-                return(
-                    <FriendRow friend = {friend}/>
-                )
-            })}
-        </div>
-        
-    )
+class FriendTable extends React.Component{
+   constructor(){
+       super()
+       this.state = {}
+   }
+  
+
+   render(){
+        return(
+           
+            <div>
+                
+                {this.props.friends.map(friend =>{
+                    return(
+                        <FriendRow friend = {friend} deleteFriend = {this.props.deleteFriend}/>
+                    )
+                })}
+            </div>
+            
+        )
+    }    
 }
 
 export default FriendTable;
