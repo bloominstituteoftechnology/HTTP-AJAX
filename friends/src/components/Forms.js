@@ -5,53 +5,28 @@ export default class Forms extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    name: '',
   }
 
-
-
-
-    let bodyFormData = new FormData();
-    // bodyFormData.set(event.target.name: event.target.value);
-
-}
-
-handleChange = event => {
-  this.setState({ name: event.target.value });
-}
-
-handleSubmit = event => {
-    event.preventDefault();
-    const user = {
-          name: this.state.name
-        };
-
-
-
-    axios.post(`http://localhost:5000/friends`, { user })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+  inputChangeHandler = (e) => {
+    this.props.submitNewFriend(this.setState({
+      [e.target.name]: e.target.value
+    }))
   }
 
+  render() {
 
-render() {
+    return (<div>
 
-  return (<div>
+      <form onSubmit={this.submitNewFriend}>
+        <label htmlFor="name">Name</label>
+        <input type="text" name="name" id="name" onChange={this.inputChangeHandler} value={this.props.name}/>
+        <label htmlFor="age">Age</label>
+        <input type="number" name="age" id="age" onChange={this.inputChangeHandler} value={this.props.age}/>
+        <label htmlFor="email">Email</label>
+        <input type="email" name="email" id="email" onChange={this.inputChangeHandler} value={this.props.email}/>
+        <input type="submit" value="Submit"/>
+      </form>
 
-    <form onSubmit={this.handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" name="name" id="name"/>
-      <label htmlFor="age">Age</label>
-      <input type="number" name="age" id="age"/>
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email"/>
-
-      <input type="submit" value="Submit"/>
-
-    </form>
-  </div>);
-}
+    </div>);
+  }
 }

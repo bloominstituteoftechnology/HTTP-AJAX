@@ -1,47 +1,58 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from 'reactstrap/lib/Alert';
+import Forms from './Forms';
+
 
 export default class FriendsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      friends: []
+      friends: [],
+      name: '',
+      age: 0,
+      email: ''
     };
   }
+
+  submitNewFriend = (e) => {
+
+    const friend = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    }
+    axios.post('http://localhost:5000/friends', {friend: friend})
+  .then(response => {
+      this.setState({friends: response.data})
+         console.log(this.state)})
+    .catch(error => {
+      console.error('Server Error', error);
+    });
+}
+
 
   componentDidMount() {
     axios.get('http://localhost:5000/friends').then(response => {
       this.setState(() => ({friends: response.data}));
-
     }).catch(error => {
       console.error('Server Error', error);
     });
   }
-
   render() {
-    return (<div className="movie-list">
+    return (<div className="friend-list">
+        <Forms submitNewFriend ={this.submitNewFriend }  />
 
-
-      {this.state.friends.map(friend => (<FriendDetails key={friend.email} friend={friend}/>))}
-
+    {this.state.friends.map(friend => (<FriendDetails key={friend.email} friend={friend}/>))}
     </div>);
   }
 }
 
 function FriendDetails({friend}) {
-  const {name, age, email} = friend;
+  const {id, name, age, email} = friend;
   return (<div className="friend-card">
-    <h2>{name}</h2 >
+    <h2>ID: {id}</h2>
+    <h4>Name: {name}</h4>
     <div className="friend-age">
       Age:
       <em>{age}</em>
@@ -50,6 +61,6 @@ function FriendDetails({friend}) {
       email:
       <em>{email}</em>
     </div>
-
   </div>);
+   console.log(this.state)
 }
