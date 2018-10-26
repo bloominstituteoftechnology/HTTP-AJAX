@@ -20,7 +20,6 @@ class FriendForm extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         if (event.target.id === 'button-update') {
-            console.log('button-update');
             this.props.updateFriendHandler(this.state.friend);
             this.props.cancelFormHandler();
         } else if (event.target.id === 'button-cancel') {
@@ -57,10 +56,6 @@ class FriendForm extends React.Component {
 
     componentDidMount() {
         if (this.state.mode === 'update') this.setState({friend: this.props.friend});
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.friend)
     }
 
     render() {
