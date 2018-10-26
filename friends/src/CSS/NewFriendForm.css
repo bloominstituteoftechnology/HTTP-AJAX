@@ -1,0 +1,52 @@
+.add-form-container{
+    width:590px;
+   
+    margin:0px auto;
+    
+    border:5px solid white;
+    border-radius: 10px;
+    color:rgb(255, 255, 255);
+    font-family: 'Oswald', sans-serif;
+    
+}
+.add-form-header{
+    text-align:center;
+    font-size:36px;
+}
+.add-form-input-container{
+    display:flex;
+    flex-direction:column;
+    width:50%;
+    margin:30px auto;
+    padding-bottom:20px;
+}
+.add-form-input{
+    display:flex;
+    width:100%;
+    justify-content:center;
+    margin: 10px auto;
+}
+button{
+    margin:10px auto;
+    width:100px;
+    margin-bottom: 0px;
+    background-color: rgb(62, 102, 139);
+    border:5px solid rgb(62, 102, 139);
+    border-radius:5px;
+    height:25px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+input{
+    margin-left:10px;
+    height:25px;
+    border:2px solid rgb(62, 102, 139);
+}
+.age-input{
+    margin-left:20px;
+}
+.input-title{
+    font-weight:bold;
+    font-size:18px;
+}
