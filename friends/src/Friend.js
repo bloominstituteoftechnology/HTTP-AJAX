@@ -21,7 +21,7 @@ export default class Friend extends React.Component {
         this.setState({
             updateStatus: !this.state.updateStatus
         })
-        // console.log(id, this.state.name, this.state.age, this.state.email)
+        console.log(id, this.state.name, this.state.age, this.state.email)
     }
 
     inputHandler = (e) =>{

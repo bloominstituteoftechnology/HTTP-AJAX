@@ -86,15 +86,12 @@ export default class App extends Component {
   }
 
   updateFriend = (id, name, age, email) => {
-    return()=>{
       console.log(id, name, age, email)
       console.log('success!')
       axios.put(`http://localhost:5000/friends/${id}`, {
-        friend: {
           name: name,
           age: age,
           email: email
-        }
       })
       .then( response=>{
         this.setState({
@@ -102,7 +99,6 @@ export default class App extends Component {
         })
       })
       .catch( err=>console.log(err))
-    }
   }
 
   render() {
