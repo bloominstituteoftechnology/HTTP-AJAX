@@ -5,7 +5,7 @@ import './App.css';
 import axios from 'axios';
 
 import FriendCard from './Friends/FriendCard';
-import NewFriend from './Friends/NewFriend';
+import UpdateFriend from './Friends/UpdateFriend';
 
 class App extends Component {
   constructor(props) {
@@ -41,10 +41,16 @@ class App extends Component {
       }
     }
 
-    updateHandler = (id) => {
-      return () => {
-        
-      }
+    updateHandler = (id, name, age, email) => {
+      axios.put(`http://localhost:5000/friends/${id}`, {
+        name: name,
+        age: age,
+        email: email
+      })
+        .then( response => {
+          this.setState({ friends: response.data })
+        })
+        .catch(err => console.log(err))
     }
 
     handleChange = (event) => {
@@ -56,18 +62,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavLink to="/" >Friends</NavLink>
-        <NavLink to="/friends">Update</NavLink>      
-        <h1>You're not alone! :)</h1>
-        <Route path="/friends" render={(props) => <NewFriend {...props}
-                                        submitHandler={this.submitHandler}
-                                        handleChange={this.handleChange}
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/friends/:id">Update</NavLink>
+        <Route exact path="/" render={(props) => <FriendCard {...props} friends={this.state.friends} deleteHandler={this.deleteHandler} />} />
+
+        <Route path="/friends/:id" render={(props) => <UpdateFriend {...props}
                                         name={this.state.name}
                                         age={this.state.age}
                                         email={this.state.email}
+                                        submitHandler={this.submitHandler}
+                                        updateHandler={this.updateHandler}
+                                        deleteHandler={this.deleteHandler}
+                                        handleChange={this.handleChange}
+                                        friends={this.state.friends}
                                       />}
         />
-        <Route exact path="/" render={(props) => <FriendCard {...props} friends={this.state.friends} deleteHandler={this.deleteHandler} />} />
       </div>
     );
   }
