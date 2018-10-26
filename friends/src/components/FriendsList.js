@@ -27,11 +27,11 @@ function FriendsList (props) {
     return (
       <FriendListWrapper>
         {props.friends.map(friend =>
-            <SingleFriend onChange= {props.handleFriendDeleteBtn(friend.id)}>
+            <SingleFriend onChange= {props.handleFriendDeleteBtn}>
                 <p>Name: {friend.name}</p>
                 <p>Age: {friend.age}</p>
                 <p>Email: {friend.email}</p>
-                <DeleteFriendButton onClick= {props.handleFriendDeleteBtn(friend.id)}/>
+                <DeleteFriendButton onClick= {props.handleFriendDeleteBtn}/>
             </SingleFriend>
             )
         }

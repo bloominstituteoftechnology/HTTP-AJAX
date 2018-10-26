@@ -8,10 +8,10 @@ align-items: center;
 justify-content:space-around;
 width: 100%;
  `
-    
+
 function FriendInfoForm (props) {
     return (
-        <FriendInputForm>
+        <FriendInputForm className="inputForm">
             <input type="text" placeholder="Enter Friend's Name" name= "name" onChange= {props.handleFriendFormInput}/>
             <br/>
             <input type="text" placeholder="Enter Friend's Age" name= "age" onChange= {props.handleFriendFormInput}/>

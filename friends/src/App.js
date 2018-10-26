@@ -42,18 +42,16 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       })
-
   }
 
   handleFriendDeleteBtn = id => {
     // event.preventDefault();
     axios
-      .delete(`http://localhost:5000/friends/${id}`,
+      .delete(`http://localhost:5000/friends/${id}`)
         axios.get('http://localhost:5000/friends')
           .then(res => {
             this.setState({friends: res.data})
           })
-      )
   }
 
   render() {
