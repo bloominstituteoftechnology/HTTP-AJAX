@@ -6,6 +6,7 @@ import Form from './Form.js';
 import {Route} from 'react-router-dom';
 import { AddFriend } from './AddFriend';
 import UpdateForm from './UpdateForm';
+import Home from './Home';
 
 export default class App extends Component {
   constructor(){
@@ -89,26 +90,27 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.data)
     return (
       <div className="App">
-        <h1>Welcome to Our Friends!</h1>
-        <UpdateForm />
+        <Route path='/' render={(props) => <Home {...props} 
+           change={this.handleChange} 
+           submit={this.submit}
+           no={this.preventDefault}
+           delete={this.delete}
+            data={this.state.data} /> } />
+
+
+        {/* <UpdateForm /> */}
         {/* <Route render={props =><AddFriend {...props} />} /> */}
         {/* <AddFriend /> */}
-        < Form 
-          change={this.handleChange}
-          submit={this.submit} 
-        />
-        {this.state.data.map(item => (
+        {/* {this.state.data.map(item => (
           <Friend no={this.preventDefault} delete={this.delete} id={item.id} key={item.id} friend={item} />
-        ))}
+        ))} */}
       </div>
     );
   }
 }
-
-
-
 
 
 
