@@ -7,7 +7,7 @@ const Friends = (props) => {
             <h2>Hello.  My name is {props.friend.name}</h2>
             <h4>My email is {props.friend.email}.</h4>
             <h4>I am {props.friend.age} years old.</h4>
-            <p style ={{cursor: 'pointer'}} onClick={props.deleteFriend(props.id)}>x</p>
+            <p style ={{cursor: 'pointer'}} name={props.friend.id} onClick={props.deleteFriend(props.friend.id)}>x</p>
         </div>
     )
 }

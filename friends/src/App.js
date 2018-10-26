@@ -38,9 +38,14 @@ class App extends Component {
       })
       .then( response => {
         this.setState({ data: response.data});
-        console.log(response)
+        console.log(response);
       })
       .catch( err => console.log(err));
+      this.setState({
+        name: '',
+        age: 0,
+        email: '',
+      })
   }
 
   deleteFriend = (id) => {
@@ -48,9 +53,9 @@ class App extends Component {
       axios.delete(`http://localhost:5000/friends/${id}`)
       .then( response => {
         this.setState({ data: response.data});
+        console.log('What is the id', id);
       })
       .catch(err => console.log(err));
-      console.log(id);
     }
   }
   
@@ -68,7 +73,7 @@ class App extends Component {
           <button type='submit'>Submit</button>
         </form>
         {this.state.data.map(friend => (
-          <Friends key={friend.id} friend={friend} deleteFriend={this.deleteFriend} name={friend.name} email={friend.email} age={friend.age}/>
+          <Friends key={friend.id} friend={friend} deleteFriend={this.deleteFriend} name={friend.name} email={friend.email} age={friend.age} />
         ))}
       </div>
     );
