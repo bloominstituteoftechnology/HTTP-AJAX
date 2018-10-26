@@ -18,7 +18,6 @@ export default class App extends Component {
       age: 0,
       email: '',
       addFriend: false,
-      updateStatus: false
     }
   }
 
@@ -90,20 +89,6 @@ export default class App extends Component {
     }
   }
 
-  updateHandler = (e) => {
-    e.preventDefault();
-    console.log(this.state.updateStatus)
-    this.setState({
-      updateStatus: !this.state.updateStatus
-    })
-  }
-
-  exitForm = (e) => {
-    this.setState({
-      updateStatus: !this.state.updateStatus
-    })    
-  }
-
   updateFriend = (id, name, age, email) => {
     return()=>{
       console.log(id, name, age, email)
@@ -119,10 +104,8 @@ export default class App extends Component {
            submit={this.submit}
            no={this.preventDefault}
            delete={this.delete}
-           updateHandler={this.updateHandler}
            update={this.updateFriend}
-           data={this.state.data}
-           exitForm={this.state.UpdateForm} /> } 
+           data={this.state.data}/> } 
           />
       </div>
     );

@@ -4,20 +4,46 @@ import UpdateForm from './UpdateForm';
 import {Route} from 'react-router-dom';
 
 
-const Friend = (props) => {
-    return(
-        <FriendStyle>
-            <X onClick={props.delete(props.id)}>X</X>
-            <FriendHeader>My name is {props.friend.name}</FriendHeader>
-            <Text>I am {props.friend.age} years old.</Text>
-            <Text>You can contact me at <Email onClick={props.no} href='#'>{props.friend.email}</Email></Text>
-            <UpdateButton onClick={props.updateHandler}>Update</UpdateButton>
-            props.updateStatus ? <UpdateForm/> : null
-        </FriendStyle>
-    )
+export default class Friend extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            updateStatus: false,
+            name: '',
+            age: 0,
+            email: ''
+        }
+    }
+
+    updateHandler = (e) => {
+        e.preventDefault();
+        console.log(this.state.updateStatus)
+        this.setState({
+          updateStatus: !this.state.updateStatus
+        })
+      }
+    
+      exitForm = (e) => {
+        this.setState({
+          updateStatus: !this.state.updateStatus
+        })    
+      }
+
+    render(){
+        console.log(this.state.updateStatus)
+        return(
+            <FriendStyle>
+                <X onClick={this.props.delete(this.props.id)}>X</X>
+                <FriendHeader>My name is {this.props.friend.name}</FriendHeader>
+                <Text>I am {this.props.friend.age} years old.</Text>
+                <Text>You can contact me at <Email onClick={this.props.no} href='#'>{this.props.friend.email}</Email></Text>
+                <UpdateButton onClick={this.updateHandler}>Update</UpdateButton>
+
+                {this.state.updateStatus ? <UpdateForm exitForm={this.exitForm} /> : null }
+            </FriendStyle>
+        )
+    }
 };
 
-export default Friend;
 
 
-// props.updateStatus ? null : render={(props)=> <UpdateForm {...props} exitForm={props.exitForm} />}
