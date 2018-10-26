@@ -5,12 +5,19 @@ const FriendsContainer    =   styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
 `
 
 const Friend    =   styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     width: 35%;
+    margin: 10px;
+    border: solid 1px black;
+    border-radius: 10px;
+    background: aqua;
+    height: 50px;
 `
 
 class Friends extends Component {
