@@ -7,6 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       friends: [],
+      id: '',
       name: '',
       age: '',
       email: '',
@@ -36,9 +37,20 @@ class App extends Component {
     })
       .then( response => this.setState({friends: response.data}))
       .catch( err => console.log(err))
+    console.log(e);
   }
 
-
+  handleDeleteFriendButton = (e) => {
+    // console.log(e.target.parentNode.children[0]);
+    // console.log(e.target.parentNode.id)
+    // console.log(this.state);
+    axios.delete(`http://localhost:5000/friends/${e.target.parentNode.id}`)
+      .then( response => {
+        this.setState({friends: response.data});
+        console.log(response);
+      })
+      .catch( err => console.log(err))
+  }
 
   render() {
     return (
@@ -52,10 +64,10 @@ class App extends Component {
       </form>
         {this.state.friends.map( (eachFriend) => {
           return (
-            <div key={eachFriend.id} className='friend-box'>
-              <div>Name: {eachFriend.name}</div>
-              <div>Age: {eachFriend.age}</div>
-              <div>Email: {eachFriend.email}</div>
+            <div key={eachFriend.id} id={eachFriend.id} className='friend-box'>
+              <div>{eachFriend.name}</div>
+              <div>{eachFriend.age}</div>
+              <div>{eachFriend.email}</div>
               <form>
                 <p>Update friend:</p>
                 <input placeholder='name'></input>
@@ -63,7 +75,7 @@ class App extends Component {
                 <input placeholder='email'></input>
                 <button>Submit</button>
               </form>
-              <button>DELETE FRIEND</button>
+              <button onClick={this.handleDeleteFriendButton}>DELETE FRIEND</button>
             </div>
           )
         })}
