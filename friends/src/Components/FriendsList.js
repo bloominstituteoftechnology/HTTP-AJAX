@@ -17,7 +17,15 @@ const FriendsList = (props) => {
             {props.friends.map( friend => {
                 // Pass friend.id, friend.name, friend.email, friend.age to Friend
                 return(
-                    <Link to={`/edit/${friend.id}`}>
+                    // <Link to={`/edit/${friend.id}`} >
+                    <Link to={{
+                        pathname: `/edit/${friend.id}`,
+                        state: {
+                            name: friend.name,
+                            age: friend.age,
+                            email: friend.email
+                        }
+                    }}>
                         <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email} />
                     </Link>
                 );
