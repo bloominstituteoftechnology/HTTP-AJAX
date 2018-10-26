@@ -1,0 +1,18 @@
+.heading {
+	font-size: 38px;
+	font-weight: bold;
+}
+
+.friendBody {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 1px solid black;
+	width: 50%;
+	margin: 0 auto;
+	padding: 10px 0;
+}
+
+.friend {
+	padding: 10px 20px;
+}

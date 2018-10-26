@@ -1,15 +1,40 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css';
+import React, { Component } from 'react';
+import axios from 'axios';
 import FriendsList from './components/FriendsList';
+import AddFriends from './components/AddFriends';
+import './App.css';
 
-const App = () => {
-  return (
-    <Router>
-        <div>
-          <Route path='/friends' component={FriendsList} />
-        </div>
-    </Router>
-  )
+class App extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      friends: [],
+      name: '',
+      age: '',
+      email: '',
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+        this.setState(() => ({ friends: response.data }));
+      })
+      .catch(error => {
+        console.error('Server Error', error);
+      })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <FriendsList friends={this.state.friends} />
+        <AddFriends />
+      </div>
+    );
+  }
 }
+
 export default App;
