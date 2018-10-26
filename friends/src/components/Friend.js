@@ -10,6 +10,12 @@ const Friend = (props) => {
     const newFriend = {...friend}
     const id = props.match.params.id
 
+    // updateHandler = (event) => {
+    //     event.preventDefault();
+    //     const id = this.props.friend.id;
+    //     this.props.update(id, this.state.name, this.state.email)
+    // }
+
     return (
         <FriendContainer>
             <h1>{newFriend.name}</h1>

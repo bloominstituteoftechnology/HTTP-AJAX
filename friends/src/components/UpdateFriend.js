@@ -10,7 +10,7 @@ const Container = styled.div`
     width: 100%;
 `;
 
-class FriendForm extends React.Component {
+class UpdateFriend extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -26,28 +26,37 @@ class FriendForm extends React.Component {
         })
     }
 
-    submitHandler = (event) => {
+    submitUpdateHandler = (event) => {
         event.preventDefault();
 
-        const newFriend = {
-            name: this.state.name,
-            age: Number(this.state.age),
-            email: this.state.email,
+        let id = 0;
+
+        for (let i = 0; i < this.props.friends.length; i++) {
+            if ((this.state.friend.name === this.props.friends[i].name) 
+                || (this.state.friend.email === this.props.friends[i].email)) {
+                    id = this.props.friends[i].id
+                }
         }
 
-        this.props.add(newFriend);
+        if (id === 0) {
+            alert("❗ Person does not exist 💀 ❗")
+        } else {
+            this.props.update(id, this.state.friend.name, this.state.friend.age, this.state.friend.email)
+        }
+
         this.setState({
             name: '',
             age: '',
             email: '',
         })
+
         event.target.reset();
     }
 
     render() {
         return (
             <Container>
-                <form onSubmit={this.submitHandler}>
+                <form onSubmit={this.submitUpdateHandler}>
                     <fieldset>
                         <label for="nameField">Name</label>
                         <input type="text" placeholder="John Spraul" id="nameField" name="name" value={this.state.name} onChange={this.changeHandler} />
@@ -55,7 +64,7 @@ class FriendForm extends React.Component {
                         <input type="text" placeholder="🧖🏼‍♂️@gmail.com" id="emailField"  name="email" value={this.state.email} onChange={this.changeHandler} />
                         <label for="ageField">Age</label>
                         <input type="text" placeholder="100" id="ageField"  name="age" value={this.state.age} onChange={this.changeHandler} />
-                        <input class="button-primary" type="submit" value="Add Friend" />
+                        <input class="button button-outline" type="reset" value="Update Friend" />
                     </fieldset>
                 </form>
             </Container>
@@ -64,4 +73,4 @@ class FriendForm extends React.Component {
     }
 }
 
-export default FriendForm;
+export default UpdateFriend;

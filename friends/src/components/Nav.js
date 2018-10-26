@@ -45,7 +45,10 @@ const Nav = () => {
                         Friends
                     </Link>
                     <Link to="/add">
-                        Add Friend
+                        Add
+                    </Link>
+                    <Link to="/update">
+                        Update
                     </Link>
                 </NavLinks>
             </NavBar>
