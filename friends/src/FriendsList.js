@@ -79,7 +79,7 @@ class FriendsList extends React.Component {
     console.log(this.state);
   };
 
-  submitUpdate = () => {
+  showUpdate = () => {
     axios
       .get('http://localhost:5000/friends')
       .then(data => {
@@ -137,7 +137,7 @@ class FriendsList extends React.Component {
                   name={friend.name}
                   age={friend.age}
                   email={friend.email}
-                  submitUpdate={this.submitUpdate}
+                  showUpdate={this.showUpdate}
                   handleInput={this.handleInput}
                 />
               );

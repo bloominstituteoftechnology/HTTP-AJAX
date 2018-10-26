@@ -29,7 +29,7 @@ class UpdateFriend extends React.Component {
           email: this.state.email
         })
         .then(res => {
-          this.props.submitUpdate();
+          this.props.showUpdate();
         })
         .catch(() => alert('PUT Error'));
     } else {
