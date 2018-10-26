@@ -46,12 +46,29 @@ class FriendsContent extends Component {
     //   email: this.state.email
     // }
     axios
-      .post('http://localhost:5000/friends', {name: this.state.name, age: this.state.age, email: this.state.email})
+      .post('http://localhost:5000/friends',
+      {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
       .then(response => {
         this.setState({friends: response.data})
         console.log(response)
       })
       .catch(err => console.log(err))
+  }
+
+  deleteFriendHandler = (id) => {
+    return () => {
+      console.log(id);
+      // axios
+      //   .delete(`http://localhost:5000/firends/${id}`)
+      //   .then(response => {
+      //     this.setState({friends: response.data})
+      //   })
+      //   .catch(err => console.log(err));
+    }
   }
 
   render() {
@@ -78,7 +95,9 @@ class FriendsContent extends Component {
         />
         <button type='submit'>Create Friend</button>
       </form>
-        <FriendsList friends={this.state.friends} />
+        <FriendsList friends={this.state.friends}
+          deleteFriendHandler={this.deleteFriendHandler}
+        />
       </ContentWrapper>
     )
   }

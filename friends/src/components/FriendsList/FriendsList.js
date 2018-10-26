@@ -15,6 +15,7 @@ const FriendsList = props => {
           <Friend
             key={friend.id}
             friend={friend}
+            deleteFriendHandler={props.deleteFriendHandler}
           />
         )
       })}
