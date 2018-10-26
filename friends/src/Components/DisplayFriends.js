@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios"
-import Friends from "./Friends";
+import FriendsList from "./FriendsList";
 import FriendForm from "./FriendForm";
 import UpdateFriend from "./UpdateFriend";
 
@@ -96,7 +96,7 @@ export default class DisplayFriends extends React.Component {
         <h1>Here are my friends!</h1>
         {this.state.friends.map(friend => {
             return (<div key={friend.id}>
-                <Friends friend={friend} delete={this.deleteFriend}/>
+                <FriendsList friend={friend} delete={this.deleteFriend}/>
               </div>)
         })}
         <FriendForm 

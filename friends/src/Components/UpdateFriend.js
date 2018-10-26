@@ -15,7 +15,6 @@ export default class UpdateFriend extends React.Component {
 
 //handle input handles all form boxes and updates the edited friends information
    handleUpdateInput = (event) => {
-      console.log(event.target.value)
       this.setState({
          friend: {
             ...this.state.friend,
