@@ -24,5 +24,5 @@ function UpdateFriend(props) {
       </div>
     )
   }
-  
+
   export default UpdateFriend;
