@@ -1,17 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
 class FriendProfile extends React.Component {
     constructor(props){
         super(props)
         this.state ={
             name: '',
+            age: '',
             email: ''
         }
     }
 
-    inputHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value})
-      }
+   updateFriend = (e) => {
+       e.preventDefault();
+       const id = this.props.id;
+       this.props.updateHandler(id, this.state.name, this.state.age, this.state.email);
+   }
+
+   inputHandler = (e) => {
+       e.preventDefault();
+    this.setState({[e.target.name]: e.target.value})
+  }
+ 
 
     render() {
         return(
@@ -28,12 +39,14 @@ class FriendProfile extends React.Component {
                         </FriendDiv>
                     </FriendContainer>
 
+                    
+
                     <FormContainer>
                         <form>
                             <input  placeholder="Name"  name="name" value={this.state.name} onChange={this.inputHandler} />
                             <input  placeholder="Age" name="age" value={this.state.age} onChange={this.inputHandler} />
                             <input  placeholder="Email Address"  name="email" value={this.state.email} onChange={this.inputHandler} />
-                            <button type="submit" onClick={this.props.addNewFriend}> Submit </button>
+                            <button type="submit" onClick={this.updateFriend}> Submit </button>
                         </form>
 
                     </FormContainer>
@@ -44,6 +57,8 @@ class FriendProfile extends React.Component {
 
 export default FriendProfile;
 
+
+//
 
 const FriendContainer = styled.div`
     width: 800px;

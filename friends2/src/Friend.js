@@ -18,7 +18,16 @@ class Friend extends React.Component {
             {this.props.friends.map(item => {
                 if (this.props.match.params.id === `${item.id}`) {
                     return (
-                        <FriendProfile name={item.name} age={item.age} email={item.email} />
+                        <FriendProfile 
+                            name={item.name} 
+                            age={item.age}
+                            email={item.email} 
+                            stateName={this.props.stateName}
+                            stateAge={this.props.stateAge}
+                            stateEmail={this.props.stateEmail}
+                            id={item.id} 
+                            updateHandler={this.props.updateHandler}
+                            inputHandler={this.inputHandler} />
                     )
                 }
             })}

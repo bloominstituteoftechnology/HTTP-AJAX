@@ -38,10 +38,37 @@ class App extends Component {
       email: this.state.email
     })
     .then(response => {
-      this.setState({friends: response.data})
+      this.setState({
+        friends: response.data,
+        name: '',
+        age: '',
+        email: ''
+      })
     })
     .catch(err => {console.log(err)})
   }
+
+
+  //updateHandler not working =(
+  updateHandler = (id, name, age, email) => {
+    axios.put(`http://localhost:5000/friends/${id}`, {
+      id: id,
+      name: name,
+      age: age,
+      email: email
+    })
+    .then( response => {
+        this.setState({
+          friends: response.data,
+          name: '',
+          age: '',
+          email: ''
+        })
+        console.log(response.data)
+    })
+    .catch(err => (console.log(err)))
+    
+}
 
   inputHandler = (e) => {
     this.setState({[e.target.name]: e.target.value})
@@ -79,7 +106,16 @@ class App extends Component {
                                       id={friend.id} /> } /> 
               </Link>
               )})}
-              <Route exact path="/friends/:id" render={(props) => <Friend {...props} friends={this.state.friends} />} />
+
+                                                                              {/* updateHandler getting passed here!!!!!!!!!!!!! */}
+              <Route exact path="/friends/:id" render={(props) => <Friend 
+                                                                    {...props} 
+                                                                    friends={this.state.friends}
+                                                                    updateHandler={this.updateHandler}
+                                                                    inputHandler={this.inputHandler}
+                                                                    stateName={this.state.name}
+                                                                    stateAge={this.state.age}
+                                                                    stateEmail={this.state.email} />} />
             </Container>
 
             <Route exact path="/" render={(props) => <Form {...props}
