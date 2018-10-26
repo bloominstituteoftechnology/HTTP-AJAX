@@ -1,18 +1,22 @@
 import React from 'react';
 
-export default function ListFriends(props) {
+import Friend from './friend'
+
+export default class ListFriends extends React.Component {
+
+  render() {
   return (
     <div>
-      {props.friends.map(friend => {
+      {this.props.friends.map(friend => {
         return(
           <div key={friend.id}>
-            <h1>This friend is named {friend.name}</h1>
-            <h3>Their age is {friend.age}</h3>
-            <h3>Their email is: {friend.email}</h3>
-            <div onClick={ () => props.deleteFriend(friend.id)}>Delete</div>
+            <Friend friend={friend} deleteFriend={this.props.deleteFriend} edit={this.props.edit}/>
           </div>
         )
       })}
     </div>
-  )
+    )
+  }
 }
+
+//todo -->  if edit = true, then show a form with name, age and email, and button
