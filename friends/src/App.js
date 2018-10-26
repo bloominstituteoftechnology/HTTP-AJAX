@@ -47,10 +47,10 @@ handleSubmit = event => {
 
 deleteHandler = (id) => {
   return () => {
-    axios.delete(`http://localhost:5000/friend/${id}`)
+    axios.delete(`http://localhost:5000/friends/${id}`)
     .then(response => {
-      this.setState({friends: response.data})
       console.log(response)
+      this.setState({friends: response.data})  
     })
     .catch(err=> {
       console.log(err);
@@ -58,8 +58,8 @@ deleteHandler = (id) => {
   }
 }
 
-updateListHandler = (id, name, email) => {
-    console.log(id, name, email)
+updateListHandler = (id, name, age, email) => {
+    console.log(id, name, age, email)
 }
 
 // deleteHandler = event => {
@@ -81,7 +81,7 @@ updateListHandler = (id, name, email) => {
             <div>Name:{list.name}</div>
             <div>Age:{list.age}</div>
             <div>Email:{list.email}</div>
-            <button type="submit" onChange={this.deleteHandler}>Remove</button>
+            <button type="submit" onClick={this.deleteHandler(list.id)}>Remove</button>
             </li>
           )
         })}</ul>
