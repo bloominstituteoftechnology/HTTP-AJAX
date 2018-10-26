@@ -4,10 +4,18 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "nodemon": "^1.14.11"
+    "history": "^4.7.2",
+    "nodemon": "^1.14.11",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.4.0-beta.4",
+    "react-scripts": "^2.0.0-next.47d2d941",
+    "react-spring": "^6.0.0"
   },
   "devDependencies": {},
   "scripts": {

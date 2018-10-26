@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.0.5"
+    "react-router-dom": "^4.4.0-beta.4",
+    "react-scripts": "2.0.5",
+    "react-spring": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
