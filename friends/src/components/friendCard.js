@@ -1,4 +1,4 @@
-import React, { Component  } from "react";
+import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 // import {Route} from 'react-router-dom'
 import { withStyles } from "@material-ui/core/styles";
-import Forms from "./form";
+import UpdateForms from "./updateForm";
 
 const styles = theme => ({
   card: {
@@ -31,7 +31,8 @@ const styles = theme => ({
 });
 class FriendCard extends Component {
 
-    render() {
+  render() {
+    console.log(this.props.id)
     const { classes } = this.props;
     return (
       <div>
@@ -61,10 +62,13 @@ class FriendCard extends Component {
               <UpdateIcon className={classes.icon} />
             </Button>
           </CardActions>
-            </Card>
-            <h3>Update Friend</h3>
-      <Forms updateFriend={this.props.updateHandler}/>
-
+        </Card>
+        <h3>Update Friend</h3>
+        <UpdateForms
+          id={this.props.id}
+          handleChange={this.props.handleChange}
+          updateFriend={this.props.updateHandler}
+        />
       </div>
     );
   }

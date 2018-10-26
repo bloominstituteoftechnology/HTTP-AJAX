@@ -48,7 +48,7 @@ const Forms = props => {
         />
       </FormGroup>
           <Button onClick={props.addNewFriend}> Add</Button>
-      <Button onClick={props.updateHandler}> Update</Button>
+
 
     </>
   );

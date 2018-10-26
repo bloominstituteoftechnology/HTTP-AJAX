@@ -49,10 +49,28 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  updateFriend = (id, name, age) => {
+  updateFriend = (id, name, age, email) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, {
+        friend: {
+          name: name,
+          age: age,
+          email: email
+        }
+      })
+      .then(
+      response => {
+        console.log(response)
+        this.setState({
+          friends: response.data,
+          name: "",
+          age: "",
+          email: ""
+        })
 
-  console.log(id, name, age)
-
+      }
+      )
+      .catch(err => console.log(err));
   };
 
   deleteFriend = id => {
@@ -93,6 +111,7 @@ class App extends Component {
               deleteFriend={this.deleteFriend}
               handleChange={this.handleChange}
               addNewFriend={this.addNewFriend}
+              updateFriend={this.updateFriend}
             />
           )}
         />

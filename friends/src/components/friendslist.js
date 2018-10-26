@@ -10,6 +10,7 @@ import Friend from "./friend";
 import Forms from "./form";
 
 
+
 const styles = theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -34,6 +35,7 @@ const styles = theme => ({
 
 const Friends = props => {
   const { classes } = props;
+
   return (
     <>
       <Paper className={classes.root}>
@@ -66,7 +68,7 @@ const Friends = props => {
         </Table>
       </Paper>
 
-      <Forms handleChange={props.handleChange} addNewFriend={props.addNewFriend} />
+      <Forms  handleChange={props.handleChange} addNewFriend={props.addNewFriend} />
 
     </>
   );
