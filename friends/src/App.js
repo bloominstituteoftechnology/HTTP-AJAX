@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import styles from './CSS/Body.css'
 
 import axios from 'axios';
 
-import FriendTable from './FriendTable';
-import NewFriendForm from './NewFriendForm';
+import FriendTable from './Components/FriendTable';
+import NewFriendForm from './Components/NewFriendForm';
 
 class App extends Component {
   constructor(){
@@ -56,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app-body">
        <NewFriendForm addFriend = {this.addFriend}/>
        <FriendTable friends = {this.state.friendsArray} deleteFriend = {this.deleteFriend}/>
        
