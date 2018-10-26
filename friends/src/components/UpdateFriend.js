@@ -20,7 +20,8 @@ export default class UpdateFriend extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  toggle(e) {
+    e.preventDefault();
     this.setState({
       modal: !this.state.modal
     });
@@ -41,7 +42,8 @@ export default class UpdateFriend extends React.Component {
             this.props.userInfo.name
           }'s Info`}</ModalHeader>
           <ModalBody>
-            <Form onSubmit={this.props.submitUpdate}>
+            <Form onSubmit={(e) => { this.props.submitUpdate(e); this.toggle(e);}}>
+            {/* // {this.props.submitUpdate}> */}
               <FormGroup>
                 <Label for="name">Name</Label>
                 <Input

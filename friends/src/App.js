@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import axios from "axios";
-// import styled from 'styled-components'
 
-// import NewFriendForm from "./components/NewFriendForm";
 import FriendCard from "./components/FriendCard";
 import FriendList from "./components/FriendList";
-// import { Wrapper } from "./components/StyledComponents";
+import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 
 class App extends Component {
@@ -18,7 +16,7 @@ class App extends Component {
         name: "",
         age: 0,
         email: "",
-        description: "",
+        description: ""
       }
     };
   }
@@ -89,6 +87,11 @@ class App extends Component {
           path="/"
           render={props => <NavBar {...props} friends={this.state.friends} />}
         />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
 
         <Route
           exact
@@ -97,7 +100,6 @@ class App extends Component {
             <FriendList
               {...props}
               friends={this.state.friends}
-              updateFriend={this.updateFriend}
               deleteFriend={this.deleteFriend}
               inputChange={this.inputChange}
               addNewFriend={this.addNewFriend}

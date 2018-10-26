@@ -20,7 +20,8 @@ export default class NewFriendForm extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  toggle(e) {
+    e.preventDefault();
     this.setState({
       modal: !this.state.modal
     });
@@ -39,7 +40,7 @@ export default class NewFriendForm extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>Add a Friend</ModalHeader>
           <ModalBody>
-            <Form onSubmit={this.props.addNewFriend}>
+            <Form onSubmit={(e) => { this.props.addNewFriend(e); this.toggle(e);}}>
               <FormGroup>
                 <Label for="name">Name</Label>
                 <Input

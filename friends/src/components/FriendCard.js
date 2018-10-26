@@ -71,9 +71,7 @@ export default class FriendCard extends React.Component {
             <CardBody>
               <CardTitle>{this.state.userInfo.name}</CardTitle>
               <CardSubtitle>{`Age: ${this.state.userInfo.age}`}</CardSubtitle>
-              <CardSubtitle>{`Email: ${
-                this.state.userInfo.email
-              }`}</CardSubtitle>
+              <CardSubtitle>{`Email: ${this.state.userInfo.email}`}</CardSubtitle>
               <CardText>
                 {this.state.userInfo.description}
               </CardText>

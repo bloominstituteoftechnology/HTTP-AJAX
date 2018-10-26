@@ -32,7 +32,7 @@ export default class FriendList extends React.Component {
                   <CardSubtitle>{`Email: ${friend.email}`}</CardSubtitle>
                   
                   <CardText>
-                    {`Email: ${friend.description}`}
+                    {`${friend.description}`}
                   </CardText>
                   <Button
                     onClick={() => this.props.deleteFriend(friend)}

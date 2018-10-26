@@ -31,32 +31,28 @@ let friends = [
     name: "Ryan",
     age: 35,
     email: "ryan@lambdaschool.com",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
   },
   {
     id: 4,
     name: "Sean",
     age: 35,
     email: "sean@lambdaschool.com",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
   },
   {
     id: 5,
     name: "Michelle",
     age: 67,
     email: "michelle@gmail.com",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
   },
   {
     id: 6,
     name: "Luis",
     age: 47,
     email: "luis@lambdaschool.com",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim diam vulputate ut pharetra sit amet. In hac habitasse platea dictumst vestibulum."
   }
 ];
 
