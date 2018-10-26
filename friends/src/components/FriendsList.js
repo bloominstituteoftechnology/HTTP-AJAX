@@ -4,9 +4,12 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGr
 
 
 const Icon = styled.i`
-cursor: pointer;
-color: darkcyan;
-margin-right: 10px;
+    cursor: pointer;
+    color: darkcyan;
+    margin-right: 15px;
+    &:last-child {
+        margin-right: 0
+    }
 `
 export class FriendsList extends React.Component {
     constructor(props) {
@@ -15,10 +18,11 @@ export class FriendsList extends React.Component {
             modal: false,
             tooltipOpen: false,
             tooltipOpenTwo: false,
+            tooltipOpenThree: false,
             name: "",
             age: "",
             email: "",
-            id: null
+            id: null,
         };
     }
 
@@ -34,6 +38,12 @@ export class FriendsList extends React.Component {
             });
         }
 
+        toggleToolTipTHREE = () => {
+            this.setState({
+            tooltipOpenTwo: !this.state.tooltipOpenThree
+            });
+        }   
+        
         toggle = () => {
         this.setState({
             modal: !this.state.modal
@@ -60,10 +70,11 @@ export class FriendsList extends React.Component {
                     <Table>
                         <thead>
                             <tr>
-                                <th>id</th>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Age</th>
-                                <th>email</th>
+                                <th>Email</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,12 +84,13 @@ export class FriendsList extends React.Component {
                                                                         <td>{friend.age}</td>
                                                                         <td>{friend.email}</td>
                                                                         <td>
+                                                                            <Icon onClick={() => this.props.history.push(`/friend/${friend.id}`)} className="fas fa-info-circle" ></Icon>
                                                                             <Icon onClick={() => {this.toggle(); this.idHandler(friend.id)}} className="fas fa-edit"></Icon>
                                                                             <Icon onClick={() => this.props.deleteFriend(friend.id)} className="fas fa-trash-alt"></Icon>
                                                                         </td>
                                                                 </tr>
                                         
-                            )}
+                            ).reverse()}
                         </tbody>
                     </Table>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
