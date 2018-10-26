@@ -47,7 +47,7 @@ class App extends Component {
 
     axios.post(`http://localhost:5000/${id}/`, updatedFriend)
     .then(response => {
-      this.setState({ friends: response.data, name: "", age: "", email: ""});
+      this.setState({ friends: response.data});
     })
     .catch(err => {
       console.log(err);
@@ -111,7 +111,7 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </form>
-          {/* <button onClick={event => this.updateFriend(event, friend.id)}>Update friend info</button> */}
+          <button onClick={event => this.updateFriend(event)}>Update friend info</button>
         </div>
       <h2>A list of friends, forthwith:</h2>
         {this.state.friends.map(friend => {
