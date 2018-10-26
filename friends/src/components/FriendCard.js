@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
+import UpdateFriend from "./UpdateFriend";
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+} from "reactstrap";
 
 export default class FriendCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userInfo: null
     };
@@ -58,33 +66,25 @@ export default class FriendCard extends React.Component {
       return <div />;
     } else {
       return (
-        <div>
-          <Link to="/friends">Home</Link>
-          <h1>{this.state.userInfo.name}</h1>
-          <div>{`Age: ${this.state.userInfo.age}`}</div>
-          <div>{`Email: ${this.state.userInfo.email}`}</div>
-          <form onSubmit={this.submitUpdate}>
-            <input
-              placeholder="Name"
-              onChange={this.inputChange}
-              value={this.state.userInfo.name}
-              name="name"
-            />
-            <input
-              type="number"
-              placeholder="Age"
-              onChange={this.numberInputChange}
-              value={this.state.userInfo.age}
-              name="age"
-            />
-            <input
-              placeholder="Email"
-              onChange={this.inputChange}
-              value={this.state.userInfo.email}
-              name="email"
-            />
-            <button type="submit">Update Friend</button>
-          </form>
+        <div style={{ marginTop: "60px" }}>
+          <Card>
+            <CardBody>
+              <CardTitle>{this.state.userInfo.name}</CardTitle>
+              <CardSubtitle>{`Age: ${this.state.userInfo.age}`}</CardSubtitle>
+              <CardSubtitle>{`Email: ${
+                this.state.userInfo.email
+              }`}</CardSubtitle>
+              <CardText>
+                {this.state.userInfo.description}
+              </CardText>
+              <UpdateFriend
+                userInfo={this.state.userInfo}
+                inputChange={this.inputChange}
+                numberInputChange={this.numberInputChange}
+                submitUpdate={this.submitUpdate}
+              />
+            </CardBody>
+          </Card>
         </div>
       );
     }

@@ -35,6 +35,6 @@ For reference,
 ## Stretch Problems
 
 - [x] 1.  Separate the list of friends and the new friend form into different components, and use the appropriate React Router to build routes for the proper aspects of your components to be revealed separately.
-- [ ] 2.  Style the friends list, the input field, and make everything look nice.
-- [ ] 3.  Expand the number of properties that you put on each friend object.
-- [ ] 4.  Feel free to remove the dummy data on the server or modify it in any way.
+- [x] 2.  Style the friends list, the input field, and make everything look nice.
+- [x] 3.  Expand the number of properties that you put on each friend object.
+- [x] 4.  Feel free to remove the dummy data on the server or modify it in any way.

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import axios from "axios";
+// import styled from 'styled-components'
 
-import NewFriendForm from "./components/NewFriendForm";
+// import NewFriendForm from "./components/NewFriendForm";
 import FriendCard from "./components/FriendCard";
 import FriendList from "./components/FriendList";
+// import { Wrapper } from "./components/StyledComponents";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
   constructor() {
@@ -14,9 +17,9 @@ class App extends Component {
       newFriend: {
         name: "",
         age: 0,
-        email: ""
-      },
-      currentId: ""
+        email: "",
+        description: "",
+      }
     };
   }
   componentDidMount() {
@@ -81,14 +84,11 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ paddingBottom: "20px" }}>
-        <Switch>
-          <Route exact path="/">
-            <Link to="/friends">
-              <div>Click Here to Access Friends</div>
-            </Link>
-          </Route>
-        </Switch>
+      <>
+        <Route
+          path="/"
+          render={props => <NavBar {...props} friends={this.state.friends} />}
+        />
 
         <Route
           exact
@@ -99,6 +99,10 @@ class App extends Component {
               friends={this.state.friends}
               updateFriend={this.updateFriend}
               deleteFriend={this.deleteFriend}
+              inputChange={this.inputChange}
+              addNewFriend={this.addNewFriend}
+              numberInputChange={this.numberInputChange}
+              newFriend={this.state.newFriend}
             />
           )}
         />
@@ -114,21 +118,7 @@ class App extends Component {
             />
           )}
         />
-
-        <Route
-          exact
-          path="/friends"
-          render={props => (
-            <NewFriendForm
-              {...props}
-              inputChange={this.inputChange}
-              addNewFriend={this.addNewFriend}
-              numberInputChange={this.numberInputChange}
-              newFriend={this.state.newFriend}
-            />
-          )}
-        />
-      </div>
+      </>
     );
   }
 }

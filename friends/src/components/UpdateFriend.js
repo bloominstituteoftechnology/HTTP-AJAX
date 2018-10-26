@@ -8,10 +8,10 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
+  Input
 } from "reactstrap";
 
-export default class NewFriendForm extends React.Component {
+export default class UpdateFriend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,23 +31,25 @@ export default class NewFriendForm extends React.Component {
     return (
       <div>
         <Button color="danger" onClick={this.toggle}>
-          Add New Friend
+          {`Update ${this.props.userInfo.name}`}
         </Button>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Add a Friend</ModalHeader>
+          <ModalHeader toggle={this.toggle}>{`Update ${
+            this.props.userInfo.name
+          }'s Info`}</ModalHeader>
           <ModalBody>
-            <Form onSubmit={this.props.addNewFriend}>
+            <Form onSubmit={this.props.submitUpdate}>
               <FormGroup>
                 <Label for="name">Name</Label>
                 <Input
                   type="text"
                   name="name"
                   onChange={this.props.inputChange}
-                  value={this.props.newFriend.name}
+                  value={this.props.userInfo.name}
                 />
               </FormGroup>
               <FormGroup>
@@ -56,7 +58,7 @@ export default class NewFriendForm extends React.Component {
                   type="number"
                   name="age"
                   onChange={this.props.numberInputChange}
-                  value={this.props.newFriend.age}
+                  value={this.props.userInfo.age}
                 />
               </FormGroup>
               <FormGroup>
@@ -65,7 +67,7 @@ export default class NewFriendForm extends React.Component {
                   type="email"
                   name="email"
                   onChange={this.props.inputChange}
-                  value={this.props.newFriend.email}
+                  value={this.props.userInfo.email}
                 />
               </FormGroup>
               <FormGroup>
@@ -74,7 +76,7 @@ export default class NewFriendForm extends React.Component {
                   type="textarea"
                   name="description"
                   onChange={this.props.inputChange}
-                  value={this.props.newFriend.description}
+                  value={this.props.userInfo.description}
                 />
               </FormGroup>
               <Button type="submit">Submit</Button>
