@@ -36,12 +36,15 @@ class Friends extends Component{
         event.preventDefault()
         axios
             .post('http://localhost:5000/friends',{
-                name: this.state.name,
-                age: this.state.age,
-                email: this.state.email
+                friend:{
+                    name: this.state.name,
+                    age: this.state.age,
+                    email: this.state.email
+                }
             })
             .then(response =>{
                 this.setState({
+                    friends: response.data,
                     name: "",
                     age: "",
                     email: "",
@@ -54,7 +57,12 @@ class Friends extends Component{
 
     deleteHandler = (id) =>{
         return () =>{
-            console.log(id)
+            axios
+                .delete(`http://localhost:5000/friends/${id}`)
+                .then( response => {
+                    this.setState({friends: response.data})
+                })
+                .catch( err => console.log(err))
         }
         
     }
