@@ -21,9 +21,9 @@ class FriendsList extends React.Component {
     axios
       .get('http://localhost:5000/friends')
       .then(data => {
-        console.log(data.data);
+        // console.log(data.data);
         this.setState({ friends: data.data });
-        console.log(this.state);
+        // console.log(this.state);
       })
       .catch(() => alert('GET Error'));
   }
@@ -44,8 +44,8 @@ class FriendsList extends React.Component {
       axios
         .post('http://localhost:5000/friends', { name, age, email })
         .then(res => {
-          console.log(res);
-          console.log(res.data);
+          //   console.log(res);
+          //   console.log(res.data);
           this.setState({
             friends: res.data,
             name: '',
@@ -60,21 +60,35 @@ class FriendsList extends React.Component {
   };
 
   deleteFriend = event => {
-    console.log(event.target.id);
+    // console.log(event.target.id);
     const id = event.target.id;
     axios.delete(`http://localhost:5000/friends/${id}`).then(res => {
-      console.log(res);
-      console.log(res.data);
+      //   console.log(res);
+      //   console.log(res.data);
       this.setState({ friends: res.data });
     });
   };
 
   updateFriend = e => {
     const fid = e.target.id;
-    console.log(fid);
-    console.log(e.target.parentNode.parentNode);
+    // console.log(fid);
+    // console.log(e.target.parentNode.parentNode);
     this.setState({ id: fid });
     console.log(this.state);
+  };
+
+  submitUpdate = () => {
+    axios
+      .get('http://localhost:5000/friends')
+      .then(data => {
+        // console.log(data.data);
+        this.setState({
+          friends: data.data,
+          id: ''
+        });
+        // console.log(this.state);
+      })
+      .catch(() => alert('GET Error'));
   };
 
   render() {
@@ -112,15 +126,17 @@ class FriendsList extends React.Component {
         <ListWrapper>
           <FriendListHeader name="Name" age="Age" email="Email" />
           {this.state.friends.map(friend => {
-            console.log(friend.id);
-            console.log(this.state.id);
+            // console.log(friend.id);
+            // console.log(this.state.id);
             if (friend.id === +this.state.id) {
               return (
                 <UpdateFriend
+                  id={friend.id}
                   name={friend.name}
                   age={friend.age}
                   email={friend.email}
-                  //   submitUpdate={}
+                  submitUpdate={this.submitUpdate}
+                  handleInput={this.handleInput}
                 />
               );
             }

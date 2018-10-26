@@ -29,10 +29,11 @@ export const StyledFriendsList = styled.div`
 
   form {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
-    
+    flex-wrap: wrap;
+
     input {
       width: 30%;
       text-align: center;
@@ -43,6 +44,25 @@ export const StyledFriendsList = styled.div`
       background-color: #333;
       color: white;
       border: none;
+    }
+
+    button {
+      height: 30px;
+      width: 15%;
+      margin: 0 auto;
+      cursor: pointer;
+      background-color: #333;
+      background-color: rgb(175, 255, 168);
+      color: #333;
+      font-size: 1.2rem;
+      cursor: pointer;
+      outline-color: #333;
+      border: none;
+  
+      :hover {
+        background-color: #666;
+        background-color: rgb(93, 255, 79)
+      }
     }
   }
 
