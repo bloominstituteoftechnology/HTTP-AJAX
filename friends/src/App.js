@@ -55,11 +55,9 @@ class App extends Component {
   updateFriend = (id, name, age, email) => {
     axios
       .put(`http://localhost:5000/friends/${id}`, {
-        friend: {
           name: name,
           age: age,
           email: email,
-        }
       })
       .then(response =>
         this.setState({ friends : response.data }));

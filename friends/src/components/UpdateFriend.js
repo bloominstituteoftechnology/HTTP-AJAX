@@ -31,9 +31,10 @@ class UpdateFriend extends React.Component {
 
         let id = 0;
 
+        // Check if the name/email being entered is valid
         for (let i = 0; i < this.props.friends.length; i++) {
-            if ((this.state.friend.name === this.props.friends[i].name) 
-                || (this.state.friend.email === this.props.friends[i].email)) {
+            if ((this.state.name === this.props.friends[i].name) 
+                || (this.state.email === this.props.friends[i].email)) {
                     id = this.props.friends[i].id
                 }
         }
@@ -41,7 +42,7 @@ class UpdateFriend extends React.Component {
         if (id === 0) {
             alert("❗ Person does not exist 💀 ❗")
         } else {
-            this.props.update(id, this.state.friend.name, this.state.friend.age, this.state.friend.email)
+            this.props.update(id, this.state.name, this.state.age, this.state.email)
         }
 
         this.setState({
@@ -58,13 +59,13 @@ class UpdateFriend extends React.Component {
             <Container>
                 <form onSubmit={this.submitUpdateHandler}>
                     <fieldset>
-                        <label for="nameField">Name</label>
+                        <label htmlFor="nameField">Name</label>
                         <input type="text" placeholder="John Spraul" id="nameField" name="name" value={this.state.name} onChange={this.changeHandler} />
-                        <label for="emailField">Email</label>
+                        <label htmlFor="emailField">Email</label>
                         <input type="text" placeholder="🧖🏼‍♂️@gmail.com" id="emailField"  name="email" value={this.state.email} onChange={this.changeHandler} />
-                        <label for="ageField">Age</label>
+                        <label htmlFor="ageField">Age</label>
                         <input type="text" placeholder="100" id="ageField"  name="age" value={this.state.age} onChange={this.changeHandler} />
-                        <input class="button button-outline" type="reset" value="Update Friend" />
+                        <input className="button button-outline" type="submit" value="Update Friend" />
                     </fieldset>
                 </form>
             </Container>
