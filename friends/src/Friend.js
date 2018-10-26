@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { StyledFriendsList } from './Styled';
 
 class Friend extends React.Component {
@@ -20,14 +22,15 @@ class Friend extends React.Component {
             id={this.props.id}
             onClick={this.props.updateFriend}
           >
-            U
+            Edit
+            {/* <FontAwesomeIcon icon="pencil-alt" /> */}
           </p>
           <p
             className="delete"
             id={this.props.id}
             onClick={this.props.deleteFriend}
           >
-            X
+            X{/* <FontAwesomeIcon icon="trash-alt" /> */}
           </p>
         </span>
       </StyledFriendsList>

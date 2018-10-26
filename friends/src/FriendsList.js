@@ -60,18 +60,20 @@ class FriendsList extends React.Component {
   };
 
   deleteFriend = event => {
-    // console.log(event.target.id);
     const id = event.target.id;
-    axios.delete(`http://localhost:5000/friends/${id}`).then(res => {
-      //   console.log(res);
-      //   console.log(res.data);
-      this.setState({ friends: res.data });
-    });
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        //   console.log(res);
+        //   console.log(res.data);
+        this.setState({ friends: res.data });
+      })
+      .catch(() => alert('DELETE Error'));
   };
 
   updateFriend = e => {
     const fid = e.target.id;
-    // console.log(fid);
+    // console.log(fid)
     // console.log(e.target.parentNode.parentNode);
     this.setState({ id: fid });
     console.log(this.state);

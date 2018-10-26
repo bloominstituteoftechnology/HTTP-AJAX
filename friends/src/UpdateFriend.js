@@ -59,7 +59,7 @@ class UpdateFriend extends React.Component {
             onChange={this.handleInput}
             name="email"
           />
-          <button>Update</button>
+          <button>Done</button>
         </form>
       </StyledFriendsList>
     );
