@@ -44,40 +44,36 @@ class FriendsList extends React.Component {
             });
     }
 
-    updateFriend = id => {
-        // axios.delete(`http://localhost:5000/friends/${id}`)
-        //     .then(response => {
-        //       this.setState({ friends: response.data });
-        //     })
-        //     .catch(err => {
-        //       console.log("Error: ", err);
-        //     });
+    updateFriend = friend => {
+        axios.put(`http://localhost:5000/friends/${friend.id}`, friend)
+            .then(response => {
+              this.setState({ friends: response.data });
+            })
+            .catch(err => {
+              console.log("Error: ", err);
+            });
     }
 
     render() {
         return (
             <>
-                <FriendForm addFriendHandler={this.addFriend} />
-                <table className="friends-list">
-                    <thead>
-                        <tr>
-                            <th className="friend-name">Friend</th>
-                            <th className="friend-age">Age</th>
-                            <th className="friend-email">Email</th>
-                            <th className="friend-controls">&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.friends.map(friend => {
-                            return <Friend 
-                                key={friend.id} 
-                                friend={friend} 
-                                deleteFriendHandler={this.deleteFriend} 
-                                updateFriendHandler={this.updateFriend}
-                            />
-                        })}
-                    </tbody>
-                </table>
+                <FriendForm mode="add" addFriendHandler={this.addFriend} />
+                <div className="friends-list">
+                    <div className="friend-heading">
+                            <span className="friend-name">Friend</span>
+                            <span className="friend-age">Age</span>
+                            <span className="friend-email">Email</span>
+                            <span className="friend-controls">&nbsp;</span>
+                    </div>
+                    {this.state.friends.map(friend => {
+                        return <Friend 
+                            key={friend.id} 
+                            friend={friend} 
+                            deleteFriendHandler={this.deleteFriend} 
+                            updateFriendHandler={this.updateFriend}
+                        />
+                    })}
+                </div>
             </>
         )
     }

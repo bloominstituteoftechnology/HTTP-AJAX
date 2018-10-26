@@ -5,6 +5,8 @@
 
 .friend-form {
     width: 100%;
+    margin: 15px 0;
+    display: flex;
 }
 
 .friends-list {
@@ -13,6 +15,29 @@
 
 input {
     width: 100%;
+    font-size: 20px;
+    padding: 3px;
+}
+
+button {
+    font-size: 20px;
+    padding: 3px 0;
+}
+
+.friend-heading {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.friend-row {
+    width: 100%;
+    display: flex;
+    margin: 5px 0;
 }
 
 .friend-name {
@@ -32,11 +57,12 @@ input {
 
 .friend-controls {
     width: 20%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .friend-controls button {
-    width: 90%;
+    width: 100%;
 }
 
 .friend-controls span {
