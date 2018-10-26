@@ -47,14 +47,9 @@ class App extends Component {
   };
 
   updateFriend = (id, name, age, email) => {
+    const friend = { name, age, email }
     axios
-      .put(`http://localhost:5000/friends/${id}`, {
-        friends: {
-          name: name,
-          age: age,
-          email: email
-        }
-      })
+      .put(`http://localhost:5000/friends/${id}`, friend)
       .then(
       response => {
         console.log(response)
@@ -102,7 +97,7 @@ class App extends Component {
               addNewFriend={this.addNewFriend}
 
             />
-          )}
+          )} 
         />
         <Route
           path="/friends/:id"

@@ -4,7 +4,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import UpdateIcon from "@material-ui/icons/Update";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 // import {Route} from 'react-router-dom'
@@ -57,9 +56,6 @@ class FriendCard extends Component {
             <Button size="small">Learn More</Button>
             <Button onClick={this.props.deleteFriend(this.props.id)}>
               <DeleteOutlinedIcon className={classes.icon} />
-            </Button>
-            <Button onClick={this.clickHander}>
-              <UpdateIcon className={classes.icon} />
             </Button>
           </CardActions>
         </Card>

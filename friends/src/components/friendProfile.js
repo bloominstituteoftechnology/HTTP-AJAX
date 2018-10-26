@@ -8,10 +8,10 @@ export default class FriendProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      age: "",
-      email: "",
-      friend: {}
+      friend: {},
+      name: '',
+      age: '',
+      email: ''
     };
 
   }
@@ -21,12 +21,12 @@ export default class FriendProfile extends React.Component {
     })[0];
     this.setState({friend })
   }
-  updateHandler = (id) => {
-
+  
+  updateHandler = () => {
+    const id = this.state.friend.id 
     this.props.updateFriend(id, this.state.name, this.state.age, this.state.email);
-
-
-  };
+    
+    }  
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -35,12 +35,14 @@ export default class FriendProfile extends React.Component {
 
   };
   render() {
-
+    const friend = this.props.friends.filter(item => {
+      return item.id === parseInt(this.props.match.params.id);
+    })[0];
 
     return (
       <div>
         <FriendCard
-          {...this.state.friend}
+          {...friend}
           deleteFriend={this.props.deleteFriend}
           updateHandler={this.updateHandler}
           handleChange={this.handleChange}
