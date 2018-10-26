@@ -113,7 +113,7 @@ export default class App extends Component {
            submit={this.submit}
            no={this.preventDefault}
            delete={this.delete}
-           update={this.updateFriend}
+           updateFriend={this.updateFriend}
            data={this.state.data}/> } 
           />
       </div>

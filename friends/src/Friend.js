@@ -14,10 +14,10 @@ export default class Friend extends React.Component {
         }
     }
 
-    updateFriend = (e) => {
+    updateFriendHandler = (e) => {
         e.preventDefault();
         const id = this.props.id
-        this.props.update(id, this.state.name, this.state.age, this.state.email);
+        this.props.updateFriend(id, this.state.name, this.state.age, this.state.email);
         this.setState({
             updateStatus: !this.state.updateStatus
         })
@@ -52,7 +52,7 @@ export default class Friend extends React.Component {
                 <Text>You can contact me at <Email onClick={this.props.no} href='#'>{this.props.friend.email}</Email></Text>
                 <UpdateButton onClick={this.updateHandler}>Update</UpdateButton>
 
-                {this.state.updateStatus ? <UpdateForm update={this.updateFriend} change={this.inputHandler} exitForm={this.exitForm} /> : null }
+                {this.state.updateStatus ? <UpdateForm update={this.updateFriendHandler} change={this.inputHandler} exitForm={this.exitForm} /> : null }
             </FriendStyle>
         )
     }
