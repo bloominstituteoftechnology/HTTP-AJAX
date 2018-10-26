@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { Card, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -20,12 +19,6 @@ const StyledLink = styled(Link)`
     margin-top: 10px;
 `;
 
-const ButtonContainer = styled.div`
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-evenly;
-`;
-
 const FriendCard = props => {
     const { id, name, age, email } = props.friend;
     return (
@@ -36,10 +29,6 @@ const FriendCard = props => {
             </StyledLink>
                 <CardSubtitle>{age}</CardSubtitle>
                 <CardText>{email}</CardText>
-                <ButtonContainer>
-                    <Button color="danger" onClick={props.handleDelete(id)}>Delete</Button> 
-                    <Button color="secondary">Edit</Button>   
-                </ButtonContainer>
             </StyledCard>
         </CardContainer>   
     );

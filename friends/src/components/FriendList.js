@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom'; 
 
 import FriendForm from './FriendForm';
 import FriendCard from './FriendCard';
@@ -58,7 +60,7 @@ export default class FriendList extends Component {
 
     deleteHandler = (id) => {
         return () => {
-            alert("Are you positive you want to delete this friend?")
+            alert(`You sure?`)
             axios
                 .delete(`http://localhost:5000/friends/${id}`)
                 .then( response => {
@@ -69,6 +71,24 @@ export default class FriendList extends Component {
                 })
         }
     };
+
+    // updateHandler = (id, name, age, email) => {
+    //     console.log(id, name, age, email)
+    //     axios
+    //         .put(`http://localhost:5000/friends/${id}`, {
+    //             friend: {
+    //                 name: name,
+    //                 age: age,
+    //                 email: email
+    //             }
+    //         })
+    //         .then( response => {
+    //             this.setState({ friend: response.data })
+    //         })
+    //         .catch(error => (
+    //             console.log(error)
+    //         ));
+    // }
 
     render() {
         return (
@@ -82,9 +102,19 @@ export default class FriendList extends Component {
                 />
                 <CardForFlex>
                     {this.state.friends.map(friend => (
-                            <FriendCard key={friend.id} friend={friend} handleDelete={this.deleteHandler} />
-                    ))}    
-                </CardForFlex>
+                        <div key={friend.id}>
+                            <FriendCard friend={friend} 
+                            // handleUpdate={this.updateHandler} 
+                            />
+                            <div>
+                                <Button color="danger" onClick={this.deleteHandler(friend.id)}>Delete</Button>
+                                <Link to={`/friends/${friend.id}`}>
+                                    <Button color="secondary">Edit</Button>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </CardForFlex>  
             </div>
         );
     }
