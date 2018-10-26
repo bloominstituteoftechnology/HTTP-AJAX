@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class NewFriend extends Component {
+class EditFriend extends Component {
     constructor() {
       super();
 
@@ -10,10 +10,20 @@ class NewFriend extends Component {
       this.handleEmailChange = this.handleEmailChange.bind(this);
 
       this.state = {
+          id: 0,
           name: '',
           age: 0,
           email: ''
       };
+    }
+
+    componentDidMount() {
+        this.setState({
+            id: this.props.currentFriend[0],
+            name: this.props.currentFriend[1],
+            age: this.props.currentFriend[2],
+            email: this.props.currentFriend[3],
+        });
     }
 
     handleNameChange(e) {
@@ -32,7 +42,7 @@ class NewFriend extends Component {
         return (
             <div>
                 <Link to='/'>Home</Link>
-                <form onSubmit={(e) => this.props.addNewFriendHandleSubmit(e, this.state.name, this.state.age, this.state.email)}>
+                <form onSubmit={(e) => this.props.editFriendHandleSubmit(e, this.state.id, this.state.name, this.state.age, this.state.email)}>
                     <label>
                         Name:
                         <input type="text" value={this.state.name} onChange={this.handleNameChange} />
@@ -52,4 +62,4 @@ class NewFriend extends Component {
     }
 }
 
-export default NewFriend;
+export default EditFriend;

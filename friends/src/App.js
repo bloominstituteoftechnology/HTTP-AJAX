@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import FriendList from './components/FriendList';
 import NewFriend from './components/NewFriend';
+import EditFriend from './components/EditFriend';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-        friends: []
+        friends: [],
+        currentFriend: []
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.addNewFriendHandleSubmit = this.addNewFriendHandleSubmit.bind(this);
+    this.editFriendHandleSubmit = this.editFriendHandleSubmit.bind(this);
     this.youAreNotMyFriend = this.youAreNotMyFriend.bind(this);
+    this.passProperties = this.passProperties.bind(this);
   }
 
   componentDidMount() {
@@ -51,12 +55,12 @@ class App extends Component {
         self.setState({
             friends: friendArr
         });
-
+        self.props.history.push('/');
       })
       .catch(err => console.log(err))
   }
 
-  handleSubmit(e, name, age, email) {
+  addNewFriendHandleSubmit(e, name, age, email) {
     const random = Math.floor((Math.random() * 1000000000000000) + 1);
     e.preventDefault();
     const self = this;
@@ -85,14 +89,50 @@ class App extends Component {
     });
   }
 
+  passProperties(e, id, name, age, email) {
+    e.preventDefault();
+
+    this.setState({
+        currentFriend: [id, name, age, email],
+    });
+
+    this.props.history.push('/editfriend');
+  }
+
+  editFriendHandleSubmit(e, id, name, age, email) {
+    e.preventDefault();
+    const self = this;
+
+    axios.put(`http://localhost:5000/friends/${id}`, {
+        name,
+        age,
+        email
+    })
+    .then(res => {
+        console.log(res.data)
+        const friendArr = [];
+              res.data.map(friend => {
+                  return friendArr.push([friend.id, friend.name, friend.age, friend.email])
+        });
+
+        self.setState({
+            friends: friendArr
+        });
+
+        self.props.history.push('/');
+    })
+    .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div>
-        <Route exact path='/' render={ props => <FriendList friends={this.state.friends} youAreNotMyFriend={this.youAreNotMyFriend} {...props}/>}></Route>
-        <Route path='/addfriend' render={ props => <NewFriend handleSubmit={this.handleSubmit}  {...props} />}></Route>
+        <Route exact path='/' render={ props => <FriendList friends={this.state.friends} youAreNotMyFriend={this.youAreNotMyFriend} passProperties={this.passProperties} {...props}/>}></Route>
+        <Route path='/addfriend' render={ props => <NewFriend addNewFriendHandleSubmit={this.addNewFriendHandleSubmit}  {...props} />}></Route>
+        <Route path='/editfriend' render={ props => <EditFriend editFriendHandleSubmit={this.editFriendHandleSubmit} currentFriend={this.state.currentFriend}  {...props} />}></Route>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
