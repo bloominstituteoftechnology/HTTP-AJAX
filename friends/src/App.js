@@ -10,22 +10,27 @@ class App extends Component {
     friends: [],
     name: '',
     age: '',
-    email: ''
+    email: '',
+    id: ''
   }
 
 
   handleChange = event => {
     const name = event.target.name;
-    this.setState({ [name]: event.target.value });  
+    this.setState({ [name]: event.target.value });
   }
 
   deleteFriend = (id) => {
-    axios.delete(`http://localhost:5000/friends/${id}`),
-    axios.get(`http://localhost:5000/friends`)
-    .then(res => {
-      const friends = res.data;
-      this.setState({ friends });
-    })
+    return () => {
+      axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        const friends = res.data;
+        this.setState({ friends: friends})
+      })
+    .catch(function (error) {
+      console.log(error);
+    });
+    }
   }
   
 
@@ -46,15 +51,34 @@ class App extends Component {
         console.log(error);
       });
 
-      axios.get(`http://localhost:5000/friends`)
-      .then(res => {
-        const friends = res.data;
-        this.setState({ friends });
-      })
 
       document.getElementById("addForm").reset();
 
   }
+
+  
+
+
+handleUpdate = () => {
+  axios.put(`http://localhost:5000/friends/${this.state.id}`, {
+    name: this.state.name,
+    age: this.state.age,
+    email: this.state.email
+  })
+  .then(res => {axios.get('http://localhost:5000/friends')
+    .then(res => {
+      const friends = res.data;
+      this.setState({ friends: friends})
+    })})
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+  document.getElementById("addForm").reset();
+
+}
+
 
   componentDidMount() {
     axios.get(`http://localhost:5000/friends`)
@@ -67,7 +91,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Add submit={this.handleSubmit} change={this.handleChange} />
+        <Add submit={this.handleSubmit} change={this.handleChange} update={this.handleUpdate} />
         <List friends={this.state.friends} delete={this.deleteFriend}/>
       </div>
     )

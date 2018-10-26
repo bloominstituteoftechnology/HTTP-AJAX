@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components'
 
 const AddForm = styled.div`
@@ -17,6 +16,10 @@ class Add extends React.Component {
       <AddForm>
         <form onSubmit={this.handleSubmit} id="addForm">
           <label>
+            ID:
+            <input type="text" name="id" onChange={this.props.change} />
+          </label>
+          <label>
             Name:
             <input type="text" name="name" onChange={this.props.change} />
           </label>
@@ -29,6 +32,7 @@ class Add extends React.Component {
             <input type="text" name="email" onChange={this.props.change} />
           </label>
           <button type="submit" onClick={this.props.submit}>Add</button>
+          <button type="submit" onClick={this.props.update}>Update</button>
         </form>
       </AddForm>
     )

@@ -43,6 +43,7 @@ const List = (props) => {
           
         {props.friends.map(friend => <FriendCard>
             <Close onClick={props.delete(friend.id)}>X</Close>
+            <p>ID: {friend.id}</p>
             <p>Name: {friend.name}</p>
             <p>Age: {friend.age}</p>
             <p>Email: {friend.email}</p>
