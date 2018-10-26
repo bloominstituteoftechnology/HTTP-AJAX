@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
+import config from './dbConfig';
 
 class App extends Component {
     constructor(props) {
@@ -15,7 +16,9 @@ class App extends Component {
                 age: '',
                 email: ''
             }
-        }
+        };
+
+        this.db = null;
     }
 
     componentDidMount() {
@@ -23,11 +26,36 @@ class App extends Component {
             .get(`http://localhost:5000/friends/`)
             .then(response => {
                 this.setState({friends: response.data});
+                this.openDb();
             })
             .catch(error => {
                 console.error('Server Error', error);
             });
     }
+
+    openDb = () => {
+        console.log("openDb ...");
+        const req = indexedDB.open(config.DB_NAME, config.DB_VERSION);
+        req.onsuccess = (evt) => {
+            this.db = this.result;
+            console.log("openDb DONE");
+        };
+        req.onerror = (evt) => {
+            console.error("openDb:", evt.target.errorCode);
+        };
+
+        req.onupgradeneeded = (evt) => {
+            console.log("openDb.onupgradeneeded");
+            const db = evt.target.result,
+                objectStore = db.createObjectStore(config.DB_STORE_NAME, {keyPath: "id"});
+
+            for (let i in this.state.friends) {
+                objectStore.add(this.state.friends[i]);
+            }
+
+            // this.readFriends();
+        };
+    };
 
     createFriend = friend => {
 
@@ -93,6 +121,21 @@ class App extends Component {
             });
     };
 
+    readFriends = () => {
+        const objectStore = this.db.transaction("friends").objectStore("friends");
+
+        objectStore.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+
+            if (cursor) {
+                console.log(`Key: ${cursor.key}, Name: ${cursor.value.name}, Age: ${cursor.value.age}`);
+                cursor.continue();
+            } else {
+                console.log('No more entries')
+            }
+        };
+    };
+
 
     render() {
         const {friends, friend} = this.state;
@@ -102,13 +145,13 @@ class App extends Component {
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <input placeholder="name"
                            value={friend.name}
-                           onChange={e => this.setState({friend: {...this.state.friend, ...{name: e.target.value}}})}/>
+                           onChange={e => this.setState({friend: {...this.state.friend, name: e.target.value}})}/>
                     <input placeholder="age"
                            value={friend.age}
-                           onChange={e => this.setState({friend: {...this.state.friend, ...{age: e.target.value}}})}/>
+                           onChange={e => this.setState({friend: {...this.state.friend, age: e.target.value}})}/>
                     <input placeholder="email" type="email"
                            value={friend.email}
-                           onChange={e => this.setState({friend: {...this.state.friend, ...{email: e.target.value}}})}/>
+                           onChange={e => this.setState({friend: {...this.state.friend, email: e.target.value}})}/>
                     <button type='submit'>ADD FRIEND</button>
                 </form>
 
