@@ -10,6 +10,7 @@ const FriendList = (props) => {
         return (
           <div>
             <Friend 
+              key={x.id}
               friend={x}
             />
           </div>

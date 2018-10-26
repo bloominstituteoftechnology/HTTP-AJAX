@@ -1,21 +1,42 @@
-import React from 'react'
+import React, {Component} from 'react';
+import axios from 'axios';
 
-const Friend = (props) => {
+class Friend extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      name: props.friend.name,
+      age: props.friend.age,
+      email: props.friend.email,
+      id: props.friend.id
+    }
+  }
+
+  deleteFriend = (e, id) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({ friends:response.data })
+      })
+      .catch(error => console.log(error));
+  }
   
-  return (
-    <div>
+  render() {
+    return (
+      <div>
+  
+      <div><strong>{this.state.name}</strong></div>
+      <div><em>{this.state.age}</em></div>
+      <div>{this.state.email}</div>
+      <button onClick={() => this.state.deleteFriend(`${this.state.id}`)}>delete</button>
+      <br></br>
+      <br></br>
+      
+      </div>
+    )
+  }
 
-    <div><strong>{props.friend.name}</strong></div>
-    <div><em>{props.friend.age}</em></div>
-    <div>{props.friend.email}</div>
-    <button onClick={() => props.deleteFriend}>delete</button>
-    <br></br>
-    
-    </div>
-
-  )
 }
 
-export default Friend
-
-//(event, props.friend.id)
+export default Friend;

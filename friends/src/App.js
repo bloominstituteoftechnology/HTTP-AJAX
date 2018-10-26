@@ -30,8 +30,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <FriendsList friends={this.state.friends} />
       <AddFriendForm />
+      <FriendsList friends={this.state.friends} />
       </div>
     );
   }
