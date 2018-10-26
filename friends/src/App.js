@@ -5,7 +5,6 @@ import {Route, Link} from 'react-router-dom';
 import './App.css';
 import './components/FriendsList';
 import FriendsList from './components/FriendsList';
-import Friend from './components/Friend';
 import AddFriend from './components/forms/AddFriend';
 
 class App extends Component {
@@ -83,6 +82,23 @@ class App extends Component {
     })
   }
 
+  editFriendHandler = (id) => {
+    let editFriend = {
+      age: this.state.newFriendAge,
+      name: this.state.newFriendName,
+      email: this.state.newFriendEmail,
+    }
+    axios.put(`http://localhost:5000/friends/${id}`, editFriend)
+    .then(res => {
+      this.setState({
+        friends: res.data,
+      })
+    })
+    .catch (err => {
+      console.log(err);
+    })
+  }
+
   render() {
     if (!this.state.friends.length) {
       return <h1>Loading...</h1>
@@ -111,7 +127,14 @@ class App extends Component {
           />
             <Route exact
               path='/friends/'
-              render={(props) => <FriendsList {...props} friends={this.state.friends} deleteFriend={this.deleteFriendHandler}/>}
+              render={(props) => <FriendsList {...props} friends={this.state.friends} deleteFriend={this.deleteFriendHandler}
+              onNameChange={this.addFriendNameUpdate} 
+              onEmailChange={this.addFriendEmailUpdate} 
+              onAgeChange={this.addFriendAgeUpdate}
+              friendName={this.state.newFriendName}
+              friendEmail={this.state.newFriendEmail}
+              friendAge={this.state.newFriendAge}
+              editFriendHandler={this.editFriendHandler}/>}
             />
             
           </div>
