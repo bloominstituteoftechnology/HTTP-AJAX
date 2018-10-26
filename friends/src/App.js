@@ -38,20 +38,37 @@ class App extends Component {
           friends: response.data,
           name: "",
           age: "",
-          email: ""
+          email: "",
+          id:""
         });
       })
       .catch(err => console.log(err));
   };
 
-  updateFriend = (id, name, age) => {
+  updateFriend = id => {
 
-  console.log(id, name, age)
+  
+    const newFriendObj = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
+    Axios
+      .put(`http://localhost:5000/friends/${this.state.id}`, newFriendObj)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          name: "",
+          age: "",
+          email: ""
+        });
+      })
+      .catch(err => console.log(err));
 
   };
 
   deleteFriend = id => {
-    console.log(id)
+    
     return () => {
       Axios
         .delete(`http://localhost:5000/friends/${id}`)
@@ -73,7 +90,7 @@ class App extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    console.log(this.state.name)
+    console.log(this.state.id)
   };  
 
   render() {
@@ -86,8 +103,8 @@ class App extends Component {
               <h3>{friend.name}</h3> {""}
               <span>{friend.age} {""}</span>
               <br/>
-              <span>{friend.email}</span>
-              <span>{friend.id}</span>
+              <span>{friend.email}</span><br />
+            
               <input type='submit' onClick={this.deleteFriend(friend.id)} value='Delete' />
             </div>
           );
@@ -119,9 +136,16 @@ class App extends Component {
           placeholder="Email"
           
         />
-    
+         <input
+          onChange={this.handleChange}
+          name="id"
+          value={this.state.id}
+          type="id"
+          placeholder="id update only"
+          
+        />   
           <input type="submit" onClick={this.addNewFriend} value='add' />
-      <input type="submit" onClick={this.updateHandler} value='update' />
+      <input type="submit" onClick={this.updateFriend} value='update' />
 
            
       </div>
