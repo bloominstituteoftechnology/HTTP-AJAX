@@ -42,6 +42,18 @@ class App extends Component {
 
   } 
 
+  updateFriend = (id) => {
+    const updatedFriend = { id: this.state.id, name: this.state.name, age: this.state.age, email: this.state.email };
+
+    axios.post(`http://localhost:5000/${id}/`, updatedFriend)
+    .then(response => {
+      this.setState({ friends: response.data, name: "", age: "", email: ""});
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   deleteFriend = (event, id) => {
     axios.delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
@@ -54,21 +66,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h2>A list of friends, forthwith:</h2>
-        {this.state.friends.map(friend => {
-          return (
-            <div>
-            <h3>{friend.name}</h3>
-            <p>{friend.age}</p>
-            <p>{friend.email}</p>
-           <div className="xrated" onClick={event => this.deleteFriend(event, friend.id)}>x</div>
-            </div>
-
-          )
-        })}
-
-        
-         <div className="form">
+               <div className="form">
           <form>
             <input
               type="text"
@@ -113,9 +111,24 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </form>
-          <button onClick={this.saveFormData}>Update friend info</button>
+          {/* <button onClick={event => this.updateFriend(event, friend.id)}>Update friend info</button> */}
         </div>
-      </div>
+      <h2>A list of friends, forthwith:</h2>
+        {this.state.friends.map(friend => {
+          return (
+            <div>
+            <h3>{friend.name}</h3>
+            <p>{friend.age}</p>
+            <p>{friend.email}</p>
+           <div className="xrated" onClick={event => this.deleteFriend(event, friend.id)}>x</div>
+            </div>
+
+          )
+        })}
+
+        
+
+      </div> // closes App
     );
   }
 }
