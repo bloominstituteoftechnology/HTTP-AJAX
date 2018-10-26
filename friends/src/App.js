@@ -60,18 +60,24 @@ class App extends Component {
             friends: response.data
           })
         })
-        .catch(error => { console.log(error) })
+        .catch(error => { console.log('error!') })
     }
   }
 
-  updateFriend = (id, name, location) => {
-    console.log('clicked')
-    console.log(id, name, location)
-    // return () => {
-    //   axios
-    //   .update
-    // }
-
+  updateFriend = (id, name, age, email) => {
+    console.log(id, name, age, email)
+    axios
+      .put(`http://localhost:5000/friends/${id}`, {
+        name: name,
+        age: age,
+        email: email
+      })
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(error => console.log('error!'))
   }
 
   render() {
