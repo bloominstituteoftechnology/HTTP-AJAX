@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import DeleteFriendButton from './DeleteFriendButton';
 
 const FriendListWrapper = styled.div`
 display: flex;
@@ -7,6 +8,7 @@ flex-direction:column;
 align-items: center;
 justify-content: center;
 width: 100%;
+height: fit-content;
 `
 const SingleFriend = styled.div`
     width: 100%;
@@ -25,11 +27,14 @@ function FriendsList (props) {
     return (
       <FriendListWrapper>
         {props.friends.map(friend =>
-            <SingleFriend>
+            <SingleFriend onChange= {props.handleFriendDeleteBtn(friend.id)}>
                 <p>Name: {friend.name}</p>
                 <p>Age: {friend.age}</p>
                 <p>Email: {friend.email}</p>
-            </SingleFriend>)}
+                <DeleteFriendButton onClick= {props.handleFriendDeleteBtn(friend.id)}/>
+            </SingleFriend>
+            )
+        }
       </FriendListWrapper>
     )
 }

@@ -30,12 +30,11 @@ class App extends Component {
   }
 
   handleSubmitBtn = event => {
-    event.preventDefualt();
-
+    // event.preventDefault();
     axios.post('http://localhost:5000/friends', {
       name: this.state.name,
       age: this.state.age,
-      email: this.state.email
+      email: this.state.email,
     })
       .then(res => {
         this.setState({ friends: res.data})
@@ -46,14 +45,26 @@ class App extends Component {
 
   }
 
+  handleFriendDeleteBtn = id => {
+    // event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`,
+        axios.get('http://localhost:5000/friends')
+          .then(res => {
+            this.setState({friends: res.data})
+          })
+      )
+  }
+
   render() {
     return (
       <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
         </header> 
-        <FriendsList friends= {this.state.friends} />
-        <FriendInfoForm handleFriendFormInput = {this.handleFriendFormInput}/>
+        <FriendsList friends= {this.state.friends} handleFriendDeleteBtn = {this.handleFriendDeleteBtn}/>
+        <FriendInfoForm handleFriendFormInput = {this.handleFriendFormInput} />
+        <br/>
         <AddFriendButton handleSubmitBtn = {this.handleSubmitBtn} handleFriendFormInput= {this.handleFriendFormInput}/>
         <br/>
       </div>
