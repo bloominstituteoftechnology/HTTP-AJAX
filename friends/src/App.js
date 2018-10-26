@@ -14,6 +14,7 @@ const AppContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   max-width: 880px;
+  cursor: default;
 `;
 
 const TopNavBar = styled.div`
@@ -37,6 +38,7 @@ const TopNavBar = styled.div`
     text-align: center;
     color: white;
     background-color: mediumslateblue;
+    font-size: 1.8rem;
     text-decoration: none;
     padding: 5px;
     margin: 0 20px;
@@ -130,11 +132,11 @@ class App extends Component {
           <Link to="/">Home</Link>
           <h1>My Friends</h1>
           {/* TODO: Ask Jacob about this routing paradox */}
-          <Link to="/add/friend">Add a friend</Link>
+          <Link to="/add/friend">Add Friend</Link>
         </TopNavBar>
         <Route path="/add/friend" render={()=><AddFriend addFriend={this.addFriend}/>}/>
         <Route exact path="/" render={(props)=><FriendsList friends={this.state.friends}/>}/>
-        <Route exact path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} update delete/>}/>
+        <Route exact path="/:id" render={(props)=><FriendCard friend={this.parseFriend(props.match.params.id)} deleteFriend={this.deleteFriend} updatedelete/>}/>
         <Route path="/:id/update" render={(props)=><UpdateFriendCard friend={this.parseFriend(props.match.params.id)} updateFriend={this.updateFriend}/>}/>
       </AppContainer>
     );

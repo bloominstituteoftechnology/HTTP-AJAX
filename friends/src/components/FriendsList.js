@@ -9,6 +9,12 @@ const FriendsListContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    a{
+        cursor: default;
+        text-decoration: none;
+        color: black;
+    }
 `;
 
 const FriendsList = (props) =>{
@@ -16,7 +22,7 @@ const FriendsList = (props) =>{
         <FriendsListContainer>
             {props.friends.map(friend=>{
                 return (
-                    <Link key={friend.id} to={`/${friend.id}`}><FriendCard friend={friend}/></Link>
+                    <Link key={friend.id} to={`/${friend.id}`}><FriendCard friend={friend} pointer/></Link>
                 )
             })}
         </FriendsListContainer>
