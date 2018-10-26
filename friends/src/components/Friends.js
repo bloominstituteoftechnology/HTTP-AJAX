@@ -10,14 +10,21 @@ const FriendsContainer    =   styled.div`
 
 const Friend    =   styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 10px;
     align-items: center;
-    width: 35%;
+    width: 30%;
     margin: 10px;
     border: solid 1px black;
     border-radius: 10px;
     background: aqua;
     height: 50px;
+`
+
+const Delete    =   styled.div`
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 class Friends extends Component {
@@ -37,7 +44,7 @@ class Friends extends Component {
             <FriendsContainer>
             {this.state.friends.map((friend, index) =>  {
                 return(
-                    <Friend key={index}>{friend.name} {friend.age} {friend.email} {friend.id} <div  onClick={() =>  this.props.deleteFriend(friend.id)}>X</div></Friend>
+                    <Friend key={index}>{friend.name} {friend.age} {friend.email} {friend.id} <Delete  onClick={() =>  this.props.deleteFriend(friend.id)}>X</Delete></Friend>
                 )
             })}
             </FriendsContainer>

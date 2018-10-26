@@ -9,13 +9,23 @@ const Submit = styled.div`
     width: 100px;
     height: 50px;
     border: solid 1px black;
-    border-radius: 20px;
+    border-radius: 15px;
+    &:hover {
+        background: palegreen;
+    }
 `
 
 const Input =   styled.input`
     margin-top: 15px;
     height: 20px;
     width: 150px;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding-left: 7px;
+    outline: none;
+    &:focus {
+        border: solid 1px gray;
+    }
 `
 
 const Container =   styled.div`
