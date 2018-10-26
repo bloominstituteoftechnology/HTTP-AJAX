@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import Friends from './Components/friends';
 import styled from 'styled-components';
-import AddFriend from './Components/addFriendForm';
+import ModalComponent from './Components/modalClass';
 
 const AppContainer = styled.div `
 max-width: 500px;
@@ -26,9 +26,7 @@ class App extends Component {
            name: '',
            age: null,
            email: '',
-           modal: false,
     }
-    this.toggle = this.toggle.bind(this);
 }
 
 componentDidMount = () => {
@@ -40,19 +38,11 @@ axios
 })
 }
   
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
 inputChangeHandler=(e)=>{
   console.log(e.target.value)
   this.setState({ [e.target.name]: e.target.value });
 }
 addSubmitHandler=(e)=>{
-    e.preventDefault();
     const{ name, age, email} = this.state;
     const friend = {
         name,
@@ -66,7 +56,6 @@ addSubmitHandler=(e)=>{
           name: '',
           age: '',
           email: '',
-          modal: !this.state.modal
         })
     })
 }
@@ -77,25 +66,50 @@ axios.delete(`http://localhost:5000/friends/${id}`)
       friendsData: response.data
     })
   })
-
 }
+editSubmitHandler=(id)=>{
+  const{ name, age, email } = this.state;
+  const friend = {
+    name,
+    age,
+    email
+  }
+  axios
+  .put(`http://localhost:5000/friends/${id}`, friend)
+  .then( friend =>{
+    this.setState({
+      friendsData: friend.data,
+      name: '',
+      age: '',
+      email: ''
+    })
+  })
+}
+
   render() {
-    const { friendsData, name, modal, age, email} = this.state;
+    const { friendsData, name, age, email} = this.state;
     return (
-      <AppContainer className="App" friends={friendsData}>
-        <AddFriend 
-          className='addBtn'
-          friendsData={friendsData}
+      <AppContainer className="App" >
+        <ModalComponent
           inputChange={this.inputChangeHandler}
-          toggle={this.toggle}
-          modal={modal}
           name={name}
           age={age}
           email={email}
           click={this.addSubmitHandler}
-          
+          mainBtnName='Add Friend'
+          modalTitle='GeT tHe DeEtS!'
+          innerBtnName='Add my Dude!'
         />
-        <Route exact path='/' render={props => <Friends friendsData={friendsData} deleteHOE={this.deleteSubmitHandler}/>} />
+        <Route exact path='/' render={props =>
+         <Friends 
+        friendsData={friendsData}
+        deleteFriend={this.deleteSubmitHandler}
+        inputChange={this.inputChangeHandler}
+        name={name}
+        age={age}
+        email={email}
+        click={this.editSubmitHandler}
+        />} />
       </AppContainer>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
+import ModalComponent from './modalClass';
 
 const FriendDiv = styled.div`
     display: flex;
@@ -28,8 +29,17 @@ return(
         
         <h4>{props.item.email}</h4>
         <ButtonContainer>
-        <Button outline color="primary" size="sm" onClick={()=>{props.deleteHOE(props.item.id)}}>Delete EM!</Button>{' '}
-        <ModalComponent />
+        <Button outline color="primary" size="sm" onClick={()=>{props.deleteFriend(props.item.id)}}>Delete EM!</Button>{' '}
+        <ModalComponent
+          inputChange={props.inputChange}
+          name={props.name}
+          age={props.age}
+          email={props.email}
+          click={()=>{props.click(props.item.id)}}
+          mainBtnName='Edit Friend'
+          modalTitle='Change dem deets'
+          innerBtnName='Change that ish'
+        />
         </ButtonContainer>
         </FriendDiv>
 )
