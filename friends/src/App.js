@@ -13,20 +13,16 @@ class App extends Component {
     }
   }
 
-  addFriend(newFriend, e) => {
+  addFriend(newFriend) => {
     console.log(newFriend)
 
-    e.preventDefault()
-
     const friends = [...this.state.friends, newFriend]
-    axios.post( 'http://localhost:5000/friends', { friends 
+    axios.post( 'http://localhost:5000/friends',newFriend)
       .then(response => {
         this.setState({
-          friends: response.data
+          friends: newFriend
         })
-      }).catch(error => { console.log('error')})
-      
-    })
+      }).catch(error => console.log(error))
   }
   componentDidMount() {
     axios
