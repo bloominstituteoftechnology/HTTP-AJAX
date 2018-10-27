@@ -11,7 +11,7 @@ class FriendsList extends Component {
                     key={friend.id} 
                     friend={friend} 
                     deleteFriend={this.props.deleteFriend} 
-                    updateFriend={this.props.updateFriend} />
+                    updateHandler={this.props.updateHandler} />
                 ))}
             </div>
         );

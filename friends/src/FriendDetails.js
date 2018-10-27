@@ -16,7 +16,7 @@ export default class FriendDetails extends Component {
            Email: {this.props.friend.email}        
          </div>
          <UpdateFriend
-          updateFriend = {this.props.updateFriend} />
+          updateHandler = {this.props.updateHandler} />
             <button onClick={this.props.deleteFriend(this.props.friend.id)}>Delete</button>
        </div>
     );

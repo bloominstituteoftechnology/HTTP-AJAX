@@ -48,9 +48,17 @@ class App extends Component {
       })
       .catch(err => console.log("You can't get rid of me that easily!"))
     }
+
   }
   
-  updateFriend = (name, age, email, id) => {
+  updateHandler = event => {
+    const { name, age, email } = this.state;
+    const id = this.props.friend.id
+    event.preventDefault();
+    this.updateFriendHandler(id, name, age, email)
+  }
+  
+  updateFriendHandler = (id, name, age, email) => {
     axios.put(`http://localhost:5000/friends/${id}`, {
       friend: {
         name: name,
@@ -77,7 +85,7 @@ class App extends Component {
         <FriendsList 
         friends={this.state.friends}
         deleteFriend={this.deleteFriend}
-        updateFriend={this.updateFriend}
+        updateHandler={this.updateHandler}
         inputHandler={this.inputHandler}
           inputName={this.state.name}
           inputAge={this.state.age}
