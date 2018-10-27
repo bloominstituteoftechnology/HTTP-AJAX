@@ -19,6 +19,9 @@ class FriendProfile extends React.Component {
        this.setState({name: '', age:'', email:''});
    }
 
+   //Had issues with passing the name/age/email state down here to reuse the input handler on App.js.
+   //Not sure if I was doing something wrong, or if this was the right way to do it.  
+
    inputHandler = (e) => {
        e.preventDefault();
     this.setState({[e.target.name]: e.target.value})
