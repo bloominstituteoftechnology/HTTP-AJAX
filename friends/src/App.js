@@ -24,7 +24,7 @@ class App extends Component {
         this.setState({
           friends: response.data
         })
-      })
+      }).catch(error => { console.log('error')})
       
     })
   }
