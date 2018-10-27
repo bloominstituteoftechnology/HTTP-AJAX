@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { FriendFormContainer} from './styledComponents'
 
+
 class NewFriendForm extends Component{
     constructor(props){
         super(props);

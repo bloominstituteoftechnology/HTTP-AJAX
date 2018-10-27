@@ -1,5 +1,5 @@
 import React from 'react'
-import {FriendsContainer, ListItem, RemoveButton} from './styledComponents'
+import {FriendsContainer, ListItem, RemoveButton, EditButton} from './styledComponents'
 
 const FriendsList = (props) =>{
 
@@ -12,6 +12,7 @@ const FriendsList = (props) =>{
                         <h4>Age: {friend.age}</h4>
                         <h4>Email: {friend.email}</h4>
                         <RemoveButton onClick={() =>{props.deleteFriend(friend.id)}}>Remove</RemoveButton>
+                        <EditButton onClick={() =>{props.showEditForm(friend.id)}}>Edit Friend</EditButton>
                     </ListItem>
                 ))}
             </FriendsContainer>

@@ -14,6 +14,7 @@ export const FriendsHeader = styled.h1`
     margin: 0 auto;
     text-align: center;
     letter-spacing: .2rem;
+    padding-top: 15px;
 `;
 
 
@@ -39,9 +40,24 @@ export const RemoveButton = styled.div`
     border: 1px solid #222;
     cursor: pointer;
     font-weight: bold;
-    background: #576066;
+    background: #C3979F;
     color: #FFF;
+    display: inline-block;
+    margin-right: 20px
 `
+export const EditButton = styled.div`
+    width: 10%;
+    margin: 0 auto 10px;
+    padding-bottom: 3px;
+    border: 1px solid #222;
+    cursor: pointer;
+    font-weight: bold;
+    background: #8DA1B9;
+    color: #FFF;
+    display: inline-block;
+    margin-right: 20px
+`
+
 
 export const LoadingText = styled.h1`
     position: absolute;
