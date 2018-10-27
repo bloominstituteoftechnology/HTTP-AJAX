@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 class FriendsList extends React.Component {
     constructor(props){
@@ -13,9 +13,17 @@ class FriendsList extends React.Component {
     render() {
         return (
                 <FriendContainer>
+
                     <FriendDiv>
-                        <span>{this.props.name}</span>
+                        <span onClick={this.props.deleteHandler(this.props.id)}>Delete</span>
                     </FriendDiv>
+
+                    <FriendDiv>
+                        <StyledLink to={`/friends/${this.props.id}`} >
+                            <span>{this.props.name}</span>
+                        </StyledLink>
+                    </FriendDiv>
+                   
                     <FriendDiv>
                         <span>{this.props.age}</span>
                     </FriendDiv>
@@ -43,11 +51,17 @@ const FriendContainer = styled.div`
 `;
 
 const FriendDiv = styled.div`
-    width: 33.3%;
+    width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
+
+const StyledLink = styled(Link)`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`
 
 
 

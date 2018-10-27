@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import FriendProfile from './FriendProfile';
 
 class Friend extends React.Component {
@@ -22,9 +21,6 @@ class Friend extends React.Component {
                             name={item.name} 
                             age={item.age}
                             email={item.email} 
-                            stateName={this.props.stateName}
-                            stateAge={this.props.stateAge}
-                            stateEmail={this.props.stateEmail}
                             id={item.id} 
                             updateHandler={this.props.updateHandler}
                             inputHandler={this.inputHandler} />

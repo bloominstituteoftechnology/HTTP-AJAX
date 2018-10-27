@@ -46,7 +46,7 @@ class FriendProfile extends React.Component {
                             <input  placeholder="Name"  name="name" value={this.state.name} onChange={this.inputHandler} />
                             <input  placeholder="Age" name="age" value={this.state.age} onChange={this.inputHandler} />
                             <input  placeholder="Email Address"  name="email" value={this.state.email} onChange={this.inputHandler} />
-                            <button type="submit" onClick={this.updateFriend}> Submit </button>
+                            <button type="submit" onClick={this.updateFriend}> Update </button>
                         </form>
 
                     </FormContainer>

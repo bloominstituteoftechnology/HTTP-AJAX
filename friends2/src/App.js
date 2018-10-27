@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import logo from './logo.svg';
 import './App.css';
 import FriendsList from './FriendsList';
 import Form from './Form';
@@ -48,8 +47,6 @@ class App extends Component {
     .catch(err => {console.log(err)})
   }
 
-
-  //updateHandler not working =(
   updateHandler = (id, name, age, email) => {
     axios.put(`http://localhost:5000/friends/${id}`, {
       id: id,
@@ -66,9 +63,18 @@ class App extends Component {
         })
         console.log(response.data)
     })
-    .catch(err => (console.log(err)))
-    
+    .catch(err => console.log(err))
 }
+
+  deleteHandler = (id) => {
+    return () => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then( response => {
+      this.setState({ friends: response.data })
+    })
+    .catch(err => console.log(err))
+    }
+  }
 
   inputHandler = (e) => {
     this.setState({[e.target.name]: e.target.value})
@@ -82,6 +88,9 @@ class App extends Component {
         <Link to='/'>Home</Link>
         <FriendHeader>
                   <HeaderDiv>
+                      <p>Delete</p>
+                  </HeaderDiv>
+                  <HeaderDiv>
                       <p>Name</p>
                   </HeaderDiv>
                   <HeaderDiv>
@@ -93,29 +102,21 @@ class App extends Component {
               </FriendHeader>
         {this.state.friends.map((friend) => {
           return (
-            <Link to={`/friends/${friend.id}`}> 
-              <Route
-                exact
-                path="/" 
-                render={(props) => 
-                                  
-                                    <FriendsList 
-                                      name={friend.name} 
-                                      age={friend.age} 
-                                      email={friend.email} 
-                                      id={friend.id} /> } /> 
-              </Link>
+              <Route exact path="/" render={(props) => 
+                                      <FriendsList 
+                                        name={friend.name} 
+                                        age={friend.age} 
+                                        email={friend.email} 
+                                        id={friend.id} 
+                                        deleteHandler={this.deleteHandler} /> } /> 
               )})}
 
-                                                                              {/* updateHandler getting passed here!!!!!!!!!!!!! */}
               <Route exact path="/friends/:id" render={(props) => <Friend 
                                                                     {...props} 
                                                                     friends={this.state.friends}
                                                                     updateHandler={this.updateHandler}
                                                                     inputHandler={this.inputHandler}
-                                                                    stateName={this.state.name}
-                                                                    stateAge={this.state.age}
-                                                                    stateEmail={this.state.email} />} />
+                                                                   />} />
             </Container>
 
             <Route exact path="/" render={(props) => <Form {...props}
@@ -143,7 +144,7 @@ const Container = styled.div`
     
 `
 const HeaderDiv = styled.div`
-    width: 33.3%;
+    width: 25%;
     display: flex;
     justify-content: center;
     color: white;
