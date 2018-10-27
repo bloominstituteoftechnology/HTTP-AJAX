@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, FormGroup, Tooltip, Table } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 
 const Icon = styled.i`
@@ -11,14 +12,13 @@ const Icon = styled.i`
         margin-right: 0
     }
 `
-export class FriendsList extends React.Component {
+export default class FriendsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modal: false,
             tooltipOpen: false,
             tooltipOpenTwo: false,
-            tooltipOpenThree: false,
             name: "",
             age: "",
             email: "",
@@ -36,13 +36,7 @@ export class FriendsList extends React.Component {
             this.setState({
             tooltipOpenTwo: !this.state.tooltipOpenTwo
             });
-        }
-
-        toggleToolTipTHREE = () => {
-            this.setState({
-            tooltipOpenTwo: !this.state.tooltipOpenThree
-            });
-        }   
+        }  
         
         toggle = () => {
         this.setState({
@@ -121,4 +115,17 @@ export class FriendsList extends React.Component {
                     </Modal>                    
                 </>
         }
+}
+
+FriendsList.propTypes = {
+    friends: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number.isRequired,
+        email: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+    })).isRequired,
+    updateFriendInfo: PropTypes.func.isRequired,
+    deleteFriend: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 }

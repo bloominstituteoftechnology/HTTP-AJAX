@@ -51,7 +51,6 @@ export default class App extends Component {
                                       updateFriendInfo={this.updateFriendInfo} />}
                     />
                     <Route exact path="/friend/:id" render={props => <Friend {...props} friends={this.state.friendsList} />} />
-                </>
-      
+                </>  
     }
 }

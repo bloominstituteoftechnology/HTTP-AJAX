@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import styled from '../../node_modules/styled-components';
-//import styled from '../../../node_modules/styled-components';
 import { Button, FormGroup, Form, Input, Tooltip, Row, Col, Container } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-import { FriendsList } from './FriendsList';
+import FriendsList from './FriendsList';
 
 const FormContainer = styled.div`
 display: flex;
@@ -23,7 +22,6 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        friendsList: [...this.props.friendsList],
         tooltipOpen: false,
         name: "",
         age: "",
@@ -35,7 +33,7 @@ export default class Home extends Component {
         this.setState({
         tooltipOpen: !this.state.tooltipOpen
         });
-}
+    }
 
     addingNewFriend = e => {
         e.preventDefault();
@@ -49,9 +47,7 @@ export default class Home extends Component {
             this.props.addNewFriend(friend);
             this.setState({name:"", age:"", email:""})            
         }        
-    }
-
-        
+    }        
     
     changeHandler = e => this.setState({[e.target.name]: e.target.value});
 
@@ -103,4 +99,20 @@ export default class Home extends Component {
                     </Container>  
                 </div>  
     }
+}
+
+Home.propTypes = {
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    friendsList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number.isRequired,
+        email: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+    })).isRequired,
+    addNewFriend: PropTypes.func.isRequired,
+    deleteFriend: PropTypes.func.isRequired,
+    updateFriendInfo: PropTypes.func.isRequired
 }

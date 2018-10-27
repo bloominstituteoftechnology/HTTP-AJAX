@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle, CardText, Button, Tooltip } from 'reactstrap';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Header = styled.h2`
     text-align: center;
@@ -45,4 +46,17 @@ export default class Friend extends React.Component {
                 </Row>
             </Container>
     } 
+}
+
+Friend.propTypes = {
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    friendsList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number.isRequired,
+        email: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+    })).isRequired
 }
