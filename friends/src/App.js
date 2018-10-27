@@ -4,7 +4,13 @@ import axios from 'axios';
 import Friend from './components/friends'
 
 class App extends React.Component {
-  constructor(props) {
+state = {
+  friends: [],
+  name: '',
+  age: '',
+  email: '',
+  id: ''
+}
     super(props);
     this.state = {
       friends: [],
