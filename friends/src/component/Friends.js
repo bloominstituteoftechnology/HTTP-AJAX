@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
+import styled from 'styled-components';
+
 
 import AddFriendForm from './AddFriendForm.js';
+
+const FriendsDiv = styled.div`
+  text-align: center;
+`;
 
 class Friends extends React.Component {
 	state = {
@@ -21,11 +27,6 @@ class Friends extends React.Component {
 	  		.catch(err => {
 				console.log('I have hit the following Error: ', err);
 			});
-	}
-
-	inputChangeHandler = (event) => {
-		const name = event.target.name;
-		this.setState({[name]: event.target.value})
 	}
 
 	addNewFriend = (event) => {
@@ -47,8 +48,6 @@ class Friends extends React.Component {
 			email: '',
 		})
 	}
-
-}
 
 	deleteFriend = (id) => {
 		return () => {
@@ -72,9 +71,13 @@ class Friends extends React.Component {
 
 	render() {
 		return(
-			
+			<FriendsDiv>
+				<AddFriendForm addNewFriend={this.addNewFriend} onChange={this.inputChangeHandler} />
+				<p>Hello everyone</p>
+			</FriendsDiv>
 		);
 	}
+}
 
 export default Friends;
 

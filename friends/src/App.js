@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
-// import axios from "axios";
 import Friends from './component/Friends.js';
+import styled from 'styled-components';
+
+const AppDiv = styled.div`
+  text-align: center;
+`;
 
 class App extends Component {
   render() {
     return ( 
-      <div className="App">
+      <AppDiv>
         <Friends />
-      </div>
+      </AppDiv>
     );
   }
 }
