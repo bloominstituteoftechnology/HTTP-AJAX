@@ -45,3 +45,5 @@ class FriendForm {
 		)
 	}
 }
+
+export default FriendForm
