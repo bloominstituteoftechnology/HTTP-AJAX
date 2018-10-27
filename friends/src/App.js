@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
-import friends_display from './components/friends_display';
 
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+    }
+  }
 
-class App extends Component {
   componentDidMount() {
-    console.log("inside CDM");
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+  }
+
+
+
+
+  render() {
     
+    return (
+      <div className="App Container">
+        {this.state.friends.map(friend => {
+          return(
+
+            <div className="friend">
+              <div>{friend.id}</div>
+              <h1>{friend.name}</h1>
+              <div>{friend.age}</div>
+              <div>{friend.email}</div>              
+            </div>
+
+          );
+        })}
+      </div>
+    );
   }
 }
 
