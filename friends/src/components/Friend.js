@@ -52,7 +52,7 @@ Friend.propTypes = {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    friendsList: PropTypes.arrayOf(PropTypes.shape({
+    friends: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         age: PropTypes.number.isRequired,
