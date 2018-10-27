@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import './App.css';
 import FriendsList from './FriendsList';
 import Form from './Form';
-import Friend from './Friend'
+import Friend from './Friend';
+import Header from './Header';
 
 class App extends Component {
   constructor(props){
@@ -17,7 +18,9 @@ class App extends Component {
       age: '',
       email: ''
     }
-  }
+  };
+
+  //getting data from API and setting state
   
   componentDidMount() {
     axios
@@ -28,9 +31,12 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
-  addNewFriend = () => {
+  //Add friend Handler, getting passed down to Form.js
+
+  addNewFriend = (e) => {
+    e.preventDefault();
     axios.post('http://localhost:5000/friends',{
       name: this.state.name,
       age: this.state.age,
@@ -45,7 +51,9 @@ class App extends Component {
       })
     })
     .catch(err => {console.log(err)})
-  }
+  };
+
+  //Update friend handler, getting passed to Friend.js
 
   updateHandler = (id, name, age, email) => {
     axios.put(`http://localhost:5000/friends/${id}`, {
@@ -64,7 +72,9 @@ class App extends Component {
         console.log(response.data)
     })
     .catch(err => console.log(err))
-}
+};
+
+  //Delete friend handler, getting passed to FriendList.js
 
   deleteHandler = (id) => {
     return () => {
@@ -76,6 +86,8 @@ class App extends Component {
     }
   }
 
+  //input handler, for the main page form, getting passed to Form.js (different form used on FriendProfile)
+
   inputHandler = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -86,20 +98,7 @@ class App extends Component {
       <div className="App">
       <Container>
         <Link to='/'>Home</Link>
-        <FriendHeader>
-                  <HeaderDiv>
-                      <p>Delete</p>
-                  </HeaderDiv>
-                  <HeaderDiv>
-                      <p>Name</p>
-                  </HeaderDiv>
-                  <HeaderDiv>
-                      <p>Age</p>
-                  </HeaderDiv>
-                  <HeaderDiv>
-                      <p>Email Address</p>
-                  </HeaderDiv>
-              </FriendHeader>
+        <Header />
         {this.state.friends.map((friend) => {
           return (
               <Route exact path="/" render={(props) => 
@@ -115,7 +114,6 @@ class App extends Component {
                                                                     {...props} 
                                                                     friends={this.state.friends}
                                                                     updateHandler={this.updateHandler}
-                                                                    inputHandler={this.inputHandler}
                                                                    />} />
             </Container>
 

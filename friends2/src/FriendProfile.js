@@ -16,6 +16,7 @@ class FriendProfile extends React.Component {
        e.preventDefault();
        const id = this.props.id;
        this.props.updateHandler(id, this.state.name, this.state.age, this.state.email);
+       this.setState({name: '', age:'', email:''});
    }
 
    inputHandler = (e) => {

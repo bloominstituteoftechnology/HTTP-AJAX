@@ -16,7 +16,7 @@ class Form extends React.Component {
                     <input  placeholder="Name"  name="name" value={this.props.name} onChange={this.props.inputHandler} />
                     <input  placeholder="Age" name="age" value={this.props.age} onChange={this.props.inputHandler} />
                     <input  placeholder="Email Address"  name="email" value={this.props.email} onChange={this.props.inputHandler} />
-                    <button type="submit" onClick={this.props.addNewFriend}> Submit </button>
+                    <button type="submit" onClick={this.props.addNewFriend}> Add Friend </button>
                 </form>
 
             </FormContainer>  

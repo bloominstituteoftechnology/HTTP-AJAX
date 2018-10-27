@@ -13,9 +13,8 @@ class FriendsList extends React.Component {
     render() {
         return (
                 <FriendContainer>
-
                     <FriendDiv>
-                        <span onClick={this.props.deleteHandler(this.props.id)}>Delete</span>
+                        <span onClick={this.props.deleteHandler(this.props.id)} style={{cursor: 'pointer'}} >Delete</span>
                     </FriendDiv>
 
                     <FriendDiv>
