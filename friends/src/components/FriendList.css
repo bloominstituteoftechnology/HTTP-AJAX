@@ -1,0 +1,17 @@
+/* FriendList.css */
+
+.friendlist-container {
+    border: 1px solid orange;
+    height: 600px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.friend-card {
+    border: 1px solid gray;
+    height: 200px;
+    width: 30%;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import logo from './logo.svg';
 import { Route, NavLink, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
@@ -9,6 +9,13 @@ import FriendPage from './components/FriendPage';
 import Home from './components/Home';
 
 import './App.css';
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: ghostwhite;
+`
+
+
 
 const blankFormValues = {
   name: '',
@@ -99,54 +106,25 @@ class App extends Component {
   }
 
 
-  // handleUpdateFriend = id => {
-  //   return () => {
-  //     // dan creates a new closure for both Delete and Update functions
-  //   }
-  // }
-
-  // new way NON-CLOSURE WAY (Dan't epiphany)
-
-  // handleUpdateFriend = (id, name, email, age) => {
-
-  // }
-
-  // C R U D
-  // Post = Ccreate
-  // Put = Update
-
-  //post getItemById axios POST here? 
-  // POST PUT DELETE are 'user' interaction, will be in a button or something
-  
-// Post - (url, body)     body is an object
-// Get - (url)
-// Put - (url/:id, id, body)
-// Delete - (url/:id)
-// Patch ??
-
-// const body = {name: 'chris', age: 22}       note: just setting long object, many key-value  pairs into a variable
-
-// axios.post(url, body)
-
 
   render() {
     return (
       <div className="App">
         <ul className="navbar">
             <li>
-              <NavLink to="/">
+              <StyledNavLink to="/">
                 <h1>Home</h1>
-              </NavLink>
+              </StyledNavLink>
             </li>
             <li>
-              <NavLink to="/friendslist">
+              <StyledNavLink to="/friendslist">
               <h1>Friends </h1>
-              </NavLink>
+              </StyledNavLink>
             </li>
             <li>
-              <NavLink to="/friend-form">
-                <h1>Add New Friends</h1>
-              </NavLink>
+              <StyledNavLink to="/friend-form">
+                <h1>Add Friends</h1>
+              </StyledNavLink>
             </li>
         </ul>
 

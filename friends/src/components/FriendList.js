@@ -2,20 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-// class Friend extends React.Component {
-//     constructor(props){
-//         super(props);
+import './FriendList.css';
 
-//     }
-//     render(){
-//     }
-// }
+
 
 const FriendList = props => {
     return(
-            <div>
+            <div className="friendlist-container">
                 {props.friends.map(friend => (
-                    <div key={friend.id}>
+                    <div className="friend-card" key={friend.id}>
                         <Link to={`/friendslist/${friend.id}`}>{friend.name}</Link>
                         <p>ID: {friend.id}</p>
                         <p>AGE: {friend.age}</p>
