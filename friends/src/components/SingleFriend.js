@@ -27,22 +27,27 @@ class SingleFriend extends React.Component {
         this.setState({[event.target.name]: event.target.value })
     }
 
-    addFriend = () => {
+    addFriend = event => {
+        event.preventDefault()
         const friendObj = {name: this.state.name, age: this.state.age, email: this.state.email}
         axios
         .post('http://localhost:5000/friends', friendObj)
+        // .post('friend', friendObj)
         .then(friendObj => {
             console.log(friendObj)
         })
         .catch(err => {
             console.log(err)
         })
+        this.setState({
+            name: '', age: '', email: ''
+        })
 
     }
     render(){
     return(
         <div>
-        <form  method="post">
+        <form onSubmit={this.addFriend}>
         <ul>
             <li>
             <h4>Name:</h4>
@@ -68,8 +73,7 @@ class SingleFriend extends React.Component {
                 value={this.state.email} />
             </li>
             <li>
-            
-                <button onClick={this.addFriend} >
+                <button type='submit'>
                     Add Friend
                 </button>
             </li>
