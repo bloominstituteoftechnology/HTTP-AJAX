@@ -7,14 +7,16 @@ class Friends extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            friends: this.props.friends
+            friends:[]
         }
     }
 
     render(){
         return(
             <div>
-            {this.state.friends.map((friend, index) => <SingleFriend friend={friend}/>)}
+            
+            {/* {this.state.friends.map((friend, index) => <SingleFriend key={friend.id} friend={friend}/>)} */}
+            <SingleFriend friends={this.props.friends} />
             </div>
         )
     }

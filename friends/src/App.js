@@ -29,6 +29,7 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
+      
       <Friends {...this.props} friends={this.state.friends} />
       </div>
     );
