@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './FriendPage.css';
 
 const FriendPage = props => {
     const id = props.match.params.id;
@@ -14,6 +15,7 @@ const FriendPage = props => {
         <div>
             <h1> Friend Page </h1>
                 <div>
+                <img className="card-img" src={`https://placeimg.com/640/480/${id}/sepia`} alt="Card image cap" />
                     <h1>{friend.name}</h1>
                     <p>ID: {friend.id}</p>
                     <p>AGE: {friend.age}</p>
@@ -37,13 +39,7 @@ FriendPage.propTypes = {
     goToUpdateFriendForm: PropTypes.func,
 };
 
-// FriendPage.propTypes = {
-//     friend: PropTypes.shape({
-//         name: PropTypes.string,
-//         age: PropTypes.number,
-//         email: PropTypes.string,
-//     }),
-//     handleDeleteFriend: PropTypes.func,
-// }
 
 export default FriendPage;
+
+

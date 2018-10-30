@@ -2,7 +2,7 @@
 
 .friendlist-container {
     border: 1px solid orange;
-    height: 600px;
+    height: 800px;
     max-width: 800px;
     width: 100%;
     display: flex;
@@ -11,7 +11,28 @@
 }
 
 .friend-card {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 20px;
     border: 1px solid gray;
-    height: 200px;
+    height: 300px;
     width: 30%;
+}
+
+.friendlist-buttons {
+    border: 1px solid pink;
+    display: flex;
+    justify-content: space-around;
+}
+
+.friendlist-delete {
+    text-align: center;
+    width: 40%;
+    background: red;
+}
+
+.friendlist-detail {
+    text-align: center;
+    width: 40%;
+    background: dodgerblue;
 }
