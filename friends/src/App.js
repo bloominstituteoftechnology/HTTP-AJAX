@@ -123,7 +123,7 @@ class App extends Component {
             </li>
             <li>
               <StyledNavLink to="/friend-form">
-                <h1>Add Friends</h1>
+                <h1>Add Friend</h1>
               </StyledNavLink>
             </li>
         </ul>
@@ -148,14 +148,6 @@ class App extends Component {
           goToUpdateFriendForm={this.goToUpdateFriendForm}
           /> )}
           />
-
-     
-          {/* <div>
-            {this.state.friends.map(friend => {
-              return <Friend name={friend.name} id={friend.id} age={friend.age} email={friend.email}/>
-            })}
-          </div> */}
-
 
         <Route
             path="/friend-form"

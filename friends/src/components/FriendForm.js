@@ -2,6 +2,8 @@ import React, {Fragment} from 'react';
 // import FriendsList from './FriendList';
 import PropTypes from 'prop-types';
 
+import './FriendForm.css';
+
 class FriendForm extends React.Component {
     constructor(props){
         super(props);
@@ -22,31 +24,40 @@ class FriendForm extends React.Component {
         return(
             <Fragment>
                 <section className='App-form'>
-                    <h1>{this.props.isUpdating ? 'Update existing Friend' : 'Add new Friend'}</h1>
+                    <h1>{this.props.isUpdating ? 'Update existing Friend' : 'Add Friend'}</h1>
                     <form>
-                        <input type="text" 
-                            required 
-                            placeholder="type name" 
-                            value={this.props.name} 
-                            name="name" 
-                            onChange={this.props.handleChange}
-                        />
-                        <input type="number" 
-                            required 
-                            placeholder="type age" 
-                            value={this.props.age} 
-                            name="age" 
-                            onChange={this.props.handleChange}
-                        />
-                        <input type="text" 
-                            required 
-                            placeholder="type email" 
-                            value={this.props.email} 
-                            name="email" 
-                            onChange={this.props.handleChange}
-                        />
+                        <div className="inputdiv">
+                            <h3>Name</h3>
+                            <input type="text" 
+                                required 
+                                placeholder="type name" 
+                                value={this.props.name} 
+                                name="name" 
+                                onChange={this.props.handleChange}
+                            />
+                        </div>
+                        <div className="inputdiv">
+                            <h3>Age</h3>
+                            <input className="age-field" type="number" 
+                                required 
+                                placeholder="type age" 
+                                value={this.props.age} 
+                                name="age" 
+                                onChange={this.props.handleChange}
+                            />
+                        </div>
+                        <div className="inputdiv">
+                            <h3>Email</h3>
+                            <input type="text" 
+                                required 
+                                placeholder="type email" 
+                                value={this.props.email} 
+                                name="email" 
+                                onChange={this.props.handleChange}
+                            />
+                        </div>
                     </form>
-                    <button onClick={this.handleSubmit}>save</button>
+                    <button onClick={this.handleSubmit}>ADD</button>
                 </section>
             </Fragment>
         )

@@ -1,12 +1,12 @@
 import React from 'react'
 import './friends.jpg'
+import './Home.css';
 
 const friendsPic = './friends.jpg';
 
 const Home = () => {
     return (
-        <div>
-            <h1>The HOME PAGE</h1>
+        <div className="home-container">
             <img src={friendsPic} />
         </div>
     )

@@ -8,7 +8,6 @@
 
 ul {
   list-style-type: none;
-  border: 1px solid blue;
   background-color: black;
   display: flex;
   justify-content: space-between;
@@ -38,15 +37,9 @@ h1 {
   border: 1px solid red;
 }
 
-.App-form {
-  border: 3px solid greenyellow;
-  background-color: dodgerblue;
-  height: 300px;
-}
 
-.App-form h1 {
-  font-size: 32px;
-}
+
+
 
 .App-link {
   color: #61dafb;
