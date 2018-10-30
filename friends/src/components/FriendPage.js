@@ -12,11 +12,10 @@ const FriendPage = props => {
     }
 
     return(
-        <div>
-            <h1> Friend Page </h1>
+        <div className="friendpage-card">
                 <div>
                 <img className="card-img" src={`https://placeimg.com/640/480/${id}/sepia`} alt="Card image cap" />
-                    <h1>{friend.name}</h1>
+                    <h2>{friend.name}</h2>
                     <p>ID: {friend.id}</p>
                     <p>AGE: {friend.age}</p>
                     <p>EMAIL: {friend.email}</p>

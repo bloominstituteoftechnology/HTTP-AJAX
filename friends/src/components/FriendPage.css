@@ -1,5 +1,17 @@
 /* FriendPage.css */
 
+
+.friendpage-card {
+    padding-top: 50px;
+    height: 600px;
+    background-color: whitesmoke;
+    box-shadow: 5px 5px #888888;
+}
+
+h1 {
+    font-size: 30px;
+}
 .card-img {
     width: 50%;
 }
+

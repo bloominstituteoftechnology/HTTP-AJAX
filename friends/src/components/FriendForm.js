@@ -24,7 +24,7 @@ class FriendForm extends React.Component {
         return(
             <Fragment>
                 <section className='App-form'>
-                    <h1>{this.props.isUpdating ? 'Update existing Friend' : 'Add Friend'}</h1>
+                    <h1>{this.props.isUpdating ? 'Update Friend' : 'Add Friend'}</h1>
                     <form>
                         <div className="inputdiv">
                             <h3>Name</h3>
