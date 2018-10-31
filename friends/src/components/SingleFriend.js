@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Delete from './Delete'
 
 class SingleFriend extends React.Component {
     constructor(props){
@@ -46,14 +47,7 @@ class SingleFriend extends React.Component {
 
     }
 
-    removeFriend(props) {
-        axios
-        .put(`http://localhost:5000/friends/${props.friend.id}`)
-        .then((resolve) =>{
-        console.log(resolve)
-    }
-        )
-    }
+   
     idArr = [];
     render(){
     return(
@@ -101,7 +95,8 @@ class SingleFriend extends React.Component {
           <h1>{friend.name}</h1>  
           <h2>{friend.age}</h2>
           <h3>{friend.email}</h3>
-          <button onClick={this.removeFriend}>X</button>
+          {/* <button onClick={this.removeFriend}>X</button> */}
+          <Delete id={friend.id} delete={this.removeFriend} />
           </div>)}
         </div>
     )}

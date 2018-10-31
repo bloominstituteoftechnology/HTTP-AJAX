@@ -8,16 +8,33 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-        friends: []
+        friends: [],
+        ids: []
 
     }
 }
+
+// idGrabber(){
+//     this.state.friends.map(friend => {
+//         let idArr = [];
+
+//         idArr.push(friend.id)
+
+//         return idArr ;
+    
+//     })
+//     this.setState({
+//         ids: this.idArr 
+//     })
+
+// }
 
 componentDidMount(){
     axios
         .get('http://localhost:5000/friends')
         .then(response => {
             this.setState(() =>({friends: response.data}))
+            this.idGrabber();
             console.log(response.data)
         })
         .catch(error => {
@@ -25,6 +42,8 @@ componentDidMount(){
         })
 
 }
+
+
 
   render() {
     return (
