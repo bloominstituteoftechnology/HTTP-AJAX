@@ -8,7 +8,8 @@ class SingleFriend extends React.Component {
             friends: this.props.friend,
             name: '',
             age: '',
-            email: ''
+            email: '',
+            ids: []
 
         }
     }
@@ -45,18 +46,15 @@ class SingleFriend extends React.Component {
 
     }
 
-    removeFriend(friend) {
-        friend = this.friend.id ;
-        const friends = Object.assign([], this.state.friends.slice ) ;
+    removeFriend(props) {
         axios
-        .delete(`http://localhost:5000/friends/${friend}`)
+        .put(`http://localhost:5000/friends/${props.friend.id}`)
         .then((resolve) =>{
         console.log(resolve)
-        this.setState({
-            friends: friends
-        })}
+    }
         )
     }
+    idArr = [];
     render(){
     return(
         <div>
@@ -64,7 +62,7 @@ class SingleFriend extends React.Component {
         <ul>
             <li>
             <h4>Name:</h4>
-            <button onClick={this.removeFriend}>X</button>
+          
                 <input 
                 type='text'
                 onChange={this.changeHandler} 
@@ -99,10 +97,11 @@ class SingleFriend extends React.Component {
         </form>
           {this.props.friends.map((friend, index) => <div key={index}> 
           
-          <h1>{friend.name}</h1>
+          {this.idArr.push(friend.id)}
+          <h1>{friend.name}</h1>  
           <h2>{friend.age}</h2>
           <h3>{friend.email}</h3>
-          
+          <button onClick={this.removeFriend}>X</button>
           </div>)}
         </div>
     )}

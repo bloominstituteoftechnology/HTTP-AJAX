@@ -7,15 +7,35 @@ class Friends extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            friends:[]
+            friends:[],
+            ids: []
+            
         }
     }
 
+     
+    // idGrab = () => {
+    //     this.state.friends.map((friend) => {  return this.idArr.push(friend.id)};
+    // idGrab = () => {
+    //     let idArr = Object.assign([], this.state.ids)
+    //     this.state.friends.map((friend) => {
+    //        idArr.push(friend.id)
+    //         this.setState({
+    //              ids: idArr
+    //         })
+    //         return idArr;
+    //     }
+    //         )
+    // }
+
+    
+
+    
     render(){
         return(
             <div>
             
-            {/* {this.state.friends.map((friend, index) => <SingleFriend key={friend.id} friend={friend}/>)} */}
+           
             <SingleFriend friends={this.props.friends} />
             </div>
         )
