@@ -44,6 +44,19 @@ class SingleFriend extends React.Component {
         })
 
     }
+
+    removeFriend(friend) {
+        friend = this.friend.id ;
+        const friends = Object.assign([], this.state.friends.slice ) ;
+        axios
+        .delete(`http://localhost:5000/friends/${friend}`)
+        .then((resolve) =>{
+        console.log(resolve)
+        this.setState({
+            friends: friends
+        })}
+        )
+    }
     render(){
     return(
         <div>
@@ -51,6 +64,7 @@ class SingleFriend extends React.Component {
         <ul>
             <li>
             <h4>Name:</h4>
+            <button onClick={this.removeFriend}>X</button>
                 <input 
                 type='text'
                 onChange={this.changeHandler} 
@@ -76,6 +90,7 @@ class SingleFriend extends React.Component {
                 <button type='submit'>
                     Add Friend
                 </button>
+                <button  type="submit">Delete Friend</button>
             </li>
         </ul>
             
