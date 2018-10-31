@@ -31,11 +31,11 @@ class Friends extends React.Component {
     
 
     
-    render(){
+    render(props){
         return(
             <div>
+               <SingleFriend match={this.props.match} friends={this.props.friends} /> 
             
-            <SingleFriend friends={this.props.friends} />
             </div>
         )
     }

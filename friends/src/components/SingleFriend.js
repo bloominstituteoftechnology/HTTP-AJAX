@@ -45,29 +45,25 @@ class SingleFriend extends React.Component {
         this.setState({
             name: '', age: '', email: ''
         })
+        
 
     }
 
-    updateHandler = event => {
-        this.setState({
-            name: event.target.value 
-        })
-    }
-
-
-
-    updateFriend = (props) => {
-        const user = {name: this.state.name}
+    deleteFriend = (props, event) => {
+        event.preventDefault()
         axios
         .delete(`http://localhost:5000/friends/${props.match.params.id}`)
-        .then(resolve =>{
-            console.log(resolve)
-            console.log(resolve.data)
+        .then(response =>{
+            this.setState({
+                friends: response.data
+            })
         })
+       
+        
     }
 
    
-    idArr = [];
+    // idArr = [];
     render(){
     return(
         <div>
@@ -110,22 +106,17 @@ class SingleFriend extends React.Component {
         </form>
           {this.props.friends.map((friend, index) => <div key={index}> 
           
-          {this.idArr.push(friend.id)}
-          <Link to={`/friends/${friend.id}`}>
+          {/* {this.idArr.push(friend.id)} */}
+          <Link to={`/friends/${this.props.match.params.id}`}>
               <h1>{friend.name}</h1>  
           </Link>
           
           <h2>{friend.age}</h2>
           <h3>{friend.email}</h3>
-
-          <form onSubmit={this.updateFriend}>
-              <input onChange={this.updateHandler} type='text' name='name'/>
-              <button type="submit">Delete Friend</button>
+          <form>
+              <input onChange={this.changeHandler} type='text' name='search'/>
+              <button name='search' onClick={this.deleteFriend} type="submit">Delete Friend</button>
           </form>
-          
-                
-          {/* <button onClick={this.removeFriend}>X</button> */}
-
           </div>)}
         </div>
     )}

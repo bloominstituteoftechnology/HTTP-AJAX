@@ -36,7 +36,6 @@ componentDidMount(){
         .get('http://localhost:5000/friends')
         .then(response => {
             this.setState(() =>({friends: response.data}))
-            this.idGrabber();
             console.log(response.data)
         })
         .catch(error => {
@@ -46,12 +45,13 @@ componentDidMount(){
 }
 
 
-
   render() {
     return (
       <div className="App">
-      <Route path='/' render={(props) => <Friends {...this.props} friends={this.state.friends} />} />
-        <Route path='/friends/:id' render={(props) => <SingleFriend {...this.props} friends={this.state.friends} /> } />
+      {/* <Friends {...this.props} friends={this.state.friends} /> */}
+      <Route path='/' render={(props) => <Friends match={props.match} {...this.props} friends={this.state.friends} />} />
+      <Route path='/friends/:id' render={(props) => <SingleFriend match={props.match} {...this.props} friends={this.state.friends} />} />
+        {/* <Route path='/friends/:id' render={(props) => <SingleFriend {...this.props} friends={this.state.friends} /> } /> */}
       </div>
     );
   }
