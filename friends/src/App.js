@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import axios from 'axios'
 import './App.css';
 import Friends from './components/Friends';
+import { Route } from 'react-router-dom'
+import SingleFriend from './components/SingleFriend';
 
 class App extends Component {
   constructor(){
@@ -48,8 +50,8 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-      
-      <Friends {...this.props} friends={this.state.friends} />
+      <Route path='/' render={(props) => <Friends {...this.props} friends={this.state.friends} />} />
+        <Route path='/friends/:id' render={(props) => <SingleFriend {...this.props} friends={this.state.friends} /> } />
       </div>
     );
   }

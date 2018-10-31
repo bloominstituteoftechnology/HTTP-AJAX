@@ -5,7 +5,7 @@ import axios from 'axios'
 const Delete = (props) => {
     let removeFriend= props => {
         axios
-        .put(`http://localhost:5000/friends/${props.friend.id}`)
+        .delete(`http://localhost:5000/friends/${props.friend.id}`)
         .then((resolve) =>{
         console.log(resolve)
         })

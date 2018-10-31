@@ -35,7 +35,6 @@ class Friends extends React.Component {
         return(
             <div>
             
-           
             <SingleFriend friends={this.props.friends} />
             </div>
         )
