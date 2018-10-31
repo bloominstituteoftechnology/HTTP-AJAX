@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import FriendsList from "./components/FriendList";
 
+
 import "./App.css";
+
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +26,15 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div>
         {this.state.friends.map(friend => (
           <FriendsList key={friend.id} friends={friend} />
         ))}
+        </div>
+        <form>
+          <input type='text' placeholder='got friends?'></input>
+          
+        </form>
       </div>
     );
   }
