@@ -42,20 +42,30 @@ componentDidMount = () => {
   };
 
   render() {
-    return (
+    return (  
       <div className="App">
-          {this.state.friends.map(item => (
-          <Friend key={item.id} friend={item} />
-        ))}
-
-        <form onSubmit={this.submitNewFriend}>
-            <h1>Add a new friend!</h1>
-            <input type='text' placeholder='name' onChange={this.inputChangeHandler}></input>
-            <input type='number' placeholder='age' onChange={this.inputChangeHandler}></input>
-            <input type='email' placeholder='email' onChange={this.inputChangeHandler}></input>
-            <button onClick={this.test}>Submit</button>
-        </form>
-        </div>
+        <form>
+       <input type='text' 
+       onChange={this.changeHandler} 
+       name='name' 
+       placeholder='Input Name'
+       value={this.state.newFriend.name} /> 
+       <input type='number' 
+       onChange={this.changeHandler}  
+       name='age'
+       placeholder='Input Age'
+       value={this.state.newFriend.age} />
+       <input type='email' 
+       onChange={this.changeHandler}  
+       name='email' 
+       placeholder='Input Email'
+       value={this.state.newFriend.email} />
+     </form>
+     <button onClick={this.addFriend}>Add Friend</button> 
+        {this.state.friends.map(friends => (
+        <Friend key={friends.id} friends={friends} />
+         ))}
+      </div>
     );
   }
 }

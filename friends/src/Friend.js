@@ -1,13 +1,26 @@
 import React from 'react';
 
-const Friend = (props) => {
-    return(
-        <div>
-                <h1>My name is {props.friend.name}</h1>
-                <h3>I am {props.friend.age}</h3>
-                <h3>You can contact me at {props.friend.email}</h3>
-        </div>
-    )
-};
+class Friend extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            newFriend: {
+                name: '',
+                age: '',
+                email: '',
+            }
+        }
+    }
+
+    render() {
+        return(
+            <div className='friendCard'>
+            <h2>My name is: {this.props.friends.name}</h2>
+            <h2>I am {this.props.friends.age} years old</h2>
+            <h2>My email is: {this.props.friends.email}</h2>
+            </div>
+        );
+    }
+}
 
 export default Friend;
