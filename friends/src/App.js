@@ -11,7 +11,7 @@ class App extends Component {
        newFriend: {
          name: '',
          age: '',
-         email: ','
+         email: ''
        }
   };
 }
@@ -19,14 +19,14 @@ class App extends Component {
 componentDidMount = () => {
   axios.get('http://localhost:5000/friends')
     .then( response => {
-      console.log('It works');
+      console.log('It works'); // confirming things work, will comment out on submission
       console.log(response.data)
       this.setState({ friends: response.data})
     })
     .catch( err=> console.log(err))
   }
 
-  changeHandler = event => {
+  changeHandler = (event) => {
     this.setState({
       newFriend: {
         ...this.state.newFriend,
@@ -35,7 +35,13 @@ componentDidMount = () => {
     });
   }
 
-  addFriend = event => {
+  enterHandler = (event) => {   // Allows you to press enter in the input boxes
+    if(event.key === 'Enter') {
+      // console.log('Enter pressed')
+    }
+    }
+
+  addFriend = (event) => {
     event.preventDefault();
     axios.post('http://localhost:5000/friends', this.state.newFriend)
     .then(response => this.setState({ friends: response.data}))
@@ -47,21 +53,24 @@ componentDidMount = () => {
         <form>
        <input type='text' 
        onChange={this.changeHandler} 
+       onKeyDown={this.enterHandler}
        name='name' 
        placeholder='Input Name'
        value={this.state.newFriend.name} /> 
        <input type='number' 
        onChange={this.changeHandler}  
+       onKeyDown={this.enterHandler}
        name='age'
        placeholder='Input Age'
        value={this.state.newFriend.age} />
        <input type='email' 
-       onChange={this.changeHandler}  
+       onChange={this.changeHandler} 
+       onKeyDown={this.enterHandler} 
        name='email' 
        placeholder='Input Email'
        value={this.state.newFriend.email} />
      </form>
-     <button onClick={this.addFriend}>Add Friend</button> 
+     <button onClick={this.addFriend}>Add a new friend</button> 
         {this.state.friends.map(friends => (
         <Friend key={friends.id} friends={friends} />
          ))}
