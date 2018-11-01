@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
 import FriendsList from './components/friendly/FriendsList.js';
 
@@ -15,7 +15,10 @@ class App extends React.Component {
 
   render() {
     return (
+      <div className='AppBody'>
+
       <Route exact path='/' render={props => <FriendsList {...props}/>}/>
+      </div>
     );
   }
 }
