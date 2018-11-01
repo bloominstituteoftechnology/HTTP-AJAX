@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import FriendsList from "./components/FriendList";
 
-
 import "./App.css";
-
 
 class App extends Component {
   constructor(props) {
@@ -27,13 +25,14 @@ class App extends Component {
     return (
       <div>
         <div>
-        {this.state.friends.map(friend => (
-          <FriendsList key={friend.id} friends={friend} />
-        ))}
+          {this.state.friends.map(friend => (
+            <FriendsList key={friend.id} friends={friend} />
+          ))}
         </div>
         <form>
-          <input type='text' placeholder='got friends?'></input>
-          
+          <input type="text" placeholder="name..." />
+          <input type="text" placeholder="age..." />
+          <input type="text" placeholder="email..." />
         </form>
       </div>
     );
