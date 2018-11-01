@@ -8,14 +8,15 @@ class FriendProfile extends React.Component{
         this.state = {
             name: '',
             age: '',
-            location: ''
+            email: ''
         }
     }
 
 
-removeFriend= props => {
+updateFriend= (props) => {
+    const id = props.id
         axios
-        .put(`http://localhost:5000/friends/${props.friend.id}`)
+        .put(`http://localhost:5000/friends/${props.id}`, )
         .then((resolve) =>{
         console.log(resolve)
         })
@@ -24,22 +25,17 @@ removeFriend= props => {
         })
     };
 
-updateFriend = (props, event) => {
-    event.preventDefault();
-    const id = props.friend.id
-    this.updateHandler(id);
-}
 
 updateHandler = (event) => {
-    this.setState({
-        [event.target.name]: event.target.value 
+    this.setState((event) => {
+        [event.target.name] = event.target.value 
     })
 }
 
         render(){
     return(
         <div>
-         <form onSubmit={this.updateFriend} >
+         <form type='submit' >
             <h4>UpdateName:</h4>
                 <input 
                 type='text'
@@ -57,9 +53,9 @@ updateHandler = (event) => {
                 type='text' 
                 name='email' 
                 value={this.state.email} />
-                <button type='submit'>
+                <p onClick={this.updateFriend} style={{cursor: 'pointer'}}>
                     Update Friend
-                </button>
+                </p>
         </form>
         </div>
     )

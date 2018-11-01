@@ -68,7 +68,7 @@ class SingleFriend extends React.Component {
     render(props){
     return(
         <div>
-        <FriendProfile changeHandler={this.changeHandler} />
+        <FriendProfile id={this.props.id} match={this.props.match} changeHandler={this.changeHandler} />
         <form onSubmit={this.addFriend}>
         <ul>
             <li>

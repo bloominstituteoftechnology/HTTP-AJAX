@@ -64,7 +64,7 @@ componentDidMount(){
       <div className="App">
       {/* <Friends {...this.props} friends={this.state.friends} /> */}
       <Route path='/' render={(props) => <Friends deleter={this.deleteFriend} match={props.match} {...this.props} friends={this.state.friends} />} />
-      <Route path='/friends/:id' render={(props) => <SingleFriend match={props.match} {...this.props} friends={this.state.friends} />} />
+      <Route path='/:id' render={(props) => <SingleFriend match={props.match} {...this.props} friends={this.state.friends} />} />
         {/* <Route path='/friends/:id' render={(props) => <SingleFriend {...this.props} friends={this.state.friends} /> } /> */}
       </div>
     );
