@@ -16,8 +16,17 @@ class FriendProfile extends React.Component{
 updateFriend= (props) => {
     const id = props.id
         axios
-        .put(`http://localhost:5000/friends/${props.id}`, )
+        .post(`http://localhost:5000/friends/${id}`,{
+            friend: {
+                name: this.state.name,
+                age: this.state.age,
+                email: this.state.email
+            }
+        } )
         .then((resolve) =>{
+            this.setState({
+                
+            })
         console.log(resolve)
         })
         .catch(err => {
@@ -27,8 +36,8 @@ updateFriend= (props) => {
 
 
 updateHandler = (event) => {
-    this.setState((event) => {
-        [event.target.name] = event.target.value 
+    this.setState({
+        [event.target.name]: event.target.value 
     })
 }
 
