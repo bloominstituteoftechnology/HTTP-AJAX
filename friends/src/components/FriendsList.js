@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import IndividualFriend from "./IndividualFriend";
 
 export default class FriendsList extends Component {
 constructor(props) {
@@ -21,18 +22,12 @@ constructor(props) {
     }
 
     render() { 
-        let friends = this.state.friends;
-        // Force this data into array format!
-        friends = [...friends]
+        // let friends = this.state.friends;
+        // // Force this data into array format!
+        // friends = [...friends]
     return (
         <div className="friends-list">
-        {this.state.friends.map(friend => (
-            <div>
-                <div>{friend.id}</div>
-                <div>{friend.name}</div>
-            </div>
-        ))}
-        Friend List Here
+        {this.state.friends.map(friend => <IndividualFriend id={friend.id} name={friend.name} age={friend.age} email={friend.email} /> )}
         </div>
         );
     }
