@@ -40,6 +40,7 @@ deleteFriend = (id) => {
           friends: response.data
       })
   })
+  .catch(error => {console.log('Server Error', error)})
  
 }
 }

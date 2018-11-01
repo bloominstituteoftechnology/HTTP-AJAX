@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import Delete from './Delete'
+import FriendProfile from './FriendProfile'
 import { Link } from 'react-router-dom';
+
 
 class SingleFriend extends React.Component {
     constructor(props){
@@ -67,6 +68,7 @@ class SingleFriend extends React.Component {
     render(props){
     return(
         <div>
+        <FriendProfile changeHandler={this.changeHandler} />
         <form onSubmit={this.addFriend}>
         <ul>
             <li>
@@ -114,6 +116,7 @@ class SingleFriend extends React.Component {
           <form>
               <input onChange={this.changeHandler} type='text' name='search'/>
               <button name='search' onClick={this.props.deleter(friend.id)} type="submit">Delete Friend</button>
+              
           </form>
           </div>)}
         </div>
