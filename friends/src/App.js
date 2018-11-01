@@ -31,6 +31,19 @@ class App extends Component {
 
 // }
 
+deleteFriend = (id) => {
+  return () => {
+  axios
+  .delete(`http://localhost:5000/friends/${id}`)
+  .then(response =>{
+      this.setState({
+          friends: response.data
+      })
+  })
+ 
+}
+}
+
 componentDidMount(){
     axios
         .get('http://localhost:5000/friends')
@@ -49,7 +62,7 @@ componentDidMount(){
     return (
       <div className="App">
       {/* <Friends {...this.props} friends={this.state.friends} /> */}
-      <Route path='/' render={(props) => <Friends match={props.match} {...this.props} friends={this.state.friends} />} />
+      <Route path='/' render={(props) => <Friends deleter={this.deleteFriend} match={props.match} {...this.props} friends={this.state.friends} />} />
       <Route path='/friends/:id' render={(props) => <SingleFriend match={props.match} {...this.props} friends={this.state.friends} />} />
         {/* <Route path='/friends/:id' render={(props) => <SingleFriend {...this.props} friends={this.state.friends} /> } /> */}
       </div>

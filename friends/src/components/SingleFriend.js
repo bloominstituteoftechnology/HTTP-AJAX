@@ -49,22 +49,22 @@ class SingleFriend extends React.Component {
 
     }
 
-    deleteFriend = (props, event) => {
-        event.preventDefault()
-        axios
-        .delete(`http://localhost:5000/friends/${props.match.params.id}`)
-        .then(response =>{
-            this.setState({
-                friends: response.data
-            })
-        })
+    // deleteFriend = (props, event) => {
+    //     event.preventDefault()
+    //     axios
+    //     .delete(`http://localhost:5000/friends/${props.match.params.id}`)
+    //     .then(response =>{
+    //         this.setState({
+    //             friends: response.data
+    //         })
+    //     })
        
         
-    }
+    // }
 
    
     // idArr = [];
-    render(){
+    render(props){
     return(
         <div>
         <form onSubmit={this.addFriend}>
@@ -107,15 +107,13 @@ class SingleFriend extends React.Component {
           {this.props.friends.map((friend, index) => <div key={index}> 
           
           {/* {this.idArr.push(friend.id)} */}
-          <Link to={`/friends/${this.props.match.params.id}`}>
               <h1>{friend.name}</h1>  
-          </Link>
           
           <h2>{friend.age}</h2>
           <h3>{friend.email}</h3>
           <form>
               <input onChange={this.changeHandler} type='text' name='search'/>
-              <button name='search' onClick={this.deleteFriend} type="submit">Delete Friend</button>
+              <button name='search' onClick={this.props.deleter(friend.id)} type="submit">Delete Friend</button>
           </form>
           </div>)}
         </div>

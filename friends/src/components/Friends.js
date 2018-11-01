@@ -34,7 +34,7 @@ class Friends extends React.Component {
     render(props){
         return(
             <div>
-               <SingleFriend match={this.props.match} friends={this.props.friends} /> 
+               <SingleFriend deleter={this.props.deleter} match={this.props.match} friends={this.props.friends} /> 
             
             </div>
         )
