@@ -46,6 +46,7 @@ table {
 
 .AppBody {
   display:flex;
+  flex-direction: column;
   width:1024px;
   height:100%;
   margin:auto;
