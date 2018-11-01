@@ -27,7 +27,8 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  changeHandler = event => {
+  changeHandler = (event) => {
+    event.preventDefault();
     this.setState({
       newFriend: {
         ...this.state.newFriend,
@@ -36,14 +37,14 @@ class App extends Component {
     })
   }
 
-  enterHandler (e) {
-    if (e.key === 'Enter') {
+  enterHandler (event) {
+    if (event.key === 'Enter') {
       console.log('Enter key pressed')
     }
   }
 
-  addFriend = event => {
-    event.preventDefault()
+  addFriend = (event) => {
+    event.preventDefault();
     axios
       .post('http://localhost:5000/friends', this.state.newFriend)
       .then(response => this.setState({ friends: response.data }))
@@ -52,7 +53,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <form>
+        <form onSubmit={this.changeHandler}>
           <input
             type='text'
             onChange={this.changeHandler}
