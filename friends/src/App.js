@@ -22,7 +22,10 @@ class App extends Component {
     axios
     .get('http://localhost:5000/friends')
     .then(response => {
-      console.log(response)
+      console.log(response);
+      this.setState({
+        friends: response.data,
+      })
     })
   }
   render() {
@@ -37,7 +40,7 @@ class App extends Component {
       <Route exact path='/' component={Home}/>
       <Route path='/about' component={About}/>
       <Route path='/contact' component={Contact}/>
-      <Route exact path='/friends'/>
+      {/* <Route exact path='/friends' render={} /> */}
       </div> 
     );
   }
