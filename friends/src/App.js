@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import FriendsList from "./components/FriendList";
-// import FriendForm from "./components/FriendForm";
+import FriendForm from "./components/FriendForm";
 
 import "./App.css";
 
@@ -10,9 +10,11 @@ class App extends Component {
     super(props);
     this.state = {
       friends: [],
-      name: "",
-      age: "",
-      email: ""
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
     };
   }
   componentDidMount() {
@@ -26,27 +28,41 @@ class App extends Component {
       });
   }
 
+  changeHandler = e => {
+    this.setState({
+      friend: {
+        ...this.state.friend,
+        [e.target.name]: e.target.value
+      }
+    }); //allows for reuse :)
+  };
+
   submitHandler = () => {
-    const newFriend = {
-      id: this.state.friends[this.state.friends.length - 1].id + 1,
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    };
-
     axios
-      .post("http://localhost:5000/friends/", newFriend)
-      .then(res => {
-        this.setState({ friends: res.data, name: "", age: "", email: "" });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+    .post("http://localhost:5000/friends/", this.state.friend)
+    .then(res => {
+      this.setState({ friends: res.data, name: "", age: "", email: "" });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+    // const newFriend = {
+    //   id: this.state.friend[this.state.friend.length - 1].id + 1,
+    //   name: this.state.name,
+    //   age: this.state.age,
+    //   email: this.state.email
+    // };
 
-  onChangeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value }); //allows for reuse :)
-  };
+  //   axios
+  //     .post("http://localhost:5000/friends/", this.state.friend)
+  //     .then(res => {
+  //       this.setState({ friends: res.data, name: "", age: "", email: "" });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
 
   // enterHandler = e => { //Trying to submit on Enter, will come back to this
   //   if(e && e.KeyCode === 13) {
@@ -67,8 +83,12 @@ class App extends Component {
             <FriendsList key={friends.id} friends={friends} />
           ))}
         </div>
-        {/* <FriendForm friends={this.state.friends}  onSubmit= {this.submitHandler} /> */}
-        <form>
+        <FriendForm
+          friend={this.state.friend}
+          changeHandler={this.changeHandler}
+          submitHandler={this.submitHandler}
+        />
+        {/* <form>
           <input
             className="input"
             type="text"
@@ -96,9 +116,9 @@ class App extends Component {
             name="email"
             onChange={this.onChangeHandler}
           />
-        </form>
+        </form>*/}
 
-        <button onClick={this.submitHandler}>save</button>
+        {/* <button onClick={this.submitHandler}>save</button>  */}
       </div>
     );
   }
