@@ -17,7 +17,8 @@ class App extends Component {
       }
     };
   }
-  componentDidMount() { //lifecycle methods come after constructor
+  componentDidMount() {
+    //lifecycle methods come after constructor
     axios
       .get("http://localhost:5000/friends")
       .then(res => {
@@ -40,18 +41,23 @@ class App extends Component {
   submitHandler = e => {
     e.preventDefault();
     axios
-    .post("http://localhost:5000/friends/", this.state.friend)
+      .post("http://localhost:5000/friends/", this.state.friend)
+      .then(res => {
+        this.setState({ friends: res.data });
+      });
+  };
+
+  deleteHandler = friendId => {
+    axios.delete(`http://localhost:5000/friends/${friendId}`)
     .then(res => {
-      this.setState({ friends: res.data });
-    })
-    
-};
-    // const newFriend = {
-    //   id: this.state.friend[this.state.friend.length - 1].id + 1,
-    //   name: this.state.name,
-    //   age: this.state.age,
-    //   email: this.state.email
-    // };
+      this.setState({ friends: res.data })});
+    }
+  // const newFriend = {
+  //   id: this.state.friend[this.state.friend.length - 1].id + 1,
+  //   name: this.state.name,
+  //   age: this.state.age,
+  //   email: this.state.email
+  // };
 
   //   axios
   //     .post("http://localhost:5000/friends/", this.state.friend)
@@ -72,14 +78,14 @@ class App extends Component {
   // axios.delete(`http://localhost:5000/friends/${id}`)
   //  .then(res => {
 
-  //})
+  //})  NOPE
 
   render() {
     return (
       <div>
         <div>
           {this.state.friends.map(friends => (
-            <FriendsList key={friends.id} friends={friends} />
+            <FriendsList key={friends.id} friends={friends} deleteHandler={this.deleteHandler} />
           ))}
         </div>
         <FriendForm
