@@ -54,14 +54,14 @@ class App extends Component {
   updateFriend = (event, id) => {
     event.preventDefault();
     axios
-    .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)    
+    .put('http://localhost:5000/friends/:id')    
     .then(response => this.setState({ friends: response.data}));
   }
 
   deleteFriend = (event, id) => {
     event.preventDefault();
     axios
-      .delete(`http://localhost:5000/friends/${id}`)
+      .delete('http://localhost:5000/friends/:id')
       .then(response => this.setState({ friends: response.data }))
       .catch(error => console.log(error));
   }
