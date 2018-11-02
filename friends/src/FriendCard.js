@@ -1,30 +1,41 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
     
 class FriendCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            friend: null,
+            friend: [],
         }
     }
+    
 
     componentDidMount(){
-      this.fetchFriend(this.props.match.params.id)
-    }
-
-    fetchFriend = id => {
-        Axios
-        .get(`http://localhost:5000/friends/${id}`)
+      axios
+        .get(`http://localhost:5000/friends/${this.props.match.params.id}`)
         .then(response => {
             console.log("friendIdFetch:", response);
-            this.setState({friend: response.data})
+            this.setState({friend: [response.data]})
         })
+        .catch(error => console.log(error))
     }
 
     render() { 
         return ( 
-          <div></div>
+          <div>
+            {this.state.friend.map(info => (
+              <div key={info.id}>
+                <h1>{info.name}</h1>
+                <p>Friend Id: {info.id}</p>
+                <p>Friend Age: {info.age}</p>
+                <p>Friend Email: {info.email}</p>
+              </div>
+            ))}
+            <div className="button-container">
+                <button>Update</button>
+                <button>Delete</button>
+              </div>
+          </div>
         );
     }
 }

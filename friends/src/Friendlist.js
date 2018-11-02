@@ -7,6 +7,7 @@ export default props => {
             {props.friends.map(friend => {
                 return(
                     <Friend 
+                    id={friend.id}
                     key={friend.id}
                     name={friend.name}
                     age={friend.age}

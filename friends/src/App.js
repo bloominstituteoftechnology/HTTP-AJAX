@@ -9,6 +9,9 @@ import Home from './Home';
 import About from './About';
 import Contact from './Contact';
 import FriendList from './Friendlist';
+import FriendCard from './FriendCard';
+
+
 
 
 class App extends Component {
@@ -37,9 +40,9 @@ class App extends Component {
       {/* nav bar structure */}
       <nav>
       <NavLink exact to="/">Home</NavLink>
-      <NavLink exact to="/about">About</NavLink>
-      <NavLink exact to="/contact">Contact</NavLink>
-      <NavLink exact to="/friends">Friends</NavLink>
+      <NavLink to="/about">About</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
+      <NavLink to="/friends">Friends</NavLink>
       </nav>
       {/* routes */}
       <Route exact path='/' component={Home}/>
@@ -47,6 +50,10 @@ class App extends Component {
       <Route path='/contact' component={Contact}/>
       {/* Render Routes : this routes pass props to the components */}
       <Route exact path='/friends' render={() => <FriendList friends={this.state.friends} />} />
+      <Route path='/friends/:id' render={props => (
+        <FriendCard {...props} friends={this.state.friends} />
+      )}/>
+
       </div> 
     );
   }
