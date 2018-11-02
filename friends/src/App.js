@@ -10,6 +10,7 @@ class App extends Component {
       friends: [],
       newFriend: {
         name: '',
+        id: 0,
         age: '',
         email: ''
       }
@@ -50,6 +51,21 @@ class App extends Component {
       .then(response => this.setState({ friends: response.data }))
   }
 
+  updateFriend = (event, id) => {
+    event.preventDefault();
+    axios
+    .put(`http://localhost:5000/friends/${id}`, this.state.newFriend)    
+    .then(response => this.setState({ friends: response.data}));
+  }
+
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => this.setState({ friends: response.data }))
+      .catch(error => console.log(error));
+  }
+
   render () {
     return (
       <div className='App'>
@@ -77,6 +93,8 @@ class App extends Component {
           />
         </form>
         <button onClick={this.addFriend}>Add a new friend</button>
+        <button onClick={this.updateFriend}>Update Friend info</button>
+        <button onClick={this.deleteFriend}>Delete Friend from list</button>
         {this.state.friends.map(friends => (
           <Friend key={friends.id} friends={friends} />
         ))}
