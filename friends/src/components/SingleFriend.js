@@ -16,6 +16,7 @@ class SingleFriend extends React.Component {
 
         }
     }
+    
 
     componentDidMount(){
         axios
@@ -46,29 +47,13 @@ class SingleFriend extends React.Component {
         this.setState({
             name: '', age: '', email: ''
         })
-        
-
     }
-
-    // deleteFriend = (props, event) => {
-    //     event.preventDefault()
-    //     axios
-    //     .delete(`http://localhost:5000/friends/${props.match.params.id}`)
-    //     .then(response =>{
-    //         this.setState({
-    //             friends: response.data
-    //         })
-    //     })
-       
-        
-    // }
-
    
     // idArr = [];
     render(props){
     return(
         <div>
-        <FriendProfile id={this.props.id} match={this.props.match} changeHandler={this.changeHandler} />
+        <FriendProfile friends={this.props.friends} id={this.props.id} match={this.props.match} changeHandler={this.changeHandler} />
         <form onSubmit={this.addFriend}>
         <ul>
             <li>

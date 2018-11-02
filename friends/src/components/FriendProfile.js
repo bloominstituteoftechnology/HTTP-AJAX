@@ -3,9 +3,10 @@ import axios from 'axios'
 
 
 class FriendProfile extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
+            friends: this.props.friends,
             name: '',
             age: '',
             email: ''
@@ -14,18 +15,17 @@ class FriendProfile extends React.Component{
 
 
 updateFriend= (props) => {
+   const updatedFriend = {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+    }
     const id = props.id
         axios
-        .post(`http://localhost:5000/friends/${id}`,{
-            friend: {
-                name: this.state.name,
-                age: this.state.age,
-                email: this.state.email
-            }
-        } )
-        .then((resolve) =>{
+        .put(`http://localhost:5000/friends/${id}`, updatedFriend)
+        .then((resolve) => {
             this.setState({
-                
+                friends: resolve.data 
             })
         console.log(resolve)
         })
