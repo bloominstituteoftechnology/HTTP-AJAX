@@ -28,7 +28,15 @@ class App extends React.Component {
     this.setState({
       friends: response
     })
+	
   }
+  
+  updateFriends = (response) => {
+    this.setState({
+      friends: response
+    })
+  }
+
   
   deleteFriend = (id) => {
     return () => {
@@ -45,8 +53,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
-        <Form updateFriends={this.updateFriends}/>
+        <Friends updateFriends={this.updateFriends} friends={this.state.friends} deleteFriend={this.deleteFriend} />
+        <Form addFriend={this.addFriend} />
       </div>
     );
   }

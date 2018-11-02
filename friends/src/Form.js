@@ -7,7 +7,7 @@ class Form extends React.Component {
         super();
         this.state = {
             name: '',
-            age: 0,
+            age: '',
             email: '',
             friends: []
         }
@@ -27,9 +27,14 @@ class Form extends React.Component {
             email: this.state.email
         })
         .then(response => {
-            this.props.updateFriends(response.data);
+            this.props.addFriend(response.data);
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
+        this.setState({
+            name: '',
+            age: '',
+            email: ''
+        });  
     }
      render() {
         return (

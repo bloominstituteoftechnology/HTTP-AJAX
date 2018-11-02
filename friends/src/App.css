@@ -30,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+.friendContainer {
+	border: 1px solid dodgerblue;
+	width: 50%;
+	margin: 20px auto;
+	display: flex;
+	justify-content: space-between;
+}

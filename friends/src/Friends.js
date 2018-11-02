@@ -1,5 +1,5 @@
 import React from 'react';
-import friendList from './FriendList.js'
+import FriendList from './FriendList.js'
 
 class Friends extends React.Component {
     render() {
@@ -7,9 +7,10 @@ class Friends extends React.Component {
             <div>
                 {this.props.friends.map(friend => {
                     return (
-                        <friendList 
+                        <FriendList 
                             key={friend.id} 
                             friend={friend}
+                            updateFriends={this.props.updateFriend}
                             deleteFriend={this.props.deleteFriend}
                         />  
                     )
