@@ -17,7 +17,7 @@ class App extends Component {
       }
     };
   }
-  componentDidMount() {
+  componentDidMount() { //lifecycle methods come after constructor
     axios
       .get("http://localhost:5000/friends")
       .then(res => {
@@ -37,15 +37,14 @@ class App extends Component {
     }); //allows for reuse :)
   };
 
-  submitHandler = () => {
+  submitHandler = e => {
+    e.preventDefault();
     axios
     .post("http://localhost:5000/friends/", this.state.friend)
     .then(res => {
-      this.setState({ friends: res.data, name: "", age: "", email: "" });
+      this.setState({ friends: res.data });
     })
-    .catch(err => {
-      console.log(err);
-    });
+    
 };
     // const newFriend = {
     //   id: this.state.friend[this.state.friend.length - 1].id + 1,

@@ -42,7 +42,7 @@ FriendForm.propTypes = {
         age: PropTypes.string,
         email: PropTypes.string,
     }),
-    onChangeHandler: PropTypes.func,
+    changeHandler: PropTypes.func,
     submitHandler: PropTypes.func,
 }
 
