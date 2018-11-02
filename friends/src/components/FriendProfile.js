@@ -44,7 +44,7 @@ updateHandler = (event) => {
         render(){
     return(
         <div>
-         <form type='submit' >
+         {/* <form type='submit' >
             <h4>UpdateName:</h4>
                 <input 
                 type='text'
@@ -65,7 +65,7 @@ updateHandler = (event) => {
                 <p onClick={this.updateFriend} style={{cursor: 'pointer'}}>
                     Update Friend
                 </p>
-        </form>
+        </form> */}
         </div>
     )
         }
