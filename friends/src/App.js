@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-    //Aking for info from the local server
+    //Asking for info from the local server
     .get('http://localhost:5000/friends')
     //then gets the response and using the callback function sets the friends object in the state to the response data
     .then(response => {
