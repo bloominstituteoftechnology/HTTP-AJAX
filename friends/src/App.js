@@ -1,39 +1,55 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Route } from 'react-router-dom';
-import Friends from './Friends';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import axios from 'axios';
+import Form from './Form'
+import Friends from './Friends'
 
- class App extends Component {
-  constructor(props){
-    super(props)
-    this.state ={
-      friends: [],
-    }
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      friends: []
+    };
   }
-  
+
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
-      .then( response => {
-        this.setState({friends: response.data})
-        console.log(this.state.friends)
+      .get(`http://localhost:5000/friends`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
       })
+      .catch(err => console.log(err))
   }
-	 
-   render() {
+
+  addFriend = (response) => {
+    this.setState({
+      friends: response
+    })
+  }
+  
+  deleteFriend = (id) => {
+    return () => {
+      axios
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(response => 
+          this.setState({
+            friends: response.data
+        }, console.log(this.state.friends)))
+        .catch(err => console.log(err))
+    }
+  }
+
+  render() {
     return (
       <div className="App">
-        {this.state.friends.map( friends => {
-          return (
-          <Friends id={friends.id} name={friends.name} age={friends.age} email={friends.email} /> 
-          )
-        })
-    
-        }
+        <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
+        <Form updateFriends={this.updateFriends}/>
       </div>
     );
   }
 }
- export default App;
+
+export default App;
