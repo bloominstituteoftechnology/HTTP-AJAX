@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {Route, NavLink} from 'react-router-dom';
+
+import axios from 'axios';
+
 import './App.css';
 
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+    }
+  }
+
+  componentDidMount() {
+    axios
+    .get('http://localhost:5000/friends')
+    .then(response => {
+      console.log(response)
+    })
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <nav>
+      <NavLink exact to="/">Home</NavLink>
+      <NavLink exact to="/about">About</NavLink>
+      <NavLink exact to="/contact">Contact</NavLink>
+      <NavLink exact to="/friends">Friends</NavLink>
+      </nav>
+      <Route exact path='/' component={Home}/>
+      <Route path='/about' component={About}/>
+      <Route path='/contact' component={Contact}/>
+      <Route exact path='/friends'/>
+      </div> 
     );
   }
 }
