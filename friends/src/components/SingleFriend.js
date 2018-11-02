@@ -53,11 +53,6 @@ class SingleFriend extends React.Component {
 
     }
 
-    updateHandler = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value 
-        })
-    }
 
     updateFriend= (props) => {
         const updatedFriend = {
@@ -165,7 +160,7 @@ class SingleFriend extends React.Component {
           <form>
               <input onChange={this.changeHandler} type='text' name='search'/>
               <button name='search' onClick={this.props.deleter(friend.id)} type="submit">Delete Friend</button>
-              <button onClick={this.updateFriend}>Update Friend</button>
+              <button onClick={() => this.updateFriend(friend.id)}>Update Friend</button>
               
           </form>
           </div>)}
