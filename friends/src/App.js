@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import './index.css'
 import axios from 'axios'
 import Friend from './Friend.js'
 
