@@ -34,18 +34,23 @@ class App extends Component {
     submitHandler=(event)=>{
       console.log("submitted");
       event.preventDefault();
-      let newFriend={
-        name:this.state.name,
-        age:this.state.age,
-        email:this.state.email
-      }
 
       axios
       .post('http://localhost:5000/friends', {
-        someData:{newFriend}
+        
+          name:this.state.name,
+          age:this.state.age,
+          email:this.state.email
+        
    })
       .then(response => (this.setState({name:'',age:'',email:''}) ))
+      .then(response=>window.location.reload())
       .catch(err => console.log(err));
+
+
+    }
+
+    submitUpdate=(event)=>{
 
     }
   

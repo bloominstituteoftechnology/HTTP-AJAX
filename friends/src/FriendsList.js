@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'react-router-dom';
 const FriendsListStyled=styled.div`
 display:flex;
 flex-direction:column;
@@ -13,8 +14,8 @@ const FriendsList=(props)=>{
     return(
         <FriendsListStyled>
         {props.friends.map(
-            (friend)=>{return <div>name:{friend.name} age: {friend.age} email: {friend.email}
-            </div>}
+            (friend)=>{return <form onSubmit={props.submitUpdate}><div><input type="text" name="name" placeholder={friend.name}/> <input type="text" name="age" placeholder={friend.age}/> <input type="text" name="email" placeholder={friend.email}/> <button>Update</button>
+            </div></form>}
           )}
     
     </FriendsListStyled>
