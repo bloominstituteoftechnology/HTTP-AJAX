@@ -6,7 +6,9 @@ class FriendCard extends React.Component {
         super(props);
         this.state = { 
             friend: [],
-            active: false,
+            name: '',
+            age: 0,
+            email: '',
         }
     }
     
@@ -21,10 +23,15 @@ class FriendCard extends React.Component {
         .catch(error => console.log(error))
     }
 
-    toggleClass() {
-      const currentState = this.state.active;
-      this.setState({active: !currentState});
+    inputHandler = e => {
+      const name = e.target.name;
+      if(name === "age") {
+        this.setState({age: Number(e.target.value)})
+      } else {
+        this.setState({[name]: e.target.value})
+      }
     }
+
 
     render() { 
         return ( 
@@ -40,11 +47,11 @@ class FriendCard extends React.Component {
               <form>
                 <h2>Update friend Info.</h2>
                 <p>Edit Name</p>
-                <input type="text"/>
+                <input type="text" name="name" onChange={this.inputHandler} value={this.state.name} />
                 <p>Edit Age</p>
-                <input type="text"/>
+                <input type="text" name="age" onChange={this.ageInputHandler} value={this.state.Age}/>
                 <p>Edit Email</p>
-                <input type="text"/>
+                <input type="text" name="email" onChange={this.inputHandler} value={this.state.email}/>
                 <div className="button-container">
                 <button>Update</button>
               </div>
