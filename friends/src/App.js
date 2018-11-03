@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import styled from 'styled-components';
 
-const FriendsListStyled=styled.div`
-display:flex;
-flex-direction:column;
-width:40%;
-height:20rem;
-justify-content:space-between;
-margin:auto;
-`
+import FriendsList from './FriendsList.js';
+import AddForm from './AddForm.js';
+
+
 
 
 class App extends Component {
   constructor(){
     super();
     this.state={
+
       friends:[]
     }
 
@@ -25,19 +21,45 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => (this.setState({friends: response.data})) )
-      .then(response =>console.log(this.state.friends))
       .catch(err => console.log(err));
   }
+
+
+  changeHandler=(event)=>{
+    this.setState(
+      
+      {[event.target.name]: event.target.value}
+    );}
+
+    submitHandler=(event)=>{
+      console.log("submitted");
+      event.preventDefault();
+      let newFriend={
+        name:this.state.name,
+        age:this.state.age,
+        email:this.state.email
+      }
+
+      axios
+      .post('http://localhost:5000/friends', {
+        someData:{newFriend}
+   })
+      .then(response => (this.setState({name:'',age:'',email:''}) ))
+      .catch(err => console.log(err));
+
+    }
+  
+
   render() {
     return (
       <div className="App">
-      <FriendsListStyled>
-      {this.state.friends.map(
-        (friend)=>{return <div>name:{friend.name} age: {friend.age} email: {friend.email}
-        </div>}
-      )}
-      </FriendsListStyled>
       
+        <FriendsList friends={this.state.friends}/>
+        <AddForm 
+        currentName={this.state.name}
+        currentAge={this.state.age}
+        currentEmail={this.state.email}
+        submitHandler={this.submitHandler} changeHandler={this.changeHandler}/>
 
       </div>
     );
