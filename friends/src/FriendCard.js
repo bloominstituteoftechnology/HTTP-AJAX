@@ -6,6 +6,7 @@ class FriendCard extends React.Component {
         super(props);
         this.state = { 
             friend: [],
+            active: false,
         }
     }
     
@@ -20,6 +21,11 @@ class FriendCard extends React.Component {
         .catch(error => console.log(error))
     }
 
+    toggleClass() {
+      const currentState = this.state.active;
+      this.setState({active: !currentState});
+    }
+
     render() { 
         return ( 
           <div>
@@ -31,10 +37,18 @@ class FriendCard extends React.Component {
                 <p>Friend Email: {info.email}</p>
               </div>
             ))}
-            <div className="button-container">
+              <form>
+                <h2>Update friend Info.</h2>
+                <p>Edit Name</p>
+                <input type="text"/>
+                <p>Edit Age</p>
+                <input type="text"/>
+                <p>Edit Email</p>
+                <input type="text"/>
+                <div className="button-container">
                 <button>Update</button>
-                <button>Delete</button>
               </div>
+              </form>
           </div>
         );
     }
