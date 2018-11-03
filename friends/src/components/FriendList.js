@@ -13,6 +13,8 @@ const FriendsList = props => {
 
       </div>
         <button onClick={() => props.deleteHandler(props.friends.id)}>delete</button>
+        <button onClick={(e) => props.goToUpdate(e, props.friends.id)}>update</button>
+      
     </div>
 
   );
@@ -21,6 +23,7 @@ const FriendsList = props => {
 FriendsList.propTypes = {
   friends: PropTypes.object,
   deleteHandler: PropTypes.func,
+  goToUpdate: PropTypes.func,
 }
 
 export default FriendsList;

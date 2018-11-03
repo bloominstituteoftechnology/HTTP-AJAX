@@ -5,6 +5,12 @@ import FriendForm from "./components/FriendForm";
 
 import "./App.css";
 
+const blankFormValues = {
+  name: '',
+  age: '',
+  email: '',
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +20,8 @@ class App extends Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      isUpdating: false
     };
   }
   componentDidMount() {
@@ -43,7 +50,7 @@ class App extends Component {
     axios
       .post("http://localhost:5000/friends/", this.state.friend)
       .then(res => {
-        this.setState({ friends: res.data });
+        this.setState({ friends: res.data, friend: blankFormValues, });
       });
   };
 
@@ -51,6 +58,20 @@ class App extends Component {
     axios.delete(`http://localhost:5000/friends/${friendId}`).then(res => {
       this.setState({ friends: res.data });
     });
+  };
+
+  goToUpdate = (e, id) => {
+    e.preventDefault();
+    const updatedFriend = this.state.friends.find(friend => friend.id == id);
+    this.setState({ isUpdating: true, friend: updatedFriend });
+  };
+
+  updateHandler = friendId => {
+    axios
+      .put(`http://localhost:5000/friends/${friendId}`, this.state.friend)
+      .then(res => {
+        this.setState({ friends: res.data, isUpdating: false, friend: blankFormValues, });
+      });
   };
 
   render() {
@@ -62,6 +83,7 @@ class App extends Component {
               key={friends.id}
               friends={friends}
               deleteHandler={this.deleteHandler}
+              goToUpdate={this.goToUpdate}
             />
           ))}
         </div>
@@ -69,6 +91,8 @@ class App extends Component {
           friend={this.state.friend}
           changeHandler={this.changeHandler}
           submitHandler={this.submitHandler}
+          isUpdating={this.state.isUpdating}
+          updateHandler={this.updateHandler}
         />
       </div>
     );
