@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendList from './Components/FriendsList'
-import SoloFriend from './Components/SoloFriend'
-// import axios from ? 
+
+import axios from 'axios'
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+    friends: [],
+    name: '',
+    age: '',
+    email: '',
+  
+   }
+  }
 
-
+  componentDidMount = () => {
+    axios.get('http://localhost:5000/friends')
+  }
 
 
   render() {
@@ -16,7 +28,7 @@ class App extends Component {
         <header className="App-header">
           
           <FriendList />
-          <SoloFriend />
+        
         </header>
       </div>
     );
