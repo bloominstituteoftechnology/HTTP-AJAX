@@ -43,7 +43,9 @@ inputChangeHandler = (e) => {
       email: this.state.email
     }
     axios.post('http://localhost:5000/friends', {name: this.state.name, age: this.state.age, email: this.state.email })
-    .then(response => console.log(response))
+    .then(response => {
+      this.setState({friends: response.data})
+    })
     .catch(err => console.log(err))
 }
 
@@ -56,7 +58,8 @@ inputChangeHandler = (e) => {
              <input name='name' type='text' value={this.state.name}   placeholder='Name Here' onChange={this.inputChangeHandler} />
              <input name='age' type='text' value={this.state.age}     placeholder='Age Here' onChange={this.inputChangeHandler} />
              <input name='email' type='text' value={this.state.email} placeholder='Email Here' onChange={this.inputChangeHandler} />
-          </form>
+            <button type='submit'>Add a Friend</button>
+             </form>
 
         {this.state.friends.map( friends => {
           return (
