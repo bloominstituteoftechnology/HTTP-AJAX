@@ -1,14 +1,20 @@
 import React from 'react';
 
-function FriendsList(props) {
+class FriendsList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+render() {
     return (
             <div>
-                <span>ID: {props.id}</span>
-              <span> Name: {props.name}</span>
-               <span> Age: {props.age}</span>
-               <span> Email: {props.email}</span>
-               {/* <button onClick={props.delete}>Delete </button> */}
+                <span>ID: {this.props.id}</span>
+              <span> Name: {this.props.name}</span>
+               <span> Age: {this.props.age}</span>
+               <span> Email: {this.props.email}</span>
+               <button onClick={ this.props.delete(this.props.id)}>Delete </button>
              </div>
         )
     };
+ };
  export default FriendsList;

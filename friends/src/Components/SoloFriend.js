@@ -1,11 +1,11 @@
-import React from 'react';
+// import React from 'react';
 
-export default props => {
-    return (
-        <div>
+// export default props => {
+//     return (
+//         <div>
         
-        </div>
-    )
-}
+//         </div>
+//     )
+// }
 
-export default SoloFriend;
+// export default SoloFriend;

@@ -43,6 +43,7 @@ inputChangeHandler = (e) => {
     .catch(err => console.log(err))
 }
 
+
 deleteFriendHandler = (id) => {
   return() => {
     axios.delete(`http://localhost:5000/friends/${id}`)
