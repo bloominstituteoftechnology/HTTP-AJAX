@@ -36,17 +36,21 @@ inputChangeHandler = (e) => {
 
   submitNewFriend = (e) => {
     e.preventDefault()
-    console.log(this.state)
-    const friend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    }
-    axios.post('http://localhost:5000/friends', {name: this.state.name, age: this.state.age, email: this.state.email })
+       axios.post('http://localhost:5000/friends', {name: this.state.name, age: this.state.age, email: this.state.email })
     .then(response => {
       this.setState({friends: response.data})
     })
     .catch(err => console.log(err))
+}
+
+deleteFriendHandler = (id) => {
+  return() => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(response =>{
+      this.setState({friends: response.data})
+    })
+    .catch(err => console.log(err))
+  }
 }
 
   render() {
@@ -61,22 +65,20 @@ inputChangeHandler = (e) => {
             <button type='submit'>Add a Friend</button>
              </form>
 
+
         {this.state.friends.map( friends => {
           return (
-    
-         
          <FriendList 
           id={friends.id} 
           name={friends.name} 
           age={friends.age} 
-          email={friends.email} />
+          email={friends.email} 
+          delete={this.deleteFriendHandler}/> 
+          
           )
         })
-    
         }
 
-
-       
         </header>
       </div>
     );

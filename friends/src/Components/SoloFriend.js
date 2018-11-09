@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const SoloFriend = props => {
+export default props => {
     return (
         <div>
         
-           'test data SoloFriend goes here' 
         </div>
     )
 }
 
-export default SoloFriend
+export default SoloFriend;
