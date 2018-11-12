@@ -6,8 +6,10 @@ import NewFriend from "./Components/NewFriend";
 class App extends Component {
   render() {
     return(
-      <div><div>Hello!</div>
-      <NewFriend /></div>
+      <div>
+      <NewFriend />
+      
+      </div>
 
 
     );

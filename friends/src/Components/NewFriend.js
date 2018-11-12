@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import friends from "../../server";
 
 class NewFriend extends React.Component{
     constructor(){
@@ -13,14 +14,17 @@ class NewFriend extends React.Component{
     }
 
     componentDidMount(){
-        axios
-            .get("http://localhost:5000/friends")
-            .then(data => {
+        axios.get("http://localhost:5000/friends")
+            .then(res => {
                 this.setState({
-                    friends: data
+                    friends: res.data
                 })
+                console.log(res.data);
             })
-        
+            .catch(error => {
+                console.log('Server Error', error);
+            });
+        this.setState({friends: {friends: this.props.friend, name: '', age: '', email: ''})
         }
 
 
@@ -31,11 +35,11 @@ class NewFriend extends React.Component{
 
 //Same as before
 
-changeHandler = (event) => {
+const changeHandler = (event) => {
     this.setState({[event.target.name]: event.target.value })
 }
 
-handleSubmit = event => {
+ const handleSubmit = (event) => {
     this.preventDefault();
 
     const user = {
@@ -43,47 +47,6 @@ handleSubmit = event => {
         age: this.state.age,
         email: this.state.email,
     };
-}
-
-
-render(){
-    return(
-         <div>
-             <form method='post'
-                   onSubmit={this.handleSubmit}>
-             <ul>
-                 <li>
-                     <h3>Name:</h3>
-                     <input
-                     type= 'text'
-                     onChange={this.changeHandler}
-                     name='name'
-                     value={this.state.name} />
-                     {/* input */}
-
-                            <h3>Age:</h3>
-                     <input
-                     type= 'text'
-                     onChange={this.changeHandler}
-                     name='age'
-                     value={this.state.age} />
-                     {/* age */}
-                 </li>
-
-                        <h3>Email:</h3>
-                     <input
-                     type= 'text'
-                     onChange={this.changeHandler}
-                     name='email'
-                     value={this.state.email} />
-                     {/* @ */}
-                    </ul>
-                     <button onClick ={this.addOne}>
-                        </button>
-            </form>
-         </div>
-    )
-}
 }
 
 export default NewFriend;
