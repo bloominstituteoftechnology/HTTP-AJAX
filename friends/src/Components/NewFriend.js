@@ -12,20 +12,22 @@ class NewFriend extends React.Component{
         }
     }
 
+    componentDidMount(){
+        axios
+            .get("http://localhost:5000/friends")
+            .then(data => {
+                this.setState({
+                    friends: data
+                })
+            })
+        
+        }
+
 
 }
 
 //setting up state to retrieve data from the server.
-componentDidMount(){
-axios
-    .get("http://localhost:5000/friends")
-    .then(data => {
-        this.setState({
-            friends: data
-        })
-    })
 
-}
 
 //Same as before
 
@@ -33,23 +35,22 @@ changeHandler = (event) => {
     this.setState({[event.target.name]: event.target.value })
 }
 
-//add one function: Adding a friend 
-addFriend = () => {
-    const friendObj = {name: this.state.name, age: this.state.age, email: this.state.email}
-    axios
-    .post('http://localhost:5000/friends', friendObj)
-    .then(friendObj => {
-        console.log(friendObj)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+handleSubmit = event => {
+    this.preventDefault();
+
+    const user = {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email,
+    };
+}
 
 
 render(){
     return(
          <div>
-             <form method='post'>
+             <form method='post'
+                   onSubmit={this.handleSubmit}>
              <ul>
                  <li>
                      <h3>Name:</h3>
