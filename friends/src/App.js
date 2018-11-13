@@ -23,36 +23,38 @@ class App extends Component {
     };
 
   }
-
+      // axios is a AJAX library
+      // don't use 'res' instead of 'response', this can make NODE code complicated
   componentDidMount() {
     axios
-      .get('http://localhost:5000/friends')
+      .get('http://localhost:5000/friends')         // we read in data at this route & get a promise object
       .then(response => {
         console.log('from CDM '  , response.data);
-        this.setState({friends: response.data});
+        this.setState({friends: response.data});    // we get some JSON data
       })
       .catch(error => console.log('ERROR: ', error));
   }
 
       // don't need 'ev' passed in
   addNewFriend = () => {
-   // ev.preventDefault();          // don't need
- //   if(this.state.name) {         // don't need
-      axios.post('http://localhost:5000/friends', {
-        name: this.state.name,
-        age: this.state.age,
-        email: this.state.email
-      })
+    const friend  = {
+      name: this.state.name,
+      age: this.state.age,
+      email: this.state.email
+    };
+
+    axios.post('http://localhost:5000/friends', friend)
       .then(response => {
-        this.setState({friends: response.data, name: '', age: '', email: ''})
+        console.log('from addNewFriend', response);
+        this.setState({name: '', age: '', email: ''});
       })
       .catch(error => console.log('ERROR: ', error));
- //   }       // don't need
+
   };
 
   handleInput = ev => {
     this.setState({[ev.target.name]: ev.target.value});
-    console.log('from handleInput', {[ev.target.name]: ev.target.value});
+    console.log('from handleInput', {[ev.target.name]: ev.target.value} );
 
   };
 
