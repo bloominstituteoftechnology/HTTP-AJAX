@@ -8,6 +8,12 @@ const FriendList  = ({friend}, props) => {
 
   const {id, name, age, email} = friend;
 
+  // console.log(friend.id);
+  // console.log(friend);
+  // console.log(props.deleteFriend(props.id));
+
+
+
 
   return (
     <div className = 'friend-container'>
@@ -25,7 +31,7 @@ const FriendList  = ({friend}, props) => {
         </div>
      </div>
 
-     <button className = 'button_delete'  > Delete</button>
+     <button className = 'button_delete' > Delete</button>
 
     </div>
   );
@@ -33,6 +39,7 @@ const FriendList  = ({friend}, props) => {
 
             // onClick = {props.deleteFriend(friend.id)}
             // onClick = {props.deleteFriend({id})}
+            // onClick = {friend.deleteFriend({id})}
 };
 
 FriendList.propTypes = {

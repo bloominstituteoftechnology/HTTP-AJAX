@@ -1,9 +1,7 @@
 import React from 'react';
 
 const FriendForm = (props) => {
-
-  console.log(props);
-
+    console.log(props);
   return (
     <form>
 

@@ -28,15 +28,16 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
+        console.log('from CDM '  , response.data);
         this.setState({friends: response.data});
       })
       .catch(error => console.log('ERROR: ', error));
   }
 
-
-  addNewFriend = ev => {
-    ev.preventDefault();
-    if(this.state.name) {
+      // don't need 'ev' passed in
+  addNewFriend = () => {
+   // ev.preventDefault();          // don't need
+ //   if(this.state.name) {         // don't need
       axios.post('http://localhost:5000/friends', {
         name: this.state.name,
         age: this.state.age,
@@ -46,18 +47,21 @@ class App extends Component {
         this.setState({friends: response.data, name: '', age: '', email: ''})
       })
       .catch(error => console.log('ERROR: ', error));
-    }
+ //   }       // don't need
   };
 
   handleInput = ev => {
-    this.setState({[ev.target.name]: ev.target.value})
+    this.setState({[ev.target.name]: ev.target.value});
+    console.log('from handleInput', {[ev.target.name]: ev.target.value});
+
   };
 
 
-   deleteFriend = (id) => {
-     axios.delete(`http://localhost:5000/friends/{$id}`)
-       .then(response => {
-         this.setState({friends: response.data});
+  deleteFriend = (friend) => {
+     axios.delete(`http://localhost:5000/friends/${friend}`)
+       .then( () => {
+         // this.setState({friends: response.data});
+         this.addNewFriend();
        })
        .catch(error => console.log('ERROR: ', error));
    };
@@ -92,7 +96,7 @@ class App extends Component {
 
         <div className = 'friendlist-container'>
         {this.state.friends.map( friend => (
-          <FriendList key = {friend.email} friend = {friend}  />
+          <FriendList key = {friend.email} friend = {friend} deleteFriend = {this.deleteFriend} />
 
           )
         )}
@@ -106,7 +110,6 @@ class App extends Component {
             input_age = {this.state.age}
             input_email = {this.state.email}
             handleInput = {this.handleInput}
-            deleteFriend = {this.deleteFriend}
           />
 
         </div>
