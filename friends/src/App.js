@@ -26,6 +26,8 @@ class App extends Component {
       // axios is a AJAX library
       // don't use 'res' instead of 'response', this can make NODE code complicated
   componentDidMount() {
+    this.getFriends();        // using Dustin's pattern
+    /*
     axios
       .get('http://localhost:5000/friends')         // we read in data at this route & get a promise object
       .then(response => {
@@ -33,7 +35,23 @@ class App extends Component {
         this.setState({friends: response.data});    // we get some JSON data
       })
       .catch(error => console.log('ERROR: ', error));
+
+  */
   }
+
+  getFriends = () => {
+    axios
+      .get('http://localhost:5000/friends')         // we read in data at this route & get a promise object
+      .then(response => {
+        console.log('from CDM '  , response.data);
+        this.setState({friends: response.data});    // we get some JSON data
+      })
+      .catch(error => console.log('ERROR: ', error));
+
+  };
+
+
+
 
       // don't need 'ev' passed in
   addNewFriend = () => {
@@ -45,7 +63,11 @@ class App extends Component {
 
     axios.post('http://localhost:5000/friends', friend)
       .then(response => {
-        console.log('from addNewFriend', response);
+        // this.setState({friends: response.data, name: '', age: '', email: ''})
+        console.log('from addNewFriend', response.data);
+        // this.setState({friends: response.data, name: '', age: '', email: ''})
+
+        this.getFriends();
         this.setState({name: '', age: '', email: ''});
       })
       .catch(error => console.log('ERROR: ', error));
