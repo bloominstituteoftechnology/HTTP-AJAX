@@ -7,7 +7,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      name: "",
+      age: 0,
+      email: ""
     };
   }
 
@@ -22,10 +25,75 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleChange = e => {
+    // if (e.target.name === "age") {
+    //   let num = parseInt(e.target.value, 10);
+    //   console.log(num);
+    //   this.setState({ [e.target.name]: parseInt(num, 10) });
+    // }
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let newFriend = {
+      name: this.state.name,
+      age: parseInt(this.state.age, 10),
+      email: this.state.email
+    };
+    fetch("http://localhost:5000/friends", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(newFriend)
+    })
+      .then(response => response.json())
+      .then(result => {
+        this.setState({ friends: result });
+        console.log(this.state.friends);
+      });
+  };
+
   render() {
     return (
       <div className="App">
         <FriendsList friends={this.state.friends} />
+        <form>
+          <label>
+            Friend's Name:
+            <input
+              name="name"
+              type="text"
+              placeholder="name here..."
+              onChange={this.handleChange}
+              required
+            />
+          </label>
+
+          <label>
+            Friend's Age:
+            <input
+              name="age"
+              type="number"
+              placeholder="age here..."
+              onChange={this.handleChange}
+              required
+            />
+          </label>
+
+          <label>
+            Email Address:
+            <input
+              name="email"
+              type="email"
+              placeholder="email here..."
+              onChange={this.handleChange}
+              required
+            />
+          </label>
+          <input name="submit" type="submit" onClick={this.handleSubmit} />
+        </form>
       </div>
     );
   }
