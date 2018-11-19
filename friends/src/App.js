@@ -71,21 +71,10 @@ class App extends Component {
     }
   };
 
-  // update = e => {
-  //   e.preventDefault();
-
-  // };
-
   delete = e => {
-    e.preventDefault();
-    console.log(e.target.id);
-    let deleted = this.state.friends.filter(
-      friend => friend.id !== parseInt(e.target.id, 10)
-    );
-    console.log(deleted);
     axios
-      .delete(`http://localhost:5000/${e.target}`)
-      .then(res => console.log(res))
+      .delete(`http://localhost:5000/friends/${e.target.id}`)
+      .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   };
 
