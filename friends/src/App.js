@@ -17,10 +17,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // fetch("http://localhost:5000/friends")
-    //   .then(res => res.json())
-    //   .then(friends => this.setState({ friends: friends }))
-    //   .catch(err => console.log(err));
     axios
       .get("http://localhost:5000/friends")
       .then(res => this.setState({ friends: res.data }))
@@ -38,11 +34,11 @@ class App extends Component {
       age: parseInt(this.state.age, 10),
       email: this.state.email
     };
+
     if (this.state.id.length > 0) {
       let index = this.state.friends.findIndex(
         friend => friend.id === parseInt(this.state.id)
       );
-
       axios
         .put(`http://localhost:5000/friends/${index + 1}`, newFriend)
         .then(res =>
