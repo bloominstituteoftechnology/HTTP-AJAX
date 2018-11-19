@@ -8,6 +8,9 @@ const FriendsList = props => {
           <h1>{friend.name}</h1>
           <p>{friend.age}</p>
           <p>{friend.email}</p>
+          <button id={friend.id} onClick={props.delete}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

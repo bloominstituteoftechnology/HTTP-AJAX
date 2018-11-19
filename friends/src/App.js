@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import FriendsList from "./components/FriendsList";
-// import axios from "axios";
+import InputForm from "./components/InputForm";
+import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -9,28 +10,24 @@ class App extends Component {
     this.state = {
       friends: [],
       name: "",
-      age: 0,
-      email: ""
+      age: "",
+      email: "",
+      id: ""
     };
   }
 
   componentDidMount() {
-    // axios
-    //   .get("https://localhost:5000/friends/")
-    //   .then(res => this.setState({ friends: res }))
+    // fetch("http://localhost:5000/friends")
+    //   .then(res => res.json())
+    //   .then(friends => this.setState({ friends: friends }))
     //   .catch(err => console.log(err));
-    fetch("http://localhost:5000/friends")
-      .then(res => res.json())
-      .then(friends => this.setState({ friends: friends }))
+    axios
+      .get("http://localhost:5000/friends")
+      .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   }
 
   handleChange = e => {
-    // if (e.target.name === "age") {
-    //   let num = parseInt(e.target.value, 10);
-    //   console.log(num);
-    //   this.setState({ [e.target.name]: parseInt(num, 10) });
-    // }
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -41,59 +38,66 @@ class App extends Component {
       age: parseInt(this.state.age, 10),
       email: this.state.email
     };
-    fetch("http://localhost:5000/friends", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(newFriend)
-    })
-      .then(response => response.json())
-      .then(result => {
-        this.setState({ friends: result });
-        console.log(this.state.friends);
-      });
+    if (this.state.id.length > 0) {
+      let index = this.state.friends.findIndex(
+        friend => friend.id === parseInt(this.state.id)
+      );
+
+      axios
+        .put(`http://localhost:5000/friends/${index + 1}`, newFriend)
+        .then(res =>
+          this.setState({
+            friends: res.data,
+            name: "",
+            age: "",
+            email: "",
+            id: ""
+          })
+        )
+        .catch(err => console.log(err));
+    } else {
+      axios
+        .post(`http://localhost:5000/friends`, newFriend)
+        .then(res =>
+          this.setState({
+            friends: res.data,
+            name: "",
+            age: "",
+            email: "",
+            id: ""
+          })
+        )
+        .catch(err => console.log(err));
+    }
+  };
+
+  // update = e => {
+  //   e.preventDefault();
+
+  // };
+
+  delete = e => {
+    e.preventDefault();
+    console.log(e.target.id);
+    let deleted = this.state.friends.filter(
+      friend => friend.id !== parseInt(e.target.id, 10)
+    );
+    console.log(deleted);
+    axios
+      .delete(`http://localhost:5000/${e.target}`)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
-        <form>
-          <label>
-            Friend's Name:
-            <input
-              name="name"
-              type="text"
-              placeholder="name here..."
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-
-          <label>
-            Friend's Age:
-            <input
-              name="age"
-              type="number"
-              placeholder="age here..."
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-
-          <label>
-            Email Address:
-            <input
-              name="email"
-              type="email"
-              placeholder="email here..."
-              onChange={this.handleChange}
-              required
-            />
-          </label>
-          <input name="submit" type="submit" onClick={this.handleSubmit} />
-        </form>
+        <FriendsList friends={this.state.friends} delete={this.delete} />
+        <InputForm
+          info={this.state}
+          change={this.handleChange}
+          submit={this.handleSubmit}
+        />
       </div>
     );
   }
