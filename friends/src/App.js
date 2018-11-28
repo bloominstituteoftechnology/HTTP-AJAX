@@ -102,8 +102,16 @@ class App extends Component {
   
  
 
-addFriend = () => {
-    axios.post('http://localhost:5000/friends', friends ).then(response => console.log(response)).catch(err => console.log(err))
+addFriend = (friend) => {
+    axios
+    .post(`http://localhost:5000/friends`, friend )
+    .then((response) => {
+      console.log(response);
+      this.setState({
+        friends: response.data
+      });
+    })
+    .catch(err => console.log(err));
   }
 
 	render() {

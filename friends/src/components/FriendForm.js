@@ -52,33 +52,27 @@ class FriendForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			nameValue: '',
-			ageValue: '',
-			emailValue: ''
+			friend: {
+				name: '',
+				age: '',
+				email: ''
+			}
 		};
 	}
 
-	handleChange(event) {
+	handleChange = (event) => {
+		this.setState({
+			friend: {
+				...this.state.friend,
+				[event.target.name]: event.target.value
+			}
+		});
+	}
+
+	addFriend = (event) => {
 		event.preventDefault();
-		return event.target.name === 'name'
-			? this.setState({
-					nameValue: event.target.value
-			  })
-			: event.target.name === 'age'
-			? this.setState({
-					ageValue: event.target.value
-			  })
-			: event.target.name === 'email'
-			? this.setState({
-					emailValue: event.target.value
-			  })
-			: null;
-    }
-    
-    addFriend(event){
-        event.preventDefault();
-        this.props.addFriend(this.state.nameValue, this.state.ageValue, this.state.emailValue);
-    }
+		this.props.addFriend(this.state.friend);
+	}
 	render() {
 		return (
 			<Form onSubmit={this.addFriend}>
@@ -87,23 +81,19 @@ class FriendForm extends Component {
 					<Input
 						type="text"
 						name="name"
-						value={this.state.nameValue}
+						value={this.state.friend.name}
 						placeholder="Please Enter Your Name..."
-						onChange={(event) => {
-							this.handleChange(event);
-						}}
+						onChange={this.handleChange}
 					/>
 				</Label>
 				<Label>
 					Age
 					<Input
-						type="text"
+						type="number"
 						name="age"
-						value={this.state.ageValue}
+						value={this.state.friend.age}
 						placeholder="Please Enter Your Age..."
-						onChange={(event) => {
-							this.handleChange(event);
-						}}
+						onChange={this.handleChange}
 					/>
 				</Label>
 				<Label>
@@ -111,14 +101,12 @@ class FriendForm extends Component {
 					<Input
 						type="text"
 						name="email"
-						value={this.state.emailValue}
+						value={this.state.friend.email}
 						placeholder="Please Enter Your Email..."
-						onChange={(event) => {
-							this.handleChange(event);
-						}}
+						onChange={this.handleChange}
 					/>
 				</Label>
-				<Button type='submit'>Submit</Button>
+				<Button type="submit">Submit</Button>
 			</Form>
 		);
 	}
@@ -126,9 +114,11 @@ class FriendForm extends Component {
 export default FriendForm;
 
 FriendForm.propTypes = {
-    nameValue: PropTypes.string,
-    ageValue: PropTypes.string,
-    emailValue: PropTypes.string,
+    friend: PropTypes.shape({
+        name: PropTypes.string,
+        age: PropTypes.number,
+        email: PropTypes.string,
+    }),
 	handleChange: PropTypes.func,
 	addFriend: PropTypes.func
 };
