@@ -24,6 +24,10 @@ class App extends Component {
       })
   }
 
+  addNewFriend(e) {
+
+  }
+
   render() {
     return (
       <div className="App">
