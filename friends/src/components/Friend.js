@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledFriend = styled.div`
   margin: 5px auto;
@@ -28,7 +29,7 @@ const Friend = props => {
       <div><h2>{props.friend.name}</h2></div>
       <div><h3>{props.friend.age} years old</h3></div>
       <div><h3>{props.friend.email}</h3></div>
-      <UpdateButton>Update</UpdateButton>
+      <Link to={`/update/${props.friend.id}`}><UpdateButton>Update</UpdateButton></Link>
     </StyledFriend>
   );
 };

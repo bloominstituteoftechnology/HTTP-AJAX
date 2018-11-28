@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledFriendForm = styled.form`
   max-width: 60%;
@@ -21,7 +22,7 @@ const FriendForm = (props) => {
         <input type="text" placeholder="name" name="name" />
       <input type="number" placeholder="age" name="age" />
       <input type="text" placeholder="email" name="email" />
-      <input type="submit"  />
+      <input type="submit"/>
     </StyledFriendForm>
   );
 };
