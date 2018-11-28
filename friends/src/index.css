@@ -12,3 +12,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.friends-header{
+  color: #F64C72;
+  background: #2f2fa2;
+}
+
+.friends-header h4{
+  text-transform: uppercase;
+  padding: 2px;
+  margin: 5px;
+  color: #fff;
+}
+
