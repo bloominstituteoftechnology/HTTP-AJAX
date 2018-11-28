@@ -33,3 +33,23 @@
     padding: 5px 0;
     font-size: 1.6rem;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title {
+    font-size: 1.6rem;
+    margin: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    margin: 5px 0;
+}
