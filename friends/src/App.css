@@ -1,0 +1,97 @@
+.home-nav-wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 50px;
+  background-color: #0280e7;
+  border: 1px solid #0280e7;
+}
+
+.home-nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 50%;
+margin: 0 auto;
+}
+
+.home-nav-links {
+  color: #fff;
+  text-decoration: none;
+}
+
+.home-nav-links.active {
+  border-bottom: 2px solid #fff;
+  
+}
+
+.home-wrapper {
+  position: relative;
+  text-align: center;
+  width: 90%;
+  height: 300px;
+  margin: 50px auto 0 auto;
+  color: white;
+  background-color: #0280e7;
+  border: 1.5px solid black;
+}
+
+.home-welcome-text {
+  font-size: 65px;
+  text-transform: uppercase;
+  letter-spacing: 1.5rem;
+  margin-top: 100px;
+ 
+}
+
+
+
+.home-friends-button {
+  height: 65px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: black;     
+  bacKground-color: #ffffff;
+  border: 1.5px solid black;
+  border-radius: 5px;
+  width: 25%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: .3rem;
+  text-transform: uppercase;
+
+  position: absolute;
+  bottom: -30px;
+  right: 37%;
+}
+
+.home-friends-button:hover {
+  text-decoration: underline;
+ }
+
+.friends-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+.friends {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 15px;
+  /* border: 1px solid blue; */
+}
+
+.friend{
+  flex-direction: column;
+  text-align: center;
+  width: 30%;
+  margin: 15px 0; 
+  border: 1.5px solid #0280e7;
+  border-radius: 5px;
+}
