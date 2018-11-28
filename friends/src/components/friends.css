@@ -1,0 +1,12 @@
+.friendsList{
+    margin: 0 auto;
+    background-color: lightgrey;
+    /* width: 900px; */
+}
+
+.friendCard{
+    margin: 20px auto;
+    width: 30%;
+    border: 1px solid black;
+    
+}
