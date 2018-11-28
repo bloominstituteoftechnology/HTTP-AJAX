@@ -9,6 +9,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
+      nameText:'',
+      ageText: '',
+      emailText:'',
     }
   }
 
@@ -23,11 +26,47 @@ class App extends Component {
       });
   }
 
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  addFriend = event => {
+
+    axios
+      .post('http://localhost:5000/friends', 
+        { 
+          id: Date.now(),
+          name: this.state.nameText,
+          age: this.state.ageText, 
+          email: this.state.emailText,
+        })
+      .then(() => {
+        console.log('you did it');
+      })
+      .catch(() => {
+        console.log('sad face');
+      })
+
+    this.setState({
+      nameText:'',
+      ageText: '',
+      emailText:'',
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <FriendList friends={this.state.friends}/>
-        <Form />
+        <Form 
+          nameText={this.state.nameText}
+          ageText={this.state.ageText}
+          emailText={this.state.emailText}
+          handleChange={this.handleChange}
+          addFriend={this.addFriend}
+        />
       </div>
     );
   }
