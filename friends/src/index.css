@@ -1,0 +1,13 @@
+.app {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.friend-list {
+  margin: 20px auto;
+  padding: 10px;
+}

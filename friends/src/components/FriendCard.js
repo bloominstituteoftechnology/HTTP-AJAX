@@ -2,10 +2,22 @@ import React from 'react';
 
 const FriendCard = ({ friend }) => {
   return (
-    <div className="ui list">
-      <div className="ui item">Name: {friend.name}</div>
-      <div className="ui item">Age: {friend.age}</div>
-      <div className="ui item">Email: {friend.email}</div>
+    <div style={{'padding': '20px'}} className="ui friend-card items">
+      <div className="friend item">
+        <div className="content">
+         Name: {friend.name}
+        </div>
+      </div>
+      <div className="friend item">
+        <div className="content">
+          Age: {friend.age}
+        </div>
+      </div>
+      <div className="friend item">
+        <div className="content">
+          Email: {friend.email}
+        </div>
+      </div>
     </div>
   );
 }

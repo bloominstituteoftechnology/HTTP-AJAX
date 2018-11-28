@@ -22,9 +22,27 @@ class App extends React.Component {
       });
   }
 
+  addFriend = () => {
+    axios
+      .post(
+        'http://localhost:5000/friends'
+        , {
+          name: 'Dustin',
+          id:10,
+          age: 30,
+          email: 'email@email.com'
+        })
+      .then(res => (
+        this.setState({
+          friends: res.data,
+        })
+      ))
+      .catch(err => console.log(err))
+  }
+
   render() { 
     return (
-      <div>
+      <div className="app">
         <h1>Friend App</h1>
         <FriendForm />
         <FriendList friends={this.state.friends} />
