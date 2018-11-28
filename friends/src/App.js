@@ -24,20 +24,24 @@ class App extends Component {
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
 
-    this.props.history.listen((location, action) => {
-      if (action === "POP") {
-        let backFriend = this.state.friends.slice();
+    this.listener = this.props.history.listen((location, action) => {
+      if (action === "POP" && location.pathname === "/") {
+        let backFriend = [...this.state.friends];
         let info = backFriend.pop();
-        backFriend.pop();
-        this.setState(prevState => ({
-          ...prevState,
-          friends: backFriend,
-          name: info.name,
-          age: info.age,
-          email: info.email
-        }));
+
+        this.setState(
+          {
+            friends: backFriend,
+            name: info.name,
+            age: info.age,
+            email: info.email,
+            id: info.id
+          },
+          console.log(this.props)
+        );
       }
     });
+    console.log(this.props.history);
   }
 
   handleChange = e => {
@@ -74,7 +78,7 @@ class App extends Component {
         .catch(err => console.log(err));
     } else {
       axios
-        .post(`http://localhost:5000/friends`, newFriend)
+        .post(`http://localhost:5000/friends/`, newFriend)
         .then(res =>
           this.setState({
             friends: res.data,
