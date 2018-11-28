@@ -76,6 +76,14 @@ export default class FriendForm extends React.Component {
 
             this.props.addFunc(obj);
 
+            this.setState({
+
+              name: '',
+              age: '',
+              email: ''
+
+            });
+
           }
 
           else {

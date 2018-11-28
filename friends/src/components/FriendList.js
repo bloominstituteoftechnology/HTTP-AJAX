@@ -2,6 +2,8 @@ import React from 'react';
 
 import Friend from './Friend';
 
+import './FriendList.scss';
+
 export default function FriendList({list, deleteFunc, setCurrentFriend}) {
 
   return (
