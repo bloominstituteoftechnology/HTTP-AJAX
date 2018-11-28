@@ -23,6 +23,30 @@ class App extends Component {
       .get("http://localhost:5000/friends")
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
+
+    console.log(this.props.history);
+
+    const unlisten = this.props.history.listen((location, action) => {
+      // location is an object like window.location
+      if (action === "POP") {
+        let backFriend = this.state.friends.slice();
+        backFriend.pop();
+        this.setState(prevState => ({ ...prevState, friends: backFriend }));
+      }
+      console.log(action, location.pathname, location.state);
+    });
+
+    console.log(unlisten);
+
+    // this.backListener = this.props.history.listen(location => {
+    //   if (location.action === "POP") {
+    //     console.log("went back");
+    //     let backFriend = this.state.friends.slice();
+    //     backFriend = backFriend.pop();
+    //     this.setState({ friends: backFriend });
+    //     // Do your stuff
+    //   }
+    // });
   }
 
   handleChange = e => {
@@ -36,6 +60,7 @@ class App extends Component {
       age: parseInt(this.state.age, 10),
       email: this.state.email
     };
+
     if ((newFriend.name || newFriend.age || newFriend.email) === "") {
       return;
     }
@@ -80,8 +105,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  reveal = e => {
-    e.preventDefault();
+  reveal = () => {
     this.props.history.push("/edit");
   };
   render() {

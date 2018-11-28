@@ -1,8 +1,9 @@
 import React from "react";
 
 const FriendsList = props => {
+  console.log(props.friends);
   return (
-    <div className="friendslist" onClick={e => props.onClick(e)}>
+    <div className="friendslist" onClick={() => props.onClick()}>
       {props.friends.map(friend => (
         <div className="friend-card" key={friend.id}>
           <h1>{friend.name}</h1>
