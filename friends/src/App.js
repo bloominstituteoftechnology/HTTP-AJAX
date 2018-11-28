@@ -28,17 +28,21 @@ class App extends Component {
       if (action === "POP" && location.pathname === "/") {
         let backFriend = [...this.state.friends];
         let info = backFriend.pop();
-
-        this.setState(
-          {
-            friends: backFriend,
-            name: info.name,
-            age: info.age,
-            email: info.email,
-            id: info.id
-          },
-          console.log(this.props)
-        );
+        console.log(backFriend);
+        console.log(info.id);
+        console.log(typeof info.id);
+        axios
+          .delete(`http://localhost:5000/friends/${info.id}`)
+          .then(res =>
+            this.setState({
+              friends: res.data,
+              name: info.name,
+              age: info.age,
+              email: info.email,
+              id: info.id
+            })
+          )
+          .catch(err => console.log(err));
       }
     });
     console.log(this.props.history);
