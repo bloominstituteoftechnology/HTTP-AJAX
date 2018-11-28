@@ -15,7 +15,7 @@ const FriendCard = styled.div`
   border: 1px dashed white;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: black;
+  background: none;
 `;
 export default class FriendsList extends Component {
   constructor() {

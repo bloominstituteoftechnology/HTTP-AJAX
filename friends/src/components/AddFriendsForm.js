@@ -12,10 +12,14 @@ const StyledForm = styled.form`
 
   & > input {
     width: 80%;
-    border-radius: 5px;
+    border-radius: 35px;
     border: none;
-    padding: 0.5rem;
+    padding: 0.75rem;
     margin-bottom: 0.5rem;
+
+    &:nth-child(3) {
+      margin-bottom: 1.5rem;
+    }
   }
   & input[type="submit"] {
     text-transform: uppercase;
@@ -23,7 +27,7 @@ const StyledForm = styled.form`
     width: auto;
     align-self: flex-start;
     margin-left: 1rem;
-    max-width: 42%;
+    max-width: 47%;
     font-size: 0.6rem;
     cursor: pointer;
     position: relative;
