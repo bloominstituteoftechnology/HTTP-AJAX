@@ -28,9 +28,6 @@ class App extends Component {
       if (action === "POP" && location.pathname === "/") {
         let backFriend = [...this.state.friends];
         let info = backFriend.pop();
-        console.log(backFriend);
-        console.log(info.id);
-        console.log(typeof info.id);
         axios
           .delete(`http://localhost:5000/friends/${info.id}`)
           .then(res =>
