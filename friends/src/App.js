@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import FriendList from './components/FriendList';
+import FriendForm from  './components/FriendForm';
 
 class App extends Component {
 
@@ -11,6 +12,7 @@ class App extends Component {
 
     this.state = {
 
+      url: 'http://localhost:5000/friends',
       friendList: []
 
     }
@@ -19,19 +21,33 @@ class App extends Component {
 
   componentDidMount() {
 
-    axios.get('http://localhost:5000/friends')
+    axios.get(this.state.url)
       .then(data => {
 
         this.setState({friendList: data.data});
-        console.log(data.data);
 
       }).catch(err => console.log(err));
 
   }
 
+  addToList = (obj) => {
+
+    axios.post(this.state.url, obj)
+      .then(data => this.setState({friendList: data.data}))
+      .catch(err => console.log(err));
+
+  }
+
   render() {
     return (
-      <FriendList list={this.state.friendList} />
+
+      <>
+
+        <FriendForm addFunc={this.addToList} />
+        <FriendList list={this.state.friendList} />
+
+      </>
+
     );
   }
 }
