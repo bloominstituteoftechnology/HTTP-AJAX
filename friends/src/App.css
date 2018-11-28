@@ -1,14 +1,26 @@
+* {
+  background-color: paleturquoise
+}
+
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 auto; 
 }
 
-button[type=submit] {
+button {
+  background-color: white
+}
+
+input[type=submit] {
   width: 10%;
   height: 25px;
   margin: 0 auto;
+  background-color: white;
+}
+
+input {
   background-color: white;
 }
 
