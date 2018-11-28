@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Friend from './Friend';
+
 
 export default class FriendsList extends Component {
 
@@ -11,9 +11,9 @@ export default class FriendsList extends Component {
   render() {
     return (
       <div className="List">
-        {this.props.friends.map(friend => (
-            <Friend friend={friend}/>
-        ))}
+        <p>Name:{this.props.friend.name}</p>
+        <p>Age:{this.props.friend.age}</p>
+        <p>Email:{this.props.friend.email}</p>
       </div>
     );
   }

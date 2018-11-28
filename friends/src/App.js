@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import { Route } from "react-router-dom";
 import FriendsList from './components/FriendsList';
+import FriendForm from './components/FriendForm';
 
 class App extends Component {
 
@@ -24,10 +26,23 @@ componentDidMount(){
         });
     }
 
+    addToList = (obj) => {
+    
+      axios.post('http://localhost:5000/friends', obj)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(err => console.log(err))
+  
+    }
+
   render() {
     return (
       <div className="App">
         <FriendsList friends={this.state.friends} />
+        <FriendForm  addToList={this.addToList}/>
       </div>
     );
   }
