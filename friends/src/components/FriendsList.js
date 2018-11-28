@@ -29,7 +29,7 @@ export default class FriendsList extends Component {
     axios
       .get("http://localhost:5000/friends/")
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           friendsData: res.data
         });
@@ -40,7 +40,7 @@ export default class FriendsList extends Component {
   render() {
     return (
       <Container>
-        <AddFriendsForm />
+        <AddFriendsForm friendsData={this.state.friendsData} />
         {this.state.friendsData.map(friend => (
           <FriendCard key={friend.id}>
             <h2>{friend.name}</h2>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const StyledForm = styled.form`
   margin: 1rem auto;
@@ -29,11 +30,12 @@ const StyledForm = styled.form`
 `;
 
 export default class AddFriendsForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      friendsData: [...props.friendsData],
       name: "",
-      age: 0,
+      age: "",
       email: ""
     };
   }
@@ -46,10 +48,39 @@ export default class AddFriendsForm extends Component {
 
   addFriend = e => {
     e.preventDefault();
-    console.log(e);
+    if (
+      this.state.name !== "" &&
+      this.state.age !== "" &&
+      this.state.email !== ""
+    ) {
+      axios({
+        method: "post",
+        url: "http://localhost:5000/friends/",
+        data: {
+          name: this.state.name,
+          age: this.state.age,
+          email: this.state.email
+        }
+      });
+      this.setState(prevState => ({
+        friendsData: [
+          ...prevState.friendsData,
+          {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+          }
+        ],
+        name: "",
+        age: "",
+        email: ""
+      }));
+      window.location.reload();
+    } else return;
   };
 
   render() {
+    console.log("form props", this.props);
     return (
       <StyledForm onSubmit={this.addFriend}>
         <input
@@ -57,18 +88,21 @@ export default class AddFriendsForm extends Component {
           name="name"
           onChange={this.handleChange}
           placeholder="Enter Friends Name..."
+          value={this.state.name}
         />
         <input
           type="text"
           name="age"
           onChange={this.handleChange}
           placeholder="Enter Friends Age..."
+          value={this.state.age}
         />
         <input
           type="text"
           name="email"
           onChange={this.handleChange}
           placeholder="Enter Friends Email..."
+          value={this.state.email}
         />
         <input type="submit" name="submit" />
       </StyledForm>
