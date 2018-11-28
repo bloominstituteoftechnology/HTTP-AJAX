@@ -19,7 +19,7 @@ const FriendForm = (props) => {
   return (
     <StyledFriendForm onSubmit={props.addFriend}>
         <input type="text" placeholder="name" name="name" />
-      <input type="text" placeholder="age" name="age" />
+      <input type="number" placeholder="age" name="age" />
       <input type="text" placeholder="email" name="email" />
       <input type="submit"  />
     </StyledFriendForm>
