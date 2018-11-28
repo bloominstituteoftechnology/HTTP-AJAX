@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      name: ''
     };
   }
 
@@ -32,28 +33,27 @@ class App extends React.Component {
   click = event => {
     event.preventDefault();
 
-    const myData = {
-        name: this.state.name
-    }
+    // const myData = {
+    //     name: this.state.name
+    // }
     console.log("yeahhh")
     axios
-    .post('http://localhost:5000/friends', {myData})
-    .then(response => {
-      console.log(response)
-    //   this.setState({ 
-    //     data: response.data
-    //   });
+    .post(`http://localhost:5000/friends`, {
+      name: this.state.name
+      
+    })
+    .then(newResponse => {
+      console.log(newResponse)
+      this.setState({ 
+        data: newResponse.data
+      });
     })
     .catch(err => console.log(err));
 }
 
-  // updateData = event => {
-  //   this.setState({
-  //     data: 
-  //   })
-  // }
-
   render() {
+    console.log('this state data', this.state.data)
+    console.log('this state name', this.state.name)
     return (
       <div className="App">
         {this.state.data.map(item => (

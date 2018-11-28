@@ -35,13 +35,14 @@ class MyForm extends React.Component {
     // }
 
     render() {
-        console.log('state name from render', this.state.name)
+        // console.log('state name from render', this.state.name)
         return (
         <div>
             <form onSubmit={this.props.click}>
                 <label>
                     Name:
-                    <input type="text" name="name" onChange={this.props.handleChange} />
+                    <input type="text" name="name" 
+                    onChange={this.props.handleChange} />
                     </label>
                 <input type="submit" value="Submit" />
             </form>
