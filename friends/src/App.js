@@ -11,7 +11,9 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      inputText: '',
+      nameText: '',
+      age: null,
+      emailText: '',
     };
   }
 
@@ -38,9 +40,11 @@ class App extends Component {
     this.setState({
       friends: [
         ...this.state.friends,
-        {name: this.state.inputText, age: this.state.inputText, email: this.state.inputText}
+        {age: this.state.age, email: this.state.emailText, id: Date.now(), name: this.state.inputText, }
       ],
-      inputText: ''
+      inputText: '',
+      age: null,
+      emailText: '',
     });
   }
 

@@ -7,27 +7,31 @@ class Form extends Component {
       <>
         <form className="friends-list" onSubmit={this.props.addFriend}>
           <input
-            autocomplete="off"
+            autoComplete="off"
             className="input-section"
             type="text"
-            name="name"
+            name="inputText"
             placeholder="Name"
             value={this.props.state.inputText}
             onChange={this.props.handleChange}
           />
           <input
-            autocomplete="off"
+            autoComplete="off"
             className="input-section"
             type="text"
             name="age"
             placeholder="Age"
+            value={this.props.state.age}
+            onChange={this.props.handleChange}
           />
           <input
-            autocomplete="off"
+            autoComplete="off"
             className="input-section"
             type="text"
             name="email"
             placeholder="Email"
+            value={this.props.state.email}
+            onChange={this.props.handleChange}
           />
           <button className="add-button button" type="submit">Submit
           </button>
