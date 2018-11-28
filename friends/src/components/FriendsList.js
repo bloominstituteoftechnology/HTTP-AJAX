@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import AddFriendsForm from "./AddFriendsForm";
 
 const Container = styled.div`
   max-width: 600px;
@@ -39,8 +40,9 @@ export default class FriendsList extends Component {
   render() {
     return (
       <Container>
+        <AddFriendsForm />
         {this.state.friendsData.map(friend => (
-          <FriendCard>
+          <FriendCard key={friend.id}>
             <h2>{friend.name}</h2>
             <p>{friend.age}</p>
             <p>{friend.email}</p>
