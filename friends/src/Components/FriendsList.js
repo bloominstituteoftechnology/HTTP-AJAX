@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const FriendsList = props => {
   return (
     <div className="friends-list">
+      <div className="friends-list-title">
+        <h1>Friends</h1>
+      </div>
+
       {props.data.map(friend => (
         <Link
           to={`/friend-${friend.id}`}

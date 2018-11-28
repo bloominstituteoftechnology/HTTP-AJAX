@@ -1,18 +1,19 @@
 .container {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 30px 10px;
+  border: 2px solid grey;
+  border-radius: 10px;
 }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: bold;
 }
 
 a,
 a:visited {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .friends-list {
@@ -20,4 +21,86 @@ a:visited {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: baseline;
+  background: black;
+  color: white;
+  padding: 0 0 30px;
+}
+
+.friends-list-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  background: darkgray;
+  color: black;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.friends-list h3 {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+.form {
+  font-size: 3rem;
+  padding: 35px 20px 20px;
+  background: whitesmoke;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: 2px solid black;
+}
+
+.input-item {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-item label {
+  margin-right: 15px;
+}
+
+.input-item input {
+  width: 200px;
+  border: 1px solid black;
+  padding-left: 10px;
+  font-size: 1.8rem;
+}
+
+.save-btn {
+  width: 50%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.save-btn button {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 5px 30px;
+  font-size: 2.4rem;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.friend-card {
+  background: black;
+  color: white;
+  padding: 0 0 30px;
+  text-align: center;
+}
+
+.friend-title {
+  margin-bottom: 20px;
+  background: darkgray;
+  color: black;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.friend-info {
+  line-height: 60px;
 }
