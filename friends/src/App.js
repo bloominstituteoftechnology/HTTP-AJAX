@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from "axios";
+import { Route } from 'react-router-dom';
+
 import { NavLink } from 'react-router-dom';
 
 
@@ -34,15 +36,16 @@ class App extends Component {
       <div className="App">
       <h1>HTTP / AJAX!</h1>
         <h1>These are friends</h1>
+      
         {this.state.stateFriendsData.map(amigo => (
-          <div>
-            <NavLink activeClassName={`friendBox${amigo.id}`}>
+          <div key={amigo.id}>
+            <div>
               <h5>Friend number{` ${amigo.id} `} </h5>
               <h1>Name:{` ${amigo.name} !`}</h1>
               <p>Age:{amigo.age}</p>
               <p>Email:{amigo.email}</p>
               <p>Id:{amigo.id}</p>
-            </NavLink>
+            </div>
             
           </div>
         ))}
@@ -50,5 +53,8 @@ class App extends Component {
     );
   }
 }
+
+{ /*NavLink activeClassName={`friendBox${amigo.id}` */}
+
 
 export default App;
