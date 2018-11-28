@@ -5,6 +5,13 @@
   margin: 0 auto;
 }
 
+button[type=submit] {
+  width: 10%;
+  height: 25px;
+  margin: 0 auto;
+  background-color: white;
+}
+
 
 form {
   display: flex;
@@ -33,6 +40,7 @@ input[type=submit] {
   width: 60%;
   margin: 0 auto;
   margin-bottom: 5%;
+  cursor: pointer;
 
 }
 

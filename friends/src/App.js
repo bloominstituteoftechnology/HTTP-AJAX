@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
@@ -70,12 +70,17 @@ class App extends Component {
   };
 
   delete = e => {
+    e.stopPropagation();
     axios
       .delete(`http://localhost:5000/friends/${e.target.id}`)
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   };
 
+  reveal = e => {
+    e.preventDefault();
+    this.props.history.push("/edit");
+  };
   render() {
     return (
       <div className="App">
@@ -86,9 +91,13 @@ class App extends Component {
               {...props}
               friends={this.state.friends}
               delete={this.delete}
+              onClick={this.reveal}
             />
           )}
         />
+        {/* <button type="submit" onClick={e => this.reveal(e)}>
+          Edit FriendsList
+        </button> */}
         <Route
           path="/edit"
           render={props => (
@@ -105,4 +114,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
