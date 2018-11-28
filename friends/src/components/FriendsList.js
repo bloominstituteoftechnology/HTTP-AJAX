@@ -32,7 +32,6 @@ export default class FriendsList extends Component {
     axios
       .get("http://localhost:5000/friends/")
       .then(res => {
-        // console.log(res.data);
         this.setState({
           friendsData: res.data
         });
@@ -53,29 +52,6 @@ export default class FriendsList extends Component {
       this.state.age !== "" &&
       this.state.email !== ""
     ) {
-      // axios({
-      //   method: "post",
-      //   url: "http://localhost:5000/friends/",
-      //   data: {
-      //     name: this.state.name,
-      //     age: this.state.age,
-      //     email: this.state.email
-      //   }
-      // });
-      // this.setState(prevState => ({
-      //   friendsData: [
-      //     ...prevState.friendsData,
-      //     {
-      //       name: this.state.name,
-      //       age: this.state.age,
-      //       email: this.state.email
-      //     }
-      //   ],
-      //   name: "",
-      //   age: "",
-      //   email: ""
-      // }));
-      // window.location.reload();
       axios
         .post("http://localhost:5000/friends/", {
           name: this.state.name,
