@@ -21,7 +21,10 @@ export default class FriendsList extends Component {
   constructor() {
     super();
     this.state = {
-      friendsData: []
+      friendsData: [],
+      name: "",
+      age: "",
+      email: ""
     };
   }
 
@@ -37,10 +40,81 @@ export default class FriendsList extends Component {
       .catch(err => console.log(err));
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  addFriend = e => {
+    e.preventDefault();
+    if (
+      this.state.name !== "" &&
+      this.state.age !== "" &&
+      this.state.email !== ""
+    ) {
+      // axios({
+      //   method: "post",
+      //   url: "http://localhost:5000/friends/",
+      //   data: {
+      //     name: this.state.name,
+      //     age: this.state.age,
+      //     email: this.state.email
+      //   }
+      // });
+      // this.setState(prevState => ({
+      //   friendsData: [
+      //     ...prevState.friendsData,
+      //     {
+      //       name: this.state.name,
+      //       age: this.state.age,
+      //       email: this.state.email
+      //     }
+      //   ],
+      //   name: "",
+      //   age: "",
+      //   email: ""
+      // }));
+      // window.location.reload();
+      axios
+        .post("http://localhost:5000/friends/", {
+          name: this.state.name,
+          age: this.state.age,
+          email: this.state.email
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+      this.setState(prevState => ({
+        friendsData: [
+          ...prevState.friendsData,
+          {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+          }
+        ],
+        name: "",
+        age: "",
+        email: ""
+      }));
+    } else return;
+  };
+
   render() {
     return (
       <Container>
-        <AddFriendsForm friendsData={this.state.friendsData} />
+        <AddFriendsForm
+          friendsData={this.state.friendsData}
+          addFriend={this.addFriend}
+          handleChange={this.handleChange}
+          name={this.state.name}
+          age={this.state.age}
+          email={this.state.email}
+        />
         {this.state.friendsData.map(friend => (
           <FriendCard key={friend.id}>
             <h2>{friend.name}</h2>

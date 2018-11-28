@@ -40,69 +40,108 @@ export default class AddFriendsForm extends Component {
     };
   }
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.friendsData.length !== this.props.friendsData.length) {
+      axios
+        .get("http://localhost:5000/friends/")
+        .then(res => {
+          // console.log(res.data);
+          this.setState({
+            friendsData: res.data
+          });
+        })
+        .catch(err => console.log(err));
+    }
+    return null;
   };
 
-  addFriend = e => {
-    e.preventDefault();
-    if (
-      this.state.name !== "" &&
-      this.state.age !== "" &&
-      this.state.email !== ""
-    ) {
-      axios({
-        method: "post",
-        url: "http://localhost:5000/friends/",
-        data: {
-          name: this.state.name,
-          age: this.state.age,
-          email: this.state.email
-        }
-      });
-      this.setState(prevState => ({
-        friendsData: [
-          ...prevState.friendsData,
-          {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-          }
-        ],
-        name: "",
-        age: "",
-        email: ""
-      }));
-      window.location.reload();
-    } else return;
-  };
+  // handleChange = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
+
+  // addFriend = e => {
+  //   e.preventDefault();
+  //   if (
+  //     this.state.name !== "" &&
+  //     this.state.age !== "" &&
+  //     this.state.email !== ""
+  //   ) {
+  //     // axios({
+  //     //   method: "post",
+  //     //   url: "http://localhost:5000/friends/",
+  //     //   data: {
+  //     //     name: this.state.name,
+  //     //     age: this.state.age,
+  //     //     email: this.state.email
+  //     //   }
+  //     // });
+  //     // this.setState(prevState => ({
+  //     //   friendsData: [
+  //     //     ...prevState.friendsData,
+  //     //     {
+  //     //       name: this.state.name,
+  //     //       age: this.state.age,
+  //     //       email: this.state.email
+  //     //     }
+  //     //   ],
+  //     //   name: "",
+  //     //   age: "",
+  //     //   email: ""
+  //     // }));
+  //     // window.location.reload();
+  //     axios
+  //       .post("http://localhost:5000/friends/", {
+  //         name: this.state.name,
+  //         age: this.state.age,
+  //         email: this.state.email
+  //       })
+  //       .then(function(response) {
+  //         console.log(response);
+  //       })
+  //       .catch(function(err) {
+  //         console.log(err);
+  //       });
+  //     this.setState(prevState => ({
+  //       friendsData: [
+  //         ...prevState.friendsData,
+  //         {
+  //           name: this.state.name,
+  //           age: this.state.age,
+  //           email: this.state.email
+  //         }
+  //       ],
+  //       name: "",
+  //       age: "",
+  //       email: ""
+  //     }));
+  //   } else return;
+  // };
 
   render() {
-    console.log("form props", this.props);
     return (
-      <StyledForm onSubmit={this.addFriend}>
+      <StyledForm onSubmit={this.props.addFriend}>
         <input
           type="text"
           name="name"
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           placeholder="Enter Friends Name..."
-          value={this.state.name}
+          value={this.props.name}
         />
         <input
           type="text"
           name="age"
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           placeholder="Enter Friends Age..."
-          value={this.state.age}
+          value={this.props.age}
         />
         <input
           type="text"
           name="email"
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           placeholder="Enter Friends Email..."
-          value={this.state.email}
+          value={this.props.email}
         />
         <input type="submit" name="submit" />
       </StyledForm>
