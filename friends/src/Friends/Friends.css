@@ -1,0 +1,9 @@
+.friend-card{
+    border: 1px solid gray;
+    width: 40%;
+    margin: 40px 10%;
+    display: flex;
+    flex-flow: column;
+    align-content: flex-start;
+    padding: 20px 20px;
+}
