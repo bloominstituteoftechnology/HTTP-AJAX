@@ -11,7 +11,7 @@ const StyledForm = styled.form`
   align-items: center;
 
   & > input {
-    width: 80%;
+    width: 90%;
     border-radius: 35px;
     border: none;
     padding: 0.75rem;

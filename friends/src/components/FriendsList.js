@@ -14,9 +14,19 @@ const Container = styled.div`
 const FriendCard = styled.div`
   border: 1px dashed white;
   margin-bottom: 2rem;
+  min-width: 25%;
+  width: 265px;
   padding: 1rem;
   background: none;
 `;
+
+const FriendsBox = styled.div`
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+`;
+
 export default class FriendsList extends Component {
   constructor() {
     super();
@@ -54,6 +64,7 @@ export default class FriendsList extends Component {
     ) {
       axios
         .post("http://localhost:5000/friends/", {
+          id: Date.now(),
           name: this.state.name,
           age: this.state.age,
           email: this.state.email
@@ -91,13 +102,15 @@ export default class FriendsList extends Component {
           age={this.state.age}
           email={this.state.email}
         />
-        {this.state.friendsData.map(friend => (
-          <FriendCard key={friend.id}>
-            <h2>{friend.name}</h2>
-            <p>{friend.age}</p>
-            <p>{friend.email}</p>
-          </FriendCard>
-        ))}
+        <FriendsBox>
+          {this.state.friendsData.map(friend => (
+            <FriendCard key={friend.id ? friend.id : Date.now()}>
+              <h2>{friend.name}</h2>
+              <p>{friend.age}</p>
+              <p>{friend.email}</p>
+            </FriendCard>
+          ))}
+        </FriendsBox>
       </Container>
     );
   }
