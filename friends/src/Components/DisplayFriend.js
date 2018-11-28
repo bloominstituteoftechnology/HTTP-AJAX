@@ -1,18 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 /***************************************************************************************************
  ********************************************** Styles *********************************************
  **************************************************************************************************/
-const DivWrapper = styled.div`
-  background-color: purple;
-  color: white;
-  margin: 20px;
-  border-radius: 10px;
-  width: 20%;
-`;
+const DivWrapper = styled.div``;
 
 const DivName = styled.div`
   text-align: center;
@@ -24,20 +17,22 @@ const DivName = styled.div`
 /***************************************************************************************************
  ********************************************* Component *******************************************
  **************************************************************************************************/
-const Friend = props => {
+const DisplayFriend = props => {
+  console.log(props);
+  let friendInfo = props.friends.find(
+    friend => `${friend.id}` === props.match.params.id
+  );
   return (
     <DivWrapper>
-      <Link to={`${props.link}/${props.friend.id}`}>
-        <DivName>{props.friend.name}</DivName>
-        <h3>Age: {props.friend.age}</h3>
-        <h3>Email: {props.friend.email}</h3>
-      </Link>
+      <DivName>{friendInfo.name}</DivName>
+      <h3>Age: {friendInfo.age}</h3>
+      <h3>Email: {friendInfo.email}</h3>
     </DivWrapper>
   );
 };
 
-// Friend.propTypes = {
+// DisplayFriend.propTypes = {
 //   propertyName: PropTypes.string
 // }
 
-export default Friend;
+export default DisplayFriend;

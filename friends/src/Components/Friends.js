@@ -1,32 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import FriendInfo from './Friend';
 // import PropTypes from 'prop-types';
-// import FriendInfo from './Friend';
+import Friend from './Friend.js';
 
 /***************************************************************************************************
  ********************************************** Styles *********************************************
  **************************************************************************************************/
 const DivWrapper = styled.div`
-  background-color: black;
-  color: white;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 /***************************************************************************************************
  ********************************************* Component *******************************************
  **************************************************************************************************/
-const DisplayFriends = props => {
+const Friends = props => {
   return (
     <DivWrapper>
       {props.friends.map(friend => (
-        <FriendInfo friend={friend} />
+        <Friend key={friend.id} friend={friend} link={props.links.friend} />
       ))}
     </DivWrapper>
   );
 };
 
-// DisplayFriends.propTypes = {
+// Friends.propTypes = {
 //   propertyName: PropTypes.string
 // }
 
-export default DisplayFriends;
+export default Friends;
