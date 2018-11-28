@@ -25,6 +25,7 @@ const FriendsBox = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 export default class FriendsList extends Component {
