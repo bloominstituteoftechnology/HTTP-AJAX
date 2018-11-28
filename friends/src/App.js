@@ -83,9 +83,6 @@ class App extends Component {
 		super(props);
 		this.state = {
       friends: [],
-      nameValue: '',
-      ageValue: '',
-      emailValue: '',
 		};
 	}
 
@@ -103,30 +100,12 @@ class App extends Component {
 			});
   }
   
-  handleChange (event) {
-    console.log(event.target.value)
-    event.preventDefault();
-    return(
-      event.target.name === 'name' ?
-      this.setState({
-        nameValue: event.target.value
-      }) :
-      event.target.name === 'age' ?
-      this.setState({
-        ageValue: event.target.value
-      }) :
-      event.target.name === 'email' ?
-      this.setState({
-        emailValue: event.target.value
-      }) :
-      null
-    )
-   
+ 
+
+addFriend = () => {
+    axios.post('http://localhost:5000/friends', friends ).then(response => console.log(response)).catch(err => console.log(err))
   }
 
-  addFriend(event) {
-
-  }
 	render() {
 		return (
 			<React.Fragment>
@@ -136,12 +115,6 @@ class App extends Component {
 					<FriendList data={this.state.friends} />
           <H1>Add Yourself to Our Friend List</H1>
 					<FriendForm
-            nameValue={this.state.nameValue}
-            ageValue={this.state.ageValue}
-            emailValue={this.state.emailValue}
-
-						handleChange={(event) => {
-              this.handleChange(event);}}
 						addFriend={this.addFriend}
 					/>
 				</AppContainer>
