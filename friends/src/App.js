@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import axios from "axios";
+
 import "./App.css";
 import FriendsList from "./components/FriendsList";
 import InputForm from "./components/InputForm";
-import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -77,11 +79,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} delete={this.delete} />
-        <InputForm
-          info={this.state}
-          change={this.handleChange}
-          submit={this.handleSubmit}
+        <Route
+          path="/"
+          render={props => (
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              delete={this.delete}
+            />
+          )}
+        />
+        <Route
+          path="/edit"
+          render={props => (
+            <InputForm
+              {...props}
+              info={this.state}
+              change={this.handleChange}
+              submit={this.handleSubmit}
+            />
+          )}
         />
       </div>
     );
