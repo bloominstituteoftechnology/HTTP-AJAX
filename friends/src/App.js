@@ -24,10 +24,7 @@ class App extends Component {
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
 
-    console.log(this.props.history);
-
-    const unlisten = this.props.history.listen((location, action) => {
-      // location is an object like window.location
+    this.props.history.listen((location, action) => {
       if (action === "POP") {
         let backFriend = this.state.friends.slice();
         let info = backFriend.pop();
@@ -40,20 +37,7 @@ class App extends Component {
           email: info.email
         }));
       }
-      console.log(action, location.pathname, location.state);
     });
-
-    console.log(unlisten);
-
-    // this.backListener = this.props.history.listen(location => {
-    //   if (location.action === "POP") {
-    //     console.log("went back");
-    //     let backFriend = this.state.friends.slice();
-    //     backFriend = backFriend.pop();
-    //     this.setState({ friends: backFriend });
-    //     // Do your stuff
-    //   }
-    // });
   }
 
   handleChange = e => {
