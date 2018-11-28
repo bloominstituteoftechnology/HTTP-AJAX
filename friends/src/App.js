@@ -36,6 +36,9 @@ class App extends Component {
       age: parseInt(this.state.age, 10),
       email: this.state.email
     };
+    if ((newFriend.name || newFriend.age || newFriend.email) === "") {
+      return;
+    }
 
     if (this.state.id.length > 0) {
       let index = this.state.friends.findIndex(
