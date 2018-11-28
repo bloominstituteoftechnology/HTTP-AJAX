@@ -5,10 +5,6 @@ const FormWrapper = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
-
-    p{
-
-    }
     
     input{
         width: 97%;
@@ -22,25 +18,32 @@ const FormWrapper = styled.form`
 
 const Form = props => {
     return (
-        <FormWrapper>
+        <FormWrapper onSubmit={props.addFriend}>
             <h3>Add a Friend...</h3>
             <input 
                 type="text"
-                name="name"
+                name="inputName"
                 value={props.value}
                 placeholder="Name"
+                onChange={props.handleChange}
+                value={props.inputName}
             />
             <input 
                 type="number"
-                name="age"
+                min="21" max="120"
+                name="inputAge"
                 value={props.value}
                 placeholder="Age"
+                onChange={props.handleChange}
+                value={props.inputAge}
             />
             <input 
-                type="text"
-                name="email"
+                type="email"
+                name="inputEmail"
                 value={props.value}
                 placeholder="Email"
+                onChange={props.handleChange}
+                value={props.inputEmail}
             />
             <button  
                 type="submit" >
