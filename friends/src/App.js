@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
 
       url: 'http://localhost:5000/friends',
-      friendList: []
+      friendList: [],
+      currentFriend: {},
 
     }
 
@@ -36,6 +37,34 @@ class App extends Component {
       .then(data => this.setState({friendList: data.data}))
       .catch(err => console.log(err));
 
+    this.setState({currentFriend: {}});
+
+  }
+
+  delete = id => {
+
+    axios.delete(`${this.state.url}/${id}`)
+      .then(data => this.setState({friendList: data.data}))
+      .catch(err => console.log(err));
+
+    this.setState({currentFriend: {}});
+
+  }
+
+  update = (id, newData) => {
+
+    axios.put(`${this.state.url}/${id}`, newData)
+      .then(data => this.setState({friendList: data.data}))
+      .catch(err => console.log(err));
+
+    this.setState({currentFriend: {}});
+
+  }
+
+  setCurrentFriend = newFriend => {
+
+    this.setState({currentFriend: newFriend});
+
   }
 
   render() {
@@ -43,8 +72,8 @@ class App extends Component {
 
       <>
 
-        <FriendForm addFunc={this.addToList} />
-        <FriendList list={this.state.friendList} />
+        <FriendForm currentFriend={this.state.currentFriend} friendList={this.state.friendList} updateFunc={this.update} addFunc={this.addToList} />
+        <FriendList setCurrentFriend={this.setCurrentFriend} deleteFunc={this.delete} list={this.state.friendList} />
 
       </>
 

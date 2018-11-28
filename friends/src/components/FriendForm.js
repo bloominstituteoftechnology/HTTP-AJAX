@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './FriendForm.scss';
+
 export default class FriendForm extends React.Component {
 
   constructor() {
@@ -38,6 +40,22 @@ export default class FriendForm extends React.Component {
 
   }
 
+  componentDidUpdate(prevProps, prevState) {
+
+    if (prevProps.currentFriend.name != this.props.currentFriend.name) {
+
+      this.setState({
+
+        name: this.props.currentFriend.name,
+        age: this.props.currentFriend.age,
+        email: this.props.currentFriend.email,
+
+      })
+
+    }
+
+  }
+
   render() {
 
     return (
@@ -48,11 +66,34 @@ export default class FriendForm extends React.Component {
 
           e.preventDefault();
 
-          this.props.addFunc({
+          let obj = {
             name: this.state.name,
             age: Number(this.state.age),
             email: this.state.email
-          });
+          };
+
+          if (!this.props.currentFriend.name) {
+
+            this.props.addFunc(obj);
+
+          }
+
+          else {
+
+            console.log("UPDATE");
+
+            obj.id = this.props.currentFriend.id;
+            this.props.updateFunc(this.props.currentFriend.id, obj);
+
+            this.setState({
+
+              name: '',
+              age: '',
+              email: ''
+
+            });
+
+          }
 
         }}>
 
@@ -60,7 +101,7 @@ export default class FriendForm extends React.Component {
           <input type='text' name='age' placeholder='age' onChange={this.handleChange} value={this.state.age} />
           <input type='email' name='email' placeholder='email' onChange={this.handleChange} value={this.state.email} />
 
-          <button>Add Friend</button>
+          <button>{this.props.currentFriend.name ? 'Update Friend' : 'Add Friend'}</button>
 
         </form>
 

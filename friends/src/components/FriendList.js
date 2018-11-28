@@ -2,13 +2,13 @@ import React from 'react';
 
 import Friend from './Friend';
 
-export default function FriendList({list}) {
+export default function FriendList({list, deleteFunc, setCurrentFriend}) {
 
   return (
 
     <div className='friend-list'>
 
-      {list.map(friend => <Friend info={friend} id={friend.id} />)}
+      {list.map(friend => <Friend setCurrentFriend={setCurrentFriend} deleteFunc={deleteFunc} info={friend} id={friend.id} />)}
 
     </div>
 

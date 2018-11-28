@@ -1,8 +1,10 @@
 import React from 'react';
 
-export default function Friend({info}) {
+import './Friend.scss';
 
-  const {name, age, email} = info;
+export default function Friend({info, deleteFunc, setCurrentFriend}) {
+
+  const {name, age, email, id} = info;
 
   return (
 
@@ -11,6 +13,8 @@ export default function Friend({info}) {
       <h2>{name}</h2>
       <p>Age: {age}</p>
       <a href={`mailto:${email}`}>{email}</a>
+      <div className='close' onClick={() => deleteFunc(id)}>X</div>
+      <button onClick={() => setCurrentFriend(info)}>Update Friend</button>
 
     </div>
 
