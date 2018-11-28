@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Router } from "react-router-dom";
+import { Route } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
+import FriendsList from "./Components/FriendsList";
+import FriendCard from "./Components/FriendCard";
 
 class App extends Component {
   constructor() {
@@ -24,13 +26,11 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        {this.state.data.map(friend => (
-          <div className="friend" key={friend.id}>
-            <h3>{friend.name}</h3>
-            <p>{friend.age}</p>
-            <p>{friend.email}</p>
-          </div>
-        ))}
+        <FriendsList data={this.state.data} />
+        <Route
+          path="/friend-:id"
+          render={props => <FriendCard {...props} data={this.state.data} />}
+        />
       </div>
     );
   }
