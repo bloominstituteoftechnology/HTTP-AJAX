@@ -4,11 +4,10 @@ const Friends = props => {
   console.log(props);
   return (
     <React.Fragment>
-      <div key={props.friend.id}>{props.friend.name}</div>
-      <div key={props.friend.id}>{props.friend.age}</div>
-      <div key={props.friend.id}>{props.friend.email}</div>
+      <div key={props.friend.name}>{props.friend.name}</div>
+      <div key={props.friend.age}>{props.friend.age}</div>
+      <div key={props.friend.email}>{props.friend.email}</div>
     </React.Fragment>
   );
 };
-
 export default Friends;
