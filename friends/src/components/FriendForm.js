@@ -15,12 +15,13 @@ const StyledFriendForm = styled.form`
   }
 `;
 
-const FriendForm = () => {
+const FriendForm = (props) => {
   return (
-    <StyledFriendForm>
-      <input type="text" placeholder="name" />
-      <input type="text" placeholder="age" />
-      <input type="text" placeholder="email" />
+    <StyledFriendForm onSubmit={props.addFriend}>
+        <input type="text" placeholder="name" name="name" />
+      <input type="text" placeholder="age" name="age" />
+      <input type="text" placeholder="email" name="email" />
+      <input type="submit"  />
     </StyledFriendForm>
   );
 };

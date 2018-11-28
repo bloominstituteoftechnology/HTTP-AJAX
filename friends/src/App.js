@@ -21,6 +21,23 @@ class App extends Component {
       })
       .catch(err => console.log('err', err));
   }
+    
+  addFriend = e => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    console.log(e.target.name.value);
+    console.log(e.target.age.value);
+    const newFriend = {
+      name: e.target.name.value,
+      age: e.target.age.value,
+      email: e.target.email.value,
+    }
+    if (newFriend.name && newFriend.age && newFriend.email) {
+      this.setState((prevState) => {
+        return {friends: [...prevState.friends, newFriend]}
+      });
+    }
+  }
 
   render() {
     return (
@@ -29,7 +46,7 @@ class App extends Component {
         {this.state.friends.map(f => (
           <Friend key={f.id} friend={f} />
         ))}
-        <FriendForm />
+        <FriendForm addFriend={this.addFriend} />
       </div>
     );
   }
