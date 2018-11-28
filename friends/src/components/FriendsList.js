@@ -1,6 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
+const Container = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+`;
+
+const FriendCard = styled.div`
+  border: 1px dashed white;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: black;
+`;
 export default class FriendsList extends Component {
   constructor() {
     super();
@@ -22,6 +37,16 @@ export default class FriendsList extends Component {
   }
 
   render() {
-    return <div>test</div>;
+    return (
+      <Container>
+        {this.state.friendsData.map(friend => (
+          <FriendCard>
+            <h2>{friend.name}</h2>
+            <p>{friend.age}</p>
+            <p>{friend.email}</p>
+          </FriendCard>
+        ))}
+      </Container>
+    );
   }
 }
