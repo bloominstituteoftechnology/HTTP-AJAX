@@ -12,7 +12,7 @@ export default class FriendsList extends Component {
     return (
       <div className="List">
         {this.props.friends.map(friend => (
-            <Friend friend={friend}/>
+            <Friend friend={friend} startUpdate={this.props.startUpdate}/>
         ))}
       </div>
     );

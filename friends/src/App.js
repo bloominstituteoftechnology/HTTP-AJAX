@@ -10,7 +10,8 @@ class App extends Component {
   constructor(){
     super();
     this.state ={
-      friends: []
+      friends: [],
+      editFriend: {}
     }
   }
 
@@ -38,11 +39,26 @@ componentDidMount(){
   
     }
 
+    updateToList = (obj) => {
+
+    }
+
+    startUpdate = (obj) =>{
+       this.setState({
+          editFriend: obj
+       })
+    }
+
+
+    
+
+
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
-        <FriendForm  addToList={this.addToList}/>
+        <FriendForm  addToList={this.addToList} updateToList={this.addToList} editFriend={this.state.editFriend} friends={this.state.friends}/>
+        <FriendsList friends={this.state.friends} startUpdate={this.startUpdate}/>
+
       </div>
     );
   }

@@ -30,3 +30,17 @@
     transform: rotate(360deg);
   }
 }
+.List{
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.friend{
+  border: 1px solid green;
+  margin-top: 20px;
+  width: 100%;
+}
+.form{
+  margin: 40px 0 20px;
+}
