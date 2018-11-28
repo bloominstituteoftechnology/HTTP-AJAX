@@ -3,8 +3,10 @@ import './App.css';
 import axios from "axios";
 import Friend from "./components/Friend";
 import styled from 'styled-components';
+import Form from './components/Form';
 
 const Wrapper = styled.div`
+  width: 250px;
   margin: 0 auto;
 `
 
@@ -33,6 +35,8 @@ class App extends Component {
     return (
       <Wrapper>
         
+        <Form />
+
         {this.state.data.map( item => (
           <Friend data={item} key={item.id} />
         ))}
