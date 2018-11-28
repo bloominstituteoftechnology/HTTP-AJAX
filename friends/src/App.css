@@ -9,7 +9,9 @@ nav {
   justify-content: space-around;
   margin-top: 30px;
   margin-bottom: 30px;
-
+  text-decoration: none;
+  border-top: 1px solid #141414;
+  border-bottom: 1px solid #141414;
 
 }
 
@@ -28,4 +30,60 @@ nav {
   color: #141414;
   margin: 0 auto;
   padding: 20px 0;
+  border: 1px solid #323232;
+  margin-bottom: 10px;
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.friend-label-container {
+  width: 30%;
+  /* border: 1px solid red; */
+}
+
+.friend-info-content {
+  width: 60%;
+  /* border: 1px solid red; */
+  text-align: left;
+  /* display: flex;
+  flex-direction: column;
+  align-content: flex-start; */
+}
+
+.infoFriendment {
+  margin: 15px 0;
+  width: 100%;
+}
+
+.friend-container span {
+  font-weight: 800;
+}
+
+a {
+  text-decoration: none;
+  color: #141414;
+}
+
+.addFriend-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.addFriend-container input {
+  margin-bottom: 20px;
+  width: 400px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.friendInfo-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container button{
+  margin: 0 20px;
+  width: 150px;
+  padding: 10px 5px;
 }

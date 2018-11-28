@@ -3,7 +3,6 @@ import './App.css';
 import axios from 'axios';
 import { Route, NavLink } from 'react-router-dom';
 
-import HomePage from './components/homePage';
 import Friends from './components/friends';
 
 class App extends Component {
@@ -11,6 +10,9 @@ class App extends Component {
     super(props);
     this.state= {
       data: [],
+      inputName: '',
+      inputAge: '',
+      inputEmail: '',
     }
   }
 
@@ -28,6 +30,20 @@ class App extends Component {
       })
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    // console.log(e.target.name);
+    console.log(this.state.inputName);
+  }
+
+  clearFields = e => {
+    e.preventDefault();
+    this.setState({
+      inputName: "",
+    });
+  }
 
   render() {
     // console.log(this.state.data);
@@ -36,15 +52,13 @@ class App extends Component {
         <div>
           <h2>Hello there Friends</h2>
           <nav>
-            <NavLink to='/' component={HomePage}><div className='navLink'>Home</div></NavLink>
-            <NavLink to='/friends' component={HomePage}><div className='navLink'>Friends List</div></NavLink>
-            <NavLink to='/addFriend' component={HomePage}><div className='navLink'>Add Friend</div></NavLink>
+            <NavLink to='/' ><div className='navLink'>Home</div></NavLink>
+            <NavLink to='/friends' ><div className='navLink'>Friends List</div></NavLink>
           </nav>
           <Route 
             path={`/friends`} 
-            render={ props => <Friends {...props} info={this.state.data} />} 
+            render={ props => <Friends {...props} info={this.state.data} handleChange={this.handleChange} clearFields={this.clearFields}/>} 
           />
-          {/* <Friends info={this.state.data} /> */}
         </div>
       </div>
     );
