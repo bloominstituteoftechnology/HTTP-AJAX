@@ -95,9 +95,6 @@ class App extends Component {
             />
           )}
         />
-        {/* <button type="submit" onClick={e => this.reveal(e)}>
-          Edit FriendsList
-        </button> */}
         <Route
           path="/edit"
           render={props => (
