@@ -4,6 +4,7 @@ import axios from "axios";
 import "./App.css";
 import FriendsList from "./Components/FriendsList";
 import FriendCard from "./Components/FriendCard";
+import Form from "./Components/Form";
 
 class App extends Component {
   constructor() {
@@ -26,6 +27,8 @@ class App extends Component {
     return (
       <div className="container">
         <FriendsList data={this.state.data} />
+
+        <Form />
 
         {this.state.data.length && (
           <Route

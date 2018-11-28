@@ -1,9 +1,9 @@
 import React from "react";
 
 const FriendCard = props => {
-  const friend = props.data.filter(
+  const friend = props.data.find(
     friend => friend.id.toString() === props.match.params.id
-  )[0];
+  );
 
   return (
     <div className="friend-card">
