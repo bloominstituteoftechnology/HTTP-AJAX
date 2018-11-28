@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+import FriendList from './components/FriendList';
+import FriendForm from './components/FriendForm';
+
 class App extends React.Component {
   state = {
     friends: [],
@@ -22,7 +25,9 @@ class App extends React.Component {
   render() { 
     return (
       <div>
-        Hello From App
+        <h1>Friend App</h1>
+        <FriendForm />
+        <FriendList friends={this.state.friends} />
       </div>
     );
   }
