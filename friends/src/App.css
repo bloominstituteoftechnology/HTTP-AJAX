@@ -1,5 +1,9 @@
 .container {
   max-width: 1024px;
   margin: 0 auto;
-  border: 1px solid red;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
