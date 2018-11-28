@@ -24,19 +24,28 @@ class App extends Component {
     
   addFriend = e => {
     e.preventDefault();
-    console.log(e.currentTarget);
-    console.log(e.target.name.value);
-    console.log(e.target.age.value);
     const newFriend = {
       name: e.target.name.value,
       age: e.target.age.value,
       email: e.target.email.value,
+      id: Date.now(),
     }
+
+    // add new friend if all fields are filled out
     if (newFriend.name && newFriend.age && newFriend.email) {
-      this.setState((prevState) => {
-        return {friends: [...prevState.friends, newFriend]}
-      });
+      axios.post('http://localhost:5000/friends', newFriend)
+        .then(res => {
+          this.setState({ friends: res.data})
+        })
+        .catch(err => console.log(err));
+
+      // clear inputs
+      e.target.name.value = '';
+      e.target.age.value = '';
+      e.target.email.value = '';
+
     }
+
   }
 
   render() {
