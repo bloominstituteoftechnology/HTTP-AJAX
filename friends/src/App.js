@@ -17,7 +17,6 @@ class App extends Component {
     axios
       .get("http://localhost:5000/friends")
       .then(res => {
-        console.log(res);
         this.setState({ data: res.data });
       })
       .catch(err => console.log(err));
@@ -27,10 +26,13 @@ class App extends Component {
     return (
       <div className="container">
         <FriendsList data={this.state.data} />
-        <Route
-          path="/friend-:id"
-          render={props => <FriendCard {...props} data={this.state.data} />}
-        />
+
+        {this.state.data.length && (
+          <Route
+            path="/friend-:id"
+            render={props => <FriendCard {...props} data={this.state.data} />}
+          />
+        )}
       </div>
     );
   }

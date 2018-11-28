@@ -1,9 +1,23 @@
 .container {
   max-width: 1024px;
   margin: 0 auto;
+  padding: 30px 10px;
 }
 
 h3 {
   font-size: 1.8rem;
   font-weight: bold;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.friends-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: baseline;
 }

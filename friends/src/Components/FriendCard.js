@@ -1,13 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
 const FriendCard = props => {
-  return props.data.map(friend => (
-    <div className="friend" key={friend.id}>
-      <h3>{friend.name}</h3>
-      <p>{friend.age}</p>
-      <p>{friend.email}</p>
+  const friend = props.data.filter(
+    friend => friend.id.toString() === props.match.params.id
+  )[0];
+
+  return (
+    <div className="friend-card">
+      <h1>{friend.name}</h1>
+      <h2>{friend.age}</h2>
+      <h2>{friend.email}</h2>
     </div>
-  ));
+  );
 };
 
 export default FriendCard;
