@@ -30,8 +30,15 @@ class App extends Component {
       // location is an object like window.location
       if (action === "POP") {
         let backFriend = this.state.friends.slice();
+        let info = backFriend.pop();
         backFriend.pop();
-        this.setState(prevState => ({ ...prevState, friends: backFriend }));
+        this.setState(prevState => ({
+          ...prevState,
+          friends: backFriend,
+          name: info.name,
+          age: info.age,
+          email: info.email
+        }));
       }
       console.log(action, location.pathname, location.state);
     });
