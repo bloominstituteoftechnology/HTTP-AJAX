@@ -18,11 +18,40 @@ class App extends React.Component {
         console.log(response)
         this.setState({ 
           data: response.data
-          // data: response.data.message 
         });
       })
       .catch(err => console.log(err));
   }
+
+  handleChange = event => {
+    this.setState({
+        name: event.target.value
+    })
+}
+
+  click = event => {
+    event.preventDefault();
+
+    const myData = {
+        name: this.state.name
+    }
+    console.log("yeahhh")
+    axios
+    .post('http://localhost:5000/friends', {myData})
+    .then(response => {
+      console.log(response)
+    //   this.setState({ 
+    //     data: response.data
+    //   });
+    })
+    .catch(err => console.log(err));
+}
+
+  // updateData = event => {
+  //   this.setState({
+  //     data: 
+  //   })
+  // }
 
   render() {
     return (
@@ -30,7 +59,13 @@ class App extends React.Component {
         {this.state.data.map(item => (
         <li>{item.name}</li>
         ))}
-        <MyForm />
+
+        <MyForm 
+          data={this.state.data}
+          updateData={this.updateData}
+          click={this.click}
+          handleChange={this.handleChange}
+        />
       </div>
     );
   }
