@@ -51,7 +51,7 @@ function friends(props){
                     </div>
                     <div className='friend-option-container'>
                         <button className='friend-option-btn' onClick={() => props.deleteFriend(friend.id)}>delete</button> 
-                        <button className='friend-option-btn'>update</button> 
+                        <button className='friend-option-btn' onClick={() => props.updateFriend(friend.id, props.info.inputName, props.info.inputAge, props.info.inputEmail)}>update</button> 
                     </div>
                 </div>
             ))}

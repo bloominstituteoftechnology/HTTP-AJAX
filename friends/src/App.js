@@ -67,7 +67,6 @@ class App extends Component {
   }
 
   deleteFriend = arg => {
-    console.log(arg);
     axios
       .delete(`${url}/${arg}`)
       .then(res => {
@@ -80,7 +79,26 @@ class App extends Component {
       });
   }
 
-
+  updateFriend = (arg, name, age, email) => {
+    if(this.state.inputName && this.state.inputAge && this.state.inputEmail) {
+      axios
+        .put(`${url}/${arg}`, {name, age, email})
+        .then(res => {
+          this.setState({
+            data: res.data,
+            inputName: '',
+            inputAge: '',
+            inputEmail: '',
+          });
+        })
+        .catch(err => {
+          console.log('something went wrong trying to update data' + err)
+        });
+    }
+    else {
+      alert("All input fields required to update data!");
+    }
+  }
 
 
   render() {
@@ -102,6 +120,7 @@ class App extends Component {
               clearFields={this.clearFields}
               addFriend={this.addFriend}
               deleteFriend={this.deleteFriend}
+              updateFriend={this.updateFriend}
               />
             } 
           />
