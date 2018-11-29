@@ -40,4 +40,15 @@
   border-radius: 5px;
   background: lightgray;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-friend-submit.delete-warn {
+  background: darkred;
+  color: white;
+}
+.add-friend-submit-container {
+  display: flex;
+  justify-content: space-between;
 }
