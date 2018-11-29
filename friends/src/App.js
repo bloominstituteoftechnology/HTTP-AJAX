@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Route, NavLink } from 'react-router-dom';
 
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
@@ -22,30 +23,72 @@ class App extends React.Component {
       });
   }
 
-  addFriend = () => {
+  addFriend = (friend) => {
     axios
       .post(
         'http://localhost:5000/friends'
-        , {
-          name: 'Dustin',
-          id:10,
-          age: 30,
-          email: 'email@email.com'
-        })
+        , friend)
       .then(res => (
         this.setState({
           friends: res.data,
+          name: '',
+          age: '',
+          email: '',
         })
       ))
       .catch(err => console.log(err))
   }
 
+  deleteFriend = (id) => {
+    axios
+      .delete(
+        `http://localhost:5000/friends/${id}`
+        )
+      .then(res => {
+        this.setState({
+          friends: res.data,
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  updateFriend = (id, friend) => {
+    axios
+      .put(
+        `http://localhost:5000/friends/${id}`,
+        friend
+      )
+      .then(res => console.log())
+      .catch(err => console.log(err))
+  }
+
   render() { 
     return (
-      <div className="app">
-        <h1>Friend App</h1>
-        <FriendForm />
-        <FriendList friends={this.state.friends} />
+      <div className="app ui container">
+        <h1 style={{margin: '24px'}} className="ui center aligned header">Friend App</h1>
+        <div className="ui pointing menu">
+          <NavLink className="item" exact to='/'>
+            Home
+          </NavLink>
+          <NavLink className="item" to='/form'>
+            Add Friend
+          </NavLink>
+        </div>
+
+        <Route path='/form' render={ props => (
+          <FriendForm
+            {...props}
+            addFriend={this.addFriend}
+          />
+        )} />
+
+        <FriendList
+          deleteFriend={this.deleteFriend}
+          friends={this.state.friends}
+        />
+
+        <Route exact path='/' />
+
       </div>
     );
   }

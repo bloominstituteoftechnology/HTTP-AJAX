@@ -2,16 +2,20 @@ import React from 'react';
 
 import FriendCard from './FriendCard';
 
-const FriendList = ({ friends }) => {
+const FriendList = ({ friends, deleteFriend }) => {
   return (
-    <div className="friend-list">
-      {
-        friends.map(friend => (
-          <div className="ui container" key={friend.id}>
-            <FriendCard friend={friend} />
-          </div>
-        ))
-      }
+    <div className="ui segment">
+      <div style={{padding: '40px 0'}} className="friend-list ui centered raised cards">
+        {
+          friends.map(friend => (
+            <FriendCard
+              key={friend.id}
+              deleteFriend={deleteFriend}
+              friend={friend}
+              />
+          ))
+        }
+      </div>
     </div>
   );
 }
