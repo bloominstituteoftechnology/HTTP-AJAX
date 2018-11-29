@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const StyledFriend = styled.div`
   margin: 5px auto;
@@ -11,7 +11,8 @@ const StyledFriend = styled.div`
   border-radius: 4px;
   text-align: left;
 
-  h2, h3 {
+  h2,
+  h3 {
     padding-right: 20px;
   }
 `;
@@ -26,10 +27,16 @@ const UpdateButton = styled.button`
 const Friend = props => {
   return (
     <StyledFriend>
-      <div><h2>{props.friend.name}</h2></div>
-      <div><h3>{props.friend.age} years old</h3></div>
-      <div><h3>{props.friend.email}</h3></div>
-      <Link to={`/update/${props.friend.id}`}><UpdateButton>Update</UpdateButton></Link>
+    {console.log('in friend')}
+      <div>
+        <h2>{props.friend.name}</h2>
+      </div>
+      <div>
+        <h3>{props.friend.age} years old</h3>
+      </div>
+      <div>
+        <h3>{props.friend.email}</h3>
+      </div>
     </StyledFriend>
   );
 };

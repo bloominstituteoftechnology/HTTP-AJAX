@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './App.css';
 import FriendsList from './components/FriendsList';
+import Friend from './components/Friend';
 import FriendForm from './components/FriendForm';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -17,22 +18,13 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(res => {
-        console.log(res);
+        //console.log(res);
         this.setState({friends: res.data});
       })
       .catch(err => console.log('err', err));
   }
 
-  addFriend = e => {
-    console.log('click');
-    e.preventDefault();
-    const newFriend = {
-      name: e.target.name.value,
-      age: e.target.age.value,
-      email: e.target.email.value,
-      id: Date.now(),
-    };
-
+  addFriend = newFriend => {
     // add new friend if all fields are filled out
     if (newFriend.name && newFriend.age && newFriend.email) {
       axios
@@ -41,18 +33,13 @@ class App extends Component {
           this.setState({friends: res.data});
         })
         .catch(err => console.log(err));
-
-      // clear inputs
-      e.target.name.value = '';
-      e.target.age.value = '';
-      e.target.email.value = '';
     }
   };
 
   updateFriend = id => {
     //const friend = this.state.friends.filter()
-    id.preventDefault();
     console.log(id);
+    //<Redirect to="/" />
   };
 
   render() {
@@ -71,9 +58,7 @@ class App extends Component {
         />
         <Route
           path="/update/:id"
-          render={props => (
-            <FriendForm {...props} updateFriend={this.updateFriend}/>
-          )}
+          component={FriendForm}
         />
       </div>
     );
