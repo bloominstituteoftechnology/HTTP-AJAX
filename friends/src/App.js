@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FriendsContainer from './components/FriendsContainer';
+import FriendPage from './components/FriendPage';
 import Form from './components/Form';
+import { Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -33,8 +35,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsContainer friends={this.state.friends}/>
-        <Form addFriend={this.addFriend}/>
+
+        
+        <Route
+          exact 
+          path="/" 
+          render={props => {
+          return (
+          <div>
+            <FriendsContainer {...props} friends={this.state.friends} />
+            <Form addFriend={this.addFriend}/> 
+          </div>
+          );
+          
+          }} />
+        {this.state.friends.length &&
+        <Route 
+          path="/friends/:id" 
+        render={props => <FriendPage {...props} friends={this.state.friends}/> } /> }
       </div>
     );
   }

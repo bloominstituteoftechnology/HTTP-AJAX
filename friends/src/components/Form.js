@@ -16,14 +16,24 @@ class Form extends Component {
         })
     }
 
+    clearForm = () => {
+        this.setState({
+            name: '',
+            age: '',
+            email: ''
+        })
+    }
+
     render(){
         return (
             <form className="form-wrapper" onSubmit={(event) =>{
                 event.preventDefault();
-                this.props.addFriend(this.state);}}>
+                this.props.addFriend(this.state);
+                this.clearForm();
+                }}>
                 <input onChange={this.onChangeHandler} type="text" placeholder="Enter your name" name="name" value={this.state.name}/>
-                <input onChange={this.onChangeHandler} type="text" placeholder="Enter your name" name="age" value={this.state.age}/>
-                <input onChange={this.onChangeHandler} type="text" placeholder="Enter your name" name="email" value={this.state.email}/>
+                <input onChange={this.onChangeHandler} type="text" placeholder="Enter your age" name="age" value={this.state.age}/>
+                <input onChange={this.onChangeHandler} type="text" placeholder="Enter your email" name="email" value={this.state.email}/>
                 <button type="submit">Submit</button>
             </form>
             
