@@ -21,30 +21,41 @@ class App extends Component {
     event.preventDefault();
     const friendList = this.state.friends;
     const filtered = friendList.filter(
-      friend => friend.email === this.state.email || this.state.email === ""
+      friend =>
+        friend.email === this.state.email ||
+        this.state.email === "" ||
+        this.state.name === ""
     );
-    console.log(filtered.length);
-    // let testValue = JSON.stringify(this.state.friends).includes(this.state.email)
-    if (
-      filtered.length ===
-      0 /* this.state.age === "" || this.state.name === "" || this.state.email === "" || */
-    ) {
+
+    if (filtered.length === 0) {
+      axios
+        .post("http://localhost:3100/friends/", {
+          age: this.state.age,
+          name: this.state.name,
+          email: this.state.email
+        })
+        .then(response => {
+          this.setState({
+            friends: response.data,
+            age: "",
+            name: "",
+            email: ""
+          });
+        })
+        .catch(err => console.log(`${err} YOLO`));
       this.setState({
         friends: [
           ...this.state.friends,
           {
-            id: this.state.friends.length + 1,
             age: this.state.age,
             name: this.state.name,
             email: this.state.email
           }
-        ],
-        age: "",
-        name: "",
-        email: ""
+        ]
       });
     }
   };
+
   inputChangeHandle = event => {
     this.setState({
       [event.target.name]: event.target.value
