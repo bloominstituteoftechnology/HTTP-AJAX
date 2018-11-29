@@ -24,7 +24,7 @@ class FriendCard extends React.Component {
                     className='delete-button'
                     onClick={() => this.props.deleteFriend(this.props.data.id)}
                 >
-                    X
+                    <i class="fas fa-times"></i>
                 </button>
                 <i className="fas fa-user"></i>
                 <p className='friend-name'>{this.props.data.name}, <span className='friend-age'>{this.props.data.age}</span></p>

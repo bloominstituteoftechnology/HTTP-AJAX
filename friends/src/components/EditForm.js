@@ -27,11 +27,11 @@ class EditForm extends React.Component {
             }, 
             this.props.id
             );
-            this.setState({
-                nameText:'',
-                ageText: '',
-                emailText:'',
-            });
+        this.setState({
+            nameText:'',
+            ageText: '',
+            emailText:'',
+        });
     }
 
     render() {

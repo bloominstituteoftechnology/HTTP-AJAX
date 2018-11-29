@@ -47,7 +47,7 @@
 
 .individual-friend .delete-button {
     width: 2.5rem;
-    border: 1px solid #F8F1FF;
+    border: none;
     background-color: #534D56;
     color: #F8F1FF;
     position: absolute;
