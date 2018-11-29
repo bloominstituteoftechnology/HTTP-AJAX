@@ -17,6 +17,7 @@ class App extends Component {
       email: ""
     };
   }
+  editHandle = id => {};
   deleteHandle = id => {
     axios.delete(`http://localhost:3100/friends/${id}`).then(response => {
       this.setState({
@@ -24,6 +25,7 @@ class App extends Component {
       });
     });
   };
+
   addFriendHandle = event => {
     event.preventDefault();
     const friendList = this.state.friends;
@@ -88,13 +90,11 @@ class App extends Component {
           inputChangeHandle={this.inputChangeHandle}
           addFriendHandle={this.addFriendHandle}
         />
-        {this.state.friends.map(friend => (
-          <FriendsList
-            key={friend.id}
-            friend={friend}
-            deleteHandle={this.deleteHandle}
-          />
-        ))}
+        <FriendsList
+          friends={this.state.friends}
+          deleteHandle={this.deleteHandle}
+          editHandle={this.editHandle}
+        />
       </div>
     );
   }
