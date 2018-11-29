@@ -23,8 +23,8 @@ class App extends Component {
             this.setState(() => ({ friends: res.data }));
             
         })
-        .catch(error => {
-        console.error('Server Error', error);
+        .catch(err => {
+        console.log('Server Error', err);
         });
   }
 
@@ -45,6 +45,18 @@ class App extends Component {
         .catch(err => console.log('axios error on savefriend'));
   }
 
+  removeFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          friends: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <div className="App">
@@ -52,7 +64,7 @@ class App extends Component {
           exact
           path='/'
           render={props => {
-            console.log(this.state.friends)
+            console.log('App - this.state.friends', this.state.friends)
             return (
               <div>
                 <FriendsList 

@@ -1,5 +1,8 @@
 import React from 'react';
+import { Route, NavLink, Link} from 'react-router-dom';
 import axios from 'axios';
+
+import Friend from './Friend';
 
 // class FriendsList extends React.Component {
 //     constructor(props) {
@@ -40,22 +43,26 @@ import axios from 'axios';
 // }
 
 const FriendsList = props => {
-    // const friendId = props.match.params.id;
-    // console.log(friendId);
-    console.log('FRIENDLIST PROPS', props.match)
-    console.log(props.friends)
+    console.log('FriendList', props.friends)
     return (
         
         <div className="friends-list">
+            
             {props.friends.map(
                 friend => ( 
-                    <div className="friend-card" key={friend.id}>
-                        <h4>{friend.name}</h4>
-                        <p>{friend.age}</p>
-                        <p>{friend.email}</p>
-                    </div> 
+                    <NavLink
+                        exact 
+                        to={`/friends/${friend.id}`}
+                        onClick={() => props.history.push(`/friends/${friend.id}`)}
+                        className="friend-card"
+                        key={friend.id}
+                        
+                    >
+                    
+                        <h2>{friend.name}</h2>
+                    </NavLink>
                 ) 
-            )} 
+            )}
         </div>
     )
     
