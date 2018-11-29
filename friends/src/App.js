@@ -39,8 +39,17 @@ componentDidMount(){
   
     }
 
-    updateToList = (obj) => {
-
+    updateToList = (id, obj) => {
+      console.log(id);
+      axios 
+        .put(`http://localhost:5000/friends/${id}`, obj)
+        .then(response => {
+          console.log(id);
+          this.setState({
+            friends:response.data
+          })
+        })
+        .catch(err => console.log(err));
     }
 
     startUpdate = (obj) =>{
@@ -56,9 +65,8 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-        <FriendForm  addToList={this.addToList} updateToList={this.addToList} editFriend={this.state.editFriend} friends={this.state.friends}/>
+        <FriendForm  addToList={this.addToList} updateToList={this.updateToList} editFriend={this.state.editFriend} friends={this.state.friends}/>
         <FriendsList friends={this.state.friends} startUpdate={this.startUpdate}/>
-
       </div>
     );
   }

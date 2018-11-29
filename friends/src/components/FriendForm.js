@@ -13,21 +13,12 @@ export default class FriendForm extends Component {
     }
   }
 
-  componentDidMount(){
-    let editFriend= this.props.editFriend;
-    if(editFriend){
-      this.setState({
-        name: editFriend.name,
-        age: editFriend.age,
-        email: editFriend.email
-      })
-    }
-  }
+  
 
   componentDidUpdate(prevProps, previousState){
     let editFriend= this.props.editFriend;
-    if(editFriend){
-      if(editFriend.name !== previousState.name)
+    if(editFriend.name){
+      if(editFriend.name !== prevProps.editFriend.name)
       this.setState({
         name: editFriend.name,
         age: editFriend.age,
@@ -57,22 +48,29 @@ export default class FriendForm extends Component {
       <div className="form">
         <form onSubmit={e =>{
           e.preventDefault();
-          if(this.props.editFriend){
-            const updateFriendObj = {
-              name: this.state.name,
-              age: Number(this.state.age),
-              email: this.state.email,
-              id: this.state.id
-            }
-            this.props.updateToList(updateFriendObj);
-          }else{
+         
+          if(!this.props.editFriend.name){
+            console.log('didnot')
             const newFriendObj = {
+              id: (this.props.friends.length+1),
               name: this.state.name,
               age: Number(this.state.age),
               email: this.state.email,
-              id: (this.props.friends.length+1)
+              
             }
             this.props.addToList(newFriendObj);
+          }else{
+            console.log('didedit')
+            const updateFriendObj = {
+              id: this.props.editFriend.id,
+              name: this.state.name,
+              age: Number(this.state.age),
+              email: this.state.email,
+              
+              
+            }
+            console.log(updateFriendObj)
+            this.props.updateToList(updateFriendObj.id, updateFriendObj);
           }
           
           
