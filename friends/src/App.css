@@ -1,6 +1,7 @@
 .App {
   text-align: left;
   display: flex;
+  padding: 20px;
 }
 
 .App-logo {
@@ -38,4 +39,14 @@
 
 .friend-card {
   margin-bottom: 20px;
+  border: 1px solid black;
+  padding: 10px;
+  line-height: 2.4;
+}
+
+.delete {
+  border: 1px solid lightblue;
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
 }

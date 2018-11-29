@@ -1,21 +1,21 @@
 import React from 'react';
 
-const FriendsList = ({friends}) => {
+const FriendsList = props => {
   // console.log(friends[0].name)
   return (
     <div>
-       <form className="ui form">
+       <form  onSubmit={ e => props.addFriend(e)} className="ui form">
           <div className="field">
             <label>Name</label>
-            <input type="text" name="name" placeholder="Enter name" />
+            <input onChange={ e => props.handleInputChange(e)}  value={props.inputName} type="text" name="inputName" placeholder="Enter name" />
           </div>
           <div className="field">
             <label>Age</label>
-            <input type="text" name="age" placeholder="Enter age" />
+            <input onChange={e => props.handleInputChange(e)}  value={props.inputAge} type="text" name="inputAge" placeholder="Enter age" />
           </div>
           <div className="field">
             <label>Email</label>
-            <input type="text" name="email" placeholder="Enter email" />
+            <input onChange={e => props.handleInputChange(e)} value={props.inputEmail} type="text" name="inputEmail" placeholder="Enter email" />
           </div>
           <button className="ui button" type="submit">Add Friend</button>
         </form>
