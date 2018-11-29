@@ -1,6 +1,5 @@
 .friendsList{
     margin: 0 auto;
-    background-color: lightgrey;
     /* width: 900px; */
 }
 
@@ -14,4 +13,14 @@
 
 button{
     border-radius: 10px;
+    background: white;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+input{
+    margin-left: 5px;
+    border-radius: 10px;
+    padding: 5px;
 }
