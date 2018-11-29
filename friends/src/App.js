@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Route, NavLink } from 'react-router-dom';
+import { Container, Header, Menu, Loader } from 'semantic-ui-react';
 
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
@@ -64,16 +65,16 @@ class App extends React.Component {
 
   render() { 
     return (
-      <div style={{paddingBottom: '50px'}} className="app ui container">
-        <h1 style={{margin: '24px'}} className="ui center aligned header">Friend App</h1>
-        <div className="ui pointing menu">
+      <Container style={{paddingBottom: '50px'}}>
+        <Header textAlign='center' as='h1' style={{margin: '24px'}}>Friend App</Header>
+        <Menu pointing>
           <NavLink className="item" exact to='/'>
             Home
           </NavLink>
           <NavLink className="item" to='/form'>
             Add Friend
           </NavLink>
-        </div>
+        </Menu>
 
         <Route path='/form' render={ props => (
           <FriendForm
@@ -88,15 +89,15 @@ class App extends React.Component {
             deleteFriend={this.deleteFriend}
             friends={this.state.friends}
           /> :
-          <div class="ui active centered inline text loader">
+          <Loader active inline='centered'>
             Loading ...
-          </div>
+          </Loader>
         }
 
 
         <Route exact path='/' />
 
-      </div>
+      </Container>
     );
   }
 }

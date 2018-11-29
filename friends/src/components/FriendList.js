@@ -1,11 +1,12 @@
 import React from 'react';
+import { Segment, Card } from 'semantic-ui-react';
 
 import FriendCard from './FriendCard';
 
 const FriendList = ({ friends, deleteFriend }) => {
   return (
-    <div className="ui segment">
-      <div style={{padding: '40px 0'}} className="friend-list ui centered raised cards">
+    <Segment>
+      <Card.Group centered style={{padding: '40px 0'}}>
         {
           friends.map(friend => (
             <FriendCard
@@ -15,8 +16,8 @@ const FriendList = ({ friends, deleteFriend }) => {
               />
           ))
         }
-      </div>
-    </div>
+      </Card.Group>
+    </Segment>
   );
 }
 

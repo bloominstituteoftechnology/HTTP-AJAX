@@ -1,4 +1,5 @@
 import React from 'react';
+import { Segment, Button, Form } from 'semantic-ui-react';
 
 class FriendForm extends React.Component {
   state = {
@@ -48,32 +49,31 @@ class FriendForm extends React.Component {
   render() {
     const { name, age, location, email } = this.state;
     return (
-    <div  className="ui segment">
-      <form style={{padding: '20px'}} className="ui form">
-        <div className="field">
+    <Segment>
+      <Form style={{padding: '20px'}}>
+        <Form.Field>
           <label>Name</label>
           <input type="text" value={name} onChange={this.onChange} name="name" placeholder="Enter name" />
-        </div>
-        <div className="field">
+        </Form.Field>
+        <Form.Field>
           <label>Age</label>
           <input type="text" value={age} onChange={this.onChange} name="age" placeholder="Enter age" />
-        </div>
-        <div className="field">
+        </Form.Field>
+        <Form.Field>
           <label>Location</label>
           <input type="text" value={location} onChange={this.onChange} name="location" placeholder="Enter location" />
-        </div>
-        <div className="field">
+        </Form.Field>
+        <Form.Field>
           <label>Email</label>
           <input type="text" value={email} onChange={this.onChange} name="email" placeholder="Enter email" />
-        </div>
-        <button
-          className="ui button"
+        </Form.Field>
+        <Button
           onClick={this.onCancel}>
           {Object.values(this.state).every(item => !item) ? 'Cancel' : 'Clear'}
-        </button>
-        <button className="ui primary button" onClick={this.onClick}>Add Friend</button>
-      </form>
-    </div>
+        </Button>
+        <Button primary onClick={this.onClick}>Add Friend</Button>
+      </Form>
+    </Segment>
     );
   }
 }

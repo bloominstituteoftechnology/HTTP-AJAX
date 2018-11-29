@@ -1,41 +1,41 @@
 import React from 'react';
+import { Card, Button } from 'semantic-ui-react';
 
 const FriendCard = ({ friend, deleteFriend }) => {
   return (
-    <div className="card">
-      <div className="content">
-        <h4 className="header">
+    <Card>
+      <Card.Content>
+        <Card.Header>
          {friend.name}
-        </h4>
-      </div>
-      <div className="content">
-        <div className="summary">
+        </Card.Header>
+      </Card.Content>
+      <Card.Content>
+        <Card.Description>
           Age: {friend.age}
-        </div>
-      </div>
-      <div className="content">
-        <div className="summary">
+        </Card.Description>
+      </Card.Content>
+      <Card.Content>
+        <Card.Description>
           Location: {friend.location}
-        </div>
-      </div>
-      <div className="content">
-        <div className="summary">
+        </Card.Description>
+      </Card.Content>
+      <Card.Content>
+        <Card.Description>
           Email: {friend.email}
-        </div>
-      </div>
-      <div className="extra content">
+        </Card.Description>
+      </Card.Content>
+      <Card.Content>
         <div className="ui two buttons">
-        <div 
+        <Button 
             onClick={(e) => {
               e.preventDefault();
               deleteFriend(friend.id)
             }}
-            className="ui button"
-          >Remove</div>
-          <div className="ui primary button">Update</div>
+          >Remove</Button>
+          <Button primary>Update</Button>
         </div>
-      </div>
-    </div>
+      </Card.Content>
+    </Card>
   );
 }
 
