@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FriendsContainer from './components/FriendsContainer';
+import Form from './components/Form';
 
 import './App.css';
 
@@ -7,7 +9,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [],
+      
     }
   }
 
@@ -21,10 +24,17 @@ class App extends Component {
       
   }
 
+  addFriend = friend => {
+    axios.post('http://localhost:5000/friends', friend)
+      .then(response => this.setState({friends: response.data}))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
-        {this.state.friends.map(friend => <div>{friend.name}</div>)}
+        <FriendsContainer friends={this.state.friends}/>
+        <Form addFriend={this.addFriend}/>
       </div>
     );
   }
