@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import FriendsList from './components/FriendsList';
 import FriendForm from './components/FriendForm';
 
@@ -15,7 +15,7 @@ class App extends Component {
     }
   }
 
-  
+
 componentDidMount(){
       axios
         .get('http://localhost:5000/friends')
@@ -69,7 +69,7 @@ componentDidMount(){
     };
 
     startUpdate = (obj) =>{ 
-     
+        
         this.setState({
           editFriend: obj
        })
@@ -83,8 +83,18 @@ componentDidMount(){
   render() {
     return (
       <div className="App">
-        <FriendForm  addToList={this.addToList} updateToList={this.updateToList} editFriend={this.state.editFriend} friends={this.state.friends}/>
-        <FriendsList friends={this.state.friends} startUpdate={this.startUpdate} deleteItem={this.deleteItem}/>
+        <div className='nav' >
+          <Link to='/'>List</Link>
+          <Link to='friendform'>Add Form</Link>
+        </div>
+      <Route
+        path="/friendform/"
+        render={(props) => <FriendForm {...props} addToList={this.addToList} updateToList={this.updateToList} editFriend={this.state.editFriend} friends={this.state.friends}/>}
+      />
+      <Route
+        exact path="/"
+        render={(props) => <FriendsList {...props} friends={this.state.friends} startUpdate={this.startUpdate} deleteItem={this.deleteItem}/>}
+      />
       </div>
     );
   }

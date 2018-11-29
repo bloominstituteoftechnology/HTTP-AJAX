@@ -37,24 +37,30 @@
 }
 
 .friend{
-  
-  border: 1px dashed lightgray;
+  border: 1px solid green;
   margin-top: 20px;
   width: 100%;
   display:flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: left;
   align-items: center;
 }
 .friend button{
   height: 30px;
 }
 .friend .info{
-  border: 1px solid green;
+  border: 1px dashed lightgray;
   padding: 0 10%;;
-  text-align: left;
-  width: 300px;
+  /* text-align: left; */
+  width: 470px;
+  margin-right: 50px;
 }
 .form{
   margin: 40px 0 20px;
+}
+.nav a{
+  padding-right: 70px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin-right: 30px;
 }

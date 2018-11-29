@@ -15,10 +15,10 @@ export default class FriendForm extends Component {
 
   
 
-  componentDidUpdate(prevProps, previousState){
+  componentDidMount(prevProps, previousState){
     let editFriend= this.props.editFriend;
+    console.log(editFriend);
     if(editFriend.name){
-      if(editFriend.name !== prevProps.editFriend.name)
       this.setState({
         name: editFriend.name,
         age: editFriend.age,
@@ -44,7 +44,7 @@ export default class FriendForm extends Component {
           e.preventDefault();
          
           if(!this.props.editFriend.name){
-            console.log('didnot')
+            // console.log('didnot')
             const newFriendObj = {
               name: this.state.name,
               age: Number(this.state.age),
@@ -53,7 +53,7 @@ export default class FriendForm extends Component {
             }
             this.props.addToList(newFriendObj);
           }else{
-            console.log('didedit')
+            // console.log('didedit')
             const updateFriendObj = {
               id: this.props.editFriend.id,
               name: this.state.name,
@@ -62,7 +62,7 @@ export default class FriendForm extends Component {
               
               
             }
-            console.log(updateFriendObj)
+            // console.log(updateFriendObj)
             this.props.updateToList(updateFriendObj.id, updateFriendObj);
           }
           
@@ -71,7 +71,7 @@ export default class FriendForm extends Component {
             age: '',
             email:''
           })
-          
+          this.props.history.push('/')
 
         }}>
 
