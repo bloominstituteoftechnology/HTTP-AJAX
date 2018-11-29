@@ -90,8 +90,6 @@ class App extends React.Component {
           handleSearch={this.handleSearch}
         />
 
-        <Route exact path='/' />
-
         <Route path='/form' render={ props => (
           <FriendForm
             {...props}
@@ -99,17 +97,19 @@ class App extends React.Component {
           />
         )} />
 
-        {
-          this.state.friends.length ?
-          <FriendList
-            deleteFriend={this.deleteFriend}
-            updateFriend={this.updateFriend}
-            friends={filteredFriend}
-          /> :
-          <Loader active inline='centered'>
-            Loading ...
-          </Loader>
-        }
+        <Route path='/' render={ props => {
+          return (
+              this.state.friends.length ?
+              <FriendList
+                deleteFriend={this.deleteFriend}
+                updateFriend={this.updateFriend}
+                friends={filteredFriend}
+              /> :
+              <Loader active inline='centered'>
+                Loading ...
+              </Loader>
+          )
+        }} />
 
       </Container>
     );
