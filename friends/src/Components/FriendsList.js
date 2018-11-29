@@ -8,7 +8,7 @@ class FriendsList extends Component {
     constructor() {
         super();
         this.state = {
-          friendsList: []
+          friendList: []
         };
       }
 
@@ -17,7 +17,7 @@ class FriendsList extends Component {
           .get("http://localhost:5000/friends")
           .then(response => {
             console.log(response);
-            this.setState({ friendsList: response.data });
+            this.setState({ friendList: response.data });
           })
     
           .catch(err => {
@@ -25,16 +25,29 @@ class FriendsList extends Component {
           });
       }
     
-
+      addNewFriend = data => {
+        {
+          axios
+            .post("http://localhost:5000/friends", data)
+            .then(response => {
+              console.log(response);
+              this.setState({
+                friendList: response.data
+              });
+            })
+            .catch(err => console.log(err));
+        }
+      };
+    
 
 
   render() {
 
     return (
       <div className="FriendsList">
-        <FriendsForm />
+        <FriendsForm addNewFriend={this.addNewFriend}/>
         
-        {this.state.friendsList.map(friend => (
+        {this.state.friendList.map(friend => (
           <Friends key={friend.id} friends={friend} />
 
         ))}
