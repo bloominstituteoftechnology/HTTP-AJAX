@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 const FriendsContainer = props => {
 const friendsList = props.friends.map(friend => {
         return (
-            <Link to={`/friends/${friend.id}`} key={friend.id} >
-                <Friend  friend={friend}/>
-            </Link>
+            <div>
+                <Link to={`/friends/${friend.id}`} key={friend.id} >
+                    <Friend  friend={friend}/>
+                </Link>
+                <button onClick={() => props.deleteFriend(friend.id)}>Get Rekt</button>
+            </div>
         );
     });
 

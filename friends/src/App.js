@@ -19,7 +19,7 @@ class App extends Component {
   componentDidMount(){
     axios.get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response); 
+        //console.log(response); 
         this.setState({friends: response.data})
       })
       .catch(err => console.log(err));
@@ -32,7 +32,37 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  editFriend= (friend, id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friend)
+      .then(response => {
+        console.log('edit friend', response);
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(err => console.log(err));
+
+  };
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+
   render() {
+    if(!this.state.friends.length){
+      return <h1>Loading</h1>;
+    }
+
     return (
       <div className="App">
 
@@ -43,16 +73,16 @@ class App extends Component {
           render={props => {
           return (
           <div>
-            <FriendsContainer {...props} friends={this.state.friends} />
-            <Form addFriend={this.addFriend}/> 
+            <FriendsContainer {...props} friends={this.state.friends} deleteFriend={this.deleteFriend}/>
+            <Form addFriend={this.addFriend} /> 
           </div>
           );
           
           }} />
-        {this.state.friends.length &&
+        
         <Route 
           path="/friends/:id" 
-        render={props => <FriendPage {...props} friends={this.state.friends}/> } /> }
+        render={props => <FriendPage {...props} friends={this.state.friends} editFriend={this.editFriend}/> } /> 
       </div>
     );
   }
