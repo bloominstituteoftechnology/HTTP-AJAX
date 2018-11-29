@@ -8,13 +8,15 @@ class App extends React.Component {
     super();
     this.state = {
       data: [],
-      name: ''
+      name: '',
+      id: [],
+      email: ''
     };
   }
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/friends')
+      .get('http://localhost:5000/friends/')
       .then(response => {
         console.log(response)
         this.setState({ 
@@ -24,24 +26,35 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-  handleChange = event => {
+  changeName = event => {
     this.setState({
         name: event.target.value
     })
 }
 
+  changeID = event => {
+    this.setState({
+        id: event.target.value
+    })
+  }
+
+  changeEmail = event => {
+    this.setState({
+        email: event.target.value
+    })
+  }
+
   click = event => {
     event.preventDefault();
 
-    // const myData = {
-    //     name: this.state.name
-    // }
-    console.log("yeahhh")
     axios
-    .post(`http://localhost:5000/friends`, {
-      name: this.state.name
-      
+    .post('http://localhost:5000/friends/', {
+      name: this.state.name,
+      id: this.state.id,
+      email: this.state.email
     })
+
+
     .then(newResponse => {
       console.log(newResponse)
       this.setState({ 
@@ -51,20 +64,47 @@ class App extends React.Component {
     .catch(err => console.log(err));
 }
 
+  update = (event, id) => {
+    event.preventDefault();
+
+    console.log("yeahhh")
+    axios
+    .put(`http://localhost:5000/friends/${this.state.id}`, {
+      name: this.state.name,
+      id: this.state.id,
+      email: this.state.email
+    })
+
+    .then(newResponse => {
+      console.log('from update', newResponse)
+      this.setState({ 
+        data: newResponse.data
+      });
+    })
+    .catch(err => console.log(err));
+  }
+
   render() {
     console.log('this state data', this.state.data)
     console.log('this state name', this.state.name)
     return (
       <div className="App">
         {this.state.data.map(item => (
-        <li>{item.name}</li>
+        <li>
+          {item.name}
+          {item.age}
+          {item.email}
+        </li>
         ))}
 
         <MyForm 
           data={this.state.data}
           updateData={this.updateData}
           click={this.click}
-          handleChange={this.handleChange}
+          changeName={this.changeName}
+          changeID={this.changeID}
+          changeEmail={this.changeEmail}
+          update={this.update}
         />
       </div>
     );

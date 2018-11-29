@@ -10,30 +10,6 @@ class MyForm extends React.Component {
         };
     }
 
-    // handleChange = event => {
-    //     this.setState({
-    //         name: event.target.value
-    //     })
-    // }
-
-    // click = event => {
-    //     event.preventDefault();
-
-    //     const myData = {
-    //         name: this.state.name
-    //     }
-    //     console.log("yeahhh")
-    //     axios
-    //     .post('http://localhost:5000/friends', {myData})
-    //     .then(response => {
-    //       console.log(response)
-    //     //   this.setState({ 
-    //     //     data: response.data
-    //     //   });
-    //     })
-    //     .catch(err => console.log(err));
-    // }
-
     render() {
         // console.log('state name from render', this.state.name)
         return (
@@ -41,10 +17,21 @@ class MyForm extends React.Component {
             <form onSubmit={this.props.click}>
                 <label>
                     Name:
-                    <input type="text" name="name" 
-                    onChange={this.props.handleChange} />
-                    </label>
-                <input type="submit" value="Submit" />
+                    <input type="text" name="name"
+                    onChange={this.props.changeName} />
+                </label>
+                <label>
+                    ID:
+                    <input type="text" name="id" 
+                    onChange={this.props.changeID} />
+                </label>
+                <label>
+                    Email:
+                    <input type="email" name="email" 
+                    onChange={this.props.changeEmail} />
+                </label>
+                <input type="submit" value="Add New"/>
+                <button onClick={this.props.update}>Update</button>
             </form>
         </div>
         )
