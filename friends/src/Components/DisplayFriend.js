@@ -10,7 +10,7 @@ const DivWrapper = styled.div``;
 const DivName = styled.div`
   display: flex;
   justify-content: space-around;
-  font-size: 48px;
+  font-size: 72px;
   border: 3px solid black;
   background-color: rgba(0, 0, 0, 0.4);
 `;
@@ -26,7 +26,9 @@ const ButtonEdit = styled.button`
   background: linear-gradient(to top, #00c800, #008c00);
   border-color: #008c00;
   cursor: pointer;
-  width: 120px;
+  width: 200px;
+  font-size: 24px;
+  font-weight: bold;
 
   &:active {
     background: linear-gradient(to top, #008c00, #00c800);
@@ -40,7 +42,9 @@ const ButtonDelete = styled.button`
   background: linear-gradient(to top, #ff0000, #a00000);
   border-color: #a00000;
   cursor: pointer;
-  width: 120px;
+  width: 200px;
+  font-size: 24px;
+  font-weight: bold;
 
   &:active {
     background: linear-gradient(to top, #a00000, #ff0000);
@@ -63,8 +67,8 @@ const DisplayFriend = props => {
           {friendInfo.name}
           <ButtonDelete type='button'>Delete Friend</ButtonDelete>
         </DivName>
-        <h3>Age: {friendInfo.age}</h3>
-        <h3>Email: {friendInfo.email}</h3>
+        <h1>Age: {friendInfo.age}</h1>
+        <h1>Email: {friendInfo.email}</h1>
       </DivWrapper>
     );
   }
