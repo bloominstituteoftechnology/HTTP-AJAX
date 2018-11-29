@@ -3,6 +3,11 @@
   margin: 0 auto;
   border: 2px solid grey;
   border-radius: 10px;
+  text-shadow: 1px 1px 5px black;
+}
+
+h1 {
+  font-weight: bold;
 }
 
 h3 {
@@ -14,6 +19,7 @@ a,
 a:visited {
   text-decoration: none;
   color: white;
+  text-shadow: 1px 0px 1px white;
 }
 
 .friends-list {
@@ -84,6 +90,8 @@ a:visited {
   background: black;
   color: white;
   cursor: pointer;
+  text-shadow: 1px 1px 10px white;
+  box-shadow: 1px 1px 10px black;
 }
 
 .friend-card {
@@ -103,4 +111,5 @@ a:visited {
 
 .friend-info {
   line-height: 60px;
+  text-shadow: 1px 1px 5px white;
 }

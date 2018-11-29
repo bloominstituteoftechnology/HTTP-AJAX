@@ -11,7 +11,7 @@ const FriendCard = props => {
         <h1>Friend Info:</h1>
       </div>
       <div className="friend-info">
-        <h2>Name: {friend.name}</h2>
+        <h1>{friend.name}</h1>
         <h2>Age: {friend.age}</h2>
         <h2>Email: {friend.email}</h2>
       </div>
