@@ -36,7 +36,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friendsData: []
+      friendsData: [],
+      name: "",
+      age: 0,
+      email: ""
     };
   }
 
@@ -61,7 +64,7 @@ class App extends Component {
     e.preventDefault();
     if (
       this.state.name !== "" &&
-      this.state.age !== "" &&
+      this.state.age !== 0 &&
       this.state.email !== ""
     ) {
       axios
@@ -93,7 +96,7 @@ class App extends Component {
     } else return;
   };
 
-  deleteItem = id => {
+  deleteFriend = id => {
     axios
       .delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
@@ -115,25 +118,47 @@ class App extends Component {
             exact
             path="/friendslist"
             render={props => (
-              <FriendsList {...props} friendsData={this.state.friendsData} />
+              <FriendsList
+                {...props}
+                friendsData={this.state.friendsData}
+                deleteFriend={this.deleteFriend}
+              />
             )}
           />
           <Route
             exact
-            path="/friend/:id"
-            render={props => <Friend {...props} />}
+            path="/friends/:id"
+            render={props => (
+              <Friend
+                {...props}
+                friendsData={this.state.friendsData}
+                deleteFriend={this.deleteFriend}
+              />
+            )}
           />
           <Route
             exact
             path="/addfriend"
             render={props => (
-              <AddFriendsForm {...props} addFriend={this.addFriend} />
+              <AddFriendsForm
+                {...props}
+                addFriend={this.addFriend}
+                handleChange={this.handleChange}
+                stateProps={this.state}
+              />
             )}
           />
           <Route
             exact
             path="/friend-edit/:id"
-            render={props => <AddFriendsForm {...props} />}
+            render={props => (
+              <AddFriendsForm
+                {...props}
+                editFriend={this.editFriend}
+                stateProps={this.state}
+                handleChange={this.handleChange}
+              />
+            )}
           />
         </BodyTag>
       </>

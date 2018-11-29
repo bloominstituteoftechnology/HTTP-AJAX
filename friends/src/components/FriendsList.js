@@ -48,12 +48,9 @@ const Span = styled.span`
 export default class FriendsList extends Component {
   constructor(props) {
     super(props);
-    //   this.state = {
-    //     friendsData: [],
-    //     name: "",
-    //     age: "",
-    //     email: ""
-    //   };
+    this.state = {
+      friend: null
+    };
   }
 
   // componentDidMount() {
@@ -142,9 +139,10 @@ export default class FriendsList extends Component {
               <h2>
                 {friend.name}
                 <Span
-                  onClick={() =>
-                    this.deleteItem(this.props.match.params.friend.id)
-                  }
+                  onClick={() => {
+                    this.props.deleteFriend(friend.id);
+                    this.props.history.push("/friendslist");
+                  }}
                 >
                   X
                 </Span>

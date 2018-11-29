@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+// import { Link } from "react-router-dom";
 
 const StyledForm = styled.form`
   margin: 1rem auto;
@@ -9,6 +10,8 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 800px;
 
   & > input {
     width: 90%;
@@ -50,12 +53,28 @@ const StyledForm = styled.form`
     }
   }
 `;
+
 class AddFriendsForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.props.editfriend) {
+      this.props.editFriend(this.state, this.props.match.params.id);
+    } else {
+      this.props.addFriend(this.state);
+    }
+    this.props.history.push("/friendslist");
+  };
+
   render() {
     return (
       <div>
         <h2>{this.props.edit ? "Edit Friend" : "Add Friend"}</h2>
-        <StyledForm onSubmit={this.props.addFriend}>
+        <StyledForm onSubmit={this.props.handleSubmit}>
           <input
             type="text"
             name="name"
@@ -64,7 +83,7 @@ class AddFriendsForm extends Component {
             value={this.props.name}
           />
           <input
-            type="text"
+            type="number"
             name="age"
             onChange={this.props.handleChange}
             placeholder="Enter Friends Age..."
