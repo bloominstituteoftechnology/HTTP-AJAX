@@ -33,7 +33,7 @@ const Friend = props => {
     <DivWrapper>
       <Link
         style={{ textDecoration: 'none', color: 'black' }}
-        to={`${props.link}/${props.friend.id}`}
+        to={`${props.displayFriend}/${props.friend.id}`}
       >
         <DivName>{props.friend.name}</DivName>
         <h3>Age: {props.friend.age}</h3>

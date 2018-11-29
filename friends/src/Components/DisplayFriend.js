@@ -62,7 +62,16 @@ const DisplayFriend = props => {
     return (
       <DivWrapper>
         <DivName>
-          <ButtonEdit type='button'>Edit Friend</ButtonEdit>
+          <ButtonEdit
+            type='button'
+            onClick={() =>
+              props.history.push(
+                `${props.urlLinks.editFriend}/${friendInfo.id}`
+              )
+            }
+          >
+            Edit Friend
+          </ButtonEdit>
           {friendInfo.name}
           <ButtonDelete
             onClick={e => {

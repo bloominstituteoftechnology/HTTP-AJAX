@@ -4,7 +4,8 @@ import axios from 'axios';
 import Friends from './Components/Friends';
 import Friend from './Components/Friend';
 import DisplayFriend from './Components/DisplayFriend';
-import AddFriend from './Components/AddFriend';
+import FriendForm from './Components/FriendForm';
+import EditFriend from './Components/EditFriend';
 
 /***************************************************************************************************
  ********************************************* Variables *******************************************
@@ -12,7 +13,7 @@ import AddFriend from './Components/AddFriend';
 const urlLinks = {
   home: '/',
   friend: `/friend`,
-  addFriend: '/addfriend'
+  editFriend: `/friend/edit`
 };
 
 /***************************************************************************************************
@@ -23,9 +24,12 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      newName: '',
-      newAge: '',
-      newEmail: ''
+      selectedFriend: {
+        id: 0,
+        name: '',
+        age: 0,
+        email: ''
+      }
     };
   }
 
@@ -38,15 +42,11 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  changeHandler = e => {
-    let newKeyValue = e.target.value;
-    this.setState({
-      [e.target.name]: newKeyValue
-    });
+  setSelectedFriend = selectedFriend => {
+    this.setState({ selectedFriend });
   };
 
-  addFriend = (e, newFriend) => {
-    e.preventDefault();
+  addFriend = newFriend => {
     axios
       .post(`http://localhost:5000/friends`, newFriend)
       .then(res => {
@@ -65,6 +65,15 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  editFriend = (id, editedFriend) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, editedFriend)
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <div className='App'>
@@ -72,14 +81,11 @@ class App extends Component {
           exact
           path={urlLinks.home}
           render={props => (
-            <AddFriend
+            <FriendForm
               {...props}
               friends={this.state.friends}
-              changeHandler={this.changeHandler}
+              urlLinks={urlLinks}
               addFriend={this.addFriend}
-              newName={this.state.newName}
-              newAge={this.state.newAge}
-              newEmail={this.state.newEmail}
             />
           )}
         />
@@ -87,14 +93,24 @@ class App extends Component {
           exact
           path={urlLinks.home}
           render={props => (
-            <Friends {...props} friends={this.state.friends} links={urlLinks} />
+            <Friends
+              {...props}
+              friends={this.state.friends}
+              urlLinks={urlLinks}
+            />
           )}
         />
 
         <Route
           exact
           path={urlLinks.friend}
-          render={props => <Friend {...props} friends={this.state.friends} />}
+          render={props => (
+            <Friend
+              {...props}
+              friends={this.state.friends}
+              urlLinks={urlLinks}
+            />
+          )}
         />
 
         <Route
@@ -106,6 +122,22 @@ class App extends Component {
               friends={this.state.friends}
               urlLinks={urlLinks}
               deleteFriend={this.deleteFriend}
+              setSelectedFriend={this.setSelectedFriend}
+              selectedFriend={this.state.selectedFriend}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={`${urlLinks.editFriend}/:id`}
+          render={props => (
+            <EditFriend
+              {...props}
+              friends={this.state.friends}
+              urlLinks={urlLinks}
+              addFriend={this.addFriend}
+              editFriend={this.editFriend}
+              edit
             />
           )}
         />

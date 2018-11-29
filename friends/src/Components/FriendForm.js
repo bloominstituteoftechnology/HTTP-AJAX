@@ -92,54 +92,88 @@ const newFriend = (id, name, age, email) => {
 /***************************************************************************************************
  ********************************************* Component *******************************************
  **************************************************************************************************/
-const AddFriend = props => {
-  return (
-    <DivWrapper>
-      <FormAddFriend
-        onSubmit={e =>
-          props.addFriend(
-            e,
-            newFriend(
-              props.friends[props.friends.length - 1].id + 1,
-              props.newName,
-              props.newAge,
-              props.newEmail
-            )
-          )
-        }
-      >
-        <DivRow>
-          <h2>Name:</h2>
-          <InputName
-            type='text'
-            name='newName'
-            onChange={props.changeHandler}
-          />
-        </DivRow>
-        <DivRow>
-          <h2>Age:</h2>
-          <InputAge
-            type='number'
-            name='newAge'
-            onChange={props.changeHandler}
-          />
-        </DivRow>
-        <DivRow>
-          <h2>Email:</h2>
-          <InputEmail
-            type='text'
-            name='newEmail'
-            onChange={props.changeHandler}
-          />
-        </DivRow>
-        <InputButton type='submit' placeholder='addfriend' value='Add Friend' />
-      </FormAddFriend>
-    </DivWrapper>
-  );
-};
+class FriendForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      age: 0,
+      email: ''
+    };
+  }
 
-// AddFriend.propTypes = {
+  changeHandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  submitHandler = e => {
+    e.preventDefault();
+    if (this.props.edit) {
+      // let friendInfo = this.props.friends.find(
+      //   friend => `${friend.id}` === this.props.match.params.id
+      // );
+      this.props.editFriend(this.props.match.params.id, this.state);
+      this.props.history.push(
+        `${this.props.urlLinks.friend}/${this.props.match.params.id}`
+      );
+    } else {
+      this.props.addFriend(
+        newFriend(
+          this.props.friends[this.props.friends.length - 1].id + 1,
+          this.state.name,
+          this.state.age,
+          this.state.email
+        )
+      );
+    }
+  };
+
+  render() {
+    return (
+      <DivWrapper>
+        <FormAddFriend onSubmit={e => this.submitHandler(e)}>
+          <DivRow>
+            <h2>Name:</h2>
+            <InputName
+              type='text'
+              name='name'
+              value={this.state.name}
+              onChange={this.changeHandler}
+            />
+          </DivRow>
+          <DivRow>
+            <h2>Age:</h2>
+            <InputAge
+              type='number'
+              name='age'
+              value={this.state.age}
+              onChange={this.changeHandler}
+            />
+          </DivRow>
+          <DivRow>
+            <h2>Email:</h2>
+            <InputEmail
+              type='email'
+              name='email'
+              value={this.state.email}
+              onChange={this.changeHandler}
+            />
+          </DivRow>
+          <InputButton
+            type='submit'
+            placeholder='addfriend'
+            value={this.props.edit ? 'Save Info' : 'Add Friend'}
+          />
+        </FormAddFriend>
+      </DivWrapper>
+    );
+  }
+}
+
+// FriendForm.propTypes = {
 //   propertyName: PropTypes.string
 // }
 
-export default AddFriend;
+export default FriendForm;
