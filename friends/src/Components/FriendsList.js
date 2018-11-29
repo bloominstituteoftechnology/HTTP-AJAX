@@ -10,13 +10,17 @@ const FriendsList = props => {
 
       {props.data.map(friend => (
         <Link
-          to={`/friend-${friend.id}`}
+          to={`/friend/${friend.id}`}
           key={friend.id}
           className="friend-link"
         >
           <h3>{friend.name}</h3>
         </Link>
       ))}
+
+      <Link to="/add-form" className="add-nav">
+        <button onClick={props.addNewFriend}>Add a Friend</button>
+      </Link>
     </div>
   );
 };

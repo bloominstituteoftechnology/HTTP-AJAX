@@ -10,10 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: [],
-      name: "",
-      age: null,
-      email: ""
+      data: []
     };
   }
 
@@ -26,21 +23,31 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  handleChange = ev => {
-    this.setState({ [ev.target.name]: ev.target.value });
+  addNewFriend = data => {
+    axios
+      .post("http://localhost:5000/friends", data)
+      .then(res => {
+        this.setState({
+          data: res.data
+        });
+      })
+      .catch(err => console.log(err));
   };
 
-  addNewFriend = ev => {
-    ev.preventDefault();
-
-    const newFriend = {
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email
-    };
-
+  editFriend = (data, id) => {
     axios
-      .post("http://localhost:5000/friends", newFriend)
+      .put(`http://localhost:5000/friends/${id}`, data)
+      .then(res => {
+        this.setState({
+          data: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
         this.setState({
           data: res.data
@@ -52,20 +59,44 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <FriendsList data={this.state.data} />
+        <FriendsList data={this.state.data} selectId={this.selectId} />
 
-        <Form
-          name={this.state.name}
-          email={this.state.email}
-          age={this.state.age}
-          handleChange={this.handleChange}
-          addNewFriend={this.addNewFriend}
+        <Route
+          exact
+          path="/add-form"
+          render={props => (
+            <Form
+              {...props}
+              addNewFriend={this.addNewFriend}
+              data={this.state.data}
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path="/edit-form/:id"
+          render={props => (
+            <Form
+              {...props}
+              editFriend={this.editFriend}
+              data={this.state.data}
+              edit // edit === true
+            />
+          )}
         />
 
         {this.state.data.length && (
           <Route
-            path="/friend-:id"
-            render={props => <FriendCard {...props} data={this.state.data} />}
+            path="/friend/:id"
+            render={props => (
+              <FriendCard
+                {...props}
+                data={this.state.data}
+                deleteFriend={this.deleteFriend}
+                editFriend={this.editFriend}
+              />
+            )}
           />
         )}
       </div>

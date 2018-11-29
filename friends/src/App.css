@@ -1,7 +1,7 @@
 .container {
   max-width: 1024px;
   margin: 0 auto;
-  border: 10px solid white;
+  border: 10px solid black;
   box-shadow: 1px 1px 10px black;
   border-radius: 10px;
   text-shadow: 1px 1px 1px black;
@@ -14,15 +14,15 @@ h1 {
 }
 
 h3 {
-  font-size: 2.2rem;
-  font-weight: bold;
+  font-size: 2.4rem;
+  font-weight: normal;
+  text-shadow: 1px 1px 1px black;
 }
 
 a,
 a:visited {
   text-decoration: none;
   color: white;
-  text-shadow: 1px 0px 1px white;
 }
 
 .friends-list {
@@ -30,7 +30,7 @@ a:visited {
   justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: baseline;
-  background: black;
+  background: darkgray;
   color: white;
   padding: 0 0 30px;
 }
@@ -39,7 +39,7 @@ a:visited {
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-  background: darkgray;
+  background: whitesmoke;
   color: black;
   padding: 20px;
   border: 1px solid black;
@@ -48,9 +48,19 @@ a:visited {
 .friends-list h3 {
   border: 1px solid white;
   border-radius: 10px;
-  box-shadow: 1px 1px 10px white;
+  box-shadow: 1px 1px 10px black;
   padding: 10px 20px;
   margin-top: 10px;
+  background: black;
+}
+
+.form-page {
+  background: whitesmoke;
+  padding-top: 30px;
+}
+
+.form-page h2 {
+  text-align: center;
 }
 
 .form {
@@ -60,7 +70,7 @@ a:visited {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .input-item {
@@ -70,6 +80,7 @@ a:visited {
 
 .input-item label {
   margin-right: 15px;
+  text-shadow: 0.5px 0.5px 1px black;
 }
 
 .input-item input {
@@ -79,38 +90,67 @@ a:visited {
   font-size: 1.8rem;
 }
 
-.save-btn {
-  width: 50%;
+.add-btn {
+  width: 20%;
   text-align: center;
   margin-top: 30px;
 }
 
-.save-btn button {
+.edit-btn,
+.delete-btn {
+  width: 20%;
   text-align: center;
-  border: 1px solid black;
+  margin-top: 30px;
+  margin: 20px auto 10px;
+}
+
+.add-btn button,
+.edit-btn button,
+.delete-btn button {
+  text-align: center;
+  border: 1px solid white;
   border-radius: 6px;
   padding: 5px 30px;
   font-size: 2.4rem;
   background: black;
   color: white;
   cursor: pointer;
-  text-shadow: 1px 1px 2px white;
+  text-shadow: 1px 1px 1px black;
+  box-shadow: 1px 1px 10px black;
+}
+
+.add-nav {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.add-nav button {
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 5px 30px;
+  font-size: 2.4rem;
+  background: white;
+  color: black;
+  cursor: pointer;
+  text-shadow: 1px 1px 0px black;
   box-shadow: 1px 1px 10px black;
 }
 
 .friend-card {
-  background: black;
+  background: gray;
   color: white;
   padding: 20px 0 30px;
   text-align: center;
+  border: 1px solid black;
 }
 
 .friend-info {
   line-height: 60px;
-  text-shadow: 1px 1px 2px grey;
+  text-shadow: 2px 2px 5px black;
 }
 
 .friend-info h1 {
-  font-size: 5rem;
-  text-shadow: 1px 1px 5px black;
+  text-shadow: 2px 2px 5px black;
 }
