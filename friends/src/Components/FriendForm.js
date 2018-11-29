@@ -15,6 +15,7 @@ class FriendForm extends React.Component {
         return (
             <div className="form">
             <form>
+                <h2>Add a friend!</h2>
                 <input
                     type="text"
                     name="name"

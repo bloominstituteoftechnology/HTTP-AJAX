@@ -2,6 +2,7 @@
   display: flex;
   margin: 0 auto;
   display: 1px solid red;
+  width: 90%;
 }
 
 .card {
@@ -9,16 +10,25 @@
   padding: 10px;
 }
 
-.contender-wrapper {
-  width: 45%;
+.content-wrapper {
+  width: 50%;
 }
+
 .form-wrapper {   
   width: 45%;
   border: 1px solid gray;
   padding: 20px;
 }
 
-.form {
+form {
   display: flex;
   flex-direction: column; 
+}
+input {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
 }
