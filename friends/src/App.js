@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Route, NavLink } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import FriendsList from "./components/FriendList";
 import Form from "./components/Form";
-
+import Home from "./components/Home";
 
 class App extends Component {
   constructor() {
@@ -66,14 +67,45 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsList
-          friends={this.state.friends}
-          deleteFriend={this.deleteFriend}
+        <nav>
+          <h1 className="title">Friends List</h1>
+          <div className="nav-links">
+            <NavLink exact to="/">
+              <button>Home</button>
+            </NavLink>
+            <NavLink exact to="/friends">
+              <button>Friends List</button>
+            </NavLink>
+            <NavLink exact to="/friends">
+              <button>Add / Update</button>
+            </NavLink>
+          </div>
+        </nav>
+        <Route exact path="/" component={Home} />
+
+        <Route
+          exact
+          path="/friends"
+          render={props => (
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              deleteFriend={this.deleteFriend}
+            />
+          )}
         />
-        <Form
-          friends={this.state.friends}
-          addFriend={this.addFriend}
-          modifyFriend={this.modifyFriend}
+
+        <Route
+          exact
+          path="/friends"
+          render={props => (
+            <Form
+              {...props}
+              friends={this.state.friends}
+              addFriend={this.addFriend}
+              modifyFriend={this.modifyFriend}
+            />
+          )}
         />
       </div>
     );
