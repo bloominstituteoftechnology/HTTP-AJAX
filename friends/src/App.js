@@ -11,18 +11,40 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      age: "",
+      name: "",
+      email: ""
     };
   }
   addFriendHandle = event => {
     event.preventDefault();
-    console.log(`it's working!`);
+
+    this.setState({
+      friends: [
+        ...this.state.friends,
+        {
+          id: this.state.friends.length + 1,
+          age: Number(this.state.age),
+          name: this.state.name,
+          email: this.state.email
+        }
+      ],
+      age: "",
+      name: "",
+      email: ""
+    });
   };
+  inputChangeHandle = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
+      .get("http://localhost:3100/friends/")
       .then(response => {
-        console.log(response);
         this.setState({ friends: response.data });
       })
       .catch(err => console.log(`${err} YOLO`));
@@ -31,11 +53,14 @@ class App extends Component {
     return (
       <div className="App">
         <Form
-          friends={this.state.friends}
+          age={this.state.age}
+          name={this.state.name}
+          email={this.state.email}
+          inputChangeHandle={this.inputChangeHandle}
           addFriendHandle={this.addFriendHandle}
         />
         {this.state.friends.map(friend => (
-          <Friends friend={friend} />
+          <Friends key={friend.id} friend={friend} />
         ))}
       </div>
     );
