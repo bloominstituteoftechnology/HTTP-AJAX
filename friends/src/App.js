@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import FriendsList from "./components/FriendList";
 import Form from "./components/Form";
+import { timingSafeEqual } from "crypto";
 
 class App extends Component {
   constructor() {
@@ -48,6 +49,20 @@ class App extends Component {
       });
   };
 
+  modifyFriend = (id, data) => {
+    console.log(data);
+    console.log(id);
+    axios
+      .put(`http://localhost:5000/friends/${id}`, data)
+      .then(response => {
+        console.log(response.data);
+        this.setState({ friends: response.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="App">
@@ -55,10 +70,37 @@ class App extends Component {
           friends={this.state.friends}
           deleteFriend={this.deleteFriend}
         />
-        <Form addFriend={this.addFriend} />
+        <Form
+          friends={this.state.friends}
+          addFriend={this.addFriend}
+          modifyFriend={this.modifyFriend}
+        />
       </div>
     );
   }
 }
 
 export default App;
+
+
+ // let id = this.state.friends.forEach(item => {
+    //   if (
+    //     item.name === data.name ||
+    //     item.name === data.name ||
+    //     item.name === data.name
+    //   ) {
+    //     return item.id;
+    //   }
+    // });
+
+    // id = () =>{
+    //   this.state.friends.forEach(item => {
+    //     if (
+    //       item.name === data.name ||
+    //       item.age === data.age ||
+    //       item.email === data.email
+    //     ) {
+    //       return item.id;
+    //     }
+    //   });
+    // };
