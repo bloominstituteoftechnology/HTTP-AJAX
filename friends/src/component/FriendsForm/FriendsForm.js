@@ -1,6 +1,7 @@
 import React from "react";
+import "./FriendsForm.css";
 
-function FriendsForm() {
+function FriendsForm(props) {
   return (
     <div className="new-friends">
       <div className="friends-form">
@@ -22,8 +23,11 @@ function FriendsForm() {
               required
             />
           </label>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     </div>
   );
 }
+
+export default FriendsForm;

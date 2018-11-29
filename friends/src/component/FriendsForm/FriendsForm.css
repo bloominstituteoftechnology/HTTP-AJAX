@@ -1,4 +1,4 @@
-.friends-card {
+.friends-form {
     color: #000;
     font-size: 12px;
     width: 450px;
@@ -13,4 +13,8 @@
     margin-bottom: 20px;
     box-shadow: 8px 6px 3px 0px rgba(51, 2, 51, 1);
     background-color: rgba(156, 68, 45, 1)
+}
+
+input {
+    margin: 5px;
 }
