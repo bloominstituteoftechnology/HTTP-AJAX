@@ -1,8 +1,17 @@
 .App {
-  display: flex;
+  
   margin: 0 auto;
   display: 1px solid red;
   width: 90%;
+}
+
+.nav-links {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.wrapper {
+  display: flex;
 }
 
 .card {
