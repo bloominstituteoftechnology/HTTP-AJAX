@@ -5,7 +5,7 @@ const FriendCard = ({ friend, deleteFriend }) => {
     <div className="card">
       <div className="content">
         <h4 className="header">
-         Name: {friend.name}
+         {friend.name}
         </h4>
       </div>
       <div className="content">

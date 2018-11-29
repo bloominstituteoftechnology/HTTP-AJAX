@@ -33,10 +33,22 @@ class FriendForm extends React.Component {
     })
   }
 
+  onCancel = e => {
+    e.preventDefault();
+    Object.values(this.state).every(item => !item) ?
+    this.props.history.push('/'):
+    this.setState({
+      name: '',
+      age: '',
+      location: '',
+      email: '',
+    });
+  }
+
   render() {
     const { name, age, location, email } = this.state;
     return (
-    <div className="ui segment">
+    <div  className="ui segment">
       <form style={{padding: '20px'}} className="ui form">
         <div className="field">
           <label>Name</label>
@@ -54,6 +66,11 @@ class FriendForm extends React.Component {
           <label>Email</label>
           <input type="text" value={email} onChange={this.onChange} name="email" placeholder="Enter email" />
         </div>
+        <button
+          className="ui button"
+          onClick={this.onCancel}>
+          {Object.values(this.state).every(item => !item) ? 'Cancel' : 'Clear'}
+        </button>
         <button className="ui primary button" onClick={this.onClick}>Add Friend</button>
       </form>
     </div>

@@ -64,7 +64,7 @@ class App extends React.Component {
 
   render() { 
     return (
-      <div className="app ui container">
+      <div style={{paddingBottom: '50px'}} className="app ui container">
         <h1 style={{margin: '24px'}} className="ui center aligned header">Friend App</h1>
         <div className="ui pointing menu">
           <NavLink className="item" exact to='/'>
@@ -82,10 +82,17 @@ class App extends React.Component {
           />
         )} />
 
-        <FriendList
-          deleteFriend={this.deleteFriend}
-          friends={this.state.friends}
-        />
+        {
+          this.state.friends.length ?
+          <FriendList
+            deleteFriend={this.deleteFriend}
+            friends={this.state.friends}
+          /> :
+          <div class="ui active centered inline text loader">
+            Loading ...
+          </div>
+        }
+
 
         <Route exact path='/' />
 
