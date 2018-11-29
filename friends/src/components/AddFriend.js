@@ -13,18 +13,14 @@ import axios from 'axios';
 //             .then(response => console.log(response))
 //             .catch(err => console.log(err));
 //     }
-
-
-// const preventRefresh = event => {
-//     event.preventDefault();
-// }    
+ 
 
 class AddFriend extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             name: '',
-            age: null,
+            age: 0,
             email: '',
         }
     }
@@ -36,29 +32,31 @@ class AddFriend extends React.Component {
         })
     }
 
-
     render() {
         return(
         <div className="friend-form">
-            <form onSubmit={this.props.saveFriend}>
+            <form onSubmit={ event => {
+                event.preventDefault();
+                this.props.saveFriend(this.state);
+            }}>
                 <input 
                     onChange={this.handleChange} 
                     name="name" 
-                    value={this.name} 
+                    value={this.state.name} 
                     type="text" 
                     placeholder="First Name"
                 />
                 <input
                     onChange={this.handleChange}
                     name="age"
-                    value={this.age}  
+                    value={this.state.age}  
                     type="number" 
                     placeholder="Age" 
                 />
                 <input 
                     onChange={this.handleChange}
                     name="email"
-                    value={this.email}  
+                    value={this.state.email}  
                     type="email" 
                     placeholder="Email" 
                 />
