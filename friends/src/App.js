@@ -19,21 +19,31 @@ class App extends Component {
   }
   addFriendHandle = event => {
     event.preventDefault();
-
-    this.setState({
-      friends: [
-        ...this.state.friends,
-        {
-          id: this.state.friends.length + 1,
-          age: Number(this.state.age),
-          name: this.state.name,
-          email: this.state.email
-        }
-      ],
-      age: "",
-      name: "",
-      email: ""
-    });
+    const friendList = this.state.friends;
+    const filtered = friendList.filter(
+      friend => friend.email === this.state.email || this.state.email === ""
+    );
+    console.log(filtered.length);
+    // let testValue = JSON.stringify(this.state.friends).includes(this.state.email)
+    if (
+      filtered.length ===
+      0 /* this.state.age === "" || this.state.name === "" || this.state.email === "" || */
+    ) {
+      this.setState({
+        friends: [
+          ...this.state.friends,
+          {
+            id: this.state.friends.length + 1,
+            age: this.state.age,
+            name: this.state.name,
+            email: this.state.email
+          }
+        ],
+        age: "",
+        name: "",
+        email: ""
+      });
+    }
   };
   inputChangeHandle = event => {
     this.setState({
@@ -53,6 +63,7 @@ class App extends Component {
     return (
       <div className="App">
         <Form
+          friends={this.state.friends}
           age={this.state.age}
           name={this.state.name}
           email={this.state.email}
