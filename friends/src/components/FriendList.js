@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Route, Link } from 'react-router-dom';
+import Friend from './Friend';
 
 const Main = styled.main`
 	display: flex;
@@ -8,6 +10,7 @@ const Main = styled.main`
 	justify-content: space-around;
 	align-items: center;
 	border-radius: 10px;
+	width: 80%;
 	padding: 1%;
 	margin: 1% 4%;
 	background: #9e90a2;
@@ -17,7 +20,7 @@ const Section = styled.section`
 	border: 1px solid #f1f7ed;
 	border-radius: 5px;
 	width: 35%;
-	padding: 1%;
+	padding: 5%;
 	margin: 1%;
 	background: #bea8aa;
 `;
@@ -46,32 +49,46 @@ const Button = styled.button`
 	border: none;
 `;
 class FriendList extends Component {
-
+	
 	deleteFriend = (event) => {
 		event.preventDefault();
-		console.log(event.target.name)
-		this.props.deleteFriend(event.target.name)
-	}
-	render(){
+		this.props.deleteFriend(event.target.name);
+	};
+	render() {
 		return (
 			<React.Fragment>
 				<Main>
-					{this.props.data.map((friend, index) => {
-						return (
-							<Section key={index}>
-								<Button name={friend.id} onClick={this.deleteFriend} type="submit">x</Button>
-								<H1>{friend.name}</H1>
-								<H2>Age: {friend.age}</H2>
-								<H2>Email: {friend.email}</H2>
-							</Section>
-						);
-					})}
+					<Route
+						path={'/'}
+						render={() =>
+							this.props.data.map((friend, index) => (
+								<Section key={index}>
+									<Button
+										name={friend.id}
+										onClick={this.deleteFriend}
+										type="submit"
+									>
+										x
+									</Button>
+									<H1>{friend.name}</H1>
+									<H2>Age: {friend.age}</H2>
+									<H2>Email: {friend.email}</H2>
+									<Link to={`/${friend.id}`}>
+										<H1>Update</H1>
+									</Link>
+								</Section>
+							))
+						}
+					/>
+					<Route
+						path={'/:id'}
+						render={(props) => <Friend {...props} data={this.props.data} />}
+					/>
 				</Main>
 			</React.Fragment>
 		);
 	}
-	
-};
+}
 
 export default FriendList;
 
@@ -80,8 +97,8 @@ FriendList.propTypes = {
 		PropTypes.shape({
 			name: PropTypes.string,
 			age: PropTypes.number,
-			email: PropTypes.string,
+			email: PropTypes.string
 		})
-    ),
-    deleteFriend: PropTypes.func
+	),
+	deleteFriend: PropTypes.func
 };
