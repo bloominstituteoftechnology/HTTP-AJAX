@@ -1,37 +1,19 @@
 import React from 'react'
 import './Friends.css'
-import axios from 'axios'
-class Friends extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            id : this.props.index,
-        }
-   
-    }
+const Friends = props =>{
+    const id = props.friend.id;
+    return (
+        <div className='friend-card'>
+            <div >
+                <h2>{props.friend.name}</h2>
+                <p>age: {props.friend.age}</p>
+                <p>email: {props.friend.email}</p>
+            </div>
 
-
-deleteFriend(friends){
-    axios.delete(`http://localhost:5000/friends/${this.state.id}`, friends)
-    .then(response => console.log(response))
-    .catch(err => console.log(err))
-}
-    byeFriend = event => {
-        this.deleteFriend()
-    }
-render(){
-    return(
-    <div className = 'friend-card'>
-        <div >
-            <h2>{this.props.friend.name}</h2>
-            <p>age: {this.props.friend.age}</p>
-            <p>email: {this.props.friend.email}</p>  
+            <button className='close' onClick={props.delete(id)}>X</button>
         </div>
-
-        <button className = 'close' onClick ={this.byeFriend}>X</button>
-    </div>
     )
-    }
 }
+
 
 export default Friends

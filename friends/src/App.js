@@ -21,15 +21,15 @@ class App extends Component {
         console.error('Server Error', error);
     });
   }
-  componentDidUpdate(){
-    axios.get('http://localhost:5000/friends')
-      .then((response) => {
-        this.setState(() => ({ friends: response.data }));
-
-      })
-      .catch(error => {
-        console.error('Server Error', error);
-      });
+  deleteFriend = id => {
+    return()=>{
+      axios.delete(`http://localhost:5000/friends/${id}`)
+        .then(( response ) => {
+          this.setState(() => ({ friends: response.data }));
+        })
+        .catch(err => console.log(err))
+    }
+ 
   }
   render() {
     
@@ -39,7 +39,9 @@ class App extends Component {
             <Form arr ={this.state.friends} />
         </div>
         <div className = 'cards'>
-          {this.state.friends.map((item,index) => <Friends friend={item} index ={index} />)}
+
+          {this.state.friends.map((item,index) => 
+          <Friends key = {item.id}friend={item}  delete = {this.deleteFriend}/>)}
         </div>
       </div>
     );
