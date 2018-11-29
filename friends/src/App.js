@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 import FriendsList from "./components/FriendList";
 import Form from "./components/Form";
-import { timingSafeEqual } from "crypto";
+
 
 class App extends Component {
   constructor() {
@@ -81,26 +81,3 @@ class App extends Component {
 }
 
 export default App;
-
-
- // let id = this.state.friends.forEach(item => {
-    //   if (
-    //     item.name === data.name ||
-    //     item.name === data.name ||
-    //     item.name === data.name
-    //   ) {
-    //     return item.id;
-    //   }
-    // });
-
-    // id = () =>{
-    //   this.state.friends.forEach(item => {
-    //     if (
-    //       item.name === data.name ||
-    //       item.age === data.age ||
-    //       item.email === data.email
-    //     ) {
-    //       return item.id;
-    //     }
-    //   });
-    // };

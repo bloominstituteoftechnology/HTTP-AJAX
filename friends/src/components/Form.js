@@ -11,9 +11,15 @@ class Form extends Component {
   }
 
   onChangeHandler = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+    if(event.target.type === "number"){
+      this.setState({
+        [event.target.name]: Number(event.target.value)
+      });
+    }else{
+      this.setState({
+        [event.target.name]: event.target.value
+      });
+    }
   };
 
   id = () => {
@@ -25,7 +31,7 @@ class Form extends Component {
         item.email === this.state.email
       ) {
         console.log(item.id);
-        return item.id;
+        this.props.modifyFriend(item.id, this.state);
       }
     });
   };
@@ -40,7 +46,7 @@ class Form extends Component {
             this.props.addFriend(this.state);
             this.setState({
               name: "",
-              age: 0,
+              age: "",
               email: ""
             });
           }}
@@ -70,9 +76,7 @@ class Form extends Component {
           <button
             onClick={event => {
               event.preventDefault();
-              let id = this.id();
-              console.log(id);
-              this.props.modifyFriend(id, this.state);
+              this.id();
               this.setState({
                 name: "",
                 age: "",
