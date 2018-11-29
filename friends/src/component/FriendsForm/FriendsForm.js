@@ -8,22 +8,40 @@ function FriendsForm(props) {
         <form>
           <label>
             Name:
-            <input type="text" name="name" />
+            <input
+              type="text"
+              name="name"
+              value={props.name}
+              onChange={props.change}
+            />
           </label>
           <label>
             Age:
-            <input type="number" name="age" />
+            <input
+              type="number"
+              name="age"
+              value={props.age}
+              onChange={props.change}
+            />
           </label>
           <label>
             Email:
             <input
               type="email"
-              name="email address"
+              name="email"
               placeholder="Enter Email"
+              value={props.email}
+              onChange={props.change}
               required
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input
+            type="submit"
+            onClick={() =>
+              props.postMsg(props.data.name, props.data.age, props.data.email)
+            }
+            value="Add New Friend"
+          />
         </form>
       </div>
     </div>

@@ -28,20 +28,36 @@ class App extends Component {
         console.log(err);
       });
   }
+
+  postMessage = (name, age, email) => {
+    axios
+      .post(`http://localhost:5000/friends`, { name, age, email })
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
   render() {
     return (
       <div className="App">
-        <ul className="friends-nav">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/friends">Friends</Link>
-          </li>
-          <li>
-            <Link to="/friendsform">Friends Form</Link>
-          </li>
-        </ul>
+        <nav className="nav-menu">
+          <ul className="friends-nav">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/friends">Friends</Link>
+            </li>
+            <li>
+              <Link to="/friendsform">Friends Form</Link>
+            </li>
+          </ul>
+        </nav>
         <Route exact path="/" component={Home} />
         <Route
           exact
@@ -50,7 +66,18 @@ class App extends Component {
             <FriendsList {...props} friends={this.state.friends} />
           )}
         />
-        <Route exact path={`/friendsform`} component={FriendsForm} />
+        <Route
+          exact
+          path={`/friendsform`}
+          render={props => (
+            <FriendsForm
+              {...props}
+              postMsg={this.postMessage}
+              change={this.handleChange}
+              data={this.state}
+            />
+          )}
+        />
       </div>
     );
   }
