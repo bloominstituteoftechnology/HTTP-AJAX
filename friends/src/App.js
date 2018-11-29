@@ -50,16 +50,40 @@ class App extends Component {
           emailText:'',
         });
       })
-      .catch(() => {
-        console.log('sad face');
+      .catch(error => {
+        console.log('error');
       })
+  }
+
+  updateFriend = (id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, 
+      { 
+        name: this.state.nameText,
+        age: this.state.ageText, 
+        email: this.state.emailText,
+      })
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          nameText:'',
+          ageText: undefined,
+          emailText:'',
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
     return (
       <div className="App">
       <h1>FRIEND LIST</h1>
-        <FriendList friends={this.state.friends}/>
+        <FriendList 
+          friends={this.state.friends}
+          updateFriend={this.updateFriend}
+        />
         <Form 
           nameText={this.state.nameText}
           ageText={this.state.ageText}

@@ -29,6 +29,7 @@
     border: 1px solid #F8F1FF;
     margin: 10px;
     text-align: center;
+    position: relative;
 }
 
 .individual-friend .fas {
@@ -38,10 +39,19 @@
     padding: 10px;
     border: 1px solid #F8F1FF;
     border-radius: 50%;
-    margin: 10px auto;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.individual-friend .delete-button {
+    width: 2.5rem;
+    border: 1px solid #F8F1FF;
+    background-color: #534D56;
+    color: #F8F1FF;
+    position: absolute;
+    right: 10px;
 }
 
 .friend-name {
@@ -56,6 +66,16 @@
 
 .friend-email {
     padding: 10px 0;
+}
+
+.individual-friend .edit-button {
+    width: 5rem;
+    padding: 5px;
+    border: 1px solid #F8F1FF;
+    margin: 10px auto;
+    background-color: #534D56;
+    color: #F8F1FF;
+    font-size: 1.2rem;
 }
 
 .form-container {

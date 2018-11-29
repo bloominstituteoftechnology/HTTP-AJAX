@@ -12,6 +12,7 @@ const Form = props => {
                     placeholder='Name' 
                     value={props.nameText} 
                     onChange={props.handleChange}
+                    required
                 />
                 <input 
                     type='number' 
@@ -19,6 +20,7 @@ const Form = props => {
                     placeholder='Age' 
                     value={props.ageText} 
                     onChange={props.handleChange}
+                    required
                 />
                 <input 
                     type='email' 
@@ -26,6 +28,7 @@ const Form = props => {
                     placeholder='E-mail' 
                     value={props.emailText} 
                     onChange={props.handleChange}
+                    required
                 />
                 <button>Submit</button>
             </form>
