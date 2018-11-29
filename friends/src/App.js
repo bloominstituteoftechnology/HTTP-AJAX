@@ -40,11 +40,10 @@ class App extends Component {
   };
 
   addFriend = newFriend => {
-    const newFriends = this.state.friends.push(newFriend);
     axios
       .post(`http://localhost:5000/friends`, newFriend)
-      .then(() => {
-        this.setState({ friends: newFriends });
+      .then(res => {
+        this.setState({ friends: res.data });
       })
       .catch(err => console.log(err));
   };
@@ -53,6 +52,21 @@ class App extends Component {
     if (this.state.friends.length > 0) {
       return (
         <div className='App'>
+          <Route
+            exact
+            path={urlLinks.home}
+            render={props => (
+              <AddFriend
+                {...props}
+                friends={this.state.friends}
+                changeHandler={this.changeHandler}
+                addFriend={this.addFriend}
+                newName={this.state.newName}
+                newAge={this.state.newAge}
+                newEmail={this.state.newEmail}
+              />
+            )}
+          />
           <Route
             exact
             path={urlLinks.home}
@@ -76,22 +90,6 @@ class App extends Component {
             path={`${urlLinks.friend}/:id`}
             render={props => (
               <DisplayFriend {...props} friends={this.state.friends} />
-            )}
-          />
-
-          <Route
-            exact
-            path={urlLinks.addFriend}
-            render={props => (
-              <AddFriend
-                {...props}
-                friends={this.state.friends}
-                changeHandler={this.changeHandler}
-                addFriend={this.addFriend}
-                newName={this.state.newName}
-                newAge={this.state.newAge}
-                newEmail={this.state.newEmail}
-              />
             )}
           />
         </div>
