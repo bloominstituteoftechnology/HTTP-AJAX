@@ -55,14 +55,14 @@ class App extends Component {
 
 	deleteFriend = id => {
 		axios
-		.delete(`http://localhost:5000/friends/${id}`)
-		.then(responce => {
-			console.log(responce);
-			this.setState({ 
-				data : responce.data 
-			});
-		})
-		.catch(err => console.log(err));
+			.delete(`http://localhost:5000/friends/${id}`)
+			.then(responce => {
+				console.log(responce);
+				this.setState({
+					data: responce.data
+				});
+			})
+			.catch(err => console.log(err));
 	};
 
 	editFriend = (data, id) => {
@@ -71,22 +71,49 @@ class App extends Component {
 			.then(responce => {
 				console.log(responce);
 				this.setState({
-					data : responce.data
+					data: responce.data
 				});
 			})
 			.catch(err => console.log(err));
-	}
+	};
 
 	render() {
 		return (
 			<Wrapper>
 				<Form
 					addFriend={this.addFriend}
-					length={this.state.data.length}
+					title={`You have ${
+						this.state.data.length
+					} friends. It's sad. Add more
+					friends...`}
+					buttonText={`If You Are Adding Friends This Way, You Obviously Haven't Made Them In Real Life`}
+					inputColor='orange'
 				/>
 
 				{this.state.data.map(item => (
-					<Friend data={item} key={item.id} />
+					<div>
+						<Friend
+							data={item}
+							key={item.id}
+							onSubmit={this.editFriend}
+							title={`Edit ${item.name}'s Info`}
+						/>
+						<Route
+							exact
+							path={`/edit/${item.id}`}
+							render={props => (
+								<Form
+									{...props}
+									editFriend={this.editFriend}
+									title={`Edit ${item.name}'s Info`}
+									buttonText={`Save Changes`}
+									inputColor={"white"}
+									id={item.id}
+									edit
+								/>
+							)}
+						/>
+					</div>
 				))}
 
 				<H4> Please clap </H4>

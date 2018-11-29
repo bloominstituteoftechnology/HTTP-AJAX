@@ -7,7 +7,7 @@ const FormWrapper = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: orange;
+	background: ${props => props.inputColor};
 	padding: 5px;
 	text-align: center;
 
@@ -39,6 +39,16 @@ class Form extends Component {
 		});
 	};
 
+	submitHandler = event => {
+		event.preventDefault();
+		if (this.props.edit) {
+			this.props.editFriend(this.state, this.props.id);
+		} else {
+			this.props.addFriend(this.state);
+		}
+		this.props.history.push("/");
+	};
+
 	resetState = () => {
 		this.setState({
 			name: "",
@@ -50,15 +60,9 @@ class Form extends Component {
 	render() {
 		return (
 			<FormWrapper
-				onSubmit={event => {
-					event.preventDefault();
-					this.props.addFriend(this.state);
-					this.resetState();
-				}}>
-				<h3>
-					You have {this.props.length} friends. It's sad. Add more
-					friends...
-				</h3>
+				inputColor={this.props.inputColor}
+				onSubmit={this.submitHandler}>
+				<h3>{this.props.title}</h3>
 				<input
 					type='text'
 					name='name'
@@ -82,9 +86,7 @@ class Form extends Component {
 					onChange={this.handleChange}
 					value={this.state.email}
 				/>
-				<button type='submit'>
-					If You Are Adding Friends This Way, You Obviously Haven't Made Them In Real Life
-				</button>
+				<button type='submit'>{this.props.buttonText}</button>
 			</FormWrapper>
 		);
 	}
