@@ -7,9 +7,6 @@ const FriendCard = props => {
 
   return (
     <div className="friend-card">
-      <div className="friend-title">
-        <h1>Friend Info:</h1>
-      </div>
       <div className="friend-info">
         <h1>{friend.name}</h1>
         <h2>Age: {friend.age}</h2>
