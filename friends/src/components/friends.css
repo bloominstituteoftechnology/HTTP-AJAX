@@ -8,5 +8,10 @@
     margin: 20px auto;
     width: 30%;
     border: 1px solid black;
-    
+    background-color: grey;
+    border-radius: 80px;
+}
+
+button{
+    border-radius: 10px;
 }
