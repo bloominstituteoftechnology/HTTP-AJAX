@@ -2,12 +2,10 @@ import React from 'react';
 
 function friends(props){
 
-
-// console.log(props.info);
     return (
     <div>
         <div className='addFriend-container'>
-        <form  id='inputForm'>
+        <form id='inputForm'>
                 <div className='friendInfo-input-container'>
                     <input 
                         type="text" 
@@ -52,7 +50,7 @@ function friends(props){
                         <div className='infoFriendment'><span>{friend.email}</span></div>
                     </div>
                     <div className='friend-option-container'>
-                        <button className='friend-option-btn'>delete</button> 
+                        <button className='friend-option-btn' onClick={() => props.deleteFriend(friend.id)}>delete</button> 
                         <button className='friend-option-btn'>update</button> 
                     </div>
                 </div>

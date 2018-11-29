@@ -22,7 +22,6 @@ class App extends Component {
     axios
       .get(url)
       .then(res => {
-        // console.log(res);
         this.setState({
           data: res.data,
         });
@@ -59,7 +58,7 @@ class App extends Component {
           });
         })
         .catch( err => {
-          console.log('something went wrong trying to post new data')
+          console.log('something went wrong trying to post new data' + err)
         });
     }
     else {
@@ -67,12 +66,28 @@ class App extends Component {
     }
   }
 
+  deleteFriend = arg => {
+    console.log(arg);
+    axios
+      .delete(`${url}/${arg}`)
+      .then(res => {
+        this.setState({
+          data: res.data,
+        });
+      })
+      .catch(err => {
+        console.log("something went wrong deleting data" + err)
+      });
+  }
+
+
+
+
   render() {
     // console.log(this.state.data);
     return (
       <div className="App">
         <div>
-          {/* <h2>Hello there Friends</h2> */}
           <nav>
             <NavLink to='/' ><div className='navLink'>Home</div></NavLink>
             <NavLink to='/friends' ><div className='navLink'>Friends List</div></NavLink>
@@ -86,6 +101,7 @@ class App extends Component {
               handleChange={this.handleChange} 
               clearFields={this.clearFields}
               addFriend={this.addFriend}
+              deleteFriend={this.deleteFriend}
               />
             } 
           />
