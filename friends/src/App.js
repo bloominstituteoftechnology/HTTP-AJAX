@@ -4,6 +4,8 @@ import './App.css';
 import axios from 'axios';
 import Friend from './components/Friend';
 
+const serverURL = 'http://localhost:5000/friends';
+
 class App extends Component {
   constructor(){
     super();
@@ -23,23 +25,37 @@ class App extends Component {
 
   addFriend = (ev) => {
     ev.preventDefault();
+
+
     if(this.state.friendName === '' || this.state.friendAge === '' || this.state.friendEmail === ''){
       return alert('Please Fill Out All Inputs');
     }
-    this.setState({
-      friends: [...this.state.friends,  
-        { id: this.state.friends.length+2, 
-          name: this.state.friendName,
-          age: this.state.friendAge,
-          email: this.state.friendEmail}],
-      friendName: '',
-      friendAge: '',
-      friendEmail: ''
-        });
+    
+    let friend = { id: this.state.friends.length+2, 
+      name: this.state.friendName,
+      age: this.state.friendAge,
+      email: this.state.friendEmail};
+
+    axios
+      .post(serverURL, friend)
+      .then(res => this.setState({ 
+        friends: res.data,
+        friendName: '',
+        friendAge: '',
+        friendEmail: ''
+        }))
+  }
+
+  deleteFriend = (id) => {
+
+    axios
+      .delete(`${serverURL}/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:5000/friends`)
+    axios.get(serverURL)
     .then(res => {
       console.log(res);
       this.setState({friends: res.data})
@@ -50,7 +66,7 @@ class App extends Component {
     return (
       <>
       <form onSubmit={this.addFriend} className="add-friend-form" >
-        <input type="text" name="friendName" 
+        <input autocomplete='off' type="text" name="friendName" 
           placeholder="Friend Name" value={this.state.friendName}
           onChange={this.handleChange} />
         <input type="text" name="friendAge" 
@@ -63,7 +79,7 @@ class App extends Component {
         <div className="add-friend-submit" onClick={this.addFriend}>Add Friend</div>
       </form>
       <div className="App">
-      {this.state.friends.map(friend => (<Friend friend={friend} key={friend.id} />))}
+      {this.state.friends.map(friend => (<Friend friend={friend} key={friend.id} deleteFriend={this.deleteFriend}/>))}
       </div>
       </>
     );
