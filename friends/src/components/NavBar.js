@@ -21,5 +21,5 @@ const NavBar = ({ searchTerm, handleSearch }) => {
     </Menu>
   );
 }
- 
+
 export default NavBar;

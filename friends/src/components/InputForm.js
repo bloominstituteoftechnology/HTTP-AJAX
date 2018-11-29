@@ -15,6 +15,7 @@ class InputForm extends React.Component{
     const { update, match, history } = this.props;
 
     if (update) {
+      // retrieve friends and get friend info to populate
       axios
         .get('http://localhost:5000/friends')
         .then(res => {
@@ -22,6 +23,7 @@ class InputForm extends React.Component{
             friend.id.toString() === match.params.id)
           );
 
+          // check if a friend is found and set state, otherwise return back to home
           if (friend.length > 0) {
             this.setState({
               name: friend[0].name,
@@ -49,6 +51,9 @@ class InputForm extends React.Component{
   onSubmit = e => {
     e.preventDefault();
     const friend = {...this.state};
+    
+    // although friend's id is being pass down for both updating and adding friend,
+    // the method in App.js will ignore friend's id in the case of adding friend
     this.props.handleSubmit(friend, this.props.match.params.id);
     this.props.history.push('/');
   }
