@@ -29,12 +29,39 @@ class App extends Component {
             });
     }
 
-    addNewFriend(e) {}
+    addNewFriend = e => {
+        e.preventDefault()
+        let send = {
+            name: e.target[0].value,
+            age: e.target[1].value,
+            email: e.target[2].value
+        }
+        axios
+            .post('http://localhost:5000/friends', send)
+            .then(response => {
+                console.log(response)
+                this.setState({
+                    friends: response.data
+                })
+            })
+    }
+
+    // removeFriend = id => {
+    //     axios
+    //         .delete(`http://localhost:333/friends/${id}`)
+    //         .then(response => {
+    //             console.log(response)
+    //             this.setState({
+    //                 friends: response.data
+    //             })
+    //         })
+    //         .catch(err => console.log(err))
+    // }
 
     render() {
         return (
             <Div className="App">
-                <FriendsList friends={this.state.friends} />
+                <FriendsList friends={this.state.friends} handleChange={this.handleChange} submit={this.addNewFriend} />
             </Div>
         );
     }
