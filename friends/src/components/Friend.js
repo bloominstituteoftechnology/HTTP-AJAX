@@ -18,25 +18,35 @@ const StyledFriend = styled.div`
 `;
 
 const UpdateButton = styled.button`
-  background-color: #bbbbbb;
-  color: black;
-  padding: 10px;
-  border-radius: 3px;
+background-color: #bbbbbb;
+color: black;
+padding: 10px;
+border-radius: 3px;
 `;
 
 const Friend = props => {
+  //console.log(props);
+  //let friend;
+  //console.log(props.friends.find(f => `${f.id}` === props.match.params.id))
+  //if (props.edit) {
+    //friend = props.friends.find(f => `${f.id}` === props.match.params.id);
+  //} else {
+    //friend = props.friend;
+  //}
+  const friend = props.friend
   return (
     <StyledFriend>
-    {console.log('in friend')}
       <div>
-        <h2>{props.friend.name}</h2>
+        <h2>{friend.name}</h2>
       </div>
       <div>
-        <h3>{props.friend.age} years old</h3>
+        <h3>{friend.age} years old</h3>
       </div>
       <div>
-        <h3>{props.friend.email}</h3>
+        <h3>{friend.email}</h3>
       </div>
+      <Link to={`/update/${friend.id}`}><UpdateButton>Update</UpdateButton></Link>
+      <UpdateButton onClick={() => props.deleteFriend(friend.id)}>Unfriend</UpdateButton>
     </StyledFriend>
   );
 };
