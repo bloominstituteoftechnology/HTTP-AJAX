@@ -31,6 +31,7 @@ class App extends Component {
     }
  
   }
+
   render() {
     
     return (
@@ -41,7 +42,7 @@ class App extends Component {
         <div className = 'cards'>
 
           {this.state.friends.map((item,index) => 
-          <Friends key = {item.id}friend={item}  delete = {this.deleteFriend}/>)}
+          <Friends key = {item.id}friend={item}  delete = {this.deleteFriend} update  = {this.updateFriendList}/>)}
         </div>
       </div>
     );
