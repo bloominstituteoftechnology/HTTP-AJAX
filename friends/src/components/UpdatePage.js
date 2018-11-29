@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Friend from './Friend'
+import FriendForm from './FriendForm'
 
 const Main = styled.main`
 display: flex;
@@ -27,10 +28,13 @@ const UpdatePage = (props) => {
         <React.Fragment>
     <H1 top>Current Friend</H1>
     <Main>
-    <Friend data={props.friends} />
+    <Friend friends={props.friends}
+    match={props.match} />
     <H1>Update Details</H1>
-    <UpdateForm
+    <FriendForm
         updateFriend={props.updateFriend}
+        type='Update'
+        
     />
     </Main>
     </React.Fragment>

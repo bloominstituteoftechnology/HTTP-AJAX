@@ -51,6 +51,7 @@ class FriendForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			mode: '',
 			friend: {
 				name: '',
 				age: '',
@@ -68,13 +69,23 @@ class FriendForm extends Component {
 		});
 	}
 
+	handleMode = () => {
+		if (this.props.mode === 'Add') {
+			return this.addFriend
+		} else {
+			return this.updateFriend
+		}
+		 
+		
+	}
+
 	addFriend = (event) => {
 		event.preventDefault();
 		this.props.addFriend(this.state.friend);
 	}
 	render() {
 		return (
-			<Form onSubmit={this.addFriend}>
+			<Form onSubmit={this.handleMode()}>
 				<Label>
 					Name
 					<Input
@@ -102,7 +113,7 @@ class FriendForm extends Component {
 						onChange={this.handleChange}
 					/>
 				</Label>
-				<Button type="submit">Submit</Button>
+				<Button type="submit">{this.props.mode}</Button>
 			</Form>
 		);
 	}

@@ -32,6 +32,7 @@ return (
     <H1>Add Yourself to Our Friend List</H1>
     <FriendForm
         addFriend={props.addFriend}
+        mode='Add'
     />
     </Main>
     </React.Fragment>

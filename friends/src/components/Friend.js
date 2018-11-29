@@ -37,7 +37,7 @@ class Friend extends Component {
     render(){
         return(
             <React.Fragment>
-            {this.props.data.map((friend, index) => 
+            {this.props.friends.map((friend, index) => 
                 friend.id === this.state.id ? (
                     <Section key={index}>
                         <H1>{friend.name}</H1>

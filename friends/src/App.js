@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 import MainPage from './components/MainPage'
+import UpdatePage from './components/UpdatePage';
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -123,7 +124,11 @@ addFriend = (friend) => {
 				<AppContainer>
 					<Route 
 					exact path= {'/'}
-					render={(props) => <MainPage friends={this.state.friends} addfriend={this.addFriend} deleteFriend={this.deleteFriend} />}
+					render={(props) => <MainPage friends={this.state.friends} addFriend={this.addFriend} deleteFriend={this.deleteFriend} />}
+					/>
+					<Route 
+					path={`/:id`}
+					render={(props) => <UpdatePage {...props} friends={this.state.friends} /> }
 					/>
           
 				</AppContainer>
