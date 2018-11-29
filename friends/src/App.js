@@ -50,7 +50,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.friends);
     if (this.state.friends.length > 0) {
       return (
         <div className='App'>
@@ -89,6 +88,9 @@ class App extends Component {
                 friends={this.state.friends}
                 changeHandler={this.changeHandler}
                 addFriend={this.addFriend}
+                newName={this.state.newName}
+                newAge={this.state.newAge}
+                newEmail={this.state.newEmail}
               />
             )}
           />

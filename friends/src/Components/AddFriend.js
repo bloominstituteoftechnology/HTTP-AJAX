@@ -24,20 +24,19 @@ const newFriend = (id, name, age, email) => {
  **************************************************************************************************/
 const AddFriend = props => {
   return (
-    <DivWrapper
-      onSubmit={e =>
-        props.addFriend(
-          e,
-          newFriend(
-            props.friends[props.friends.length - 1].id + 1,
-            props.newName,
-            props.newAge,
-            props.newEmail
+    <DivWrapper>
+      <form
+        onSubmit={() =>
+          props.addFriend(
+            newFriend(
+              props.friends[props.friends.length - 1].id + 1,
+              props.newName,
+              props.newAge,
+              props.newEmail
+            )
           )
-        )
-      }
-    >
-      <form>
+        }
+      >
         <h2>
           Name:{' '}
           <input type='text' name='newName' onChange={props.changeHandler} />
