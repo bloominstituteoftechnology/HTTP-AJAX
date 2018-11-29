@@ -48,92 +48,96 @@ const Span = styled.span`
 export default class FriendsList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      friendsData: [],
-      name: "",
-      age: "",
-      email: ""
-    };
+    //   this.state = {
+    //     friendsData: [],
+    //     name: "",
+    //     age: "",
+    //     email: ""
+    //   };
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/friends/")
-      .then(res => {
-        this.setState({
-          friendsData: res.data
-        });
-      })
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get("http://localhost:5000/friends/")
+  //     .then(res => {
+  //       this.setState({
+  //         friendsData: res.data
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+  // handleChange = e => {
+  //   this.setState({
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
 
-  addFriend = e => {
-    e.preventDefault();
-    if (
-      this.state.name !== "" &&
-      this.state.age !== "" &&
-      this.state.email !== ""
-    ) {
-      axios
-        .post("http://localhost:5000/friends/", {
-          id: Date.now(),
-          name: this.state.name,
-          age: this.state.age,
-          email: this.state.email
-        })
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-      this.setState(prevState => ({
-        friendsData: [
-          ...prevState.friendsData,
-          {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-          }
-        ],
-        name: "",
-        age: "",
-        email: ""
-      }));
-    } else return;
-  };
+  // addFriend = e => {
+  //   e.preventDefault();
+  //   if (
+  //     this.state.name !== "" &&
+  //     this.state.age !== "" &&
+  //     this.state.email !== ""
+  //   ) {
+  //     axios
+  //       .post("http://localhost:5000/friends/", {
+  //         id: Date.now(),
+  //         name: this.state.name,
+  //         age: this.state.age,
+  //         email: this.state.email
+  //       })
+  //       .then(function(response) {
+  //         console.log(response);
+  //       })
+  //       .catch(function(err) {
+  //         console.log(err);
+  //       });
+  //     this.setState(prevState => ({
+  //       friendsData: [
+  //         ...prevState.friendsData,
+  //         {
+  //           name: this.state.name,
+  //           age: this.state.age,
+  //           email: this.state.email
+  //         }
+  //       ],
+  //       name: "",
+  //       age: "",
+  //       email: ""
+  //     }));
+  //   } else return;
+  // };
 
-  deleteItem = id => {
-    axios
-      .delete(`http://localhost:5000/friends/${id}`)
-      .then(res => {
-        console.log(res);
-        this.setState({
-          friendsData: res.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  // deleteItem = id => {
+  //   axios
+  //     .delete(`http://localhost:5000/friends/${id}`)
+  //     .then(res => {
+  //       console.log(res);
+  //       this.setState({
+  //         friendsData: res.data
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   render() {
     return (
       <Container>
-        <AddFriendsForm
+        {/* <AddFriendsForm
           friendsData={this.state.friendsData}
           addFriend={this.addFriend}
           handleChange={this.handleChange}
           name={this.state.name}
           age={this.state.age}
           email={this.state.email}
-        />
+        /> */}
+        <h2>Your Friends:</h2>
+        <Link to="/addfriend">
+          <button>Add A Friend</button>
+        </Link>
         <FriendsBox>
-          {this.state.friendsData.map(friend => (
+          {this.props.friendsData.map(friend => (
             <FriendCard key={friend.id ? friend.id : Date.now()}>
               <h2>
                 {friend.name}

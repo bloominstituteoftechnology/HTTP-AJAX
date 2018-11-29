@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import FriendsList from "./components/FriendsList";
 import styled, { createGlobalStyle } from "styled-components";
-import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Home from "./components/Home";
+import Friend from "./components/Friend";
+import AddFriendsForm from "./components/AddFriendsForm";
+import axios from "axios";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -29,15 +33,108 @@ const BodyTag = styled.div`
   text-align: center;
 `;
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friendsData: []
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/friends/")
+      .then(res => {
+        this.setState({
+          friendsData: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  addFriend = e => {
+    e.preventDefault();
+    if (
+      this.state.name !== "" &&
+      this.state.age !== "" &&
+      this.state.email !== ""
+    ) {
+      axios
+        .post("http://localhost:5000/friends/", {
+          id: Date.now(),
+          name: this.state.name,
+          age: this.state.age,
+          email: this.state.email
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+      this.setState(prevState => ({
+        friendsData: [
+          ...prevState.friendsData,
+          {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+          }
+        ],
+        name: "",
+        age: "",
+        email: ""
+      }));
+    } else return;
+  };
+
+  deleteItem = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          friendsData: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <>
         <GlobalStyle />
         <BodyTag className="App">
-          <header className="App-header">
-            <h1>Friends List:</h1>
-            <FriendsList />
-          </header>
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/friendslist"
+            render={props => (
+              <FriendsList {...props} friendsData={this.state.friendsData} />
+            )}
+          />
+          <Route
+            exact
+            path="/friend/:id"
+            render={props => <Friend {...props} />}
+          />
+          <Route
+            exact
+            path="/addfriend"
+            render={props => (
+              <AddFriendsForm {...props} addFriend={this.addFriend} />
+            )}
+          />
+          <Route
+            exact
+            path="/friend-edit/:id"
+            render={props => <AddFriendsForm {...props} />}
+          />
         </BodyTag>
       </>
     );
