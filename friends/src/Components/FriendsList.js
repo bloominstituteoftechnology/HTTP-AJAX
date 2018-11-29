@@ -3,37 +3,56 @@ import FriendsForm from './FriendsForm';
 import shortid from 'shortid';
 import styled from 'styled-components';
 
+const Div = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const Ul = styled.ul`
-    --mdc-elevation-baseline-color: black;
-    --mdc-elevation-umbra-opacity: 0.2;
-    --mdc-elevation-penumbra-opacity: 0.14;
-    --mdc-elevation-ambient-opacity: 0.12;
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 30%;
+    min-width: 745px;
+    padding-left: 0;
     li {
         list-style: none;
         width: 100%;
         display: flex;
         justify-content: center;
+        margin: 15px 0;
         ul {
             background: #fff;
-            min-width: 745px;
-            width: 30%;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
             border: solid rgba(0, 0, 0, 0.1) 1px;
             border-radius: 10px;
-            margin: 10px 0;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
                 0 6px 6px rgba(0, 0, 0, 0.23);
+            button {
+                height: 100%;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+                border: 0;
+                background: red;
+                }
             li {
                 display: flex;
                 width: calc(100% / 3);
                 justify-content: flex-start;
                 padding: 10px;
                 border-radius: 0px;
+                input {
+                    &:disabled {
+                        background: white;
+                        border: none;
+                        color: black;
+                        font-size: 16px;
+                    }
+                }
             }
         }
     }
@@ -41,20 +60,21 @@ const Ul = styled.ul`
 
 const FriendsList = props => {
     return (
-        <>
-            <FriendsForm />
+        <Div>
+            <FriendsForm handleChange={props.handleChange} submit={props.submit} />
             <Ul>
                 {props.friends.map(friend => (
                     <li key={shortid.generate()}>
                         <ul>
-                            <li>{friend.name}</li>
-                            <li>{friend.age}</li>
-                            <li>{friend.email}</li>
+                            <li><input disabled placeholder={friend.name} /></li>
+                            <li><input disabled placeholder={friend.age} /></li>
+                            <li><input disabled placeholder={friend.email} /></li>
+                            <button>Edit</button>
                         </ul>
                     </li>
                 ))}
             </Ul>
-        </>
+        </Div>
     );
 };
 
