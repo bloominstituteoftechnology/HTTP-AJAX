@@ -2,6 +2,17 @@
     width: 100%;
 }
 
+.App h1 {
+    font-size: 5rem;
+    font-family: 'Poiret One', cursive;
+    color: #C2D3CD;
+    text-align: center;
+    width: 40%;
+    padding: 10px 0;
+    border: 2px solid #C2D3CD;
+    margin: 50px auto;
+}
+
 .friends-list {
     width: 80%;
     display: flex;
@@ -11,12 +22,26 @@
 }
 
 .individual-friend {
+    width: 25rem;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid #F8F1FF;
     margin: 10px;
     text-align: center;
+}
+
+.individual-friend .fas {
+    font-size: 4rem;
+    width: 7.5rem;
+    height: 7.5rem;;
+    padding: 10px;
+    border: 1px solid #F8F1FF;
+    border-radius: 50%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .friend-name {
@@ -26,23 +51,25 @@
 
 .friend-age {
     padding: 5px 0;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
 }
 
 .friend-email {
-    padding: 5px 0;
-    font-size: 1.6rem;
+    padding: 10px 0;
 }
 
 .form-container {
+    width: 50rem;
+    padding: 20px 0;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #656176;
 }
 
 .form-title {
-    font-size: 1.6rem;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .form {
@@ -52,4 +79,21 @@
 
 .form input {
     margin: 5px 0;
+    height: 3rem;;
+    border: 1px solid #F8F1FF;
+    color: #F8F1FF;
+    background-color: #656176;
+}
+
+.form input::placeholder {
+    color: #F8F1FF;
+    padding-left: 10px;
+}
+
+.form button {
+    height: 3rem;
+    border: 1px solid #12685E;
+    margin: 20px 0;
+    background-color: #1B998B;
+    color: #F8F1FF;
 }

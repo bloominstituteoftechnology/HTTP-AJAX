@@ -53,4 +53,12 @@ table {
 
 html {
   font-size: 62.5%;
+  font-family: 'Open Sans', sans-serif;
+  color: #F8F1FF;
+}
+
+body {
+  font-size: 1.6rem;
+  height: 100vh;
+  background-color: #534D56;
 }

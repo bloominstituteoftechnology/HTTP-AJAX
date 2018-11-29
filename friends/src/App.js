@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friends: [],
       nameText:'',
-      ageText: '',
+      ageText: undefined,
       emailText:'',
     }
   }
@@ -33,32 +33,32 @@ class App extends Component {
   }
 
   addFriend = event => {
+    event.preventDefault();
 
     axios
       .post('http://localhost:5000/friends', 
         { 
-          id: Date.now(),
           name: this.state.nameText,
           age: this.state.ageText, 
           email: this.state.emailText,
         })
-      .then(() => {
-        console.log('you did it');
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          nameText:'',
+          ageText: undefined,
+          emailText:'',
+        });
       })
       .catch(() => {
         console.log('sad face');
       })
-
-    this.setState({
-      nameText:'',
-      ageText: '',
-      emailText:'',
-    })
   }
 
   render() {
     return (
       <div className="App">
+      <h1>FRIEND LIST</h1>
         <FriendList friends={this.state.friends}/>
         <Form 
           nameText={this.state.nameText}

@@ -3,8 +3,8 @@ import React from 'react';
 const FriendCard = props => {
     return(
         <div className='individual-friend'>
-            <p className='friend-name'>{props.data.name}</p>
-            <p className='friend-age'>{props.data.age}</p>
+            <i class="fas fa-user"></i>
+            <p className='friend-name'>{props.data.name}, <span className='friend-age'>{props.data.age}</span></p>
             <p className='friend-email'>{props.data.email}</p>
         </div>
     );
