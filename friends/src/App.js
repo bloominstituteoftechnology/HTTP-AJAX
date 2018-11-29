@@ -100,8 +100,6 @@ class App extends Component {
 			});
   }
   
- 
-
 addFriend = (friend) => {
     axios
     .post(`http://localhost:5000/friends`, friend )
@@ -114,13 +112,24 @@ addFriend = (friend) => {
     .catch(err => console.log(err));
   }
 
+ deleteFriend = (friend) => {
+   axios
+   .delete(`http://localhost:5000/friends/${friend}` )
+   .then((response) => {
+    console.log(response);
+    this.setState({
+      friends: response.data
+    });
+  })
+  .catch(err => console.log(err));
+ } 
 	render() {
 		return (
 			<React.Fragment>
 				<GlobalStyle />
 				<AppContainer>
           <H1>View Our Current Friend List</H1>
-					<FriendList data={this.state.friends} />
+					<FriendList data={this.state.friends} deleteFriend={this.deleteFriend} />
           <H1>Add Yourself to Our Friend List</H1>
 					<FriendForm
 						addFriend={this.addFriend}

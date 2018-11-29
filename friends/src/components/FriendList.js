@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -45,23 +45,32 @@ const Button = styled.button`
 	color: #f1f7ed;
 	border: none;
 `;
-const FriendList = (props) => {
-	return (
-		<React.Fragment>
-			<Main>
-				{props.data.map((friend, index) => {
-					return (
-						<Section key={index}>
-							<Button onClick={props.deleteFriend}>x</Button>
-							<H1>{friend.name}</H1>
-							<H2>Age: {friend.age}</H2>
-							<H2>Email: {friend.email}</H2>
-						</Section>
-					);
-				})}
-			</Main>
-		</React.Fragment>
-	);
+class FriendList extends Component {
+
+	deleteFriend = (event) => {
+		event.preventDefault();
+		console.log(event.target.name)
+		this.props.deleteFriend(event.target.name)
+	}
+	render(){
+		return (
+			<React.Fragment>
+				<Main>
+					{this.props.data.map((friend, index) => {
+						return (
+							<Section key={index}>
+								<Button name={friend.id} onClick={this.deleteFriend} type="submit">x</Button>
+								<H1>{friend.name}</H1>
+								<H2>Age: {friend.age}</H2>
+								<H2>Email: {friend.email}</H2>
+							</Section>
+						);
+					})}
+				</Main>
+			</React.Fragment>
+		);
+	}
+	
 };
 
 export default FriendList;
