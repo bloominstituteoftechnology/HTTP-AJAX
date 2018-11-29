@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ const Section = styled.section`
 	width: 35%;
 	padding: 5%;
 	margin: 1%;
-	background: #bea8aa;
+	background: #9e90a2;
 `;
 const H1 = styled.h1`
 	font-weight: bold;
@@ -27,28 +27,32 @@ const H2 = styled.h2`
 `;
 
 class Friend extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            id: this.props.match.params.id
-        }
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			id: this.props.match.params.id
+		};
+	}
 
-    render(){
-        return(
-            <React.Fragment>
-            {this.props.friends.map((friend, index) => 
-                friend.id === this.state.id ? (
-                    <Section key={index}>
-                        <H1>{friend.name}</H1>
-                        <H2>Age: {friend.age}</H2>
-                        <H2>Email: {friend.email}</H2>
-                    </Section>
-                ) : null
-            )}
-            </React.Fragment>
-        );
-    }
+	render() {
+		return (
+			<React.Fragment>
+				{this.props.friends.map((friend, index) =>
+					this.state.id.match(friend.id) ? (
+						<Section key={index}>
+							<H1>{friend.name}</H1>
+							<H2>Age: {friend.age}</H2>
+							<H2>Email: {friend.email}</H2>
+						</Section>
+					) : null
+				)}
+			</React.Fragment>
+		);
+	}
 }
 
-export default Friend
+export default Friend;
+
+Friend.propTypes = {
+    
+}

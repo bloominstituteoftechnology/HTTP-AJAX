@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
-import MainPage from './components/MainPage'
+import MainPage from './components/MainPage';
 import UpdatePage from './components/UpdatePage';
 
 const GlobalStyle = createGlobalStyle`
@@ -60,24 +60,22 @@ body{
   }
 `;
 const AppContainer = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #BEA8AA;
-  border-radius: 10px;
-  margin: 5%;
-  background: #272932;
-
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #bea8aa;
+	border-radius: 10px;
+	margin: 5%;
+	background: #272932;
 `;
-
-
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      friends: [],
+			friends: [],
+			currentId: ''
 		};
 	}
 
@@ -92,45 +90,67 @@ class App extends Component {
 			.catch((err) => {
 				console.log(err);
 			});
-  }
-  
-addFriend = (friend) => {
-    axios
-    .post(`http://localhost:5000/friends`, friend )
-    .then((response) => {
-      this.setState({
-        friends: response.data
-      });
-    })
-    .catch(err => console.log(err));
-  }
+	}
 
- deleteFriend = (friend) => {
-   axios
-   .delete(`http://localhost:5000/friends/${friend}` )
-   .then((response) => {
-    this.setState({
-      friends: response.data
-    });
-  })
-  .catch(err => console.log(err));
- } 
+	addFriend = (friend) => {
+		axios
+			.post(`http://localhost:5000/friends`, friend)
+			.then((response) => {
+				this.setState({
+					friends: response.data
+				});
+			})
+			.catch((err) => console.log(err));
+	};
 
- 
+	updateFriend = (friend, id) => {
+		axios
+			.put(`http://localhost:5000/friends/${id}`, friend)
+			.then((response) => {
+				this.setState({
+					friends: response.data
+				});
+			})
+			.catch((err) => console.log(err));
+	};
+
+	deleteFriend = (friend) => {
+		axios
+			.delete(`http://localhost:5000/friends/${friend}`)
+			.then((response) => {
+				this.setState({
+					friends: response.data
+				});
+			})
+			.catch((err) => console.log(err));
+	};
+
 	render() {
 		return (
 			<React.Fragment>
 				<GlobalStyle />
 				<AppContainer>
-					<Route 
-					exact path= {'/'}
-					render={(props) => <MainPage friends={this.state.friends} addFriend={this.addFriend} deleteFriend={this.deleteFriend} />}
+					<Route
+						exact
+						path={'/'}
+						render={() => (
+							<MainPage
+								friends={this.state.friends}
+								addFriend={this.addFriend}
+								deleteFriend={this.deleteFriend}
+							/>
+						)}
 					/>
-					<Route 
-					path={`/:id`}
-					render={(props) => <UpdatePage {...props} friends={this.state.friends} /> }
+					<Route
+						path={`/:id`}
+						render={(props) => (
+							<UpdatePage
+								{...props}
+								friends={this.state.friends}
+								updateFriend={this.updateFriend}
+							/>
+						)}
 					/>
-          
 				</AppContainer>
 			</React.Fragment>
 		);

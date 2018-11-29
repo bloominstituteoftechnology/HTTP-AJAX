@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Section = styled.section`
 	border: 1px solid #f1f7ed;
@@ -13,11 +13,14 @@ const Section = styled.section`
 `;
 const H1 = styled.h1`
 	font-weight: bold;
-	font-size: 2rem;
+	font-size: ${(props) => (props.link ? '1.8rem' : '3rem')};
 	color: #f1f7ed;
 	font-family: cursive;
 	margin-bottom: 5%;
 	text-align: center;
+	:hover {
+		${(props) => (props.link ? 'color: #272932' : null)}
+	}
 `;
 const H2 = styled.h2`
 	font-size: 1.2rem;
@@ -34,9 +37,11 @@ const Button = styled.button`
 	background: #272932;
 	color: #f1f7ed;
 	border: none;
+	:hover {
+		cursor: pointer;
+	}
 `;
 class FriendList extends Component {
-
 	deleteFriend = (event) => {
 		event.preventDefault();
 		this.props.deleteFriend(event.target.name);
@@ -44,24 +49,19 @@ class FriendList extends Component {
 	render() {
 		return (
 			<React.Fragment>
-					{this.props.data.map((friend, index) => (
-						<Section key={index}>
-							<Button
-								name={friend.id}
-								onClick={this.deleteFriend}
-								type="submit"
-							>
-								x
-							</Button>
-							<H1>{friend.name}</H1>
-							<H2>Age: {friend.age}</H2>
-							<H2>Email: {friend.email}</H2>
-							<Link to={`/${friend.id}`} >
-								<H1>Update</H1>
-							</Link>
-						</Section>
-					))
-					}
+				{this.props.data.map((friend, index) => (
+					<Section key={index}>
+						<Button name={friend.id} onClick={this.deleteFriend} type="submit">
+							x
+						</Button>
+						<H1>{friend.name}</H1>
+						<H2>Age: {friend.age}</H2>
+						<H2>Email: {friend.email}</H2>
+						<NavLink to={`/${friend.id}`} style={{ textDecoration: 'none' }}>
+							<H1 link>Update</H1>
+						</NavLink>
+					</Section>
+				))}
 			</React.Fragment>
 		);
 	}

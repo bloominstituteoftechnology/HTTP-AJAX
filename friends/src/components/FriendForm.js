@@ -36,7 +36,7 @@ const Button = styled.button`
 	padding: 1% 5%;
 	margin: 1% 25%;
 	width: 50%;
-	background: #8BA6A9;
+	background: #8ba6a9;
 	color: #272932;
 	font-weight: bold;
 	border: 2px solid #272932;
@@ -67,22 +67,25 @@ class FriendForm extends Component {
 				[event.target.name]: event.target.value
 			}
 		});
-	}
+	};
 
 	handleMode = () => {
 		if (this.props.mode === 'Add') {
-			return this.addFriend
+			return this.addFriend;
 		} else {
-			return this.updateFriend
+			return this.updateFriend;
 		}
-		 
-		
-	}
+	};
 
 	addFriend = (event) => {
 		event.preventDefault();
 		this.props.addFriend(this.state.friend);
-	}
+	};
+
+	updateFriend = (event) => {
+		event.preventDefault();
+		this.props.updateFriend(this.state.friend, this.props.match.params.id);
+	};
 	render() {
 		return (
 			<Form onSubmit={this.handleMode()}>
@@ -121,11 +124,11 @@ class FriendForm extends Component {
 export default FriendForm;
 
 FriendForm.propTypes = {
-    friend: PropTypes.shape({
-        name: PropTypes.string,
-        age: PropTypes.number,
-        email: PropTypes.string,
-    }),
+	friend: PropTypes.shape({
+		name: PropTypes.string,
+		age: PropTypes.number,
+		email: PropTypes.string
+	}),
 	handleChange: PropTypes.func,
 	addFriend: PropTypes.func
 };
