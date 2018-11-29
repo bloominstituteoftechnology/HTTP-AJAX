@@ -125,6 +125,7 @@
 .editform-container {
     width: 90%;
     background-color: #656176;
+    border: 1px solid #4a4757;
     position: absolute;
     top: 23rem;
     left: 1.2rem;

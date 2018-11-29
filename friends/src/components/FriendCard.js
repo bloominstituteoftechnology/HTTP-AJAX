@@ -1,10 +1,10 @@
 import React from 'react';
 import EditForm from './EditForm';
 
-class  FriendCard extends React.Component {
+class FriendCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             shouldEdit: false,
         }
     }
@@ -15,11 +15,6 @@ class  FriendCard extends React.Component {
         } else {
             this.setState({ shouldEdit: false });
         }
-      }
-
-      handleEdit = event => {
-          event.preventDefault();
-          this.props.updateFriend(this.props.data.id);
       }
 
     render() {
@@ -39,9 +34,9 @@ class  FriendCard extends React.Component {
                 </button>
                 <EditForm 
                     data={this.props}
+                    id={this.props.data.id}
                     shouldEdit={this.state.shouldEdit}
-                    handleEdit={this.handleEdit}
-                    handleChange={this.props.handleChange}
+                    updateFriend={this.props.updateFriend}
                 />
             </div>
         );

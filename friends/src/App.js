@@ -9,9 +9,6 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      nameText:'',
-      ageText: '',
-      emailText:'',
     }
   }
 
@@ -26,28 +23,12 @@ class App extends Component {
       });
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  addFriend = event => {
-    event.preventDefault();
-
+  addFriend = friendData => {
     axios
-      .post('http://localhost:5000/friends', 
-        { 
-          name: this.state.nameText,
-          age: this.state.ageText, 
-          email: this.state.emailText,
-        })
+      .post('http://localhost:5000/friends', friendData)
       .then(response => {
         this.setState({
           friends: response.data,
-          nameText:'',
-          ageText: '',
-          emailText:'',
         });
       })
       .catch(error => {
@@ -55,20 +36,12 @@ class App extends Component {
       })
   }
 
-  updateFriend = (id) => {
+  updateFriend = (friendData, id) => {
     axios
-      .put(`http://localhost:5000/friends/${id}`, 
-      { 
-        name: this.state.nameText,
-        age: this.state.ageText, 
-        email: this.state.emailText,
-      })
+      .put(`http://localhost:5000/friends/${id}`, friendData)
       .then(response => {
         this.setState({
           friends: response.data,
-          nameText:'',
-          ageText: '',
-          emailText:'',
         });
       })
       .catch(error => {
@@ -97,17 +70,8 @@ class App extends Component {
           friends={this.state.friends}
           updateFriend={this.updateFriend}
           deleteFriend={this.deleteFriend}
-          shouldEdit={this.state.shouldEdit}
-          nameText={this.state.nameText}
-          ageText={this.state.ageText}
-          emailText={this.state.emailText}
-          handleChange={this.handleChange}
         />
         <Form 
-          nameText={this.state.nameText}
-          ageText={this.state.ageText}
-          emailText={this.state.emailText}
-          handleChange={this.handleChange}
           addFriend={this.addFriend}
         />
       </div>
