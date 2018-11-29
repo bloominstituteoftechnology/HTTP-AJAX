@@ -6,9 +6,10 @@
   margin: 0% 20%;
 }
 .cards{
-  width: 100%;
+  width: 80%;
+  margin: 5% 10%;
   text-align: center;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
