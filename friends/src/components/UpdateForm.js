@@ -28,7 +28,7 @@ class UpdateForm extends React.Component {
 
     return (
         <Modal open={open} onClose={this.close}>
-          <Modal.Header>Update {name}'s Info</Modal.Header>
+          <Modal.Header>Update {this.props.friend.name}'s Info</Modal.Header>
           <Segment>
             <Form>
               <Form.Field>

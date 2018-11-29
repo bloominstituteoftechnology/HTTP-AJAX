@@ -83,6 +83,8 @@ class App extends React.Component {
           </NavLink>
         </Menu>
 
+        <Route exact path='/' />
+
         <Route path='/form' render={ props => (
           <FriendForm
             {...props}
@@ -101,9 +103,6 @@ class App extends React.Component {
             Loading ...
           </Loader>
         }
-
-
-        <Route exact path='/' />
 
       </Container>
     );
