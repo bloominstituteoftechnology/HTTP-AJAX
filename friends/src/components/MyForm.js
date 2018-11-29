@@ -32,6 +32,7 @@ class MyForm extends React.Component {
                 </label>
                 <input type="submit" value="Add New"/>
                 <button onClick={this.props.update}>Update</button>
+                <button onClick={this.props.delete}>Delete</button>
             </form>
         </div>
         )

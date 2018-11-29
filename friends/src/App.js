@@ -67,22 +67,45 @@ class App extends React.Component {
   update = (event, id) => {
     event.preventDefault();
 
-    console.log("yeahhh")
     axios
-    .put(`http://localhost:5000/friends/${this.state.id}`, {
-      name: this.state.name,
-      id: this.state.id,
-      email: this.state.email
-    })
+      .put(`http://localhost:5000/friends/${this.state.id}`, {
+        name: this.state.name,
+        id: this.state.id,
+        email: this.state.email
+      })
 
-    .then(newResponse => {
-      console.log('from update', newResponse)
-      this.setState({ 
-        data: newResponse.data
-      });
-    })
-    .catch(err => console.log(err));
+      .then(newResponse => {
+        console.log('from update', newResponse)
+        this.setState({ 
+          data: newResponse.data
+        });
+      })
+      .catch(err => console.log(err));
   }
+
+      // , {
+      //   data: this.state.data,
+      //   {
+      //     name: this.state.name,
+      //     id: this.state.id,
+      //     email: this.state.email,
+      //   }
+      // }
+
+      delete = (event, id) => {
+        event.preventDefault();
+    
+        axios
+          .delete(`http://localhost:5000/friends/${this.state.id}`)
+    
+          .then(newResponse => {
+            console.log('from update', newResponse)
+            this.setState({ 
+              data: newResponse.data
+            });
+          })
+          .catch(err => console.log(err));
+      }
 
   render() {
     console.log('this state data', this.state.data)
@@ -105,6 +128,7 @@ class App extends React.Component {
           changeID={this.changeID}
           changeEmail={this.changeEmail}
           update={this.update}
+          delete={this.delete}
         />
       </div>
     );
