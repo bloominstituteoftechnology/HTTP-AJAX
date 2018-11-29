@@ -15,11 +15,16 @@ class Form extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+  submitHandler = e => {
+    e.preventDefault();
+
+    this.props.addNewFriend(this.state);
+  };
   render() {
     return (
       <div>
         <h1>Add New Friend</h1>
-        <form>
+        <form onSubmit={this.submitHandler}>
           Name:
           <br />
           <input
@@ -33,7 +38,7 @@ class Form extends React.Component {
           <br />
           <input
             onChange={this.changeHandler}
-            type="text"
+            type="number"
             name="age"
             value={this.state.age}
           />
