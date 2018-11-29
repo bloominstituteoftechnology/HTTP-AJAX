@@ -1,8 +1,13 @@
-.friendsList{
-    margin: 0 auto;
-}
- .friendCard{
-    margin: 20px auto;
-    width: 30%;
+.friend-card{
     border: 1px solid black;
+    width: 20%;
+    margin: 20px 4.5%;
+    display: flex;
+    flex-flow: column;
+    align-content: flex-start;
+    padding: 20px 20px;
+    background: blue;
 }
+ .close{
+    position: absolute;
+} 
