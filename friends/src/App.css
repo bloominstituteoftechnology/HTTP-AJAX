@@ -1,32 +1,65 @@
-.App {
+body{
+  background: #2f2fa2;
+}
+
+.App{
   text-align: center;
+  background: #2f2fa2;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: space-around;
+  background: 
+}
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+  background: #242582;
+  margin: 10px;
+  border-radius: 10px;
+  width: 350px;
+  padding-bottom: 20px;
+  border: 3px solid black;
+}
+.card h4 {
+  margin: 5px 10px;
+  color: #ff6f69
+}
+h1 {
+  color: #ffffff;
+}
+.card h2 {
+  
+  color: #f64c72;
+  
+}
+.card form {
+  
 }
 
-.App-link {
-  color: #61dafb;
+.remove-button {
+  color: #99738e;
+  margin-left: auto;
+  background: #553d67;
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid black;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.friend-form {
+  background: #f64c72;
+  /* margin-top: 4rem; */
+  padding-bottom: 3rem;
+}
+
+input[type=text]{
+  background: #fff;
+  border: 1px solid #99738e;
 }

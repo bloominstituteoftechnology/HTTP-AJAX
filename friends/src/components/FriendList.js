@@ -1,21 +1,23 @@
 import React from "react";
+import Friend from './Friend';
+
+import "../App.css";
 
 
+class FriendList extends React.Component {
+    render() {
+        return (
+            <div className='card-container'>
+                {this.props.friends.map(friend => {
+                    return (
+                        <div >
+                            <Friend key={friend.id} friend={friend} deleteFriendFromList={this.props.deleteFriendFromList} />
+                        </div>
+                    )
+                })}
+            </div>
+        )
+    }
+}
 
-const FriendList = props => {
-    return (
-        <div>
-            {props.data.map(friend => {
-                return (
-                    <div className='friendslist-container'
-                        key={friend.id}>
-                        <h1>Name: {friend.name}</h1>
-                        <p>Age: {friend.age}</p>
-                        <p>Email: {friend.email}</p>
-                    </div>
-                );
-            })}
-        </div>
-    );
-};
 export default FriendList;
