@@ -1,0 +1,47 @@
+* {
+  box-sizing:border-box;
+}
+
+.App {
+  background:lightgrey;
+  max-width:800px;
+  margin:0 auto;
+}
+
+.header {
+  text-align: center;
+}
+
+.friend {
+  display: flex;
+  flex-direction: column;
+  width:33%;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  min-width:150px;
+  width:30%;
+}
+
+.friendWrapper {
+  display: flex;
+  margin:5px;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:33%;
+  cursor: pointer;
+}
+
+.update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:33%;
+  cursor: pointer;
+}
