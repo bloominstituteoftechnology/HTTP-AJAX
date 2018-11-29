@@ -76,6 +76,19 @@ class App extends Component {
       });
   }
 
+  deleteFriend = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
@@ -83,6 +96,7 @@ class App extends Component {
         <FriendList 
           friends={this.state.friends}
           updateFriend={this.updateFriend}
+          deleteFriend={this.deleteFriend}
         />
         <Form 
           nameText={this.state.nameText}
