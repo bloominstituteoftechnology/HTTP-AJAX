@@ -28,16 +28,10 @@ export default class FriendForm extends Component {
   }
   
 
-  handleChange = e => {
-    if(e.target.name === 'name'){
-      this.setState({name: e.target.value})
-    }
-    if(e.target.name === 'age'){
-      this.setState({age: e.target.value})
-    }
-    if(e.target.name === 'email'){
-      this.setState({email: e.target.value})
-    }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   
@@ -52,7 +46,6 @@ export default class FriendForm extends Component {
           if(!this.props.editFriend.name){
             console.log('didnot')
             const newFriendObj = {
-              id: (this.props.friends.length+1),
               name: this.state.name,
               age: Number(this.state.age),
               email: this.state.email,
@@ -73,6 +66,11 @@ export default class FriendForm extends Component {
             this.props.updateToList(updateFriendObj.id, updateFriendObj);
           }
           
+          this.setState({
+            name: '',
+            age: '',
+            email:''
+          })
           
 
         }}>
@@ -81,7 +79,7 @@ export default class FriendForm extends Component {
         <input type='text' name='age' placeholder='age' onChange={this.handleChange} value={this.state.age} />
         <input type='email' name='email' placeholder='email' onChange={this.handleChange} value={this.state.email} />
 
-        <button>Add Friend</button>
+        <button>Submit</button>
 
         </form>
       </div>

@@ -10,10 +10,13 @@ export default class Friend extends Component {
 
   render() {
     return (
-      <div className="friend" onClick={() => this.props.startUpdate(this.props.friend)}>
+      <div className="friend" >
+      <div className='info' onClick={() => this.props.startUpdate(this.props.friend)}>
         <p>Name:{this.props.friend.name}</p>
         <p>Age:{this.props.friend.age}</p>
         <p>Email:{this.props.friend.email}</p>
+      </div>
+      <button onClick={() => this.props.deleteItem(this.props.friend.id)}>X</button>
       </div>
     );
   }
