@@ -3,7 +3,7 @@ import { Segment, Card } from 'semantic-ui-react';
 
 import FriendCard from './FriendCard';
 
-const FriendList = ({ friends, deleteFriend }) => {
+const FriendList = ({ friends, updateFriend, deleteFriend }) => {
   return (
     <Segment>
       <Card.Group centered style={{padding: '40px 0'}}>
@@ -11,6 +11,7 @@ const FriendList = ({ friends, deleteFriend }) => {
           friends.map(friend => (
             <FriendCard
               key={friend.id}
+              updateFriend={updateFriend}
               deleteFriend={deleteFriend}
               friend={friend}
               />

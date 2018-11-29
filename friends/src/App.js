@@ -54,19 +54,26 @@ class App extends React.Component {
   }
 
   updateFriend = (id, friend) => {
+
     axios
       .put(
         `http://localhost:5000/friends/${id}`,
         friend
       )
-      .then(res => console.log())
+      .then(res => {
+        this.setState({
+          friends: res.data,
+        })
+      })
       .catch(err => console.log(err))
   }
 
   render() { 
     return (
       <Container style={{paddingBottom: '50px'}}>
-        <Header textAlign='center' as='h1' style={{margin: '24px'}}>Friend App</Header>
+        <Header textAlign='center' as='h1' style={{margin: '24px'}}>
+          Lambda's Friends
+        </Header>
         <Menu pointing>
           <NavLink className="item" exact to='/'>
             Home
@@ -87,6 +94,7 @@ class App extends React.Component {
           this.state.friends.length ?
           <FriendList
             deleteFriend={this.deleteFriend}
+            updateFriend={this.updateFriend}
             friends={this.state.friends}
           /> :
           <Loader active inline='centered'>
