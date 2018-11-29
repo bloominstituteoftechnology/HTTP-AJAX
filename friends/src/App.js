@@ -5,7 +5,6 @@ import Friends from './Components/Friends';
 import Friend from './Components/Friend';
 import DisplayFriend from './Components/DisplayFriend';
 import AddFriend from './Components/AddFriend';
-import './style.css';
 
 /***************************************************************************************************
  ********************************************* Variables *******************************************
@@ -46,7 +45,8 @@ class App extends Component {
     });
   };
 
-  addFriend = newFriend => {
+  addFriend = (e, newFriend) => {
+    e.preventDefault();
     axios
       .post(`http://localhost:5000/friends`, newFriend)
       .then(res => {

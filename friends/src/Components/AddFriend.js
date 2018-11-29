@@ -96,8 +96,9 @@ const AddFriend = props => {
   return (
     <DivWrapper>
       <FormAddFriend
-        onSubmit={() =>
+        onSubmit={e =>
           props.addFriend(
+            e,
             newFriend(
               props.friends[props.friends.length - 1].id + 1,
               props.newName,
