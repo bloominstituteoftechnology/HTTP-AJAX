@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, Route } from "react-router-dom";
-import Form from './Form'
+import Form from "./Form";
 
 const FriendWrapper = styled.div`
 	margin: 10px;
@@ -21,7 +21,13 @@ const Friend = props => {
 			<p> Name: {props.data.name} </p>
 			<p> Age: {props.data.age} </p>
 			<p> Email: {props.data.email} </p>
-			<FriendButton exact to={`/${props.data.id}`} as='button'>
+			<FriendButton
+				exact
+				to={`/`}
+				onClick={(event) => {
+					event.preventDefault();
+					props.deleteFriend(props.data.id);
+				}}>
 				End Friendship
 			</FriendButton>
 		</FriendWrapper>

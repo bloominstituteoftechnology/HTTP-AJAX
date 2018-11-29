@@ -97,6 +97,7 @@ class App extends Component {
 							key={item.id}
 							onSubmit={this.editFriend}
 							title={`Edit ${item.name}'s Info`}
+							deleteFriend={this.deleteFriend}
 						/>
 						<Route
 							exact
