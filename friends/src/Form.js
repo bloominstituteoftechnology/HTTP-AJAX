@@ -1,7 +1,6 @@
 import React from "react";
 
 const Form = props => {
-  console.log(props.friends);
   return (
     <form action="" onSubmit={props.addFriendHandle}>
       <p>O Haaaaaaaiiiiiiiiiii</p>

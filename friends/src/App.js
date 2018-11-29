@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Friends from "./Friends";
+import FriendsList from "./FriendsList";
 import Form from "./Form";
 import "./App.css";
 import axios from "axios";
@@ -17,6 +17,13 @@ class App extends Component {
       email: ""
     };
   }
+  deleteHandle = id => {
+    axios.delete(`http://localhost:3100/friends/${id}`).then(response => {
+      this.setState({
+        friends: response.data
+      });
+    });
+  };
   addFriendHandle = event => {
     event.preventDefault();
     const friendList = this.state.friends;
@@ -82,7 +89,11 @@ class App extends Component {
           addFriendHandle={this.addFriendHandle}
         />
         {this.state.friends.map(friend => (
-          <Friends key={friend.id} friend={friend} />
+          <FriendsList
+            key={friend.id}
+            friend={friend}
+            deleteHandle={this.deleteHandle}
+          />
         ))}
       </div>
     );

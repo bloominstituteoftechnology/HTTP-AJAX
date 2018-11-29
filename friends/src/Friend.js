@@ -1,13 +1,15 @@
 import React from "react";
-
-const Friends = props => {
+const Friend = props => {
   return (
     <React.Fragment>
       <div>{props.friend.name}</div>
       <div>{props.friend.age}</div>
       <div>{props.friend.email}</div>
+      <button onClick={() => props.deleteHandle(props.friend.id)}>
+        Not a true friend anymore?
+      </button>
     </React.Fragment>
   );
 };
 
-export default Friends;
+export default Friend;
