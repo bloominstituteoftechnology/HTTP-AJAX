@@ -7,9 +7,14 @@ const FriendList = props => {
             {props.friends.map(friend => (
                <FriendCard 
                     key={friend.id} 
-                    data={friend} 
+                    data={friend}
+                    shouldEdit={props.shouldEdit}
                     updateFriend={props.updateFriend}
                     deleteFriend={props.deleteFriend}
+                    handleChange={props.handleChange}
+                    nameText={props.nameText}
+                    ageText={props.ageText}
+                    emailText={props.emailText}
                 />
             ))}
         </div>

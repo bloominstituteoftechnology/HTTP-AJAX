@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       friends: [],
       nameText:'',
-      ageText: undefined,
+      ageText: '',
       emailText:'',
     }
   }
@@ -46,12 +46,12 @@ class App extends Component {
         this.setState({
           friends: response.data,
           nameText:'',
-          ageText: undefined,
+          ageText: '',
           emailText:'',
         });
       })
       .catch(error => {
-        console.log('error');
+        console.log(error);
       })
   }
 
@@ -67,7 +67,7 @@ class App extends Component {
         this.setState({
           friends: response.data,
           nameText:'',
-          ageText: undefined,
+          ageText: '',
           emailText:'',
         });
       })
@@ -97,6 +97,11 @@ class App extends Component {
           friends={this.state.friends}
           updateFriend={this.updateFriend}
           deleteFriend={this.deleteFriend}
+          shouldEdit={this.state.shouldEdit}
+          nameText={this.state.nameText}
+          ageText={this.state.ageText}
+          emailText={this.state.emailText}
+          handleChange={this.handleChange}
         />
         <Form 
           nameText={this.state.nameText}

@@ -32,7 +32,7 @@
     position: relative;
 }
 
-.individual-friend .fas {
+.individual-friend .fa-user {
     font-size: 4rem;
     width: 7.5rem;
     height: 7.5rem;;
@@ -116,4 +116,46 @@
     margin: 20px 0;
     background-color: #1B998B;
     color: #F8F1FF;
+}
+
+.hide {
+    display: none;
+}
+
+.editform-container {
+    width: 90%;
+    background-color: #656176;
+    position: absolute;
+    top: 23rem;
+    left: 1.2rem;
+    z-index: 1;
+}
+
+.editform {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.editform input {
+    margin: 5px 0;
+    height: 3rem;;
+    border: 1px solid #F8F1FF;
+    color: #F8F1FF;
+    background-color: #656176;
+}
+
+.editform input::placeholder {
+    color: #F8F1FF;
+    padding-left: 10px;
+}
+
+.editform button {
+    height: 3rem;
+    border: 1px solid #12685E;
+    margin: 10px 0;
+    background-color: #1B998B;
+    color: #F8F1FF;
+    font-size: 1.2rem;
 }
