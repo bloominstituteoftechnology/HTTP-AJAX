@@ -1,12 +1,36 @@
 import React from 'react';
+import axios from 'axios';
 import { Button, Segment, Form , Modal} from 'semantic-ui-react';
 
-class UpdateForm extends React.Component {
+class InputForm extends React.Component{
+  
   state = {
-    name: this.props.friend.name,
-    age: this.props.friend.age,
-    location: this.props.friend.location,
-    email: this.props.friend.email,
+    name: '',
+    age: '',
+    location: '',
+    email: '',
+    }
+
+  componentDidMount() {
+    if (this.props.update) {
+      axios
+        .get('http://localhost:5000/friends')
+        .then(res => {
+          const friend = res.data.filter(friend => friend.id.toString() === this.props.match.params.id);
+          
+          if (friend.length > 0) {
+            this.setState({
+              name: friend[0].name,
+              age: friend[0].age,
+              location: friend[0].location,
+              email: friend[0].email,
+            })
+          }
+        })
+        .catch(err => {
+          console.log('ERR');
+        });
+    }
   }
 
   onChange = e => {
@@ -15,20 +39,20 @@ class UpdateForm extends React.Component {
     })
   }
 
-  onUpdate = e => {
+  onSubmit = e => {
     e.preventDefault();
     const friend = {...this.state};
-    this.props.updateFriend(this.props.friend.id, friend);
-    this.props.close();
+    this.props.updateFriend(this.props.match.params.id, friend);
+    this.props.history.push('/');
   }
 
   render() {
-    const { open, close } = this.props;
-    const { name, age, location, email } = this.state
-
+    const { name, age, location, email } = this.state;
     return (
-        <Modal open={open} onClose={this.close}>
-          <Modal.Header>Update {this.props.friend.name}'s Info</Modal.Header>
+      <div>
+        {this.props.match.params.id}
+        <Modal open onClose={this.close}>
+          <Modal.Header>Update {this.state.name}'s Info</Modal.Header>
           <Segment>
             <Form>
               <Form.Field>
@@ -50,7 +74,7 @@ class UpdateForm extends React.Component {
             </Form>
           </Segment>
           <Modal.Actions>
-            <Button onClick={close}>
+            <Button onClick={ () => {this.props.history.push('/')} }>
               Cancel
             </Button>
             <Button
@@ -58,12 +82,13 @@ class UpdateForm extends React.Component {
               icon='checkmark'
               labelPosition='right'
               content="Update"
-              onClick={this.onUpdate}
+              onClick={this.onSubmit}
             />
           </Modal.Actions>
         </Modal>
+      </div>
     );
   }
 }
-
-export default UpdateForm;
+ 
+export default InputForm;

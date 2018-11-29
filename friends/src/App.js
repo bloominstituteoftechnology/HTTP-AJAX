@@ -6,6 +6,7 @@ import { Container, Header, Loader } from 'semantic-ui-react';
 import NavBar from './components/NavBar';
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
+import InputForm from './components/InputForm';
 
 class App extends React.Component {
   state = {
@@ -62,7 +63,6 @@ class App extends React.Component {
   }
 
   updateFriend = (id, friend) => {
-
     axios
       .put(
         `http://localhost:5000/friends/${id}`,
@@ -101,6 +101,7 @@ class App extends React.Component {
           return (
               this.state.friends.length ?
               <FriendList
+                {...props}
                 deleteFriend={this.deleteFriend}
                 updateFriend={this.updateFriend}
                 friends={filteredFriend}
@@ -110,6 +111,10 @@ class App extends React.Component {
               </Loader>
           )
         }} />
+
+        <Route path='/update/:id'
+          render={props => <InputForm {...props} update updateFriend={this.updateFriend} />}
+        />
 
       </Container>
     );

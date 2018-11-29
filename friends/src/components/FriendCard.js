@@ -1,19 +1,9 @@
 import React from 'react';
 import { Card, Button } from 'semantic-ui-react';
 
-import UpdateForm from './UpdateForm';
-
 class FriendCard extends React.Component {
-  state = {
-    open: false,
-  }
-
-  show = dimmer => () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
-
   render() {
-    const { friend, deleteFriend, updateFriend } = this.props;
-    const { open } = this.state;
+    const { friend, deleteFriend } = this.props;
     return (
       <Card>
         <Card.Content>
@@ -49,11 +39,10 @@ class FriendCard extends React.Component {
               icon='checkmark'
               labelPosition='right'
               content="Update"
-              onClick={this.show(true)}
+              onClick={() => this.props.history.push(`/update/${friend.id}`)}
             />
           </div>
         </Card.Content>
-        <UpdateForm open={open} friend={friend} close={this.close} updateFriend={updateFriend} />
       </Card>
     );
   }
