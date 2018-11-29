@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import { Route, NavLink } from 'react-router-dom';
-import { Container, Header, Menu, Loader } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
+import { Container, Header, Loader } from 'semantic-ui-react';
 
+import NavBar from './components/NavBar';
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
 
 class App extends React.Component {
   state = {
     friends: [],
+    searchTerm: '',
   }
 
   componentDidMount() {
@@ -22,6 +24,12 @@ class App extends React.Component {
       .catch(err => {
         console.log('ERR');
       });
+  }
+
+  handleSearch = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
   addFriend = (friend) => {
@@ -68,20 +76,19 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
-  render() { 
+  render() {
+    const filteredFriend = this.state.friends.filter(
+      friend => friend.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+    );
     return (
       <Container style={{paddingBottom: '50px'}}>
         <Header textAlign='center' as='h1' style={{margin: '24px'}}>
           Lambda's Friends
         </Header>
-        <Menu pointing>
-          <NavLink className="item" exact to='/'>
-            Home
-          </NavLink>
-          <NavLink className="item" to='/form'>
-            Add Friend
-          </NavLink>
-        </Menu>
+        <NavBar
+          searchTerm={this.state.searchTerm}
+          handleSearch={this.handleSearch}
+        />
 
         <Route exact path='/' />
 
@@ -97,7 +104,7 @@ class App extends React.Component {
           <FriendList
             deleteFriend={this.deleteFriend}
             updateFriend={this.updateFriend}
-            friends={this.state.friends}
+            friends={filteredFriend}
           /> :
           <Loader active inline='centered'>
             Loading ...

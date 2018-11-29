@@ -31,7 +31,9 @@ class FriendForm extends React.Component {
       age: '',
       location: '',
       email: '',
-    })
+    });
+
+    this.props.history.push('/');
   }
 
   onCancel = e => {

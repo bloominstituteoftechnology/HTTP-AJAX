@@ -58,5 +58,5 @@ class FriendCard extends React.Component {
     );
   }
 }
-
+ 
 export default FriendCard;
