@@ -55,7 +55,6 @@ const ButtonDelete = styled.button`
  ********************************************* Component *******************************************
  **************************************************************************************************/
 const DisplayFriend = props => {
-  console.log(props.friends);
   let friendInfo = props.friends.find(
     friend => `${friend.id}` === props.match.params.id
   );
@@ -65,7 +64,14 @@ const DisplayFriend = props => {
         <DivName>
           <ButtonEdit type='button'>Edit Friend</ButtonEdit>
           {friendInfo.name}
-          <ButtonDelete type='button'>Delete Friend</ButtonDelete>
+          <ButtonDelete
+            onClick={e => {
+              props.deleteFriend(e, friendInfo.id);
+              props.history.push(props.urlLinks.home);
+            }}
+          >
+            Delete Friend
+          </ButtonDelete>
         </DivName>
         <h1>Age: {friendInfo.age}</h1>
         <h1>Email: {friendInfo.email}</h1>
