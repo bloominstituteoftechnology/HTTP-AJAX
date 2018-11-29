@@ -57,7 +57,6 @@ const InputButton = styled.input`
   cursor: pointer;
   border-radius: 10px;
   background-color: rgb(128, 0, 128);
-
   font-weight: 600;
   background: linear-gradient(to top, #89640b, #e0ac32);
   border-color: #e0ac32;

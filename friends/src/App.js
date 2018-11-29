@@ -5,13 +5,20 @@ import Friends from './Components/Friends';
 import Friend from './Components/Friend';
 import DisplayFriend from './Components/DisplayFriend';
 import AddFriend from './Components/AddFriend';
+import './style.css';
 
+/***************************************************************************************************
+ ********************************************* Variables *******************************************
+ **************************************************************************************************/
 const urlLinks = {
   home: '/',
   friend: `/friend`,
   addFriend: '/addfriend'
 };
 
+/***************************************************************************************************
+ ********************************************* Component *******************************************
+ **************************************************************************************************/
 class App extends Component {
   constructor() {
     super();
@@ -49,54 +56,46 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.friends.length > 0) {
-      return (
-        <div className='App'>
-          <Route
-            exact
-            path={urlLinks.home}
-            render={props => (
-              <AddFriend
-                {...props}
-                friends={this.state.friends}
-                changeHandler={this.changeHandler}
-                addFriend={this.addFriend}
-                newName={this.state.newName}
-                newAge={this.state.newAge}
-                newEmail={this.state.newEmail}
-              />
-            )}
-          />
-          <Route
-            exact
-            path={urlLinks.home}
-            render={props => (
-              <Friends
-                {...props}
-                friends={this.state.friends}
-                links={urlLinks}
-              />
-            )}
-          />
+    return (
+      <div className='App'>
+        <Route
+          exact
+          path={urlLinks.home}
+          render={props => (
+            <AddFriend
+              {...props}
+              friends={this.state.friends}
+              changeHandler={this.changeHandler}
+              addFriend={this.addFriend}
+              newName={this.state.newName}
+              newAge={this.state.newAge}
+              newEmail={this.state.newEmail}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={urlLinks.home}
+          render={props => (
+            <Friends {...props} friends={this.state.friends} links={urlLinks} />
+          )}
+        />
 
-          <Route
-            exact
-            path={urlLinks.friend}
-            render={props => <Friend {...props} friends={this.state.friends} />}
-          />
+        <Route
+          exact
+          path={urlLinks.friend}
+          render={props => <Friend {...props} friends={this.state.friends} />}
+        />
 
-          <Route
-            exact
-            path={`${urlLinks.friend}/:id`}
-            render={props => (
-              <DisplayFriend {...props} friends={this.state.friends} />
-            )}
-          />
-        </div>
-      );
-    } else {
-      return <div />;
-    }
+        <Route
+          exact
+          path={`${urlLinks.friend}/:id`}
+          render={props => (
+            <DisplayFriend {...props} friends={this.state.friends} />
+          )}
+        />
+      </div>
+    );
   }
 }
 

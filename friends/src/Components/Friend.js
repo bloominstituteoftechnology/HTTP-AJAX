@@ -7,11 +7,15 @@ import { Link } from 'react-router-dom';
  ********************************************** Styles *********************************************
  **************************************************************************************************/
 const DivWrapper = styled.div`
-  background-color: rgba(128, 0, 128, 0.7);
+  background-color: rgba(128, 0, 128, 0.9);
   color: white;
   margin: 20px;
   border-radius: 10px;
   width: 20%;
+
+  &:hover {
+    background-color: rgba(128, 0, 128, 0.4);
+  }
 `;
 
 const DivName = styled.div`
