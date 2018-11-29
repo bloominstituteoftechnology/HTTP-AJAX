@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import Friend from './Friend';
 import { Link } from 'react-router-dom';
+import '../App.css'; 
 
 const FriendsContainer = props => {
 const friendsList = props.friends.map(friend => {
         return (
-            <div>
+            <div className="friends-container">
                 <Link to={`/friends/${friend.id}`} key={friend.id} >
                     <Friend  friend={friend}/>
                 </Link>
-                <button onClick={() => props.deleteFriend(friend.id)}>Get Rekt</button>
+                <button className="btn-delete" onClick={() => props.deleteFriend(friend.id)}>Get Rekt</button>
             </div>
         );
     });
