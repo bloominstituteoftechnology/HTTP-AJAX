@@ -8,7 +8,7 @@ const NavBar = ({ searchTerm, handleSearch }) => {
       <NavLink className="item" exact to='/'>
         Home
       </NavLink>
-      <NavLink className="item" to='/form'>
+      <NavLink className="item" to='/add'>
         Add Friend
       </NavLink>
       <Menu.Menu position='right'>

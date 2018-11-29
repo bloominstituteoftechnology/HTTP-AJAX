@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Segment, Form , Modal} from 'semantic-ui-react';
 
 class InputForm extends React.Component{
-  
+
   state = {
     name: '',
     age: '',
@@ -12,12 +12,16 @@ class InputForm extends React.Component{
     }
 
   componentDidMount() {
-    if (this.props.update) {
+    const { update, match, history } = this.props;
+
+    if (update) {
       axios
         .get('http://localhost:5000/friends')
         .then(res => {
-          const friend = res.data.filter(friend => friend.id.toString() === this.props.match.params.id);
-          
+          const friend = res.data.filter(friend => (
+            friend.id.toString() === match.params.id)
+          );
+
           if (friend.length > 0) {
             this.setState({
               name: friend[0].name,
@@ -25,6 +29,9 @@ class InputForm extends React.Component{
               location: friend[0].location,
               email: friend[0].email,
             })
+          } else {
+            window.alert(`Cannot find a friend with id ${match.params.id}`)
+            history.push('/')
           }
         })
         .catch(err => {
@@ -42,17 +49,17 @@ class InputForm extends React.Component{
   onSubmit = e => {
     e.preventDefault();
     const friend = {...this.state};
-    this.props.updateFriend(this.props.match.params.id, friend);
+    this.props.handleSubmit(friend, this.props.match.params.id);
     this.props.history.push('/');
   }
 
   render() {
     const { name, age, location, email } = this.state;
+    const { history, update } = this.props;
     return (
       <div>
-        {this.props.match.params.id}
         <Modal open onClose={this.close}>
-          <Modal.Header>Update {this.state.name}'s Info</Modal.Header>
+          <Modal.Header>{update ? `Update ${name}'s Info'` : `Add ${name} as Friend`}</Modal.Header>
           <Segment>
             <Form>
               <Form.Field>
@@ -74,14 +81,14 @@ class InputForm extends React.Component{
             </Form>
           </Segment>
           <Modal.Actions>
-            <Button onClick={ () => {this.props.history.push('/')} }>
+            <Button onClick={ () => {history.push('/')} }>
               Cancel
             </Button>
             <Button
               primary
               icon='checkmark'
               labelPosition='right'
-              content="Update"
+              content={update ? 'update' : 'add'}
               onClick={this.onSubmit}
             />
           </Modal.Actions>
