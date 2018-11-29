@@ -1,20 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Route, Link } from 'react-router-dom';
-import Friend from './Friend';
-
-const Main = styled.main`
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
-	align-items: center;
-	border-radius: 10px;
-	width: 80%;
-	padding: 1%;
-	margin: 1% 4%;
-	background: #9e90a2;
-`;
+import { Link } from 'react-router-dom';
 
 const Section = styled.section`
 	border: 1px solid #f1f7ed;
@@ -22,7 +9,7 @@ const Section = styled.section`
 	width: 35%;
 	padding: 5%;
 	margin: 1%;
-	background: #bea8aa;
+	background: #9e90a2;
 `;
 const H1 = styled.h1`
 	font-weight: bold;
@@ -49,7 +36,7 @@ const Button = styled.button`
 	border: none;
 `;
 class FriendList extends Component {
-	
+
 	deleteFriend = (event) => {
 		event.preventDefault();
 		this.props.deleteFriend(event.target.name);
@@ -57,34 +44,24 @@ class FriendList extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Main>
-					<Route
-						path={'/'}
-						render={() =>
-							this.props.data.map((friend, index) => (
-								<Section key={index}>
-									<Button
-										name={friend.id}
-										onClick={this.deleteFriend}
-										type="submit"
-									>
-										x
-									</Button>
-									<H1>{friend.name}</H1>
-									<H2>Age: {friend.age}</H2>
-									<H2>Email: {friend.email}</H2>
-									<Link to={`/${friend.id}`}>
-										<H1>Update</H1>
-									</Link>
-								</Section>
-							))
-						}
-					/>
-					<Route
-						path={'/:id'}
-						render={(props) => <Friend {...props} data={this.props.data} />}
-					/>
-				</Main>
+					{this.props.data.map((friend, index) => (
+						<Section key={index}>
+							<Button
+								name={friend.id}
+								onClick={this.deleteFriend}
+								type="submit"
+							>
+								x
+							</Button>
+							<H1>{friend.name}</H1>
+							<H2>Age: {friend.age}</H2>
+							<H2>Email: {friend.email}</H2>
+							<Link to={`/${friend.id}`} >
+								<H1>Update</H1>
+							</Link>
+						</Section>
+					))
+					}
 			</React.Fragment>
 		);
 	}

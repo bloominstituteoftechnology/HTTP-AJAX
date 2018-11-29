@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Form = styled.form`
-	width: 45%;
+	width: 50%;
 	border: 2px solid #cfc7d2;
 	border-radius: 10px;
 	background: #9e90a2;
@@ -32,19 +32,18 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
-	border: 2px solid #cfc7d2;
-	background: #272932;
 	border-radius: 10px;
 	padding: 1% 5%;
 	margin: 1% 25%;
 	width: 50%;
-	color: #cfc7d2;
+	background: #8BA6A9;
+	color: #272932;
 	font-weight: bold;
+	border: 2px solid #272932;
 	:hover {
-		background: #cfc7d2;
-		color: #272932;
-		font-weight: bold;
-		border: 2px solid #272932;
+		border: 2px solid #cfc7d2;
+		background: #272932;
+		color: #cfc7d2;
 	}
 `;
 
@@ -82,7 +81,6 @@ class FriendForm extends Component {
 						type="text"
 						name="name"
 						value={this.state.friend.name}
-						placeholder="Please Enter Your Name..."
 						onChange={this.handleChange}
 					/>
 				</Label>
@@ -92,7 +90,6 @@ class FriendForm extends Component {
 						type="number"
 						name="age"
 						value={this.state.friend.age}
-						placeholder="Please Enter Your Age..."
 						onChange={this.handleChange}
 					/>
 				</Label>
@@ -102,7 +99,6 @@ class FriendForm extends Component {
 						type="text"
 						name="email"
 						value={this.state.friend.email}
-						placeholder="Please Enter Your Email..."
 						onChange={this.handleChange}
 					/>
 				</Label>

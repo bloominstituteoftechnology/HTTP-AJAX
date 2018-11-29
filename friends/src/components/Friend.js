@@ -26,14 +26,6 @@ const H2 = styled.h2`
 	text-align: center;
 `;
 
-const Button = styled.button`
-	border: 1px solid #f1f7ed;
-	border-radius: 50%;
-	width: 20px;
-	background: #272932;
-	color: #f1f7ed;
-	border: none;
-`;
 class Friend extends Component {
     constructor(props){
         super(props);

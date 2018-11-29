@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 import axios from 'axios';
-import FriendList from './components/FriendList';
-import FriendForm from './components/FriendForm';
+import { Route } from 'react-router-dom';
+import MainPage from './components/MainPage'
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -70,13 +70,7 @@ const AppContainer = styled.div`
 
 `;
 
-const H1 = styled.h1`
-font-size: 3rem;
-color: #F1F7ED;
-font-family: cursive;
-border-bottom: 2px solid #A7CECB;
-margin: 5% 0;
-`
+
 
 class App extends Component {
 	constructor(props) {
@@ -127,12 +121,11 @@ addFriend = (friend) => {
 			<React.Fragment>
 				<GlobalStyle />
 				<AppContainer>
-          <H1>View Our Current Friend List</H1>
-					<FriendList data={this.state.friends} deleteFriend={this.deleteFriend} />
-          <H1>Add Yourself to Our Friend List</H1>
-					<FriendForm
-						addFriend={this.addFriend}
+					<Route 
+					exact path= {'/'}
+					render={(props) => <MainPage friends={this.state.friends} addfriend={this.addFriend} deleteFriend={this.deleteFriend} />}
 					/>
+          
 				</AppContainer>
 			</React.Fragment>
 		);
