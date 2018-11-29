@@ -4,6 +4,7 @@ import axios from "axios";
 import Friend from "./components/Friend";
 import styled from "styled-components";
 import Form from "./components/Form";
+import { Route } from "react-router-dom";
 
 const Wrapper = styled.div`
 	width: 250px;
@@ -58,11 +59,23 @@ class App extends Component {
 		.then(responce => {
 			console.log(responce);
 			this.setState({ 
-				data: responce.data 
+				data : responce.data 
 			});
 		})
 		.catch(err => console.log(err));
 	};
+
+	editFriend = (data, id) => {
+		axios
+			.put(`http://localhost:5000/friends/${id}`, data)
+			.then(responce => {
+				console.log(responce);
+				this.setState({
+					data : responce.data
+				});
+			})
+			.catch(err => console.log(err));
+	}
 
 	render() {
 		return (
