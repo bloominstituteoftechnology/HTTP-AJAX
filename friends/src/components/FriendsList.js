@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import AddFriendsForm from "./AddFriendsForm";
+import { Route, Link } from "react-router-dom";
 
 const Container = styled.div`
   max-width: 600px;
@@ -18,6 +19,7 @@ const FriendCard = styled.div`
   width: 265px;
   padding: 1rem;
   background: none;
+  position: relative;
 `;
 
 const FriendsBox = styled.div`
@@ -28,9 +30,24 @@ const FriendsBox = styled.div`
   justify-content: space-around;
 `;
 
+const Span = styled.span`
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.2rem;
+  color: red;
+  transition: transform 0.1s ease-in;
+
+  &:hover {
+    transform: scale(1.1);
+    top: 14px;
+    cursor: pointer;
+  }
+`;
+
 export default class FriendsList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friendsData: [],
       name: "",
@@ -92,6 +109,18 @@ export default class FriendsList extends Component {
     } else return;
   };
 
+  deleteItem = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          friendsData: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <Container>
@@ -106,9 +135,21 @@ export default class FriendsList extends Component {
         <FriendsBox>
           {this.state.friendsData.map(friend => (
             <FriendCard key={friend.id ? friend.id : Date.now()}>
-              <h2>{friend.name}</h2>
+              <h2>
+                {friend.name}
+                <Span
+                  onClick={() =>
+                    this.deleteItem(this.props.match.params.friend.id)
+                  }
+                >
+                  X
+                </Span>
+              </h2>
               <p>{friend.age}</p>
               <p>{friend.email}</p>
+              <Link to="/friend-edit/:id">
+                <button>Update Friend</button>
+              </Link>
             </FriendCard>
           ))}
         </FriendsBox>

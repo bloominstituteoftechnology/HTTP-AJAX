@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FriendsList from "./components/FriendsList";
 import styled, { createGlobalStyle } from "styled-components";
+import { Link } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
 body {

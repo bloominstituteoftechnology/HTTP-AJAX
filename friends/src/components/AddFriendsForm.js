@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -50,33 +50,38 @@ const StyledForm = styled.form`
     }
   }
 `;
-const AddFriendsForm = props => {
-  return (
-    <StyledForm onSubmit={props.addFriend}>
-      <input
-        type="text"
-        name="name"
-        onChange={props.handleChange}
-        placeholder="Enter Friends Name..."
-        value={props.name}
-      />
-      <input
-        type="text"
-        name="age"
-        onChange={props.handleChange}
-        placeholder="Enter Friends Age..."
-        value={props.age}
-      />
-      <input
-        type="text"
-        name="email"
-        onChange={props.handleChange}
-        placeholder="Enter Friends Email..."
-        value={props.email}
-      />
-      <input type="submit" value="Add Friend" />
-    </StyledForm>
-  );
-};
+class AddFriendsForm extends Component {
+  render() {
+    return (
+      <div>
+        <h2>{this.props.edit ? "Edit Friend" : "Add Friend"}</h2>
+        <StyledForm onSubmit={this.props.addFriend}>
+          <input
+            type="text"
+            name="name"
+            onChange={this.props.handleChange}
+            placeholder="Enter Friends Name..."
+            value={this.props.name}
+          />
+          <input
+            type="text"
+            name="age"
+            onChange={this.props.handleChange}
+            placeholder="Enter Friends Age..."
+            value={this.props.age}
+          />
+          <input
+            type="text"
+            name="email"
+            onChange={this.props.handleChange}
+            placeholder="Enter Friends Email..."
+            value={this.props.email}
+          />
+          <input type="submit" value="Add Friend" />
+        </StyledForm>
+      </div>
+    );
+  }
+}
 
 export default AddFriendsForm;
