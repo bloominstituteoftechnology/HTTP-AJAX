@@ -61,5 +61,37 @@ h1 {
 
 input[type=text]{
   background: #fff;
-  border: 1px solid #99738e;
+  border: 2px solid #99738e;
+  margin: 10px;
+}
+
+.button-buddy{
+  margin: 20px;
+  padding-left: 8px;
+  border: 3px solid #242582;
+  background: #2f2fa2;
+  color: white;
+  border-radius: 10px;
+}
+
+.update-button {
+  margin: 20px;
+  padding-left: 8px;
+  border: 1px solid #fff;
+  background: #f64c72;
+  color: white;
+  border-radius: 5px;
+}
+
+.link{
+  color: white;
+  text-decoration: none;
+  font: 32px;
+  font-weight: bold;
+  margin-top: 300px;
+}
+
+.NavLink {
+  color: #f64c72;
+  padding: 20px;
 }

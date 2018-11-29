@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 import '../App.css';
 
@@ -32,6 +34,12 @@ class FriendForm extends React.Component {
                 this.props.addFriends(response.data);
             })
             .catch(err => console.log(err))
+        this.setState({
+            name: '',
+            age: '',
+            email: '',
+
+        });
     }
 
     render() {
@@ -44,20 +52,26 @@ class FriendForm extends React.Component {
                         name='name'
                         placeholder='Name'
                         onChange={this.inputChangehandler}
+                        value={this.state.name}
                     />
                     <input
                         type='text'
                         name='age'
                         placeholder='Age'
                         onChange={this.inputChangehandler}
+                        value={this.state.age}
                     />
                     <input
                         type='text'
                         name='email'
                         placeholder='Email'
                         onChange={this.inputChangehandler}
+                        value={this.state.email}
                     />
-                    <button type='submit'>Add a Buddy</button>
+
+                    <button className="button-buddy" type='submit'> Add a Buddy </button>
+                    <br />
+                    <Link to='/friends' className='link'> See your new friend!</Link>
                 </form>
             </div>
         );
