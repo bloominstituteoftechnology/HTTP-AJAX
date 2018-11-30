@@ -48,3 +48,8 @@ const UpdatePage = (props) => {
 };
 
 export default UpdatePage;
+
+UpdatePage.propTypes = {
+	friends: PropTypes.array,
+	updateFriend: PropTypes.func,
+}

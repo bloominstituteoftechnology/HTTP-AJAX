@@ -37,3 +37,9 @@ const MainPage = (props) => {
 };
 
 export default MainPage;
+
+MainPage.propTypes = {
+	friends: PropTypes.array,
+	addFriend: PropTypes.func,
+	deleteFriend: PropTypes.func
+}

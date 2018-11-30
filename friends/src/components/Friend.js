@@ -54,5 +54,11 @@ class Friend extends Component {
 export default Friend;
 
 Friend.propTypes = {
-    
+		friends: PropTypes.arrayOf(
+			PropTypes.shape({
+				name: PropTypes.string,
+				age: PropTypes.number,
+				email: PropTypes.string
+			})
+		),
 }
