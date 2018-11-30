@@ -1,0 +1,97 @@
+body{
+  background: #2f2fa2;
+}
+
+.App{
+  text-align: center;
+  background: #2f2fa2;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: space-around;
+  background: 
+}
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+  background: #242582;
+  margin: 10px;
+  border-radius: 10px;
+  width: 350px;
+  padding-bottom: 20px;
+  border: 3px solid black;
+}
+.card h4 {
+  margin: 5px 10px;
+  color: #ff6f69
+}
+h1 {
+  color: #ffffff;
+}
+.card h2 {
+  
+  color: #f64c72;
+  
+}
+.card form {
+  
+}
+
+.remove-button {
+  color: #99738e;
+  margin-left: auto;
+  background: #553d67;
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid black;
+
+}
+
+.friend-form {
+  background: #f64c72;
+  /* margin-top: 4rem; */
+  padding-bottom: 3rem;
+}
+
+input[type=text]{
+  background: #fff;
+  border: 2px solid #99738e;
+  margin: 10px;
+}
+
+.button-buddy{
+  margin: 20px;
+  padding-left: 8px;
+  border: 3px solid #242582;
+  background: #2f2fa2;
+  color: white;
+  border-radius: 10px;
+}
+
+.update-button {
+  margin: 20px;
+  padding-left: 8px;
+  border: 1px solid #fff;
+  background: #f64c72;
+  color: white;
+  border-radius: 5px;
+}
+
+.link{
+  color: white;
+  text-decoration: none;
+  font: 32px;
+  font-weight: bold;
+  margin-top: 300px;
+}
+
+.NavLink {
+  color: #f64c72;
+  padding: 20px;
+}
