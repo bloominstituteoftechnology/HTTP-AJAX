@@ -11,8 +11,22 @@ function FriendsList(props) {
           <h1>{friend.name}</h1>
           <h2>{friend.age}</h2>
           <h2>{friend.email}</h2>
+          <button
+            className="update-friend"
+            onClick={() =>
+              props.update(
+                friend.id,
+                "friend.name",
+                "friend.age",
+                "friend.email"
+              )
+            }
+          >
+            Update
+          </button>
         </div>
       ))}
+      <div className="update" />
     </div>
   );
 }

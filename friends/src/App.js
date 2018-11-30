@@ -32,7 +32,31 @@ class App extends Component {
   postMessage = (name, age, email) => {
     axios
       .post(`http://localhost:5000/friends`, { name, age, email })
-      .then(response => console.log(response))
+      .then(response => {
+        this.setState({
+          friends: response.data,
+          name: "",
+          age: "",
+          email: ""
+        });
+      })
+      .catch(err => {
+        console.log("Try Again!" + err);
+      });
+  };
+
+  updateFriend = (id, name, age, email) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, { name, age, email })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          friends: response.data,
+          name: "",
+          age: "",
+          email: ""
+        });
+      })
       .catch(err => console.log(err));
   };
 
@@ -63,7 +87,11 @@ class App extends Component {
           exact
           path={`/friends`}
           render={props => (
-            <FriendsList {...props} friends={this.state.friends} />
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              update={this.updateFriend}
+            />
           )}
         />
         <Route
@@ -74,6 +102,7 @@ class App extends Component {
               {...props}
               postMsg={this.postMessage}
               change={this.handleChange}
+              edit
               data={this.state}
             />
           )}
