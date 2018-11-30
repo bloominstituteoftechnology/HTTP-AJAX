@@ -6,6 +6,7 @@ import { Route, Link } from 'react-router-dom';
 import Friends from './components/friends';
 import AddFriend from './components/addFriend';
 
+// server url
 let url = 'http://localhost:5000/friends';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
     }
   }
 
+  // request data from server and setState with response
   componentDidMount() {
     axios
       .get(url)
@@ -32,12 +34,16 @@ class App extends Component {
       })
   }
 
+  // updates state keys (inputName, inputAge, inputEmail) as user is typing in input fields; invoked with onChange
+  // passed as props to ADDFRIEND component
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
+  // used for the clear button to reset our state keys (inputName, inputAge, inputEmail) and in turn clears our input fields
+  // passed as props to ADDFRIEND component
   clearFields = e => {
     e.preventDefault();
     this.setState({
@@ -47,9 +53,11 @@ class App extends Component {
     });
   }
 
+  // invoked when a new friend object is to be created, sends request to server to create new object and clears state keys (inputName, inputAge, inputEmail)
+  // passed as props to ADDFRIEND component
   addFriend = (name, age, email) => {
-    // e.preventDefault();
-    if(this.state.inputName && this.state.inputAge && this.state.inputEmail){
+    // we want to check if all the input fields are populated befoe sending server request
+    if(this.state.inputName && this.state.inputAge && this.state.inputEmail){ 
       axios
         .post(url, {name, age , email})
         .then(res => {
@@ -60,7 +68,6 @@ class App extends Component {
             inputAge: '',
             inputEmail: '',
           });
-          // this.state.history.push('/friends');
         })
         .catch( err => {
           console.log('something went wrong trying to post new data' + err)
@@ -71,6 +78,8 @@ class App extends Component {
     }
   }
 
+  // invoked when delete button is clicked; sends request to server to remove object located at specific location
+  // passed as props to FRIEND component
   deleteFriend = arg => {
     axios
       .delete(`${url}/${arg}`)
@@ -84,7 +93,10 @@ class App extends Component {
       });
   }
 
+  // invoked when we want to update a friend with the new information; requests server to update friend at position with new name, age, email info
+  // passed as props to ADDFRIEND component
   updateFriend = (arg, name, age, email) => {
+    // we want to check if all input field are populated before sending server request
     if(this.state.inputName && this.state.inputAge && this.state.inputEmail) {
       axios
         .put(`${url}/${arg}`, {name, age, email})
@@ -104,6 +116,9 @@ class App extends Component {
       alert("All input fields required to update data!");
     }
   }
+
+  // used to make changes to our state keys (inputName, inputAge, inputEmail) when we click the button for update
+  // passed as props to FRIEND component
   editFriend = (name, age, email) => {
     this.setState({
         inputName: name,
@@ -112,6 +127,8 @@ class App extends Component {
     });
   }
 
+  // used to make changes to our state keys (inputName, inputAge, inputEmail) when we click the button to add new friend
+  // passed as props to FRIEND component
   addBtnClear = e => {
     this.setState({
       inputName: '',
@@ -130,6 +147,8 @@ class App extends Component {
             <Link to='/' ><div className='navLink'>Home</div></Link>
             <Link to='/friends' ><div className='navLink'>Friends List</div></Link>
           </nav>
+          
+          {/* {renders when we click on add new friend button; shows our add form} */}
           <Route path={`/friends/addFriend`}  
             render={
               props => 
@@ -142,6 +161,7 @@ class App extends Component {
             }
           />
 
+          {/* {renders when we click on add new friend button; shows our update form} */}
           <Route path={`/friends/update/:friendId`}
             render={
               props => 
@@ -150,12 +170,11 @@ class App extends Component {
               handleChange={this.handleChange} 
               clearFields={this.clearFields}
               updateFriend={this.updateFriend}
-              update
-              // addFriend={this.addFriend}
               />
             }
           />
 
+          {/* {renders our friends list and shows each friend as a card} */}
           <Route path={`/friends`} 
             render={ 
               props => 
@@ -164,10 +183,10 @@ class App extends Component {
               deleteFriend={this.deleteFriend}
               editFriend={this.editFriend}
               addBtnClear={this.addBtnClear}
-              // updateFriend={this.updateFriend}
               />
             } 
           />
+
         </div>
       </div>
     );

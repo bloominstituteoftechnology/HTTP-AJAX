@@ -9,6 +9,7 @@ function addFriend(props)  {
                     <input 
                         className='inputFields'
                         type="text" 
+                        // ternary operator to check if form should display info for adding new friend or for updating existing friend
                         placeholder={props.updateFriend ? 'Update Name' : 'Add Friend Name'} 
                         name='inputName'
                         value={props.info.inputName}
@@ -21,6 +22,7 @@ function addFriend(props)  {
                             min='1'
                             max='110'
                             maxLength='3'
+                            // ternary operator to check if form should display info for adding new friend or for updating existing friend
                             placeholder={props.updateFriend ? 'Update Age' : 'Add Friend Age'}
                             name='inputAge'
                             value={props.info.inputAge}
@@ -37,6 +39,7 @@ function addFriend(props)  {
                     <input 
                         className='inputFields'
                         type="email" 
+                        // ternary operator to check if form should display info for adding new friend or for updating existing friend
                         placeholder={props.updateFriend ? 'Update Email' : 'Add Friend Email'}
                         name='inputEmail'
                         value={props.info.inputEmail}
@@ -47,6 +50,7 @@ function addFriend(props)  {
                 <div className='button-container'>
                     <button onClick={() => 
                         {
+                            // ternary operator for determening which button invokation should happen; add new friend or update existing
                             props.updateFriend ? 
                                 props.updateFriend(props.match.params.friendId, props.info.inputName, props.info.inputAge, props.info.inputEmail) : 
                                 props.addFriend(props.info.inputName, props.info.inputAge, props.info.inputEmail)
@@ -54,6 +58,7 @@ function addFriend(props)  {
                             props.history.push('/friends');
                         }
                     }>
+                        {/* {ternary operator for showing the correct text on the button; adding friend or updating} */}
                         {props.updateFriend ? 'Update Friend' : 'Add Friend'}
                     </button>
                     <button onClick={props.clearFields}>Clear</button>
