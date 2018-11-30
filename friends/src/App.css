@@ -35,6 +35,9 @@
 
 .friends-list {
   margin-left: 20px;
+  border: 1px solid red;
+  flex-grow: 1;
+  /* display: flex; */
 }
 
 .friend-card {

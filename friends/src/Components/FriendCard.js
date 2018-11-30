@@ -9,14 +9,18 @@ const FriendCard = ({friend, deleteFriend, history}) => {
 
   return (
     <div className='friend-card'>
-      <div>Name: {friend.name}</div>
-      <div>Age: {friend.age}</div>
-      <div>Email: {friend.email}</div>
-      {button}
-      {/* <button onClick={(e) => deleteFriend(e,friend.id)} 
-      className={'delete'}>DELETE</button>
-      <button onClick={() => deleteFriend(friend.id)} 
-      className={'delete'}>UPDATE</button> */}
+      <div>
+        Name: <span>{friend.name}</span>
+      </div>
+      <div>
+        Location: <span>{friend.name}</span>
+      </div>
+      <div>
+        Age: <span>{friend.age}</span>
+      </div>
+      <div>
+        Email: <span>{friend.email}</span>
+      </div>
     </div>
   );
 }

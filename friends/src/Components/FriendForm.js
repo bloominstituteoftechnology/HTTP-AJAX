@@ -1,14 +1,15 @@
 import React from 'react';
 
 const FriendsList = props => {
-  console.log(props.isUpdate, 'updating')
 
   const button = props.isUpdate ? 'update Friend' : 'Add Friend';
-  const submit = props.isUpdate ? 'updateFriend' : 'addFriend';
-  console.log(submit)
+  const handleSubmit = props.isUpdate ? props.updateFriend : props.addFriend;
   return (
     <div>
-       <form  onSubmit={ e => props.addFriend(e, this.props.match.params.id)} className="ui form">
+       <form  onSubmit={ e => {
+          handleSubmit(e, props.match.params.id);
+          props.history.push('/');
+          }} className="ui form">
           <div className="field">
             <label>Name</label>
             <input onChange={ e => props.handleInputChange(e)}  value={props.inputName} type="text" name="inputName" placeholder="Enter name" />
