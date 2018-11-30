@@ -111,10 +111,20 @@ class FriendForm extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     if (this.props.edit) {
-      // let friendInfo = this.props.friends.find(
-      //   friend => `${friend.id}` === this.props.match.params.id
-      // );
-      this.props.editFriend(this.props.match.params.id, this.state);
+      let friendInfo = this.props.friends.find(
+        friend => `${friend.id}` === this.props.match.params.id
+      );
+      const id = this.state.id === 0 ? friendInfo.id : this.state.id;
+      const name = this.state.name === '' ? friendInfo.name : this.state.name;
+      const age = this.state.age === 0 ? friendInfo.age : this.state.age;
+      const email =
+        this.state.email === '' ? friendInfo.email : this.state.email;
+      this.props.editFriend(this.props.match.params.id, {
+        id,
+        name,
+        age,
+        email
+      });
       this.props.history.push(
         `${this.props.urlLinks.friend}/${this.props.match.params.id}`
       );
