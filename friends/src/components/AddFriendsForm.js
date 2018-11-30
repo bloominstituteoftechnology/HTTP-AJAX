@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 
 const StyledForm = styled.form`
@@ -58,11 +59,25 @@ class AddFriendsForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      friend: null,
       name: "",
       age: 0,
       email: ""
     };
   }
+
+  componentDidMount = () => {
+    const friend = this.props.match.params.id;
+    if (this.props.editFriend) {
+      this.fetchFriend(friend);
+    }
+  };
+
+  fetchFriend = id => {
+    axios.get(`http://localhost:5000/friends/${id}`).then(res => {
+      this.setState(() => ({ friend: res.data }));
+    });
+  };
 
   handleChange = e => {
     this.setState({
@@ -77,16 +92,17 @@ class AddFriendsForm extends Component {
       this.state.age !== 0 &&
       this.state.email !== ""
     ) {
-      if (this.props.editfriend) {
+      if (this.props.editFriend) {
         this.props.editFriend(this.state, this.props.match.params.id);
       } else {
         this.props.addFriend(this.state);
       }
     } else return null;
-    // this.props.history.push("/friendslist");
   };
 
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <h2>{this.props.editFriend ? "Edit Friend" : "Add Friend"}</h2>

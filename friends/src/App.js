@@ -61,38 +61,30 @@ class App extends Component {
   };
 
   addFriend = data => {
-    // if (
-    //   this.state.name !== "" &&
-    //   this.state.age !== 0 &&
-    //   this.state.email !== ""
-    // )
-    console.log(data);
-
-    {
-      axios
-        .post("http://localhost:5000/friends/", data)
-        .then(res => {
-          console.log(res);
-          this.setState({
-            friendsData: res.data
-          });
-          this.props.history.push("/friendslist");
-        })
-
-        .catch(function(err) {
-          console.log(err);
-        });
-    }
-  };
-
-  editFriend = (data, id) => {
     axios
-      .put(`http://localhost:5000/friends/${id}`)
+      .post("http://localhost:5000/friends/", data)
       .then(res => {
         console.log(res);
         this.setState({
           friendsData: res.data
         });
+        this.props.history.push("/friendslist");
+      })
+
+      .catch(function(err) {
+        console.log(err);
+      });
+  };
+
+  editFriend = (data, id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, data)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          friendsData: res.data
+        });
+        this.props.history.push("/friendslist");
       })
       .catch(err => console.log(err));
   };

@@ -149,7 +149,7 @@ export default class FriendsList extends Component {
               </h2>
               <p>{friend.age}</p>
               <p>{friend.email}</p>
-              <Link to="/friend-edit/:id">
+              <Link to={`/friend-edit/${friend.id}`}>
                 <button>Update Friend</button>
               </Link>
             </FriendCard>
