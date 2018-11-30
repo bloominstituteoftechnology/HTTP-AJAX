@@ -41,3 +41,7 @@ input {
 button {
   padding: 10px;
 }
+
+.btn {
+  width: 150px;
+}
