@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Form from "./components/Form";
+import Friend from "./components/Friend";
 import Friends from "./components/Friends";
+
 import axios from 'axios';
+import {Route} from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -25,6 +28,7 @@ class App extends Component {
   }
 
   handleChange = event => {
+    console.log(event.target.value)
     this.setState({
       [event.target.name]:event.target.value
     })
@@ -68,7 +72,7 @@ class App extends Component {
   updateFriend = event => {
     event.preventDefault();
     if(!(this.state.name===""||this.state.age===""||this.state.email===""))
-    axios.put(`http://localhost:5000/friends/${event.target.id}`, {
+    axios.put(`http://localhost:5000/friends/${this.props.match.params.id}`, {
         id:Number(event.target.id),
         name: this.state.name,
         age:this.state.age,
@@ -92,17 +96,35 @@ class App extends Component {
     return (
       <div className="App">
       <header className="header"><h1>Friends</h1></header>
-        <Friends 
-          friends={this.state.friends} 
-          delete={this.deleteFriend} 
-          update={this.updateFriend} 
-        />
-        <Form 
-          change={this.handleChange} 
-          addFriend={this.addFriend}
-          name={this.state.name}
-          age={this.state.age}
-          email={this.state.email}
+
+        <Route exact path="/" 
+          render={() => (
+            <>
+              <Friends 
+                friends={this.state.friends} 
+                delete={this.deleteFriend} 
+                update={this.updateFriend} 
+              />
+              <Form 
+                change={this.handleChange} 
+                addFriend={this.addFriend}
+                name={this.state.name}
+                age={this.state.age}
+                email={this.state.email}
+              />
+            </>
+          )}/>
+        <Route exact path="/friend/:id"
+          render={(props) => (
+            <Friend 
+              {...props}
+              update={this.updateFriend}
+              change={this.handleChange}
+              name={this.state.name}
+              age={this.state.age}
+              email={this.state.email}
+            />
+          )}
         />
       <footer className="footer"></footer>
       </div>
