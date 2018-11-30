@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import styled from "styled-components";
-import AddFriendsForm from "./AddFriendsForm";
-import { Route, Link } from "react-router-dom";
+// import AddFriendsForm from "./AddFriendsForm";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   max-width: 600px;

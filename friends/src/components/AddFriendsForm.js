@@ -57,46 +57,65 @@ const StyledForm = styled.form`
 class AddFriendsForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: "",
+      age: 0,
+      email: ""
+    };
   }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.props.editfriend) {
-      this.props.editFriend(this.state, this.props.match.params.id);
-    } else {
-      this.props.addFriend(this.state);
-    }
-    this.props.history.push("/friendslist");
+    if (
+      this.state.name !== "" &&
+      this.state.age !== 0 &&
+      this.state.email !== ""
+    ) {
+      if (this.props.editfriend) {
+        this.props.editFriend(this.state, this.props.match.params.id);
+      } else {
+        this.props.addFriend(this.state);
+      }
+    } else return null;
+    // this.props.history.push("/friendslist");
   };
 
   render() {
     return (
       <div>
-        <h2>{this.props.edit ? "Edit Friend" : "Add Friend"}</h2>
-        <StyledForm onSubmit={this.props.handleSubmit}>
+        <h2>{this.props.editFriend ? "Edit Friend" : "Add Friend"}</h2>
+        <StyledForm onSubmit={this.handleSubmit}>
           <input
             type="text"
             name="name"
-            onChange={this.props.handleChange}
+            onChange={this.handleChange}
             placeholder="Enter Friends Name..."
             value={this.props.name}
           />
           <input
             type="number"
             name="age"
-            onChange={this.props.handleChange}
+            onChange={this.handleChange}
             placeholder="Enter Friends Age..."
             value={this.props.age}
           />
           <input
             type="text"
             name="email"
-            onChange={this.props.handleChange}
+            onChange={this.handleChange}
             placeholder="Enter Friends Email..."
             value={this.props.email}
           />
-          <input type="submit" value="Add Friend" />
+          <input
+            type="submit"
+            value={this.props.editFriend ? "Edit Friend" : "Add Friend"}
+          />
         </StyledForm>
       </div>
     );

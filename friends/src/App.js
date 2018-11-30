@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FriendsList from "./components/FriendsList";
 import styled, { createGlobalStyle } from "styled-components";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Home from "./components/Home";
 import Friend from "./components/Friend";
 import AddFriendsForm from "./components/AddFriendsForm";
@@ -60,40 +60,41 @@ class App extends Component {
     });
   };
 
-  addFriend = e => {
-    e.preventDefault();
-    if (
-      this.state.name !== "" &&
-      this.state.age !== 0 &&
-      this.state.email !== ""
-    ) {
+  addFriend = data => {
+    // if (
+    //   this.state.name !== "" &&
+    //   this.state.age !== 0 &&
+    //   this.state.email !== ""
+    // )
+    console.log(data);
+
+    {
       axios
-        .post("http://localhost:5000/friends/", {
-          id: Date.now(),
-          name: this.state.name,
-          age: this.state.age,
-          email: this.state.email
+        .post("http://localhost:5000/friends/", data)
+        .then(res => {
+          console.log(res);
+          this.setState({
+            friendsData: res.data
+          });
+          this.props.history.push("/friendslist");
         })
-        .then(function(response) {
-          console.log(response);
-        })
+
         .catch(function(err) {
           console.log(err);
         });
-      this.setState(prevState => ({
-        friendsData: [
-          ...prevState.friendsData,
-          {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-          }
-        ],
-        name: "",
-        age: "",
-        email: ""
-      }));
-    } else return;
+    }
+  };
+
+  editFriend = (data, id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          friendsData: res.data
+        });
+      })
+      .catch(err => console.log(err));
   };
 
   deleteFriend = id => {
@@ -166,4 +167,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
