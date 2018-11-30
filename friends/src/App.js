@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import './App.css';
 import axios from 'axios';
 
+
 import FriendForm from './FriendForm'
 
 const Columns = styled.div`
@@ -20,20 +21,29 @@ const Data = styled.div`
 
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       friends: [],
+      }
     }
-  }
+  
 
 componentDidMount = () => {
   axios.get('http://localhost:5000/friends')
   .then(response => {
-    console.log(response.data);
     this.setState({ friends: response.data })
   })
   .catch(err => {console.log(err)})
+}
+
+addNewFriend = (e, friend) => {
+  e.preventDefault();
+  axios.post('http://localhost:5000/friends', friend)
+  .then(response => this.setState({
+    friends: response.data
+  }))
+  .catch(err => console.log(err))
 }
 
 
@@ -47,6 +57,7 @@ componentDidMount = () => {
             <h1>Name</h1>
             {this.state.friends.map(friend => (
                   <h2>{friend.name}</h2>
+                  
             ))}
           </Data>
           
@@ -67,9 +78,9 @@ componentDidMount = () => {
         </Columns>
         
           
-
+    
         
-        <FriendForm />
+        <FriendForm addNewFriend={this.addNewFriend}/>
       </div>
     );
   }
