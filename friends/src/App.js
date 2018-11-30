@@ -58,7 +58,7 @@ class App extends Component {
 			<AppDiv className="App">
         <Nav />
         <WrapperDiv>
-          <Route exact path="/" render={props => <Home {...props} friends={this.state.friends} updateAPI={this.updateAPI} />} />
+          <Route path="/" render={props => <Home {...props} friends={this.state.friends} updateAPI={this.updateAPI} />} />
           <Route exact path="/friends" render={props => <Friends {...props} friends={this.state.friends} />} />
           <Route exact path="/add" render={props => <Form {...props} updateAPI={this.updateAPI} />} />
         </WrapperDiv>

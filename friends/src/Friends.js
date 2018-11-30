@@ -3,6 +3,7 @@ import Friend from './Friend';
 import styled from 'styled-components';
 
 const FriendsDiv = styled.div`
+    background-color: #f6f2f6;
     width: 350px;
     padding: 1.6rem;
     border: 1px solid gray;

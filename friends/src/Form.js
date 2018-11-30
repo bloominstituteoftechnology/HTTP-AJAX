@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
-const AddForm = styled.form`
+const FormDiv = styled.form`
     background-color: #f3eff6
     margin-right: 5rem;
     border: 1px solid gray;
@@ -48,9 +49,19 @@ const Btn = styled.button`
     }
 `
 
-export default class Form extends Component {
-    constructor() {
-        super();
+export default function Form(props) {
+    return (
+        <Fragment>
+            <Route path="/" render={props => <FormAdd {...props} updateAPI={props.updateAPI} />} />
+            <Route path="/update" Component={FormUpdate} />
+        </Fragment>
+    );
+}
+
+
+class FormUpdate extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
             nameInput: '',
             ageInput: '',
@@ -83,7 +94,7 @@ export default class Form extends Component {
                         ageInput: '',
                         emailInput: '',
                     }))
-                    .then(this.props.updateAPI)
+                    .then(() => this.props.updateAPI)
                     .catch(err => console.log(err));
                     console.log(this.state.nameInput);
             })
@@ -92,13 +103,70 @@ export default class Form extends Component {
 
     render() {
         return (
-            <AddForm onSubmit={this.submitHandler}>
+            <FormDiv onSubmit={this.submitHandler}>
                 <H2>Add a Friend:</H2>
                 <Input type="text" name="nameInput" onChange={this.changeHandler} value={this.state.nameInput} placeholder="name" /><br/>
                 <Input type="text" name="ageInput" onChange={this.changeHandler} value={this.state.ageInput} placeholder="age" /><br/>
                 <Input type="text" name="emailInput" onChange={this.changeHandler} value={this.state.emailInput} placeholder="email" /><br/>
                 <Btn type="submit">Submit</Btn>
-            </AddForm>
+            </FormDiv>
+        );
+    }
+}
+
+
+class FormAdd extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nameInput: '',
+            ageInput: '',
+            emailInput: ''
+        };
+        this.props = props;
+    }
+
+    changeHandler = (e) => {
+        this.setState({
+            ...this.state,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    submitHandler = (e) => {
+        e.preventDefault();
+        axios
+            .get('http://localhost:5000/friends')
+            .then(response => {
+                let newID = response.data[response.data.length - 1].id;
+                axios
+                    .post('http://localhost:5000/friends', {
+                        id: newID + 1,
+                        name: `${this.state.nameInput}`,
+                        age: this.state.ageInput,
+                        email: this.state.emailInput
+                    })
+                    .then(this.setState({
+                        nameInput: '',
+                        ageInput: '',
+                        emailInput: '',
+                    }))
+                    .then(() => this.props.updateAPI)
+                    .catch(err => console.log(err));
+                    console.log(this.state.nameInput);
+            })
+            .catch(err => console.log(err))
+    }
+
+    render() {
+        return (
+            <FormDiv onSubmit={this.submitHandler}>
+                <H2>Add a Friend:</H2>
+                <Input type="text" name="nameInput" onChange={this.changeHandler} value={this.state.nameInput} placeholder="name" /><br/>
+                <Input type="text" name="ageInput" onChange={this.changeHandler} value={this.state.ageInput} placeholder="age" /><br/>
+                <Input type="text" name="emailInput" onChange={this.changeHandler} value={this.state.emailInput} placeholder="email" /><br/>
+                <Btn type="submit">Submit</Btn>
+            </FormDiv>
         );
     }
 
