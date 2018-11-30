@@ -5,7 +5,7 @@ export default function Home(props) {
     <div>
       <h1>Friends List</h1>
       <button onClick={() => props.history.replace("/friendslist")}>
-        Go To Your List
+        Go&nbsp;To Your&nbsp;List
       </button>
     </div>
   );

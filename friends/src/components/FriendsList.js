@@ -68,6 +68,7 @@ export default class FriendsList extends Component {
           {this.props.friendsData.map(friend => (
             <FriendCard key={friend.id ? friend.id : Date.now()}>
               <h2>
+                Name:&nbsp;&nbsp;
                 {friend.name}
                 <Span
                   onClick={() => {
@@ -78,10 +79,11 @@ export default class FriendsList extends Component {
                   X
                 </Span>
               </h2>
-              <p>{friend.age}</p>
-              <p>{friend.email}</p>
+              <hr />
+              <p>Age: {friend.age}</p>
+              <p>Email: {friend.email}</p>
               <Link to={`/friend-edit/${friend.id}`}>
-                <button>Update Friend</button>
+                <button>Update&nbsp;Friend</button>
               </Link>
             </FriendCard>
           ))}

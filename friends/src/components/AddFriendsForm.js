@@ -130,6 +130,7 @@ class AddFriendsForm extends Component {
           />
           <input
             type="number"
+            min="1"
             name="age"
             onChange={this.handleChange}
             placeholder="Enter Friends Age..."
