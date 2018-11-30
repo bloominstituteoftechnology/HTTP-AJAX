@@ -1,5 +1,5 @@
 import React from "react";
-
+import Form from "./Form";
 class Friendslist extends React.Component {
   render() {
     let props = this.props;
@@ -13,6 +13,14 @@ class Friendslist extends React.Component {
             <button onClick={() => props.deleteFriend(friend.id)}>
               Delete
             </button>
+            <Form
+              editFriend={this.props.editFriend}
+              name={friend.name}
+              email={friend.email}
+              age={friend.age}
+              edit
+              id={friend.id}
+            />
           </div>
         ))}
       </div>

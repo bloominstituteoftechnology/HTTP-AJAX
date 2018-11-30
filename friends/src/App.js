@@ -44,15 +44,25 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   };
-
+  editFriend = (friend, id) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friend)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
   render() {
     return (
       <div>
-        <Form addNewFriend={this.addNewFriend} />
         <Friendslist
           friends={this.state.friends}
           deleteFriend={this.deleteFriend}
+          editFriend={this.editFriend}
         />
+        <Form addNewFriend={this.addNewFriend} editFriend={this.editFriend} />
       </div>
     );
   }

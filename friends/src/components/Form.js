@@ -9,7 +9,15 @@ class Form extends React.Component {
       email: ""
     };
   }
-
+  componentDidMount() {
+    if (this.props.edit) {
+      this.setState({
+        name: this.props.name,
+        age: this.props.age,
+        email: this.props.email
+      });
+    }
+  }
   changeHandler = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -17,13 +25,16 @@ class Form extends React.Component {
   };
   submitHandler = e => {
     e.preventDefault();
-
-    this.props.addNewFriend(this.state);
+    if (this.props.edit) {
+      this.props.editFriend(this.state, this.props.id);
+    } else {
+      this.props.addNewFriend(this.state);
+    }
   };
   render() {
     return (
       <div>
-        <h1>Add New Friend</h1>
+        <h1>{this.props.edit ? "Edit Friend" : "Add New friend"}</h1>
         <form onSubmit={this.submitHandler}>
           Name:
           <br />
@@ -53,7 +64,10 @@ class Form extends React.Component {
           />
           <br />
           <br />
-          <input type="submit" value="Add New Friend" />
+          <input
+            type="submit"
+            value={this.props.edit ? "Edit Friend" : "Add New friend"}
+          />
         </form>
       </div>
     );
