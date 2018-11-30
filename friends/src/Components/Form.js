@@ -10,6 +10,17 @@ class Form extends React.Component {
     };
   }
 
+  componentDidMount() {
+    let currentFriend = this.props.data.find(
+      item => item.id.toString() === this.props.match.params.id
+    );
+    this.setState({
+      name: this.props.edit ? currentFriend.name : "",
+      age: this.props.edit ? currentFriend.age : "",
+      email: this.props.edit ? currentFriend.email : ""
+    });
+  }
+
   handleChange = ev => {
     this.setState({ [ev.target.name]: ev.target.value });
   };
@@ -37,33 +48,36 @@ class Form extends React.Component {
             : "Add New Friend"}
         </h2>
         <form className="form" onSubmit={this.submitHandler}>
-          <div className="input-item">
+          <div className="input-item name-input">
             <label>Name:</label>
             <input
               onChange={this.handleChange}
               type="name"
               name="name"
-              value={this.name}
+              value={this.state.name}
+              required
             />
           </div>
 
-          <div className="input-item">
+          <div className="input-item age-input">
             <label>Age:</label>
             <input
               onChange={this.handleChange}
               type="number"
               name="age"
-              value={this.age}
+              value={this.state.age}
+              required
             />
           </div>
 
-          <div className="input-item">
+          <div className="input-item email-input">
             <label>Email:</label>
             <input
               onChange={this.handleChange}
               type="email"
               name="email"
-              value={this.email}
+              value={this.state.email}
+              required
             />
           </div>
 

@@ -96,6 +96,15 @@ a:visited {
   border: 1px solid black;
   padding-left: 10px;
   font-size: 1.8rem;
+  text-align: center;
+}
+
+.age-input input {
+  width: 70px;
+}
+
+.email-input input {
+  width: 330px;
 }
 
 .add-btn {
