@@ -29,10 +29,7 @@ class FriendCard extends React.Component {
         <Card.Content>
           <div className="ui two buttons">
           <Button 
-              onClick={(e) => {
-                e.preventDefault();
-                deleteFriend(friend.id)
-              }}
+              onClick={() => this.props.history.push(`/remove/${friend.id}`)}
             >Remove</Button>
             <Button
               primary

@@ -8,6 +8,7 @@ import { Container, Header, Loader } from 'semantic-ui-react';
 import NavBar from './components/NavBar';
 import FriendList from './components/FriendList';
 import InputForm from './components/InputForm';
+import FriendAlert from './components/FriendAlert';
 
 class App extends React.Component {
   state = {
@@ -131,6 +132,13 @@ class App extends React.Component {
           <InputForm
             {...props}
             handleSubmit={this.addFriend}
+          />
+        )} />
+
+        <Route path='/remove/:id' render={ props => (
+          <FriendAlert
+            {...props}
+            handleSubmit={this.deleteFriend}
           />
         )} />
 
