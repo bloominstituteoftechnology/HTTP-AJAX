@@ -1,10 +1,14 @@
 import React from 'react';
 
 const FriendsList = props => {
-  // console.log(friends[0].name)
+  console.log(props.isUpdate, 'updating')
+
+  const button = props.isUpdate ? 'update Friend' : 'Add Friend';
+  const submit = props.isUpdate ? 'updateFriend' : 'addFriend';
+  console.log(submit)
   return (
     <div>
-       <form  onSubmit={ e => props.addFriend(e)} className="ui form">
+       <form  onSubmit={ e => props.addFriend(e, this.props.match.params.id)} className="ui form">
           <div className="field">
             <label>Name</label>
             <input onChange={ e => props.handleInputChange(e)}  value={props.inputName} type="text" name="inputName" placeholder="Enter name" />
@@ -17,7 +21,7 @@ const FriendsList = props => {
             <label>Email</label>
             <input onChange={e => props.handleInputChange(e)} value={props.inputEmail} type="text" name="inputEmail" placeholder="Enter email" />
           </div>
-          <button className="ui button" type="submit">Add Friend</button>
+          <button className="ui button" type="submit">{button}</button>
         </form>
     </div>
   );
