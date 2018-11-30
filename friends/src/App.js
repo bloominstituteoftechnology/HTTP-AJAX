@@ -104,6 +104,21 @@ class App extends Component {
       alert("All input fields required to update data!");
     }
   }
+  editFriend = (name, age, email) => {
+    this.setState({
+        inputName: name,
+        inputAge: age,
+        inputEmail: email,
+    });
+  }
+
+  addBtnClear = e => {
+    this.setState({
+      inputName: '',
+      inputAge: '',
+      inputEmail: '',
+  });
+  }
 
 
   render() {
@@ -147,6 +162,8 @@ class App extends Component {
               <Friends {...props} 
               info={this.state} 
               deleteFriend={this.deleteFriend}
+              editFriend={this.editFriend}
+              addBtnClear={this.addBtnClear}
               // updateFriend={this.updateFriend}
               />
             } 

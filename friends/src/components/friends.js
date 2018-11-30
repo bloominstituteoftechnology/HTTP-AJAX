@@ -6,7 +6,7 @@ function friends(props){
     return (
     <div>        
         <div className='addFriend-btn-container'>
-            <NavLink to='/friends/addFriend' className='normal' activeClassName='active' ><button>Add New Friend</button></NavLink>
+            <NavLink to='/friends/addFriend' className='normal' activeClassName='active' ><button onClick={() => props.addBtnClear()}>Add New Friend</button></NavLink>
         </div>
         <h2>Current Friend List of {props.info.data.length}</h2>
         <div className='friendsList-container'>
@@ -25,7 +25,7 @@ function friends(props){
                     <div className='friend-option-container'>
                         <button className='friend-option-btn' onClick={() => props.deleteFriend(friend.id)}>delete</button> 
 
-                        <Link to={`/friends/update/${friend.id}`} ><button className='friend-option-btn'>update</button></Link>
+                        <Link to={`/friends/update/${friend.id}`} onClick={() => props.editFriend(friend.name, friend.age, friend.email)} ><button className='friend-option-btn'>update</button></Link>
                         {/* <button className='friend-option-btn' onClick={() => props.updateFriend(friend.id, props.info.inputName, props.info.inputAge, props.info.inputEmail)}>update</button>  */}
                     </div>
                 </div>
