@@ -75,23 +75,29 @@ margin: 0 auto;
 .friends-wrapper {
   display: flex;
   justify-content: center;
-  width: 90%;
+  width: 65%;
   margin: 0 auto;
-  /* border: 1px solid red; */
+  flex-wrap: wrap;
 }
+
+
 .friends {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
   margin: 0 15px;
   /* border: 1px solid blue; */
 }
 
 .friend{
   flex-direction: column;
+  padding: 10px;
   text-align: center;
-  width: 30%;
   margin: 15px 0; 
   border: 1.5px solid #0280e7;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.friends-form {
+  border: 1px solid red;
 }

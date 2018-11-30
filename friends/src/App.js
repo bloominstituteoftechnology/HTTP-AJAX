@@ -5,6 +5,7 @@ import axios from 'axios';
 import Home from './components/Home';
 import FriendsList from './components/FriendsList';
 import NewFriendForm from './components/NewFriendForm';
+import Friend from './components/Friend';
 import './App.css';
 
 class App extends Component {
@@ -18,9 +19,33 @@ class App extends Component {
   componentDidMount () {
     axios.get('http://localhost:5000/friends')
       .then(res => this.setState({friendsList: res.data}))
-      
+      .catch(err => console.log(err))
   }
 
+  addNewFriend = (friend) => {
+    axios.post('http://localhost:5000/friends/', friend)
+      .then(res =>{
+        console.log(res)
+        this.setState({
+          friendsList: res.data
+        })
+      })
+      .catch(err=> console.log(err))
+  }
+  
+  editFriend = id => {
+
+  }
+  
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+    .then(res =>{
+      this.setState({
+        friendsList: res.data
+      })
+    })
+    .catch(err => console.log(err))
+  }
   
   render() {
     const { friendsList } = this.state
@@ -36,11 +61,22 @@ class App extends Component {
         <Route exact path='/' component={Home}/>
         <Route 
           exact path='/friends'
-          render={props => <FriendsList {...props} friends={friendsList}/>}
+          render={props => <FriendsList {...props} friends={friendsList} deleteFriend={this.deleteFriend}/>}
+        />
+
+        <Route 
+          exact path='/friend/:id'
+          render={props => 
+            <Friend 
+              {...props}
+              friend={ friendsList }
+              delete={this.deleteFriend}
+            />
+          }
         />
         <Route 
           exact path='/add-friend'
-          component={NewFriendForm}
+          render={props => <NewFriendForm {...props} addNewFriend={this.addNewFriend}/>}
         />
        
       </div>

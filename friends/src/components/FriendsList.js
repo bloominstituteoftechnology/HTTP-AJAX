@@ -1,20 +1,23 @@
 import React from 'react';
 
+
+
 const FriendsList = props => {
     return (
         <div className='friends-wrapper'>
-            <div className='friends'>
             {props.friends.map(friend => 
-                
-                <div className='friend'>
-                    <h2>{friend.name}</h2>
-                    <p>Age: {friend.age}</p>
-                    <p>Email: {friend.email}</p>
-                </div>
-                
+                 <div key={friend.id} className='friend-wrapper'>
+                    <div className='friends'>
+                         <div onClick={ () => props.history.push(`/friend/${friend.id}`)} className='friend'>
+                            <h2>Name: {friend.name}</h2>
+                            <p>Age: {friend.age}</p>
+                            <p>Email: {friend.email}</p>
+                     </div>
+                 </div>
+             </div>
                 )}
             </div> 
-        </div>
+      
     );
 };
 

@@ -3,29 +3,35 @@ import React from 'react';
 
 
 class NewFriendForm extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state ={
             name: '',
-            age: '',
+            age: null,
             email: ''
 
         }
     }
 
     handleInputChange = event => {
-        
         this.setState({
             [event.target.name]: event.target.value
         });
     }
+
+    submitHandler = (event) => {
+        event.preventDefault()
+        this.props.addNewFriend(this.state)
+        this.props.history.push('/friends');
+    }
+  
     
     render() {
     return(
         <div>
            
             <div className='friends-form'>
-                <form className='new-friends-form'>
+                <form onSubmit={this.submitHandler} className='new-friends-form'>
                     <input 
                         className='name'
                         name='name'
@@ -52,7 +58,7 @@ class NewFriendForm extends React.Component {
                         type='email'
                         value={this.state.email}
                     />
-
+                    <button>ADD FRIEND</button>
                 </form>
                 
             </div>
