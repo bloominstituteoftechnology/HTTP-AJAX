@@ -11,7 +11,7 @@ class FriendList extends React.Component {
                 {this.props.friends.map(friend => {
                     return (
                         <div >
-                            <Friend key={friend.id} friend={friend} deleteFriendFromList={this.props.deleteFriendFromList} />
+                            <Friend key={friend.id} friend={friend} deleteFriendFromList={this.props.deleteFriendFromList} updateFriendList={this.props.updateFriendList} />
                         </div>
                     )
                 })}

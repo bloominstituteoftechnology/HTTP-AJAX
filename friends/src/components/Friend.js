@@ -38,6 +38,7 @@ class Friend extends React.Component {
                 email: this.state.email
             })
             .then(response => {
+                console.log(response);
                 this.props.updateFriendList(response.data);
             })
             .catch(err => console.log(err));
