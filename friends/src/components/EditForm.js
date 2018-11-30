@@ -5,9 +5,9 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            nameText:'',
-            ageText: '',
-            emailText:'',
+            nameText:this.props.data.name,
+            ageText: this.props.data.age,
+            emailText: this.props.data.email,
         }
     }
 
@@ -27,11 +27,6 @@ class EditForm extends React.Component {
             }, 
             this.props.id
             );
-        this.setState({
-            nameText:'',
-            ageText: '',
-            emailText:'',
-        });
     }
 
     render() {

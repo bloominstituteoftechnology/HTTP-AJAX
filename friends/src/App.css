@@ -100,6 +100,7 @@
 .form input {
     margin: 5px 0;
     height: 3rem;;
+    padding: 0 5px;
     border: 1px solid #F8F1FF;
     color: #F8F1FF;
     background-color: #656176;
@@ -107,7 +108,6 @@
 
 .form input::placeholder {
     color: #F8F1FF;
-    padding-left: 10px;
 }
 
 .form button {
@@ -141,7 +141,8 @@
 
 .editform input {
     margin: 5px 0;
-    height: 3rem;;
+    height: 3rem;
+    padding: 0 5px;
     border: 1px solid #F8F1FF;
     color: #F8F1FF;
     background-color: #656176;
@@ -149,7 +150,6 @@
 
 .editform input::placeholder {
     color: #F8F1FF;
-    padding-left: 10px;
 }
 
 .editform button {

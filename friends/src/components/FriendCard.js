@@ -18,6 +18,7 @@ class FriendCard extends React.Component {
       }
 
     render() {
+        const properCaseName = this.props.data.name.charAt(0).toUpperCase() + this.props.data.name.slice(1);
         return(
             <div className='individual-friend'>
                 <button
@@ -27,13 +28,14 @@ class FriendCard extends React.Component {
                     <i class="fas fa-times"></i>
                 </button>
                 <i className="fas fa-user"></i>
-                <p className='friend-name'>{this.props.data.name}, <span className='friend-age'>{this.props.data.age}</span></p>
-                <p className='friend-email'>{this.props.data.email}</p>
+                <p className='friend-name'>
+                    {properCaseName}, <span className='friend-age'>{this.props.data.age}</span></p>
+                <p className='friend-email'>{this.props.data.email.toLowerCase()}</p>
                 <button onClick={this.beginEdit} className='edit-button'>
                     {this.state.shouldEdit ? 'Close' : 'Edit'}
                 </button>
                 <EditForm 
-                    data={this.props}
+                    data={this.props.data}
                     id={this.props.data.id}
                     shouldEdit={this.state.shouldEdit}
                     updateFriend={this.props.updateFriend}
