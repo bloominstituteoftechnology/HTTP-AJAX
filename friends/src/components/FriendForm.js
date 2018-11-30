@@ -4,39 +4,103 @@ class FriendForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            friendId: 0,
+            friendName: '',
+            friendAge: '',
+            friendEmail: '',
+            friendPhone: '',
+            friendNotes: '',
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if(this.props.appState.formUpdating === true && prevProps.appState.formUpdating === false){
+            this.setState({
+                friendName: this.props.appState.updatingFriend.name,
+                friendAge: this.props.appState.updatingFriend.age,
+                friendEmail: this.props.appState.updatingFriend.email,
+                friendPhone: this.props.appState.updatingFriend.phone,
+                friendNotes: this.props.appState.updatingFriend.notes,
+            })
+        }
+    }
+
+    handleChange = event => {
+        this.setState({
+          [event.target.name]: event.target.value
+        });
+      }
+
+    clearInputs = () => {
+        this.setState({
+            friendName: '',
+            friendAge: '',
+            friendEmail: '',
+            friendPhone: '',
+            friendNotes: ''
+        })
+    }
+
+    defineFriend = () => {
+        return {  
+            name: this.state.friendName,
+            age: this.state.friendAge,
+            email: this.state.friendEmail,
+            notes: this.state.friendNotes,
+            phone: this.state.friendPhone}
+    }
+
+    addFriend = (ev) => {
+        ev.preventDefault();
+        if(this.state.friendName === ''){
+          return alert('At least give your friend a name...');
+        }
+    
+        this.props.addFriend(this.defineFriend());
+        this.clearInputs();
+      }
+
+    updateFriend = () => {
+
+        this.props.updateFriend(this.defineFriend());
+        this.clearInputs();
+      }
+
+      deleteFriend = () => {
+          this.props.deleteFriend();
+          this.clearInputs();
+      }
+
     render() {
         return (
-            <form onSubmit={this.props.appState.formUpdating ? this.props.updateFriend : this.props.addFriend} className="add-friend-form" >
+            <form onSubmit={this.props.appState.formUpdating ? this.updateFriend : this.addFriend} className="add-friend-form" >
                 <input autocomplete='off' type="text" name="friendName" 
-                    placeholder="Friend Name" value={this.props.appState.friendName}
-                    onChange={this.props.handleChange} />
+                    placeholder="Name" value={this.state.friendName}
+                    onChange={this.handleChange} />
                 <input type="text" name="friendAge" 
-                    placeholder="Friend Age" value={this.props.appState.friendAge}
-                    onChange={this.props.handleChange} />
+                    placeholder="Age" value={this.state.friendAge}
+                    onChange={this.handleChange} />
                 <input type="email" name="friendEmail" 
-                    placeholder="Email Address" value={this.props.appState.friendEmail}
-                    onChange={this.props.handleChange} />
+                    placeholder="Email Address" value={this.state.friendEmail}
+                    onChange={this.handleChange} />
                 <input type="phone" name="friendPhone" 
-                    placeholder="Phone Number" value={this.props.appState.friendPhone}
-                    onChange={this.props.handleChange} />
+                    placeholder="Phone Number" value={this.state.friendPhone}
+                    onChange={this.handleChange} />
                 <textarea type='textarea' name='friendNotes' 
-                    placeholder="notes about friend" value={this.props.appState.friendNotes}
-                    onChange={this.props.handleChange} />
+                    placeholder="notes about friend" value={this.state.friendNotes}
+                    onChange={this.handleChange} />
                 <input type="submit" style={{display: 'none'}} />
                 <div className="add-friend-submit-container">
                     {this.props.appState.formUpdating ? 
                     <>
-                    <div className="add-friend-submit" onClick={this.props.updateFriend}>UPDATE</div>
-                    <div className="add-friend-submit delete-warn" onClick={this.props.deleteFriend}>DELETE</div>
+                    <div className="add-friend-submit" onClick={this.updateFriend}>UPDATE</div>
+                    <div className="add-friend-submit delete-warn" onClick={this.deleteFriend}>DELETE</div>
                     </>
                     :
-                    (<div className="add-friend-submit" onClick={this.props.addFriend}>Add Friend</div>)
+                    (<div className="add-friend-submit" onClick={this.addFriend}>Add Friend</div>)
                     }
                 </div>
-          </form>
+            </form>
         );
     }
 
