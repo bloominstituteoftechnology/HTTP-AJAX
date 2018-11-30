@@ -23,13 +23,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [],
-      selectedFriend: {
-        id: 0,
-        name: '',
-        age: 0,
-        email: ''
-      }
+      friends: []
     };
   }
 
@@ -41,10 +35,6 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
-
-  setSelectedFriend = selectedFriend => {
-    this.setState({ selectedFriend });
-  };
 
   addFriend = newFriend => {
     axios
@@ -122,8 +112,6 @@ class App extends Component {
               friends={this.state.friends}
               urlLinks={urlLinks}
               deleteFriend={this.deleteFriend}
-              setSelectedFriend={this.setSelectedFriend}
-              selectedFriend={this.state.selectedFriend}
             />
           )}
         />
