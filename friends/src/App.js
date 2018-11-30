@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import Friends from './components/friends';
+import AddFriend from './components/addFriend';
 
 let url = 'http://localhost:5000/friends';
 
@@ -55,7 +56,11 @@ class App extends Component {
           console.log(res)
           this.setState({
             data: res.data,
+            inputName: '',
+            inputAge: '',
+            inputEmail: '',
           });
+          // this.state.history.push('/friends');
         })
         .catch( err => {
           console.log('something went wrong trying to post new data' + err)
@@ -107,20 +112,42 @@ class App extends Component {
       <div className="App">
         <div>
           <nav>
-            <NavLink to='/' ><div className='navLink'>Home</div></NavLink>
-            <NavLink to='/friends' ><div className='navLink'>Friends List</div></NavLink>
+            <Link to='/' ><div className='navLink'>Home</div></Link>
+            <Link to='/friends' ><div className='navLink'>Friends List</div></Link>
           </nav>
-          <Route 
-            path={`/friends`} 
-            render={ 
+          <Route path={`/friends/addFriend`}  
+            render={
               props => 
-              <Friends {...props} 
+              <AddFriend {...props} 
               info={this.state} 
               handleChange={this.handleChange} 
               clearFields={this.clearFields}
               addFriend={this.addFriend}
-              deleteFriend={this.deleteFriend}
+              />
+            }
+          />
+
+          <Route path={`/friends/update/:friendId`}
+            render={
+              props => 
+              <AddFriend {...props} 
+              info={this.state} 
+              handleChange={this.handleChange} 
+              clearFields={this.clearFields}
               updateFriend={this.updateFriend}
+              update
+              // addFriend={this.addFriend}
+              />
+            }
+          />
+
+          <Route path={`/friends`} 
+            render={ 
+              props => 
+              <Friends {...props} 
+              info={this.state} 
+              deleteFriend={this.deleteFriend}
+              // updateFriend={this.updateFriend}
               />
             } 
           />

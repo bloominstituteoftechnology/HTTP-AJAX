@@ -81,7 +81,7 @@ a {
   margin-bottom: 30px;
 }
 
-.addFriend-container input {
+.addFriend-container .inputFields {
   margin-bottom: 20px;
   width: 400px;
   padding: 10px 10px;
@@ -94,6 +94,29 @@ a {
   align-items: center;
 }
 
+.ageInput-container {
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  align-items: center;
+}
+
+.slider-input {
+  margin-bottom: 20px;
+  width: 300px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.slider-value-container {
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  /* font-weight: bold; */
+  background-color: #fff;
+}
+
 .button-container button{
   margin: 0 20px;
   width: 150px;
@@ -102,4 +125,39 @@ a {
 
 .button-container button:hover {
   cursor: pointer;
+}
+
+.addFriend-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.normal {
+  display: block;
+  width: 220px;
+}
+
+.normal button {
+  width: 200px;
+  padding: 5px 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-color: rgb(21, 23, 49);
+  color: #f6f6f6;
+  font-weight: bold;
+}
+
+.normal button:hover {
+  cursor: pointer;
+  width: 220px;
+}
+
+.active {
+  display: none;
+}
+
+.friendsList-container {
+  display: flex;
+  flex-direction: column-reverse;
 }

@@ -1,42 +1,15 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 function friends(props){
 
     return (
-    <div>
-        <div className='addFriend-container'>
-        <form id='inputForm'>
-                <div className='friendInfo-input-container'>
-                    <input 
-                        type="text" 
-                        placeholder='Friend Name'
-                        name='inputName'
-                        value={props.info.inputName}
-                        onChange={props.handleChange}
-                    />
-                    <input 
-                        type="number" 
-                        placeholder='Friend Age'
-                        name='inputAge'
-                        value={props.info.inputAge}
-                        onChange={props.handleChange}
-                    />
-                    <input 
-                        type="text" 
-                        placeholder='Friend Email'
-                        name='inputEmail'
-                        value={props.info.inputEmail}
-                        onChange={props.handleChange}
-                    />
-                </div>
-                <div className='button-container'>
-                    <button onClick={() => props.addFriend(props.info.inputName, props.info.inputAge, props.info.inputEmail)}>Save Friend</button>
-                    <button onClick={props.clearFields}>Clear</button>
-                </div>                
-            </form>
+    <div>        
+        <div className='addFriend-btn-container'>
+            <NavLink to='/friends/addFriend' className='normal' activeClassName='active' ><button>Add New Friend</button></NavLink>
         </div>
-        <div>
-            <h2>Current Friend List of {props.info.data.length}</h2>
+        <h2>Current Friend List of {props.info.data.length}</h2>
+        <div className='friendsList-container'>
             {props.info.data.map(friend => (
                 <div key={friend.id} className='friend-container'>
                     <div className='friend-label-container'>
@@ -51,7 +24,9 @@ function friends(props){
                     </div>
                     <div className='friend-option-container'>
                         <button className='friend-option-btn' onClick={() => props.deleteFriend(friend.id)}>delete</button> 
-                        <button className='friend-option-btn' onClick={() => props.updateFriend(friend.id, props.info.inputName, props.info.inputAge, props.info.inputEmail)}>update</button> 
+
+                        <Link to={`/friends/update/${friend.id}`} ><button className='friend-option-btn'>update</button></Link>
+                        {/* <button className='friend-option-btn' onClick={() => props.updateFriend(friend.id, props.info.inputName, props.info.inputAge, props.info.inputEmail)}>update</button>  */}
                     </div>
                 </div>
             ))}
