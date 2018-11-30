@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import axios from "axios";
 import { BrouserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Form from '../src/components/Form';
@@ -33,19 +33,24 @@ class App extends Component {
 
   }
 
-  addFriend = friend => {
+
+  addFriend = data => {
     axios
-    .post(url, friend)
-    .then(response => this.setState({ stateFriendsData: response.data}))
-    .catch(err => console.log(err));
-  }
+    .post(url, data )
+    .then(response => {
+      console.log (response);
+      this.setState({stateFriendsData: response.data })
+    })
+      .catch(err => console.log(err));
+  };
+
 
   delete = id => {
     axios
-    .delete(`${this.state.url}/${id}`)
+    .delete(`${url}/${id}`)
       .then(response => this.setState({ stateFriendsData: response.data }))
       .catch(err => console.log(err));
-  }
+  };
 
   update = (id, data) => {
     axios
@@ -66,12 +71,15 @@ class App extends Component {
       </div>
 
       <Route exact path="/" component={Home} />
-      <Route path="/AddFriend" render={ props =>  <Form {...props} addFriend={this.addFriend} />} />
-        <Route path="/Friends" 
-        render={(props) => { 
+        <Route path="/Form" render={props => <Form {...props} addFriend={this.addFriend}  />} />
+        
+      
+      <Route path="/Friends" 
+        render={(props) => {
           return(
-            <Friends
-              allFriendsList={this.stateFriendsData}
+            <Friends 
+              {...props}
+              allFriendsList={this.state.stateFriendsData}
               onDelete={this.delete}
               onUpdate={this.update}
             />
@@ -79,12 +87,6 @@ class App extends Component {
           )
            }} />
 
-      
-
-
-
-        <div className="Header"> <h1>HTTP / AJAX!</h1>
-          <h1>These are friends</h1></div>
       </div>
     );
   }
