@@ -7,7 +7,21 @@ class FriendsForm extends Component {
       name: "Bondor",
       age: "22",
       email: "bondor@lambda.edu"
+      
     };
+  }
+
+  componentDidUpdate(prevProps, prevState){
+
+   if (prevProps.currentFriend.name !== this.props.currentFriend.name)
+   {
+    this.setState({
+      name: this.props.currentFriend.name,
+      age: this.props.currentFriend.age,
+      email: this.props.currentFriend.email,
+    
+    });}
+
   }
 
   handleChange = event => {
@@ -16,6 +30,8 @@ class FriendsForm extends Component {
 
   submitHandler = event => {
     event.preventDefault();
+
+    if (this.props.currentFriend.name == undefined){
     this.props.addNewFriend(this.state);
     //this.props.history.push()
     this.setState({
@@ -23,8 +39,12 @@ class FriendsForm extends Component {
       name: '',
       age: '',
       email: ''
+      
 
-    });
+    });} else {
+
+      this.props.updateFriend(this.props.currentFriend.id, {...this.state, id:this.props.currentFriend.id});
+    }
   }
 
 
@@ -34,6 +54,7 @@ class FriendsForm extends Component {
 
         <form
         onSubmit={this.submitHandler}>
+
           <input
             type="text"
             onChange={this.handleChange}

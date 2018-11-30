@@ -9,7 +9,8 @@ class FriendsList extends Component {
         super();
         this.state = {
           url: 'http://localhost:5000/friends',
-          friendList: []
+          friendList: [],
+          currentFriend: {}
         };
       }
 
@@ -52,14 +53,41 @@ class FriendsList extends Component {
       }
 
 
+      editFriend = data => {
+        
+        this.setState({
+          currentFriend: data
+        }) 
+
+      }
+
+
+
+
+
+
+
+      updateFriend = (id, editData )=> {
+        axios.put(`${this.state.url}/${id}`, editData)
+        .then(response => {
+          this.setState({
+            friendList:response.data,
+            currentFriend: {} 
+          })
+          
+
+        })
+        .catch(err => console.log(err));
+      }
+
   render() {
 
     return (
       <div className="FriendsList">
-        <FriendsForm addNewFriend={this.addNewFriend}/>
+        <FriendsForm addNewFriend={this.addNewFriend} updateFriend={this.updateFriend} currentFriend={this.state.currentFriend}/>
         
         {this.state.friendList.map(friend => (
-          <Friends key={friend.id} friends={friend} deleteFriend={this.deleteFriend} />
+          <Friends key={friend.id} friends={friend} deleteFriend={this.deleteFriend} editFriend={this.editFriend}/>
 
         ))}
         
