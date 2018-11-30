@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Form extends Component {
+class Edit extends Component {
   submitHandler = event => {
     event.preventDefault();
-    this.props.addFriend(this.props.state);
+    this.props.editFriend(this.props.match.params.id,this.props.state);
     this.props.history.push("/");
   };
 
@@ -43,6 +43,8 @@ class Form extends Component {
             Submit
           </button>
         </form>
+        <br />
+        <br />
 
         <Link to={"/"}>Go Back</Link>
       </>
@@ -50,4 +52,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default Edit;

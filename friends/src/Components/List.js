@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import FriendCard from "./FriendCard";
 
 class List extends Component {
+
   render() {
     return (
       <>
         {this.props.state.friends.map(friend => (
-          <div key={friend.name}>
-            {`Name: ${friend.name}`} <br /> {`Age: ${friend.age}`}
-            <br />
-            {friend.email}
-            <br />
-            <br />
-          </div>
+          <FriendCard
+            friend={friend}
+            key={friend.id}
+            deleteFriend={this.props.deleteFriend.bind(null, friend.id)}
+          />
         ))}
-
-        <Link to={'/form'}>Add a friend!</Link>
+        <Link to={"/form"}>Add a friend!</Link>
+        <br /> <br />
       </>
     );
   }
