@@ -4,7 +4,8 @@ import './App.css';
 import FriendsList from './components/FriendsList';
 import Friend from './components/Friend';
 import FriendForm from './components/FriendForm';
-import {Route, Redirect} from 'react-router-dom';
+import EditForm from './components/EditForm';
+import {Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -36,11 +37,23 @@ class App extends Component {
     }
   };
 
-  updateFriend = id => {
+  updateFriend = friend => {
     //const friend = this.state.friends.filter()
-    console.log(id);
-    //<Redirect to="/" />
+    //console.log('update', id);
+    axios.put(`http://localhost:5000/friends/${friend.id}`, friend)
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
   };
+
+  deleteFriend = id => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({friends: res.data});
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -53,12 +66,25 @@ class App extends Component {
               {...props}
               friends={this.state.friends}
               addFriend={this.addFriend}
+              updateFriend={this.updateFriend}
+              deleteFriend={this.deleteFriend}
+            />
+          )}
+        />
+        <Route path="/friend/:id"
+          render={props => (
+            <Friend {...props}
+              friends={this.state.friends}
             />
           )}
         />
         <Route
           path="/update/:id"
-          component={FriendForm}
+          render={props => (
+            <EditForm {...props} friends={this.state.friends}
+              updateFriend={this.updateFriend}
+            />
+          )}
         />
       </div>
     );
