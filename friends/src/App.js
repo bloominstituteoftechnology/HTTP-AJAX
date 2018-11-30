@@ -1,10 +1,23 @@
 import React, { Component } from "react";
-import "./App.css";
 import axios from "axios";
 import Friend from "./components/Friend";
 import styled from "styled-components";
 import Form from "./components/Form";
 import { Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  * {
+		box-sizing: border-box;
+	}
+	body{
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+		margin: 0;
+  	padding: 0;
+	}
+`;
 
 const Wrapper = styled.div`
 	width: 250px;
@@ -18,6 +31,12 @@ const Wrapper = styled.div`
 
 const H4 = styled.h4`
 	text-align: center;
+`;
+
+const FriendSection = styled.div`
+	width: 100%;
+	border: 1px solid lightgrey;
+	margin-top: 10px;
 `;
 
 class App extends Component {
@@ -80,18 +99,22 @@ class App extends Component {
 	render() {
 		return (
 			<Wrapper>
+				<GlobalStyle />
 				<Form
 					addFriend={this.addFriend}
 					title={`You have ${
 						this.state.data.length
-					} friends. It's sad. Add more
-					friends...`}
-					buttonText={`If You Are Adding Friends This Way, You Obviously Haven't Made Them In Real Life`}
+					} friends. It's sad. Add more. ${
+						this.state.data.length > 10
+							? "You are gunna need a lot more"
+							: ""
+					}`}
+					buttonText={`Add friends in real life, too`}
 					inputColor='orange'
 				/>
 
 				{this.state.data.map(item => (
-					<div>
+					<FriendSection>
 						<Friend
 							data={item}
 							key={item.id}
@@ -109,12 +132,12 @@ class App extends Component {
 									title={`Edit ${item.name}'s Info`}
 									buttonText={`Save Changes`}
 									inputColor={"white"}
-									id={item.id}
+									data={item}
 									edit
 								/>
 							)}
 						/>
-					</div>
+					</FriendSection>
 				))}
 
 				<H4> Please clap </H4>

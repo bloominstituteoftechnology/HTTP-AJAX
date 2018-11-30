@@ -8,7 +8,7 @@ const FormWrapper = styled.form`
 	flex-direction: column;
 	align-items: center;
 	background: ${props => props.inputColor};
-	padding: 5px;
+	padding: 10px;
 	text-align: center;
 
 	input {
@@ -27,9 +27,9 @@ class Form extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
-			age: 21,
-			email: ""
+			name: `${this.props.edit ? this.props.data.name : ""}`,
+			age: `${this.props.edit ? this.props.data.age : 21}`,
+			email: `${this.props.edit ? this.props.data.email : ""}`
 		};
 	}
 
@@ -42,11 +42,12 @@ class Form extends Component {
 	submitHandler = event => {
 		event.preventDefault();
 		if (this.props.edit) {
-			this.props.editFriend(this.state, this.props.id);
+			this.props.editFriend(this.state, this.props.data.id);
+			this.props.history.push("/");
 		} else {
 			this.props.addFriend(this.state);
+			this.resetState();
 		}
-		this.props.history.push("/");
 	};
 
 	resetState = () => {
