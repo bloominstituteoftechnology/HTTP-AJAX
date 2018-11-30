@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FriendsForm from './FriendsForm';
 import shortid from 'shortid';
 import styled from 'styled-components';
+import Friend from './Friend'
 
 const Div = styled.div`
     width: 100%;
@@ -24,33 +25,30 @@ const Ul = styled.ul`
         display: flex;
         justify-content: center;
         margin: 15px 0;
-        ul {
-            background: #fff;
+        form {
             width: 100%;
             display: flex;
-            border: solid rgba(0, 0, 0, 0.1) 1px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-                0 6px 6px rgba(0, 0, 0, 0.23);
-            button {
-                height: 100%;
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-                border: 0;
-                background: red;
-                }
-            li {
+            ul {
+                background: #fff;
+                width: 100%;
                 display: flex;
-                width: calc(100% / 3);
-                justify-content: flex-start;
-                padding: 10px;
-                border-radius: 0px;
-                input {
-                    &:disabled {
-                        background: white;
-                        border: none;
-                        color: black;
-                        font-size: 16px;
+                border: solid rgba(0, 0, 0, 0.1) 1px;
+                border-radius: 10px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+                    0 6px 6px rgba(0, 0, 0, 0.23);
+                li {
+                    display: flex;
+                    width: calc(100% / 3);
+                    justify-content: flex-start;
+                    padding: 10px;
+                    border-radius: 0px;
+                    input {
+                        &:disabled {
+                            background: white;
+                            border: none;
+                            color: black;
+                            font-size: 16px;
+                        }
                     }
                 }
             }
@@ -58,24 +56,26 @@ const Ul = styled.ul`
     }
 `;
 
-const FriendsList = props => {
-    return (
-        <Div>
-            <FriendsForm handleChange={props.handleChange} submit={props.submit} />
-            <Ul>
-                {props.friends.map(friend => (
-                    <li key={shortid.generate()}>
-                        <ul>
-                            <li><input disabled placeholder={friend.name} /></li>
-                            <li><input disabled placeholder={friend.age} /></li>
-                            <li><input disabled placeholder={friend.email} /></li>
-                            <button>Edit</button>
-                        </ul>
-                    </li>
-                ))}
-            </Ul>
-        </Div>
-    );
+class FriendsList extends Component {
+    constructor(props) {
+        super()
+        this.props = props
+    }
+
+
+
+    render() {
+        return (
+            <Div>
+                <FriendsForm handleChange={this.props.handleChange} submit={this.props.submit} />
+                <Ul>
+                    {this.props.friends.map(friend => (
+                        <Friend friend={friend} key={shortid.generate()} />
+                    ))}
+                </Ul>
+            </Div >
+        );
+    }
 };
 
 export default FriendsList;

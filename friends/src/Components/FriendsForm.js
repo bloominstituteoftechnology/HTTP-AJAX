@@ -143,10 +143,6 @@ class FriendsForm extends Component {
         })
     }
 
-    editHandler = () => {
-
-    }
-
     render() {
         return (
             <Div>
@@ -167,6 +163,7 @@ class FriendsForm extends Component {
                             name="inputAge"
                             handleChange={this.handleChange}
                             value={this.state.inputAge}
+                            step="1"
                         />
                         <Input
                             className="friends-input"
