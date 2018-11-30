@@ -21,6 +21,11 @@ class MyForm extends React.Component {
                     onChange={this.props.changeName} />
                 </label>
                 <label>
+                    Age:
+                    <input type="number" name="id" 
+                    onChange={this.props.changeAge} />
+                </label>
+                <label>
                     ID:
                     <input type="text" name="id" 
                     onChange={this.props.changeID} />

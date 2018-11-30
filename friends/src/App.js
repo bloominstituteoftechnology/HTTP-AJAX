@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import MyForm from './components/MyForm';
+import Friends from './components/Friends';
+import { Route, Link, Switch } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -9,6 +11,7 @@ class App extends React.Component {
     this.state = {
       data: [],
       name: '',
+      age: 0,
       id: [],
       email: ''
     };
@@ -44,6 +47,12 @@ class App extends React.Component {
     })
   }
 
+  changeAge = event => {
+    this.setState({
+        age: event.target.value
+    })
+  }
+
   click = event => {
     event.preventDefault();
 
@@ -51,9 +60,9 @@ class App extends React.Component {
     .post('http://localhost:5000/friends/', {
       name: this.state.name,
       id: this.state.id,
-      email: this.state.email
+      email: this.state.email,
+      age: this.state.age
     })
-
 
     .then(newResponse => {
       console.log(newResponse)
@@ -83,15 +92,6 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-      // , {
-      //   data: this.state.data,
-      //   {
-      //     name: this.state.name,
-      //     id: this.state.id,
-      //     email: this.state.email,
-      //   }
-      // }
-
       delete = (event, id) => {
         event.preventDefault();
     
@@ -112,24 +112,25 @@ class App extends React.Component {
     console.log('this state name', this.state.name)
     return (
       <div className="App">
-        {this.state.data.map(item => (
-        <li>
-          {item.name}
-          {item.age}
-          {item.email}
-        </li>
-        ))}
+
+      <Route exact path="/" render={props => (
+          <Friends
+            {...props}
+              data={this.state.data}
+          />
+      )} />
 
         <MyForm 
-          data={this.state.data}
-          updateData={this.updateData}
-          click={this.click}
-          changeName={this.changeName}
-          changeID={this.changeID}
-          changeEmail={this.changeEmail}
-          update={this.update}
-          delete={this.delete}
-        />
+            data={this.state.data}
+            updateData={this.updateData}
+            click={this.click}
+            changeName={this.changeName}
+            changeID={this.changeID}
+            changeEmail={this.changeEmail}
+            changeAge={this.changeAge}
+            update={this.update}
+            delete={this.delete}
+          />
       </div>
     );
   }
