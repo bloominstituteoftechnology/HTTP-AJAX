@@ -166,5 +166,6 @@ a:visited {
 }
 
 .friend-info h1 {
+  padding: 15px 0;
   text-shadow: 3px 3px 0px white;
 }
