@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import './FriendsForm.css'
 class FriendsForm extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      age: "",
-      email: ""
+      name: "Bondor",
+      age: "22",
+      email: "bondor@lambda.edu"
     };
   }
 
@@ -30,7 +31,6 @@ class FriendsForm extends Component {
   render() {
     return (
       <div className="FriendsForm">
-        <p>And we say so, and we know so.</p>
 
         <form
         onSubmit={this.submitHandler}>

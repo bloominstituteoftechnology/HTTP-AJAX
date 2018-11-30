@@ -8,6 +8,7 @@ class FriendsList extends Component {
     constructor() {
         super();
         this.state = {
+          url: 'http://localhost:5000/friends',
           friendList: []
         };
       }
@@ -39,6 +40,16 @@ class FriendsList extends Component {
         }
       };
     
+      //lets try deleting something
+      deleteFriend = id => {
+        axios.delete(`${this.state.url}/${id}`)
+        .then(response => {
+          this.setState({
+            friendList: response.data
+          })
+        })
+        .catch(err => console.log(err));
+      }
 
 
   render() {
@@ -48,7 +59,7 @@ class FriendsList extends Component {
         <FriendsForm addNewFriend={this.addNewFriend}/>
         
         {this.state.friendList.map(friend => (
-          <Friends key={friend.id} friends={friend} />
+          <Friends key={friend.id} friends={friend} deleteFriend={this.deleteFriend} />
 
         ))}
         
