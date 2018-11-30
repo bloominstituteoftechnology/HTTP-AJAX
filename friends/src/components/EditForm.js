@@ -13,14 +13,10 @@ class EditForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
-    console.log(this.props.match.params.id);
     const friend = this.props.friends.find(
       f => `${f.id}` === this.props.match.params.id,
     );
-    console.log(friend);
     this.setState({name: friend.name, age: friend.age, email: friend.email, id: friend.id});
-    console.log(this.state.friend);
   }
 
   handleChange = e => {
@@ -29,7 +25,7 @@ class EditForm extends React.Component {
 
   editFriend = (e) => {
     e.preventDefault();
-    this.props.updateFriend(this.state.id);
+    this.props.updateFriend(this.state);
     this.props.history.push('/');
     
 
