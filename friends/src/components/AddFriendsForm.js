@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-// import { Link } from "react-router-dom";
 
 const StyledForm = styled.form`
   margin: 1rem auto;
@@ -70,13 +69,26 @@ class AddFriendsForm extends Component {
     const friend = this.props.match.params.id;
     if (this.props.editFriend) {
       this.fetchFriend(friend);
+      // console.log(this.props);
     }
   };
 
   fetchFriend = id => {
-    axios.get(`http://localhost:5000/friends/${id}`).then(res => {
-      this.setState(() => ({ friend: res.data }));
-    });
+    axios
+      .get(`http://localhost:5000/friends`)
+      .then(res => {
+        const friend = res.data.filter(
+          friend => friend.id.toString() === this.props.match.params.id
+        )[0];
+
+        this.setState(() => ({
+          friend: friend,
+          name: friend.name,
+          age: friend.age,
+          email: friend.email
+        }));
+      })
+      .catch(err => console.log(err));
   };
 
   handleChange = e => {
@@ -101,7 +113,7 @@ class AddFriendsForm extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <div>
@@ -112,21 +124,25 @@ class AddFriendsForm extends Component {
             name="name"
             onChange={this.handleChange}
             placeholder="Enter Friends Name..."
-            value={this.props.name}
+            value={
+              this.state.name.length > 0 ? this.state.name : this.props.name
+            }
           />
           <input
             type="number"
             name="age"
             onChange={this.handleChange}
             placeholder="Enter Friends Age..."
-            value={this.props.age}
+            value={this.state.age !== 0 ? this.state.age : this.props.age}
           />
           <input
-            type="text"
+            type="email"
             name="email"
             onChange={this.handleChange}
             placeholder="Enter Friends Email..."
-            value={this.props.email}
+            value={
+              this.state.email.length > 0 ? this.state.email : this.props.email
+            }
           />
           <input
             type="submit"

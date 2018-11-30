@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import axios from "axios";
 import styled from "styled-components";
-// import AddFriendsForm from "./AddFriendsForm";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -45,6 +43,10 @@ const Span = styled.span`
   }
 `;
 
+const AddFriendContainer = styled.div`
+  margin-bottom: 1rem;
+`;
+
 export default class FriendsList extends Component {
   constructor(props) {
     super(props);
@@ -53,86 +55,15 @@ export default class FriendsList extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   axios
-  //     .get("http://localhost:5000/friends/")
-  //     .then(res => {
-  //       this.setState({
-  //         friendsData: res.data
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-
-  // handleChange = e => {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   });
-  // };
-
-  // addFriend = e => {
-  //   e.preventDefault();
-  //   if (
-  //     this.state.name !== "" &&
-  //     this.state.age !== "" &&
-  //     this.state.email !== ""
-  //   ) {
-  //     axios
-  //       .post("http://localhost:5000/friends/", {
-  //         id: Date.now(),
-  //         name: this.state.name,
-  //         age: this.state.age,
-  //         email: this.state.email
-  //       })
-  //       .then(function(response) {
-  //         console.log(response);
-  //       })
-  //       .catch(function(err) {
-  //         console.log(err);
-  //       });
-  //     this.setState(prevState => ({
-  //       friendsData: [
-  //         ...prevState.friendsData,
-  //         {
-  //           name: this.state.name,
-  //           age: this.state.age,
-  //           email: this.state.email
-  //         }
-  //       ],
-  //       name: "",
-  //       age: "",
-  //       email: ""
-  //     }));
-  //   } else return;
-  // };
-
-  // deleteItem = id => {
-  //   axios
-  //     .delete(`http://localhost:5000/friends/${id}`)
-  //     .then(res => {
-  //       console.log(res);
-  //       this.setState({
-  //         friendsData: res.data
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
   render() {
     return (
       <Container>
-        {/* <AddFriendsForm
-          friendsData={this.state.friendsData}
-          addFriend={this.addFriend}
-          handleChange={this.handleChange}
-          name={this.state.name}
-          age={this.state.age}
-          email={this.state.email}
-        /> */}
-        <h2>Your Friends:</h2>
-        <Link to="/addfriend">
-          <button>Add A Friend</button>
-        </Link>
+        <AddFriendContainer>
+          <h2>Your Friends:</h2>
+          <Link to="/addfriend">
+            <button>Add A Friend</button>
+          </Link>
+        </AddFriendContainer>
         <FriendsBox>
           {this.props.friendsData.map(friend => (
             <FriendCard key={friend.id ? friend.id : Date.now()}>
