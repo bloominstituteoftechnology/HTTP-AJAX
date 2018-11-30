@@ -4,7 +4,7 @@
   border: 10px solid black;
   box-shadow: 1px 1px 10px black;
   border-radius: 10px;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 3px 3px 0px white;
 }
 
 h1 {
@@ -43,6 +43,14 @@ a:visited {
   color: black;
   padding: 20px;
   border: 1px solid black;
+}
+
+.friends-list-title h1 {
+  font-weight: bold;
+  text-shadow: 5px 5px 0px white;
+  font-size: 6rem;
+  color: black;
+  padding: 20px 0;
 }
 
 .friends-list h3 {
@@ -119,6 +127,12 @@ a:visited {
   box-shadow: 1px 1px 10px black;
 }
 
+.delete-btn button {
+  background: whitesmoke;
+  color: red;
+  text-shadow: 1px 1px 0px black;
+}
+
 .add-nav {
   width: 100%;
   text-align: center;
@@ -139,8 +153,8 @@ a:visited {
 }
 
 .friend-card {
-  background: gray;
-  color: white;
+  background: whitesmoke;
+  color: black;
   padding: 20px 0 30px;
   text-align: center;
   border: 1px solid black;
@@ -148,9 +162,9 @@ a:visited {
 
 .friend-info {
   line-height: 60px;
-  text-shadow: 2px 2px 5px black;
+  text-shadow: 3px 3px 0px white;
 }
 
 .friend-info h1 {
-  text-shadow: 2px 2px 5px black;
+  text-shadow: 3px 3px 0px white;
 }

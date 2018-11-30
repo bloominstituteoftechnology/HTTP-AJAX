@@ -26,9 +26,16 @@ class Form extends React.Component {
   };
 
   render() {
+    let currentFriend = this.props.data.find(
+      item => item.id.toString() === this.props.match.params.id
+    );
     return (
       <div className="form-page">
-        <h2>{this.props.edit ? "Edit Friend" : "Add New Friend"}</h2>
+        <h2>
+          {this.props.edit
+            ? `Edit: ${currentFriend ? currentFriend.name : ""}`
+            : "Add New Friend"}
+        </h2>
         <form className="form" onSubmit={this.submitHandler}>
           <div className="input-item">
             <label>Name:</label>

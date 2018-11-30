@@ -5,7 +5,9 @@ const FriendsList = props => {
   return (
     <div className="friends-list">
       <div className="friends-list-title">
-        <h1>Friends</h1>
+        <Link to="/">
+          <h1>Friends</h1>
+        </Link>
       </div>
 
       {props.data.map(friend => (

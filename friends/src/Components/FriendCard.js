@@ -21,7 +21,6 @@ const FriendCard = props => {
       <div className="delete-btn">
         <button
           onClick={() => {
-            console.log(props);
             props.deleteFriend(props.match.params.id);
             props.history.push(`/`);
           }}
