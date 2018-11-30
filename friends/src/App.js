@@ -6,6 +6,7 @@ import Home from "./component/Home/Home";
 import FriendsList from "./component/FriendsList/FriendsList";
 import FriendsForm from "./component/FriendsForm/FriendsForm";
 
+const url = "http://localhost:5000/friends";
 class App extends Component {
   constructor() {
     super();
@@ -60,6 +61,17 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  deleteFriend = id => {
+    axios
+      .delete(`${url}/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -77,10 +89,11 @@ class App extends Component {
             <li>
               <Link to="/friends">Friends</Link>
             </li>
-            <li>
+            {/*  <li>
               <Link to="/friendsform">Friends Form</Link>
-            </li>
+          </li>*/}
           </ul>
+          <hr />
         </nav>
         <Route exact path="/" component={Home} />
         <Route
@@ -91,6 +104,7 @@ class App extends Component {
               {...props}
               friends={this.state.friends}
               update={this.updateFriend}
+              del={this.deleteFriend}
             />
           )}
         />
@@ -102,7 +116,6 @@ class App extends Component {
               {...props}
               postMsg={this.postMessage}
               change={this.handleChange}
-              edit
               data={this.state}
             />
           )}

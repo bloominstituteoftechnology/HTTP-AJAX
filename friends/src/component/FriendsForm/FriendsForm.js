@@ -3,15 +3,15 @@ import "./FriendsForm.css";
 
 function FriendsForm(props) {
   return (
-    <div className="new-friends">   
+    <div className="new-friends">
       <div className="friends-form">
-        <h2>{this.props.edit ? "Update" : "Add New Friend"}</h2>
         <form>
           <label>
             Name:
             <input
               type="text"
               name="name"
+              placeholder="Enter Name"
               value={props.name}
               onChange={props.change}
             />
@@ -21,6 +21,7 @@ function FriendsForm(props) {
             <input
               type="number"
               name="age"
+              placeholder="Enter Age"
               value={props.age}
               onChange={props.change}
             />
@@ -41,7 +42,6 @@ function FriendsForm(props) {
             onClick={() =>
               props.postMsg(props.data.name, props.data.age, props.data.email)
             }
-            {this.props.edit ? "Update" : "Add New Friend"}
             value="Add New Friend"
           />
         </form>

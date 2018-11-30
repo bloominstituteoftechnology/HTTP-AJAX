@@ -1,16 +1,15 @@
 .nav-menu {
     width: 100%;
-    background-color: rgba(156, 68, 45, 1)
 }
 
 .friends-nav {
-    width: 800px;
+    width: 400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     margin-bottom: 20px;
-    height: 50px;
+    height: 30px;
 }
 
 .friends-nav a {
