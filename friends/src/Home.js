@@ -5,8 +5,8 @@ import Friends from './Friends';
 export default function Home(props) {
     return (
         <Fragment>
-            <Form updateAPI={props.updateAPI} />
-            <Friends friends={props.friends} />
+            <Form updateFriends={props.updateFriends} />
+            <Friends delete={props.delete} friends={props.friends} />
         </Fragment>
     );
 }

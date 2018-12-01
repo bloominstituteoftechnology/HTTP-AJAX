@@ -4,9 +4,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import Home from './Home';
-import Form from './Form';
-import Friends from './Friends';
-import Nav from './Nav';
 
 
 const AppDiv = styled.div`
@@ -41,7 +38,7 @@ class App extends Component {
 			.catch(err => console.log(err));
     }
 
-  updateAPI = () => {
+  updateFriends = () => {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
@@ -53,14 +50,22 @@ class App extends Component {
       .catch(err => console.log(err));
     }
 
+  delete = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data,
+        })
+      })
+      .catch(console.log)
+  }
+
 	render() {
 		return (
 			<AppDiv className="App">
-        <Nav />
         <WrapperDiv>
-          <Route path="/" render={props => <Home {...props} friends={this.state.friends} updateAPI={this.updateAPI} />} />
-          <Route exact path="/friends" render={props => <Friends {...props} friends={this.state.friends} />} />
-          <Route exact path="/add" render={props => <Form {...props} updateAPI={this.updateAPI} />} />
+          <Route path="/" render={props => <Home {...props} friends={this.state.friends} updateFriends={this.updateFriends} delete={this.delete} />} />
         </WrapperDiv>
 			</AppDiv>
 		);

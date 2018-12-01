@@ -19,7 +19,7 @@ export default function Friends(props) {
         return (
             <Fragment>
                 <FriendsDiv>
-                    {(props.friends) && props.friends.map(friend => <Friend key={friend.id} name={friend.name} age={friend.age} email={friend.email} />)}
+                    {(props.friends) && props.friends.map(friend => <Friend key={friend.id} id={friend.id} name={friend.name} age={friend.age} email={friend.email} delete={props.delete} />)}
                 </FriendsDiv>
             </Fragment>
         );

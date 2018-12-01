@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const FriendCard = styled.div`
     color: #5a5260;
@@ -32,7 +33,8 @@ export default function Friend(props) {
             <p>name: {props.name}</p>
             <p>age: {props.age}</p>
             <p>email: <a href={`mailto:${props.email}`}>{props.email}</a></p>
-            <Btn>Update</Btn><Btn>Delete</Btn>
+            <Link to={`/update/${props.id}`}><Btn>Update</Btn></Link>
+            <Btn onClick={() => props.delete(props.id)}>Delete</Btn>
         </FriendCard>
     );
 }

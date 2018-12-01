@@ -52,8 +52,8 @@ const Btn = styled.button`
 export default function Form(props) {
     return (
         <Fragment>
-            <Route path="/" render={props => <FormAdd {...props} updateAPI={props.updateAPI} />} />
-            <Route path="/update" Component={FormUpdate} />
+            <Route exact path="/" render={routeProps => <FormAdd {...routeProps} updateFriends={props.updateFriends} />} />
+            <Route path="/update/:id" render={routeProps => <FormUpdate {...routeProps} updateFriends={props.updateFriends} />} />
         </Fragment>
     );
 }
@@ -63,9 +63,9 @@ class FormUpdate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nameInput: '',
-            ageInput: '',
-            emailInput: ''
+            nameInput: null,
+            ageInput: null,
+            emailInput: null,
         }
     }
 
@@ -78,33 +78,27 @@ class FormUpdate extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
-        axios
-            .get('http://localhost:5000/friends')
-            .then(response => {
-                let newID = response.data[response.data.length - 1].id;
-                axios
-                    .post('http://localhost:5000/friends', {
-                        id: newID + 1,
-                        name: `${this.state.nameInput}`,
-                        age: this.state.ageInput,
-                        email: this.state.emailInput
-                    })
-                    .then(this.setState({
-                        nameInput: '',
-                        ageInput: '',
-                        emailInput: '',
-                    }))
-                    .then(() => this.props.updateAPI)
-                    .catch(err => console.log(err));
-                    console.log(this.state.nameInput);
-            })
-            .catch(err => console.log(err))
+            axios
+                .put(`http://localhost:5000/friends/${this.props.match.params.id}`, {
+                    name: `${this.state.nameInput}`,
+                    age: this.state.ageInput,
+                    email: this.state.emailInput
+                })
+                .then(this.setState({
+                    nameInput: '',
+                    ageInput: '',
+                    emailInput: '',
+                }))
+                .then(this.props.updateFriends)
+                .then(this.props.history.push('/'))
+                .catch(console.log);
+                console.log(this.state.nameInput);
     }
 
     render() {
         return (
             <FormDiv onSubmit={this.submitHandler}>
-                <H2>Add a Friend:</H2>
+                <H2>Update a Friend:</H2>
                 <Input type="text" name="nameInput" onChange={this.changeHandler} value={this.state.nameInput} placeholder="name" /><br/>
                 <Input type="text" name="ageInput" onChange={this.changeHandler} value={this.state.ageInput} placeholder="age" /><br/>
                 <Input type="text" name="emailInput" onChange={this.changeHandler} value={this.state.emailInput} placeholder="email" /><br/>
@@ -135,27 +129,20 @@ class FormAdd extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
-        axios
-            .get('http://localhost:5000/friends')
-            .then(response => {
-                let newID = response.data[response.data.length - 1].id;
-                axios
-                    .post('http://localhost:5000/friends', {
-                        id: newID + 1,
-                        name: `${this.state.nameInput}`,
-                        age: this.state.ageInput,
-                        email: this.state.emailInput
-                    })
-                    .then(this.setState({
-                        nameInput: '',
-                        ageInput: '',
-                        emailInput: '',
-                    }))
-                    .then(() => this.props.updateAPI)
-                    .catch(err => console.log(err));
-                    console.log(this.state.nameInput);
-            })
-            .catch(err => console.log(err))
+            axios
+                .post('http://localhost:5000/friends', {
+                    name: `${this.state.nameInput}`,
+                    age: this.state.ageInput,
+                    email: this.state.emailInput
+                })
+                .then(this.setState({
+                    nameInput: '',
+                    ageInput: '',
+                    emailInput: '',
+                }))
+                .then(this.props.updateFriends)
+                .catch(err => console.log(err));
+                console.log(this.state.nameInput);
     }
 
     render() {
