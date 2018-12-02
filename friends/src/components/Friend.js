@@ -51,11 +51,8 @@ class Friend extends React.Component {
   }
 
   printIt = (event) => {
-    // event.preventDefault();
-    // console.log(this.props.onUpdate(this.props.match.params.id, this.state));
     this.props.onUpdate(this.wOW());
     this.cleanState();
-    
     // this.props.history.push("/Friend");
   };
 

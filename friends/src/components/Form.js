@@ -13,40 +13,12 @@ class Form extends Component {
     }
   }
 
-  // ComponentDidMount(){
-  //   let currentFriend = this.props.data.find( item=> item.id.tostring() === this. match.params.id);
-  // };
-
-  // this.setState({
-  //   name: this.props.edit ? currentFriend.name :  "",
-  // })
-
-  // componentDidUpdate(prevProps, prevState) {
-
-  //   if (prevProps.currentFriend.name != this.props.currentFriend.name) {
-
-  //     this.setState({
-  //       name: this.props.currentFriend.name,
-  //       age: this.props.currentFriend.age,
-  //       email: this.props.currentFriend.email,
-  //     })
-
-  //   }
-
-  // }
-    
   onChangeHandler = event =>{
     event.preventDefault();
       this.setState({
         [event.target.name]: event.target.value
       });
     };
-
-  // submitHandler = event => { 
-  //   event.preventDefault()
-  //   this.props.onAddFriend(this.state);
-  //   this.props.history.push("/Friends");
-  // };
 
   render() {
     return (
@@ -67,9 +39,5 @@ class Form extends Component {
     )
   }
 }
-
-// Form.propTypes = {
-
-// }
 
 export default Form;
