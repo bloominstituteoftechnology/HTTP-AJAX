@@ -1,28 +1,20 @@
-import React from 'react';
-// import Friend from './Friend';
+import React, { Component } from 'react';
 
-const Friends = (props) => {
-  console.log(props.allFriendsList);
+const Friends = props => {
   return (
-    <div className="friendsListWrapper" >
+    <div className="friendCard">
 
-      {props.allFriendsList.map(amigo => {
-        return(
-          <div key={amigo.id} className="friendCard">
 
-              <h5>Friend number : {` ${amigo.id} `} </h5>
-              <h1>Name : {` ${amigo.name} !`}</h1>
-              <p>Age : {amigo.age}</p>
-            <a><p>Email : {amigo.email}</p></a>
-              <p>Id # : {amigo.id}</p>
-              <button type="" onClick={() => {props.onDelete(
-              amigo.id); }} >Delete</button>
-          </div>
 
-        )
-          })}
+      <h2>Name:{props.allFriendsList.name}</h2>
+      <h4>Age:{props.allFriendsList.age}</h4>
+      <p>Email:{props.allFriendsList.email}</p>
+      <p>Id:{props.allFriendsList.id}
+      </p>
     </div>
-    );
-}
+  );
+};
 
 export default Friends;
+
+
