@@ -4,7 +4,7 @@ import axios from "axios";
 import { BrouserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Form from '../src/components/Form';
 import Home from './components/Home';
-import Friends from './components/Friends';
+import Friend from './components/Friend';
 
 import './App.css';
 
@@ -54,7 +54,7 @@ class App extends Component {
 
   update = (id, data) => {
     axios
-    .put (`${this.state.url}/${id}`, data)
+    .put (`${url}/${id}`, data)
       .then(response => this.setState({ stateFriendsData: response.data}))
     .catch (err => console.log (err));
 
@@ -66,7 +66,7 @@ class App extends Component {
       <div className="Nav" >
       <NavLink to="/" >Home</NavLink>
       <NavLink to="/Form">Form</NavLink>
-      <NavLink to="/Friends">Friends</NavLink>
+      <NavLink to="/Friend">Friends</NavLink>
 
       </div>
 
@@ -74,10 +74,10 @@ class App extends Component {
         <Route path="/Form" render={props => <Form {...props} addFriend={this.addFriend}  />} />
         
       
-      <Route path="/Friends" 
+      <Route path="/Friend" 
         render={(props) => {
           return(
-            <Friends 
+            <Friend
               {...props}
               allFriendsList={this.state.stateFriendsData}
               onDelete={this.delete}
@@ -94,3 +94,4 @@ class App extends Component {
 
 
 export default App;
+ 
