@@ -6,16 +6,16 @@ class Form extends Component {
   constructor(props) {
     super(props)
     this.state ={
+      stateFriendsData: [],
       name:'',
       age: '',
       email: '',
-      currentFriend:{}
     }
   }
 
-  ComponentDidMount(){
-    let currentFriend = this.props.data.find( item=> item.id.tostring() === this. match.params.id);
-  };
+  // ComponentDidMount(){
+  //   let currentFriend = this.props.data.find( item=> item.id.tostring() === this. match.params.id);
+  // };
 
   // this.setState({
   //   name: this.props.edit ? currentFriend.name :  "",
@@ -42,24 +42,24 @@ class Form extends Component {
       });
     };
 
-  submitHandler = event => { 
-    event.preventDefault()
-    this.props.onAddFriend(this.state);
-    this.props.history.push("/Friends");
-  };
+  // submitHandler = event => { 
+  //   event.preventDefault()
+  //   this.props.onAddFriend(this.state);
+  //   this.props.history.push("/Friends");
+  // };
 
   render() {
     return (
       <div>
-      <h1>{this.props.onUpdate ? "Update Friend" : "Add New Friend"}</h1>
+      <h1>Add New Friend</h1>
       <form onSubmit={event => {
         event.preventDefault ();
-        this.props.addFriend(this.state);this.props.history.push ('/Friends');}}>
+        this.props.addFriend(this.state); this.props.history.push('/Friend');}}>
         <input type="text" placeholder="Enter a Name" name="name" value={this.state.name} onChange={this.onChangeHandler} />
         <input type="text" placeholder="Enter an age" name="age" value={this.state.age} onChange={this.onChangeHandler} />
 
         <input type="email" placeholder="Enter an Email" name="email" value={this.state.email} onChange={this.onChangeHandler} />
-          <button>{this.props.edit ? "Update Friend" : "Add New Friend"}</button>
+          <button>Add New Friend</button>
 
       </form>
 
