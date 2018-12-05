@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import reactDOm from 'react-dom';
 import axios from 'axios';
+import {NavLink} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+// import FriendList from './components/FriendList'
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       friends : []
     }
@@ -15,7 +17,13 @@ class App extends Component {
 
 
 componentDidMount () {
-  
+  axios
+  .get('http://localhost:5000/friends')
+  .then(({data}) => {
+    this.setState({friends:data})
+  .catch(console.log);
+  });
+
 }
 
 
@@ -26,18 +34,12 @@ componentDidMount () {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+
+          <h1>
+            Friends
+          {/* {FriendList.data = this.state.friends} */}
+          </h1>
+
         </header>
       </div>
     );
