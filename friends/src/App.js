@@ -37,7 +37,9 @@ componentDidMount () {
 
           <h1>
             Friends
-          {/* {FriendList.data = this.state.friends} */}
+            {this.state.doggos.map(friends => (
+              // props.name, props.age, props.email
+        ))}
           </h1>
 
         </header>
