@@ -7,10 +7,10 @@ function FriendsList(props) {
                 <div 
                     className='friend-card'
                     key={friend.id} >
+                    <div className='friends-name'>First name: {friend.name}</div>
+                    <p>{friend.age} years old</p>
+                    <p>Email {friend.email}</p>
                     
-                    <P>{friend.name}</P>
-                    <p>{friend.age}</p>
-                    <p>{friend.email}</p>
                 </div>    
             ))}
         
@@ -19,3 +19,4 @@ function FriendsList(props) {
 }
 
 export default FriendsList;
+

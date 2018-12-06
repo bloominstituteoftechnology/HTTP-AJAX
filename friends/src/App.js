@@ -32,7 +32,7 @@ class App extends Component {
       <div className="App">        
         <h1>This is my project about friends</h1> 
         <nav>
-          <NavLink to='friend-list'>Friends List</NavLink>
+          <NavLink to='friends-list'>Friends List</NavLink>
         </nav>
         <Route 
           path='/friends-list'
