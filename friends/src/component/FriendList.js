@@ -14,7 +14,10 @@ export default class FriendList extends React.Component {
   render() {
     return (
       <div>
-        {this.state.friends.map(friend => {friend.name})}
+        {this.state.friends.map(friend => <div>{friend.name}</div>)}
+        {this.state.friends.map(friend => <div>{friend.id}</div>)}
+        {this.state.friends.map(friend => <div>{friend.email}</div>)}
+        {this.state.friends.map(friend => <div>{friend.age}</div>)}
       </div>
     )
   }
