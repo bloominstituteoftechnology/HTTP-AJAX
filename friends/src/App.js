@@ -4,6 +4,8 @@ import Friends from './components/Friends';
 import Form from './components/Form';
 import './App.css';
 
+const url = new URL('http://localhost:5000/friends/');
+
 class App extends Component {
   constructor() {
     super();
@@ -12,34 +14,62 @@ class App extends Component {
     };
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
   componentDidMount() {
-    const server = 'http://localhost:5000/friends';
     axios
-    .get(server)
+    .get(url)
     .then(response => {
       console.log(response);
       this.setState({
         friends: response.data
       })
-      // .catch(err => {
-      //   console.log(err);
-      // })
+    })
+    .catch(err => console.log(err))
+  }
+
+  addFriend = data => {
+    axios
+    .post(url, data)
+    .then(response => {
+      console.log(response);
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  deleteFriend = id => {
+    axios
+    .delete(`${url}${id}`)
+    .then(response => {
+      console.log(response);
+      this.setState({
+        friends: response.data
+      });
     })
   }
+
+  updateFriend = (data, id) => {
+    axios
+    .put(`${url}${id}`, data)
+    .then(response => {
+      console.log(response);
+      this.setState({
+        friends: response.data
+      })
+    })
+    .catch(err => console.log(err));
+  }
+
+
   render() {
     return (
       <div className="App">
         <div>
-          <Friends friends={this.state.friends} />
+          <Friends friends={this.state.friends} updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} />
         </div>
         <div>
-          <Form />
+          <Form addFriend={this.addFriend}/>
         </div>
       </div>
     );

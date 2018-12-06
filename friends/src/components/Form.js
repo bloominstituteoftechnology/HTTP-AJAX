@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Form extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state= {
             name: '',
             age: 0,
@@ -10,11 +10,23 @@ class Form extends React.Component {
         }
     }
 
+    handleChange = event => {
+        this.setState({
+          [event.target.name]: event.target.value
+        })
+      }
+    
+      submitChange = event => {
+          event.preventDefault();
+          this.props.addFriend(this.state);
+      }
+
     render() {
         return (
             <div className='friend-form'>
-            <form>
+            <form onSubmit={this.submitChange}>
                 <input
+                onChange={this.handleChange}
                 name='name'
                 type='text'
                 placeholder={`Friend's Name..`}
@@ -22,6 +34,7 @@ class Form extends React.Component {
                 />
 
                 <input
+                onChange={this.handleChange}
                 name='age'
                 type='number'
                 placeholder={`Friend's Age..`}
@@ -29,6 +42,7 @@ class Form extends React.Component {
                 />
 
                 <input
+                onChange={this.handleChange}
                 name='email'
                 type='text'
                 placeholder= {`Friend's Email..`}
