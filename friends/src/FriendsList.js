@@ -8,8 +8,8 @@ function FriendsList(props) {
                     className='friend-card'
                     key={friend.id} >
                     <div className='friends-name'>First name: {friend.name}</div>
-                    <p>{friend.age} years old</p>
-                    <p>Email {friend.email}</p>
+                    <div className='age'>{friend.age} years old</div>
+                    <div className='email'>Email {friend.email}</div>
                     
                 </div>    
             ))}
