@@ -4,6 +4,7 @@ import './App.css';
 
 import FriendList from './component/FriendList';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 
 class App extends Component {
   render() {
