@@ -6,9 +6,9 @@ export default class FriendList extends React.Component {
     friends: []
   }
   componentDidMount() {
-    axios.get(`https://localhost:5000`)
+    axios.get(`https://localhost:5000/friends`)
       .then(res => {
-        this.setState({ friends: res.data })
+        this.setState({ friends: res.name })
       })
   }
   render() {
