@@ -2,38 +2,57 @@ import React from 'react';
 import axios from 'axios';
 
 class FriendsForm extends React.Component{
-  state = {
-    name: '',
-  };
+  constructor(){
+    super();
+  this.state = {
+      name: '',
+      age: '',
+      email:''
+  };}
 
   handleChange = ev => {
-    this.setState({ name: ev.target.value });
+    this.setState({
+        ...this.state.newFriends,
+        [ev.target.name]: ev.target.value
+      });
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const user = {
-      name: this.state.name
-    }
-
-    axios.post('http://localhost:5000/friends', { user })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-    axios.put('http://localhost:5000/friends', { user })
-  }
+submitHandler = ev => {
+  ev.preventDefault();
+  this.props.addFriend(this.state);
+  // this.props.history.push('/shop') <--if we have the Route and {...props} enabled on this component
+}
 
   render(){
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Person name:
-          <input type='text' name='name' onChange={this.handleChange} />
-        </label>
-        <button type='submit'>Add Friend</button>
-      </form>
+      <div>
+        <form onSubmit={this.submitHandler}>
+            <input
+              type='text'
+              name='name'
+              placeholder='Name'
+              onChange={this.handleChange}
+              value={this.state.name}
+            />
+
+            <input
+              type='text'
+              name='age'
+              placeholder='Age'
+              onChange={this.handleChange}
+              value={this.state.age}
+            />
+
+            <input
+              type='text'
+              name='email'
+              placeholder='E-mail'
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+          <button type='submit'>Add Friend</button>
+        </form>
+      </div>
     )
   }
 }
