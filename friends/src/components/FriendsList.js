@@ -14,7 +14,7 @@ const FriendsList = props => {
                 Delete
               </button>
           </div>)}
-        )};
+        )}
       </div>
     )
   }

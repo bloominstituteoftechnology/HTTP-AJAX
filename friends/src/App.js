@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import FriendsList from './components/FriendsList';
@@ -31,7 +32,7 @@ class App extends Component {
 
     deleteFriend = id => {
       axios
-      .delete(`http://localhost:5000/friends${id}`)
+      .delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
         console.log(res)
         console.log(res.data)
@@ -45,10 +46,17 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FriendsForm addFriend={this.addFriend}/>
-        <FriendsList
-          friends={this.state.friends}
-          deleteFriend={this.deleteFriend}/>
+      <Link to='/form'> Inputs </Link>{' '}
+        <Route
+          path='/form'
+          render={() =>(
+          <FriendsForm addFriend={this.addFriend}/>
+        )}
+        />
+          <FriendsList
+            friends={this.state.friends}
+            deleteFriend={this.deleteFriend}
+          />
       </div>
     );
   }

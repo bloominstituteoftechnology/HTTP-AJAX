@@ -25,7 +25,6 @@ submitHandler = ev => {
 
   render(){
     return (
-      <div>
         <form onSubmit={this.submitHandler}>
             <input
               type='text'
@@ -52,7 +51,6 @@ submitHandler = ev => {
             />
           <button type='submit'>Add Friend</button>
         </form>
-      </div>
     )
   }
 }
