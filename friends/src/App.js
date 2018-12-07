@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FriendsList from './components/FriendsList';
+import { NavLink } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+    <div>  
+      <nav className="navbar navbar-ex skinny-nav big-nav mb-3">
+        <NavLink className="navbar-brand" to="/">Friends</NavLink>
+
+        <div className="navbar-2">
+          <NavLink className="nav-info nav-link" to="/add">Add Friend</NavLink>
+        </div>        
+      </nav>
+
+      <div className="container">
+        <FriendsList />
       </div>
+    </div>
     );
   }
 }
