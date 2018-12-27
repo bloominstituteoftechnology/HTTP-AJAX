@@ -12,8 +12,8 @@ class App extends Component {
     };
   }
   componentDidMount(){
-    axios.get('http://localhost:5000/friends')
-      .then(res => this.setState({ friends: res.data }, () => console.log(this.state.friends)))
+    axios('http://localhost:5000/friends')
+      .then(res => this.setState({ friends: res.data }))
       .catch(err => { throw new Error(err) });
   }
   handleUpdateList = (friends) => {
@@ -21,11 +21,16 @@ class App extends Component {
       friends,
     })
   }
+  handleDeleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => { throw new Error(err)});
+  }
   render() {
     return (
       <div className="App">
         <FriendInput updateList={this.handleUpdateList} />
-        <FriendsList friends={this.state.friends} />
+        <FriendsList friends={this.state.friends} deleteFriend={this.handleDeleteFriend} />
       </div>
     );
   }

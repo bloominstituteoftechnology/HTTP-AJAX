@@ -38,6 +38,7 @@
   flex-wrap: wrap;
 }
 .list div {
+  position: relative;
   width: 45%;
   text-align: center;
   border: 1px solid black;
@@ -45,4 +46,10 @@
 }
 .list div span {
   font-weight: bold;
+}
+
+.list .delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

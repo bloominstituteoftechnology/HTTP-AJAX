@@ -17,10 +17,7 @@ class FriendInput extends React.Component {
     }
     onAddFriend = (e) => {
         e.preventDefault();
-        if (!this.state.name || !this.state.age || !this.state.email){
-            alert('Please fill out all fields');
-            return;
-        }
+        if (!this.state.name || !this.state.age || !this.state.email) return alert('Please fill out all fields');
         const [name, age, email] = [this.state.name, Number(this.state.age), this.state.email];
         this.setState({name: '', age: '', email: ''});
         axios.post('http://localhost:5000/friends', {
