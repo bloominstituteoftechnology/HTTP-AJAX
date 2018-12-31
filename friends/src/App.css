@@ -48,6 +48,9 @@
 .list div span, .list form span {
   font-weight: bold;
 }
+.list form input {
+  margin-left: 5px;
+}
 .list .icons {
   position: absolute;
   top: 5px;
