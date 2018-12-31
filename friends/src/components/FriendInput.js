@@ -25,17 +25,24 @@ class FriendInput extends React.Component {
             age,
             email,
         })
-            .then(res => this.props.updateList(res.data))
+            .then(res => {
+                this.props.updateList(res.data);
+                this.props.history.push('/');
+            })
             .catch(err => { throw new Error(err) });
     }
     render(){
         return (
-            <form onSubmit={this.onAddFriend}>
-                <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.onInputChange(e, 'name')} />
-                <input type="number" placeholder="Age" value={this.state.age} onChange={(e) => this.onInputChange(e, 'age')} />
-                <input type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.onInputChange(e, 'email')} />
-                <button type="submit">Add Friend</button>
-            </form>
+            <div className="input-container">
+                <form onSubmit={this.onAddFriend} className="friend-input">
+                    <span className="fas fa-undo-alt return-home" onClick={() => this.props.history.push('/')}></span>
+                    <p>Enter new friend's information:</p>
+                    <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.onInputChange(e, 'name')} />
+                    <input type="number" placeholder="Age" value={this.state.age} onChange={(e) => this.onInputChange(e, 'age')} />
+                    <input type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.onInputChange(e, 'email')} />
+                    <button type="submit">Add Friend</button>
+                </form>
+            </div>
         );
     } 
 }

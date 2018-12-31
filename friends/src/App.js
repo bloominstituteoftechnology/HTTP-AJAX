@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import FriendsList from './components/FriendsList';
 import FriendInput from './components/FriendInput';
 import axios from 'axios';
@@ -38,11 +39,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendInput updateList={this.handleUpdateList} />
-        <FriendsList friends={this.state.friends} 
-          deleteFriend={this.handleDeleteFriend}
-          editFriend={this.handleEditFriend} 
-        />
+        <Route exact path="/" render={props => (
+          <FriendsList 
+            {...props}
+            friends={this.state.friends}
+            deleteFriend={this.handleDeleteFriend}
+            editFriend={this.handleEditFriend}
+          />
+        )} />
+        <Route path="/add" render={props => <FriendInput {...props} updateList={this.handleUpdateList} />} />
       </div>
     );
   }
