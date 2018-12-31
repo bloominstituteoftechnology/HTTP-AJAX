@@ -37,19 +37,24 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.list div {
+.list div, .list form {
   position: relative;
   width: 45%;
   text-align: center;
   border: 1px solid black;
   margin-bottom: 20px;
 }
-.list div span {
+.list div span, .list form span {
   font-weight: bold;
 }
-
-.list .delete {
+.list .icons {
   position: absolute;
   top: 5px;
   right: 5px;
+  display: flex;
+  width: auto;
+  border: none;
+}
+.list .icons .edit {
+  margin-right: 10px;
 }

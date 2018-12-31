@@ -1,14 +1,15 @@
 import React from 'react';
+import Friend from './Friend';
 
 const FriendsList = props => (
     <div className="list">
         {props.friends.map(friend => (
-            <div key={friend.id}>
-                <p><span>Name:</span> {friend.name}</p>
-                <p><span>Age:</span> {friend.age}</p>
-                <p><span>Email:</span> {friend.email}</p>
-                <span className="fas fa-times-circle delete" onClick={() => props.deleteFriend(friend.id)}></span>
-            </div>
+            <Friend name={friend.name}
+                email={friend.email}
+                id={friend.id}
+                key={friend.id}
+                deleteFriend={props.deleteFriend}
+            />
         ))}
     </div>
 );
