@@ -5,9 +5,9 @@ class Friend extends React.Component {
         super(props);
         this.state = {
             editing: false,
-            nameInput: '',
-            ageInput: '',
-            emailInput: '',
+            nameInput: this.props.name,
+            ageInput: this.props.age,
+            emailInput: this.props.email,
         };
     }
     handleInput = (e, type) => {
@@ -17,12 +17,9 @@ class Friend extends React.Component {
     handleEdit = (e) => {
         e.preventDefault();
         if (!this.state.nameInput || !this.state.ageInput || !this.state.emailInput) return alert('Please fill out all fields');
-        this.props.handleUpdate(this.state.nameInput, this.state.ageInput, this.state.emailInput);
+        this.props.handleUpdate(this.state.nameInput, this.state.ageInput, this.state.emailInput, this.props.id);
         this.setState({
             editing: false,
-            nameInput: '',
-            ageInput: '',
-            emailInput: '',
         });
     }
     render(){
