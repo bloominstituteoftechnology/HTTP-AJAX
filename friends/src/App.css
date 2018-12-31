@@ -43,6 +43,7 @@
   text-align: center;
   border: 1px solid black;
   margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 .list div span, .list form span {
   font-weight: bold;
@@ -54,6 +55,12 @@
   display: flex;
   width: auto;
   border: none;
+}
+.list .icons span {
+  cursor: pointer;
+}
+.list .icons span:active {
+  transform: translateY(1px);
 }
 .list .icons .edit {
   margin-right: 10px;

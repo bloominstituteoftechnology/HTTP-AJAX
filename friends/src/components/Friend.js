@@ -25,9 +25,30 @@ class Friend extends React.Component {
     render(){
         return this.state.editing ? (
             <form onSubmit={this.handleEdit}>
-                <p><span>Name:</span> <input type="text" placeholder="Name" value={this.state.nameInput} onChange={(e) => this.handleInput(e, 'name')} /></p>
-                <p><span>Age:</span> <input type="text" placeholder="Age" value={this.state.ageInput} onChange={(e) => this.handleInput(e, 'age')}  /></p>
-                <p><span>Email:</span> <input type="email" placeholder="Email" value={this.state.emailInput} onChange={(e) => this.handleInput(e, 'email')}  /></p>
+                <p>
+                    <span>Name:</span> 
+                    <input type="text" 
+                        placeholder="Name" 
+                        value={this.state.nameInput} 
+                        onChange={(e) => this.handleInput(e, 'name')} 
+                    />
+                </p>
+                <p>
+                    <span>Age:</span> 
+                    <input type="number" 
+                        placeholder="Age" 
+                        value={this.state.ageInput} 
+                        onChange={(e) => this.handleInput(e, 'age')}  
+                    />
+                </p>
+                <p>
+                    <span>Email:</span> 
+                    <input type="email" 
+                        placeholder="Email" 
+                        value={this.state.emailInput} 
+                        onChange={(e) => this.handleInput(e, 'email')}  
+                    />
+                </p>
                 <button>Modify</button>
                 <div className="icons">
                     <span className="fas fa-undo-alt edit" onClick={() => this.setState({ editing: false })}></span>
