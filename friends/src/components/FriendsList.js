@@ -2,11 +2,17 @@ import React from 'react';
 import Friend from './Friend';
 
 const FriendsList = props => {
-  return (
-		<div>
-			{props.friends.map(f => <Friend key={f.id} friend={f}/>)}
-		</div>
-	);
+	const { friends } = props;
+
+	if (friends < 1) return <h2>Loading...</h2>;
+		else {
+
+		return (
+			<div>
+				{friends.map(f => <Friend key={f.id} friend={f}/>)}
+			</div>
+		);
+	}
 };
 
 export default FriendsList;

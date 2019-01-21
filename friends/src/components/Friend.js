@@ -1,9 +1,11 @@
 import React from 'react';
 
 const Friend = props => {
+  const { friend } = props;
+
   return (
     <p>
-      {props.friend.name} | {props.friend.age} | {props.friend.email}
+      {friend.name} | {friend.age} | {friend.email}
     </p>
   );
 }
