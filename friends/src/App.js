@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import './App.css';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import "./App.css";
 
 class App extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -14,13 +13,12 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-    .get('http://localhost:5000/friends')
-    .then(response => {
-      console.log(response);
-      // this.setState should go below
-      this.setState({ friends: response.data })
-    })
-    .catch( err => console.log("you got an error:", err));
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        console.log(response);
+        this.setState({ friends: response.data });
+      })
+      .catch(err => console.log("you got an error:", err));
   }
   render() {
     return (
