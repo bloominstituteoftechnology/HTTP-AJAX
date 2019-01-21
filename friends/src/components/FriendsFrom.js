@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class FriendsForm extends React.Component {
   state = {
@@ -9,13 +10,22 @@ class FriendsForm extends React.Component {
     }
   }
 
-  addFriend = event => {
+addFriend = event => {
+  event.preventDefault()
+  axios
+    .post('http://localhost:5000/friends', this.state.friend)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+}
 
-  }
-
-  changeHandler = event => {
-    
-  }
+changeHandler = event => {
+  this.setState({
+    friend: {
+      ...this.state.friend,
+      [event.target.name]: event.target.value
+    }
+  })
+}
 
   render() {
     return (
