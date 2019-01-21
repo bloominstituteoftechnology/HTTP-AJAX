@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Friends = props => {
+const Friend = props => {
   return (
     <div></div>
   );
 }
 
-export default Friends;
+export default Friend;
