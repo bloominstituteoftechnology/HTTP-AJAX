@@ -20,6 +20,7 @@ class App extends React.Component {
       // this.setState should go below
       this.setState({ friends: response.data })
     })
+    .catch( err => console.log("you got an error:", err));
   }
   render() {
     return (
