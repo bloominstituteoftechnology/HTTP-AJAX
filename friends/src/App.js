@@ -4,6 +4,8 @@ import axios from "axios";
 import {Route, Link} from 'react-router-dom';
 import "./App.css";
 
+import FriendList from './Components/FriendList';
+
 class App extends React.Component{
   constructor() {
     super();
@@ -25,11 +27,11 @@ class App extends React.Component{
     return (
       <div className="App">
         <h1>Jamar works on HTTP-AJAX</h1>
-        {this.state.friends.map(friend => (
+        {/* {this.state.friends.map(friend => (
           <ul>{friend.name}</ul>
         ))
-        }
-        <Route exact path="/" />
+        } */}
+        <Route exact path="/" render={props => <FriendList {...props} friends={this.state.friends}/> }/>
         <Route path ="/friends" />
       </div>
     );
