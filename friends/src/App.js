@@ -18,7 +18,7 @@ class App extends Component {
     };
   }
 
-  // I don't know how  the best way is  to refresh this information without keeping state in two different places
+  // I don't know how the best way is  to refresh this information without keeping state in two different places
   componentDidMount(){
     axios.get('http://localhost:5000/friends')
     .then((result)=>{

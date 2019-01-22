@@ -57,7 +57,6 @@ app.get('/friends', (req, res) => {
 
 // find individual friend
 app.get('/friends/:id', (req, res) => {
-  console.log(typeof req.params.id)
   const friend = friends.find(friend=>req.params.id===`${friend.id}`)
   res.status(200).json({...friend});
 });
