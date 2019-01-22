@@ -4,7 +4,9 @@ import FriendForm from './FriendForm/FriendForm';
 
 const Friend = (props) => {
     const friend = props.friends? props.friends.find(friend=>`${friend.id}` === props.match.params.id):props.friend;
-    console.log(friend)
+    // console.log(friend)
+    // a bug I'm having is that if I go directly to this route I don't have the information for this component
+    // how do I handle something like this
     return ( 
         <div>
             <h3>{friend.name}</h3>
