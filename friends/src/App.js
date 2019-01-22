@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 import './App.css';
 import FriendsList from './Components/FriendsList';
+import  NavBar  from './Components/NavBar'
 
 
 class App extends Component {
@@ -27,7 +29,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <FriendsList friendsList={this.state.friends}/>
+        <Route exact path="/home" component={NavBar} />
+        <Route path="/friends" render={props=> <FriendsList friendsList={this.state.friends}  {...props}/>} />
+        
       </div>
     );
   }
