@@ -25,13 +25,11 @@ export default class FriendList extends React.Component {
         console.log(this.state.friends)
         return (
             <div className="friends-list">
-                <ul>
-                    {this.state.friends.map(friend => (
-                        <Link key={friend.id} to={'/friends'}>
-                            <Friend friend={friend} name={friend.name} email={friend.email} age={friend.age}/>
-                        </Link>
-                    ))}
-                </ul>
+                {this.state.friends.map(friend => (
+                    <Link key={friend.id} to={`friends/${friend.id}`}>
+                        <Friend friend={friend} name={friend.name} email={friend.email} age={friend.age}/>
+                    </Link>
+                ))}
             </div>
         )
     }
