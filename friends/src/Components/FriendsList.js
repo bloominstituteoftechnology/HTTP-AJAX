@@ -14,18 +14,12 @@ class FriendsList extends React.Component {
     // const { friendsList } = props;
     // console.log(friendsList)
 
-    componentDidMount(){
-        axios.get('http://localhost:5000/friends')
-        .then((result)=>{
-          // console.log(result);
-          this.setState({friends: result.data})
-        })
-      }
+    
 
     render() {
         return ( 
             <div className="list-container">
-                {this.state.friends.map(friend=><Friend friend={friend} key={friend.id} />)}
+                {this.props.friends.map(friend=><Friend friend={friend} key={friend.id} />)}
             </div> 
         );
     }
