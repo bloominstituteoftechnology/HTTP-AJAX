@@ -4,7 +4,8 @@ import { Route } from 'react-router-dom';
 
 import './App.css';
 import FriendsList from './Components/FriendsList';
-import  NavBar  from './Components/NavBar/NavBar';
+import NavBar from './Components/NavBar/NavBar';
+import FriendForm from './Components/FriendForm/FriendForm'
 
 
 class App extends Component {
@@ -21,7 +22,6 @@ class App extends Component {
       // console.log(result);
       this.setState({friends: result.data})
     })
-
   }
 
 
@@ -31,7 +31,7 @@ class App extends Component {
       <div className="App">
         <Route path="/" component={NavBar} />
         <Route path="/friends" render={props=> <FriendsList friendsList={this.state.friends}  {...props}/>} />
-        
+        <Route path="/addfriend" component={FriendForm} />
       </div>
     );
   }
