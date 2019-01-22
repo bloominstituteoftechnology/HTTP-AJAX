@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import { Route, NavLink } from 'react-router-dom'
+
 import axios from 'axios';
-import FriendsForm from './FriendsForm';
+
 
 class FriendsList extends Component {
     constructor () {
         super();
         this.state ={
             friends: [],
-            newFriend: {
-                name: '',
-                age: '',
-                email: '',
-            }
+            name: '',
+            age: '',
+            email: '',
         }
     }
 
@@ -24,7 +22,28 @@ class FriendsList extends Component {
                 this.setState(() => ({ friends: response.data })
             )})
             .catch(error => {
-                console.log('Server Error',error)})
+                console.log('Server Error', error)})
+    }
+
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value })
+    }
+
+    addFriend = () => {
+        const newFriendObj ={
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email,        
+        }
+    
+        axios
+            .post('http://localhost:5000/friends', newFriendObj)
+            .then(response => {
+                this.setState({friends: response.data})
+            })
+            .catch(error => {
+                console.log('Server Error', error)
+            })
     }
 
     render() {
@@ -37,14 +56,31 @@ class FriendsList extends Component {
                     })}
                 </div> 
                 <div>
-                    <NavLink exact to="/friendsform" >Add Friend</NavLink>
-                </div>
-                <div>
-                    <Route 
-                        path="/friendsfrom" 
-                        render={props => <FriendsForm {...props} newFriend={this.state.newFriend} />} 
-                    />
-                </div>       
+                    <form>
+                        <input 
+                            onChange={this.handleChange} 
+                            name="name" 
+                            value={this.state.name} 
+                            type="text" 
+                            placeholder="Name" 
+                        />
+                        <input 
+                            onChange={this.handleChange} 
+                            name="age" 
+                            value={this.state.age} 
+                            type="number" 
+                            placeholder="Age" 
+                        />
+                        <input 
+                            onChange={this.handleChange} 
+                            name="email" 
+                            value={this.state.email} 
+                            type="email" 
+                            placeholder="Email" 
+                        />                     
+                    </form>
+                    <button onClick={this.addFriend}>Add Friend</button>  
+                </div>         
             </div>
         )
     }
