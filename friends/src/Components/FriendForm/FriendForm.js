@@ -9,7 +9,8 @@ class FriendForm extends Component {
         this.state = { 
             name:'',
             age:'',
-            email:''
+            email:'',
+            location: this.props.location? this.props.location.pathname.split('/').reverse()[0]:null
         }
     }
 
@@ -31,16 +32,30 @@ class FriendForm extends Component {
         .catch(error=>console.log(error))
     }
 
+    editHandeler= event=>{
+        console.log(event);
+        event.preventDefault();
+        axios.put(`http://localhost:5000/friends${this.props.match.params.id}`,{
+            name:this.state.name,
+            age:this.state.age,
+            email:this.state.email
+        })
+        .then(response=>console.log(response))
+        .catch(error=>console.log(error))
+    }
+
     render() { 
+        //changes which handler to use based off the route
+        const handler = this.state.location==='update'?  this.editHandeler:this.submitHandler;
         return ( 
-            <form className="form-wrapper" onSubmit={this.submitHandler}>
+            <form className="form-wrapper" onSubmit={handler}>
                 <input type="text" 
                     className="input"
                     name="name"  
                     placeholder="enter your friend's name" 
                     value={this.state.name}
                     onChange= {this.changeHandler}
-                    onSubmit={this.submitHandler}
+                    onSubmit={handler}
                 />
 
                 <input type="text" 
@@ -49,7 +64,7 @@ class FriendForm extends Component {
                     placeholder="enter your friend's age" 
                     value={this.state.age}
                     onChange= {this.changeHandler}
-                    onSubmit={this.submitHandler}
+                    onSubmit={handler}
                 />
 
                 <input type="text" 
@@ -58,10 +73,10 @@ class FriendForm extends Component {
                     placeholder="enter your friend's email" 
                     value={this.state.email}
                     onChange= {this.changeHandler}
-                    onSubmit={this.submitHandler}
+                    onSubmit={handler}
                 />
 
-                <button className="btn" onClick={this.submitHandler}>Add A Friend!</button>
+                <button className="btn" onClick={handler}>{this.state.location==='update'?`Edit Friend!`:`Add A Friend!`}</button>
             </form>
         );
     }

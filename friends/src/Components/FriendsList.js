@@ -10,11 +10,6 @@ class FriendsList extends React.Component {
             friends:[]
         }
     }
-    // console.log(props)
-    // const { friendsList } = props;
-    // console.log(friendsList)
-
-    
 
     render() {
         return ( 
