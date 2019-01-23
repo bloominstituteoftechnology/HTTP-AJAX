@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Friend from './Friend'
+import AddFriend from './AddFriend.js'
+
 
 class FriendList extends Component {
     constructor(){
@@ -9,6 +11,7 @@ class FriendList extends Component {
             friends: []
         }
     }
+
     componentDidMount() {
         axios
           .get("http://localhost:5000/friends")
@@ -19,6 +22,18 @@ class FriendList extends Component {
           .catch( err => console.log("ERROR!!!"))
       }
     
+    formSubmit = (friend) => {
+        let newFriend = this.state.friends;
+        friend.id = this.state.friends.length + 1;
+        // console.log(newFriend)
+        // console.log(friend)
+        newFriend.push(friend)
+
+        this.setState({ friend:newFriend })
+        console.log(this.state.friends)
+    }
+
+
     render(){
         return (
             <div className="App">
@@ -27,10 +42,11 @@ class FriendList extends Component {
                         key = {friend.id}
                         name = {friend.name}
                         age = {friend.age}
-                        email = {friend.email}
-
-                    />
+                        email = {friend.email}/>
                 })}
+            
+            <AddFriend handler ={this.formSubmit}/>
+
             </div>
         )
     }
