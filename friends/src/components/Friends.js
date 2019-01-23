@@ -1,4 +1,5 @@
 import React from "react";
+import "./Friends.css";
 import axios from "axios";
 
 export default class Friends extends React.Component {
@@ -18,14 +19,30 @@ export default class Friends extends React.Component {
       })
       .catch(err => console.log(err));
   }
+  submit(e) {
+    e.preventDefault();
+    console.log(e);
+  }
   render() {
     return (
-      <div>
+      <>
         {this.state.friends &&
           this.state.friends.map(e => {
-            return <div>{JSON.stringify(e)}</div>;
+            return (
+              <div key={e.id}>
+                {e.name}, {e.age}, {e.email}
+              </div>
+            );
           })}
-      </div>
+        <form action="submit">
+          <input type="text" placeholder="Name" />
+          <input type="text" placeholder="Age" />
+          <input type="email" placeholder="Email" />
+          <button onClick={this.submit} onSubmit={this.submit}>
+            Submit
+          </button>
+        </form>
+      </>
     );
   }
 }
