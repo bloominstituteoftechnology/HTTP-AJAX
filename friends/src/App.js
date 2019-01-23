@@ -52,9 +52,8 @@ addNewFriend = (event) => {
         })
 }
 
-deleteFriend = (event, id) => {
-  event.preventDefault()
-  axios.delete(`http://localhost:5000/friends/${id}`)
+deleteFriend = (id) => {
+  return axios.delete(`http://localhost:5000/friends/${id}`)
     .then(response => this.setState({ friends: response.data}))
 }
 
