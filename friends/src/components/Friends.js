@@ -9,7 +9,8 @@ export default class Friends extends React.Component {
       friends: [],
       name: "",
       age: "",
-      email: ""
+      email: "",
+      id: null
     };
   }
   componentDidMount() {
@@ -30,6 +31,15 @@ export default class Friends extends React.Component {
         age: this.state.age,
         email: this.state.email
       })
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+  delete = (e, ids) => {
+    this.setState({ id: ids });
+    axios
+      .delete(`http://localhost:5000/friends/${ids}`)
       .then(res => {
         this.setState({ friends: res.data });
       })
@@ -58,7 +68,7 @@ export default class Friends extends React.Component {
         {this.state.friends &&
           this.state.friends.map(e => {
             return (
-              <div key={e.id}>
+              <div key={e.id} onClick={x => this.delete(x, e.id)}>
                 {e.name}, {e.age}, {e.email}
               </div>
             );
