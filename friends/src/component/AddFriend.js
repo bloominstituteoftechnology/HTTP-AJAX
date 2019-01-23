@@ -5,7 +5,7 @@ class AddFriend extends React.Component {
   state = {
     info: {
       name: "",
-      age: null,
+      age: "",
       email: ""
     }
   }
@@ -21,7 +21,7 @@ class AddFriend extends React.Component {
   addFriend = (event) => {
     event.preventDefault();
     this.props.addFriend(this.state.info);
-    this.setState({info: {name: "", age: null, email: ""}});
+    this.setState({info: {name: "", age: "", email: ""}});
     this.props.history.push("/");
   }
 
