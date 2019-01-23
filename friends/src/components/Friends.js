@@ -68,8 +68,11 @@ export default class Friends extends React.Component {
         {this.state.friends &&
           this.state.friends.map(e => {
             return (
-              <div key={e.id} onClick={x => this.delete(x, e.id)}>
-                {e.name}, {e.age}, {e.email}
+              <div key={e.id} className="people">
+                <div>
+                  {e.name}, {e.age}, {e.email}
+                </div>
+                <span onClick={x => this.delete(x, e.id)}>&times;</span>
               </div>
             );
           })}
