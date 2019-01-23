@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './App.css';
+import Cards from './cards';
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,6 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
         .then(response => {
-          console.log(response.data)
           this.setState({friends: response.data})
         })
         .catch( err => {
@@ -24,20 +24,10 @@ class App extends Component {
       }
 
   render() {
-    console.log(this.state.friends)
     return (
       <div className="App">
-        {this.state.friends.map( d => {
-          return (
-            <div key={d.id}>
-              <ul>
-                <li>{d.name}</li>
-                <li>{d.age}</li>
-                <li>{d.email}</li>
-              </ul>
-            </div>
-          )
-        })}
+      <h1>Your Friends</h1>
+        <Cards friends={this.state.friends} />
       </div>
     );
   }
