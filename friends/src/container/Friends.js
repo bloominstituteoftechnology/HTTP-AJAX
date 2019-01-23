@@ -12,10 +12,10 @@ class Friends extends React.Component {
     this.state = { 
       friends: [],
       updatedFriend: {}
-     }
+    }
   }
 
-  componentDidMount = () => {
+  componentDidMount = () => { // get the list of friends to show.
     axios.get("http://localhost:5000/friends")
     .then (res => {
       this.setState({friends: res.data});
@@ -26,13 +26,13 @@ class Friends extends React.Component {
   }
 
   addFriend = (friend) => {
-    // if(!friend.name || !friend.age || !friend.email) return;
+    if(!friend.name || !friend.age || !friend.email) return; // be sure the fields have a value
     const info = {
       name: friend.name,
       age: friend.age,
       email: friend.email
     };
-    axios.post('http://localhost:5000/friends', info)
+    axios.post('http://localhost:5000/friends', info) // Add friend to the list of friends
     .then( (res) => {
       this.setState({friends: res.data})
     })
@@ -42,7 +42,7 @@ class Friends extends React.Component {
   }
 
   deleteFriend = (id) => {
-    const url = `http://localhost:5000/friends/${id}`;
+    const url = `http://localhost:5000/friends/${id}`; //delete selected friend
     axios.delete(url)
     .then( res => {
       this.setState({friends: res.data})
@@ -53,13 +53,13 @@ class Friends extends React.Component {
   }
 
   GetUpdatedInfo = (id, friend) => {
-    this.setState({updatedFriend: friend});
-    this.props.history.push(`/update/${id}`);
+    this.setState({updatedFriend: friend}); // save the information about the friend to be updated
+    this.props.history.push(`/update/${id}`); // show the update form
   }
 
   updateFriend = (friend, id) => {
     const url = `http://localhost:5000/friends/${id}`;
-    axios.put(url, friend)
+    axios.put(url, friend)  //update friend with the information from the form
     .then( (res) => {
       this.setState({friends: res.data})
     })
@@ -75,8 +75,8 @@ class Friends extends React.Component {
               <Friend 
                 key={friend.id} 
                 friend={friend} 
-                update={this.GetUpdatedInfo}
-                delete={this.deleteFriend}
+                update={this.GetUpdatedInfo} // Called when clicking on the pen icon
+                delete={this.deleteFriend} // Called when clicking on the - icon 
               />)}
         </FriendsWrapper>
         <BtnWrapper><Btn onClick={() => this.props.history.push("/add")}>Add Friend</Btn></BtnWrapper>

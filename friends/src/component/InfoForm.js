@@ -5,13 +5,13 @@ class InfoForm extends React.Component {
   state = {
     info: {
       name: "",
-      age: "",
+      age: null,
       email: ""
     }
   }
 
   componentDidMount = () => {
-    if(this.props.info) {
+    if(this.props.info) { // populate the form fields with previous data, if available.
       this.setState({info: this.props.info});
     }
   }
@@ -27,8 +27,8 @@ class InfoForm extends React.Component {
   onSubmitAction = (event) => {
     event.preventDefault();
     this.props.action(this.state.info, this.props.match.params.id);
-    this.setState({info: {name: "", age: "", email: ""}});
-    this.props.history.push("/");
+    this.setState({info: {name: "", age: null, email: ""}}); // reset the form fields
+    this.props.history.push("/"); // remove the form from view
   }
 
   render() {
@@ -38,7 +38,7 @@ class InfoForm extends React.Component {
         <label htmlFor="name">Name:</label>
         <input type="text" name="name" value={this.state.info.name} onChange={this.saveInput}/>
         <label htmlFor="age">age:</label>
-        <input type="text" name="age" value={this.state.info.age} onChange={this.saveInput}/>
+        <input type="number" name="age" value={this.state.info.age} onChange={this.saveInput}/>
         <label htmlFor="email">email:</label>
         <input type="email" name="email" value={this.state.info.email} onChange={this.saveInput}/>
         <Btn type="submit">Submit</Btn>
