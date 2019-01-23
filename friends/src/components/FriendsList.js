@@ -27,23 +27,23 @@ class FriendsList extends React.Component {
       });
   }
 
-render(){
-  return(
-    <div>
-      <h1 className="friends-title">These are my friends:</h1>
-      <div className="friends-list">
-        {this.state.friends.map(friend => (
-          <div className="friend-card">
-            <h3 className="friend-name">Name: {friend.name}</h3>
-            <div>Age: {friend.age}</div>
-            <div>Email: {friend.email}</div>
-          </div>
-          ))}
+  render(){
+    return(
+      <div>
+        <h1 className="friends-title">These are my friends:</h1>
+        <div className="friends-list">
+          {this.state.friends.map(friend => (
+            <div className="friend-card">
+              <h3 className="friend-name">Name: {friend.name}</h3>
+              <div>Age: {friend.age}</div>
+              <div>Email: {friend.email}</div>
+            </div>
+            ))}
+        </div>
+          
       </div>
-        
-    </div>
-  )
-}
+    )
+  }
 
 }
 

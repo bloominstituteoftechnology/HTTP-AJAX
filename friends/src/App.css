@@ -4,8 +4,25 @@
   margin: 0 auto;
 }
 
+.navlink {
+  padding: 10px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #323232;
+  display: inline-block;
+  transition: all .3s ease-out;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.navlink:hover {
+  color: darksalmon;
+  background: #323232;
+}
 .friends-title {
   text-align: center;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .friends-list {
@@ -19,8 +36,13 @@
   border: 1px solid lightseagreen;
   width: 25%;
   max-width: 300px;
-  padding: 10px;
+  padding: 30px;
   margin: 5px;
+  transition: all .3s ease-out;
+}
+.friend-card:hover {
+  background: lightseagreen;
+  color: #ffffff;
 }
 
 .friend-name {
