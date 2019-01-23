@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Friend from './Friend'
 import AddFriend from './AddFriend.js'
+import FriendCard from './FriendCard';
+import { Link } from 'react-router-dom';
 
 
 class FriendList extends Component {
@@ -27,21 +29,31 @@ class FriendList extends Component {
         friend.id = this.state.friends.length + 1;
         // console.log(newFriend)
         // console.log(friend)
+        // console.log(this.state.friends)
         newFriend.push(friend)
         this.setState({ friend:newFriend })
-        // console.log(this.state.friends)
     }
 
 
     render(){
         return (
             <div className="App">
+
                 {this.state.friends.map (friend => {
-                    return <Friend 
-                        key = {friend.id}
-                        name = {friend.name}
-                        age = {friend.age}
-                        email = {friend.email}/>
+                    return(
+                        <div>
+                            <Link to={`/friends/${friend.id}`}>
+
+                                <FriendCard
+                                    key = {friend.id}
+                                    id = {friend.id}
+                                    name = {friend.name}
+                                    age = {friend.age}
+                                    email = {friend.email}/>
+                        
+                            </Link>
+                        </div>
+                    ) 
                 })}
             
             <AddFriend handler ={this.formSubmit}/>
