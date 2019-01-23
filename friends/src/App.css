@@ -48,3 +48,31 @@
 .friend-name {
   margin: 0;
 }
+.friend-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.friend-form-title {
+  text-align: center;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.friend-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.friend-form input {
+  padding: 5px;
+  font-size: 1.3rem;
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: 10px;
+}
