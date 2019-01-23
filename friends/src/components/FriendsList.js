@@ -25,10 +25,10 @@ class FriendsList extends Component {
       <div className="friends-list">
       <h1>Friends</h1>
       {this.state.friends.map(friend => (
-        <div key ={friend.id}>
-          <h2>Name: {friend.name}</h2>
-          <h2>Age: {friend.age}</h2>
-          <h2>Email: {friend.mail}</h2>
+        <div className="friend-card" key ={friend.id}>
+          <h2> Name: {friend.name}; </h2>
+          <h2> Age: {friend.age}; </h2>
+          <h2> Email: {friend.email}; </h2>
         </div>
       ))}
     </div>
