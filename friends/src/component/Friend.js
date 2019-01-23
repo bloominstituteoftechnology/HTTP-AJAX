@@ -16,6 +16,7 @@ const Friend = (props) => {
           <label>Email: </label>
           <Info>{props.friend.email}</Info>
         </FriendWrapper>
+        <i className="fas fa-pen" onClick={() => props.update(props.friend.id, props.friend)}></i>
         <i className="fas fa-minus-circle" onClick={() => props.delete(props.friend.id)}></i>
       </Card>
     </Roll>

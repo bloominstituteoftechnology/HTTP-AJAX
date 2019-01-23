@@ -4,7 +4,7 @@ export const FriendsWrapper = styled.div`
   max-width: 600px;
   width: 50%;
   border: 5px solid #6b0404;
-  margin: 50px auto;
+  margin: 30px auto;
   padding: 10px;
   font-size: 1.8rem;
   background-color: #f7decf;
@@ -15,7 +15,7 @@ export const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   i {
-    margin-right: 50px;
+    margin-right: 30px;
   }
 `
 
@@ -56,22 +56,23 @@ export const Btn = styled.button`
   }
 `
 
-export const AddForm = styled.form`
+export const FormWrapper = styled.form`
   width: 40%;
   border: 5px solid #6b0404;
-  margin: 50px auto;
+  margin: 30px auto;
   padding: 10px;
   background-color: #f7decf;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-family: 'Staatliches', cursive;
   
   input {
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #913f3f;
+    font-size: 1.5rem;
     outline: none;
     :hover {
       background-color: #913f3f;

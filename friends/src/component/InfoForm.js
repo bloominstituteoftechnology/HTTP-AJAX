@@ -1,12 +1,18 @@
 import React from 'react';
-import { AddForm, Btn } from '../styles/friendStyles';
+import { FormWrapper, Btn } from '../styles/friendStyles';
 
-class AddFriend extends React.Component {
+class InfoForm extends React.Component {
   state = {
     info: {
       name: "",
       age: "",
       email: ""
+    }
+  }
+
+  componentDidMount = () => {
+    if(this.props.info) {
+      this.setState({info: this.props.info});
     }
   }
 
@@ -18,26 +24,27 @@ class AddFriend extends React.Component {
     this.setState({info: info});
   }
 
-  addFriend = (event) => {
+  onSubmitAction = (event) => {
     event.preventDefault();
-    this.props.addFriend(this.state.info);
+    this.props.action(this.state.info, this.props.match.params.id);
     this.setState({info: {name: "", age: "", email: ""}});
     this.props.history.push("/");
   }
 
   render() {
     return ( 
-      <AddForm onSubmit={this.addFriend}>
+      <FormWrapper onSubmit={this.onSubmitAction}>
+        <h2>{this.props.message}</h2>
         <label htmlFor="name">Name:</label>
         <input type="text" name="name" value={this.state.info.name} onChange={this.saveInput}/>
         <label htmlFor="age">age:</label>
         <input type="text" name="age" value={this.state.info.age} onChange={this.saveInput}/>
         <label htmlFor="email">email:</label>
         <input type="email" name="email" value={this.state.info.email} onChange={this.saveInput}/>
-        <Btn type="submit">Add</Btn>
-      </AddForm>
+        <Btn type="submit">Submit</Btn>
+      </FormWrapper>
     );
   }
 }
  
-export default AddFriend;
+export default InfoForm;
