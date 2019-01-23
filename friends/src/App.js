@@ -17,14 +17,18 @@ class App extends Component {
       this.setState({friendsList: response.data})
     })
     .catch(error => {
-      this.setState({errorMessage: error})
+      console.log(error)
+      this.setState({errorMessage: error.message})
     })
   }
 
   render() {
     return (
       <div className="App">
-        hello world!
+        {this.state.errorMessage && <h4>{this.state.errorMessage}</h4>}
+        {this.state.friendsList.map(friend => {
+          return <div>{friend.name}, age: {friend.age}, email: {friend.email}</div>
+        })}
       </div>
     );
   }
