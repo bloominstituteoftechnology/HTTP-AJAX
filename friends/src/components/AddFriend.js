@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 
 class AddFriend extends Component {
     constructor() {
@@ -27,12 +29,26 @@ class AddFriend extends Component {
 
     formHandler = event => {
         event.preventDefault();
-        this.props.handler({ 
-            id:this.state.id,
-            name:this.state.inputName, 
-            age: this.state.inputAge,
-            email: this.state.inputEmail
-        })
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if(!this.state.inputName  
+            || !this.state.inputEmail) {
+            alert("Name or Email can't be blank!")
+        }
+        if(this.state.inputAge <= 18){
+            alert("You're too young to be my friend")
+        }
+        if(!filter.test(this.state.inputEmail)) {
+            alert("Need a valid email address")
+        }
+        else {
+            this.props.handler({ 
+                id:this.state.id,
+                name:this.state.inputName, 
+                age: this.state.inputAge,
+                email: this.state.inputEmail
+            })
+        }
         this.setState({ 
             inputName: "",
             inputAge: 0,
@@ -48,23 +64,24 @@ class AddFriend extends Component {
                         type="text" 
                         placeholder="Name"
                         onChange = {this.nameChange}
-                        value = {this.state.inputName}
+                        value= {this.state.inputName}
                         ></input>
 
                         <br/>
 
                 Age: <input 
                         type="text"
-                        value = {this.state.inputAge}
                         onChange = {this.ageChange}
+                        value={this.state.inputAge}
                         />
 
                         <br/>
 
                 Email: <input 
-                        type="text" 
+                        type="email" 
                         placeholder="Email"
                         onChange = {this.emailChange}
+                        value = {this.state.inputEmail}
                         /> 
                         <br/>
 
@@ -72,6 +89,14 @@ class AddFriend extends Component {
             </form>
         )
     }
+}
+
+AddFriend.propTypes = {
+	AddFriend: PropTypes.shape({
+	    nameChange: PropTypes.string,
+		inputAge: PropTypes.number,
+		emailChange: PropTypes.string
+	})
 }
 
 export default AddFriend;

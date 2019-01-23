@@ -28,9 +28,8 @@ class FriendList extends Component {
         // console.log(newFriend)
         // console.log(friend)
         newFriend.push(friend)
-
         this.setState({ friend:newFriend })
-        console.log(this.state.friends)
+        // console.log(this.state.friends)
     }
 
 
