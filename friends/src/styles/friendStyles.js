@@ -54,6 +54,10 @@ export const Btn = styled.button`
     color: #fff;
     background-color: #913f3f;
   }
+  :disabled {
+    color: #ccc;
+    cursor: not-allowed; 
+  }
 `
 
 export const FormWrapper = styled.form`
