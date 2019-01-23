@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import FriendsList from './components/FriendsList';
-import FriendsFrom from './components/FriendsFrom';
+import FriendsForm from './components/FriendsForm';
 import './App.css';
 
 class App extends Component {
@@ -11,6 +11,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.requestFriends();
+  }
+
+  requestFriends = () => {
     axios
       .get('http://localhost:5000/friends')
       .then(res => this.setState({ friends: res.data }))
@@ -20,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsFrom />
+        <FriendsForm submitted={this.requestFriends} />
         <FriendsList friends={this.state.friends} />
       </div>
     );
