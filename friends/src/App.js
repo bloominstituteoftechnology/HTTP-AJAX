@@ -14,13 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/friends")
-      .then(response => {
-        console.log(response);
-        this.setState({ friends: response.data });
-      })
-      .catch(err => console.log(err));
+    this.updateState();
   }
 
   updateState = () => {
@@ -46,9 +40,7 @@ class App extends Component {
         <Route
           path="/addfriend"
           render={props => {
-            return (
-              <AddFriendForm {...props} refresh={this.componentDidMount} />
-            );
+            return <AddFriendForm {...props} refresh={this.updateState} />;
           }}
         />
       </div>
