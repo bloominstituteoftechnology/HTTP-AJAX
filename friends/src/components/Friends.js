@@ -6,7 +6,10 @@ export default class Friends extends React.Component {
   constructor() {
     super();
     this.state = {
-      friends: []
+      friends: [],
+      name: "",
+      age: "",
+      email: ""
     };
   }
   componentDidMount() {
@@ -19,10 +22,36 @@ export default class Friends extends React.Component {
       })
       .catch(err => console.log(err));
   }
-  submit(e) {
+  submit = e => {
     e.preventDefault();
-    console.log(e);
-  }
+    axios
+      .post("http://localhost:5000/friends", {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+  name = e => {
+    this.setState({
+      name: e.target.value
+    });
+  };
+  age = e => {
+    if (typeof e.target.value !== "number") {
+      this.setState({
+        age: e.target.value
+      });
+    }
+  };
+  email = e => {
+    this.setState({
+      email: e.target.value
+    });
+  };
   render() {
     return (
       <>
@@ -35,9 +64,24 @@ export default class Friends extends React.Component {
             );
           })}
         <form action="submit">
-          <input type="text" placeholder="Name" />
-          <input type="text" placeholder="Age" />
-          <input type="email" placeholder="Email" />
+          <input
+            type="text"
+            onChange={this.name}
+            value={this.state.name}
+            placeholder="Name"
+          />
+          <input
+            type="number"
+            onChange={this.age}
+            value={this.state.age}
+            placeholder="Age"
+          />
+          <input
+            type="email"
+            onChange={this.email}
+            value={this.state.email}
+            placeholder="Email"
+          />
           <button onClick={this.submit} onSubmit={this.submit}>
             Submit
           </button>
