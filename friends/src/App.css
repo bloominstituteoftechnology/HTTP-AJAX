@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
 
 .App-header {
   background-color: #282c34;
@@ -18,15 +14,19 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.friend-wrapper{
+  border-top: silver solid 1px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.friend-card {
+  border: silver solid 1px;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 2%;
+  box-shadow: 3px -4px 5px -1px #C0C0C0;
 }
+
