@@ -14,7 +14,7 @@ addFriend = event => {
   event.preventDefault()
   axios
     .post('http://localhost:5000/friends', this.state.friend)
-    .then(res => console.log(res))
+    .then(res => {this.props.submitted()})
     .catch(err => console.log(err));
 }
 
@@ -29,7 +29,7 @@ changeHandler = event => {
 
   render() {
     return (
-      <from>
+      <form>
         <input
           name="name"
           onChange={this.changeHandler}
@@ -52,7 +52,7 @@ changeHandler = event => {
           value={this.state.friend.email}
         />
         <button onClick={this.addFriend} type="submit">Add Friend</button>
-      </from>
+      </form>
     );
   }
 }
