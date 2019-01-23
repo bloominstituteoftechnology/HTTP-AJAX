@@ -8,7 +8,7 @@ class App extends Component {
       friends: []
     };
   }
-  componentdidMount() {
+  componentDidMount() {
     axios
       .get("http://localhost:5000/friends")
       .then(res => this.setState({ friends: res.data }))
