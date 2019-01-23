@@ -2,11 +2,11 @@ import React from 'react'
 
 const NewFriend = props => {
     return(
-        <form onSubmit={props.submitFriend}>
-            <input type="text" name="name" placeholder="Friends Name" required/>
-            <input type="text" name="email" placeholder="Friends E-Mail" required/>
-            <input type="number" name="age" placeholder="Friends Age" required/>
-            <button type="submit">Submit</button>
+        <form onSubmit={props.updating ? props.handleUpdate : props.submitFriend} onChange={props.handleChange}>
+            <input type="text" name="name" value={props.nameValue} placeholder="Friends Name" required/>
+            <input type="text" name="email" value={props.emailValue} placeholder="Friends E-Mail" required/>
+            <input type="number" name="age" value={props.ageValue} placeholder="Friends Age" required/>
+            <button type="submit">{props.updating ? 'Update' : 'Submit'}</button>
         </form>
     )
 }

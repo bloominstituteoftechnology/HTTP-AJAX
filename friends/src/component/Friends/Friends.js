@@ -12,7 +12,7 @@ const Friends = props => {
                             <li>{friend.age}</li>
                         </ul>
                         <button onClick={e => props.deleteFriend(e, friend.id)}>x</button>
-                        <button onClick={e => props.updateFriend(e,friend)}>Update</button>
+                        <button onClick={e => props.updateFriend(e, friend)}>Update</button>
                     </div>
                 )
             })}

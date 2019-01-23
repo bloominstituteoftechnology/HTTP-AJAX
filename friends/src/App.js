@@ -11,6 +11,11 @@ class App extends React.Component {
     super()
     this.state = {
       friends: '',
+      name: '',
+      email: '',
+      age: '',
+      updating: false,
+      updatingId: ''
     }
   }
 
@@ -31,7 +36,10 @@ class App extends React.Component {
           age: e.target.age.value,
           id: Date.now()
         }
-      ]
+      ],
+      name:'',
+      email:'',
+      age:'',
     })
     axios.post('http://localhost:5000/friends', {
         name: e.target.name.value,
@@ -39,15 +47,40 @@ class App extends React.Component {
         age: e.target.age.value,
         id: Date.now()
     })
-    e.target.name.value = '';
-    e.target.email.value = '';
-    e.target.age.value = '';
   }
 
   updateFriend = (e,friend) => {
-    // form.name.value = friend.name;
-    // form.email.value = friend.email;
-    // form.age.value = friend.age;
+    this.setState({
+      name: friend.name,
+      email: friend.email,
+      age: friend.age,
+      updating: true,
+      updatingId: friend.id
+    })
+  }
+
+  submitUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/friends/${this.state.updatingId}`, {
+          name: this.state.name,
+          email: this.state.email,
+          age: this.state.age,
+      })
+      .then(res => this.setState({
+          friends: res.data,
+          name: '',
+          email: '',
+          age: '',
+          updating: false
+      }))
+      .catch(err => console.log(err))
+  }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
 
   deleteFriend = (e, id) => {
@@ -63,9 +96,20 @@ class App extends React.Component {
     return (
       <div className="App">
       <NewFriend 
+        handleChange={this.handleChange}
         submitFriend={this.submitFriend} 
+        handleUpdate={this.submitUpdate}
+        nameValue={this.state.name}
+        ageValue={this.state.age}
+        emailValue={this.state.email}
+        updating={this.state.updating}
       />
-      {this.state.friends ? <Friends updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} friendsList={this.state.friends}/> : <h2>loading...</h2>}
+      {this.state.friends ? 
+      <Friends 
+        updateFriend={this.updateFriend} 
+        deleteFriend={this.deleteFriend} 
+        friendsList={this.state.friends}
+      /> : <h2>loading...</h2>}
       </div>
     );
   }
