@@ -1,11 +1,12 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import Friends from './container/Friends';
 
 const App = () => {
 
     return (
-      <Friends />
+      <Route path="/" component={Friends} />
     );
 
   }
