@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import Friend from './Friend'
 
 class FriendList extends Component {
     constructor(){
@@ -13,7 +13,7 @@ class FriendList extends Component {
         axios
           .get("http://localhost:5000/friends")
           .then(response => {
-                console.log("response:", response);
+                // console.log("response:", response);
                 this.setState({friends: response.data})
           })
           .catch( err => console.log("ERROR!!!"))
@@ -23,15 +23,13 @@ class FriendList extends Component {
         return (
             <div className="App">
                 {this.state.friends.map (friend => {
-                    return (
-                    <div>
-                        <h4>{friend.id}. {friend.name}</h4>
-                        <h4>Age: {friend.age}</h4>
-                        <h4>Email: {friend.email}</h4>
+                    return <Friend 
+                        key = {friend.id}
+                        name = {friend.name}
+                        age = {friend.age}
+                        email = {friend.email}
 
-                        <h2>---------------------------------------</h2>
-                    </div>
-                    )
+                    />
                 })}
             </div>
         )

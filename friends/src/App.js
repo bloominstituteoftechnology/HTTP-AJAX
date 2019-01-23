@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
 import FriendList from './components/FriendList.js'
-
+import AddFriend from './components/AddFriend.js'
 
 class App extends Component {
   
@@ -11,6 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <FriendList />
+        <AddFriend />
       </div>
     );
   }
