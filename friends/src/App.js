@@ -4,7 +4,6 @@ import axios from 'axios'
 import Friends from './component/Friends/Friends'
 import NewFriend from './component/Friends/NewFriend'
 import './App.css';
-import { format } from 'url';
 
 class App extends React.Component {
   constructor(){
