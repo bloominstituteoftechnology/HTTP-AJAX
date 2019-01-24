@@ -5,7 +5,7 @@ function FriendForm (props) {
   return (
     <div className="form-container">
         <h2>Add New Friend</h2>
-    <form onSubmit={handleSubmit}>
+     <form onSubmit={props.handleChanges}> 
         <input 
             type="text"
             name="name"
@@ -24,12 +24,13 @@ function FriendForm (props) {
         <div className="baseline" />
         <input 
             type="text"
-            name="name"
-            value={props.friend.name}
-            placeholder="Name"
+            name="email"
+            value={props.friend.email}
+            placeholder="Email"
             onChange={props.handleChanges}
         />
         <div className="baseline" />
+        <button className="form-button"onClick={props.addFriend}>Submit</button>
 
     </form>
       

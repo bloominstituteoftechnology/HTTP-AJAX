@@ -32,11 +32,35 @@ class App extends Component {
     })
   }
 
+  handleChanges = e => {
+    e.preventDefault();
+    e.persist();
+    this.setState( prevState => {
+      return{ 
+        friend: {
+          ...prevState.friend,
+          [e.target.name]: e.target.value
+        }
+      }
+      
+    })
+  }
+
+  addFriend= () =>{
+    axios
+      .post(`${baseURL}/friends`, this.state.friend)
+      .then(res =>{ this.setState
+        ({ friends: res.data})
+  })
+      .catch(err => console.log(err))
+}
   render() {
     return (
       <div className="App">
          <h1>Hello Friends!</h1>
-          <FriendForm friend={this.state.friend}/>
+          <FriendForm friend={this.state.friend}
+            handleChanges={this.handleChanges}
+            addFriend={this.addFriend}/>
          <Friend friends={this.state.friends} />
          
       </div>
