@@ -2,7 +2,7 @@ import React from "react";
 
 function FriendForm(props) {
     return (
-        <form onSubmit={props.addFriend}>
+        <form>
             <input
                 type="text"
                 name="name"
@@ -24,6 +24,7 @@ function FriendForm(props) {
                 placeholder="Email"
                 onChange={props.handleChanges}
             />
+            <button onClick={props.addFriend}>Submit New Friend!</button>
         </form>
     )
 }

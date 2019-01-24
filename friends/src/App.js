@@ -36,7 +36,7 @@ class App extends Component {
     this.setState(prevState => {
       return {
         newFriend: {
-          ...prevState.newItem,
+          ...prevState.newFriend,
         [e.target.name]: e.target.value
         }
       }
@@ -44,18 +44,25 @@ class App extends Component {
   }
 
   addFriend = e => {
-
+    console.log("Submitted!")
+    e.preventDefault();
+    axios
+      .post(`http://localhost:5000/friends`, this.state.newFriend)
+      .then(response => {
+        this.setState({friendsList: response.data})
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
     return (
       <div className="App">
-        <Link exact to="/" >Friends List</Link>
+        <Link to="/" >Friends List</Link>
         <Link to="/add-friend">Friend Form</Link>
         <h1>Friends:</h1>
         {this.state.errorMessage && <h4>{this.state.errorMessage}</h4>}
         <Route 
-        exact path= "/"
+        path= "/"
         render={props =>
           <FriendList 
             {...props} 
