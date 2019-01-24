@@ -45,10 +45,21 @@ class App extends Component {
       });
   };
 
+  deleteFromServer = id => {
+    axios
+    .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     return (
       <AppContainer>
-        <FriendsList friends={this.state.friends}/>
+        <FriendsList friends={this.state.friends} deleteFromServer={this.deleteFromServer}/>
         <InputForm postToServer={this.postToServer}/>
       </AppContainer>
     );

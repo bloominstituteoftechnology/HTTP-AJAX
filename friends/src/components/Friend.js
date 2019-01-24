@@ -26,11 +26,15 @@ const CloseButton = styled.button`
 `;
 
 const Friend = props => {
+
+  const handleClick = e => {
+    props.deleteFromServer(props.friend.id);
+  };
   return (
     <FriendCard>
       <Name>
         {props.friend.name}
-        <CloseButton>X</CloseButton>
+        <CloseButton onClick={handleClick}>X</CloseButton>
       </Name>
       <div>
         Age: {props.friend.age}
