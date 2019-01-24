@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import FriendsList from './components/FriendsList';
+import InputForm from './components/InputForm';
 import axios from 'axios';
-import './App.css';
+import styled from 'styled-components';
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 
 class App extends Component {
   constructor(){
@@ -12,10 +19,26 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:5000/friends')
+    axios
+    .get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response);
         this.setState({friends: response.data});
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  postToServer = info => {
+    axios
+    .post('http://localhost:5000/friends', info)
+      .then(response => {
+        this.setState({
+          friends: [
+            ...this.state.friends,
+            info
+          ]
+        });
       })
       .catch(err => {
         console.log(err);
@@ -24,9 +47,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <AppContainer>
         <FriendsList friends={this.state.friends}/>
-      </div>
+        <InputForm postToServer={this.postToServer}/>
+      </AppContainer>
     );
   }
 }
