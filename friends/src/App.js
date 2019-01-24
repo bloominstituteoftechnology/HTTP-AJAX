@@ -5,6 +5,7 @@ import {Route, Link} from 'react-router-dom';
 import "./App.css";
 
 import FriendList from './Components/FriendList';
+import FriendFrom from './Components/FriendForm';
 
 class App extends React.Component{
   constructor() {

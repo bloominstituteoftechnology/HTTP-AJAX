@@ -19,7 +19,7 @@ border-radius: 20px;
 const FriendList = props => {
     const friends = props.friends;
    const friendArray = friends.map( (friend, key) => 
-  <ul key={friend.id}>  <div className="friendContainer">{friend.name}</div> {friend.age} {friend.email} </ul>
+  <ul key={friend.id}>  <div className="friendContainer">{friend.name} {friend.age} {friend.email}</div>  </ul>
   );
       return(
             <FriendListDiv>
