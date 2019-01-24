@@ -11,13 +11,13 @@ const Header = styled.div`
 
 
 export const FriendsList = props => 
-   
     <Header>
         {props.friends.map((friend) => 
             <Friend
                 friend={friend}
                 key={friend.id}
-                handleClick = {props.handleClick}
+                handleEdit = {props.handleEdit}
+                handleDelete = {props.handleDelete}
             />
         )}
     </Header>

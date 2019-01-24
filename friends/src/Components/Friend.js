@@ -26,13 +26,13 @@ font-weight: 500;
 
 export const Friend = props => 
 
-    
     <Header>
         <H2>{props.friend.name}</H2>
         <CardText>Age: {props.friend.age}</CardText>
         <CardText>Email: {props.friend.email}</CardText>
         <br></br>
-        <Button outline color="danger" onClick = { () => props.handleClick(props.friend) }>Edit</Button>
+        <Button outline color="danger" onClick={ () => props.handleEdit(props.friend.id) }>Edit</Button>
+        <Button outline color="danger" onClick = { () => props.handleDelete(props.friend.id) }>Delete</Button>
     </Header>
     ;
 

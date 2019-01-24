@@ -6,22 +6,3 @@
   margin: 15px;
 }
 
-.friendList {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.friendList .friendContainer {
-  background:#00274c;
-  width: 30%;
-  padding: 10px 2%;
-  margin: 20px auto;
-}
-
-.friendList .friendContainer h2 {
-  color:  #ffcb05;
-  letter-spacing: 1px;
-  font-size: 2rem;
-  font-weight: 500;
-}
