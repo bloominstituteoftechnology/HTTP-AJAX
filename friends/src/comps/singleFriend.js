@@ -15,6 +15,7 @@ const SingleFriend = props => {
       email={friend.email}
       key={friend.id}
       id={friend.id}
+      deleteFriend={props.deleteFriend}
     />
   );
 };

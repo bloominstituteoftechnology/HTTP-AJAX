@@ -1,0 +1,59 @@
+.formCont {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    .name {
+      display: flex;
+      width: 100%;
+      margin-top: 15px;
+
+      label {
+        width: 20%;
+        text-align: left;
+      }
+
+      input {
+        width: 89%;
+      }
+    }
+    .age {
+      display: flex;
+      width: 100%;
+      margin-top: 15px;
+
+      label {
+        width: 20%;
+        text-align: left;
+      }
+
+      input {
+        width: 89%;
+      }
+    }
+    .email {
+      display: flex;
+      width: 100%;
+      margin-top: 15px;
+
+      label {
+        width: 20%;
+        text-align: left;
+      }
+
+      input {
+        width: 89%;
+      }
+    }
+
+    button {
+      margin-top: 15px;
+      width: 82%;
+    }
+  }
+}

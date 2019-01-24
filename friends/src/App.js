@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './App.scss';
 import axios from 'axios';
 import {Route} from 'react-router-dom';
 import FriendWrapp from './comps/friendWrapp.js';
@@ -27,6 +27,13 @@ class App extends Component {
     this.setState({friends: friends.data});
   };
 
+  deleteFriend = friend => {
+    axios
+      .delete(`http://www.localhost:5000/friends/${friend}`)
+      .then(res => this.setState({friends: res.data}))
+      .catch(err => console.log(err));
+  };
+
   render() {
     // console.log(this.state.friends);
     return (
@@ -36,7 +43,11 @@ class App extends Component {
           exact
           path="/friends"
           render={props => (
-            <FriendWrapp friends={this.state.friends} {...props} />
+            <FriendWrapp
+              friends={this.state.friends}
+              {...props}
+              deleteFriend={this.deleteFriend}
+            />
           )}
         />
         <Route
@@ -49,7 +60,11 @@ class App extends Component {
           exact
           path="/friends/:id"
           render={props => (
-            <SingleFriend {...props} friends={this.state.friends} />
+            <SingleFriend
+              {...props}
+              friends={this.state.friends}
+              deleteFriend={this.deleteFriend}
+            />
           )}
         />
         <Route
@@ -60,6 +75,7 @@ class App extends Component {
               {...props}
               friends={this.state.friends}
               updateState={this.updateFriends}
+              deleteFriend={this.deleteFriend}
             />
           )}
         />

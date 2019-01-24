@@ -1,0 +1,27 @@
+.navCont {
+  width: 100%;
+  margin: 15px 0px;
+  background-color: #477087;
+
+  .navBar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 10px;
+
+    .navButton {
+      background-color: white;
+      border-radius: 15px;
+      padding: 5px 15px;
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #062b38;
+        color: white;
+      }
+    }
+  }
+}

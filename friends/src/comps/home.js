@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/navBar.scss';
 
 const Home = props => {
   const friendsButton = () => {
@@ -16,13 +17,13 @@ const Home = props => {
   return (
     <div className="navCont">
       <nav className="navBar">
-        <button className="home" onClick={homeButton}>
+        <button className="navButton" onClick={homeButton}>
           Home
         </button>
-        <button className="friends" onClick={friendsButton}>
+        <button className="navButton" onClick={friendsButton}>
           Friends
         </button>
-        <button className="addFriend" onClick={addButton}>
+        <button className="navButton" onClick={addButton}>
           Add Friend
         </button>
       </nav>

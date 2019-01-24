@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './styles/form.scss';
 
 class Form extends React.Component {
   constructor(props) {
@@ -7,16 +8,32 @@ class Form extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    if (this.props.location.pathname === `/friends/${this.props.id}/edit`) {
+      this.setState({
+        edit: true,
+        name: this.props.name,
+        age: this.props.age,
+        email: this.props.email,
+      });
+    }
+  }
+
+  timeout = () =>
+    setTimeout(() => {
+      this.props.history.push('/friends');
+    }, 1500);
+
   captureInput = e => {
-    console.log(e.target.value);
+    this.setState({edit: false});
     let newState = {};
     newState[e.target.id] = e.target.value;
     this.setState(newState);
+    console.log(this.state);
   };
 
   theSubmit = e => {
     if (this.props.location.pathname === '/signup') {
-      console.log(this.props.location);
       e.preventDefault();
       let newUser = Object.assign(this.state);
       if (newUser.name && newUser.age && newUser.email) {
@@ -31,6 +48,7 @@ class Form extends React.Component {
           })
           .catch(err => console.log(err));
       }
+      this.timeout();
     } else {
       console.log(this.props.location.pathname);
       e.preventDefault();
@@ -54,19 +72,41 @@ class Form extends React.Component {
           })
           .catch(err => console.log(err));
       }
+      this.timeout();
     }
   };
 
   render() {
     return (
       <div className="formCont">
-        <form onSubmit={this.theSubmit}>
-          <label htmlFor="firstName">Name: </label>
-          <input type="text" id="name" onChange={this.captureInput} />
-          <label htmlFor="age">Age: </label>
-          <input type="text" id="age" onChange={this.captureInput} />
-          <label htmlFor="email">Email: </label>
-          <input type="email" id="email" onChange={this.captureInput} />
+        <form className="form" onSubmit={this.theSubmit}>
+          <div className="name">
+            <label htmlFor="firstName">Name: </label>
+            <input
+              type="text"
+              id="name"
+              onChange={this.captureInput}
+              value={this.state.edit === true ? this.props.name : null}
+            />
+          </div>
+          <div className="age">
+            <label htmlFor="age">Age: </label>
+            <input
+              type="text"
+              id="age"
+              onChange={this.captureInput}
+              value={this.state.edit === true ? this.props.age : null}
+            />
+          </div>
+          <div className="email">
+            <label htmlFor="email">Email: </label>
+            <input
+              type="email"
+              id="email"
+              onChange={this.captureInput}
+              value={this.state.edit === true ? this.props.email : null}
+            />
+          </div>
           <button>Submit</button>
         </form>
         {this.state.successMessage ? (

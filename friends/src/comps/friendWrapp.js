@@ -1,9 +1,10 @@
 import React from 'react';
 import Friend from './friend.js';
+import './styles/friendsList.scss';
 
 const FriendWrapp = props => {
   return (
-    <div>
+    <div className="friendContainer">
       {props.friends.map(friend => {
         return (
           <Friend
@@ -13,6 +14,7 @@ const FriendWrapp = props => {
             email={friend.email}
             key={friend.id}
             id={friend.id}
+            deleteFriend={props.deleteFriend}
           />
         );
       })}
