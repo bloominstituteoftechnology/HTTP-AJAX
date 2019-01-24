@@ -1,22 +1,20 @@
 import React from 'react';
-import Friend from './friend.js';
+import Form from './form.js';
 
-const SingleFriend = props => {
-  // console.log(props.friends);
-  // console.log(props.match.params.id);
+const EditFriend = props => {
   let friend = props.friends.find(fr => {
     return fr.id === Number(props.match.params.id);
   });
   return (
-    <Friend
+    <Form
       {...props}
       name={friend.name}
       age={friend.age}
       email={friend.email}
-      key={friend.id}
       id={friend.id}
+      updateState={props.updateState}
     />
   );
 };
 
-export default SingleFriend;
+export default EditFriend;

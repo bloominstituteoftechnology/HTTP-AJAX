@@ -6,6 +6,7 @@ import FriendWrapp from './comps/friendWrapp.js';
 import Form from './comps/form.js';
 import SingleFriend from './comps/singleFriend.js';
 import Home from './comps/home.js';
+import EditFriend from './comps/editFriend.js';
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.friends);
+    // console.log(this.state.friends);
     return (
       <div className="App">
         <Route path="/" component={Home} />
@@ -41,7 +42,7 @@ class App extends Component {
         <Route
           exact
           path="/signup"
-          render={props => <Form updateState={this.updateFriends} />}
+          render={props => <Form {...props} updateState={this.updateFriends} />}
           newId={this.state.friends.length + 1}
         />
         <Route
@@ -49,6 +50,17 @@ class App extends Component {
           path="/friends/:id"
           render={props => (
             <SingleFriend {...props} friends={this.state.friends} />
+          )}
+        />
+        <Route
+          exact
+          path="/friends/:id/edit"
+          render={props => (
+            <EditFriend
+              {...props}
+              friends={this.state.friends}
+              updateState={this.updateFriends}
+            />
           )}
         />
       </div>
