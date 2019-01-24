@@ -1,30 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-// import styled from 'styled-components';
+import { Route } from 'react-router-dom';
 
-// const FriendCard = styled.div`
-//   color: green;
-//   background: dodgerblue;
-// `
+import EditFriendForm from './FriendCard';
+import FriendCard from '../../src/components/FriendCard';
 
 class FriendsList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: []
-    }
-  }
-
-  componentDidMount(){
-    axios
-      .get('http://localhost:5000/friends')
-      .then(response => {
-        console.log(response);
-        this.setState({friends: response.data});
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  constructor(props) {
+    super(props);
   }
 
   render(){
@@ -32,13 +15,18 @@ class FriendsList extends React.Component {
       <div>
         <h1 className="friends-title">These are my friends:</h1>
         <div className="friends-list">
-          {this.state.friends.map(friend => (
-            <div className="friend-card">
-              <h3 className="friend-name">Name: {friend.name}</h3>
-              <div>Age: {friend.age}</div>
-              <div>Email: {friend.email}</div>
-            </div>
-            ))}
+          {this.props.friends.map(friend => (
+            <FriendCard 
+              name={friend.name} 
+              age={friend.age} 
+              email={friend.email} 
+              key={friend.id}
+              id={friend.id}
+              deleteFriend={this.props.deleteFriend}
+              editFriend={this.props.editFriend}
+              currentEdit={this.props.currentEdit}
+            />
+          ))}
         </div>
           
       </div>

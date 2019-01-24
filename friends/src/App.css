@@ -3,6 +3,10 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+a {
+  text-decoration: none;
+  color: #323232;
+}
 
 .navlink {
   padding: 10px;
@@ -32,7 +36,7 @@
   justify-content: center;
 }
 
-.friend-card {
+/* .friends-list a {
   border: 1px solid lightseagreen;
   width: 25%;
   max-width: 300px;
@@ -40,10 +44,10 @@
   margin: 5px;
   transition: all .3s ease-out;
 }
-.friend-card:hover {
+.friends-list a:hover {
   background: lightseagreen;
   color: #ffffff;
-}
+} */
 
 .friend-name {
   margin: 0;
@@ -75,4 +79,11 @@
   max-width: 1000px;
   width: 100%;
   margin-bottom: 10px;
+}
+.friend-card {
+  margin: 10px;
+  border: 1px solid black;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
 }
