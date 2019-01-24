@@ -9,7 +9,6 @@ class FriendsList extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <ListContainer>
                 {this.props.friends.map((e, i) => {

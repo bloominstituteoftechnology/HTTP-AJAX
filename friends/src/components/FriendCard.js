@@ -3,7 +3,6 @@ import React from 'react';
 import { CardContainer } from './FriendsStyles';
 
 const FriendCard = (props) => {
-    console.log(props)
     return(
         <CardContainer className={`grow bg-light-purple f3`}>
             <h1>{props.friend.name}</h1>
