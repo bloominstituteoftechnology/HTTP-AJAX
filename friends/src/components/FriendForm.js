@@ -1,42 +1,45 @@
 import React from 'react';
-import axios from 'axios';
 
 class FriendForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            name: '',
-            age: null,
-            email: ''
+            friend: {
+                name: '',
+                age: null,
+                email: ''
+            }
         }
     }
 
-    handleChange = event => {
+    changeHandler = event => {
 
         this.setState({ 
-            [event.target.name]: event.target.value,
-            [event.target.age]: event.target.value,
-            [event.target.password]: event.target.value
-        })
+            friend: {
+                ...this.state.friend,
+                [event.target.name]: event.target.value,
+                [event.target.age]: event.target.value,
+                [event.target.password]: event.target.value
+            }
+            
+        });
+    }
+
+
+    addFriendHandler = event => {
+        event.preventDefault();
+        this.props.addFriend(this.state.friend);
+        // this.setState({ friend});
         console.log(this.state);
 
     }
 
-
-  addFriend() {
-        const newFriend = {
-            name: this.state.name,
-            age: this.state.age,
-            email: this.state.email
-        }
-    }
-
     render() {
         return (
-            <form onSubmit={this.addFriend}>
+            <form onSubmit={this.addFriendHandler}>
                 <input
-                    onChange={this.handleChange}
+                    onChange={this.changeHandler}
                     type="text"
                     name="name"
                     placeholder="name"
@@ -44,7 +47,7 @@ class FriendForm extends React.Component {
                 >
                 </input>
                 <input
-                    onChange={this.handleChange}
+                    onChange={this.changeHandler}
                     type="number"
                     name="age"
                     placeholder="age"
@@ -52,7 +55,7 @@ class FriendForm extends React.Component {
                 >
                 </input>
                 <input
-                    onChange={this.handleChange}
+                    onChange={this.changeHandler}
                     type="email"
                     name="email"
                     placeholder="email"
@@ -60,7 +63,7 @@ class FriendForm extends React.Component {
                 >
                 </input>
                 
-                <button>Add</button>
+                <button onClick={this.addFriendHandler}>Add</button>
             </form>
         )
     }

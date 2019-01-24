@@ -15,21 +15,38 @@ class App extends Component {
   }
 
   componentDidMount() {
-      axios
-          .get('http://localhost:5000/friends')
-          .then(response => {
-              this.setState({friends: response.data})
-          })
-          .catch(error => {
-              console.error('Server Error', error);
-          });
+    axios
+      .get('http://localhost:5000/friends')
+      .then(response => {
+          this.setState({friends: response.data})
+      })
+      .catch(error => {
+          console.error('Server Error', error);
+      });
   }
 
+  addFriend = friend => {
+    const newFriend = {
+      name: friend.name,
+      age: friend.age,
+      email: friend.email
+    }
+    axios
+      .post('http://localhost:5000/friends', newFriend)
+      .then(response => {
+          this.setState({
+              friends: response.data
+          })
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+  }
 
   render() {
     return (
       <div className="App">
-        <FriendForm /> 
+        <FriendForm addFriend={this.addFriend} /> 
         <FriendsList friends={this.state.friends} />
       </div>
     );
