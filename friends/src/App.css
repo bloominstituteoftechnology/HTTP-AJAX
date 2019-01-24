@@ -16,7 +16,12 @@
 
 .friend-wrapper{
   border-top: silver solid 1px;
+  width: 90%;
+  max-width: 1100px;
+  margin: 1.1em auto;
+  
 }
+
 
 .friend-card {
   border: silver solid 1px;
