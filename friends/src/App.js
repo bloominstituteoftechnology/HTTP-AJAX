@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import FriendCard from './components/FriendCard';
+import PostFriend from './components/PostFriend';
 import axios from 'axios';
 
 import './App.css';
@@ -9,7 +11,27 @@ class App extends Component {
 
     this.state = {
       friends: [],
+      postSuccessMessage: "",
+      postError: "",
     }
+  }
+
+  postFriendToServer = friend => {
+    axios.post('http://localhost:5000/friends', friend)
+         .then(res => {
+           console.log(res);
+           this.setState({
+             postSuccessMessage: "Success!",
+             postError: ""
+           });
+         })
+         .catch(err => {
+           console.log(err);
+           this.setState({
+             postSuccessMessage: "",
+             postError: "Error!"
+           });
+         });
   }
 
   componentDidMount() {
@@ -22,18 +44,14 @@ class App extends Component {
   }
 
   render() {
-    const bold = {
-      fontWeight: 'bold',
-    }
-
     return (
       <div className="App">
-        {this.state.friends.map(friend =>
-          <div className='friend-card' key={Math.random()}>
-            <h1>{friend.name}</h1>
-            <p><span style={bold}>Age:</span> {friend.age}</p>
-            <p><span style={bold}>Email:</span> {friend.email}</p>
-          </div>)}
+        <PostFriend postFriendToServer={this.postFriendToServer}
+                    postSuccessMessage={this.state.postSuccessMessage}
+                    postError={this.state.postError}/>
+
+        {this.state.friends.map(friend => <FriendCard key={Math.random()}
+                                                      friend={friend} />)}
       </div>
     );
   }
