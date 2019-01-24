@@ -18,11 +18,6 @@ class App extends Component {
         name: '',
         age: null,
         email: ''
-      },
-      currentEdit: {
-        name: '',
-        age: null,
-        email:''
       }
     }
   }
@@ -31,7 +26,7 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({friends: response.data});
       })
       .catch(err => {
@@ -48,13 +43,15 @@ class App extends Component {
     })
   }
 
-  addNewFriend = () => {
+  addNewFriend = (event) => {
+    event.preventDefault();
     axios
       .post('http://localhost:5000/friends', this.state.friend)
       .then(response => {
+        console.log(`Success! You added a new friend.`)
         this.setState({friends: response.data})
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(`Oh no! ${error}`))
   }
 
   deleteFriend = (event, id) => {
@@ -63,29 +60,29 @@ class App extends Component {
       .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
         this.setState({friends: response.data})
+        // console.log(response)
       })
       .catch(error => console.log(error))
   }
 
-  editFriend = (event, id) => {
-    event.preventDefault();
+  editFriend = (friend, id) => {
+    
     axios
-      .put(`http://localhost:5000/friends/${id}`, this.state.friend)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
+      .put(`http://localhost:5000/friends/${id}`, friend)
+      .then(response => {
+        console.log(`Success! ${response.data}`)
+        this.setState({
+          editFriend: {
+            name: '',
+            age: null,
+            email: ''
+          }
+        })
+        this.props.history.push('/')
+      })
+      .catch(error => console.log(`Whoops.... ${error}`))
   }
 
-  onEditSelect = (event) => {
-    event.preventDefault();
-    this.setState({
-      currentEdit: {
-        name: 'hello',
-        age: 23,
-        email: 'myemail'
-      }
-    })
-
-  }
   
   render() {
     return (
@@ -101,10 +98,6 @@ class App extends Component {
             friends={this.state.friends} 
             {...props}
             deleteFriend={this.deleteFriend}
-            editFriend={this.editFriend}
-            onEditSelect={this.onEditSelect}
-            currentEdit={this.state.currentEdit}
-
             />
           } 
         />
@@ -122,20 +115,13 @@ class App extends Component {
           <FriendCard
             {...props}
             deleteFriend={this.deleteFriend}
-            editFriend={this.editFriend}
-            onEditSelect={this.onEditSelect}
-            currentEdit={this.state.currentEdit}
-
             />
         } />
 
         <Route path="/friends/edit/:id" render={ props => 
           <EditFriendForm 
             {...props}
-            friend={props.friend}
-            editFriend={props.editFriend}
-            onEditSelect={props.onEditSelect}
-            currentEdit={this.state.currentEdit}
+            editFriend={this.editFriend}
             />
         } />    
 

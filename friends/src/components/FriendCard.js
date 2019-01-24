@@ -12,7 +12,7 @@ const FriendCard = props => {
         props.deleteFriend(event, props.id)
         // history.push('/')
         }}>Delete Friend</button>
-        <Link onClick={props.onEditSelect} to={`/friends/edit/${props.id}`} >
+        <Link to={`/friends/edit/${props.id}`} >
           <div>Edit Friend</div>
         </Link>
         

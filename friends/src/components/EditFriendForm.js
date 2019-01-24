@@ -1,18 +1,62 @@
 import React from 'react';
 
-const EditFriendForm = props => {
-  return (
-    <div className="friend-form-container">
-      <h2 className="friend-form-title">Edit a friend</h2>
-      <form className="friend-form">
-        <p>You are currently editing: {props.friend}</p>
-        <input type="text" name="name" placeholder={props.name} onChange={props.changeHandler} value={props.name} />
-        <input type="number" name="age" placeholder={props.age} value={props.age} onChange={props.changeHandler} />
-        <input type="text" name="email" placeholder={props.email} value={props.email} onChange={props.changeHandler} />
-        <button onClick={props.editFriend}>Submit</button>
-      </form>
-    </div>
-  )
+class EditFriendForm extends React.Component  {
+  constructor(props){
+    super(props);
+    this.state = {
+      editFriend: {
+        name: '',
+        age: null,
+        email: ''
+      }
+    }
+  }
+
+  handleEdit = event => {
+    this.setState({
+      editFriend: {
+        ...this.state.editFriend,
+        [event.target.name] : event.target.value
+      }
+    })
+  }
+
+  putMessage = (event) => {
+    event.preventDefault();
+    const id = this.props.match.params.id;
+    console.log(id)
+    this.props.editFriend( this.state.editFriend, id)
+  }
+
+  
+  render() {
+    return (
+      <div className="friend-form-container">
+        <h2 className="friend-form-title">Edit a friend</h2>
+        <form className="friend-form">
+          <input 
+            type="text" name="name" 
+            placeholder="Name" 
+            onChange={this.handleEdit} 
+            // value={this.state.editFriend.name} 
+            />
+          <input 
+            type="number" 
+            name="age" 
+            placeholder="Age"
+            // value={this.state.editFriend.age} 
+            onChange={this.handleEdit} />
+          <input 
+            type="text" 
+            name="email" 
+            placeholder="Email"
+            // value={this.state.editFriend.email} 
+            onChange={this.handleEdit} />
+          <button onClick={this.putMessage}>Submit</button>
+        </form>
+      </div>
+    )
+  }
 }
 
 export default EditFriendForm;
