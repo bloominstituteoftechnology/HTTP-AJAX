@@ -31,6 +31,22 @@ class App extends Component {
     })
   }
 
+  handleChanges = e => {
+    e.persist();
+    this.setState(prevState => {
+      return {
+        newFriend: {
+          ...prevState.newItem,
+        [e.target.name]: e.target.value
+        }
+      }
+    })
+  }
+
+  addFriend = e => {
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -41,12 +57,18 @@ class App extends Component {
         <Route 
         exact path= "/"
         render={props =>
-          <FriendList {...props} friendsList={this.state.friendsList} />}
+          <FriendList 
+            {...props} 
+            friendsList={this.state.friendsList} />}
         />
         <Route
         path="/add-friend"
         render={props =>
-          <FriendForm {...props} newFriend={this.state.newFriend} handleChanges={this.handleChanges}/>}
+          <FriendForm 
+            {...props} 
+            newFriend={this.state.newFriend} 
+            handleChanges={this.handleChanges} 
+            addFriend={this.addFriend}/>}
         />
       </div>
     )
