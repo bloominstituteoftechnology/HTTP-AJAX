@@ -15,6 +15,7 @@ class Form extends React.Component {
         name: this.props.name,
         age: this.props.age,
         email: this.props.email,
+        class: 'failure noshow',
       });
     }
   }
@@ -29,7 +30,6 @@ class Form extends React.Component {
     let newState = {};
     newState[e.target.id] = e.target.value;
     this.setState(newState);
-    console.log(this.state);
   };
 
   theSubmit = e => {
@@ -47,8 +47,15 @@ class Form extends React.Component {
             this.props.updateState(res);
           })
           .catch(err => console.log(err));
+
+        this.timeout();
+      } else {
+        const failureStyle = 'failure';
+        this.setState({
+          failureMessage: 'One or more fields were INCORRECT. Please try again',
+          class: failureStyle,
+        });
       }
-      this.timeout();
     } else {
       console.log(this.props.location.pathname);
       e.preventDefault();
@@ -71,8 +78,14 @@ class Form extends React.Component {
             this.props.updateState(res);
           })
           .catch(err => console.log(err));
+        this.timeout();
+      } else {
+        const failureStyle = 'failure';
+        this.setState({
+          failureMessage: 'One or more fields were INCORRECT. Please try again',
+          class: failureStyle,
+        });
       }
-      this.timeout();
     }
   };
 
@@ -110,8 +123,10 @@ class Form extends React.Component {
           <button>Submit</button>
         </form>
         {this.state.successMessage ? (
-          <div>{this.state.successMessage}</div>
-        ) : null}
+          <div className="success">{this.state.successMessage}</div>
+        ) : (
+          <div className={this.state.class}>{this.state.failureMessage}</div>
+        )}
       </div>
     );
   }

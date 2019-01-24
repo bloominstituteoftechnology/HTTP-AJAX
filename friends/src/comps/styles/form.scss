@@ -1,12 +1,14 @@
 .formCont {
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
   margin: 0 auto;
 
   .form {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
 
     .name {
       display: flex;
@@ -55,5 +57,27 @@
       margin-top: 15px;
       width: 82%;
     }
+  }
+
+  .success {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #76b295;
+    color: #0f5935;
+    font-weight: bold;
+  }
+
+  .failure {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #fc6a53;
+    color: black;
+    font-weight: bold;
+  }
+
+  .noshow {
+    display: none;
   }
 }
