@@ -22,7 +22,7 @@ import Friend from './Friend';
         return (
         <div className = 'Friends'>
         
-        {this.state.friends.map(friend => <Friend key={friend.name + friend.id} friend = {friend}/>)}
+        {this.state.friends.map(friend => <Friend key = {friend.name + friend.id} friend = {friend}/>)}
         </div>
         )
 }
