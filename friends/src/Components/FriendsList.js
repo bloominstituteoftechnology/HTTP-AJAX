@@ -6,7 +6,14 @@ const FriendsList = props => {
   return (
     <div className="friends-list">
       {props.friends.map(friend => {
-        return <Friend key={friend.id} person={friend} {...props} />;
+        return (
+          <Friend
+            key={friend.id}
+            person={friend}
+            {...props}
+            deleteFriend={props.deleteFriend}
+          />
+        );
       })}
       <LinkButton to={"/addfriend"}>Add Friend</LinkButton>
     </div>
