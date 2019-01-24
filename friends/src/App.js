@@ -4,8 +4,8 @@ import axios from 'axios';
 import {Route} from 'react-router-dom';
 import FriendWrapp from './comps/friendWrapp.js';
 import Form from './comps/form.js';
-import Friend from './comps/friend.js';
 import SingleFriend from './comps/singleFriend.js';
+import Home from './comps/home.js';
 
 class App extends Component {
   constructor(props) {
@@ -22,10 +22,15 @@ class App extends Component {
       .catch(err => console.log('Error', err.message));
   }
 
+  updateFriends = friends => {
+    this.setState({friends: friends.data});
+  };
+
   render() {
     console.log(this.state.friends);
     return (
       <div className="App">
+        <Route path="/" component={Home} />
         <Route
           exact
           path="/friends"
@@ -36,7 +41,7 @@ class App extends Component {
         <Route
           exact
           path="/signup"
-          component={Form}
+          render={props => <Form updateState={this.updateFriends} />}
           newId={this.state.friends.length + 1}
         />
         <Route

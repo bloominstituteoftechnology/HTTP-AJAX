@@ -13,16 +13,20 @@ class Form extends React.Component {
     this.setState(newState);
   };
 
-  theSubmit = (props, e) => {
+  theSubmit = e => {
+    e.preventDefault();
     let newUser = Object.assign(this.state);
-    newUser.id = props.newId;
     if (newUser.name && newUser.age && newUser.email) {
       newUser.age = Number(newUser.age);
       axios
         .post('http://www.localhost:5000/friends', newUser)
-        .then(res => console.log(res));
+        .then(res => {
+          console.log(res);
+          this.setState({successMessage: 'Friend added Successfully'});
+          this.props.updateState(res);
+        })
+        .catch(err => console.log(err));
     }
-    e.preventDefault();
   };
 
   render() {
@@ -37,6 +41,9 @@ class Form extends React.Component {
           <input type="email" id="email" onChange={this.captureInput} />
           <button>Submit</button>
         </form>
+        {this.state.successMessage ? (
+          <div>{this.state.successMessage}</div>
+        ) : null}
       </div>
     );
   }
