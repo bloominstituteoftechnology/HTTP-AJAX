@@ -5,6 +5,7 @@ import './FriendForm.css'
 class FriendForm extends Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             friend:{
                 name:'',

@@ -37,12 +37,14 @@ class Friend extends React.Component{
             <div>
                 <div>
                     <h3>{friend.name}</h3>
-                    <p></p>
+                    <FiX onClick={()=>{
+                        this.props.deleteFriend(friend.id)
+                    }}/>
                 </div>
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
                 {this.state.location==='update'?null:<Link to={`/friends/${friend.id}/update`}>Update</Link>}
-                <Route exact path="/friends/:id/update" render={props=> <FriendForm {...props} /> } />
+                <Route exact path="/friends/:id/update" render={props=> <FriendForm {...props} submitHandler={this.props.submitHandler} /> } />
             </div>
          );
    

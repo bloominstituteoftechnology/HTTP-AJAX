@@ -46,12 +46,21 @@ class App extends Component {
   .catch(error=>console.log(error))
 }
 
+deleteFriend = id =>{
+  axios.delete(`http://localhost:5000/friends/${id}`)
+  .then(response=>{
+    console.log(response)
+    this.setState({friends: response.data})
+  })
+  .catch( error=>console.log(error))
+}
+
   render() {
     return (
       <div className="App">
         <Route path="/" component={NavBar} />
-        <Route exact path="/friends" render={props=> <FriendsList friends={this.state.friends}  {...props}/>} />
-        <Route path="/friends/:id" render={props=> <Friend friends={this.state.friends}  {...props} getFriendsData={this.getFriendsData} />}  />
+        <Route exact path="/friends" render={props=> <FriendsList friends={this.state.friends}  {...props} deleteFriend={this.deleteFriend}/>} />
+        <Route path="/friends/:id" render={props=> <Friend friends={this.state.friends}  {...props} submitHandler={this.editFriend} />}  />
         <Route path="/addfriend"  render ={props=> <FriendForm submitHandler={this.submitNewFriend} />} />
       </div>
     );
