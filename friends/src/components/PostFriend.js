@@ -24,8 +24,28 @@ class PostFriend extends React.Component {
         age: '',
         email: ''
       }
-    })
+    });
   };
+
+  updateFriendHandler = e => {
+    e.preventDefault();
+    const friendObj = this.props.friends.filter(friend => friend.name === this.state.friend.name);
+    console.log(this.props.friends)
+    const id = friendObj[0].id;
+
+    console.log(this.state.friend);
+
+    this.props.updateFriend(this.state.friend, id);
+
+    this.setState({
+      friend: {
+        name: '',
+        age: '',
+        email: ''
+      }
+    });
+
+  }
 
   handleChange = e => {
   this.setState({
@@ -38,7 +58,7 @@ class PostFriend extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.postFriend}>
+      <form className='friend-card'>
         <h1>Add Friend</h1>
         <input type='text'
                name='name'
@@ -67,9 +87,12 @@ class PostFriend extends React.Component {
            <p>{this.props.postSuccessMessage}</p>
          ) : null}
 
-        <button type='submit'>
+        <button type='submit' onClick={this.postFriend}>
           Add Friend
-        </button>
+       </button>
+       <button type='submit' onClick={this.updateFriendHandler}>
+         Update Friend
+       </button>
       </form>
     );
   }

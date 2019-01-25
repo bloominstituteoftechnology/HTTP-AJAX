@@ -16,6 +16,8 @@ class App extends Component {
       postError: "",
       deleteSuccessMessage: "",
       deleteError: "",
+      updateSuccessMessage: "",
+      updateError: "",
     }
   }
 
@@ -35,6 +37,25 @@ class App extends Component {
              postError: "Error!"
            });
          });
+  }
+
+  updateFriend = (friend, id) => {
+    console.log('Friend: ', friend)
+    axios.put(`http://localhost:5000/friends/${id}`, friend)
+         .then(res => {
+           console.log(res);
+           this.setState({
+             updateSuccessMessage: "Update Successful!",
+             updateError: ""
+           });
+         })
+         .catch(err => {
+           console.log(err);
+           this.setState({
+             updateSuccessMessage: "",
+             updateError: "Update Failed!"
+           });
+         })
   }
 
   deleteFriend = id => {
@@ -69,7 +90,12 @@ class App extends Component {
       <div className="App">
         <PostFriend postFriendToServer={this.postFriendToServer}
                     postSuccessMessage={this.state.postSuccessMessage}
-                    postError={this.state.postError}/>
+                    postError={this.state.postError}
+                    updateFriend={this.updateFriend}
+                    updateSuccessMessage={this.updateSuccessMessage}
+                    updateError={this.updateError}
+                    friends={this.state.friends}
+                    />
 
         {this.state.friends.map(friend => <FriendCard key={Math.random()}
                                                       friend={friend}
