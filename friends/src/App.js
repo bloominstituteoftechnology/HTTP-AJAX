@@ -3,6 +3,8 @@ import FriendsList from './components/FriendsList';
 import PostForm from './components/PostForm';
 import UpdateForm from './components/UpdateForm';
 import Menu from './components/Menu';
+import PostMessage from './components/PostMessage';
+import DeleteMessage from './components/DeleteMessage';
 import {Route} from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -30,7 +32,9 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [],
+      postSuccess: false,
+      deleteSuccess: false
     };
   }
 
@@ -53,7 +57,8 @@ class App extends Component {
           friends: [
             ...this.state.friends,
             info
-          ]
+          ],
+          postSuccess: true
         });
       })
       .catch(err => {
@@ -79,21 +84,57 @@ class App extends Component {
     .delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
         this.setState({
-          friends: response.data
+          friends: response.data,
+          deleteSuccess: true
         });
       })
       .catch(err => console.log(err));
   };
 
+  removeSuccessMessage = () => {
+    this.setState({postSuccess: false});
+  };
+
+  removeDeleteMessage = () => {
+    this.setState({deleteSuccess: false});
+  };
+
   render() {
     return (
       <AppContainer>
-        <Route path='/' render={(props) => <FriendsList {...props} friends={this.state.friends} deleteFromServer={this.deleteFromServer}/>}/>
+        <Route
+          path='/'
+          render={(props) =>
+            <FriendsList {...props}
+              friends={this.state.friends}
+              deleteFromServer={this.deleteFromServer}
+              removeDeleteMessage={this.removeDeleteMessage}
+            />
+          }
+        />
         <InputFormContainer>
           <FixedMenu>
             <Route path='/' component={Menu} />
-            <Route path='/post' render={(props) => <PostForm {...props} postToServer={this.postToServer}/>}/>
-            <Route path='/update' render={(props) => <UpdateForm {...props} updateToServer={this.updateToServer} friends={this.state.friends}/>}/>
+            {this.state.postSuccess ? <PostMessage/> : null}
+            {this.state.deleteSuccess ? <DeleteMessage/> : null}
+            <Route
+              path='/post'
+              render={(props) =>
+                <PostForm {...props}
+                  postToServer={this.postToServer}
+                  removeSuccessMessage={this.removeSuccessMessage}
+                />
+              }
+            />
+            <Route
+              path='/update'
+              render={(props) =>
+                <UpdateForm {...props}
+                  updateToServer={this.updateToServer}
+                  friends={this.state.friends}
+                />
+              }
+            />
           </FixedMenu>
         </InputFormContainer>
       </AppContainer>

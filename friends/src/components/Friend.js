@@ -32,6 +32,7 @@ const Friend = props => {
 
   const handleClick = e => {
     props.deleteFromServer(props.friend.id);
+    setTimeout(props.removeDeleteMessage, 2000);
   };
   return (
     <FriendCard>

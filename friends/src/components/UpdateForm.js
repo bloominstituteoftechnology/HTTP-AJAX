@@ -53,7 +53,14 @@ class UpdateForm extends React.Component{
   handleSubmit = e => {
     e.preventDefault();
     let obj = this.props.friends.filter(obj => obj.name === this.state.info.name)[0];
-    this.props.updateToServer(this.state.info, obj.id);
+    let id;
+    if(obj === undefined){
+      id = 0;
+    }
+    else{
+      id = obj.id;
+    }
+    this.props.updateToServer(this.state.info, id);
     this.setState({
       info: {
         name: '',

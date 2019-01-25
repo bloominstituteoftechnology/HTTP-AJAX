@@ -53,6 +53,7 @@ class PostForm extends React.Component{
   handleSubmit = e => {
     e.preventDefault();
     this.props.postToServer(this.state.info);
+    setTimeout(this.props.removeSuccessMessage, 2000);
     this.setState({
       info: {
         name: '',

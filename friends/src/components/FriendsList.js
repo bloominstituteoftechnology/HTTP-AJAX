@@ -14,7 +14,7 @@ const FriendListContainer = styled.div`
 const FriendsList = props => {
   return (
     <FriendListContainer>
-      {props.friends.map(friend => <Friend friend={friend} deleteFromServer={props.deleteFromServer}/>)}
+      {props.friends.map(friend => <Friend friend={friend} deleteFromServer={props.deleteFromServer} removeDeleteMessage={props.removeDeleteMessage}/>)}
     </FriendListContainer>
   );
 };
