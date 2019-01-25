@@ -62,7 +62,7 @@ class FriendForm extends React.Component{
         return (
 
             <div className="my-form">
-                <h2> MY FORM </h2>
+                <h2> ADD A FRIEND </h2>
                <form onSubmit={this.submitHandler} className="form-body">
                   <input type ="text" placeholder="Id of new friend" name="name"
                          onChange={this.idHandler} className="group"  value={this.state.id}/>

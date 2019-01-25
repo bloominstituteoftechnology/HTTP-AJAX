@@ -16,6 +16,8 @@ class App extends Component {
         <Link to="/friendList" >Friend List</Link>
         <Route exact path ="/friendList" component={Home}/>
 
+
+
       </div>
     );
   }

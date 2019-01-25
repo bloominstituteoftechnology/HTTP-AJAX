@@ -87,10 +87,11 @@ class Friend extends React.Component{
                     <input className="update" placeholder={this.props.friend.email} onChange={this.emailHandler}></input>
                 </div>
 
+                    <button  className="del-btn" onClick={this.deleteFriend}>Delete</button>
                 <button onClick={this.updateFriend}>Update</button>
                 </form>
 
-                <button  className="del-btn" onClick={this.deleteFriend}>Delete</button>
+
 
            </div>
         )
