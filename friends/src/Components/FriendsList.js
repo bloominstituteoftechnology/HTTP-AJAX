@@ -3,6 +3,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import Friend from './Friend';
+import FriendForm from './FriendForm/FriendForm';
 
 class FriendsList extends React.Component {
     constructor(props){
@@ -12,11 +13,15 @@ class FriendsList extends React.Component {
         }
     }
 
-    // <Route exact path="/friends/:id/update" render={props=> <FriendForm {...props} /> } />
     render() {
         return ( 
             <div className="list-container">
-                {this.props.friends.map(friend=><Friend friend={friend} key={friend.id} deleteFriend={this.props.deleteFriend}/>)}
+                {this.props.friends.map(friend=>{
+                    return <div key={friend.id}>
+                        <Friend friend={friend} deleteFriend={this.props.deleteFriend}/>
+                        <Route exact path={`/friends/${friend.id}/update`} render={props=> <FriendForm {...props} submitHandler={this.props.editFriend} /> } />
+                    </div> 
+                })}
             </div> 
         );
     }

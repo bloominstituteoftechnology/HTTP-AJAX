@@ -12,6 +12,7 @@ class FriendForm extends Component {
                 age:'',
                 email:''
             }, 
+            id: this.props.location? this.props.location.pathname.split('/')[2]:null,
             location: this.props.location? this.props.location.pathname.split('/').reverse()[0]:null
         }
     }
@@ -27,12 +28,11 @@ class FriendForm extends Component {
 
     handleSubmission = event =>{
         event.preventDefault();
-        this.props.submitHandler(this.state.friend)
+        this.props.submitHandler(this.state.friend,this.state.id)
+        this.props.history.push('/friends');
     }
 
     render() { 
-        //changes which handler to use based off the route
-        const handler = this.state.location==='update'?  this.editHandeler:this.submitHandler;
         return ( 
             <form className="form-wrapper" onSubmit={this.handleSubmission}>
                 <input type="text" 
@@ -59,7 +59,7 @@ class FriendForm extends Component {
                     onChange= {this.changeHandler}
                 />
 
-                <button className="btn" onClick={handler}>{this.state.location==='update'?`Edit Friend!`:`Add A Friend!`}</button>
+                <button className="btn" onClick={this.handleSubmission}>{this.state.location==='update'?`Edit Friend!`:`Add A Friend!`}</button>
             </form>
         );
     }

@@ -6,9 +6,6 @@ import './App.css';
 import FriendsList from './Components/FriendsList';
 import NavBar from './Components/NavBar/NavBar';
 import FriendForm from './Components/FriendForm/FriendForm'
-import Friend from './Components/Friend';
-
-
 
 class App extends Component {
   constructor(){
@@ -40,9 +37,12 @@ class App extends Component {
   .catch(error=>console.log(error))
 }
 
- editFriend = friend =>{
-  axios.put(`http://localhost:5000/friends/${this.props.match.params.id}`,friend)
-  .then(response=>console.log(response))
+ editFriend = (friend,id) =>{
+  axios.put(`http://localhost:5000/friends/${id}`,friend)
+  .then(response=>{
+    //I don't know why but even though state is updated i wont get the new list until I refresh.
+    this.setState({friends: response.data})
+  })
   .catch(error=>console.log(error))
 }
 
@@ -56,12 +56,12 @@ deleteFriend = id =>{
 }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <Route path="/" component={NavBar} />
-        <Route exact path="/friends" render={props=> <FriendsList friends={this.state.friends}  {...props} deleteFriend={this.deleteFriend}/>} />
-        <Route path="/friends/:id" render={props=> <Friend friends={this.state.friends}  {...props} submitHandler={this.editFriend} />}  />
-        <Route path="/addfriend"  render ={props=> <FriendForm submitHandler={this.submitNewFriend} />} />
+        <Route path="/friends" render={props=> <FriendsList friends={this.state.friends}  {...props} deleteFriend={this.deleteFriend} editFriend={this.editFriend} /> } />
+        <Route path="/friends" render ={props=> <FriendForm submitHandler={this.submitNewFriend} />} />
       </div>
     );
   }

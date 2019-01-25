@@ -21,8 +21,6 @@ class Friend extends React.Component{
                 this.setState({friend:result.data})
             }).catch(error=>console.log(error))
         }
-        // if(this.state.friend === undefined)
-        //     this.props.getFriendsData();
     }
    
     // a bug I'm having is that if I go directly to this route I don't have the information for this component
@@ -44,7 +42,6 @@ class Friend extends React.Component{
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
                 {this.state.location==='update'?null:<Link to={`/friends/${friend.id}/update`}>Update</Link>}
-                <Route exact path="/friends/:id/update" render={props=> <FriendForm {...props} submitHandler={this.props.submitHandler} /> } />
             </div>
          );
    
