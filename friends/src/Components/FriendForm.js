@@ -1,24 +1,39 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FriendForm = props => {
+class FriendForm  extends React.Component{
+   constructor(props){
+       super(props);
+       this.state = {
+           name: '',
+           age: '',
+           email: ''
+       }
+   }
+
+   changeHandler = e =>{
+       this.setState([e.target.name], event.target.value)}
+   }
+    
+    
+render() 
+        {
     return (
         <div>
             <input type='text' 
             name='name'
             placeholder='Name'
-            onChange={props.textHandler}
+            onChange={props.changeHandler}
             />
             <input type='number' 
             name='age'
             placeholder='Age'
-            onChange={props.textHandler}
+            onChange={props.changeHandler}
             />
             <input type='text' 
             name='email'
             placeholder='Email'
-            onChange={props.textHandler}
+            onChange={props.changeHandler}
             />
             <button onClick={props.addFriend}>Add Friend</button>
         </div>

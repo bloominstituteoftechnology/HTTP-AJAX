@@ -8,9 +8,7 @@ const FriendsList = props => {
             {props.friends.map(friend => {
                 return <div key={friend.email}>{friend.name} </div>
             })}
-            <FriendForm n
-            ewFriend={props.newFriend} 
-            textHandler={props.textHandler} 
+            <FriendForm 
             addFriend={props.addFriend} />
         </div>
     );
