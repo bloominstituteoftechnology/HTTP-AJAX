@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       friendsList: [],
       errorMessage: "",
-      newFriend: {
+      friend: {
         name: "",
         age: "",
         email: "",
@@ -35,8 +35,8 @@ class App extends Component {
     e.persist();
     this.setState(prevState => {
       return {
-        newFriend: {
-          ...prevState.newFriend,
+        friend: {
+          ...prevState.friend,
         [e.target.name]: e.target.value
         }
       }
@@ -47,7 +47,7 @@ class App extends Component {
     console.log("Submitted!")
     e.preventDefault();
     axios
-      .post(`http://localhost:5000/friends`, this.state.newFriend)
+      .post(`http://localhost:5000/friends`, this.state.friend)
       .then(response => {
         this.setState({friendsList: response.data})
       })
@@ -64,11 +64,16 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  updateFriend = (e, idx) => {
+    e.preventDefault();
+    this.setState({friend: this.state.friendsList.find(item => item.id === idx)})
+  }
+
   render() {
     return (
       <div className="App">
         <Link to="/" >Friends List</Link>
-        <Link to="/add-friend">Friend Form</Link>
+        <Link to="/friend-form">Friend Form</Link>
         <h1>Friends:</h1>
         {this.state.errorMessage && <h4>{this.state.errorMessage}</h4>}
         <Route 
@@ -78,14 +83,15 @@ class App extends Component {
             {...props} 
             friendsList={this.state.friendsList}
             deleteFriend={this.deleteFriend}
+            updateFriend={this.updateFriend}
             />}
         />
         <Route
-        path="/add-friend"
+        path="/friend-form"
         render={props =>
           <FriendForm 
             {...props} 
-            newFriend={this.state.newFriend} 
+            friend={this.state.friend} 
             handleChanges={this.handleChanges} 
             addFriend={this.addFriend}/>}
         />

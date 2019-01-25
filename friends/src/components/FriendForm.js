@@ -6,21 +6,21 @@ function FriendForm(props) {
             <input
                 type="text"
                 name="name"
-                value={props.newFriend.name}
+                value={props.friend.name}
                 placeholder="Name"
                 onChange={props.handleChanges}
             />
             <input
                 type="text"
                 name="age"
-                value={props.newFriend.age}
+                value={props.friend.age}
                 placeholder="Age"
                 onChange={props.handleChanges}
             />
             <input
                 type="text"
                 name="email"
-                value={props.newFriend.email}
+                value={props.friend.email}
                 placeholder="Email"
                 onChange={props.handleChanges}
             />
