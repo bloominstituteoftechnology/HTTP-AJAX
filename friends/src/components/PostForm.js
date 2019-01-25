@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const InputFormContainer = styled.div`
-  border: 1px solid blue;
-  max-width: 70%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -19,7 +11,7 @@ const Form = styled.form`
   background-color: #6B6E70;
 `;
 
-class InputForm extends React.Component{
+class PostForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -54,16 +46,14 @@ class InputForm extends React.Component{
 
   render (){
     return (
-      <InputFormContainer>
-        <Form onSubmit={this.handleSubmit}>
-          <input type='text' name='name' onChange={this.handleChange} value={this.state.info.name} placeholder='Name'/>
-          <input type='text' name='age' onChange={this.handleChange} value={this.state.info.age} placeholder='Age'/>
-          <input type='text' name='email' onChange={this.handleChange} value={this.state.info.email} placeholder='Email'/>
-          <button type='submit'>Add/Update</button>
-        </Form>
-      </InputFormContainer>
+      <Form onSubmit={this.handleSubmit}>
+        <input type='text' name='name' onChange={this.handleChange} value={this.state.info.name} placeholder='Name'/>
+        <input type='text' name='age' onChange={this.handleChange} value={this.state.info.age} placeholder='Age'/>
+        <input type='text' name='email' onChange={this.handleChange} value={this.state.info.email} placeholder='Email'/>
+        <button type='submit'>Add</button>
+      </Form>
     );
   }
 }
 
-export default InputForm;
+export default PostForm;
