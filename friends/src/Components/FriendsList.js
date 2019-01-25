@@ -8,9 +8,8 @@ const FriendsList = props => {
     <div className="friends-list">
       {props.friends.map(friend => {
         return (
-          <Link to={`/${friend.id}`}>
+          <Link to={`/${friend.id}`} key={friend.id}>
             <Friend
-              key={friend.id}
               id={friend.id}
               friend={friend}
               {...props}
