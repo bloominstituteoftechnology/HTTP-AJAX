@@ -32,13 +32,14 @@ color: red;
 
 const FriendList = props => {
     const friends = props.friends;
+    // const deleteFriend = props.deleteFriend;
    const friendArray = friends.map( (friend, key) => 
   <ul key={friend.id}>  
     <FriendContainer>
         <FriendDiv>{friend.name} </FriendDiv>
         <FriendDiv>{friend.age} </FriendDiv>
         <FriendDiv>{friend.email} </FriendDiv>
-        <DeleteFriend>{friend.delete} X </DeleteFriend>
+        <DeleteFriend type="submit" onClick={() => props.deleteFriend(friend.id)}>{friend.deleteFriend} X </DeleteFriend>
     </FriendContainer> 
 
    </ul>
@@ -51,3 +52,4 @@ const FriendList = props => {
 }
 
 export default FriendList;
+

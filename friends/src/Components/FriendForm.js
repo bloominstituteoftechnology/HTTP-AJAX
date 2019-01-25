@@ -34,6 +34,7 @@ class FriendForm extends React.Component {
         });
     };
 
+
     render(){
         return (
             <div className="friend-form">
