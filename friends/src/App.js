@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FriendsList from './components/friendsList/FriendsList'
 import './App.css';
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
     console.log(this.state.friends);
     return (
       <div className="App">
-        
+        <FriendsList friends = {this.state.friends}/>
       </div>
     );
   }
