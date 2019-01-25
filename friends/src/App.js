@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios'
 
 import Home from './components/Home'
@@ -18,7 +18,8 @@ class App extends Component {
           name: '',
           age: '',
           email: '',
-        }
+        },
+        isUpdating: false
     }
 }
 
@@ -28,6 +29,7 @@ componentDidMount() {
         .then(response => {
             console.log(response)
             this.setState(() => ({ friends: response.data })
+            
         )})
         .catch(error => {
             console.log('Server Error', error)})
@@ -46,15 +48,30 @@ addNewFriend = (event) => {
         .post('http://localhost:5000/friends', this.state.friend)
         .then(response => {
             this.setState({friends: response.data})
+            this.props.history.push('/friends')
         })
         .catch(error => {
             console.log('Server Error', error)
         })
+       
 }
 
 deleteFriend = (id) => {
-  return axios.delete(`http://localhost:5000/friends/${id}`)
-    .then(response => this.setState({ friends: response.data}))
+   axios.delete(`http://localhost:5000/friends/${id}`)
+  .then(response => this.setState({ friends: response.data}))
+}
+
+linkToUpdateFriendsList = (id) => {
+  const individualUpdate = this.state.friends.find(friend => friend.id === id)
+  this.setState({ isUpdating: true, friend: individualUpdate }, () => this.props.history.push('/friend-form'))
+}
+
+updateFriend = (id) => {
+  axios.put(`http://localhost:5000/friends/${id}`, this.state.friend)
+  .then(response => { 
+    this.setState({ freinds: response.data, isUpdating: false}) 
+    this.props.history.push('/friends')})
+  .catch(error => console.log(error))
 }
 
   render() {
@@ -69,16 +86,38 @@ deleteFriend = (id) => {
             <NavLink to="/friends" activeClassName="activeNavButton">Friends List</NavLink>
           </li>
           <li>
-            <NavLink to="/add-friend" activeClassName="activeNavButton">Add New</NavLink>
+            <NavLink to="/friend-form" activeClassName="activeNavButton">Add New</NavLink>
           </li>
         </ul>
         <Route exact path="/" component={Home} />  
         <Route exact path="/friends" render={props => <FriendsList {...props} friends={friends} />} />
-        <Route path="/friends/:id" render={props => <Friend {...props} friends={friends} deleteFriend={this.deleteFriend}  />} />
-        <Route path="/add-friend" render={props => <FriendForm {...props} friend={this.state.friend} addNewFriend={this.addNewFriend} handleChange={this.handleChange} />} />
+        <Route 
+          path="/friends/:id" 
+          render={props => (
+            <Friend 
+              {...props} 
+              friends={friends} 
+              deleteFriend={this.deleteFriend} 
+              linkToUpdateFriendsList={this.linkToUpdateFriendsList}   
+            /> 
+          )}
+        />
+        <Route 
+          path="/friend-form" 
+          render={props => (
+            <FriendForm 
+              {...props} 
+              friend={this.state.friend} 
+              addNewFriend={this.addNewFriend} 
+              handleChange={this.handleChange} 
+              updateFriend={this.updateFriend}
+              isUpdating={this.state.isUpdating}
+            /> 
+          )} 
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

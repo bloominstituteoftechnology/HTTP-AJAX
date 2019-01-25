@@ -2,12 +2,12 @@ import React from 'react'
 
 const FriendsList = props => {
         return(
-            <div>
-                <p>Hi from FriendsList</p>
+            <div className="list-wrapper">
                 {props.friends.map(friend => {
-                return <li key={friend.id}>
-                    <p onClick={() => routetoFriend(props, friend)}>{friend.name} {friend.age} {friend.email}</p>
-                </li>
+                return <div className="card" key={friend.id}>
+                    <p onClick={() => routetoFriend(props, friend)}>
+                    {friend.name}<br/> {friend.age}<br/> {friend.email}</p>
+                </div>
                 })}      
             </div>
         )

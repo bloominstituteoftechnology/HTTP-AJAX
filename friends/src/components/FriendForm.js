@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 const FriendForm = props => {
+    function handleSubmit() { 
+        props.isUpdating ? props.updateFriend(props.friend.id) : props.addNewFriend()
+    }
     return(
-        <Fragment>
-            <h1>Add new Friend</h1>
+        <div className="form-wrapper">
+            <h2>{props.isUpdating ? 'Update Friend' : 'Add New Friend'}</h2>
             <form>
                 <input 
                     onChange={props.handleChange} 
@@ -27,8 +30,9 @@ const FriendForm = props => {
                     placeholder="Email" 
                 />                     
             </form>
-            <button onClick={props.addNewFriend}>Add Friend</button>  
-        </Fragment>
+            
+            <button onClick={handleSubmit}>{props.isUpdating ? 'Update Friend' : 'Add New Friend'}</button>    
+        </div>
     )
 }
 
