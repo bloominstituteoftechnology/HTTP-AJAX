@@ -27,10 +27,15 @@ class NewFriendForm extends React.Component {
     this.props.createFriend(this.state.friend)
   }
 
+  putFriend = e => {
+    e.preventDefault();
+    this.props.updateFriend(this.state.friend)
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.postFriend}>
+        <form>
           <input 
             type="text"
             name="name"
@@ -52,7 +57,8 @@ class NewFriendForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.email}
           />
-          <input type="submit" placeholder="Create" />
+          <button onClick={this.postFriend}>Create</button>
+          <button onClick={this.putFriend}>Update</button>
         </form>
       </div>
     )
