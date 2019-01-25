@@ -1,6 +1,9 @@
 import React from "react";
 
 function FriendForm(props) {
+    function handleSubmit(e) {
+        
+    }
     return (
         <form>
             <input

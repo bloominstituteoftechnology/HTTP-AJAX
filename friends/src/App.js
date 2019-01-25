@@ -7,11 +7,12 @@ import FriendList from "./components/FriendList";
 import FriendForm from "./components/FriendForm";
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       friendsList: [],
       errorMessage: "",
+      isUpdating: false,
       friend: {
         name: "",
         age: "",
@@ -50,6 +51,7 @@ class App extends Component {
       .post(`http://localhost:5000/friends`, this.state.friend)
       .then(response => {
         this.setState({friendsList: response.data})
+        this.props.history.push("/")
       })
       .catch(err => console.log(err))
   }
@@ -72,12 +74,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Link to="/" >Friends List</Link>
+        <Link exact to="/" >Friends List</Link>
         <Link to="/friend-form">Friend Form</Link>
         <h1>Friends:</h1>
         {this.state.errorMessage && <h4>{this.state.errorMessage}</h4>}
         <Route 
-        path= "/"
+        exact path= "/"
         render={props =>
           <FriendList 
             {...props} 
