@@ -4,11 +4,34 @@
   align-items: center;
 }
 
+nav {
+  position: fixed;
+  width: 100%;
+  height: 45px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  background-color: rgba(135, 206, 235, 1);
+}
+
+nav a {
+  color: black;
+  margin-right: 15px;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
 .friends-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+}
+
+.friends-container:nth-child(1), .friends-container:nth-child(2) {
+  margin-top: 65px;
 }
 
 .friend-card {
@@ -22,15 +45,25 @@
   text-align: center;
 }
 
+.App form {
+  margin-top: 8%;
+  height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 input {
   margin: 10px;
-  width: 27%;
+  width: 30%;
   height: 20px;
   padding: 5px;
   border-radius: 5px;
   border: 2px inset #4682B4;
   background-color: transparent;
-  transition: width 500ms, color 500ms, background-color 300ms, border 200ms;
+  transition: width 500ms, height 500ms, color 500ms, background-color 300ms, border 200ms;
 }
 
 input::placeholder {
@@ -44,7 +77,8 @@ input:focus::placeholder {
 input:focus {
   outline: none;
   border: none;
-  width: 30%;
+  width: 45%;
+  height: 30px;
   background-color: #4682B4;
   color: #F0F8FF;
 }
