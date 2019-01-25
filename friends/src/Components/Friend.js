@@ -33,7 +33,10 @@ class Friend extends React.Component{
         const {friend} = this.state;
         return friend === undefined ? <div>Loading</div>:( 
             <div>
-                <h3>{friend.name}</h3>
+                <div>
+                    <h3>{friend.name}</h3>
+                    <p>X</p>
+                </div>
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
                 {this.state.location==='update'?null:<Link to={`/friends/${friend.id}/update`}>Update</Link>}
