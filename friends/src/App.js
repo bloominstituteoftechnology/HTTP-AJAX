@@ -21,11 +21,20 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  deleteFriend = e => {
+    axios
+      .delete(`http://localhost:5000/friends/${e.target.id}`)
+      .then(res => this.setState({ friends: res.data, name: '', age: '', email: '' }))
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
         <FriendsForm submitted={this.requestFriends} />
-        <FriendsList friends={this.state.friends} />
+        <FriendsList
+          friends={this.state.friends}
+          update={this.updateFriend} />
       </div>
     );
   }
