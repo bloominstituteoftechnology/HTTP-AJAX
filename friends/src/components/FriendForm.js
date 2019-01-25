@@ -1,19 +1,25 @@
 import React from 'react';
 
 const FriendForm = (props) => {
-    
-   function handleSubmit(e) {
-        e.preventDefault()
-        props.addFriend()
-   }
+    function handleSubmit(e) {
+        e.preventDefault();
+        if(props.isUpdating){
+            props.updateFriend()
+        } else {
+            props.addFriend()
+        }
+    }
 
     return (
+        <>
+        <h2>{props.isUpdating ? 'Update Friend' : 'Add Friend'}</h2>
         <form onSubmit={handleSubmit}>
-            <input type='text' name='name' onChange={props.handleChanges} value={props.friend.name} placeholder='Enter Name'/>
-            <input type='number' name='age' onChange={props.handleChanges}  value={props.friend.age} placeholder='Age' />
-            <input type='text' name='email' onChange={props.handleChanges}  value={props.friend.email} placeholder='Email' />
-            <button>Enter</button>
+            <input type='text' name='name' placeholder='Name' onChange={props.handleChanges} value={props.friend.name}/>
+            <input type='number' name='age' placeholder='Age' onChange={props.handleChanges} value={props.friend.age}/>
+            <input type='text' name='email' placeholder='Email' onChange={props.handleChanges} value={props.friend.email}/>
+            <button type='submit'>{props.isUpdating ? 'Update Friend' : 'Add Friend'}</button>
         </form>
+        </>
     )
 }
 

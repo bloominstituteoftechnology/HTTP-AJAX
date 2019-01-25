@@ -5,7 +5,7 @@ import { ListContainer } from './FriendsStyles';
 
 class FriendsList extends Component {
     constructor(props){
-        super(props);
+        super(props)
     }
 
     render() {
@@ -13,7 +13,7 @@ class FriendsList extends Component {
             <ListContainer>
                 {this.props.friends.map((e, i) => {
                     return (
-                        <FriendCard friend={e} key={i}/>
+                        <FriendCard deleteFriend={this.props.deleteFriend} updateFriend={this.props.updateFriend} populateFriend={this.props.populateFriend} friend={e} key={i}/>
                     )
                 })}
             </ListContainer>
