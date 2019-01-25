@@ -51,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Friends friends={this.state.friends} />
+        <Friends friends={this.state.friends} deleteFriend={this.deleteOldFriends} />
         <FriendForm addNewFriendsToServer={this.addNewFriendsToServer}/>
       </div>
     );

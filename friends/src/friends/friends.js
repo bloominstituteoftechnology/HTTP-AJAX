@@ -7,7 +7,7 @@ class Friends extends Component{
 
         };
     }
-
+    
     render(){
         return(
             <div className='friendsList'>
@@ -16,6 +16,7 @@ class Friends extends Component{
                         <div><span>{friend.name}</span></div>
                         <div><span>{friend.age}</span></div>
                         <div><span>{friend.email}</span></div>
+                        <button onClick={() => this.props.deleteFriend(friend.id)}>Delete</button>
                     </div>
                 ))}
             </div>
