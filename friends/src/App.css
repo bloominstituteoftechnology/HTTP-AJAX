@@ -7,6 +7,17 @@
   height: 40vmin;
 }
 
+.friends {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.friend {
+  border: 1px solid lightgrey;
+  width: 150px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
