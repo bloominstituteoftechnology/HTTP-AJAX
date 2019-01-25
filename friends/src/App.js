@@ -78,7 +78,6 @@ class App extends Component {
             email: ''
           }
         })
-        this.props.history.push('/')
       })
       .catch(error => console.log(`Whoops.... ${error}`))
   }

@@ -75,15 +75,38 @@ a {
 }
 .friend-form input {
   padding: 5px;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   max-width: 1000px;
   width: 100%;
   margin-bottom: 10px;
 }
 .friend-card {
-  margin: 10px;
-  border: 1px solid black;
+  border: 1px solid lightseagreen;
+  width: 25%;
+  max-width: 300px;
+  padding: 30px;
+  margin: 5px;
+  transition: all .3s ease-out;
+}
+.friend-card-text {
+  margin-bottom: 20px;
+}
+.friend-card:hover {
+  background: lightseagreen;
+  color: #ffffff;
+}
+button {
+  margin: 10px 0;
+  border: 1px solid #323232;
+  border-radius: 30px;
+  padding: 10px;
+  font-size: inherit;
   width: 100%;
   max-width: 300px;
-  padding: 10px;
+  transition: all .3s ease-out;
+  cursor: pointer;
+}
+button:hover {
+  color: darksalmon;
+  background: #323232;
 }
