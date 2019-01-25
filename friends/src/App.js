@@ -4,7 +4,7 @@ import FriendsList from './components/FriendsList';
 import Friend from "./components/Friend";
 
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -50,7 +50,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
+        <Route exact path="/"
+          render={props => (
+            <Link to={'/friends'}>
+              <button>Go to Friends</button>
+            </Link>
+          )}
+        />
         <Route 
           exact path="/friends"
           render={props => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import FriendCard from './FriendCard';
-import NewFriendForm from './NewFriendForm';
+import FriendForm from './FriendForm';
 
 import axios from 'axios';
 
@@ -30,7 +30,7 @@ class Friend extends React.Component {
   render() {
     return (
       <div>
-        <NewFriendForm 
+        <FriendForm 
           update 
           updateFriend={this.props.updateFriend}
           history={this.props.history}

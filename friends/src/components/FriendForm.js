@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class NewFriendForm extends React.Component {
+class FriendForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,4 +81,4 @@ class NewFriendForm extends React.Component {
   }
 }
 
-export default NewFriendForm;
+export default FriendForm;
