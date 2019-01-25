@@ -18,6 +18,11 @@ class App extends Component {
         name: '',
         age: null,
         email: ''
+      },
+      friendToEdit: {
+        name: '',
+        age: null,
+        email: ''
       }
     }
   }
@@ -66,12 +71,13 @@ class App extends Component {
   }
 
   editFriend = (friend, id) => {
-    
     axios
       .put(`http://localhost:5000/friends/${id}`, friend)
       .then(response => {
         console.log(`Success! ${response.data}`)
+        
         this.setState({
+          friends: response.data,
           editFriend: {
             name: '',
             age: null,
@@ -82,16 +88,22 @@ class App extends Component {
       .catch(error => console.log(`Whoops.... ${error}`))
   }
 
+  handleEdit = event => {
+    this.setState({
+      friendToEdit: {
+        ...this.state.friendToEdit,
+        [event.target.name] : event.target.value
+      }
+    })
+  }
   
   render() {
     return (
       <div className="App">
-
         <div className="navbar">
           <NavLink className="navlink" to="/">Home</NavLink>
           <NavLink className="navlink" to="/friend-form">Add Friend</NavLink>
         </div>
-
         <Route exact path="/" render={ props =>
           <FriendsList 
             friends={this.state.friends} 
@@ -100,7 +112,6 @@ class App extends Component {
             />
           } 
         />
-
         <Route path="/friend-form" render={ props => 
           <AddFriendForm
             {...props}
@@ -109,21 +120,20 @@ class App extends Component {
             friend={this.state.friend}
             />
         } />
-
         <Route exact path="/friends/:id" render={ props => 
           <FriendCard
             {...props}
             deleteFriend={this.deleteFriend}
             />
         } />
-
         <Route path="/friends/edit/:id" render={ props => 
           <EditFriendForm 
             {...props}
             editFriend={this.editFriend}
+            friendToEdit={this.state.friendToEdit}
+            handleEdit={this.handleEdit}
             />
         } />    
-
       </div>
     );
   }

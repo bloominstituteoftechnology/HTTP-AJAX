@@ -87,6 +87,10 @@ a {
   padding: 30px;
   margin: 5px;
   transition: all .3s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .friend-card-text {
   margin-bottom: 20px;
@@ -96,17 +100,18 @@ a {
   color: #ffffff;
 }
 button {
-  margin: 10px 0;
+  margin: 10px auto;
   border: 1px solid #323232;
   border-radius: 30px;
   padding: 10px;
   font-size: inherit;
-  width: 100%;
-  max-width: 300px;
+  width: 150px;
+  /* max-width: 150px; */
   transition: all .3s ease-out;
   cursor: pointer;
+  
 }
 button:hover {
   color: darksalmon;
-  background: #323232;
+  background: rgba(50,50,50,0.8);
 }

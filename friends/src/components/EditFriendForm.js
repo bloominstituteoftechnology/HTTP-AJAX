@@ -3,31 +3,30 @@ import React from 'react';
 class EditFriendForm extends React.Component  {
   constructor(props){
     super(props);
-    this.state = {
-      editFriend: {
-        name: '',
-        age: null,
-        email: ''
-      }
-    }
+    // this.state = {
+    //   editFriend: {
+    //     name: '',
+    //     age: null,
+    //     email: ''
+    //   }
+    // }
   }
 
-  handleEdit = event => {
-    this.setState({
-      editFriend: {
-        ...this.state.editFriend,
-        [event.target.name] : event.target.value
-      }
-    })
-  }
+  // handleEdit = event => {
+  //   this.setState({
+  //     editFriend: {
+  //       ...this.state.editFriend,
+  //       [event.target.name] : event.target.value
+  //     }
+  //   })
+  // }
 
   putMessage = (event) => {
     event.preventDefault();
     const id = this.props.match.params.id;
     console.log(id)
-    this.props.editFriend( this.state.editFriend, id)
+    this.props.editFriend( this.props.friendToEdit, id)
   }
-
   
   render() {
     return (
@@ -37,7 +36,7 @@ class EditFriendForm extends React.Component  {
           <input 
             type="text" name="name" 
             placeholder="Name" 
-            onChange={this.handleEdit} 
+            onChange={this.props.handleEdit} 
             // value={this.state.editFriend.name} 
             />
           <input 
@@ -45,13 +44,13 @@ class EditFriendForm extends React.Component  {
             name="age" 
             placeholder="Age"
             // value={this.state.editFriend.age} 
-            onChange={this.handleEdit} />
+            onChange={this.props.handleEdit} />
           <input 
             type="text" 
             name="email" 
             placeholder="Email"
             // value={this.state.editFriend.email} 
-            onChange={this.handleEdit} />
+            onChange={this.props.handleEdit} />
           <button onClick={this.putMessage}>Submit</button>
         </form>
       </div>
