@@ -53,7 +53,7 @@ class UpdateFriendComponent extends React.Component {
             onChange={this.handleChange}
             value={this.state.friendInfo.email}
             />
-            <button className="addFriendBtn" type="submit">Add Friend</button>
+            <button className="updateFriendBtn" type="submit">Update Friend</button>
             </form>
     </div>
       )

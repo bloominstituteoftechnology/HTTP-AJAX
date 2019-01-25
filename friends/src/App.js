@@ -6,7 +6,7 @@ import "./App.css";
 
 import FriendList from './Components/FriendList';
 import FriendForm from './Components/FriendForm';
-import UpdateFriendComponent from './Components/UpdateFriend';
+import UpdateFriendComponent from './Components/UpdateFriendComponent';
 
 class App extends React.Component{
   constructor() {
@@ -76,12 +76,12 @@ class App extends React.Component{
     return (
       <div className="App">
         <h1>Jamar works on HTTP-AJAX</h1>
-        <Route exact path="/" render={props => <FriendList {...props} deleteFriend={this.deleteFriend} friends={this.state.friends}/> }/>
+        <Route exact path="/" render={props => <FriendList {...props} updateFriend={this.updatefriend} deleteFriend={this.deleteFriend} friends={this.state.friends}/> }/>
         {/* <Route path ="/friends" /> */}
         <FriendForm 
           postFriend={this.postFriend}
         />
-        <Route path='/friends/:id' render={props =>  <UpdateFriendComponent updateFriend={this.updateFriend} />} />
+        <Route exact path='/friends/:id' render={props =>  <UpdateFriendComponent updateFriend={this.updateFriend} />} />
       </div>
     );
   }

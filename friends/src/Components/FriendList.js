@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+// import UpdateFriendComponent from './UpdateFriendComponent';
 // import ReactDOM from "react-dom";
 // import {Route, Link} from 'react-router-dom';
 
@@ -29,6 +30,11 @@ font-size: 15px;
 color: red;
 `
 
+const UpdateFriend = styled.button`
+border-radius: 10px;
+font-size: 15px;
+`
+
 
 const FriendList = props => {
     const friends = props.friends;
@@ -36,6 +42,7 @@ const FriendList = props => {
    const friendArray = friends.map( (friend, key) => 
   <ul key={friend.id}>  
     <FriendContainer>
+    <UpdateFriend type="submit" onClick={props => props.updateFriend(friend.id)}>{friend.updateFriend} Update Friend </UpdateFriend>
         <FriendDiv>{friend.name} </FriendDiv>
         <FriendDiv>{friend.age} </FriendDiv>
         <FriendDiv>{friend.email} </FriendDiv>
