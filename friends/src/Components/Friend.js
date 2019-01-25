@@ -1,5 +1,6 @@
 import React from "react";
 import LinkButton from "./LinkButton";
+import { Route } from "react-router-dom";
 
 const Friend = props => {
   const remove = e => {
@@ -34,6 +35,10 @@ const Friend = props => {
       <p>age: {friend.age}</p>
       <p>email: {friend.email}</p>
       <button onClick={remove}>Delete</button>
+      <Route
+        path={`/:id`}
+        render={() => <LinkButton to={"/"}>Home</LinkButton>}
+      />
     </div>
   );
 };
