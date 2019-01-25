@@ -33,11 +33,15 @@ class FriendList extends Component {
             .catch( err => console.log("REJECTED!", err))
     }
 
-    delete = (searchID) => {
-        // console.log("hi")
-
-        // const newList = this.state.friends;
-
+    deleteFromServer = (friend) => {
+        // console.log(friend.id)
+        axios
+        .delete(`http://localhost:5000/friends/${friend.id}`)
+        .then( response => {
+            this.setState({ friends:response.data })
+            // console.log(response)
+        })
+        .catch( err => console.log(err))
     }
 
     render(){
@@ -53,7 +57,7 @@ class FriendList extends Component {
                                 name = {friend.name}
                                 age = {friend.age}
                                 email = {friend.email}
-                                delete = {this.delete}
+                                deleteFromServer = {this.deleteFromServer}
                                 />
                             <h2>---------------------------------------</h2>
 

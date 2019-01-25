@@ -8,9 +8,7 @@ class FriendCard extends React.Component {
         }
     }
     deleteFriend = () => {
-        this.props.delete({
-            id:this.props.id
-        })
+        this.props.deleteFromServer(this.props)
     }
     
     render() {
