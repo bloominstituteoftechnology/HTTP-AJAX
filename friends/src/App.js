@@ -64,6 +64,7 @@ class App extends Component {
             <Friend
               friend={this.state.friends}
               deleteFriend={this.deleteFriend}
+              refresh={this.updateState}
               {...props}
             />
           )}

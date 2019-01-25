@@ -1,5 +1,6 @@
 import React from "react";
 import LinkButton from "./LinkButton";
+import EditForm from "./EditForm";
 import { Route } from "react-router-dom";
 
 const Friend = props => {
@@ -8,6 +9,8 @@ const Friend = props => {
     props.deleteFriend(friend.id);
     props.history.push("/");
   };
+
+  const refresh = props.refresh;
 
   let id;
   let friend;
@@ -37,7 +40,16 @@ const Friend = props => {
       <button onClick={remove}>Delete</button>
       <Route
         path={`/:id`}
-        render={() => <LinkButton to={"/"}>Home</LinkButton>}
+        render={() => (
+          <div className="button-wrapper">
+            <LinkButton to={"/"}>Home</LinkButton>
+            <LinkButton to={`/${friend.id}/edit`}>Edit</LinkButton>
+          </div>
+        )}
+      />
+      <Route
+        path={`/:id/edit`}
+        render={props => <EditForm {...props} {...friend} refresh={refresh} />}
       />
     </div>
   );
