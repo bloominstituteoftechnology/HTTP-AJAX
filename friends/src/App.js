@@ -5,7 +5,7 @@ import './App.css';
 import Friend from '../src/components/Friend'
 import FriendForm from '../src/components/FriendForm'
 
-const baseURL = 'http://localhost:5000/friends';
+const baseURL = 'http://localhost:5000';
 
 const clearedFriend = {
   name: '',
@@ -26,6 +26,7 @@ class App extends Component {
   componentDidMount() {
     axios.get(`${baseURL}/friends`)
     .then(res => {
+      console.log(res.data);
       this.setState({ friends: res.data })
     })
     .catch (err => { console.log(err)
