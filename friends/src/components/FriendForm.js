@@ -2,9 +2,16 @@ import React from "react";
 
 function FriendForm(props) {
     function handleSubmit(e) {
-        
+        e.preventDefault();
+        if (props.isUpdating) {
+            props.updateFriend()
+         } else {
+            props.addFriend()
+         }
     }
     return (
+        <div>
+        <h2>{props.isUpdating ? "Update friend:" : "Add new friend;"}</h2>
         <form>
             <input
                 type="text"
@@ -27,8 +34,11 @@ function FriendForm(props) {
                 placeholder="Email"
                 onChange={props.handleChanges}
             />
-            <button onClick={props.addFriend}>Submit New Friend!</button>
+            <button onClick={handleSubmit}>
+                {props.isUpdating ? "Update Friend" : "Add New Friend!"}
+            </button>
         </form>
+        </div>
     )
 }
 

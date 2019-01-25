@@ -44,9 +44,7 @@ class App extends Component {
     })
   }
 
-  addFriend = e => {
-    console.log("Submitted!")
-    e.preventDefault();
+  addFriend = () => {
     axios
       .post(`http://localhost:5000/friends`, this.state.friend)
       .then(response => {
@@ -66,9 +64,31 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  updateFriend = (e, idx) => {
+  populateForm = (e, idx) => {
     e.preventDefault();
-    this.setState({friend: this.state.friendsList.find(item => item.id === idx)})
+    this.setState({friend: this.state.friendsList.find(item => item.id === idx),
+    isUpdating: true
+    });
+    this.props.history.push("/friend-form");
+  }
+
+  updateFriend = () => {
+    console.log("updating!")
+    axios
+      .put(`http://localhost:5000/friends/${this.state.friend.id}`, this.state.friend)
+      .then(response => {
+        this.setState({
+          friendsList: response.data,
+          isUpdating: false,
+          friend: {
+            name: "",
+            age: "",
+            email: "",
+          }
+        })
+      })
+      .catch(err => console.log(err))
+      this.props.history.push("/");
   }
 
   render() {
@@ -76,7 +96,6 @@ class App extends Component {
       <div className="App">
         <Link exact to="/" >Friends List</Link>
         <Link to="/friend-form">Friend Form</Link>
-        <h1>Friends:</h1>
         {this.state.errorMessage && <h4>{this.state.errorMessage}</h4>}
         <Route 
         exact path= "/"
@@ -85,7 +104,7 @@ class App extends Component {
             {...props} 
             friendsList={this.state.friendsList}
             deleteFriend={this.deleteFriend}
-            updateFriend={this.updateFriend}
+            populateForm={this.populateForm}
             />}
         />
         <Route
@@ -95,7 +114,10 @@ class App extends Component {
             {...props} 
             friend={this.state.friend} 
             handleChanges={this.handleChanges} 
-            addFriend={this.addFriend}/>}
+            addFriend={this.addFriend}
+            isUpdating={this.state.isUpdating}
+            updateFriend={this.updateFriend}
+          />}
         />
       </div>
     )

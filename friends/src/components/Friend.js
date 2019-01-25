@@ -15,7 +15,7 @@ function Friend(props) {
             <div>age: {props.friend.age}</div>
             <div>email: {props.friend.email}</div>
             <Link to="/friend-form">
-            <button onClick={(e) => props.updateFriend(e, props.friend.id)} >Update Friend</button>
+            <button onClick={(e) => props.populateForm(e, props.friend.id)} >Update Friend</button>
             </Link>
             <button onClick={(e) => props.deleteFriend(e, props.friend.id)} >Delete Friend</button>
         </StyledFriend>
