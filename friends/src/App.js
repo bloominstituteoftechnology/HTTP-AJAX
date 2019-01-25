@@ -35,6 +35,18 @@ class App extends Component {
       console.log(err);
     })
   }
+
+  deleteFriend = id => {
+    Axios
+    .delete(`http://localhost:5000/friends/${id}`)
+    .then(response => {
+      console.log(response);
+      this.setState({friends: response.data});
+    })
+  .catch(err => {
+    console.log(err);
+  })
+  }
   componentDidMount() {
     Axios
     .get('http://localhost:5000/friends')
