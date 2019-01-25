@@ -1,5 +1,6 @@
 import React from 'react';
 import Friend from './Friend';
+import { Link } from 'react-router-dom';
 
 const FriendsList = props => {
 	const { friends } = props;
@@ -13,8 +14,8 @@ const FriendsList = props => {
 					return (
             <div>
               <Friend key={f.id} id={f.id} friend={f}/>
-              <button id={f.id} onClick={ e => props.update(e, f.id)}>Delete</button>
-              <button id={f.id} onClick={props.update}>Update</button>
+              <button id={f.id} onClick={props.delete}>Delete</button>
+              <Link to="/updatefriend">Update</Link>
             </div>
 					)
 				})}

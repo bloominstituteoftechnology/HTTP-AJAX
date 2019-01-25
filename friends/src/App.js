@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { Route } from 'react-router-dom';
 import FriendsList from './components/FriendsList';
 import FriendsForm from './components/FriendsForm';
 import './App.css';
@@ -34,7 +34,8 @@ class App extends Component {
         <FriendsForm submitted={this.requestFriends} />
         <FriendsList
           friends={this.state.friends}
-          update={this.updateFriend} />
+          update={this.updateFriend}
+          delete={this.deleteFriend} />
       </div>
     );
   }
