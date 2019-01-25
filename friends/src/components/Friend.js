@@ -13,16 +13,13 @@ export default class Friend extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        console.log(id);
         this.fetchFriend(id);
     }
 
     fetchFriend = id => {
-        console.log(id);
         axios
             .get(`http://localhost:5000/friends/${id}`)
             .then(response => { 
-                console.log(response.data);
                 this.setState(() => ({friend: response.data}));
             })
             .catch(err => {
