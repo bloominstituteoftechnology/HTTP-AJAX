@@ -6,7 +6,7 @@ super();
 this.state={
   newFriend:{
   name:"",
-  age:0,
+  age:"",
   email:""
   }}
 }
@@ -22,7 +22,7 @@ handleChange = e => {
     this.setState({
       newFriend:{
         name:"",
-        age: 0,
+        age:"",
         email:"" 
       }
     })
@@ -36,9 +36,24 @@ render(){
      <form onSubmit={this.postMessage}>
           <input
             type="text"
-            name="friend"
-            placeholder="Friend's name"
-           
+            name="name"
+            placeholder="Name"
+            onChange={this.handleChange}
+            value={this.state.newFriend.name}
+            />
+            <input
+            type="text"
+            name="age"
+            placeholder="Age"
+            onChange={this.handleChange}
+            value={this.state.newFriend.age}
+            />
+            <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={this.handleChange}
+            value={this.state.newFriend.email}
             />
       </form>  
     </div>
