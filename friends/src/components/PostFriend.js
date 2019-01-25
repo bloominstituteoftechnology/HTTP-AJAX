@@ -29,11 +29,9 @@ class PostFriend extends React.Component {
 
   updateFriendHandler = e => {
     e.preventDefault();
-    const friendObj = this.props.friends.filter(friend => friend.name === this.state.friend.name);
-    console.log(this.props.friends)
-    const id = friendObj[0].id;
 
-    console.log(this.state.friend);
+    const friendObj = this.props.friends.filter(friend => friend.name === this.state.friend.name);
+    const id = friendObj[0].id;
 
     this.props.updateFriend(this.state.friend, id);
 
