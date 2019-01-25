@@ -62,19 +62,6 @@ class App extends React.Component{
     .catch(err => console.error('delete error:', err))
   }
 
-  deleteTheFriend = e => {
-   this.setState({
-    friendInfo: {
-      ...this.state.friendInfo,
-      [e.target.name]: e.target.value
-          }
-   })
-  }
-
-  // deleteFriend = e => {
-  //   e.preventDefault();
-  //   this.state.deleteFriend(this.state.friendInfo);
-  // };
 
  changeFriendHandler = e => {
    this.setState({
