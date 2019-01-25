@@ -8,6 +8,9 @@ function Friends(props) {
         <h3>{friend.name}</h3>
         <h6>{friend.age}</h6>
         <h6>{friend.email}</h6>
+        <button onClick={ () => props.deleteFriendFromServer(friend.id)}>Delete</button>
+        <button onClick={ () => }
+
       </div>
     ))}
     </div>
