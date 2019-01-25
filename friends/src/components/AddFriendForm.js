@@ -7,7 +7,8 @@ const AddFriendForm = props => {
       <form className="friend-form">
         <input type="text" name="name" placeholder="Name" onChange={props.changeHandler} />
         <input type="number" name="age" placeholder="Age" onChange={props.changeHandler} />
-        <input type="text" name="email" placeholder="Email" onChange={props.changeHandler}/>
+        <input type="text" name="email" placeholder="Email" onChange={props.changeHandler} />
+        <input type="text" name="img" placeholder="Image Source" onChange={props.changeHandler} />
         <button onClick={props.addNewFriend}>Submit</button>
       </form>
     </div>

@@ -17,12 +17,14 @@ class App extends Component {
       friend: {
         name: '',
         age: null,
-        email: ''
+        email: '',
+        img: ''
       },
       friendToEdit: {
         name: '',
         age: null,
-        email: ''
+        email: '',
+        img: ''
       }
     }
   }
@@ -31,7 +33,7 @@ class App extends Component {
     axios
       .get('http://localhost:5000/friends')
       .then(response => {
-        // console.log(response);
+        console.log(response);
         this.setState({friends: response.data});
       })
       .catch(err => {
@@ -75,7 +77,6 @@ class App extends Component {
       .put(`http://localhost:5000/friends/${id}`, friend)
       .then(response => {
         console.log(`Success! ${response.data}`)
-        
         this.setState({
           friends: response.data,
           editFriend: {

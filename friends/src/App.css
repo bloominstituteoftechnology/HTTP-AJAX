@@ -3,9 +3,15 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+
 a {
   text-decoration: none;
   color: #323232;
+}
+
+.navbar {
+  text-align: center;
 }
 
 .navlink {
@@ -18,10 +24,12 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
 .navlink:hover {
   color: darksalmon;
   background: #323232;
 }
+
 .friends-title {
   text-align: center;
   font-weight: normal;
@@ -31,27 +39,14 @@ a {
 
 .friends-list {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-
-/* .friends-list a {
-  border: 1px solid lightseagreen;
-  width: 25%;
-  max-width: 300px;
-  padding: 30px;
-  margin: 5px;
-  transition: all .3s ease-out;
-}
-.friends-list a:hover {
-  background: lightseagreen;
-  color: #ffffff;
-} */
 
 .friend-name {
   margin: 0;
 }
+
 .friend-form-container {
   display: flex;
   flex-direction: column;
@@ -61,57 +56,98 @@ a {
   max-width: 800px;
   margin: 0 auto;
 }
+
 .friend-form-title {
   text-align: center;
   font-weight: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
 .friend-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .friend-form input {
   padding: 5px;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   max-width: 1000px;
   width: 100%;
   margin-bottom: 10px;
 }
+
 .friend-card {
-  border: 1px solid lightseagreen;
-  width: 25%;
-  max-width: 300px;
+  border: 1px solid rgba(32, 178, 170, 0.5);
+  border-radius: 10px;
+  width: 65%;
+  max-width: 700px;
   padding: 30px;
   margin: 5px;
   transition: all .3s ease-out;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.friend-card-top {
+  display: flex;
   align-items: center;
 }
+
 .friend-card-text {
-  margin-bottom: 20px;
+  margin-left: 20px;
 }
+
+.friend-card-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.friend-card-img {
+  width: 100px;
+}
+
+.friend-card-img img {
+  max-width: 100%;
+  border-radius: 20%;
+}
+
 .friend-card:hover {
-  background: lightseagreen;
+  background: #20b2aa;
   color: #ffffff;
 }
-button {
+
+.friend-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease-out;
+  background: white;
+  margin-bottom: 5px;
+}
+.friend-card-icon:hover {
+  background: darksalmon;
+}
+/* button {
   margin: 10px auto;
   border: 1px solid #323232;
   border-radius: 30px;
   padding: 10px;
   font-size: inherit;
   width: 150px;
-  /* max-width: 150px; */
   transition: all .3s ease-out;
   cursor: pointer;
-  
+
 }
+
 button:hover {
   color: darksalmon;
-  background: rgba(50,50,50,0.8);
-}
+  background: rgba(50, 50, 50, 0.8);
+} */
