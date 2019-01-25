@@ -10,9 +10,12 @@ const FriendsList = props => {
     <div>
       <NewFriendForm create createFriend={props.createFriend} />
       {props.friends.map(friend => (
-        <Link to={`/friends/${friend.id}`} key={friend.id}>
-          <FriendCard friend={friend} />
-        </Link>
+        <div key={friend.id}>
+          <Link to={`/friends/${friend.id}`}>
+            <FriendCard friend={friend} />
+          </Link>
+          <button onClick={() => props.deleteFriend(friend.id)}>Delete</button>
+        </div>
       ))}
     </div>
   )

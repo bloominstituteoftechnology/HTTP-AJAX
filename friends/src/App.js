@@ -34,8 +34,16 @@ class App extends Component {
   }
 
   updateFriend = (friend, id) => {
-
     axios.put(`http://localhost:5000/friends/${id}`, friend)
+      .then(response => {
+        this.setState({ friends: response.data })
+        console.log(response);
+      })
+      .catch(err => console.log(err));
+  }
+
+  deleteFriend = id => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
         this.setState({ friends: response.data })
         console.log(response);
@@ -51,13 +59,10 @@ class App extends Component {
           exact path="/friends"
           render={props => (
             <div>
-              {/* <NewFriendForm
-                create
-                createFriend={this.createFriend}
-              /> */}
               <FriendsList 
                 friends={this.state.friends}
                 createFriend={this.createFriend}
+                deleteFriend={this.deleteFriend}
               />
             </div>
           )} 
@@ -66,10 +71,6 @@ class App extends Component {
           path="/friends/:id"
           render={props => (
             <div>
-              {/* <NewFriendForm 
-                update
-                // updateFriend={this.updateFriend}
-              /> */}
               <Friend
                 updateFriend={this.updateFriend}
                 match={props.match}
