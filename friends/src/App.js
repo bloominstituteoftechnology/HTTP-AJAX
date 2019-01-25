@@ -35,8 +35,17 @@ class App extends Component {
     .catch(err => {
       console.log("Error", err)
     })
+  }
 
-
+  deleteOldFriends = id => {
+    axios
+    .delete(`http://localhost:5000/friends/${id}`)
+    .then(res => {
+      this.setState({friends: res.data})
+    })
+    .catch(err => {
+      console.log("Error", err)
+    })
   }
 
   render() {
