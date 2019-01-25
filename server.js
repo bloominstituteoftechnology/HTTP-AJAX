@@ -51,33 +51,36 @@ let friends = [
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
 
 app.post('/friends', (req, res) => {
-  const friend = { id: getNewId(), ...req.body };
+  const friend = {id: getNewId(), ...req.body};
   friends = [...friends, friend];
   res.status(201).json(friends);
 });
 
 app.put('/friends/:id', (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params;
   let friendIndex = friends.findIndex(friend => friend.id == id);
 
   if (friendIndex >= 0) {
-    friends[friendIndex] = { ...friends[friendIndex], ...req.body };
+    friends[friendIndex] = {...friends[friendIndex], ...req.body};
     res.status(200).json(friends);
   } else {
-    res
-      .status(404)
-      .json({ message: `The friend with id ${id} does not exist.` });
+    res.status(404).json({message: `The friend with id ${id} does not exist.`});
   }
 });
 
 app.delete('/friends/:id', (req, res) => {
-	friends = friends.filter(friend => friend.id != req.params.id);
-	res.status(200).json(friends);
+  friends = friends.filter(friend => friend.id != req.params.id);
+  res.status(200).json(friends);
 });
 
 app.listen(5000, () => {
