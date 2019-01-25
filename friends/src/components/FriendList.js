@@ -35,12 +35,12 @@ class FriendList extends React.Component{
 
     }
 
-    deleteFriend = (event, id) => {
-        event.preventDefault();
-        let unDeletedFriends = this.state.data.slice();
-        unDeletedFriends = this.state.data.filter(friend => !this.state.data.id);
-        this.setState({data: unDeletedFriends});
-    };
+    // deleteFriend = (e, id) => {
+    //     e.preventDefault();
+    //     let unDeletedFriends = this.state.data.slice();
+    //     unDeletedFriends = this.state.data.filter(friend => !this.state.data.id);
+    //     this.setState({data: unDeletedFriends});
+    // };
 
     handler = ( friend) => {
 
@@ -72,7 +72,7 @@ class FriendList extends React.Component{
     render() {
         return (
 
-            <div>
+            <div className="friendList">
                 {
                     this.state.data.map(friend => {
                         return <Friend key={friend.id} friend={friend}deleteHandler={this.deleteFriend}/>

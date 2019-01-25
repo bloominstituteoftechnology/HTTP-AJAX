@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import { Route,Link} from "react-router-dom";
+import Home from "./components/Home"
 
 import './App.css';
 import FriendList from "./components/FriendList";
 
 class App extends Component {
-  render() {
+
+
+
+
+    render() {
     return (
       <div className="App">
-      <FriendList/>
+        <Link to="/friendList" >Friend List</Link>
+        <Route exact path ="/friendList" component={Home}/>
+
       </div>
     );
   }
