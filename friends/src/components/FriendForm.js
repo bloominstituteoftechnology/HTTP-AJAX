@@ -26,7 +26,7 @@ const FormContainer = styled.div `
       overflow: hidden;
       width: 16%;
       float: left;
-      margin-left: 6%;
+      margin-left: 4%;
     }
 
     input {
@@ -34,7 +34,7 @@ const FormContainer = styled.div `
       height: 26px;
       text-align: center;
       background-color: #c5d9fd;
-      border: 1px solid black;
+      border: none;
       border-radius: 3px;
     }
 
@@ -43,7 +43,7 @@ const FormContainer = styled.div `
       height: 24px;
       margin: 10px auto;
       background: none;
-      border: 1px solid black;
+      border: 1px solid grey;
       border-radius: 3px;
       box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
       background: #79afe4;
@@ -62,6 +62,16 @@ class FriendForm extends React.Component {
         email: ""
       }
     };
+  }
+
+  componentDidMount() {
+    if(this.props.update) {
+      setTimeout(() => {
+        this.setState({ friend: this.props.friend })
+      }, 100);
+      
+    }
+    console.log(this.props)
   }
 
   handleChange = e => {
@@ -103,27 +113,24 @@ class FriendForm extends React.Component {
       <FormContainer>
         <form>
           {this.props.create ? <h2>Add a Friend</h2> : <h2>Update this Friend's Info</h2>}
-          <label for="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input 
             type="text"
             name="name"
-            // placeholder="Name"
             onChange={this.handleChange}
             value={this.state.friend.name}
           />
-          <label for="age">Age</label>
+          <label htmlFor="age">Age</label>
           <input 
             type="text"
             name="age"
-            // placeholder="Age"
             onChange={this.handleChange}
             value={this.state.friend.age}
           />
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input 
             type="text"
             name="email"
-            // placeholder="Email"
             onChange={this.handleChange}
             value={this.state.friend.email}
           />

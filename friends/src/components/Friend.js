@@ -3,6 +3,7 @@ import FriendCard from './FriendCard';
 import FriendForm from './FriendForm';
 
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Friend extends React.Component {
   constructor(props) {
@@ -34,9 +35,13 @@ class Friend extends React.Component {
           update 
           updateFriend={this.props.updateFriend}
           history={this.props.history}
-          id={this.state.id} 
+          id={this.state.id}
+          friend={this.state.friend}
         />
         <FriendCard friend={this.state.friend} />
+        <Link to="/friends">
+          <button>Back to List</button>
+        </Link>
       </div>
     )
   }
