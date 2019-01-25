@@ -79,6 +79,13 @@ nav a:hover:before {
   text-align: center;
 }
 
+form h1 {
+  font-size: 3.6rem;
+  letter-spacing: 5px;
+  border-bottom: 3px solid black;
+  margin: 20px 0;
+}
+
 .App form {
   margin-top: 8%;
   height: 60vh;
@@ -115,6 +122,38 @@ input:focus {
   height: 30px;
   background-color: #4682B4;
   color: #F0F8FF;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+
+
+  font-size: 2rem;
+  letter-spacing: 1.8px;
+  color: black;
+
+  background-color: #00FF7F;
+  border-radius: 45px;
+  padding: 25px;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+
+
+  font-size: 2rem;
+  letter-spacing: 1.8px;
+  color: black;
+
+  background-color: #ff5148;
+  border-radius: 45px;
+  padding: 25px;
+}
+
+.btn-container {
+  margin: 20px 0;
 }
 
 button {
