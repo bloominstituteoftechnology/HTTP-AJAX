@@ -23,13 +23,7 @@ class Friend extends React.Component{
         }
     }
    
-    // a bug I'm having is that if I go directly to this route I don't have the information for this component
-    // how do I handle something like this?
-
-    //I handled this by adding a route in the server API for a single friend and turned this into a stateful component
-    // I'm not sure if this is the best way to do it
     render(){ 
-        // I don't know why but I think this is a really funny way of getting the last path route
         const {friend} = this.state;
         return friend === undefined ? <div>Loading</div>:( 
             <div>

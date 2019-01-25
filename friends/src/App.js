@@ -15,7 +15,6 @@ class App extends Component {
     };
   }
 
-  // I don't know how the best way is  to refresh this information without keeping state in two different places
   componentDidMount(){
    this.getFriendsData()
   }

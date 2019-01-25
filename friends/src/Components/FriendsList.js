@@ -19,6 +19,7 @@ class FriendsList extends React.Component {
                 {this.props.friends.map(friend=>{
                     return <div key={friend.id}>
                         <Friend friend={friend} deleteFriend={this.props.deleteFriend}/>
+                        {/* Is the pattern below an anti-pattern? */}
                         <Route exact path={`/friends/${friend.id}/update`} render={props=> <FriendForm {...props} submitHandler={this.props.editFriend} /> } />
                     </div> 
                 })}

@@ -12,6 +12,7 @@ class FriendForm extends Component {
                 age:'',
                 email:''
             }, 
+            //is this a bad way of going about this?
             id: this.props.location? this.props.location.pathname.split('/')[2]:null,
             location: this.props.location? this.props.location.pathname.split('/').reverse()[0]:null
         }
