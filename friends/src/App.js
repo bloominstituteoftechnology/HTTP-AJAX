@@ -17,6 +17,18 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    Axios
+    .get('http://localhost:5000/friends')
+    .then(response => {
+      console.log(response);
+      this.setState({friends: response.data});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   handleChange = (e) => {
     this.setState({newFriend: {...this.state.newFriend, [e.target.name]: e.target.value }})
 
@@ -47,17 +59,7 @@ class App extends Component {
     console.log(err);
   })
   }
-  componentDidMount() {
-    Axios
-    .get('http://localhost:5000/friends')
-    .then(response => {
-      console.log(response);
-      this.setState({friends: response.data});
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
+ 
   render() {
     return (
       <div className="App">

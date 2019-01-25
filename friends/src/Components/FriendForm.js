@@ -7,12 +7,12 @@ class FriendForm  extends React.Component{
        this.state = {
            name: '',
            age: '',
-           email: ''
+           email: '',
        }
    }
 
    changeHandler = e =>{
-       this.setState([e.target.name], event.target.value)}
+       this.setState([e.target.name] , event.target.value)}
    }
     
     
@@ -20,22 +20,23 @@ render()
         {
     return (
         <div>
+            
             <input type='text' 
             name='name'
             placeholder='Name'
-            onChange={props.changeHandler}
+            onChange={this.changeHandler}
             />
             <input type='number' 
             name='age'
             placeholder='Age'
-            onChange={props.changeHandler}
+            onChange={this.changeHandler}
             />
             <input type='text' 
             name='email'
             placeholder='Email'
-            onChange={props.changeHandler}
+            onChange={this.changeHandler}
             />
-            <button onClick={props.addFriend}>Add Friend</button>
+            <button type='submit' onClick={this.addFriend}>Add Friend</button>
         </div>
     );
 }
