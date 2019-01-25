@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import './App.css';
-import Friend from '../src/components/Friend'
-import FriendForm from '../src/components/FriendForm'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import "./App.css";
+import Friend from "../src/components/Friend";
+import FriendForm from "../src/components/FriendForm";
 
-const baseURL = 'http://localhost:5000';
+const baseURL = "http://localhost:5000";
 
 const clearedFriend = {
-  name: '',
-  age: '',
-  email: ''
-}
+  name: "",
+  age: "",
+  email: ""
+};
 
 class App extends Component {
   constructor() {
@@ -21,49 +21,65 @@ class App extends Component {
       friend: clearedFriend
     };
   }
-  
 
   componentDidMount() {
-    axios.get(`${baseURL}/friends`)
-    .then(res => {
-      console.log(res.data);
-      this.setState({ friends: res.data })
-    })
-    .catch (err => { console.log(err)
-    })
+    axios
+      .get(`${baseURL}/friends`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ friends: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   handleChanges = e => {
     e.preventDefault();
     e.persist();
-    this.setState( prevState => {
-      return{ 
+    this.setState(prevState => {
+      return {
         friend: {
           ...prevState.friend,
           [e.target.name]: e.target.value
         }
-      }
-      
-    })
-  }
+      };
+    });
+  };
 
-  addFriend= () =>{
+  addFriend = () => {
     axios
       .post(`${baseURL}/friends`, this.state.friend)
-      .then(res =>{ this.setState
-        ({ friends: res.data})
-  })
-      .catch(err => console.log(err))
-}
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  deleteItem = (e, itemId) => {
+    e.preventDefault();
+    axios
+      .delete(`${baseURL}/friends/${itemId}`)
+      .then(res => {
+        this.setState({ items: res.data });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="App">
-         <h1>Hello Friends!</h1>
-          <FriendForm friend={this.state.friend}
-            handleChanges={this.handleChanges}
-            addFriend={this.addFriend}/>
-         <Friend friends={this.state.friends} />
-         
+        <h1>Hello Friends!</h1>
+        <FriendForm
+          friend={this.state.friend}
+          handleChanges={this.handleChanges}
+          addFriend={this.addFriend}
+        />
+        <Friend friends={this.state.friends}
+                deleteItem={this.deleteItem} />
       </div>
     );
   }
