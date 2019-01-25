@@ -14,12 +14,16 @@ const AppContainer = styled.div`
 `;
 
 const InputFormContainer = styled.div`
-  border: 1px solid blue;
   max-width: 70%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15px;
+`;
+
+const FixedMenu = styled.div`
+  position: fixed;
 `;
 
 class App extends Component {
@@ -86,9 +90,11 @@ class App extends Component {
       <AppContainer>
         <Route path='/' render={(props) => <FriendsList {...props} friends={this.state.friends} deleteFromServer={this.deleteFromServer}/>}/>
         <InputFormContainer>
-          <Route path='/' component={Menu} />
-          <Route path='/post' render={(props) => <PostForm {...props} postToServer={this.postToServer}/>}/>
-          <Route path='/update' render={(props) => <UpdateForm {...props} updateToServer={this.updateToServer} friends={this.state.friends}/>}/>
+          <FixedMenu>
+            <Route path='/' component={Menu} />
+            <Route path='/post' render={(props) => <PostForm {...props} postToServer={this.postToServer}/>}/>
+            <Route path='/update' render={(props) => <UpdateForm {...props} updateToServer={this.updateToServer} friends={this.state.friends}/>}/>
+          </FixedMenu>
         </InputFormContainer>
       </AppContainer>
     );

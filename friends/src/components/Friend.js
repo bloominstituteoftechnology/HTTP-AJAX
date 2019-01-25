@@ -14,6 +14,9 @@ const Name = styled.div`
   background-color: #222629;
   color: #FFF;
   height: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const CloseButton = styled.button`
