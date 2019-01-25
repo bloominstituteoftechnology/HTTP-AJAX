@@ -3,6 +3,8 @@ import { Link, Route } from 'react-router-dom';
 import axios from 'axios'
 import FriendForm from './FriendForm/FriendForm';
 
+import { FiX } from "react-icons/fi";
+
 class Friend extends React.Component{
     constructor(props){
         super(props)
@@ -35,7 +37,7 @@ class Friend extends React.Component{
             <div>
                 <div>
                     <h3>{friend.name}</h3>
-                    <p>X</p>
+                    <p></p>
                 </div>
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
