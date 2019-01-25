@@ -96,6 +96,23 @@ form h1 {
   align-items: center;
 }
 
+@media(max-width: 936px) {
+  form h1 {
+    font-size: 2rem;
+  }
+
+  .App form {
+    margin-top: 12%;
+  }
+}
+
+@media(max-width: 568px) {
+  .App form {
+    margin-top: 15%;
+    height: 75vh;
+  }
+}
+
 input {
   margin: 10px;
   width: 30%;
