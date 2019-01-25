@@ -82,48 +82,24 @@ export default class Friends extends React.Component {
   render() {
     return (
       <>
-        {this.state.friends &&
-          this.state.friends.map(e => {
-            return (
-              <div key={e.id} className="people">
-                <div>
-                  {e.name}, {e.age}, {e.email}
+        <div className="people-container">
+          {this.state.friends &&
+            this.state.friends.map(e => {
+              return (
+                <div key={e.id} className="people">
+                  <div>
+                    {e.name}, {e.age}, {e.email}
+                  </div>
+                  <span className="edit" onClick={x => this.setUpdate(x, e.id)}>
+                    edit
+                  </span>
+                  <span onClick={x => this.delete(x, e.id)}>&times;</span>
                 </div>
-                <span className="edit" onClick={x => this.setUpdate(x, e.id)}>
-                  edit
-                </span>
-                <span onClick={x => this.delete(x, e.id)}>&times;</span>
-              </div>
-            );
-          })}
-        {!this.state.update && (
-          <form action="submit">
-            <input
-              type="text"
-              onChange={this.name}
-              value={this.state.name}
-              placeholder="Name"
-            />
-            <input
-              type="number"
-              onChange={this.age}
-              value={this.state.age}
-              placeholder="Age"
-            />
-            <input
-              type="email"
-              onChange={this.email}
-              value={this.state.email}
-              placeholder="Email"
-            />
-            <button onClick={this.submit} onSubmit={this.submit}>
-              Submit
-            </button>
-          </form>
-        )}
-        {this.state.update && (
-          <div>
-            <h2>Update</h2>
+              );
+            })}
+        </div>
+        <>
+          {!this.state.update && (
             <form action="submit">
               <input
                 type="text"
@@ -143,12 +119,40 @@ export default class Friends extends React.Component {
                 value={this.state.email}
                 placeholder="Email"
               />
-              <button onClick={this.update} onSubmit={this.update}>
-                Update
+              <button onClick={this.submit} onSubmit={this.submit}>
+                Submit
               </button>
             </form>
-          </div>
-        )}
+          )}
+          {this.state.update && (
+            <div>
+              <h2>Update</h2>
+              <form action="submit">
+                <input
+                  type="text"
+                  onChange={this.name}
+                  value={this.state.name}
+                  placeholder="Name"
+                />
+                <input
+                  type="number"
+                  onChange={this.age}
+                  value={this.state.age}
+                  placeholder="Age"
+                />
+                <input
+                  type="email"
+                  onChange={this.email}
+                  value={this.state.email}
+                  placeholder="Email"
+                />
+                <button onClick={this.update} onSubmit={this.update}>
+                  Update
+                </button>
+              </form>
+            </div>
+          )}
+        </>
       </>
     );
   }
