@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
 const MenuDiv = styled.div`
@@ -9,13 +9,23 @@ const MenuDiv = styled.div`
   border: 1px solid #6B6E70;
   border-radius: 5px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Selection = styled.div`
+  text-decoration: none;
+  font-size: 20px;
+  color: #FFF;
 `;
 
 const Menu = props => {
   return (
     <MenuDiv>
-      <Link to='/post'>New</Link>
-      <Link to='/update'>Update</Link>
+      <NavLink activeStyle={{backgroundColor: '#86C232'}} to='/post'><Selection>New</Selection></NavLink>
+      <NavLink activeStyle={{backgroundColor: '#86C232'}} to='/update'><Selection>Update</Selection></NavLink>
     </MenuDiv>
   );
 };

@@ -4,11 +4,29 @@ import styled from 'styled-components';
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   width: 650px;
-  height: 400px;
+  height: 200px;
   border: 1px solid #474B4F;
   border-radius: 5px;
   background-color: #6B6E70;
+`;
+
+const StyledInput = styled.input`
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
+  width: 400px;
+`;
+
+const FormButton = styled.button`
+  width: 200px;
+  background-color: #86C232;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
 `;
 
 class PostForm extends React.Component{
@@ -47,10 +65,10 @@ class PostForm extends React.Component{
   render (){
     return (
       <Form onSubmit={this.handleSubmit}>
-        <input type='text' name='name' onChange={this.handleChange} value={this.state.info.name} placeholder='Name'/>
-        <input type='text' name='age' onChange={this.handleChange} value={this.state.info.age} placeholder='Age'/>
-        <input type='text' name='email' onChange={this.handleChange} value={this.state.info.email} placeholder='Email'/>
-        <button type='submit'>Add</button>
+        <StyledInput type='text' name='name' onChange={this.handleChange} value={this.state.info.name} placeholder='Name'/>
+        <StyledInput type='text' name='age' onChange={this.handleChange} value={this.state.info.age} placeholder='Age'/>
+        <StyledInput type='text' name='email' onChange={this.handleChange} value={this.state.info.email} placeholder='Email'/>
+        <FormButton type='submit'>Add</FormButton>
       </Form>
     );
   }
