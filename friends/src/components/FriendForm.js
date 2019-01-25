@@ -22,7 +22,6 @@ class FriendForm extends React.Component {
                 [event.target.age]: event.target.value,
                 [event.target.password]: event.target.value
             }
-            
         });
     }
 
@@ -30,9 +29,6 @@ class FriendForm extends React.Component {
     addFriendHandler = event => {
         event.preventDefault();
         this.props.addFriend(this.state.friend);
-        // this.setState({ friend});
-        console.log(this.state);
-
     }
 
     render() {
@@ -62,7 +58,6 @@ class FriendForm extends React.Component {
                     input={this.state.email}
                 >
                 </input>
-                
                 <button onClick={this.addFriendHandler}>Add</button>
             </form>
         )
