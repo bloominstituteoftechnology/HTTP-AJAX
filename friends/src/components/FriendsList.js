@@ -8,6 +8,7 @@ class FriendsList extends Component {
       friends: []
     };
   }
+
   componentDidMount() {
     axios 
     .get('http://localhost:5000/friends')
@@ -18,8 +19,11 @@ class FriendsList extends Component {
     .catch(err => {
       console.log(err);
     });
-
   }
+
+
+ 
+  
   render() {
     return (
       <div className="friends-list">
@@ -29,6 +33,7 @@ class FriendsList extends Component {
           <h2>Name: {friend.name}; </h2>
           <h2>Age: {friend.age}; </h2>
           <h2> Email: {friend.email}; </h2>
+          <button onClick={() => this.props.deleteFriend(friend.id)}>Delete</button>
         </div>
       ))}
     </div>

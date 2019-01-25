@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
+
 class FriendsForm extends Component {
 constructor() {
 super();
 this.state={
   newFriend:{
   name:"",
-  age:null,
+  age:"",
   email:""
   }}
 }
