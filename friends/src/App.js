@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendsList from './components/FriendsList';
-import NewFriendForm from './components/NewFriendForm';
 import Friend from "./components/Friend";
 
 import axios from 'axios';
@@ -20,7 +19,6 @@ class App extends Component {
     axios.get('http://localhost:5000/friends')
       .then(response => {
         this.setState({ friends: response.data });
-        // console.log(this.state);
       })
       .catch(err => console.log(err));
   }
@@ -37,7 +35,6 @@ class App extends Component {
     axios.put(`http://localhost:5000/friends/${id}`, friend)
       .then(response => {
         this.setState({ friends: response.data })
-        console.log(response);
       })
       .catch(err => console.log(err));
   }
@@ -46,7 +43,6 @@ class App extends Component {
     axios.delete(`http://localhost:5000/friends/${id}`)
       .then(response => {
         this.setState({ friends: response.data })
-        console.log(response);
       })
       .catch(err => console.log(err));
   }
@@ -73,7 +69,7 @@ class App extends Component {
             <div>
               <Friend
                 updateFriend={this.updateFriend}
-                match={props.match}
+                {...props}
               />
             </div>
           )}

@@ -32,7 +32,8 @@ class Friend extends React.Component {
       <div>
         <NewFriendForm 
           update 
-          updateFriend={this.props.updateFriend} 
+          updateFriend={this.props.updateFriend}
+          history={this.props.history}
           id={this.state.id} 
         />
         <FriendCard friend={this.state.friend} />

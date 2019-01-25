@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom';
-
 
 class NewFriendForm extends React.Component {
   constructor(props) {
@@ -15,7 +13,7 @@ class NewFriendForm extends React.Component {
     };
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       friend: {
         ...this.state.friend,
@@ -26,12 +24,27 @@ class NewFriendForm extends React.Component {
 
   postFriend = e => {
     e.preventDefault();
-    this.props.createFriend(this.state.friend)
+    this.props.createFriend(this.state.friend);
+    this.setState({ 
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
+    })
   }
 
   putFriend = e => {
     e.preventDefault();
-    this.props.updateFriend(this.state.friend, this.props.id)
+    this.props.updateFriend(this.state.friend, this.props.id);
+    this.setState({ 
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
+    });
+    this.props.history.goBack();
   }
 
   render() {
@@ -43,25 +56,25 @@ class NewFriendForm extends React.Component {
             name="name"
             placeholder="Name"
             onChange={this.handleChange}
-            value={this.state.name}
+            value={this.state.friend.name}
           />
           <input 
             type="number"
             name="age"
             placeholder="Age"
             onChange={this.handleChange}
-            value={this.state.age}
+            value={this.state.friend.age}
           />
           <input 
             type="text"
             name="email"
             placeholder="Email"
             onChange={this.handleChange}
-            value={this.state.email}
+            value={this.state.friend.email}
           />
+
           {this.props.create ? <button onClick={this.postFriend}>Create</button> : <button onClick={this.putFriend}>Update</button>}
            
-          
         </form>
       </div>
     )

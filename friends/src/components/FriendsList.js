@@ -1,5 +1,4 @@
 import React from 'react';
-import Friend from './Friend';
 import FriendCard from './FriendCard';
 import NewFriendForm from './NewFriendForm';
 
@@ -9,6 +8,7 @@ const FriendsList = props => {
   return (
     <div>
       <NewFriendForm create createFriend={props.createFriend} />
+
       {props.friends.map(friend => (
         <div key={friend.id}>
           <Link to={`/friends/${friend.id}`}>
@@ -17,6 +17,7 @@ const FriendsList = props => {
           <button onClick={() => props.deleteFriend(friend.id)}>Delete</button>
         </div>
       ))}
+      
     </div>
   )
 }
