@@ -37,6 +37,7 @@ class App extends Component {
 
     axios.put(`http://localhost:5000/friends/${id}`, friend)
       .then(response => {
+        this.setState({ friends: response.data })
         console.log(response);
       })
       .catch(err => console.log(err));
@@ -45,24 +46,35 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NewFriendForm 
-          createFriend={this.createFriend}
-          updateFriend={this.updateFriend}
-        />
+        
         <Route 
           exact path="/friends"
           render={props => (
-            <FriendsList 
-              friends={this.state.friends}
-            />
+            <div>
+              {/* <NewFriendForm
+                create
+                createFriend={this.createFriend}
+              /> */}
+              <FriendsList 
+                friends={this.state.friends}
+                createFriend={this.createFriend}
+              />
+            </div>
           )} 
         />
         <Route
           path="/friends/:id"
           render={props => (
-            <Friend
-              match={props.match}
-            />
+            <div>
+              {/* <NewFriendForm 
+                update
+                // updateFriend={this.updateFriend}
+              /> */}
+              <Friend
+                updateFriend={this.updateFriend}
+                match={props.match}
+              />
+            </div>
           )}
         />
       </div>

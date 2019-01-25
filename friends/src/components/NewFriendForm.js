@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Route } from 'react-router-dom';
+
 
 class NewFriendForm extends React.Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class NewFriendForm extends React.Component {
 
   putFriend = e => {
     e.preventDefault();
-    this.props.updateFriend(this.state.friend)
+    this.props.updateFriend(this.state.friend, this.props.id)
   }
 
   render() {
@@ -57,8 +59,9 @@ class NewFriendForm extends React.Component {
             onChange={this.handleChange}
             value={this.state.email}
           />
-          <button onClick={this.postFriend}>Create</button>
-          <button onClick={this.putFriend}>Update</button>
+          {this.props.create ? <button onClick={this.postFriend}>Create</button> : <button onClick={this.putFriend}>Update</button>}
+           
+          
         </form>
       </div>
     )
