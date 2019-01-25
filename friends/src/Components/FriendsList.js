@@ -2,7 +2,7 @@ import React from 'react';
 // import axios from 'axios';
 import { Route } from 'react-router-dom';
 
-import Friend from './Friend';
+import Friend from './Friend/Friend';
 import FriendForm from './FriendForm/FriendForm';
 
 class FriendsList extends React.Component {

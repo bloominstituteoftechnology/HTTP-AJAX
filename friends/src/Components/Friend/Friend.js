@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import axios from 'axios'
-import FriendForm from './FriendForm/FriendForm';
+
+import './Friend.css'
 
 import { FiX } from "react-icons/fi";
 
@@ -26,8 +27,8 @@ class Friend extends React.Component{
     render(){ 
         const {friend} = this.state;
         return friend === undefined ? <div>Loading</div>:( 
-            <div>
-                <div>
+            <div className="friend-card">
+                <div className="friend-header">
                     <h3>{friend.name}</h3>
                     <FiX onClick={()=>{
                         this.props.deleteFriend(friend.id)
@@ -35,7 +36,7 @@ class Friend extends React.Component{
                 </div>
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
-                {this.state.location==='update'?null:<Link to={`/friends/${friend.id}/update`}>Update</Link>}
+                <Link to={`/friends/${friend.id}/update`}>Update</Link>
             </div>
          );
    

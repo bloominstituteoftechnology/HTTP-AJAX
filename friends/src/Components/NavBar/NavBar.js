@@ -8,7 +8,6 @@ const NavBar = () => {
         <header className="navigation-wrapper">
             <NavLink to="/" activeClassName="">Home</NavLink>
             <NavLink to="/friends" activeClassName="">Friends</NavLink>
-            <NavLink to="/addfriend" activeClassName="">Add Friend</NavLink>
         </header>
      );
 }
