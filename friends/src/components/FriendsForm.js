@@ -6,7 +6,7 @@ super();
 this.state={
   newFriend:{
   name:"",
-  age:"",
+  age:null,
   email:""
   }}
 }
@@ -15,10 +15,14 @@ handleChange = e => {
     newFriend: {
       ...this.state.newFriend,
       [e.target.name]: e.target.value
-    }
-  });
-  postMessage = e =>{
+    } 
+  })
+    console.log(e.target)
+  }
+
+  addFriend = e =>{
     e.preventDefault();
+    this.props.postFriendToServer(this.state.newFriend);
     this.setState({
       newFriend:{
         name:"",
@@ -26,14 +30,14 @@ handleChange = e => {
         email:"" 
       }
     })
+    console.log()
   }
 
-};
 render(){
   return(
     <div className="friend-form">
      <h2> POST (add) a new friend</h2>
-     <form onSubmit={this.postMessage}>
+     <form onSubmit={this.addFriend}>
           <input
             type="text"
             name="name"
@@ -55,7 +59,9 @@ render(){
             onChange={this.handleChange}
             value={this.state.newFriend.email}
             />
+            <button> Add </button>
       </form>  
+      
     </div>
 )}
 
