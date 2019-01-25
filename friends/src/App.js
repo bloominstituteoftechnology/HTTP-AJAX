@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 import FriendsList from "./Components/FriendsList";
 import AddFriendForm from "./Components/AddFriendForm";
+import Friend from "./Components/Friend";
 import "./App.css";
 
 class App extends Component {
@@ -56,6 +57,16 @@ class App extends Component {
           render={props => {
             return <AddFriendForm {...props} refresh={this.updateState} />;
           }}
+        />
+        <Route
+          path="/:id"
+          render={props => (
+            <Friend
+              friend={this.state.friends}
+              deleteFriend={this.deleteFriend}
+              {...props}
+            />
+          )}
         />
       </div>
     );
