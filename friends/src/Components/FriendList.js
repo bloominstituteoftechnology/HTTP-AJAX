@@ -14,12 +14,34 @@ margin: 15px auto;
 padding: 5px;
 border-radius: 20px;
 `
+const FriendContainer = styled.div`
+display: flex;
+flex-direction: row;
+`
+
+const FriendDiv = styled.div`
+padding: 5px;
+`
+
+const DeleteFriend = styled.button`
+border-radius: 10px;
+font-size: 15px;
+color: red;
+`
 
 
 const FriendList = props => {
     const friends = props.friends;
    const friendArray = friends.map( (friend, key) => 
-  <ul key={friend.id}>  <div className="friendContainer">{friend.name} {friend.age} {friend.email}</div>  </ul>
+  <ul key={friend.id}>  
+    <FriendContainer>
+        <FriendDiv>{friend.name} </FriendDiv>
+        <FriendDiv>{friend.age} </FriendDiv>
+        <FriendDiv>{friend.email} </FriendDiv>
+        <DeleteFriend>{friend.delete} X </DeleteFriend>
+    </FriendContainer> 
+
+   </ul>
   );
       return(
             <FriendListDiv>
