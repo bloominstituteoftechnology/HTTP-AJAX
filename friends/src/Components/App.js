@@ -1,55 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
+import {Route} from 'react-router-dom';
+import FriendsList from './components/FriendsList';
+import FriendForm from './components/FriendForm';
 import Axios from 'axios';
-import friends from "../../server";
-import FriendForm from './Components/FriendForm';
-import FriendsList from './Components/FriendsForm';
 
-
-class App extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            friends: this.props.friend,
-            name: '',
-            age: '', //number???
-            email: ''
-        }
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      friends: [],
+        newFriend: {
+          name: '',
+          age: 0,
+          email: ''
+      }
     }
+  }
+
+  handleChange = (e) => {
+   // const newFriendData = { [e.target.name]: e.target.value }
+    this.setState({newFriend: {...this.state.newFriend, [e.target.name]: e.target.value }})
+
+  }
+
+  addFriend = () => {
+    const newFriend = this.state.newFriend;
+    console.log(this.state.newFriend);
+    Axios
+    .post('http://localhost:5000/friends', this.state.newFriend)
+    .then(response => {
+      console.log(response);
+      this.setState({friends: response.data, newFriend: ''});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  componentDidMount() {
+    Axios
+    .get('http://localhost:5000/friends')
+    .then(response => {
+      console.log(response);
+      this.setState({friends: response.data});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+      <Route exact path='/' render={(props) =><FriendsList {...props} friends={this.state.friends} newFriend={this.state.newFriend} textHandler={this.handleChange} addFriend={this.addFriend}/>} />
+    <Route path='/newfriend' render={(props) =><FriendForm {...props} newFriend={this.state.newFriend} textHandler={this.textHandler} addFriend={this.addFriend}/>}/>
+      </div>
+    );
+  }
 }
-    componentDidMount(){
-        axios.get("http://localhost:5000/friends")
-            .then(res => {
-                this.setState({
-                    friends: res.data
-                })
-                console.log(res.data);
-            })
-            .catch(error => {
-                console.log('Server Error', error);
-            });
-        this.setState({friends: {friends: this.props.friend, name: '', age: '', email: '')}
-        }
 
-
-    }
-
-//setting up state to retrieve data from the server.
-
-
-//Same as before
-
-const changeHandler = (event) => {
-    this.setState({[event.target.name]: event.target.value })
-}
-
- const handleSubmit = (event) => {
-    this.preventDefault();
-
-    const user = {
-        name: this.state.name,
-        age: this.state.age,
-        email: this.state.email,
-    };
-}
-
-export default NewFriend;
+export default App;
