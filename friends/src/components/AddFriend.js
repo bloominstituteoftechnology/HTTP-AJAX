@@ -6,54 +6,61 @@ class AddFriend extends Component {
     constructor() {
         super();
         this.state = {
-            id:0,
-            inputName: "",
-            inputAge: 0,
-            inputEmail: "",
+            newFriend: {
+                id:0,
+                name: "",
+                age: 0,
+                email: "",
+            }
         }
     }
 
-    nameChange = event => {
-        this.setState({ inputName: event.target.value })
+    handleChange = e => {
+        this.setState({
+            newFriend: {
+                ...this.state.newFriend,
+                [e.target.name]: e.target.value
+            }
+        });
+        // console.log(this.state.newFriend)
     }
 
     
-    ageChange = event => {
-        this.setState({ inputAge: event.target.value })
-    }
+    // ageChange = event => {
+    //     this.setState({ inputAge: event.target.value })
+    // }
 
-    emailChange = event => {
-        this.setState ({ inputEmail: event.target.value })
-    }
+    // emailChange = event => {
+    //     this.setState ({ inputEmail: event.target.value })
+    // }
 
 
     formHandler = event => {
         event.preventDefault();
-        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        // var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        if(!this.state.inputName  
-            || !this.state.inputEmail) {
-            alert("Name or Email can't be blank!")
-        }
-        if(this.state.inputAge <= 18){
-            alert("You're too young to be my friend")
-        }
-        if(!filter.test(this.state.inputEmail)) {
-            alert("Need a valid email address")
-        }
-        else {
-            this.props.handler({ 
-                id:this.state.id,
-                name:this.state.inputName, 
-                age: this.state.inputAge,
-                email: this.state.inputEmail
+        // if(!this.state.inputName  
+        //     || !this.state.inputEmail) {
+        //     alert("Name or Email can't be blank!")
+        // }
+        // if(this.state.inputAge <= 18){
+        //     alert("Go study small child!!!")
+        // }
+        // if(!filter.test(this.state.inputEmail)) {
+        //     alert("Need a valid email address")
+        // }
+        // else {
+            this.props.handler(this.state.newFriend)
+            this.setState({ 
+                newFriend: {
+                    name: "",
+                    age: 0,
+                    email: ""
+                }
+
             })
-        }
-        this.setState({ 
-            inputName: "",
-            inputAge: 0,
-            inputEmail: ""
-         })
+        // }
+        // console.log(this.state.newFriend)
     }
 
     render(){
@@ -62,26 +69,29 @@ class AddFriend extends Component {
                 Add a new friend: <br/>
                 Name: <input 
                         type="text" 
+                        name = "name"
                         placeholder="Name"
-                        onChange = {this.nameChange}
-                        value= {this.state.inputName}
+                        onChange = {this.handleChange}
+                        value= {this.state.newFriend.name}
                         ></input>
 
                         <br/>
 
                 Age: <input 
                         type="text"
-                        onChange = {this.ageChange}
-                        value={this.state.inputAge}
+                        name = "age"
+                        onChange = {this.handleChange}
+                        value={this.state.newFriend.age}
                         />
 
                         <br/>
 
                 Email: <input 
                         type="email" 
+                        name = "email"
                         placeholder="Email"
-                        onChange = {this.emailChange}
-                        value = {this.state.inputEmail}
+                        onChange = {this.handleChange}
+                        value = {this.state.newFriend.email}
                         /> 
                         <br/>
 

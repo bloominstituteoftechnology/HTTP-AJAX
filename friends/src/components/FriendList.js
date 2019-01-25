@@ -25,15 +25,20 @@ class FriendList extends Component {
       }
     
     formSubmit = (friend) => {
-        let newFriend = this.state.friends;
-        friend.id = this.state.friends.length + 1;
-        // console.log(newFriend)
-        // console.log(friend)
-        // console.log(this.state.friends)
-        newFriend.push(friend)
-        this.setState({ friend:newFriend })
+        axios
+            .post("http://localhost:5000/friends", friend)
+            .then(response => {
+                this.setState({ friends:response.data })
+            })
+            .catch( err => console.log("REJECTED!", err))
     }
 
+    delete = (searchID) => {
+        // console.log("hi")
+
+        // const newList = this.state.friends;
+
+    }
 
     render(){
         return (
@@ -42,16 +47,16 @@ class FriendList extends Component {
                 {this.state.friends.map (friend => {
                     return(
                         <div>
-                            <Link to={`/friends/${friend.id}`}>
+                            <FriendCard
+                                key = {friend.id}
+                                id = {friend.id}
+                                name = {friend.name}
+                                age = {friend.age}
+                                email = {friend.email}
+                                delete = {this.delete}
+                                />
+                            <h2>---------------------------------------</h2>
 
-                                <FriendCard
-                                    key = {friend.id}
-                                    id = {friend.id}
-                                    name = {friend.name}
-                                    age = {friend.age}
-                                    email = {friend.email}/>
-                        
-                            </Link>
                         </div>
                     ) 
                 })}
