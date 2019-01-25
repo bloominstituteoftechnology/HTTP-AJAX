@@ -82,7 +82,7 @@ class App extends Component {
           isUpdating: false,
           friend: {
             name: "",
-            age: "",
+            age: null,
             email: "",
           }
         })
