@@ -37,6 +37,7 @@ class Friend extends React.Component{
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
                 {this.state.location==='update'?null:<Link to={`/friends/${friend.id}/update`}>Update</Link>}
+                <Route exact path="/friends/:id/update" render={props=> <FriendForm {...props} /> } />
             </div>
          );
    
