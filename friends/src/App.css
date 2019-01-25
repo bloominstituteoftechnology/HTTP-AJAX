@@ -3,15 +3,13 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-
-  padding: 25px 50px;
 }
 
 .friend-card {
   border: 2px outset rgba(0, 0, 0, 0.75);
   background-color: #F0F8FF;
 
-  width: 40%;
+  width: 45%;
   margin: 5px auto;
   padding: 15px 5px;
 
@@ -20,8 +18,43 @@
 
 input {
   margin: 10px;
+  width: 27%;
+  height: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px inset #4682B4;
+  background-color: transparent;
+  transition: width 500ms, color 500ms, background-color 300ms, border 200ms;
+}
+
+input::placeholder {
+  transition: color 500ms;
+}
+
+input:focus::placeholder {
+  color: #F0F8FF;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+  width: 30%;
+  background-color: #4682B4;
+  color: #F0F8FF;
 }
 
 button {
-  margin: 10px 0;
+  margin: 10px 30px;
+  width: 150px;
+  height: 35px;
+  border: none;
+  font-size: 1.2rem;
+  color: #4682B4;
+
+  transition: color 500ms, background-color 300ms;
+}
+
+button:hover {
+  background-color: #4682B4;
+  color: #F0F8FF;
 }
