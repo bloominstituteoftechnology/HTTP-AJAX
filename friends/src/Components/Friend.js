@@ -19,10 +19,15 @@ class Friend extends React.Component{
                 this.setState({friend:result.data})
             }).catch(error=>console.log(error))
         }
+        // if(this.state.friend === undefined)
+        //     this.props.getFriendsData();
     }
    
     // a bug I'm having is that if I go directly to this route I don't have the information for this component
-    // how do I handle something like this
+    // how do I handle something like this?
+
+    //I handled this by adding a route in the server API for a single friend and turned this into a stateful component
+    // I'm not sure if this is the best way to do it
     render(){ 
         // I don't know why but I think this is a really funny way of getting the last path route
         const {friend} = this.state;
@@ -32,7 +37,6 @@ class Friend extends React.Component{
                 <p>{friend.age}</p>
                 <p>{friend.email}</p>
                 {this.state.location==='update'?null:<Link to={`/friends/${friend.id}/update`}>Update</Link>}
-                <Route exact path="/friends/:id/update" render={props=> <FriendForm {...props} /> } />
             </div>
          );
    
