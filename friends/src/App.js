@@ -18,7 +18,6 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-   // const newFriendData = { [e.target.name]: e.target.value }
     this.setState({newFriend: {...this.state.newFriend, [e.target.name]: e.target.value }})
 
   }
