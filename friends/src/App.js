@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FriendsList from './components/FriendsList';
 import PostForm from './components/PostForm';
 import UpdateForm from './components/UpdateForm';
+import Menu from './components/Menu';
+import {Route} from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -16,7 +18,8 @@ const InputFormContainer = styled.div`
   max-width: 70%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 class App extends Component {
@@ -81,10 +84,11 @@ class App extends Component {
   render() {
     return (
       <AppContainer>
-        <FriendsList friends={this.state.friends} deleteFromServer={this.deleteFromServer}/>
+        <Route path='/' render={(props) => <FriendsList {...props} friends={this.state.friends} deleteFromServer={this.deleteFromServer}/>}/>
         <InputFormContainer>
-          <PostForm postToServer={this.postToServer}/>
-          <UpdateForm updateToServer={this.updateToServer} friends={this.state.friends}/>
+          <Route path='/' component={Menu} />
+          <Route path='/post' render={(props) => <PostForm {...props} postToServer={this.postToServer}/>}/>
+          <Route path='/update' render={(props) => <UpdateForm {...props} updateToServer={this.updateToServer} friends={this.state.friends}/>}/>
         </InputFormContainer>
       </AppContainer>
     );
