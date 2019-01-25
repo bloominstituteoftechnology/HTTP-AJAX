@@ -9,6 +9,11 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
+      newFriends: {
+        name: "",
+        age: "",
+        email: ""
+      }
     }
   }
 
@@ -21,6 +26,28 @@ class App extends Component {
         .catch(error => {
             console.error('Server Error', error)
         })
+  }
+
+  handleChange = e => {
+    this.setState({
+      newFriends: {
+        ...this.state.newFriends,
+        [e.target.name]: e.target.value
+      }
+    });
+    console.log(this.state.newFriends.name)
+  };
+
+  addFriend = e => {
+    e.preventDefault();
+    this.addNewFriendsToServer(this.state.newFriends);
+    this.setState({
+        newFriends: {
+          name: "",
+          age: "",
+          email: ""
+        }
+    });
   }
 
   addNewFriendsToServer = friend => {
@@ -48,11 +75,24 @@ class App extends Component {
     })
   }
 
+
+  updateFriends = id => {
+    console.log(id)
+    axios
+    .put(`http://localhost:5000/friends/${id}` )
+    .then(res => {
+      this.setState({friends: res.data})
+    })
+    .catch(err => {
+      console.log("Error", err)
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <Friends friends={this.state.friends} deleteFriend={this.deleteOldFriends} />
-        <FriendForm addNewFriendsToServer={this.addNewFriendsToServer}/>
+        <Friends friends={this.state.friends} editFriend={this.updateFriends} deleteFriend={this.deleteOldFriends} />
+        <FriendForm typed={this.handleChange} {...this.state.newFriends} addFriend={this.addFriend}/>
       </div>
     );
   }
