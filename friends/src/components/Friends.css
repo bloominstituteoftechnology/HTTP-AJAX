@@ -14,8 +14,17 @@ button {
     display: flex;
     justify-content: center;
     font-size: 1.1rem;
+    cursor: default;
 }
 
 .people span {
     font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.people .edit {
+    margin: 0 .5rem;
+    cursor: pointer;
+    user-select: none;
 }

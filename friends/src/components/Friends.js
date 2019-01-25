@@ -8,7 +8,7 @@ export default class Friends extends React.Component {
     this.state = {
       friends: [],
       name: "",
-      age: "",
+      age: null,
       email: "",
       id: null,
       update: false
@@ -89,7 +89,9 @@ export default class Friends extends React.Component {
                 <div>
                   {e.name}, {e.age}, {e.email}
                 </div>
-                <span onClick={x => this.setUpdate(x, e.id)}>edit</span>
+                <span className="edit" onClick={x => this.setUpdate(x, e.id)}>
+                  edit
+                </span>
                 <span onClick={x => this.delete(x, e.id)}>&times;</span>
               </div>
             );
