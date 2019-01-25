@@ -11,21 +11,25 @@ class Friends extends React.Component {
     super(props);
     this.state = { 
       friends: [],
-      updatedFriend: {}
+      updatedFriend: {},
+      isLoading: false
     }
   }
 
   componentDidMount = () => { // get the list of friends to show.
+    this.setState({isLoading: true});
     axios.get("http://localhost:5000/friends")
     .then (res => {
-      this.setState({friends: res.data});
+      this.setState({friends: res.data, isLoading: false});
     })
     .catch (err => {
       console.log(err);
+      this.setState({isLoading: false});
     })
   }
 
   addFriend = (friend) => {
+    this.setState({isLoading: true});
     if(!friend.name || !friend.age || !friend.email) return; // be sure the fields have a value
     const info = {
       name: friend.name,
@@ -34,10 +38,11 @@ class Friends extends React.Component {
     };
     axios.post('http://localhost:5000/friends', info) // Add friend to the list of friends
     .then( (res) => {
-      this.setState({friends: res.data})
+      this.setState({friends: res.data, isLoading: false})
     })
     .catch(function (error) {
       console.log(error);
+      this.setState({isLoading: false});
     });
   }
 
@@ -58,19 +63,24 @@ class Friends extends React.Component {
   }
 
   updateFriend = (friend, id) => {
+    this.setState({isLoading: true});
     const url = `http://localhost:5000/friends/${id}`;
     axios.put(url, friend)  //update friend with the information from the form
     .then( (res) => {
-      this.setState({friends: res.data})
+      this.setState({friends: res.data, isLoading: false})
     })
     .catch(function (error) {
       console.log(error);
+      this.setState({isLoading: false});
     });
   }
 
   render() { 
     return ( 
       <div>
+        {this.state.isLoading ? (
+          <h2 className="loading">Hold on, we're loading your friends!</h2>
+        ) : null}
         <FriendsWrapper> {this.state.friends.map(friend => 
               <Friend 
                 key={friend.id} 
@@ -80,8 +90,27 @@ class Friends extends React.Component {
               />)}
         </FriendsWrapper>
         <BtnWrapper><Btn onClick={() => this.props.history.push("/add")}>Add Friend</Btn></BtnWrapper>
-        <Route path="/add" render={(props) => <InfoForm action={this.addFriend} {...props} message={`Adding friend`}/>} />
-        <Route path="/update/:id" render={props => <InfoForm {...props} action={this.updateFriend} message={`Updating friend`} info={this.state.updatedFriend}/>} />
+        <Route 
+          path="/add" 
+          render={(props) => 
+            <InfoForm 
+              {...props} 
+              action={this.addFriend} 
+              message={`Add Friend`}
+            />
+          } 
+        />
+        <Route 
+          path="/update/:id" 
+          render={props => 
+            <InfoForm 
+              {...props} 
+              action={this.updateFriend} 
+              message={`Update Friend`} 
+              info={this.state.updatedFriend}
+            />
+          } 
+        />
       </div>
      );
   }

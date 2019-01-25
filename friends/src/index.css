@@ -17,3 +17,11 @@ html {
 a {
   text-decoration: none;
 }
+
+.loading {
+  color: red;
+  width: 50%;
+  margin: auto;
+  font-size: 20px;
+  margin-top: 20px;
+}
