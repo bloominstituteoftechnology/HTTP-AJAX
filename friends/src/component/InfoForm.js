@@ -17,6 +17,12 @@ class InfoForm extends React.Component {
     }
   }
 
+  componentDidUpdate = () => {
+    if(this.props.info.name !== this.state.info.name ) { // Render the form again with new info
+      this.setState({info: this.props.info});
+    }
+  }
+
   saveInput = (event) => {
     const info = {
       ...this.state.info,
