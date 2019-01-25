@@ -10,7 +10,8 @@ export default class Friends extends React.Component {
       name: "",
       age: "",
       email: "",
-      id: null
+      id: null,
+      update: false
     };
   }
   componentDidMount() {
@@ -35,6 +36,22 @@ export default class Friends extends React.Component {
         this.setState({ friends: res.data });
       })
       .catch(err => console.log(err));
+  };
+  update = e => {
+    axios
+      .put(`http://localhost:5000/friends/${this.state.id}`, {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(res => {
+        this.setState({ friends: res.data });
+      })
+      .catch(err => console.log(err));
+    this.setState({ update: false, name: "", age: "", email: "" });
+  };
+  setUpdate = (e, ids) => {
+    this.setState({ update: true, id: ids, name: "", age: "", email: "" });
   };
   delete = (e, ids) => {
     this.setState({ id: ids });
@@ -72,33 +89,64 @@ export default class Friends extends React.Component {
                 <div>
                   {e.name}, {e.age}, {e.email}
                 </div>
+                <span onClick={x => this.setUpdate(x, e.id)}>edit</span>
                 <span onClick={x => this.delete(x, e.id)}>&times;</span>
               </div>
             );
           })}
-        <form action="submit">
-          <input
-            type="text"
-            onChange={this.name}
-            value={this.state.name}
-            placeholder="Name"
-          />
-          <input
-            type="number"
-            onChange={this.age}
-            value={this.state.age}
-            placeholder="Age"
-          />
-          <input
-            type="email"
-            onChange={this.email}
-            value={this.state.email}
-            placeholder="Email"
-          />
-          <button onClick={this.submit} onSubmit={this.submit}>
-            Submit
-          </button>
-        </form>
+        {!this.state.update && (
+          <form action="submit">
+            <input
+              type="text"
+              onChange={this.name}
+              value={this.state.name}
+              placeholder="Name"
+            />
+            <input
+              type="number"
+              onChange={this.age}
+              value={this.state.age}
+              placeholder="Age"
+            />
+            <input
+              type="email"
+              onChange={this.email}
+              value={this.state.email}
+              placeholder="Email"
+            />
+            <button onClick={this.submit} onSubmit={this.submit}>
+              Submit
+            </button>
+          </form>
+        )}
+        {this.state.update && (
+          <div>
+            <h2>Update</h2>
+            <form action="submit">
+              <input
+                type="text"
+                onChange={this.name}
+                value={this.state.name}
+                placeholder="Name"
+              />
+              <input
+                type="number"
+                onChange={this.age}
+                value={this.state.age}
+                placeholder="Age"
+              />
+              <input
+                type="email"
+                onChange={this.email}
+                value={this.state.email}
+                placeholder="Email"
+              />
+              <button onClick={this.update} onSubmit={this.update}>
+                Update
+              </button>
+            </form>
+          </div>
+        )}
       </>
     );
   }
