@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route } from 'react-router-dom';
+import {Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
@@ -18,7 +18,9 @@ class App extends Component {
   componentDidMount(){
     axios
       .get('http://localhost:5000/friends')
-      .then(res => this.setState({ friends: res.data }))
+      .then(res => {
+        this.setState({ friends: res.data })
+      })
       .catch(err => console.log(err));
   }
 
@@ -27,8 +29,21 @@ class App extends Component {
       .post(`http://localhost:5000/friends`, friend )
       .then(response => {
         console.log(response)
+        this.props.history.push('/');
         this.setState({friends: this.state.friends})
+        window.location.reload();
         })
+
+      .catch(err => console.log(err))
+  }
+
+  deleteFriend = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log('Response:', response)
+        window.location.reload();
+      })
       .catch(err => console.log(err))
   }
   render() {
@@ -37,15 +52,16 @@ class App extends Component {
         <Navigation />
         <Route
           exact path='/post'
-          render={(props) => <PostForm postFriend = {this.postFriend}/>}
+          render={(props) => <PostForm {... props } postFriend = {this.postFriend}/>}
         />
         <Route
           exact path = '/'
-          render={(props) => <FriendList friends={this.state.friends} />}
+          render={(props) => <FriendList {... props } friends={this.state.friends}
+          deleteFriend = {this.deleteFriend} />}
         />
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

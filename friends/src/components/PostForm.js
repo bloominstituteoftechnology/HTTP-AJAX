@@ -89,9 +89,11 @@ class PostMovieForm extends React.Component{
   postFriend = e =>{
     e.preventDefault();
     this.props.postFriend(this.state.friendData);
+    // this.props.history.push('/');
   }
 
   render(){
+    console.log(this.props.history);
     return (
       <MainFormDiv>
         <FormTitle>POST (add) a new friend</FormTitle>

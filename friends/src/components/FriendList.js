@@ -11,10 +11,11 @@ const FriendListDiv = styled.div`
   `;
 
 const FriendList = props => {
+  console.log(props);
   return (
     <FriendListDiv>
       { props.friends.map(friend => (
-        <Friend key={friend.id} friend = {friend} />
+        <Friend key={friend.id} friend = {friend} deleteFriend={props.deleteFriend} />
       ))}
     </FriendListDiv>
   )
