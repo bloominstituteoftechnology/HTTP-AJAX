@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 class FriendsForm extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class FriendsForm extends Component {
     }
     postFriend = event => {
         event.preventDefualt();
-        this.props.postMessage(this.state.newFriend);
+        this.props.postFriendToServer(this.state.newFriend);
         this.setState({
             newFriend: {
                 id: '',
@@ -36,32 +36,33 @@ class FriendsForm extends Component {
 
     render() {
         return (
-        <div className ='friendsForm'>
-            <h2>Add new Friend</h2>
-            <form onSubmit = {this.postFriend}>
-                <input 
-                    type ='text'
-                    name ='name'
-                    placeholder = 'name'
-                    onChange = {this.handleChange}
-                    value = {this.state.newFriend.name}
-                />
-                <input 
-                    type ='text'
-                    name ='age'
-                    placeholder = 'age'
-                    onChange = {this.handleChange}
-                    value = {this.state.newFriend.age}
-                />
-                <input 
-                    type ='text'
-                    name ='email'
-                    placeholder = 'email'
-                    onChange = {this.handleChange}
-                    value = {this.state.newFriend.email}
-                />
-            </form>
-        </div>);
+            <div className='friendsForm'>
+                <h2>Add new Friend</h2>
+                <form onSubmit={this.postFriend}>
+                    <input
+                        type='text'
+                        name='name'
+                        placeholder='name'
+                        onChange={this.handleChange}
+                        value={this.state.newFriend.name}
+                    />
+                    <input
+                        type='text'
+                        name='age'
+                        placeholder='age'
+                        onChange={this.handleChange}
+                        value={this.state.newFriend.age}
+                    />
+                    <input
+                        type='text'
+                        name='email'
+                        placeholder='email'
+                        onChange={this.handleChange}
+                        value={this.state.newFriend.email}
+                    />
+                    <button className='friendsButton'>Post New Friend</button>
+                </form>
+            </div>);
     }
 }
 
