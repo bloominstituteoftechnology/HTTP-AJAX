@@ -69,8 +69,8 @@ linkToUpdateFriendsList = (id) => {
 updateFriend = (id) => {
   axios.put(`http://localhost:5000/friends/${id}`, this.state.friend)
   .then(response => { 
-    this.setState({ freinds: response.data, isUpdating: false}) 
-    this.props.history.push('/friends')})
+    this.setState({ friends: response.data, isUpdating: false}) 
+    })
   .catch(error => console.log(error))
 }
 

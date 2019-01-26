@@ -3,6 +3,7 @@ import React from 'react'
 const FriendForm = props => {
     function handleSubmit() { 
         props.isUpdating ? props.updateFriend(props.friend.id) : props.addNewFriend()
+        props.history.push('/friends')
     }
     return(
         <div className="form-wrapper">
