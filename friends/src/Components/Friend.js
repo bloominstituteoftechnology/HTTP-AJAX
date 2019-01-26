@@ -30,7 +30,7 @@ const Friend = props => {
   return friend === undefined ? (
     <div>
       <h1>Friend Not Found</h1>
-      <LinkButton to="/">Home</LinkButton>
+      <LinkButton to="/friends">Home</LinkButton>
     </div>
   ) : (
     <div className="friend">
@@ -39,16 +39,16 @@ const Friend = props => {
       <p>email: {friend.email}</p>
       <button onClick={remove}>Delete</button>
       <Route
-        path={`/:id`}
+        path={`/friends/:id`}
         render={() => (
           <div className="button-wrapper">
-            <LinkButton to={"/"}>Home</LinkButton>
+            <LinkButton to={"/friends"}>Home</LinkButton>
             <LinkButton to={`/${friend.id}/edit`}>Edit</LinkButton>
           </div>
         )}
       />
       <Route
-        path={`/:id/edit`}
+        path={`/friends/:id/edit`}
         render={props => <EditForm {...props} {...friend} refresh={refresh} />}
       />
     </div>

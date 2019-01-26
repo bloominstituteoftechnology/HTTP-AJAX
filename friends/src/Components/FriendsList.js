@@ -8,7 +8,7 @@ const FriendsList = props => {
     <div className="friends-list">
       {props.friends.map(friend => {
         return (
-          <Link to={`/${friend.id}`} key={friend.id}>
+          <Link to={`/friends/${friend.id}`} key={friend.id}>
             <Friend
               id={friend.id}
               friend={friend}
@@ -18,7 +18,7 @@ const FriendsList = props => {
           </Link>
         );
       })}
-      <LinkButton to={"/addfriend"}>Add Friend</LinkButton>
+      <LinkButton to={"/friends/addfriend"}>Add Friend</LinkButton>
     </div>
   );
 };
