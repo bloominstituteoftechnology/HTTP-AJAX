@@ -22,7 +22,7 @@ class FriendsForm extends Component {
         })
     }
     postFriend = event => {
-        event.preventDefualt();
+        event.preventDefault();
         this.props.postFriendToServer(this.state.newFriend);
         this.setState({
             newFriend: {
