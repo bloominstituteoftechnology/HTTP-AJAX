@@ -56,9 +56,9 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  changeHandler = event => {
+  changeHandler = e => {
     this.setState({
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
   }
 
