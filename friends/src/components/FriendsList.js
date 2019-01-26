@@ -18,9 +18,9 @@ const FriendsList = props => {
 								name={f.name}
 								age={f.age}
 								email={f.email}/>
-								
+
               <Link to='/'><button id={f.id} onClick={props.deleteFriend}>Delete</button></Link>
-              <Link to='/updatefriend'><button id={f.id} onClick={ e => {props.update(e, f.id)}}>Update</button></Link>
+              <Link to='/updatefriend'><button id={f.id} onClick={props.update}>Update</button></Link>
             </div>
 					)
 				})}
