@@ -2,32 +2,31 @@ import React from 'react';
 import axios from 'axios';
 
 const FriendsForm = props => {
-  const { changeHandler, addFriend, name, age, email  } = props;
 
   return (
     <form>
       <input
         name="name"
-        onChange={changeHandler}
+        onChange={props.changeHandler}
         placeholder="Name"
         type="text"
-        value={name}
+        value={props.name}
       />
       <input 
         name="age"
-        onChange={changeHandler}
+        onChange={props.changeHandler}
         placeholder="Age"
         type="text"
-        value={age}  
+        value={props.age}  
       />
       <input 
         name="email"
-        onChange={changeHandler}
+        onChange={props.changeHandler}
         placeholder="Email"
         type="text"
-        value={email}
+        value={props.email}
       />
-      <button onClick={addFriend} type="submit">Add Friend</button>
+      <button onClick={props.addFriend} type="submit">Add Friend</button>
     </form>
   );
 }

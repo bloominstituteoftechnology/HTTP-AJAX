@@ -59,12 +59,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FriendsForm
-          changeHandler={this.changeHandler}
-          addFriend={this.addFriend}
-          name={this.state.name}
-          age={this.state.age}
-          email={this.state.email} />
+        <Route 
+          exact
+          path='/'
+          render={props => (
+            <FriendsForm
+              {...props}
+              changeHandler={this.changeHandler}
+              addFriend={this.addFriend}
+              name={this.state.name}
+              age={this.state.age}
+              email={this.state.email} />
+          )}
+        />
 
         <Route 
           exact
