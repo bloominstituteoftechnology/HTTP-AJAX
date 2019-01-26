@@ -6,6 +6,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 import FriendList from './components/FriendList';
 import PostForm from './components/PostForm';
+import EditForm from './components/EditForm';
 
 class App extends Component {
   constructor(){
@@ -46,6 +47,21 @@ class App extends Component {
       })
       .catch(err => console.log(err))
   }
+
+  updateFriend = (id, friend) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, friend )
+      .then(response => {
+        console.log(response)
+        this.props.history.push('/');
+        this.setState({friends: this.state.friends})
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   render() {
     return (
       <div className="App">
@@ -58,6 +74,13 @@ class App extends Component {
           exact path = '/'
           render={(props) => <FriendList {... props } friends={this.state.friends}
           deleteFriend = {this.deleteFriend} />}
+        />
+        <Route
+          exact path='/friends/:id'
+          render={(props) => <EditForm {... props }
+          friends={this.state.friends}
+          updateFriend = {this.updateFriend }
+           />}
         />
       </div>
     );

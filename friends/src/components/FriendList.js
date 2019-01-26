@@ -11,7 +11,7 @@ const FriendListDiv = styled.div`
   `;
 
 const FriendList = props => {
-  console.log(props);
+  console.log(props)
   return (
     <FriendListDiv>
       { props.friends.map(friend => (

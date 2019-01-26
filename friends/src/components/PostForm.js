@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MainFormDiv = styled.div`
+export const MainFormDiv = styled.div`
   width: 500px;
   margin: 50px auto;
   padding: 30px;
@@ -9,7 +9,7 @@ const MainFormDiv = styled.div`
   margin: 50px auto;
 `;
 
-const FormTitle = styled.div`
+export const FormTitle = styled.div`
   background: #00BBC4;
   text-transform: uppercase;
   font-family: sans-serif;
@@ -21,7 +21,7 @@ const FormTitle = styled.div`
   margin: -30px -30px 30px -30px;
 `;
 
-const FormInput = styled.input`
+export const FormInput = styled.input`
   color: #00BBC4;
   outline: none;
   display: block;
@@ -38,7 +38,7 @@ const FormInput = styled.input`
   }
 `;
 
-const FormButton = styled.button`
+export const FormButton = styled.button`
   position: relative;
   display: inline-block;
   box-sizing: border-box;
@@ -93,7 +93,6 @@ class PostMovieForm extends React.Component{
   }
 
   render(){
-    console.log(this.props.history);
     return (
       <MainFormDiv>
         <FormTitle>POST (add) a new friend</FormTitle>

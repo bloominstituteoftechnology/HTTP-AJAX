@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {NavLink } from 'react-router-dom';
 
 const FriendDiv = styled.div`
   background: #000010;
@@ -19,7 +20,7 @@ const FriendSpan = styled.span`
   font-size: 1.5rem;
   color: #FFF`;
 
-const DeleteButton = styled.button`
+const Button = styled.button`
   width: 150px;
   color: #000;
   padding: 15px 10px;
@@ -30,8 +31,8 @@ const DeleteButton = styled.button`
 
 
 
-class Friend extends React.Component{
 
+class Friend extends React.Component{
 
   deleteFriend = (e, id) => {
     id = this.props.friend.id
@@ -45,7 +46,10 @@ class Friend extends React.Component{
         <FriendH1>Name:<br/> <FriendSpan>{this.props.friend.name}</FriendSpan></FriendH1>
         <FriendH1>Email:<br/><FriendSpan>{this.props.friend.email}</FriendSpan></FriendH1>
         <FriendH1>Age:<br/><FriendSpan>{this.props.friend.age}</FriendSpan></FriendH1>
-        <DeleteButton onClick={this.deleteFriend}>Button</DeleteButton>
+        <Button onClick={this.deleteFriend}>Delete</Button>
+        <Button><NavLink to={`/friends/${this.props.friend.id}`}>Edit</NavLink></Button>
+
+
       </FriendDiv>
     )
   }
