@@ -12,7 +12,13 @@ const FriendsList = props => {
 				{props.friends.map(f => {
 					return (
             <div>
-              <Friend key={f.id} id={f.id} friend={f}/>
+              <Friend
+								key={f.id} 
+								id={f.id} 
+								name={f.name}
+								age={f.age}
+								email={f.email}/>
+								
               <Link to='/'><button id={f.id} onClick={props.deleteFriend}>Delete</button></Link>
               <Link to='/updatefriend'><button id={f.id} onClick={ e => {props.update(e, f.id)}}>Update</button></Link>
             </div>

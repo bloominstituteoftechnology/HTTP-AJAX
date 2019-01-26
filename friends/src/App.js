@@ -46,8 +46,15 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  updateFriend = () => {
-
+  updateFriend = e => {
+    axios
+      .put(`http://localhost:5000/friends/${e.target.id}`, {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err));
   }
 
   changeHandler = event => {
@@ -92,7 +99,7 @@ class App extends Component {
             <UpdateFriend
               {...props}
               changeHandler={this.changeHandler}
-              updateFriend={this.updateFriend}
+              update={this.updateFriend}
               name={this.state.name}
               age={this.state.age}
               email={this.state.email}
