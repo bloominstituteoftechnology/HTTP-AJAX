@@ -7,18 +7,17 @@ import './App.css';
 
 class App extends Component {
   state = {
-    friends: []
+    friends: [],
+    name: '',
+    age: '',
+    email: ''
   }
 
   componentDidMount() {
-    this.requestFriends();
-  }
-
-  requestFriends = () => {
     axios
-      .get('http://localhost:5000/friends')
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => console.log(err));
+    .get('http://localhost:5000/friends')
+    .then(res => this.setState({ friends: res.data }))
+    .catch(err => console.log(err));
   }
 
   deleteFriend = e => {
@@ -28,10 +27,39 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  addFriend = event => {
+    event.preventDefault()
+    axios
+      .post('http://localhost:5000/friends', {
+        name: this.state.name,
+        age: this.state.age,
+        email: this.state.email
+      })
+      .then(res => this.setState({
+        friends: res.data,
+        id: '',
+        name: '',
+        age: '',
+        email: ''
+      }))
+      .catch(err => console.log(err));
+  }
+
+  changeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <FriendsForm submitted={this.requestFriends} />
+        <FriendsForm
+          changeHandler={this.changeHandler}
+          addFriend={this.addFriend}
+          name={this.state.name}
+          age={this.state.age}
+          email={this.state.email} />
         <FriendsList
           friends={this.state.friends}
           update={this.updateFriend}
