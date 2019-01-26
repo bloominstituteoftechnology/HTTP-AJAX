@@ -16,9 +16,9 @@ class App extends Component {
 
   componentDidMount() {
     axios
-    .get('http://localhost:5000/friends')
-    .then(res => this.setState({ friends: res.data }))
-    .catch(err => console.log(err));
+      .get('http://localhost:5000/friends')
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err));
   }
 
   deleteFriend = e => {
@@ -54,7 +54,7 @@ class App extends Component {
         email: this.state.email
       })
       .then(res => this.setState({ friends: res.data }));
-      // .catch(err => console.log(err));
+      .catch(err => console.log(err));
   }
 
   changeHandler = event => {
