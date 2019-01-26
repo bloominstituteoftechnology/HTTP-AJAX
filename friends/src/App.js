@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import FriendsList from './components/FriendsList';
 import FriendsForm from './components/FriendsForm';
 import './App.css';
+import UpdateFriend from './components/UpdateFriend';
 
 class App extends Component {
   state = {
@@ -45,6 +46,10 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  updateFriend = () => {
+
+  }
+
   changeHandler = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -60,10 +65,25 @@ class App extends Component {
           name={this.state.name}
           age={this.state.age}
           email={this.state.email} />
+          
         <FriendsList
           friends={this.state.friends}
           update={this.updateFriend}
-          delete={this.deleteFriend} />
+          deleteFriend={this.deleteFriend} />
+
+        <Route 
+          path='/updatefriend'
+          render={props => (
+            <UpdateFriend
+              {...props}
+              changeHandler={this.changeHandler}
+              updateFriend={this.updateFriend}
+              name={this.state.name}
+              age={this.state.age}
+              email={this.state.email}
+            />
+          )}
+        />
       </div>
     );
   }
