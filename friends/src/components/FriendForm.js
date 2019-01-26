@@ -6,9 +6,9 @@ class FriendForm extends React.Component{
       constructor(){
           super();
           this.state={
-               id:null,
+               id:"",
                inputName: "",
-               inputAge:null,
+               inputAge:0,
                inputEmail: "",
 
 
@@ -17,10 +17,7 @@ class FriendForm extends React.Component{
           }
 
       }
-      iHandler=event => {
 
-        this.setState({inputName:event.target.value}) ;
-    }
      nameHandler=event => {
 
         this.setState({inputName:event.target.value}) ;
@@ -48,13 +45,13 @@ class FriendForm extends React.Component{
     // }
 
     submitHandler=event =>{
-        event.preventDefault();
+
         console.log("called")
         this.props.handler({id:this.state.id,
                            name:this.state.inputName,
                            age:this.state.inputAge,
                            email:this.state.inputEmail});
-        this.setState({inputName:"",inputAge:null,inputEmail:"", id:null});
+        this.setState({inputName:"",inputAge:0,inputEmail:"", id:""});
 
     }
 
@@ -85,11 +82,11 @@ class FriendForm extends React.Component{
 
 
 FriendForm.propTypes={
-    myInput:PropTypes.shape({
-        name:PropTypes.string,
-        age:PropTypes.number,
-        email:PropTypes.string
-    }),
+
+    inputName:PropTypes.string,
+    inputAge:PropTypes.number,
+    inputEmail:PropTypes.string,
+
     nameHandler:PropTypes.func,
     ageHandler:PropTypes.func,
     emailHandler:PropTypes.func

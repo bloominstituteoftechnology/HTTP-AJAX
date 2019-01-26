@@ -12,38 +12,18 @@ class Friend extends React.Component{
     }
 
     deleteFriend = (event) => {
-        const axios = require('axios');
-        console.log("called delete ");
-        let url = "http://localhost:5000/friends/" + this.props.friend.id;
-        axios.delete(url)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        window.location.reload();
+        this.props.deleteHandler(this.props.friend.id);
     }
 
     updateFriend = (event) => {
-        const axios = require('axios');
-        console.log("put delete ");
-        let url = `http://localhost:5000/friends/ ${this.props.friend.id}`;
-        let friend = {
-            name:this.state.inputName,
-            age:this.state.inputAge,
-            email:this.state.inputEmail
-        }
-        axios.put(url, friend)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        this.setState({inputName:"",inputAge:null,inputEmail:null});
+        this.props.updateFriend(
+            this.props.friend.id,
+            this.state.inputName,
+            this.state.inputAge,
+            this.state.inputEmail);
+        this.setState({inputName:"",inputAge:0,inputEmail:""});
     }
+
     nameHandler=event => {
 
         this.setState({inputName:event.target.value}) ;

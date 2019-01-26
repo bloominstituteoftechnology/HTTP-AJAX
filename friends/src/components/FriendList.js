@@ -8,7 +8,6 @@ class FriendList extends React.Component{
         this.state={
           data:[],
           deleteFriends:false
-
         }
     }
 
@@ -35,38 +34,61 @@ class FriendList extends React.Component{
 
     }
 
-    // deleteFriend = (e, id) => {
-    //     e.preventDefault();
-    //     let unDeletedFriends = this.state.data.slice();
-    //     unDeletedFriends = this.state.data.filter(friend => !this.state.data.id);
-    //     this.setState({data: unDeletedFriends});
-    // };
+    updateFriend = (id, inputName,inputAge, inputEmail ) => {
+        const axios = require('axios');
+        console.log("put delete ");
+        let url = "http://localhost:5000/friends/" + id;
+        let friend = {
+            name:inputName,
+            age:inputAge,
+            email:inputEmail
+        }
+        console.log(url)
+        axios.put(url, friend)
+            .then(function (response) {
+                this.setState({data:response.data})
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
+
 
     handler = ( friend) => {
-
-        let newFriendList = this.state.data.slice();
-
-        newFriendList.push(friend);
-        this.setState({data: newFriendList});
-
-
-        //post request
-
 
 
         const axios = require('axios');
         console.log("called post");
-        axios.post("http://localhost:5000/friends", {friend} )
+        axios.post("http://localhost:5000/friends", friend  )
             .then(function (response) {
-                console.log(response);
+                console.log("posted",response);
+                this.setState({data:response.data});
             })
              .catch(function (error) {
                 console.log(error);
             });
 
-
      }
 
+
+     deleteHandler = (id) => {
+
+         const axios = require('axios');
+         console.log("called delete ");
+         let url = "http://localhost:5000/friends/" + id;
+         axios.delete(url)
+             .then(function (response) {
+                 console.log("DELETE RESPONSE",response);
+                 let newdata = response.data;
+                 this.setState({data:newdata})
+             })
+             .catch(function (error) {
+                 console.log(error);
+             });
+
+     }
 
 
     render() {
@@ -75,7 +97,7 @@ class FriendList extends React.Component{
             <div className="friendList">
                 {
                     this.state.data.map(friend => {
-                        return <Friend key={friend.id} friend={friend}deleteHandler={this.deleteFriend}/>
+                        return <Friend key={friend.id} friend={friend} deleteHandler={this.deleteHandler} updateFriend={this.updateFriend}/>
                     })
                 }
 
