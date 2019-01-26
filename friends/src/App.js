@@ -53,7 +53,7 @@ class App extends Component {
         age: this.state.age,
         email: this.state.email
       })
-      .then(res => this.setState({ friends: res.data }));
+      .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   }
 
