@@ -27,6 +27,16 @@ export default class Friend extends React.Component {
             })
 
     }
+    editFriend = (id, friend) => {
+        axios
+            .put(`http://localhost:5000/friends/${id}`, friend)
+            .then(response => { 
+                this.setState(() => ({friend: response.data}));
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
     componentWillReceiveProps(newProps){
         if(this.props.match.params.id !== newProps.match.params.id){
           this.fetchFriend(newProps.match.params.id);

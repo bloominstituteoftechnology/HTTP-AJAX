@@ -14,7 +14,6 @@ class App extends Component {
     this.state = {
     }
   }
-  
 
   render() {
     return (
@@ -22,8 +21,7 @@ class App extends Component {
       <Navigation />
       <Route exact path='/' component={Home} />
       <Route exact path='/friends' component={FriendsList} />
-      <Route  path='/friends/:id' render= { props => <Friend {...props } component={Friend} />}/>     
-
+      <Route path='/friends/edit/:id' render= { props => <Friend {...props } component={Friend} />}/>     
       </div>
     );
   }
