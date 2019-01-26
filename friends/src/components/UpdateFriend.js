@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UpdateFriend = props => {
   return (
-    <form onSubmit={props.updateFriend}>
+    <form onSubmit={props.update}>
       <label>
         Name: <input name="name" type="text" value={props.name} onChange={props.changeHandler} />
       </label>
