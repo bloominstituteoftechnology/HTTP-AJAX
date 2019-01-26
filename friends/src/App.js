@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Axios from 'axios';
 import './App.css';
 import Friend from './Friend';
@@ -10,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       friends: [],
-      visible: true
+      visible: true,
+      showId: null
     }  
   }
 
@@ -38,7 +40,7 @@ refresh = () => {
       console.log(error);
     })
  }
-
+ 
  deleteFriend = (id) => {
    Axios.delete(`http://localhost:5000/friends/${id}`)
    .then(response => {
@@ -52,25 +54,30 @@ refresh = () => {
    })
  }
 
- updateFriend = (id, friend) => {
-   Axios.put(`http://localhost:5000/friends/${id}`, friend)
+ updateFriend = (friend) => {
+   Axios.put(`http://localhost:5000/friends/${this.state.showId}`, friend)
    .then(response => {
-    console.log(response)
+    console.log(friend , this.state.showId)
+    this.refresh()
+    this.setState({visible: true})
    })
    .catch(error => {
     console.log(error)
    })
  }
 
- showForm = (e) => this.setState({visible: false})
+ showForm = (id) => { 
+  this.setState({visible: false, showId: id})
+
+ }
  hideForm = (e) => this.setState({visible: true})
  
   render() { 
     return ( 
       <div className="App">
         <h1>Friends List</h1>
-        {this.state.visible ? <AddFriend friends={this.state.friends} postFriend={this.postFriend}/> :
-        <UpdateFriend friends={this.state.friends} hideForm={this.hideForm}/>}
+        {this.state.visible ? <Route exact path="/" render={(props) => <AddFriend friends={this.state.friends} postFriend={this.postFriend}/>} /> :
+        <Route exact path="/" render={(props) => <UpdateFriend friends={this.state.friends} hideForm={this.hideForm} updateFriend={this.updateFriend}/>} />}
         <div className="friend-container">
           {this.state.friends.map((person) => (
             <Friend key={person.id} friend={person} deleteFriend={this.deleteFriend} showForm={this.showForm} />

@@ -17,10 +17,17 @@ class UpdateFriend extends Component {
     this.setState({friend: { ...this.state.friend, 
       [event.target.name]: event.target.value}})
   }
+  update = (e) => {
+    e.preventDefault();
+    
+    this.props.updateFriend(this.state.friend)
+    this.setState({friend: {name: "", age: "", email: ""}})
+  }
+
   render(){
       return ( 
         <div>
-        <form onSubmit={this.updateFriend}>
+        <form onSubmit={this.update}>
           <fieldset>
             <legend>Update Friend Information</legend>
             <label htmlFor="name">Name:</label>

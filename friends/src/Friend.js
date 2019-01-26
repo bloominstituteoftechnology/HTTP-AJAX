@@ -2,7 +2,6 @@ import React from 'react';
 import "./friend.css";
 
 const Friend = (props) => {
-
   return ( 
     <div className="friend">
       <h1>{props.friend.name}</h1>
@@ -11,7 +10,7 @@ const Friend = (props) => {
         <p>Email: {props.friend.email}</p>
       </div>
       <button type="button" onClick={ () => props.deleteFriend(props.friend.id)}>Remove Friend</button>
-      <button type="button" onClick={ () => props.showForm()}>Update Info</button>
+      <button type="button" onClick={ () => props.showForm(props.friend.id)}>Update Info</button>
     </div>
   );
 
