@@ -3,19 +3,18 @@ import Friend from './Friend';
 import { Link } from 'react-router-dom';
 
 const FriendsList = props => {
-	const { friends, update, deleteFriend } = props;
 
-	if (friends < 1) return <h2>Loading...</h2>;
+	if (props.friends < 1) return <h2>Loading...</h2>;
 		else {
 
 		return (
 			<div>
-				{friends.map(f => {
+				{props.friends.map(f => {
 					return (
             <div>
               <Friend key={f.id} id={f.id} friend={f}/>
-              <button id={f.id} onClick={deleteFriend}>Delete</button>
-              <Link to="/updatefriend"><button id={f.id} onClick={ e => {update(e, f.id)}}>Update</button></Link>
+              <Link to='/'><button id={f.id} onClick={props.deleteFriend}>Delete</button></Link>
+              <Link to='/updatefriend'><button id={f.id} onClick={ e => {props.update(e, f.id)}}>Update</button></Link>
             </div>
 					)
 				})}

@@ -65,13 +65,21 @@ class App extends Component {
           name={this.state.name}
           age={this.state.age}
           email={this.state.email} />
-          
-        <FriendsList
-          friends={this.state.friends}
-          update={this.updateFriend}
-          deleteFriend={this.deleteFriend} />
 
         <Route 
+          exact
+          path='/'
+          render={props => (
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              update={this.updateFriend}
+              deleteFriend={this.deleteFriend} />
+          )}
+        />
+
+        <Route
+          exact
           path='/updatefriend'
           render={props => (
             <UpdateFriend
