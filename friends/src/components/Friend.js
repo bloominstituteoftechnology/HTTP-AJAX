@@ -10,12 +10,6 @@ export default class Friend extends React.Component {
             friend: null
         }
     }
-
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        this.fetchFriend(id);
-    }
-
     fetchFriend = id => {
         axios
             .get(`http://localhost:5000/friends/${id}`)
@@ -27,11 +21,19 @@ export default class Friend extends React.Component {
             })
 
     }
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        this.fetchFriend(id);
+    }
+
+    
     editFriend = (id, friend) => {
+        console.log(friend);
         axios
             .put(`http://localhost:5000/friends/${id}`, friend)
             .then(response => { 
-                this.setState(() => ({friend: response.data}));
+                // this.setState({friend: response.data});
+                console.log(response);
             })
             .catch(err => {
                 console.log(err);
@@ -50,7 +52,7 @@ export default class Friend extends React.Component {
         return(
             
             <div className="friend-card">
-                <FriendCard {...this.props} id={id} name={name} age={age} email={email} />
+                <FriendCard editFriend={this.editFriend} {...this.props} id={id} name={name} age={age} email={email} />
             </div>
         )
     }

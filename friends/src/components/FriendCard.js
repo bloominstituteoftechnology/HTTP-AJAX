@@ -6,16 +6,15 @@ export default class FriendCard extends React.Component{
         super(props);
         this.state = {
             friend: {
-                name: this.name,
-                age: this.age,
-                email: this.email
+                name: this.props.name,
+                age: this.props.age,
+                email: this.props.email          
             },
             isEditForm: false
         }
     }
     componentDidMount() {
-        console.log(this.props);
-        console.log(this.props.match.path.includes('edit'));
+        if (!this.props.match) return;
         if (this.props.match.path.includes('edit')) {
             this.setState({ isEditForm: true });
         }
@@ -23,9 +22,10 @@ export default class FriendCard extends React.Component{
             this.setState({ isEditForm: false });
         }
     }
-    editFriendHanlder = event => {
+    editFriendHandler = event => {
+        console.log(event);
         event.preventDefault();
-        this.props.editFriend(this.state.friend);
+        this.props.editFriend(this.props.match.params.id, this.state.friend);
     }
     changeHandler = event => {
 
@@ -49,7 +49,7 @@ export default class FriendCard extends React.Component{
                             onChange={this.changeHandler}
                             type="text"
                             name="name"
-                            placeholder={this.state.friend.name}
+                            // placeholder={this.state.friend.name}
                             value={this.state.friend.name}
                         >
                         </input>
@@ -57,7 +57,7 @@ export default class FriendCard extends React.Component{
                             onChange={this.changeHandler}
                             type="number"
                             name="age"
-                            placeholder={this.props.age}
+                            // placeholder={this.props.age}
                             value={this.state.friend.age}
                         >
                         </input>
@@ -65,11 +65,11 @@ export default class FriendCard extends React.Component{
                             onChange={this.changeHandler}
                             type="email"
                             name="email"
-                            placeholder={this.props.email}
+                            // placeholder={this.props.email}
                             value={this.state.friend.email}
                         >
                         </input>
-                        <button onClick={this.editFriendHandler}>Edit</button>
+                        <button>Edit</button>
                     </form>
                     : 
                     <div className="friend-card">

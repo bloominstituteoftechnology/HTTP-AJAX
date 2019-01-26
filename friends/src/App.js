@@ -20,7 +20,7 @@ class App extends Component {
       <div className="App">
       <Navigation />
       <Route exact path='/' component={Home} />
-      <Route exact path='/friends' component={FriendsList} />
+      <Route exact path='/friends' render= { props => <FriendsList {...props} /> } />
       <Route path='/friends/edit/:id' render= { props => <Friend {...props } component={Friend} />}/>     
       </div>
     );
