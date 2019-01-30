@@ -7,6 +7,13 @@ const Fcard = styled.div`
 const Fname = styled.div`
   font-size: 1.2rem;
 `
+const Fage = styled.div`
+  font-size: 1.0rem;
+`
+const Femail = styled.div`
+  font-size: 1.0rem;
+  font-weight: bold;
+`
 
 const Friend = props => {
     return (
@@ -14,6 +21,12 @@ const Friend = props => {
             <Fname>
                 {props.friend.name}
             </Fname>
+            <Fage>
+                {props.friend.age}
+            </Fage>
+            <Femail>
+                {props.friend.email}
+            </Femail>
         </Fcard>
     )
 }
