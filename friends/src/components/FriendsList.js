@@ -1,13 +1,20 @@
 import React from 'react'
 import Friend from './Friend'
+import styled from 'styled-components'
+
+const Fcards = styled.div`
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+`
 
 const FriendsList = props => {
     return (
-        <div>
+        <Fcards>
             {props.friends.map(friend =>
                 <Friend key={friend} friend={friend} />
             )}
-        </div>
+        </Fcards>
     )
 }
 
