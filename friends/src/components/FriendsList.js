@@ -6,6 +6,7 @@ const Fcards = styled.div`
   padding: 25px;
   display: flex;
   flex-direction: column;
+  border: 1px solid blue;
 `
 
 const FriendsList = props => {

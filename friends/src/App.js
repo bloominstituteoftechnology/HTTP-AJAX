@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
 
 import './App.css';
 import FriendsList from "./components/FriendsList";
 import AddFriend from "./components/AddFriend";
 
+const AppContainer = styled.div`
+  display: flex;
+  //flex-direction: row;
+`
 class App extends Component {
   constructor() {
     super();
     this.state = {
       friends: [],
-        error: 'No friends!'
+        error: 'No friends!',
+        name:
+
     }
   }
   // mounting localhost:5000 to state
@@ -31,16 +38,16 @@ class App extends Component {
   }
   handleChange = event => {
       this.setState({
-
+          [event.target.name]: event.target.value
       })
   }
 
   render() {
     return (
-      <div className="App">
+      <AppContainer>
           <AddFriend />
           <FriendsList friends={this.state.friends} />
-      </div>
+      </AppContainer>
     );
   }
 }

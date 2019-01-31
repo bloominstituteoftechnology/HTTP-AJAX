@@ -1,25 +1,46 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const FriendBar = styled.div`
+  display: flex;
+  //align-items: center;
+  border: 1px solid red;
+  //padding: 10px;
+`
+const Finput = styled.input`
+  margin: 5px;
+`
+const Fform = styled.form`
+  display: flex;
+  flex-direction: column;
+  
+`
+const Fbutton = styled.div`
+  border: 1px solid black;
+  -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+  width: 150px;
+  padding: 5px;
+`
+
 const AddFriend = props => {
     return (
-        <div>
+        <FriendBar>
             <form>
-                <input
+                <Finput
                     type="text"
                     placeholder="Name"
                 />
-                <input
+                <Finput
                     type="text"
                     placeholder="Age"
                 />
-                <input
+                <Finput
                     type="text"
                     placeholder="eMail"
                 />
-                <button type="submit">New Friend</button>
+                <Fbutton type="submit">New Friend</Fbutton>
             </form>
-        </div>
+        </FriendBar>
     )
 }
 
