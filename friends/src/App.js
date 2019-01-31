@@ -11,9 +11,14 @@ class App extends Component {
   componentDidMount = () => {
     axios
       .get('http://localhost:5000/friends')
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(response => {
+        this.setState({ friends: response.data});
+      })
+      .catch(err => {
+        console.log('CRAP!', err);
+    });
   }
+  
   render() {
     return (
       <div className="App">

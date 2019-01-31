@@ -2,3 +2,7 @@
   text-align: center;
 }
 
+.baseline {
+  height: 3px;
+  background-color: #dcdcdc;
+}
