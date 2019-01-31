@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import './App.css';
 import FriendsList from "./components/FriendsList";
+import AddFriend from "./components/AddFriend";
 
 class App extends Component {
   constructor() {
@@ -28,11 +29,17 @@ class App extends Component {
           console.log(error)
         })
   }
+  handleChange = event => {
+      this.setState({
+
+      })
+  }
 
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
+          <AddFriend />
+          <FriendsList friends={this.state.friends} />
       </div>
     );
   }

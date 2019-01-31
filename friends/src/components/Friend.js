@@ -6,6 +6,7 @@ const Fcard = styled.div`
   -webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;
   width: 300px;
   margin: 15px 0px;
+  background: darkseagreen;
 `
 const Fname = styled.div`
   font-size: 1.2rem;
