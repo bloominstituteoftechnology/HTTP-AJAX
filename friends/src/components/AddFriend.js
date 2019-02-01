@@ -25,18 +25,27 @@ const Fbutton = styled.div`
 const AddFriend = props => {
     return (
         <FriendBar>
-            <form>
+            <form onSubmit={props.addFriend}>
                 <Finput
                     type="text"
                     placeholder="Name"
+                    name="name"
+                    value={props.friends.name}
+                    onChange={props.handleChange}
                 />
                 <Finput
-                    type="text"
+                    type="number"
                     placeholder="Age"
+                    name="age"
+                    value={props.friends.age}
+                    onChange={props.handleChange}
                 />
                 <Finput
                     type="text"
                     placeholder="eMail"
+                    name="email"
+                    value={props.friends.email}
+                    onChange={props.handleChange}
                 />
                 <Fbutton type="submit">New Friend</Fbutton>
             </form>

@@ -16,8 +16,11 @@ class App extends Component {
     this.state = {
       friends: [],
         error: 'No friends!',
-        name:
-
+        newFriend: {
+          name: '',
+            age: '',
+            email: ''
+        }
     }
   }
   // mounting localhost:5000 to state
@@ -38,14 +41,39 @@ class App extends Component {
   }
   handleChange = event => {
       this.setState({
-          [event.target.name]: event.target.value
+          newFriend: {
+              ...this.state.newFriend, [event.target.name]: event.target.value
+          }
       })
-  }
+      // this.setState({
+      //     [event.target.name]: event.target.value
+      // })
+  };
+  addFriend = () => {
+    axios
+        .post('http://localhost:5000/friends')
+        .then(response => {
+            this.setState({
+                friends: response.data, newFriend: {
+                    name: '',
+                    age: '',
+                    email: ''
+                }
+            })
+        })
+        .catch(error => {
+            this.setState({
 
+            })
+        })
+  }
+  removeFriend = () => {
+
+  }
   render() {
     return (
       <AppContainer>
-          <AddFriend />
+          <AddFriend friends={this.state.friends} handleChange={this.handleChange} addFriend={this.addFriend} />
           <FriendsList friends={this.state.friends} />
       </AppContainer>
     );
