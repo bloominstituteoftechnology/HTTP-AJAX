@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+
 class Friends extends Component {
     constructor(props) {
         super(props) 
-        this.state = { friends: [], }
+        this.state = { friends: props.friends }
     }
+
+    
 
     render() {
         return <div>Content to go here!</div>
