@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-const Friends extends Component {
+class Friends extends Component {
     constructor(props) {
         super(props) 
         this.state = { friends: [], }
