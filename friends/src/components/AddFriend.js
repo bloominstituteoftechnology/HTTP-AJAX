@@ -22,35 +22,26 @@ class AddFriend extends Component {
                 [e.target.name]: e.target.value
             }
         });
-        // console.log(this.state.newFriend)
     }
-
-    
-    // ageChange = event => {
-    //     this.setState({ inputAge: event.target.value })
-    // }
-
-    // emailChange = event => {
-    //     this.setState ({ inputEmail: event.target.value })
-    // }
 
 
     formHandler = event => {
         event.preventDefault();
-        // var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        // if(!this.state.inputName  
-        //     || !this.state.inputEmail) {
-        //     alert("Name or Email can't be blank!")
-        // }
-        // if(this.state.inputAge <= 18){
-        //     alert("Go study small child!!!")
-        // }
-        // if(!filter.test(this.state.inputEmail)) {
-        //     alert("Need a valid email address")
-        // }
-        // else {
+        if(!this.state.newFriend.name  
+            && !this.state.newFriend.email) {
+            alert("Name or Email can't be blank!")
+        }
+        if(this.state.newFriend.age <= 18){
+            alert("Go study small child!!!")
+        }
+        if(!filter.test(this.state.newFriend.email)) {
+            alert("Need a valid email address")
+        }
+        else {
             this.props.handler(this.state.newFriend)
+            
             this.setState({ 
                 newFriend: {
                     name: "",
@@ -59,8 +50,7 @@ class AddFriend extends Component {
                 }
 
             })
-        // }
-        // console.log(this.state.newFriend)
+        }
     }
 
     render(){

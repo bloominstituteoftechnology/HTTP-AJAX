@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Friend from './Friend'
 import AddFriend from './AddFriend.js'
 import FriendCard from './FriendCard';
-import { Link } from 'react-router-dom';
-
+import UpdateFriends from './UpdateFriends'
 
 class FriendList extends Component {
     constructor(){
@@ -24,6 +22,13 @@ class FriendList extends Component {
           .catch( err => console.log("ERROR!!!"))
       }
     
+    updateFriendInfo = (friend, id) => {
+        axios.put(`http://localhost:5000/friends/${friend.id}`, friend)
+        .then( response => console.log("RES:", response))
+        .catch( err => console.log("ERROR CAN'T COMPUTE") )
+
+    }
+
     formSubmit = (friend) => {
         axios
             .post("http://localhost:5000/friends", friend)
@@ -34,14 +39,16 @@ class FriendList extends Component {
     }
 
     deleteFromServer = (friend) => {
-        // console.log(friend.id)
         axios
         .delete(`http://localhost:5000/friends/${friend.id}`)
         .then( response => {
             this.setState({ friends:response.data })
-            // console.log(response)
         })
         .catch( err => console.log(err))
+    }
+
+    update = () => {
+        console.log("HI")
     }
 
     render(){
@@ -60,13 +67,11 @@ class FriendList extends Component {
                                 deleteFromServer = {this.deleteFromServer}
                                 />
                             <h2>---------------------------------------</h2>
-
                         </div>
                     ) 
                 })}
-            
             <AddFriend handler ={this.formSubmit}/>
-
+            <UpdateFriends update = {this.update}/>
             </div>
         )
     }
