@@ -19,6 +19,10 @@ class FriendForm extends React.Component {
 			}
 		});
 	};
+	updateFriend = (e) => {
+		e.preventDefault();
+		this.props.updateFriend(this.state.friendInfo);
+	};
 
 	postFriend = (e) => {
 		e.preventDefault();
