@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class FriendsList extends React.Component {
 
@@ -9,16 +10,20 @@ class FriendsList extends React.Component {
                       email: ''}
     }
 
+    inputChange = event => {
+        this.setState({ [event.target.name]: event.target.value })
+    };
+
     update = id =>{
-        
+
     }
 
     render() {
         return (
-            <form >
-                <input type="text" placeholder="Name" />
-                <input type="text" placeholder="Age" />
-                <input type="text" placeholder="Email" />
+            <form onSubmit={''}>
+                <input onChange={this.inputChange} name="name" type="text" placeholder="Name" />
+                <input onChange={this.inputChange} name="age" type="text" placeholder="Age" />
+                <input onChange={this.inputChange} name="email" type="text" placeholder="Email" />
                 <input type="button" value="Save" />
             </form>
         )
