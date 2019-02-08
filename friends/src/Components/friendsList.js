@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import AddFriend from './addfriend'
+
 class FriendsList extends Component {
     constructor(){
         super ();
     this.state = {
-        friends:[]
+        friends:[],
+        friend:[]
     }
 }
 
@@ -18,12 +19,35 @@ class FriendsList extends Component {
               .catch(err => {
                 console.log(err);
               });
+
+        this.onFormSubmit = e => {
+            e.preventDefault();
+            this.setState ({
+                friends:[
+                    ...this.state.friends,
+                    {name:'Lambda',age:40,email:'tom'}
+                ],
+                friend:''
+            })
+            e.target.reset();
+        }
           };
         
         
-    render() {return (<div>
-    <AddFriend existing = {this.state.friends}/>
-    </div>)
-    }
+          render () {
+            return( <div><div>{this.state.friends.map(
+              friend => {return <div key={friend.id}>{`${friend.name} ${friend.age} ${friend.email}`}</div>
+           
+              }
+            )}</div>
+             <form onSubmit={this.onFormSubmit}>
+                    <input id="" type="text" placeholder="Name" onChange={e=>this.setState({friend:e.target.value})} />
+                    <input id="" type="text" placeholder="Age" onChange={e=>this.setState({friend:e.target.value})} />
+                    <input id="" type="text" placeholder="Email" onChange={e=>this.setState({friend:e.target.value})} />
+                    </form>
+           
+            {console.log (this.state)}
+            </div>)
+           }
 }
   export default FriendsList;
