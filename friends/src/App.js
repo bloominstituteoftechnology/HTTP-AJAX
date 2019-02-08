@@ -73,8 +73,12 @@ class App extends Component {
 						/>
 					)}
 				/>
-
 				<FriendForm postFriend={this.postFriend} />
+				<Route
+					exact
+					path="/friends/:id"
+					render={() => <FriendForm postFriend={this.postFriend} updateFriend={this.updateFriend} />}
+				/>
 			</div>
 		);
 	}
