@@ -6,12 +6,21 @@ class AddFriend extends Component {
 
  this.state = {
    friendAdd:{},
-   existingFriends:{}
+   existingFriends:props.friends
   }
     
 }
 render () {
- return( <div>this is the friends list</div>)
+ return( <div><div>{this.props.existing.map(
+   friend => {return <div key={friend.id}>{`${friend.name} ${friend.age} ${friend.email}`}</div>
+
+   }
+ )}</div>
+ AddFriend is under development
+ {console.log (this.props)}
+ </div>)
 }
 }
+// .map(friend => {
+//   return <div key={friend.id}>{`${friend.name} ${friend.age} ${friend.email}`}</div>
 export default AddFriend

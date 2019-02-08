@@ -21,11 +21,8 @@ class FriendsList extends Component {
           };
         
         
-    render() {return (<div><div>{this.state.friends.map(friend => {
-        return <div key={friend.id}>{`${friend.name} ${friend.age} ${friend.email}`}</div>
-        
-    })}</div>
-    <AddFriend/>
+    render() {return (<div>
+    <AddFriend existing = {this.state.friends}/>
     </div>)
     }
 }
