@@ -38,3 +38,7 @@ For reference,
 1.  Style the friends list, the input field, and make everything look nice.
 1.  Expand the number of properties that you put on each friend object.
 1.  Feel free to remove the dummy data on the server or modify it in any way.
+
+
+## Branches
+1.  Tevvin-Strong
