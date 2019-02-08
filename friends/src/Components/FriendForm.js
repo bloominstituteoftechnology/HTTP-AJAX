@@ -11,6 +11,14 @@ class FriendForm extends React.Component {
 			}
 		};
 	}
+	handleChange = (e) => {
+		this.setState({
+			friendInfo: {
+				...this.state.friendInfo,
+				[e.target.name]: e.target.value
+			}
+		});
+	};
 
 	postFriend = (e) => {
 		e.preventDefault();
@@ -27,7 +35,7 @@ class FriendForm extends React.Component {
 	render() {
 		return (
 			<div className="friend-form">
-				<h1>Post a new Friend </h1>
+				<h1>You have Friends? Post Here</h1>
 				<form onSubmit={this.postFriend}>
 					<input
 						type="text"
