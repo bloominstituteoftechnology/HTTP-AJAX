@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Friends from './friends/friends';
+import Friends from './components/Friends';
 import './App.css';
-import FriendForm from './friends/friendsForm';
+import FriendForm from './components/FriendsForm';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
       friends: [],
-      newFriends: {
+      newFriend: {
         name: "",
         age: "",
         email: ""
@@ -30,19 +30,19 @@ class App extends Component {
 
   handleChange = e => {
     this.setState({
-      newFriends: {
-        ...this.state.newFriends,
+      newFriend: {
+        ...this.state.newFriend,
         [e.target.name]: e.target.value
       }
     });
-    console.log(this.state.newFriends.name)
+    console.log(this.state.newFriend.name)
   };
 
   addFriend = e => {
     e.preventDefault();
-    this.addNewFriendsToServer(this.state.newFriends);
+    this.addNewFriends(this.state.newFriend);
     this.setState({
-      newFriends: {
+      newFriend: {
         name: "",
         age: "",
         email: ""
@@ -50,7 +50,7 @@ class App extends Component {
     });
   }
 
-  addNewFriendsToServer = friend => {
+  addNewFriends = friend => {
 
     axios
         .post('http://localhost:5000/friends', friend)
@@ -64,7 +64,7 @@ class App extends Component {
         })
   }
 
-  deleteOldFriends = id => {
+  deleteFriend = id => {
     axios
         .delete(`http://localhost:5000/friends/${id}`)
         .then(res => {
@@ -76,7 +76,7 @@ class App extends Component {
   }
 
 
-  updateFriends = id => {
+  editFriend = id => {
     console.log(id)
     axios
         .put(`http://localhost:5000/friends/${id}` )
@@ -91,8 +91,8 @@ class App extends Component {
   render() {
     return (
         <div className="App">
-          <Friends friends={this.state.friends} editFriend={this.updateFriends} deleteFriend={this.deleteOldFriends} />
-          <FriendForm typed={this.handleChange} {...this.state.newFriends} addFriend={this.addFriend}/>
+          <Friends friends={this.state.friends} editFriend={this.editFriend} deleteFriend={this.deleteFriend} />
+          <FriendForm typed={this.handleChange} {...this.state.newFriend} addFriend={this.addFriend}/>
         </div>
     );
   }
