@@ -1,101 +1,106 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-import Friends from './components/Friends';
+import React, {Component} from 'react';
 import './App.css';
-import FriendForm from './components/FriendsForm';
+import Axios from "axios";
+import Friends from "./components/Friends.";
+import Form from "./components/Form";
+
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      friends: [],
-      newFriend: {
-        name: "",
-        age: "",
-        email: ""
-      }
+
+    constructor() {
+        super();
+        this.state = {
+            data: [],
+            newFriend: {
+                name: '',
+                age: '',
+                email: ''
+            },
+            editFriend: {
+                name: '',
+                age: '',
+                email: ''
+            }
+        }
     }
-  }
 
-  componentDidMount(){
-    axios
-        .get('http://localhost:5000/friends')
-        .then(response => {
-          this.setState(() => ({friends: response.data}));
+    componentDidMount() {
+        Axios.get('http://localhost:5000/friends')
+            .then(response => {
+                this.setState({data: response.data})
+            })
+            .catch(error => console.log(error))
+    }
+
+    handleChange = event => {
+        this.setState({
+            newFriend: {
+                ...this.state.newFriend,
+                [event.target.name]:event.target.value
+            }
+        });
+        console.log(this.state.newFriend)
+    };
+
+    addNewFriend = (event) => {
+        event.preventDefault()
+        Axios.post('http://localhost:5000/friends', this.state.newFriend)
+            .then(response => {
+                console.log(response)
+                this.setState({data:response.data})
+            })
+            .catch(error =>{
+                console.log('error',error)
+            })
+        this.setState({
+            newFriend: {
+                name: '',
+                age: '',
+                email: ''
+            }
         })
-        .catch(error => {
-          console.error('Server Error', error)
-        })
-  }
+    }
+    
+    deleteFriend = id => {
+        Axios.delete(`http://localhost:5000/friends/${id}`)
+            .then(response => {
+                this.setState({data:response.data})
+            })
+            .catch(error =>{
+                console.log('error',error)
+            })
+    }
 
-  handleChange = e => {
-    this.setState({
-      newFriend: {
-        ...this.state.newFriend,
-        [e.target.name]: e.target.value
-      }
-    });
-    console.log(this.state.newFriend.name)
-  };
-
-  addFriend = e => {
-    e.preventDefault();
-    this.addNewFriends(this.state.newFriend);
-    this.setState({
-      newFriend: {
-        name: "",
-        age: "",
-        email: ""
-      }
-    });
-  }
-
-  addNewFriends = friend => {
-
-    axios
-        .post('http://localhost:5000/friends', friend)
-        .then(res => {
-          console.log(res.data);
-          console.log(friend);
-          this.setState({friends: res.data});
-        })
-        .catch(err => {
-          console.log("Error", err)
-        })
-  }
-
-  deleteFriend = id => {
-    axios
-        .delete(`http://localhost:5000/friends/${id}`)
-        .then(res => {
-          this.setState({friends: res.data})
-        })
-        .catch(err => {
-          console.log("Error", err)
-        })
-  }
+    handleChange2 = event => {
+        this.setState({
+            editFriend: {
+                ...this.state.editFriend,
+                [event.target.name]:event.target.value
+            }
+        });
+        console.log(this.state.newFriend)
+    };
 
 
-  editFriend = id => {
-    console.log(id)
-    axios
-        .put(`http://localhost:5000/friends/${id}` )
-        .then(res => {
-          this.setState({friends: res.data})
-        })
-        .catch(err => {
-          console.log("Error", err)
-        })
-  }
+    editFriend = (id) => {
+        Axios.put(`http://localhost:5000/friends/${id}`, this.state.editFriend)
+            .then(response => {
+                this.setState({data:response.data})
+            })
+            .catch(error =>{
+                console.log('error',error)
+            })
+        console.log(this.state.editFriend)
+    }
 
-  render() {
-    return (
-        <div className="App">
-          <Friends friends={this.state.friends} editFriend={this.editFriend} deleteFriend={this.deleteFriend} />
-          <FriendForm typed={this.handleChange} {...this.state.newFriend} addFriend={this.addFriend}/>
-        </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <Friends handleChange2={this.handleChange2} data={this.state.data} deleteFriend={this.deleteFriend} editFriend={this.editFriend} editFriend2={this.editFriend}/>
+                <Form handleChange={this.handleChange} {...this.state.newFriend} addNewFriend={this.addNewFriend}/>
+            </div>
+        );
+    }
 }
 
 export default App;

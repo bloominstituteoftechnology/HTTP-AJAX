@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\seanw\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\seanw\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_friends.-642264044.00" t="ExcludeRecursive" />
+    <e p="C:\Users\seanw\Desktop\HTTP-AJAX\friends" t="IncludeFlat">
+      <e p="node_modules" t="ExcludeRecursive">
+        <e p="@types" t="IncludeRecursive">
+          <e p="node" t="IncludeRecursive" />
+          <e p="unist" t="IncludeRecursive" />
+          <e p="vfile-message" t="IncludeRecursive" />
+        </e>
+        <e p="axios" t="IncludeRecursive" />
+        <e p="react" t="IncludeRecursive" />
+        <e p="react-dom" t="IncludeRecursive" />
+        <e p="react-router-dom" t="IncludeRecursive" />
+        <e p="react-scripts" t="IncludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
