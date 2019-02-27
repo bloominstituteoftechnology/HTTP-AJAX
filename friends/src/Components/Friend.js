@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friends = ({friend})=>{return(
+const Friend = ({friend})=>{return(
     <div>
         <p>{friend.id}</p>
         <h1>{friend.name} ({friend.age})</h1>
@@ -8,4 +8,5 @@ const Friends = ({friend})=>{return(
             <a href="/">{friend.email}</a>
         </p>
     </div>
-)}
+)};
+export default Friend;
