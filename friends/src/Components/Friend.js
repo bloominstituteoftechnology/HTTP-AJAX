@@ -9,7 +9,7 @@ display: flex;
 flex-direction: column;
 align-content: center;
 border: solid grey 5px;
-max-width: 400px;
+width: 400px;
 margin: 5px auto;
 `
 

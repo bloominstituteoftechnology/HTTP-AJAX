@@ -5,6 +5,7 @@ import axios from 'axios';
 import Friend from './Components/Friend';
 import Form from './Components/Form';
 
+
 class App extends Component {
 constructor() {
   super();
@@ -13,10 +14,17 @@ constructor() {
   }
 }
 
+addBuddy = (e,friends) => {
+e.preventDefault();
+axios.post('http://localhost:5000/friends', friends)
+.then(res => this.setState({friends: res.data}))
+.catch(err => console.log(err + 'this anit it!'))
+}
+
 componentDidMount(){
   axios.get('http://localhost:5000/friends')
   .then(res => this.setState({friends: res.data}))
-  .catch(err => console.long(err + 'something went wrong, Kong!'));
+  .catch(err => console.log(err + 'something went wrong, Kong!'));
 }
 
   render() {
@@ -28,7 +36,7 @@ componentDidMount(){
           <Friend friend={friend} key={friend.id}/>
         );
       })}
-      <Form />
+      <Form addBuddy={this.addBuddy} />
       </div>
     );
   }
