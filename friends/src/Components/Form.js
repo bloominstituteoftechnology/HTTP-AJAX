@@ -32,8 +32,8 @@ class Form extends React.Component{
         })
     }
 
-  render(){
-      return(
+    render(){
+        return(
           <Formui>
               <h1>Add Buddy</h1>
                 xxxxxxxxxxxx
