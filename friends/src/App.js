@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Friend from './Components/Friend';
+import Form from './Components/Form';
 
 class App extends Component {
 constructor() {
@@ -27,7 +28,7 @@ componentDidMount(){
           <Friend friend={friend} key={friend.id}/>
         );
       })}
-      
+      <Form />
       </div>
     );
   }
