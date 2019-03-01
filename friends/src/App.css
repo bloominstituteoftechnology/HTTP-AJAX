@@ -1,5 +1,5 @@
 .App {
-  
+  background-image: url('./city.jpg');
   text-align: center;
   border: solid red 2px;
 }

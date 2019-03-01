@@ -63,6 +63,7 @@ class Form extends React.Component{
     changeHandle = (e) =>{
     this.setState({ 
         friend:{
+        ...this.state.friend,
        [e.target.name]: e.target.value}
     })
     }
