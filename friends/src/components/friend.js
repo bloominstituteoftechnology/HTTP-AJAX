@@ -10,7 +10,7 @@ function Friend(props) {
         <Fragment>
             <h1>{friend.name}</h1>
             <h3>Age: {friend.age} </h3>
-            <h4>Emial: {friend.email} </h4>
+            <h4>Email: {friend.email} </h4>
         </Fragment>
     )
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const input = props => {
     return (
-        <div>
+        <div className="group">
             <input 
           type= 'text'
           onChange = {props.handleFormInput}
@@ -24,7 +24,7 @@ const input = props => {
           name= 'email'
           value= {props.email}
         />
-        <button 
+        <button className="material-button-raised"
         onClick={props.saveFriend}
         >Save</button>
         </div>
