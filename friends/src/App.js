@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import FriendsList from './FriendsList/FriendsList';
+import FriendsList from './component/FriendsList';
+import axios from 'axios';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+        friends: []
+     };
+    }
+  componentDidMount() {
+    axios
+    .get('http://localhost:5000/friends')
+    .then(response => {
+      console.log(response)
+        this.setState(() => ({ friends: response.data }));
+    })
+    .catch(error => {
+        console.log('OOPS', error);
+    })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {this.state.friends.map(friend =>(
+          <FriendsList friend={friend} key={friend.id} />
+        ))}
+       
       </div>
     );
   }
