@@ -13,7 +13,6 @@ class App extends Component {
     }
 
   componentDidMount() {
-    console.log('inside CDM');
     axios
     .get('http://localhost:5000/friends')
     .then(response => {
@@ -30,7 +29,7 @@ class App extends Component {
         {this.state.friends.map(friend =>(
           <FriendsList friend={friend} key={friend.id} />
         ))}
-       <FriendForm />
+       {/* <FriendForm /> */}
       </div>
     );
   }

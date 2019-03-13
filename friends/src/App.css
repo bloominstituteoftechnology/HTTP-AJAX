@@ -31,8 +31,4 @@
     transform: rotate(360deg);
   }
 }
-.friend-card {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+
