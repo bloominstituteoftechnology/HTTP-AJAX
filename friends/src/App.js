@@ -1,70 +1,130 @@
-import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import axios from "axios";
 
-import Friends from './Components/Friends'
-import FriendForm from './Components/FriendForm'
+import Navigation from "./components/Navigation";
+import FriendsList from "./components/FriendList";
+import SingleFriend from "./components/SingleFriend";
+import FriendForm from "./components/FriendForm";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      friends: []
-    }
-  }
+  state = {
+    friends: [],
+    error: "",
+    activeFriend: null
+  };
 
   componentDidMount() {
     axios
-    .get('http://localhost:5000/friends')
-    .then(response => {
-      console.log(response)
-      this.setState({ friends: response.data})
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
-  addNewFriend = data => {
-    axios.post('http://localhost:5000/friends', data) 
-    .then(response => {
-      console.log(response);
-      this.setState({
-        friends: response.data
+      .get("http://localhost:5000/friends")
+      .then(response => {
+        // console.log(response)
+        this.setState({
+          friends: response.data
+        });
       })
-    })
-    .catch(err => console.log(err));
+      .catch(error => {
+        console.log(error);
+        this.setState({
+          error
+        });
+      });
   }
 
-  deleteFriend = id => {
+  addFriend = (event, friend) => {
+    event.preventDefault();
+
     axios
-    .delete(`http://localhost:5000/friends/${id}`)
-    .then(response => {
-      this.setState({
-        friends: response.data
+      .post("http://localhost:5000/friends", friend)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+        this.props.history.push("/friends");
       })
-    })
-    .catch(err => console.log(err));
-  }
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
-   
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+        this.props.history.push("/friends");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  setUpdateForm = (event, friend) => {
+    event.preventDefault();
+
+    this.setState({
+      activeFriend: friend
+    });
+
+    this.props.history.push("/friend-form");
+  };
+
+  updateFriend = (event, friend) => {
+    event.preventDefault();
+
+    axios
+      .put(`http://localhost:5000/friends/${friend.id}`, friend)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+        this.props.history.push("/friends");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
-      <div className="App">
-        <div className="nav-links">
-          <NavLink exact to="/">Home</NavLink>
-        </div>
-        <div className="wrapper">
-          <div className="content-wrapper">
-            <Friends friends={this.state.friends} deleteFriend={this.deleteFriend}/>
-          </div>  
-          <div className="form-wrapper">
-            <FriendForm addNewFriend={this.addNewFriend}/>
-          </div>
-        </div>
+      <div>
+        <Navigation />
+        <Route
+          exact
+          path="/friends"
+          render={props => (
+            <FriendsList {...props} friends={this.state.friends} />
+          )}
+        />
+        <Route
+          path="/friends/:id"
+          render={props => (
+            <SingleFriend
+              {...props}
+              friends={this.state.friends}
+              deleteFriend={this.deleteFriend}
+              setUpdateForm={this.setUpdateForm}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/friend-form"
+          render={props => (
+            <FriendForm
+              {...props}
+              addFriend={this.addFriend}
+              activeFriend={this.state.activeFriend}
+              updateFriend={this.updateFriend}
+            />
+          )}
+        />
       </div>
     );
   }
