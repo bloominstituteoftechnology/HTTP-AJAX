@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from "axios";
 
 import Friends from './Components/Friends'
@@ -48,6 +48,8 @@ class App extends Component {
     })
     .catch(err => console.log(err));
   }
+
+   
 
   render() {
     return (
