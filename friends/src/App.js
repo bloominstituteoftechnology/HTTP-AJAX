@@ -7,8 +7,6 @@ import FriendsList from "./components/FriendList";
 import SingleFriend from "./components/SingleFriend";
 import FriendForm from "./components/FriendForm";
 
-import "./App.css";
-
 class App extends Component {
   state = {
     friends: [],
@@ -82,7 +80,8 @@ class App extends Component {
       .put(`http://localhost:5000/friends/${friend.id}`, friend)
       .then(response => {
         this.setState({
-          friends: response.data
+          activeFriend: null,
+          friends: response.data,
         });
         this.props.history.push("/friends");
       })
