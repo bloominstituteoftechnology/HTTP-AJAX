@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FriendsList from './component/FriendsList';
+import FriendForm from './component/FriendForm';
 import axios from 'axios';
 
 class App extends Component {
@@ -11,24 +11,26 @@ class App extends Component {
         friends: []
      };
     }
+
   componentDidMount() {
+    console.log('inside CDM');
     axios
     .get('http://localhost:5000/friends')
     .then(response => {
-      console.log(response)
-        this.setState(() => ({ friends: response.data }));
+        this.setState({ friends: response.data });
     })
     .catch(error => {
         console.log('OOPS', error);
     })
   }
+
   render() {
     return (
       <div>
         {this.state.friends.map(friend =>(
           <FriendsList friend={friend} key={friend.id} />
         ))}
-       
+       <FriendForm />
       </div>
     );
   }
