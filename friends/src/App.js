@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import { Route } from 'react-router-dom';
+import FriendList from './component/FriendList';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <FriendList />
+      <Route path='/friends/:id' component={FriendList} 
+      render={props => <FriendList {...props} friends={this.state.friends} />} />
       </div>
     );
   }

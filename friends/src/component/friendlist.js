@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+// import { Link } from 'react-router-dom';
 
 class FriendList extends Component {
     constructor() {
@@ -19,8 +19,8 @@ componentDidMount() {
 
   render() {
     return (
-        <div>
-
+        <div className='friend-list'>
+           {this.state.friends.map(friend => (friend))}
         </div>
     );
   }
