@@ -22,7 +22,9 @@ componentDidMount() {
   render() {
     return (
       <div className='App'>
-          render={props => <FriendList {...props} friends={this.state.friends} />}
+          {this.state.friends.map(friend => (
+            <FriendList friend={friend} key={friend.id} />
+          ))}
       </div>
     );
   }   
