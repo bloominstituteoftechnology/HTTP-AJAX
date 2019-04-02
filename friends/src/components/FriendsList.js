@@ -1,13 +1,12 @@
 import React from 'react';
 import './FriendsList.css';
+import FriendCard from './FriendCard';
 
 const FriendsList = props => {
     return (
-        <div className="friend-card">
-            <p><span>Name:</span> {props.name}</p>
-            <p><span>Age:</span> {props.age}</p>
-            <p><span>email:</span> {props.email}</p>
-        </div>
+        <div className="friends-list-wrapper">
+            {props.friends.map(friend => <FriendCard key={friend.id} name={friend.name} age={friend.age} email={friend.email} />)}
+          </div>
     );
 }
 
