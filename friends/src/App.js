@@ -20,13 +20,21 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
+  addFriend = (newFriend) => {
+    axios
+      .post("http://localhost:5000/friends", newFriend)
+      .then(response => {
+        this.setState({ friends: response.data });
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
       <div className="App">
         <h1 className="header">Friends List</h1>
         <div className="content">
-          <AddFriendForm />
+          <AddFriendForm addFriend={this.addFriend} />
           <FriendsList friends={this.state.friends} />
         </div>
         
