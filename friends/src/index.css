@@ -13,11 +13,63 @@ code {
     monospace;
 }
 
+body {
+  background: rgba(111, 154, 160, .5);
+}
+
 .header {
   padding: 20px 20px 20px 40px;
-  background: blue;
+  background: rgb(2, 55, 63);
   color: white;
   font-size: 40px;
   font-weight: bold;
   text-transform: uppercase;
+}
+.content {
+  width: 100%;
+  display: flex;
+}
+.add-friend {
+  width: 20%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background: #447D85;
+}
+.add-friend h4 {
+  text-transform: uppercase;
+  color: white;
+  margin: 30px 0;
+}
+.input-field {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.input-field label {
+  color: rgb(2, 55, 63);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.input-field input {
+  border: none;
+  border-bottom: 2px solid white;
+  background: #447D85;
+  color: white;
+  font-size: 18px;
+  padding: 5px;
+}
+.input-field input:focus {
+  outline: none;
+}
+.add-friend button {
+  width: 60%;
+  align-self: center;
+  padding: 10px 20px;
+  margin-top: 30px;
+  background: white;
+  color: rgb(2, 55, 63);
+  font-size: 18px;
+  font-weight: bold;
 }
