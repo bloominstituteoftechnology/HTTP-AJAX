@@ -54,6 +54,11 @@ app.use(bodyParser.json());
 app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
+//Makes possible to open Friend card in separate page
+app.get('/friends/:id', (req, res) => {
+	const friend = friends.filter(friend => friend.id.toString() === req.params.id)[0];
+	res.status(200).json(friend);
+}); //<-- end of my changes
 
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
