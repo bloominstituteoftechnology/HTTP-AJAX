@@ -4,14 +4,20 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.14.11",
+    "prettier": "^1.16.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
   "scripts": {
-    "start": "nodemon server.js"
+    "server": "nodemon server.js",
+    "frontend": "cd ./friends/ && npm run start",
+    "start": "concurrently \"npm run server\" \"npm run start\""
   },
   "author": "Lambda School",
   "license": "ISC"
