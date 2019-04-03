@@ -35,7 +35,7 @@ class App extends Component {
     })
   }
 
-  createFriend() {
+  createFriend = ()=> {
     const newFriend = {
       name: this.state.name,
       age: this.state.age,
@@ -43,7 +43,7 @@ class App extends Component {
     }
   
     this.setState ({
-      friends: [this.state.friends, newFriend]
+      friends: [...this.state.friends, newFriend]
     })
 
   }

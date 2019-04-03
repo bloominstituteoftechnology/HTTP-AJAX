@@ -10,7 +10,7 @@ const Form = props => {
             <input placeholder="age..." name="age" onChange={props.handleChanges}></input>
             <input placeholder="email..." name="email" onChange={props.handleChanges}></input>
             </form>
-            <button>Add New Friend</button>
+            <button onClick={props.createFriend} >Add New Friend</button>
         </div>
     )
 
