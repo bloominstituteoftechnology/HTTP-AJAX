@@ -1,0 +1,20 @@
+
+/* .box1{
+  display: flex;
+  flex-wrap: row wrap;
+  width:300px;
+} */
+.friend{
+  border: 1px solid lightgray;
+  width: 250px;
+  margin: 10px;
+}
+.friendContainer{
+  width:500;
+  height:auto;
+  display:flex;
+  justify-content: center;
+  
+}
+
+
