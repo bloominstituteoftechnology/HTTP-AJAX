@@ -2,7 +2,7 @@
 
 Topics: 
 
-* `axios` packag e
+* `axios` package
 * AJAX
 * Promise s
 
