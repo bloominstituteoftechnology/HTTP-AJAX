@@ -3,18 +3,19 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
-.friend-card {
+.friends-list-wrapper a {
+    text-decoration: none;
     background: rgba(127, 139, 176, .2);
     color: #081845;
     width: 35%;
-    margin: 30px 0;
+    margin: 30px;
     padding: 40px;
     cursor: pointer;
     box-shadow: 0 10px 6px -6px #777;
 }
-.friend-card:hover {
+.friends-list-wrapper a:hover {
     background: #02373F;
     color: white;
 }
