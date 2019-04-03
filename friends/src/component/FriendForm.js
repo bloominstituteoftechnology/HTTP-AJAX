@@ -1,12 +1,13 @@
-// import React from 'React';
+// import React from 'react';
+// import axios from 'axios'
 
 // class FriendForm extends Component {
 //     constructor() {
 //         super();
-//         this.state = {  
-//             addName: '',
-//             addAge: '',
-//             addEmail: ''
+//         state = {  
+//             name: '',
+//             age: '',
+//             email: ''
 //         }
 //     }
 
