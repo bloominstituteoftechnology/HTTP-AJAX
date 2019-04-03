@@ -32,3 +32,15 @@
   }
 }
 
+.friend-card {
+  border: 1px solid black;
+  width: 300px;
+  margin: 5px auto;
+  padding: 10px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+

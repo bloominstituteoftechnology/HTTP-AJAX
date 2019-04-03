@@ -26,6 +26,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h1>The Team</h1>
         {this.state.friends.map(friend =>(
           <FriendsList friend={friend} key={friend.id} />
         ))}
