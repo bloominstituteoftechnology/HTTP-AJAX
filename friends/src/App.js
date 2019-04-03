@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
@@ -20,6 +20,7 @@ class App extends Component {
                 console.log(response);
                 this.setState({ friends: response.data })
             })
+            .catch( err => console.log("Whoopsie you got an error:", err));
     }
     render() {
         return (
