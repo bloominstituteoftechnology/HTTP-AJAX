@@ -41,10 +41,20 @@ class App extends Component {
       age: this.state.age,
       email: this.state.email
     }
-  
-    this.setState ({
-      friends: [...this.state.friends, newFriend]
+
+    axios.post('http://localhost:5000/friends', newFriend)
+    .then(res => {
+      this.setState({ friends: [...this.state.friends, newFriend]
+      });
+      console.log(res)
     })
+    .catch(err => {
+      console.log(err)
+    })
+  
+    // this.setState ({
+    //   friends: [...this.state.friends, newFriend]
+    // })
 
   }
 
