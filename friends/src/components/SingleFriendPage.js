@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import FriendCard from './FriendCard';
 
 class SingleFriendPage extends Component {
@@ -23,14 +25,17 @@ class SingleFriendPage extends Component {
         console.error(error);
         });
     };
+    deleteFriend = () => {
+        this.props.deleteFriend(this.state.friend.id);
+    }
     render(props) {
-        console.log(this.state.friend);
+        console.log(this.state.friend.id);
         return (
             <div className="friend-page-wrapper">
                <FriendCard friend={this.state.friend}/>
                <div className="friend-page-controls">
                    <button className='btn'>Edit</button>
-                   <button className='btn'>Delete</button>
+                   <Link to="/"><button className='btn' onClick={this.deleteFriend}>Delete</button></Link>
                </div>
            </div>
        )

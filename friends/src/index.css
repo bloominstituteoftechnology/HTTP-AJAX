@@ -34,8 +34,9 @@ body {
 }
 .add-friend {
   width: 20%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 30px;
+  padding-bottom: 60px;
   display: flex;
   flex-direction: column;
   background: #447D85;
@@ -55,6 +56,7 @@ body {
   color: rgb(2, 55, 63);
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 .input-field input {
   border: none;
@@ -62,11 +64,12 @@ body {
   background: #447D85;
   color: white;
   font-size: 18px;
-  padding: 5px;
+  padding: 10px;
 }
 .input-field input:focus {
   outline: none;
 }
+
 .btn {
   width: 60%;
   align-self: center;

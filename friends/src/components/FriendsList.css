@@ -10,6 +10,7 @@
     background: rgba(127, 139, 176, .2);
     color: #081845;
     width: 35%;
+    height: 20vh;
     margin: 30px;
     padding: 40px;
     cursor: pointer;
@@ -55,4 +56,10 @@
 }
 .friend-page-controls .btn {
     width: 30%;
+}
+.friend-page-controls a {
+    width: 30%;
+}
+.friend-page-controls a .btn {
+    width: 100%;
 }
