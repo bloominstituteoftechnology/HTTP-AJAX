@@ -1,18 +1,18 @@
 .friends-list-wrapper {
     width: 80%;
-    margin: 0 auto;
+    margin: 30px auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
 }
 .friends-list-wrapper a {
     text-decoration: none;
-    background: rgba(127, 139, 176, .2);
-    color: #081845;
-    width: 35%;
-    height: 20vh;
-    margin: 30px;
-    padding: 40px;
+    background: rgba(233, 212, 95, 0.5);
+    color: rgb(0, 53, 61);
+    min-width: 35%;
+    height: 30vh;
+    margin: 30px 0;
+    padding: 40px 4%;
     cursor: pointer;
     box-shadow: 0 10px 6px -6px #777;
 }
@@ -20,8 +20,12 @@
     background: #02373F;
     color: white;
 }
+.friends-list-wrapper a .friend-card {
+    width: 100%;
+}
 .friend-card p {
     margin-bottom: 10px;
+    width: 100%;
 }
 .friend-card p:last-child {
     margin-bottom: 0;
