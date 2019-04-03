@@ -1,13 +1,15 @@
 .App {
   text-align: center;
-  background: skyblue;
+  background-image: url(./img/underWater.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .cards {
-  padding-top: 40px;
+  padding: 20px 0 20px 0;
 }
 
-.friend-card{
+.friendCard{
   max-width: 500px;
   margin: 0 auto;
   border: 1px solid blue;
@@ -19,12 +21,19 @@
 }
 
 strong{
-  color: rgb(194, 207, 12);
+  color: rgb(39, 222, 228);
   text-decoration: underline;
 }
 
-h1{
-  color: rgb(39, 222, 228);
+.titleOfCard{
+  color: gold;
   border-bottom: 3px solid black;
   padding-bottom: 10px
+}
+
+.mainTitle {
+  margin-bottom: 75px;
+  font-size: 90px;
+  color: gold;
+  text-decoration: underline;
 }
