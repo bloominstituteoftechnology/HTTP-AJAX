@@ -38,7 +38,7 @@ class AddFriendForm extends Component {
                 <label htmlFor='email'>Email</label>
                 <input id='email' name='email' value={this.state.email} onChange={this.onChange} />
                 </div>
-                <button type='submit'>Add Friend</button>
+                <button className='btn' type='submit'>Add Friend</button>
             </form>
         )
     }

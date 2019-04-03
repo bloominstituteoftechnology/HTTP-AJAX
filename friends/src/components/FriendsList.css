@@ -29,3 +29,30 @@
     font-weight: bold;
     margin: 5px;
 }
+
+/* SingleFriendPage */
+
+.friend-page-wrapper {
+    width: 50%;
+    height: 50vh;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    background: rgba(127, 139, 176, .2);
+    color: #081845;
+}
+.friend-page-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.friend-page-wrapper .friend-card {
+    margin-top: 40px;
+    font-size: 20px;
+}
+.friend-page-controls .btn {
+    width: 30%;
+}

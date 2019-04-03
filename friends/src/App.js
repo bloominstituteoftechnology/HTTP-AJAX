@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import axios from "axios";
 
 import FriendsList from './components/FriendsList';
@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1 className="header">Friends List</h1>
+        <Link to="/"><h1 className="header">Friends List</h1></Link>
         <div className="content">
           <AddFriendForm addFriend={this.addFriend} />
           <Route exact path="/" render={(props) => <FriendsList {...props} friends={this.state.friends} />} />

@@ -28,9 +28,9 @@ class SingleFriendPage extends Component {
         return (
             <div className="friend-page-wrapper">
                <FriendCard friend={this.state.friend}/>
-               <div>
-                   <button>Edit</button>
-                   <button>Delete</button>
+               <div className="friend-page-controls">
+                   <button className='btn'>Edit</button>
+                   <button className='btn'>Delete</button>
                </div>
            </div>
        )
