@@ -4,6 +4,11 @@ import styled from "styled-components";
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  position: fixed;
+`;
+
+const StyledInput = styled.input`
+  margin-top: 20px;
 `;
 
 function FormList(props) {
@@ -11,9 +16,9 @@ function FormList(props) {
     <div>
       <h2>Add A Friend:</h2>
       <StyledForm>
-        <input placeholder="Friends Name" />
-        <input placeholder="Friends Age" />
-        <input placeholder="Friends Email" />
+        <StyledInput placeholder="Friends Name" />
+        <StyledInput placeholder="Friends Age" />
+        <StyledInput placeholder="Friends Email" />
       </StyledForm>
     </div>
   );

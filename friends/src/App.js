@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 
-import "./App.css";
+// import "./App.css";
 
 import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import FormList from "./components/FormList";
+import styled from "styled-components";
+
+const StyledApp = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+`;
 
 class App extends Component {
   constructor() {
@@ -24,10 +31,10 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <FriendsList friends={this.state.friends} />
+      <StyledApp>
         <FormList />
-      </div>
+        <FriendsList friends={this.state.friends} />
+      </StyledApp>
     );
   }
 }
