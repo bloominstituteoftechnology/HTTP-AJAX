@@ -3,7 +3,6 @@ import { Link, Route } from 'react-router-dom';
 import axios from "axios";
 
 import FriendsList from './components/FriendsList';
-import AddFriendForm from './components/AddFriendForm';
 import SingleFriendPage from './components/SingleFriendPage';
 
 class App extends Component {
@@ -38,12 +37,8 @@ class App extends Component {
     return (
       <div className="App">
         <Link to="/"><h1 className="header">Friends List</h1></Link>
-        <div className="content">
-          <AddFriendForm addFriend={this.addFriend} />
-          <Route exact path="/" render={(props) => <FriendsList {...props} friends={this.state.friends} />} />
+        <Route exact path="/" render={(props) => <FriendsList {...props} friends={this.state.friends} addFriend={this.addFriend} />} />
           <Route path="/friends/:id" render={(props) => <SingleFriendPage {...props} changeInfo={this.changeInfo} />} />
-        </div>
-        
       </div>
     );
   }
