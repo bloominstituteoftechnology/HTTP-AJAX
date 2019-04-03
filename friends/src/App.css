@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+  background: skyblue;
+}
+
+.cards {
+  padding-top: 40px;
+}
+
+.friend-card{
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid blue;
+  margin-top: 25px;
+  border-radius: 15px;
+  background: blue;
+  color: white;
+  box-shadow: 5px 10px black;
+}
+
+strong{
+  color: rgb(194, 207, 12);
+  text-decoration: underline;
+}
+
+h1{
+  color: rgb(39, 222, 228);
+  border-bottom: 3px solid black;
+  padding-bottom: 10px
+}
