@@ -6,7 +6,8 @@ class EditFriendForm extends Component {
         name: '',
         age: '',
         email: '',
-        id: ''
+        id: '',
+        responseMessage: ''
     }
     componentDidMount() {
         const id = Number(this.props.match.params.id);
@@ -35,14 +36,14 @@ class EditFriendForm extends Component {
         }
         console.log(updatedFriend);
         this.props.editFriend(myId, updatedFriend);
-        window.location.reload();
-        this.setState({name: '', age: '', email: '', id: ''});
+        this.setState({responseMessage: 'Done!'});
+        setTimeout(() => this.setState({responseMessage: ''}), 3000);
     }
     onChange = (e) => this.setState(
         {[e.target.name]: e.target.value}
     );
     render() {
-        console.log(this.state.id);
+        console.log(this.state.responseMessage);
         return(
             <form className="edit-friend" onSubmit={this.onSubmit}>
                 <h4>Edit Friend Information</h4>
@@ -58,6 +59,7 @@ class EditFriendForm extends Component {
                 <label htmlFor='email'>Email</label>
                 <input id='email' name='email' value={this.state.email} onChange={this.onChange} />
                 </div>
+                <p className="done">{this.state.responseMessage}</p>
                 <button className='btn' type='submit'>Edit Friend</button>
             </form>
         )

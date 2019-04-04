@@ -28,15 +28,15 @@ class AddFriendForm extends Component {
                 <h4>Add a friend</h4>
                 <div className='input-field'>
                 <label htmlFor='name'>Name</label>
-                <input id='name' name='name' value={this.state.name} onChange={this.onChange} />
+                <input id='name' name='name' value={this.state.name} onChange={this.onChange} required />
                 </div>
                 <div className='input-field'>
                 <label htmlFor='age'>Age</label>
-                <input id='age' name='age' value={this.state.age} onChange={this.onChange} />
+                <input id='age' name='age' value={this.state.age} onChange={this.onChange} required />
                 </div>
                 <div className='input-field'>
                 <label htmlFor='email'>Email</label>
-                <input id='email' name='email' value={this.state.email} onChange={this.onChange} />
+                <input id='email' name='email' value={this.state.email} onChange={this.onChange} required />
                 </div>
                 <button className='btn' type='submit'>Add Friend</button>
             </form>

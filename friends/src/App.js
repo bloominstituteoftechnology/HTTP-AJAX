@@ -43,8 +43,7 @@ class App extends Component {
     axios
       .put(`http://localhost:5000/friends/${id}`, updatedFriend)
       .then(response => {
-        console.log(response.data);
-        // this.setState({ friends: response.data });
+        this.setState({ friends: response.data});
       })
       .catch(err => {
         console.log(err);
