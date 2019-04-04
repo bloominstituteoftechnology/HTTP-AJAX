@@ -49,11 +49,15 @@ class Friend extends React.Component {
                         onChange={(e) => this.handleInput(e, 'email')}  
                     />
                 </p>
-              
+                <button className = 'edit'>Modify</button>
+                <div className="icons">
+                    <span className="fas fa-undo-alt edit" onClick={() => this.setState({ editing: false })}></span>
+                    <span className="fas fa-times-circle delete" onClick={ () => this.props.deleteFriend(this.props.id)}></span>    
+                </div>
             </form>
         ) : (
             <div>
-                <p><span>1:</span> {this.props.name}</p>
+                <p><span>Name:</span> {this.props.name}</p>
                 <p><span>Age:</span> {this.props.age}</p>
                 <p><span>Email:</span> {this.props.email}</p>
                 <div className="icons">

@@ -46,7 +46,7 @@
   width: 40%;
   text-align: center;
   border: 1px solid purple;
-  background: aquamarine;
+
   color: rgba(128, 126, 126, 0.863) ;
   border-radius: 96px;
   margin-bottom: 20px;
@@ -133,4 +133,10 @@
 }
 .return-home:active {
   transform: translateY(1px);
+}
+
+.edit {
+  border: 3px solid red;
+  height: 100px;
+  width: 50px;
 }
