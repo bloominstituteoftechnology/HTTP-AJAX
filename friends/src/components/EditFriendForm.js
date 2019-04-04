@@ -13,7 +13,6 @@ class EditFriendForm extends Component {
         const id = Number(this.props.match.params.id);
         this.fetchFriend(id);
         this.setState(() => ({ id: id }));
-        console.log(id);
     }
     fetchFriend = id => {
     axios
@@ -34,7 +33,6 @@ class EditFriendForm extends Component {
             age: Number(this.state.age),
             email: this.state.email
         }
-        console.log(updatedFriend);
         this.props.editFriend(myId, updatedFriend);
         this.setState({responseMessage: 'Done!'});
         setTimeout(() => this.setState({responseMessage: ''}), 3000);
@@ -43,7 +41,6 @@ class EditFriendForm extends Component {
         {[e.target.name]: e.target.value}
     );
     render() {
-        console.log(this.state.responseMessage);
         return(
             <form className="edit-friend" onSubmit={this.onSubmit}>
                 <h4>Edit Friend Information</h4>

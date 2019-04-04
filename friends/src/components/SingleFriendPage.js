@@ -29,7 +29,6 @@ class SingleFriendPage extends Component {
         this.props.deleteFriend(this.state.friend.id);
     }
     render(props) {
-        console.log(this.state.friend.id);
         return (
             <div className="friend-page-wrapper">
                <FriendCard friend={this.state.friend}/>
