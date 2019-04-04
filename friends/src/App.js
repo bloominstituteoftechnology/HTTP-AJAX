@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
 
-import Form from './components/Form'
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  withRouter
+} from 'react-router-dom';
 
-const Friend = props => {
-  return (
-  <div>{props.friends.name} {props.friends.age} {props.friends.email}</div>
-  )
-}
+import Form from './components/Form'
+import Friend from './components/Friend'
+import FriendList from './components/Friendlist'
+
 
 class App extends Component {
   constructor() {
@@ -64,22 +68,36 @@ class App extends Component {
     })
 }
 
+getItemById = id => {
+  axios
+    .get(`http://localhost:3333/itemById/${id}`)
+    .then(res => this.setState({ activeItem: res.data }))
+    .catch(err => console.log(err));
+};
+
 
   render() {
     console.log(this.state)
     return (
       <div className="App">
-      {/* <form onSubmit={this.createFriend}>
-        <input placeholder="name..." title="name" onChange={this.handleChanges}></input>
-        <input placeholder="age..." title="age" onChange={this.handleChanges}></input>
-        <input placeholder="email..." title="email" onChange={this.handleChanges}></input>
-      </form>
-      <button>Add New Friend</button> */}
-      <Form  handleChanges={this.handleChanges} createFriend={this.createFriend}/>
+      {/* <Form  handleChanges={this.handleChanges} createFriend={this.createFriend}/> */}
       <div>
-        {this.state.friends.map((friend, id) => 
-            <Friend key={friend.id} friends={friend}/>
-        )}
+        <Route
+        exact
+        path="/"
+        render={props=><FriendList 
+          {...props} 
+          friends={this.state.friends}
+          getItemById={this.getItemById}/> }
+          />
+        <Route
+        path="/:friendId"
+        render={props=><Friend 
+          {...props} 
+          friends={this.state.friends}
+          /> }
+        />
+  
       </div>
       </div>
     );
