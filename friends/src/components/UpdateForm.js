@@ -11,7 +11,6 @@ const UpdateForm = props => {
             <input placeholder="email..." name="email" onChange={props.handleChanges}></input>
             </form>
             <button onClick={props.updateFriend} >Update Friend</button>
-            <button onClick={props.deleteFriend} >Delete Friend</button>
         </div>
     )
 

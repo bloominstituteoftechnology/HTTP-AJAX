@@ -6,10 +6,22 @@ const Friend = props => {
         );
         console.log(friend)
     return (
-        <div>
+        <div
+        
+        >
             <h2>I'm your friend</h2> 
-            <button>Update Friend</button>
-            <button>Delete Friend</button>
+            <button
+            onClick={event => {
+                {props.updateItem(event, friend)};
+                {props.history.push('/update-form')};
+              }}
+              >Update Friend</button>
+            <button
+            onClick={event => {
+                {props.deleteItem(event, friend.id)};
+                {props.history.push('/')};
+              }}
+            >Delete Friend</button>
         </div>
         
     )
