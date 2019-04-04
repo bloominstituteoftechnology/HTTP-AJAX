@@ -26,6 +26,7 @@
 .friend-card p {
     margin-bottom: 10px;
     width: 100%;
+    font-style: italic;
 }
 .friend-card p:last-child {
     margin-bottom: 0;
@@ -33,6 +34,7 @@
 .friend-card p span {
     font-weight: bold;
     margin: 5px;
+    font-style: normal;
 }
 
 /* SingleFriendPage */
@@ -66,4 +68,25 @@
 }
 .friend-page-controls a .btn {
     width: 100%;
+}
+
+/* EditFriendForm styling */
+.edit-friend {
+    width: 60%;
+    margin: 0 auto;
+    background: #447D85;
+    min-height: 100vh;
+    padding: 40px 4%;
+    display: flex;
+    flex-direction: column;
+}
+.edit-friend h4 {
+    text-transform: uppercase;
+    color: white;
+    margin: 30px 0;
+    align-self: center;
+    font-size: 20px;
+}
+.edit-friend .btn {
+    width: 30%;
 }

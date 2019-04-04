@@ -34,7 +34,7 @@ class SingleFriendPage extends Component {
             <div className="friend-page-wrapper">
                <FriendCard friend={this.state.friend}/>
                <div className="friend-page-controls">
-                   <button className='btn'>Edit</button>
+                   <Link to={`/friends/${this.state.friend.id}/edit`}><button className='btn'>Edit</button></Link>
                    <Link to="/"><button className='btn' onClick={this.deleteFriend}>Delete</button></Link>
                </div>
            </div>
