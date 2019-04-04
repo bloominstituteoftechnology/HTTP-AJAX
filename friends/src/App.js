@@ -3,6 +3,7 @@ import './App.css';
 import FriendsList from './component/FriendsList';
 import FriendForm from './component/FriendForm';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -23,14 +24,29 @@ class App extends Component {
     })
   }
 
+  updateFriend = updatedFriend => {
+    axios
+      .put(`http://localhost:3333/items/${updatedFriend.id}`, updatedFriend)
+      .then(response => {
+        this.setState({ friends: response.data });
+        console.log(response);
+        // redirect
+        this.props.history.push('/');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
+        <FriendForm />
         <h1>The Team</h1>
         {this.state.friends.map(friend =>(
           <FriendsList friend={friend} key={friend.id} />
         ))}
-       {/* <FriendForm /> */}
+        <Route path='/' render={props => <FriendForm {...props} updateFriend={this.updateFriend} />} />
       </div>
     );
   }

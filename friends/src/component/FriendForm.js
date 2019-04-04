@@ -1,74 +1,78 @@
-// import React from 'react';
-// import axios from 'axios'
+import React from 'react';
+import axios from 'axios'
 
-// class FriendForm extends Component {
-//     constructor() {
-//         super();
-//         state = {  
-//             name: '',
-//             age: '',
-//             email: ''
-//         }
-//     }
+class FriendForm extends React.Component {
+    constructor() {
+        super();
+        this.state = { 
+            friend: {
+            name: '',
+            age: '',
+            email: ''
+            }
+        }
+    }
 
-//     handleChange = e => {
-//         this.setState({
-//             friend: {
-//                 [e.target.name]: e.target.value
-//             }
-//         })
+    handleChange = e => {
+        this.setState({
+            friend: {
+                [e.target.name]: e.target.value
+            }
+        })
+    }
 
-//         handleSubmit = e => {
-//             e.preventDefault();
-//             let newFriend = {
-//                 name: this.state.name,
-//                 age: this.state.age,
-//                 email: this.state.email
-//             }
+    handleSubmit = e => {
+        e.preventDefault();
+        let newFriend = {
+            name: this.state.name,
+            age: this.state.age,
+            email: this.state.email
+        }
 
-//             axios
-//                 .post('http://localhost:5000/friends', newFriend)
-//                 .then(response => {
-//                     this.setState({ friend: response.friend})
-//                 })
-//                 .catch(err => {console.log('Mistake made!', err)})
+        axios
+            .post('http://localhost:5000/friends', newFriend)
+            .then(response => {
+                this.setState({ friend: response.friend})
+            })
+            .catch(err => {console.log('Mistake made!', err)})
            
-//         }
+    }
 
-//     render() { 
-//         return ( 
-//             <div className='form'>
-//                 <form onSubmit={this.handleSubmit}>
-//                     <h1>Add Friend</h1>
-//                     <input 
-//                         type='text'
-//                         name='name'
-//                         placeholder='Name'
-//                         onChange={this.handleChange}
-//                         vaule={this.state.friend.name}
-//                         />
-//                     <input 
-//                         type='text'
-//                         name='age'
-//                         placeholder='Age'
-//                         onChange={this.handleChange}
-//                         value={this.state.friend.age}
-//                         />
-//                     <input 
-//                         type='text'
-//                         name='email'
-//                         placeholder='email'
-//                         onChange={this.handleChange}
-//                         value={this.state.friend.email}
-//                         />  
-//                     <button type='submit'>
-//                         Add Friend
-//                     </button>
+    render() { 
+        return ( 
+            <div className='form'>
+                <form onSubmit={this.handleSubmit}>
+                    <h1>Add Friend</h1>
+                    <input 
+                        type='text'
+                        name='name'
+                        placeholder='Name'
+                        onChange={this.handleChange}
+                        vaule={this.state.friend.name}
+                        />
+                    <input 
+                        type='text'
+                        name='age'
+                        placeholder='Age'
+                        onChange={this.handleChange}
+                        value={this.state.friend.age}
+                        />
+                    <input 
+                        type='text'
+                        name='email'
+                        placeholder='email'
+                        onChange={this.handleChange}
+                        value={this.state.friend.email}
+                        />  
+                    <button type='submit'>
+                        Add Friend
+                    </button>
             
-//                 </form>
-//             </div>
-//          );
-//     }
-// }
+                </form>
+            </div>
+         );
+    }
+}
+
  
-// export default FriendForm;
+export default FriendForm;
