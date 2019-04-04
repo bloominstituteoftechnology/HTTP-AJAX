@@ -41,7 +41,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.list div, .list form {
+.list div {
   position: relative;
   width: 40%;
   text-align: center;
@@ -136,7 +136,31 @@
 }
 
 .edit {
-  border: 3px solid red;
+  margin-right: 100px;
+  border: 1px solid blue;
   height: 100px;
+  width: 50%;
+  border-radius: 96px;
+  height: 25px;
+  padding: 5px;
+}
+
+.modify {
+  color: red;
+  background-color: gray;
+  border-radius: 96px;
   width: 50px;
+  border: red;
+  width: 100%;
+}
+
+.icons {
+  margin-top: 50px;
+  
+}
+
+.delete {
+  padding: 5px;
+  border: 1px solid blue;
+  border-radius: 96px;
 }
