@@ -6,6 +6,7 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import FormList from "./components/FormList";
 import styled from "styled-components";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 const StyledApp = styled.div`
   margin: 0 auto;
@@ -21,6 +22,10 @@ class App extends Component {
     };
   }
 
+  updateFriends = newFriend => {
+    this.setState({ friends: newFriend });
+  };
+
   componentDidMount() {
     axios
       .get("http://localhost:5000/friends")
@@ -29,11 +34,20 @@ class App extends Component {
       })
       .catch(err => console.log("Error!"));
   }
+
   render() {
     return (
       <StyledApp>
-        <FormList />
-        <FriendsList friends={this.state.friends} />
+        <Route
+          path="/"
+          render={props => <FormList {...props} update={this.updateFriends} />}
+        />
+        <Route
+          path="/"
+          render={props => (
+            <FriendsList friends={this.state.friends} {...props} />
+          )}
+        />
       </StyledApp>
     );
   }
