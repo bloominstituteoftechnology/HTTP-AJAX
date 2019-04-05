@@ -3,7 +3,6 @@ import './App.css';
 import FriendsList from './component/FriendsList';
 import FriendForm from './component/FriendForm';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -24,29 +23,57 @@ class App extends Component {
     })
   }
 
-  updateFriend = updatedFriend => {
+  updateFriend = (id, updatedFriend) => {
     axios
-      .put(`http://localhost:3333/items/${updatedFriend.id}`, updatedFriend)
+      .put(`http://localhost:5000/friends/${id}`, updatedFriend)
       .then(response => {
         this.setState({ friends: response.data });
         console.log(response);
-        // redirect
-        this.props.history.push('/');
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
       });
   };
+
+  addFriend = (friend) => {
+    console.log('adding friend');
+    axios
+      .post('http://localhost:5000/friends', friend)
+      .then(response => {
+        console.log(response.data)
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          friends: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
 
   render() {
     return (
       <div>
-        <FriendForm />
+        <FriendForm addFriend={this.addFriend} />
         <h1>The Team</h1>
         {this.state.friends.map(friend =>(
-          <FriendsList friend={friend} key={friend.id} />
+          <FriendsList updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} friend={friend} key={friend.id} />
         ))}
-        <Route path='/' render={props => <FriendForm {...props} updateFriend={this.updateFriend} />} />
       </div>
     );
   }

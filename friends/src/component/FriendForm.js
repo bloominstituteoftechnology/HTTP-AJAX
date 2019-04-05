@@ -1,68 +1,62 @@
 import React from 'react';
-import axios from 'axios'
 
 class FriendForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { 
-            friend: {
-            name: '',
-            age: '',
-            email: ''
-            }
+                name: '',
+                age: '',
+                email: ''
         }
     }
 
     handleChange = e => {
         this.setState({
-            friend: {
                 [e.target.name]: e.target.value
-            }
         })
     }
 
-    handleSubmit = e => {
+    addFriend = e => {
         e.preventDefault();
-        let newFriend = {
+        const newFriend = {
             name: this.state.name,
             age: this.state.age,
             email: this.state.email
         }
-
-        axios
-            .post('http://localhost:5000/friends', newFriend)
-            .then(response => {
-                this.setState({ friend: response.friend})
-            })
-            .catch(err => {console.log('Mistake made!', err)})
-           
+        this.props.addFriend(newFriend)
+        
+        this.setState({
+                name: '',
+                age: '',
+                email: ''
+        }) 
     }
 
     render() { 
         return ( 
             <div className='form'>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.addFriend}>
                     <h1>Add Friend</h1>
                     <input 
                         type='text'
                         name='name'
                         placeholder='Name'
                         onChange={this.handleChange}
-                        vaule={this.state.friend.name}
+                        value={this.state.name}
                         />
                     <input 
-                        type='text'
+                        type='number'
                         name='age'
                         placeholder='Age'
                         onChange={this.handleChange}
-                        value={this.state.friend.age}
+                        value={this.state.age}
                         />
                     <input 
                         type='text'
                         name='email'
                         placeholder='email'
                         onChange={this.handleChange}
-                        value={this.state.friend.email}
+                        value={this.state.email}
                         />  
                     <button type='submit'>
                         Add Friend
