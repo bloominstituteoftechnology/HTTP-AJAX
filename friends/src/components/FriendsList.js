@@ -12,7 +12,7 @@ function FriendsList(props) {
   return (
     <StyledDiv>
       {props.friends.map(friend => (
-        <Friend friend={friend} />
+        <Friend friend={friend} key={friend.id} />
       ))}
     </StyledDiv>
   );

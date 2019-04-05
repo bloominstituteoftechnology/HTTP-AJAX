@@ -11,6 +11,22 @@ const StyledForm = styled.form`
 
 const StyledInput = styled.input`
   margin-top: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+`;
+
+const StyledButton = styled.button`
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  border: 2px solid black;
+  focus: none;
+  &:hover = {
+    background-color: black;
+    color: white;
+  }
 `;
 
 class FormList extends React.Component {
@@ -37,9 +53,9 @@ class FormList extends React.Component {
   handleSubmit = ev => {
     ev.preventDefault();
     axios
-      .post("http://localhost:5000/friends", this.state.item)
+      .post("http://localhost:5000/friends", this.state.friend)
       .then(res => {
-        this.props.updateItems(res.data);
+        this.props.updateFriends(res.data);
         // this.props.history.push()
       })
       .catch(err => console.log(err));
@@ -71,6 +87,7 @@ class FormList extends React.Component {
             placeholder="Friend's Email"
             value={this.state.friend.email}
           />
+          <StyledButton type="submit">Add Friend To List</StyledButton>
         </StyledForm>
       </div>
     );

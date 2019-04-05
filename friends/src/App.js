@@ -6,7 +6,7 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import FormList from "./components/FormList";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+// import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 const StyledApp = styled.div`
   margin: 0 auto;
@@ -38,16 +38,8 @@ class App extends Component {
   render() {
     return (
       <StyledApp>
-        <Route
-          path="/"
-          render={props => <FormList {...props} update={this.updateFriends} />}
-        />
-        <Route
-          path="/"
-          render={props => (
-            <FriendsList friends={this.state.friends} {...props} />
-          )}
-        />
+        <FormList updateFriends={this.updateFriends} />
+        <FriendsList friends={this.state.friends} />
       </StyledApp>
     );
   }
