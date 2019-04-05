@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+  background-image: url(./img/underWater.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.cards {
+  padding: 20px 0 20px 0;
+}
+
+.friendCard{
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid blue;
+  margin-top: 25px;
+  border-radius: 15px;
+  background: blue;
+  color: white;
+  box-shadow: 5px 10px black;
+}
+
+strong{
+  color: rgb(39, 222, 228);
+  text-decoration: underline;
+}
+
+.titleOfCard{
+  color: gold;
+  border-bottom: 3px solid black;
+  padding-bottom: 10px
+}
+
+.mainTitle {
+  margin-bottom: 75px;
+  font-size: 90px;
+  color: gold;
+  text-decoration: underline;
+  text-shadow:5px 5px black;
+}
