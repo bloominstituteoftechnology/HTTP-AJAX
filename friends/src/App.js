@@ -10,6 +10,8 @@ import { Route, Link } from "react-router-dom";
 
 import FriendList from './components/FriendList';
 import FriendForm from './components/FriendForm';
+import UpdateFriendComponent from './components/UpdateFriend';
+
 
 class App extends React.Component {
 
@@ -26,47 +28,55 @@ class App extends React.Component {
         axios
             .get('http://localhost:5000/friends')
             .then(response => {
-                console.log("response", response);
-                this.setState({ friends: response.data })
+                console.log("put response", response.data)
+                this.setState({friends: response.data})
             })
-            .catch( err => console.error("Whoopsie you got an error:", err));
+            .catch(err => console.error("Whoopsie you got an error:", err));
     }
 
-    postFriend = friend => {
-        console.log('post friend.. ')
+    deleteFriend = id => {
+        console.log('delete friend.. ')
         // e.preventDefault();
         axios
-            .post("http://localhost:5000/friends", friend)
+            .delete(`http://localhost:5000/friends/${id}`)
             .then(response =>{
-                console.log("post response", response)
+                console.log("delete response", response.data)
                 this.setState({ friends: response.data})
             })
-            .catch(err => console.error('post error:', err))
+            .catch(err => console.error('delete error:', err))
     }
 
-    updateFriend = (friend, id) => {
-        console.log('post friend.. ')
-        // e.preventDefault();
-        axios
-            .put(`http://localhost:5000/friends/${id}`, friend)
-            .then(response =>{
-                console.log("post response", response)
-                this.setState({ friends: response.data})
-            })
-            .catch(err => console.error('post error:', err))
+    deleteFriend = e => {
+        this.setState({
+            friendInfo: {
+                ...this.state.friendInfo,
+                [e.target.name]: e.target.value
+            }
+        })
     }
 
 
+    changeFriendHandler = e => {
+        this.setState({
+            friendInfo: {
+                ...this.state.friendInfo,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
     render() {
         return (
             <div className="App">
-                <h1>Shayaan Works on HTTP-AJAX</h1>
-              <FriendForm
-                  postFriend={this.postFriend}
-              />
+                <h1>Shayaan works on HTTP-AJAX</h1>
+                <Route exact path="/" render={props => <FriendList {...props} deleteFriend={this.deleteFriend} friends={this.state.friends}/> }/>
+                <FriendForm
+                    postFriend={this.postFriend}
+                />
+                <Route path='/friends/:id' render={props =>  <UpdateFriendComponent updateFriend={this.updateFriend} />} />
             </div>
         );
     }
+
 }
 
 export default App;
