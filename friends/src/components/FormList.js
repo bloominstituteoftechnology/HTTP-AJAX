@@ -32,16 +32,16 @@ const StyledButton = styled.button`
 class FormList extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       friend: {
-        id: "",
+        // id: "",
         name: "",
         age: "",
         email: ""
       }
     };
   }
-
   changeHandler = ev => {
     ev.persist();
     let value = ev.target.value;
@@ -52,6 +52,9 @@ class FormList extends React.Component {
 
   handleSubmit = ev => {
     ev.preventDefault();
+    // if (this.state.friend === null) {
+
+    // }
     axios
       .post("http://localhost:5000/friends", this.state.friend)
       .then(res => {
@@ -59,6 +62,14 @@ class FormList extends React.Component {
         // this.props.history.push()
       })
       .catch(err => console.log(err));
+    this.setState({
+      friend: {
+        // id: "",
+        name: "",
+        age: "",
+        email: ""
+      }
+    });
   };
 
   render() {

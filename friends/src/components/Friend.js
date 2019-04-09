@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 import axios from "axios";
+import { Route } from "react-router-dom";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -24,21 +25,30 @@ const StyledH2 = styled.h2`
   margin-left: 44px;
 `;
 
-const deleteItem = ev => {
-  axios.delete("http://localhost:5000/friends");
-};
-
 function Friend(props) {
+  //   console.log(props.friend.id);
+  const deleteItem = ev => {
+    console.log("Clicked!");
+    axios
+      .delete(`http://localhost:5000/friends/${props.friend.id}`)
+      .then(res => {
+        props.updateFriends(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
-    <StyledDiv>
-      <FlexDiv>
-        <CloseP>x</CloseP>
-        <StyledH2>
-          {props.friend.name}, {props.friend.age}
-        </StyledH2>
-      </FlexDiv>
-      <StyledP>{props.friend.email}</StyledP>
-    </StyledDiv>
+    <Route path="/friends/:id">
+      <StyledDiv>
+        <FlexDiv>
+          <CloseP onClick={deleteItem}>x</CloseP>
+          <StyledH2>
+            {props.friend.name}, {props.friend.age}
+          </StyledH2>
+        </FlexDiv>
+        <StyledP>{props.friend.email}</StyledP>
+      </StyledDiv>
+    </Route>
   );
 }
 
