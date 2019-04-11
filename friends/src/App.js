@@ -21,6 +21,14 @@ class App extends Component {
     }
   }
 
+  getFriends = () => {
+    axios.get('http://localhost:5000/friends')
+         .then(res => {
+           this.setState({ friends: res.data })
+         })
+         .catch(err => console.log(err));
+  }
+
   postFriendToServer = friend => {
     axios.post('http://localhost:5000/friends', friend)
          .then(res => {
@@ -37,6 +45,7 @@ class App extends Component {
              postError: "Error!"
            });
          });
+    this.getFriends();
   }
 
   updateFriend = (friend, id) => {
@@ -56,6 +65,7 @@ class App extends Component {
              updateError: "Update Failed!"
            });
          })
+    this.getFriends();
   }
 
   deleteFriend = id => {
@@ -64,7 +74,7 @@ class App extends Component {
            console.log(res);
            this.setState({
              deleteSuccessMessage: "Successful Delete!",
-            deleteError: ""
+             deleteError: ""
            });
          })
          .catch(err => {
@@ -74,14 +84,11 @@ class App extends Component {
              postError: "Error!"
            });
          });
+    this.getFriends();
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/friends')
-         .then(res => {
-           this.setState({ friends: res.data })
-         })
-         .catch(err => console.log(err));
+    this.getFriends();
   }
 
   render() {
