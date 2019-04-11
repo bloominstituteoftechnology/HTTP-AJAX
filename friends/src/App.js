@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import FriendCard from './components/FriendCard';
+import FriendCardsContainer from './components/FriendCardsContainer';
 import PostFriend from './components/PostFriend';
+import { Route } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -37,6 +38,8 @@ class App extends Component {
              postSuccessMessage: "Success!",
              postError: ""
            });
+
+           this.setState({ friends: res.data })
          })
          .catch(err => {
            console.log(err);
@@ -57,6 +60,8 @@ class App extends Component {
              updateSuccessMessage: "Update Successful!",
              updateError: ""
            });
+
+           this.setState({ friends: res.data })
          })
          .catch(err => {
            console.log(err);
@@ -65,7 +70,7 @@ class App extends Component {
              updateError: "Update Failed!"
            });
          })
-    this.getFriends();
+
   }
 
   deleteFriend = id => {
@@ -94,19 +99,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PostFriend postFriendToServer={this.postFriendToServer}
-                    postSuccessMessage={this.state.postSuccessMessage}
-                    postError={this.state.postError}
-                    updateFriend={this.updateFriend}
-                    updateSuccessMessage={this.updateSuccessMessage}
-                    updateError={this.updateError}
-                    friends={this.state.friends}
-                    />
 
-        {this.state.friends.map(friend => <FriendCard key={Math.random()}
-                                                      friend={friend}
-                                                      id={friend.id}
-                                                      deleteHandler={this.deleteFriend}/>)}
+        <Route exact path='/' render={(props) => <PostFriend postFriendToServer={this.postFriendToServer}
+                            postSuccessMessage={this.state.postSuccessMessage}
+                            postError={this.state.postError}
+                            updateFriend={this.updateFriend}
+                            updateSuccessMessage={this.updateSuccessMessage}
+                            updateError={this.updateError}
+                            friends={this.state.friends}
+                            />} />
+
+        <Route path='/friends' render={(props) => <FriendCardsContainer friends={this.state.friends}
+                                                                        deleteFriend={this.deleteFriend}/>} />
+
+
       </div>
     );
   }
