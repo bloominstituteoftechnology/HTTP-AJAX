@@ -1,6 +1,6 @@
 import React from 'react';
 
-class PostFriend extends React.Component {
+class DeleteFriend extends React.Component {
   constructor(props) {
     super(props);
 
@@ -13,45 +13,34 @@ class PostFriend extends React.Component {
     }
   }
 
-  postFriend = e => {
-    e.preventDefault();
-
-    this.props.postFriendToServer(this.state.friend);
-
+  handleChange = e => {
     this.setState({
       friend: {
-        name: '',
-        age: '',
-        email: ''
+        ...this.state.friend,
+        [e.target.name]: e.target.value
       }
-    })
+    });
   };
-
-  handleChange = e => {
-  this.setState({
-    friend: {
-      ...this.state.friend,
-      [e.target.name]: e.target.value
-    }
-  });
-};
 
   render() {
     return(
-      <form onSubmit={this.postFriend}>
-        <h1>Add Friend</h1>
+      <form>
+        <h1>Remove Friend</h1>
+
         <input type='text'
                name='name'
                placeholder='Name'
                onChange={this.handleChange}
                value={this.state.friend.name}
                />
+
         <input type='text'
                name='age'
                placeholder='Age'
                onChange={this.handleChange}
                value={this.state.friend.age}
                />
+
         <input type='text'
                name='email'
                placeholder='Email'
@@ -59,20 +48,12 @@ class PostFriend extends React.Component {
                value={this.state.friend.email}
                />
 
-         {this.props.postError ? (
-             <p>{this.props.postError}</p>
-           ) : null}
-
-         {this.props.postSuccessMessage ? (
-           <p>{this.props.postSuccessMessage}</p>
-         ) : null}
-
-        <button type='submit'>
-          Add Friend
-        </button>
+         <button>
+           Delete
+         </button>
       </form>
     );
   }
 }
 
-export default PostFriend;
+export default DeleteFriend;

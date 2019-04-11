@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FriendCard from './components/FriendCard';
 import PostFriend from './components/PostFriend';
+
 import axios from 'axios';
 
 import './App.css';
@@ -13,6 +14,8 @@ class App extends Component {
       friends: [],
       postSuccessMessage: "",
       postError: "",
+      deleteSuccessMessage: "",
+      deleteError: "",
     }
   }
 
@@ -23,6 +26,24 @@ class App extends Component {
            this.setState({
              postSuccessMessage: "Success!",
              postError: ""
+           });
+         })
+         .catch(err => {
+           console.log(err);
+           this.setState({
+             postSuccessMessage: "",
+             postError: "Error!"
+           });
+         });
+  }
+
+  deleteFriend = id => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+         .then(res => {
+           console.log(res);
+           this.setState({
+             deleteSuccessMessage: "Successful Delete!",
+            deleteError: ""
            });
          })
          .catch(err => {
@@ -51,10 +72,13 @@ class App extends Component {
                     postError={this.state.postError}/>
 
         {this.state.friends.map(friend => <FriendCard key={Math.random()}
-                                                      friend={friend} />)}
+                                                      friend={friend}
+                                                      id={friend.id}
+                                                      deleteHandler={this.deleteFriend}/>)}
       </div>
     );
   }
 }
 
 export default App;
+
