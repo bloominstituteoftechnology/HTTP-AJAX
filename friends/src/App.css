@@ -13,7 +13,7 @@ nav {
   justify-content: flex-end;
   align-items: center;
 
-  background-color: rgb(201, 123, 123);
+  background-color: rgba(135, 206, 235, 1);
 }
 
 nav a {
@@ -70,13 +70,20 @@ nav a:hover:before {
 
 .friend-card {
   border: 2px outset rgba(0, 0, 0, 0.75);
-  background-color: rgb(243, 237, 146);
+  background-color: #F0F8FF;
 
   width: 45%;
   margin: 5px auto;
   padding: 15px 5px;
 
   text-align: center;
+}
+
+form h1 {
+  font-size: 3.6rem;
+  letter-spacing: 5px;
+  border-bottom: 3px solid black;
+  margin: 20px 0;
 }
 
 .App form {
@@ -87,6 +94,23 @@ nav a:hover:before {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+
+@media(max-width: 936px) {
+  form h1 {
+    font-size: 2rem;
+  }
+
+  .App form {
+    margin-top: 12%;
+  }
+}
+
+@media(max-width: 568px) {
+  .App form {
+    margin-top: 15%;
+    height: 75vh;
+  }
 }
 
 input {
@@ -113,8 +137,40 @@ input:focus {
   border: none;
   width: 45%;
   height: 30px;
-  background-color: rgb(133, 50, 36);
+  background-color: #4682B4;
   color: #F0F8FF;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+
+
+  font-size: 2rem;
+  letter-spacing: 1.8px;
+  color: black;
+
+  background-color: #00FF7F;
+  border-radius: 45px;
+  padding: 25px;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+
+
+  font-size: 2rem;
+  letter-spacing: 1.8px;
+  color: black;
+
+  background-color: #ff5148;
+  border-radius: 45px;
+  padding: 25px;
+}
+
+.btn-container {
+  margin: 20px 0;
 }
 
 button {
@@ -134,3 +190,4 @@ button:hover {
   background-color: #4682B4;
   color: #F0F8FF;
 }
+

@@ -34,10 +34,13 @@ class App extends Component {
   postFriendToServer = friend => {
     axios.post('http://localhost:5000/friends', friend)
          .then(res => {
-           console.log(res);
            this.setState({
-             postSuccessMessage: "Success!",
-             postError: ""
+             postSuccessMessage: "Friend Added Successfully!",
+             postError: "",
+             deleteSuccessMessage: "",
+             deleteError: "",
+             updateSuccessMessage: "",
+             updateError: "",
            });
 
            this.setState({ friends: res.data })
@@ -46,7 +49,11 @@ class App extends Component {
            console.log(err);
            this.setState({
              postSuccessMessage: "",
-             postError: "Error!"
+             postError: "Error!",
+             deleteSuccessMessage: "",
+             deleteError: "",
+             updateSuccessMessage: "",
+             updateError: "",
            });
          });
     this.getFriends();
@@ -58,6 +65,10 @@ class App extends Component {
          .then(res => {
            console.log(res);
            this.setState({
+             postSuccessMessage: "",
+             postError: "",
+             deleteSuccessMessage: "",
+             deleteError: "",
              updateSuccessMessage: "Update Successful!",
              updateError: ""
            });
@@ -67,6 +78,10 @@ class App extends Component {
          .catch(err => {
            console.log(err);
            this.setState({
+             postSuccessMessage: "",
+             postError: "",
+             deleteSuccessMessage: "",
+             deleteError: "",
              updateSuccessMessage: "",
              updateError: "Update Failed!"
            });
@@ -77,17 +92,20 @@ class App extends Component {
   deleteFriend = id => {
     axios.delete(`http://localhost:5000/friends/${id}`)
          .then(res => {
-           console.log(res);
            this.setState({
-             deleteSuccessMessage: "Successful Delete!",
-             deleteError: ""
+             postSuccessMessage: "",
+             postError: "",
+             deleteSuccessMessage: "",
+             deleteError: "",
+             updateSuccessMessage: "",
+             updateError: ""
            });
          })
          .catch(err => {
            console.log(err);
            this.setState({
              postSuccessMessage: "",
-             postError: "Error!"
+             postError: ""
            });
          });
     this.getFriends();
@@ -101,14 +119,14 @@ class App extends Component {
     return (
       <div className="App">
         <Route path='/' component={Navigation} />
-        <Route exact path='/' render={(props) => <PostFriend postFriendToServer={this.postFriendToServer}
-                            postSuccessMessage={this.state.postSuccessMessage}
-                            postError={this.state.postError}
-                            updateFriend={this.updateFriend}
-                            updateSuccessMessage={this.updateSuccessMessage}
-                            updateError={this.updateError}
-                            friends={this.state.friends}
-                            />} />
+        <Route exact path='/' render={(props) => <PostFriend  postFriendToServer={this.postFriendToServer}
+                                                              postSuccessMessage={this.state.postSuccessMessage}
+                                                              postError={this.state.postError}
+                                                              updateFriend={this.updateFriend}
+                                                              updateSuccessMessage={this.state.updateSuccessMessage}
+                                                              updateError={this.state.updateError}
+                                                              friends={this.state.friends}
+                                                              />} />
 
         <Route path='/friends' render={(props) => <FriendCardsContainer friends={this.state.friends}
                                                                         deleteFriend={this.deleteFriend}/>} />

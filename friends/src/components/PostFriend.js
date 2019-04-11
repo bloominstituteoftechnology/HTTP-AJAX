@@ -78,14 +78,22 @@ class PostFriend extends React.Component {
                />
 
          {this.props.postError ? (
-             <p>{this.props.postError}</p>
+             <p className='error'>{this.props.postError}</p>
            ) : null}
 
          {this.props.postSuccessMessage ? (
-           <p>{this.props.postSuccessMessage}</p>
+           <p className='success'>{this.props.postSuccessMessage}</p>
          ) : null}
 
-        <div>
+         {this.props.updateError ? (
+           <p className='error'>{this.props.postError}</p>
+         ) : null}
+
+         {this.props.updateSuccessMessage ? (
+           <p className='success'>{this.props.updateSuccessMessage}</p>
+         ) : null}
+
+        <div className='btn-container'>
           <button type='submit' onClick={this.postFriend}>
               Add Friend
            </button>
@@ -99,4 +107,3 @@ class PostFriend extends React.Component {
 }
 
 export default PostFriend;
-
