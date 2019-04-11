@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+
+  padding: 25px 50px;
 }
 
 .friend-card {
@@ -16,3 +18,10 @@
   text-align: center;
 }
 
+input {
+  margin: 10px;
+}
+
+button {
+  margin: 10px 0;
+}

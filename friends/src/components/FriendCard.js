@@ -20,7 +20,7 @@ const FriendCard = props => {
       </button>
     </div>
   );
-}
+} 
 
 export default FriendCard;
 
