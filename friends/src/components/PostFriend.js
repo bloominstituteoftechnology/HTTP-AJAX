@@ -87,16 +87,17 @@ class PostFriend extends React.Component {
            <p>{this.props.postSuccessMessage}</p>
          ) : null}
 
-        <button type='submit' onClick={this.postFriend}>
-          Add Friend
-       </button>
-       <button type='submit' onClick={this.updateFriendHandler}>
-         Update Friend
-       </button>
+        <div>
+          <button type='submit' onClick={this.postFriend}>
+              Add Friend
+           </button>
+           <button type='submit' onClick={this.updateFriendHandler}>
+             Update Friend
+           </button>
+        </div>
       </form>
     );
   }
 }
 
 export default PostFriend;
-
