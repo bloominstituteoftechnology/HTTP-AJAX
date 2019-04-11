@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FriendCardsContainer from './components/FriendCardsContainer';
 import PostFriend from './components/PostFriend';
+import Navigation from './components/Navigation';
 import { Route } from 'react-router-dom';
 
 import axios from 'axios';
@@ -99,7 +100,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
+        <Route path='/' component={Navigation} />
         <Route exact path='/' render={(props) => <PostFriend postFriendToServer={this.postFriendToServer}
                             postSuccessMessage={this.state.postSuccessMessage}
                             postError={this.state.postError}

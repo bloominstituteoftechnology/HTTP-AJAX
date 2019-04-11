@@ -57,7 +57,7 @@ class PostFriend extends React.Component {
   render() {
     return(
       <form className='friend-card'>
-        <h1>Add Friend</h1>
+        <h1>Friend Form</h1>
         <input type='text'
                name='name'
                placeholder='Name'
@@ -99,3 +99,4 @@ class PostFriend extends React.Component {
 }
 
 export default PostFriend;
+
