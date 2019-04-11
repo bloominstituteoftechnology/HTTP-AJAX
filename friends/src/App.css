@@ -1,3 +1,10 @@
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .friend-card {
   border: 2px outset rgba(0, 0, 0, 0.75);
   background-color: #F0F8FF;
