@@ -98,7 +98,7 @@ class App extends Component {
           <p>
            yo yo
           </p>
-          <FriendsList />
+          <FriendsList friendsArray={this.state.friendsArray}/>
           <FriendForm />
 
           {/* ROUTES LINKS?? */}
@@ -130,7 +130,7 @@ class App extends Component {
             <Friend
               {...props}
               deleteItem={this.deleteItem}
-              items={this.state.items}
+              items={this.state.friendsArray}
               setUpdateForm={this.setUpdateForm}
             />
           )}
