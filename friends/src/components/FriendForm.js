@@ -29,7 +29,7 @@ class FriendForm extends React.Component {
         }
         this.setState(prevState => ({
             friend: {
-                ...preState.friend,
+                ...prevState.friend,
                 [event.target.name]: value
         }
         }));
@@ -57,6 +57,41 @@ class FriendForm extends React.Component {
             <p>FriendForm</p>
 
             <h2>{`${this.props.activeItem ? 'Update' : 'Add New'} Item `}</h2>
+            <form onSubmit={this.handleSubmit}>
+                <input
+                type="text"
+                id="id"
+                onChange={this.changeHandler}
+                placeholder="id"
+                value={this.state.friend.id}
+                />
+
+                  <input
+                type="text"
+                name="name"
+                onChange={this.changeHandler}
+                placeholder="name"
+                value={this.state.friend.name}
+                />
+
+                  <input
+                type="number"
+                age="age"
+                onChange={this.changeHandler}
+                placeholder="age"
+                value={this.state.friend.age}
+                />
+
+                  <input
+                type="email"
+                email="email"
+                onChange={this.changeHandler}
+                placeholder="email"
+                value={this.state.friend.email}
+                />
+            
+            </form>
+            
             </div>
         )
     }
