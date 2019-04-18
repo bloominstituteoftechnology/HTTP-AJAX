@@ -39,6 +39,20 @@ class App extends Component {
       })
   }
 
+  deleteFriend = (event, id) => {
+    event.preventDefault();
+    console.log("deleteFriend");
+    axios
+      .delete(`https://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({ friendsArray: res.data })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ error: err })
+      })
+  }
+
 
   render() {
     return (
