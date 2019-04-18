@@ -46,8 +46,12 @@ class App extends Component {
     axios
       .delete(`https://localhost:5000/friends/${id}`)
       .then(res => {
-        this.setState({ friendsArray: res.data })
+        this.setState({ 
+          friendsArray: res.data 
+        });
+        this.props.history.push('/friend-list');
       })
+
       .catch(err => {
         console.log(err);
         this.setState({ error: err })
@@ -89,6 +93,8 @@ class App extends Component {
           </p>
           <FriendsList />
           <FriendForm />
+
+          {/* ROUTES LINKS?? */}
         </header>
       </div>
     );
