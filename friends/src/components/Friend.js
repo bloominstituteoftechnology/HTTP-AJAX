@@ -1,22 +1,21 @@
 import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
 
+
 function Friend({ items, match, deleteItem, setUpdateForm }) {
   const { id } = match.params;
   const item = items.find(thing => `${thing.id}` === id); 
-  console.log('rendering Item: ', items, item);
   if (!item) {
-    return <h3>Loading items...</h3>;
+    return <h3>Loading friends...</h3>;
   }
   return (
     <div className="item-wrapper">
       <div className="item-header">
-        <div className="image-wrapper">
-          <img src={item.imageUrl} alt={item.name} />
-        </div>
         <div className="item-title-wrapper">
           <h2>{item.name}</h2>
-          <h4>${item.price}</h4>
+          <h4>Is {item.age} years old.</h4>
+          <h4>Contact them at {item.email}</h4>
+          <h4>Friend ID:{item.id}</h4>
         </div>
       </div>
 
@@ -33,18 +32,18 @@ function Friend({ items, match, deleteItem, setUpdateForm }) {
       /> */}
     
 
-      <button
+      {/* <button
         onClick={e => {
           console.log('Hitting delete button - onClick handler');
-          deleteItem(e, item.id);
+          deleteFriend(e, item.id);
         }}
         className="md-button"
       >
-        Delete Item
+        Delete Friend
       </button>
       <button onClick={e => setUpdateForm(e, item)} className="md-button">
-        Update Item
-      </button>
+        Update Friend
+      </button> */}
     </div>
   );
 }

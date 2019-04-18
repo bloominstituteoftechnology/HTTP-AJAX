@@ -95,13 +95,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         
-          <p>
-           yo yo
-          </p>
           <FriendsList friendsArray={this.state.friendsArray}/>
           <FriendForm />
 
-          {/* ROUTES LINKS?? */}
         </header>
         <div className="nav-links">
             <NavLink to="/item-form">{`${
