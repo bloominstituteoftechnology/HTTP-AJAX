@@ -26,6 +26,19 @@ class App extends Component {
       } )
   }
 
+  addFriend = (event, friend) => {
+    event.preventDefault();
+    axios
+      .post('https://localhost:5000/friends', friend)
+      .then(res => {
+        this.setState({ friendsArray: res.data })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ error: err })
+      })
+  }
+
 
   render() {
     return (
