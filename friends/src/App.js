@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import FriendsList from './components/FriendsList';
+import FriendForm from './components/FriendForm';
+
 class App extends Component {
   render() {
     return (
@@ -10,7 +13,8 @@ class App extends Component {
           <p>
            yo yo
           </p>
-      
+          <FriendsList />
+          <FriendForm />
         </header>
       </div>
     );
