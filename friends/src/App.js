@@ -9,7 +9,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friendsArray: []
+      friendsArray: [],
+      activeFriends: null
     }
   }
 
@@ -18,12 +19,12 @@ class App extends Component {
       .get('http://localhost:5000/friends')
       .then(res => {
         console.log(res);
-        this.setState({ friendsArray: res.data})
+        this.setState({ friendsArray: res.data});
       })
       .catch(err => {
         console.log(err);
-        this.setState({ error: err })
-      } )
+        this.setState({ error: err });
+      });
   }
 
   addFriend = (event, friend) => {
@@ -35,9 +36,9 @@ class App extends Component {
       })
       .catch(err => {
         console.log(err);
-        this.setState({ error: err })
+        this.setState({ error: err });
       })
-  }
+  };
 
   deleteFriend = (event, id) => {
     event.preventDefault();
@@ -50,8 +51,32 @@ class App extends Component {
       .catch(err => {
         console.log(err);
         this.setState({ error: err })
+      });
+  };
+
+  updateFriend = (event, friend) => {
+    event.preventDefault();
+    axios
+      .put(`https://localhost:5000/friends/${friend.id}`)
+      .then(res => {
+        this.setState({ 
+          items: res.data,
+          activeFriends: null
+        });
+        this.props.history.push('/friend-list');
       })
-  }
+      .catch(err => {
+        console.log(err)
+      });
+  };
+
+  setUpdateFriend = ( event, friend) => {
+    event.preventDefault();
+    this.setState({
+      activeFriends: friend
+    });
+    this.props.history.push('/friend-form');
+  };
 
 
   render() {
