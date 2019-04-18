@@ -90,10 +90,12 @@ class FriendForm extends React.Component {
                 value={this.state.friend.email}
                 />
             
+                {/* <button className="form-button">{`${this.props.activeItem ? 'Update' : 'Add New'} Friend`</button> */}
+
             </form>
-            
             </div>
-        )
+            
+        );
     }
 }
 

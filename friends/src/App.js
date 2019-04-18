@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route
+} from 'react-router-dom';
 
 import FriendsList from './components/FriendsList';
 import FriendForm from './components/FriendForm';
+import Friend from './components/Friend'
+import Home from './components/Home'
 
 class App extends Component {
   constructor() {
@@ -49,7 +56,7 @@ class App extends Component {
         this.setState({ 
           friendsArray: res.data 
         });
-        this.props.history.push('/friend-list');
+        this.props.history.push('/friends');
       })
 
       .catch(err => {
@@ -67,7 +74,7 @@ class App extends Component {
           items: res.data,
           activeFriends: null
         });
-        this.props.history.push('/friend-list');
+        this.props.history.push('/friends');
       })
       .catch(err => {
         console.log(err)
@@ -96,7 +103,52 @@ class App extends Component {
 
           {/* ROUTES LINKS?? */}
         </header>
+        <div className="nav-links">
+            <NavLink to="/item-form">{`${
+              this.state.activeItem ? 'Update' : 'Add'
+            } Item`}</NavLink>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+            <NavLink to="/item-list">Shop</NavLink>
+          </div>
+        
+
+        <Route exact path="/" component={Home} />
+
+        <Route
+          path="/friends-list"
+          exact
+          render={
+            props => <FriendsList {...props} items={this.state.friends} />
+          }
+        />
+
+        <Route
+          path="/friends-list/:id"
+          render={props => (
+            <Friend
+              {...props}
+              deleteItem={this.deleteItem}
+              items={this.state.items}
+              setUpdateForm={this.setUpdateForm}
+            />
+          )}
+        />
+
+        <Route
+          path="/friend-form"
+          render={props => (
+            <FriendForm
+              {...props}
+              activeItem={this.state.activeItem}
+              addFriend={this.addFriend}
+              updateFriend={this.updateFriend}
+            />
+          )}
+        />
       </div>
+     
     );
   }
 }
