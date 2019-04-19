@@ -59,7 +59,7 @@ class FriendForm extends React.Component {
             <h2>{`${this.props.activeItem ? 'Update' : 'Add New'} Item `}</h2>
             <form onSubmit={this.handleSubmit}>
                 <input
-                type="text"
+                type="number"
                 id="id"
                 onChange={this.changeHandler}
                 placeholder="id"
@@ -83,7 +83,7 @@ class FriendForm extends React.Component {
                 />
 
                   <input
-                type="email"
+                type="string"
                 email="email"
                 onChange={this.changeHandler}
                 placeholder="email"
