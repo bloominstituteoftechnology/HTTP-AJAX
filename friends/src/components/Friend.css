@@ -1,0 +1,54 @@
+.friend__div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkorchid;
+}
+
+.friend__header{
+    text-align: center;
+    align-self: center;
+    padding: 2%;
+    margin-left: 2%;
+    border: 1px pink dotted;
+    font-size: 200%;
+    background-color: cyan;
+    color: pink;
+}
+
+.friend__oldfriend{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+}
+
+.friend__list{
+    margin: 35px 0;
+    border: 2px solid black;
+    font-size: 140%;
+    padding: 0 15%;
+    background-color: black;
+    color:rgb(6, 255, 6);
+}
+
+.friend__name{
+    margin: 5px 0;
+}
+.friend__age{
+    margin: 5px 0;
+}
+.friend__email{
+    margin: 5px 0;
+}
+
+.friend__form{
+    margin-left: 3%;
+    background-color: yellow;
+    color: maroon;
+}
+
+.friend__input{
+    background-color: yellow;
+    color: maroon;
+}
