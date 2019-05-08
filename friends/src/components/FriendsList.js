@@ -25,8 +25,22 @@ export default class FriendsList extends Component{
         axios
         .post('http://localhost:5000/friends', friend)
         .then(res => console.log(res))
-        .catch(err => console.log(err) )
+        .catch(err => console.log(err))
 
+    }
+
+    updateFriend = (id,updatedFriend) => {
+        axios
+        .post(`http://localhost:5000/friends/${id}`, updatedFriend)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
+    deleteFriend = id => {
+        axios
+        .post(`http://localhost:5000/friends/${id}`, id)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 
     render(){
