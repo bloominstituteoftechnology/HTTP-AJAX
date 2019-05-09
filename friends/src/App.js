@@ -6,7 +6,7 @@ import FriendForm from './components/FriendForm';
 function App() {
   return (
     <div className="App">
-      <FriendsList  />
+      <FriendsList />
       <FriendForm />
     </div>
   );
