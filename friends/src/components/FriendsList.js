@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-class Friends extends React.Component {
+class FriendList extends React.Component {
 
     constructor() {
         super();
@@ -25,11 +25,18 @@ class Friends extends React.Component {
 
     render() {
         return (
-          <div>
-          <h1>friends placeholder</h1>
+          <div className="friends-list">
+          {
+              this.state.friends.map(friend => {
+                  return(
+                    <Friend key={friend.id}  friend={friend} />
+                  )
+              })
+          }
           </div>
         )};
 
 };
 
-export default Friends;
+export default FriendList;
+
