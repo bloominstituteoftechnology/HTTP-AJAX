@@ -18,12 +18,27 @@ class FriendList extends React.Component {
         .get('http://127.0.0.1:5000/friends')
         .then(res => {
             console.log(res);
-            this.setState(() => ({ friends: res.data }))
+            this.setState(() => ({ friends: res.data })) 
+          
         })
         .catch(err => {
             console.log(err);
         });
     }
+
+    addFriend = newFriend => {
+        axios.post('http://127.0.0.1:5000/friends', newFriend)
+        .then(res => {
+            console.log(res);
+
+
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
+    }
+
 
     render() {
         return (
