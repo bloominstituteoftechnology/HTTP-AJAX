@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AddNewFriend from './AddNewFriend';
 
+
 export default class FriendsList extends Component{
     constructor(props){
         super(props);
         this.state ={
-            friends: []
+            friends: [],
+            activeFriend: null
         };
     }
 
@@ -24,22 +26,31 @@ export default class FriendsList extends Component{
     addFriend = friend => {
         axios
         .post('http://localhost:5000/friends', friend)
-        .then(res => console.log(res))
+        .then(res => {
+            this.setState({friends: res.data})
+            console.log(res)
+            this.props.history.push('/')
+        })
         .catch(err => console.log(err))
 
     }
 
-    updateFriend = (id,updatedFriend) => {
+    updateFriend = (updatedFriend) => {
         axios
-        .post(`http://localhost:5000/friends/${id}`, updatedFriend)
+        .put(`http://localhost:5000/friends/${updatedFriend.id}`, updatedFriend)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     }
 
-    deleteFriend = id => {
+    deleteFriend = (e,id) => {
+        e.preventDefault();
         axios
-        .post(`http://localhost:5000/friends/${id}`, id)
-        .then(res => console.log(res))
+        .delete(`http://localhost:5000/friends/${id}`)
+        .then(res => {
+            this.setState({friends: res.data})
+            console.log(res)
+            this.props.history.push('/')       
+         })
         .catch(err => console.log(err))
     }
 
@@ -50,7 +61,7 @@ export default class FriendsList extends Component{
             <p>Name: {friend.name} </p>
             <p>Age: {friend.age} </p>
             <p>Email: {friend.email} </p>
-
+            <button onClick={e => this.deleteFriend(e,friend.id)}>X</button>
          </div>
 
          ))}
