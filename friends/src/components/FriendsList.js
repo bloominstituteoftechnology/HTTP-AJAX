@@ -1,6 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Friend from './Friend';
+import './FriendsList.css';
 
 class FriendList extends React.Component {
 

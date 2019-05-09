@@ -1,0 +1,13 @@
+
+.friendCard {
+    display:flex;
+    flex-direction: column;
+    width: 20%;
+    padding: 2%;
+    border: 1px solid silver;
+    border-radius: 10px;
+    margin: 2%;
+    background: lightcyan;
+    align-items: center;
+    
+}
