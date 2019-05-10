@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom'
 import "./App.css";
 import FriendsList from "./components/FriendsList";
 import FriendForm from "./components/FriendForm";
@@ -41,11 +42,35 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
-        <FriendForm friends={this.state.friends} addFriend={this.addFriend}/>
+      <nav className="nav-bar">
+          <NavLink to='/'> Home</NavLink>
+          <NavLink to='/FriendForm'> Add Friend</NavLink>
+        </nav>
+
+        <Route exact path='/' render={props => (
+          <FriendsList {...props}
+          friends={this.state.friends}
+          />
+
+        )}
+        />  
+        
+        <Route path='/FriendForm' render={props => (
+          <FriendForm {...props}
+          friends={this.state.friends}
+          addFriend={this.addFriend}
+          />
+        )}
+        />
+
+
+
+
       </div>
     );
   }
 }
 
 export default App;
+
+  
