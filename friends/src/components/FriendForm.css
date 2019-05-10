@@ -2,12 +2,12 @@
 .friend-form {
     display:flex;
     flex-direction: column;
+    justify-content: center;
     width: 20%;
     padding: 2%;
-    border: 1px solid silver;
-    border-radius: 10px;
+    border: 1px solid black;
     margin: 2%;
-    background: lightcyan;
+    background: lightgray;
     align-items: center;
     
 }
