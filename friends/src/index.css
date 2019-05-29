@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.friendList {
+  text-align: left;
+  line-height: 1.5;
+  margin-left: 20%;
+}
