@@ -10,7 +10,8 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      friends: []
+      friends: [],
+      newFriend: []
     }
   }
 
@@ -19,6 +20,12 @@ componentDidMount(){
     .get("http://localhost:5000/friends")
     .then(res => this.setState({friends: res.data}))
     .catch(err => console.log(err))
+}
+
+postFriend = info => {
+  axios.post("http://localhost:5000/friends", info)
+      .then(res => this.setState({newFriend: res.info}))
+      .catch(err=>console.log(err))
 }
 
   render(){
@@ -30,6 +37,7 @@ componentDidMount(){
       />)}/>
       <Route path="/login" render={(props)=>(<Input
         {...props}
+        postFriend={this.postFriend}
       />)}/>
     </div>
   );
