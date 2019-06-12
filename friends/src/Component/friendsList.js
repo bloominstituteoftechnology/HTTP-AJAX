@@ -1,12 +1,12 @@
 import React from 'react';
-import axois from  'axios';
+import axios from  'axios';
 import Form from './form';
 import Friend from './friend'
 import {NavLink, Route} from 'react-router-dom';
 
 export default class FriendList extends React.Component{
 state={
-    friends:null,
+    friends:[],
     errorMessage:'',
     newName:'',
     newAge:'',
@@ -14,7 +14,7 @@ state={
 }
 getFriends = async () =>{
     try{
-        const axoisData = await axois.get('http:localhost:5000/api/friends')
+        const axoisData = await axios.get('http://localhost:5000/friends')
         this.setState({ friends: axoisData.data });
     }
     catch(err){
@@ -25,7 +25,8 @@ getFriends = async () =>{
 }
 postFriend = async() => {
     try{
-        await axois.post('http:localhost:5000/api/friends',this.state.newFriend)
+        await axios.post('http://localhost:5000/friends',this.state.newFriend)
+        return this.getFriends()
         }
     catch(err){
         this.setState({
@@ -35,7 +36,8 @@ postFriend = async() => {
 }
 updateFriend = async(id) =>{
     try{
-        await axois.patch(`http:localhost;5000/api/friends/${id}`, this.state.newFriend)
+        await axios.put(`http://localhost:5000/friends/${id}`, this.state.newFriend)
+        return this.getFriends()
     }
     catch(err){
         this.setState({
@@ -45,7 +47,8 @@ updateFriend = async(id) =>{
 }
 deleteFriend = async(id) => {
     try{
-        await axois.delete(`http:localhost:5000/api/friends/${id}`)
+        await axios.delete(`http://localhost:5000/friends/${id}`)
+        return this.getFriends()
     }
     catch(err){
         this.setState({
@@ -58,29 +61,28 @@ onChangeHandler =(e, text) =>{
 (text === 'age') && this.setState({newAge: e});
 (text === 'email') && this.setState({newEmail: e});
 }
+
 componentDidMount(){
     this.getFriends()
 }
-componentDidUpdate(){
-    this.getFriends()
-}
+
 render(){
     return(
         <div>
         <h1>FriendList</h1>
         {this.state.friends.map(friend => {
             // eslint-disable-next-line no-unused-expressions
-            <div>
-            <NavLink key={friend.id} to={`/api/friends/${friend.id}`}>{friend.name}</NavLink>
-            <Route path='/api/friends/:id' 
+            return (<div key={`${friend.id}${friend.name}`}>
+            <NavLink to={`/friends/${friend.id}`}>{friend.name}</NavLink>
+            <Route path='/friends/:id' 
             render ={props =>
                 <Friend update={this.updateFriend} {...props}/>}
             />
-            <button onClick={this.updateFriend}>Update</button>
-            <button onClick={this.deleteFriend}>Delete</button>
+            <button onClick={()=>this.updateFriend(friend.id)}>Update</button>
+            <button onClick={()=>this.deleteFriend(friend.id)}>Delete</button>
             <Form inputValue ={this.onChangeHandler} delete={this.onChangeHandler} submit={this.postFriend}/>
             </div>
-        })}
+        )})}
         </div>
     )
 }
