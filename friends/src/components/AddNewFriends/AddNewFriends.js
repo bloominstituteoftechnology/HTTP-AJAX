@@ -47,6 +47,8 @@ class AddNewFriends extends Component {
           <input type="text" name="name" placeholder="Enter name" />
           <label>Email</label>
           <input type="text" name="email" placeholder="Enter email" />
+          <label>Location</label>
+          <input type="text" name="location" placeholder="Enter loaction" />
           <label>Age</label>
           <input type="number" name="age" placeholder="Enter age" />
           <button type="submit">Add</button>

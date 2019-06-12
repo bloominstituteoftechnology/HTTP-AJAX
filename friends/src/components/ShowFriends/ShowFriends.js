@@ -9,13 +9,13 @@ const Div = styled.div`
 `;
 const Section = styled.section`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
 `;
 
 const Table = styled.table`
   border-collapse: collapse;
-  width: 40%;
+  width: 45%;
   margin: 2rem auto;
 
   tr:nth-child(even) {
@@ -41,6 +41,7 @@ const Table = styled.table`
     background-color: #d0ceba;
     color: white;
     padding: 0;
+    font-size: 1.5rem;
   }
 
   td:first-child {
@@ -55,11 +56,11 @@ const LinkStyle = styled(Link)`
   padding: 1rem 2rem;
   outline: none;
   color: white;
-  background-color: blue;
+  background-color: #393933;
   border-radius: 10px;
   cursor: pointer;
   &:hover{
-      color: blue;
+      color: #393933;
       background-color: white;
   }
 `;
@@ -90,7 +91,7 @@ class ShowFriends extends Component {
             <Table key={friend.id}>
               <thead>
                 <tr>
-                  <th colspan="2">
+                  <th colspan="3">
                     <h4>{friend.name}</h4>
                   </th>
                 </tr>
@@ -103,6 +104,10 @@ class ShowFriends extends Component {
                 <tr>
                   <td>Email</td>
                   <td>{friend.email}</td>
+                </tr>
+                <tr>
+                  <td>Location</td>
+                  <td>{friend.location}</td>
                 </tr>
               </tbody>
             </Table>
