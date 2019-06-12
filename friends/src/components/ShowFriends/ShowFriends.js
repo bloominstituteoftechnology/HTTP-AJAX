@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -47,8 +48,9 @@ const Table = styled.table`
   }
 `;
 
-const Button = styled.button`
+const LinkStyle = styled(Link)`
   margin: 0 auto;
+  text-decoration: none;
   width: max-content;
   padding: 1rem 2rem;
   outline: none;
@@ -106,7 +108,7 @@ class ShowFriends extends Component {
             </Table>
           ))}
         </Section>
-        <Button>Add New Friends</Button>
+        <LinkStyle to='/add'>Add New Friends</LinkStyle>
       </Div>
     );
   }
