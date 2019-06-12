@@ -109,7 +109,7 @@ class ShowFriends extends Component {
 
   getAllFriends = async () => {
     try {
-      const allFriends = await axios.get("http://localhost:5000/friends/5");
+      const allFriends = await axios.get("http://localhost:5000/friends");
       this.setState({ friends: allFriends.data });
     } catch (e)
     {
