@@ -22,6 +22,7 @@ const TableWrapper = styled.div`
 `;
 const Table = styled.table`
   border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
   margin: 0 auto;
   margin-bottom: 0.5rem;
@@ -71,7 +72,7 @@ const LinkStyle = styled(Link)`
     background-color: grey;
   }
   ${props =>
-    props.edit &&
+    props.update &&
     css`
       background-color: #1a557d;
       &:hover {
@@ -114,16 +115,15 @@ class ShowFriends extends Component {
     }
   };
   render() {
-    console.log(this.state.friends);
     return (
       <Div>
         <Section>
           {this.state.friends.map(friend => (
-            <TableWrapper>
-              <Table key={friend.id}>
+            <TableWrapper key={friend.id}>
+              <Table>
                 <thead>
                   <tr>
-                    <th colspan="3">
+                    <th colSpan="3">
                       <h4>{friend.name}</h4>
                     </th>
                   </tr>
@@ -143,7 +143,7 @@ class ShowFriends extends Component {
                   </tr>
                 </tbody>
               </Table>
-              <LinkStyle to="/edit" edit>
+              <LinkStyle to="/edit" update={true}>
                 Edit
               </LinkStyle>
               <Button delete>Delete</Button>

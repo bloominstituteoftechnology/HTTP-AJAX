@@ -10,8 +10,8 @@ import AddNewFriends from "./components/AddNewFriends/AddNewFriends";
 function App() {
   return (
     <div className="App">
-      <Header />
       <Router>
+        <Header />
         <Route exact path="/" component={ShowFriends} />
         <Route
           exact
