@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 const Div = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 
   tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -70,32 +70,32 @@ const LinkStyle = styled(Link)`
   &:hover {
     background-color: grey;
   }
+  ${props =>
+    props.edit &&
+    css`
+      background-color: #1a557d;
+      &:hover {
+        background-color: #afb3c4;
+      }
+    `}
 `;
 
 const Button = styled.button`
- margin: 0 auto;
+  margin: 0 auto;
   text-decoration: none;
   width: max-content;
-  padding: .8rem 1.4rem;
+  padding: 0.8rem 1.4rem;
   margin: 0 1rem;
   outline: none;
   color: white;
-  background-color: blue;
+  background-color: #790315;
   border-radius: 10px;
   cursor: pointer;
   font-size: 1rem;
   &:hover {
-    background-color: grey;
+    background-color: #e95f74;
   }
-  ${props => props.delete && css`
-  background-color: red;
-  &:hover {
-    background-color: white;
-    color: red;
-  }
-  `}
 `;
-
 
 class ShowFriends extends Component {
   state = {
@@ -117,7 +117,6 @@ class ShowFriends extends Component {
     console.log(this.state.friends);
     return (
       <Div>
-        <h2>Friend List </h2>
         <Section>
           {this.state.friends.map(friend => (
             <TableWrapper>
@@ -144,7 +143,9 @@ class ShowFriends extends Component {
                   </tr>
                 </tbody>
               </Table>
-              <Button>Update</Button>
+              <LinkStyle to="/edit" edit>
+                Edit
+              </LinkStyle>
               <Button delete>Delete</Button>
             </TableWrapper>
           ))}

@@ -31,7 +31,7 @@ const Form = styled.form`
     padding: 1rem 2rem;
     outline: none;
     color: white;
-    background-color: #6F6F6A;
+    background-color: #6f6f6a;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
@@ -47,7 +47,7 @@ class AddNewFriends extends Component {
     return (
       <div>
         <Form>
-          <h2>Add New Friend</h2>
+          <h2>{this.props.header}</h2>
           <label>Name</label>
           <input type="text" name="name" placeholder="Enter name" />
           <label>Email</label>
@@ -56,7 +56,7 @@ class AddNewFriends extends Component {
           <input type="text" name="location" placeholder="Enter loaction" />
           <label>Age</label>
           <input type="number" name="age" placeholder="Enter age" />
-          <button type="submit">Add</button>
+          <button type="submit">{this.props.header}</button>
         </Form>
       </div>
     );
