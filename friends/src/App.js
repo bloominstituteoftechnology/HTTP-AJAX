@@ -17,7 +17,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({ spinner: true });
-    debugger;
     fetch("http://localhost:5000/friends")
       .then(response => {
         return response.json();
@@ -55,11 +54,13 @@ class App extends React.Component {
         <h1>All your few friends:</h1>
         {this.state.errorMessage && <div> Data did not fetch! </div>}
         {this.state.spinner && <div> Data is fetching... </div>}
+        <div>
         {this.state.friends.map(friend => (
-          <div>
-            Name: {friend.name}, Age: {friend.age}, Email: {friend.email}
+          <div className="contentDiv">
+            <span>Name: {friend.name}</span> <span>Age: {friend.age}</span> <span>Email: {friend.email}</span>
           </div>
         ))}
+        </div>
         <br/>
         <form onSubmit={this.submitFriend} >
           <input onChange={this.changeNewFriendName} value={this.state.newFriendName} placeholder="Name" type="text" />
