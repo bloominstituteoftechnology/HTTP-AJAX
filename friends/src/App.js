@@ -10,6 +10,7 @@ class App extends React.Component {
       errorMessage: "",
       newFriendName: "",
       newFriendAge: null,
+      newFriendEmail: "",
       spinner: false
     };
   }
@@ -40,6 +41,10 @@ class App extends React.Component {
     this.setState( {newFriendAge: event.target.value} )
   }
 
+  changeNewFriendEmail = (event) => {
+    this.setState( {newFriendEmail: event.target.value} )
+  }
+
   render() {
     return (
       <div className="App">
@@ -53,6 +58,7 @@ class App extends React.Component {
         <form>
           <input onchange={this.changeNewFriendName} value={this.state.newFriendName} placeholder="Name" type="text" />
           <input onchange={this.changeNewFriendAge} value={this.state.newFriendAge} placeholder="Age" type="number" />
+          <input onchange={this.changeNewFriendEmail} value={this.state.changeNewFriendEmail} placeholder="Email" type="text" />
           <input type="submit" value="Add new friend" />
         </form>
       </div>
