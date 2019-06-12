@@ -3,10 +3,14 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Form = styled.form`
-  width: 400px;
+  width: 500px;
   margin: 3rem auto;
   display: flex;
   flex-direction: column;
+  background-color: #393933;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  color: white;
 
   label {
     font-size: 1.2rem;
@@ -27,11 +31,12 @@ const Form = styled.form`
     padding: 1rem 2rem;
     outline: none;
     color: white;
-    background-color: blue;
+    background-color: #6F6F6A;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 1rem;
     &:hover {
-      color: blue;
+      color: black;
       background-color: white;
     }
   }

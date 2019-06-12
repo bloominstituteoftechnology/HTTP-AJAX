@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const Div = styled.div`
   display: flex;
@@ -9,14 +9,22 @@ const Div = styled.div`
 `;
 const Section = styled.section`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  margin: 1rem;
 `;
 
+const TableWrapper = styled.div`
+  width: 27%;
+  padding-bottom: 1rem;
+  margin: 1rem;
+  box-shadow: 2px 2px 2px #393933;
+`;
 const Table = styled.table`
   border-collapse: collapse;
-  width: 45%;
-  margin: 2rem auto;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: .5rem;
 
   tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -59,11 +67,35 @@ const LinkStyle = styled(Link)`
   background-color: #393933;
   border-radius: 10px;
   cursor: pointer;
-  &:hover{
-      color: #393933;
-      background-color: white;
+  &:hover {
+    background-color: grey;
   }
 `;
+
+const Button = styled.button`
+ margin: 0 auto;
+  text-decoration: none;
+  width: max-content;
+  padding: .8rem 1.4rem;
+  margin: 0 1rem;
+  outline: none;
+  color: white;
+  background-color: blue;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  &:hover {
+    background-color: grey;
+  }
+  ${props => props.delete && css`
+  background-color: red;
+  &:hover {
+    background-color: white;
+    color: red;
+  }
+  `}
+`;
+
 
 class ShowFriends extends Component {
   state = {
@@ -88,32 +120,36 @@ class ShowFriends extends Component {
         <h2>Friend List </h2>
         <Section>
           {this.state.friends.map(friend => (
-            <Table key={friend.id}>
-              <thead>
-                <tr>
-                  <th colspan="3">
-                    <h4>{friend.name}</h4>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Age</td>
-                  <td>{friend.age}</td>
-                </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>{friend.email}</td>
-                </tr>
-                <tr>
-                  <td>Location</td>
-                  <td>{friend.location}</td>
-                </tr>
-              </tbody>
-            </Table>
+            <TableWrapper>
+              <Table key={friend.id}>
+                <thead>
+                  <tr>
+                    <th colspan="3">
+                      <h4>{friend.name}</h4>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Age</td>
+                    <td>{friend.age}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{friend.email}</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>{friend.location}</td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button>Update</Button>
+              <Button delete>Delete</Button>
+            </TableWrapper>
           ))}
         </Section>
-        <LinkStyle to='/add'>Add New Friends</LinkStyle>
+        <LinkStyle to="/add">Add New Friends</LinkStyle>
       </Div>
     );
   }
