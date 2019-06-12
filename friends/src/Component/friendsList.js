@@ -76,7 +76,9 @@ render(){
             render ={props =>
                 <Friend update={this.updateFriend} {...props}/>}
             />
-            <Form inputValue ={this.onChangeHandler} submit={this.postFriend}/>
+            <button onClick={this.updateFriend}>Update</button>
+            <button onClick={this.deleteFriend}>Delete</button>
+            <Form inputValue ={this.onChangeHandler} delete={this.onChangeHandler} submit={this.postFriend}/>
             </div>
         })}
         </div>
