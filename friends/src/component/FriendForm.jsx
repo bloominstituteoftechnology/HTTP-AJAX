@@ -16,7 +16,8 @@ class FriendForm extends Component {
     this.setState({
       friend: {
         ...this.state.friend,
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value,
+        
       }
     })
   }
