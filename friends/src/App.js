@@ -1,6 +1,11 @@
 import React from "react";
 import axios from "axios";
 import FriendsList from "./components/FriendsList";
+import FriendForm from "./components/FriendForm";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+
+import { Route } from "react-router-dom";
 
 import "./App.css";
 
@@ -23,11 +28,39 @@ class App extends React.Component {
       });
   }
 
+  addFriend = e => {
+    e.preventDefault();
+    console.log("You just added a friend dawg!");
+  };
+
+  changeHandler = e => {
+    e.preventDefault();
+    console.log("Ready to handle some changes?!");
+  };
+
   render() {
     return (
       <div className="App">
-        <h1>These my friens, B!</h1>
-        <FriendsList friends={this.state.friends} />
+        <NavBar />
+        <Route exact path="/" component={Home} />
+
+        <Route
+          path="/friends"
+          render={props => (
+            <FriendsList
+              {...props}
+              friends={this.state.friends}
+              changeHandler={this.changeHandler}
+              addFriend={this.addFriend}
+            />
+          )}
+        />
+
+        <FriendForm
+          changeHandler={this.changeHandler}
+          addFriend={this.addFriend}
+          friends={this.state.friends}
+        />
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from "react";
 
 const Friend = props => {
-  console.log(props.friends);
   return (
     <div className="friend-card">
       <h3>Name: {props.friends.name}</h3>
