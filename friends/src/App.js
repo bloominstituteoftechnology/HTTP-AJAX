@@ -1,6 +1,8 @@
 import React from 'react';
-import './App.css';
 import axios from 'axios';
+import './App.css';
+import FriendList from './components/FriendList';
+import BecomeFriendForm from './components/BecomeFriendForm';
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +19,7 @@ class App extends React.Component {
     .get("http://localhost:5000/friends")
     .then(res => {
       console.log(res)
-      this.setState({ friends: res.date });
+      this.setState({ friends: res.data });
     })
     .catch(err => alert("Sorry something went wrong: ", err));
   }
@@ -26,6 +28,8 @@ class App extends React.Component {
     return (
     <div className="App">
       <header className="App-header"/>
+      <FriendList friends={this.state.friends}/>
+      <BecomeFriendForm />
     </div>
     )
   };
