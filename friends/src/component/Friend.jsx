@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from'axios';
+import FriendForm from './FriendForm'
 
 export default class Friends extends React.Component {
     state = {
@@ -16,6 +17,16 @@ FetchDataWithAxios = () => {
       })
 }
 
+PostDataWithAxios = (friend) => {
+    axios.post('http://localhost:5000/friends', friend)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
+
 componentDidMount(){
     this.FetchDataWithAxios();
 }
@@ -28,13 +39,7 @@ render(){
               return  each.id + each.name + each.age;
           })}</div>
         }
-        <form>
-            <label htmlFor="name" >Name</label>
-            <input type="text" id="name"/>
-            <label htnmlFor="email" >Email</label>
-            <input type="email" />
-            <button>Submit</button>
-        </form>
+        <FriendForm  postFriend={this.PostDataWithAxios} />
        </div>
     );
 }
