@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+body {
+  background: rgba(68, 125, 133, .8);
+}
+
+.App a {
+  text-decoration: none;
+  color: white;
+}
+.header {
+  padding: 20px 20px 20px 40px;
+  background: rgb(2, 55, 63);
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.content {
+  width: 100%;
+  display: flex;
+}
+.add-friend {
+  width: 20%;
+  min-height: 100vh;
+  padding: 30px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  background: #447D85;
+}
+.add-friend h4 {
+  text-transform: uppercase;
+  color: white;
+  margin: 30px 0;
+}
+.input-field {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.input-field label {
+  color: rgb(2, 55, 63);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.input-field input {
+  border: none;
+  border-bottom: 2px solid white;
+  background: #447D85;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+}
+.input-field input:focus {
+  outline: none;
+}
+.done {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  margin: 10px 0;
+  color: rgb(148, 0, 0);
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.btn {
+  width: 60%;
+  align-self: center;
+  padding: 10px 20px;
+  margin-top: 30px;
+  background: white;
+  color: rgb(2, 55, 63);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:hover {
+  background: lightgrey;
+}
+.btn:focus {
+  outline: none;
+}

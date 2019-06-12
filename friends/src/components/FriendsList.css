@@ -1,0 +1,92 @@
+.friends-list-wrapper {
+    width: 80%;
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.friends-list-wrapper a {
+    text-decoration: none;
+    background: rgba(233, 212, 95, 0.5);
+    color: rgb(0, 53, 61);
+    min-width: 35%;
+    height: 30vh;
+    margin: 30px 0;
+    padding: 40px 4%;
+    cursor: pointer;
+    box-shadow: 0 10px 6px -6px #777;
+}
+.friends-list-wrapper a:hover {
+    background: #02373F;
+    color: white;
+}
+.friends-list-wrapper a .friend-card {
+    width: 100%;
+}
+.friend-card p {
+    margin-bottom: 10px;
+    width: 100%;
+    font-style: italic;
+}
+.friend-card p:last-child {
+    margin-bottom: 0;
+}
+.friend-card p span {
+    font-weight: bold;
+    margin: 5px;
+    font-style: normal;
+}
+
+/* SingleFriendPage */
+
+.friend-page-wrapper {
+    width: 50%;
+    height: 50vh;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    background: rgba(233, 212, 95, 0.5);
+    color: #081845;
+}
+.friend-page-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.friend-page-wrapper .friend-card {
+    margin-top: 40px;
+    font-size: 20px;
+}
+.friend-page-controls .btn {
+    width: 30%;
+}
+.friend-page-controls a {
+    width: 30%;
+}
+.friend-page-controls a .btn {
+    width: 100%;
+}
+
+/* EditFriendForm styling */
+.edit-friend {
+    width: 60%;
+    margin: 0 auto;
+    background: #447D85;
+    min-height: 100vh;
+    padding: 40px 4%;
+    display: flex;
+    flex-direction: column;
+}
+.edit-friend h4 {
+    text-transform: uppercase;
+    color: white;
+    margin: 30px 0;
+    align-self: center;
+    font-size: 20px;
+}
+.edit-friend .btn {
+    width: 30%;
+}
