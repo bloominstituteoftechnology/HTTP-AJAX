@@ -28,6 +28,13 @@ render(){
               return  each.id + each.name + each.age;
           })}</div>
         }
+        <form>
+            <label htmlFor="name" >Name</label>
+            <input type="text" id="name"/>
+            <label htnmlFor="email" >Email</label>
+            <input type="email" />
+            <button>Submit</button>
+        </form>
        </div>
     );
 }
