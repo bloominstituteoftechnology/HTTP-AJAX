@@ -45,20 +45,26 @@ class App extends React.Component {
     this.setState( {newFriendEmail: event.target.value} )
   }
 
+  submitFriend = () => {
+    console.log("placeholder");
+  }
+
   render() {
     return (
       <div className="App">
+        <h1>All your few friends:</h1>
         {this.state.errorMessage && <div> Data did not fetch! </div>}
         {this.state.spinner && <div> Data is fetching... </div>}
         {this.state.friends.map(friend => (
           <div>
-            Name: {friend.name}, Age: {friend.age}
+            Name: {friend.name}, Age: {friend.age}, Email: {friend.email}
           </div>
         ))}
-        <form>
-          <input onchange={this.changeNewFriendName} value={this.state.newFriendName} placeholder="Name" type="text" />
-          <input onchange={this.changeNewFriendAge} value={this.state.newFriendAge} placeholder="Age" type="number" />
-          <input onchange={this.changeNewFriendEmail} value={this.state.changeNewFriendEmail} placeholder="Email" type="text" />
+        <br/>
+        <form onSubmit={this.submitFriend} >
+          <input onChange={this.changeNewFriendName} value={this.state.newFriendName} placeholder="Name" type="text" />
+          <input onChange={this.changeNewFriendAge} value={this.state.newFriendAge} placeholder="Age" type="number" />
+          <input onChange={this.changeNewFriendEmail} value={this.state.changeNewFriendEmail} placeholder="Email" type="text" />
           <input type="submit" value="Add new friend" />
         </form>
       </div>
