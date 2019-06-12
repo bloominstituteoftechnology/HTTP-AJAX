@@ -100,7 +100,8 @@ const Button = styled.button`
 
 class ShowFriends extends Component {
   state = {
-    friends: []
+      friends: [],
+      errorMessage: ''
   };
   componentDidMount() {
     this.getAllFriends();
@@ -108,17 +109,20 @@ class ShowFriends extends Component {
 
   getAllFriends = async () => {
     try {
-      const allFriends = await axios.get("http://localhost:5000/friends");
+      const allFriends = await axios.get("http://localhost:5000/friends/5");
       this.setState({ friends: allFriends.data });
-    } catch (e) {
-      console.log(e);
+    } catch (e)
+    {
+        console.log(e)
+        this.setState({ errorMessage: e.message});
     }
   };
-  render() {
+    render() {
+      console.log(this.state.errorMessage)
     return (
       <Div>
         <Section>
-          {this.state.friends.map(friend => (
+                {this.state.errorMessage ? <div>{this.state.errorMessage}</div>:  this.state.friends.map(friend => (
             <TableWrapper key={friend.id}>
               <Table>
                 <thead>
