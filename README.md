@@ -8,7 +8,7 @@ Topics:
 
 ## Instructions
 
-1.  Run `yarn install or npm install` inside the root directory of this project1Run `yarn start or npm start` to start the server.
+1.  Run `yarn install or npm install` inside the root directory of this project. Run `yarn start or npm start` to start the server.
 1.  The provided server returns a list of friends when a `GET` request is made to [`http://localhost:5000/friends`](http://localhost:5000/friends).
 1.  In a separate terminal window, run `yarn create react-app friends` to create your starter React application.
 1.  CD into `friends` and run `yarn add axios react-router-dom` or `npm install --save axios react-router-dom` to include those dependencies in your project. _You'll need react router for the stretch problems_
