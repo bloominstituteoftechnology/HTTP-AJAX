@@ -1,0 +1,72 @@
+/* Friends.js */
+.Friends {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: space-around;
+    margin: 0 auto;
+}
+/* Friend.js */
+.Friend {
+    margin-top: 4px;
+    margin-left: 4px;
+    width: 100%;
+    max-width: 290px;
+    height: 180px;
+    text-align: center;
+    background: #2F3C43;
+    border: 1px solid #FAFAFA;
+    color: ivory;
+}
+
+.Friend h1 {
+    font-size: 24px;
+}
+
+.Friend p {
+    font-size: 13px;
+}
+
+/* FriendForm.js */
+.FriendFormDiv {
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 480px;
+    padding: 50px;
+    background: ivory;
+    padding: 7px;
+}
+
+.FriendFormDiv h1 {
+    text-align: center;
+    font-size: 30px;
+}
+.FriendForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    display: flex;
+}
+
+.FriendForm input {
+    text-align: center;
+    width: 210px;
+    margin: 2px;
+    border: 1px solid black;
+    background: #FAFAFA;
+}
+
+/* FriendPage */
+
+.FriendPage {
+    display: block;
+    margin-left: 10px;
+    margin-top: 40px;
+    border: 1px solid black;
+    padding: 30px;
+    width: 400px;
+    background: #FAFAFA;
+}
