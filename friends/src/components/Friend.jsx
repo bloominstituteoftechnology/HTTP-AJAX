@@ -1,12 +1,13 @@
 import React from 'react'
 
-const Friend = friend => {
+const Friend = props => {
     return (
         <div className="friend">
-            <p>{friend.id}</p>
-            <p>{friend.name}</p>
-            <p>{friend.age}</p>
-            <p>{friend.email}</p>
+            <p>{props.id}</p>
+            <p>{props.name}</p>
+            <p>{props.age}</p>
+            <p>{props.email}</p>
+            <p onClick={(e) => props.deleteFriend(props.id) }>Delete</p>
         </div>
     )
 }

@@ -24,6 +24,11 @@ function App() {
     setFriendForm({name: '', age: '', email: ''});
   }
 
+  const deleteFriend = async id => {
+    const req  = await Axios.delete(`${baseUrl}/${id}`)
+    setFriends(req.data)
+  }
+
   const fetchFriends = async () => {
         try {
           const req = await fetch(baseUrl);
@@ -40,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <FriendList friends={friends} />
+      <FriendList friends={friends} deleteFriend={deleteFriend}/>
       <FriendForm 
       friendInputChange={friendInputChange}
       createFriend={CreateFriend}
