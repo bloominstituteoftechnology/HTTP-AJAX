@@ -1,10 +1,14 @@
 import React from 'react';
-import FriendList from "./FriendList";
+import { BrowserRouter as Router } from 'react-router-dom';
+import './App.css';
+import FriendsContainer from './components/FriendsContainer';
 
 function App() {
   return (
     <div className="App">
-      <FriendList />
+      <Router>
+        <FriendsContainer />
+      </Router>
     </div>
   );
 }
