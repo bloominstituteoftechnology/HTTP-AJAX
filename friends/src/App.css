@@ -1,0 +1,23 @@
+.App {
+
+  display:flex;
+  border: 1px solid black;
+  margin: 20px;
+  background: lightblue;
+  flex-wrap: wrap;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+input {
+  margin: 10px;
+}
+
+a {
+   margin: 10px;
+   height: 25px;
+}

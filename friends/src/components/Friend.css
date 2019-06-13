@@ -1,0 +1,14 @@
+
+ .list {
+     flex-wrap: wrap;
+     display: flex;
+     
+ }
+.friends {
+    margin: 10px;
+    background: lightcyan;
+}
+
+h3 {
+    margin: 5px;
+}
