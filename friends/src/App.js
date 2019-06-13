@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import FriendsList from './components/FriendsList';
+import FriendInput from './components/FriendInput';
+import axios from 'axios';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      friends: [],
+    };
+  }
+  componentDidMount(){
+    axios('http://localhost:5000/friends')
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => { throw new Error(err) });
+  }
+  handleUpdateList = (friends) => {
+    this.setState({
+      friends,
+    })
+  }
+  handleEditFriend = (name, age, email, id) => {
+    axios.put(`http://localhost:5000/friends/${id}`, {
+      name,
+      age: Number(age),
+      email
+    })
+      .then(res => this.setState({ friends: res.data }) )
+      .catch(err => { throw new Error(err) });
+  }
+  handleDeleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => { throw new Error(err)});
+  }
+  render() {
+    return (
+      <div className="App">
+        <Route exact path="/" render={props => (
+          <FriendsList 
+            {...props}
+            friends={this.state.friends}
+            deleteFriend={this.handleDeleteFriend}
+            editFriend={this.handleEditFriend}
+          />
+        )} />
+        <Route path="/add" render={props => <FriendInput {...props} updateList={this.handleUpdateList} />} />
+      </div>
+    );
+  }
 }
 
 export default App;
