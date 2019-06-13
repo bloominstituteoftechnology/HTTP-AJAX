@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import FriendsList from './FriendsList';
 import NewFriendForm from './NewFriendForm';
 
-const url = 'http://localhost:5000/friends/';
+const url = 'http://localhost:5000/friends';
 const StyledNavLinks = styled(NavLink)`
   padding: 1rem 2rem;
   margin: .5rem;
@@ -53,6 +53,14 @@ class FriendsContainer extends Component {
       })
   }
 
+  deleteFriend = (id) => {
+    axios.delete(`${url}/${id}`)
+      .then(() => {
+        this.fetchFriends()
+        this.props.history.push('/friends')
+      })
+  }
+
   componentDidMount() {
     this.fetchFriends();
   }
@@ -61,18 +69,17 @@ class FriendsContainer extends Component {
     const { friends, isLoading } = this.state;
     return (
       <div>
-        <StyledNavLinks to='/'>Home</StyledNavLinks>
         <StyledNavLinks to='/friends'>Friends</StyledNavLinks>
         <StyledNavLinks to='/add-friend'>Add New Friend</StyledNavLinks>
         
         <Route
           exact
-          path='/friends'
+          path={['/','/friends']}
           render={(props) => 
             <FriendsList {...props} 
               friends={friends} 
               isLoading={isLoading}
-              addNewFriend={this.addNewFriend}
+              deleteFriend={this.deleteFriend}
             />
           }
         />

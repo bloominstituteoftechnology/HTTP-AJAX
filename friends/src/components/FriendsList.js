@@ -8,12 +8,17 @@ const StyledFriendsList = styled.div`
   margin: 0 auto;
 `
 
-export default ({ friends, isLoading }) => (
+export default ({ friends, isLoading, deleteFriend }) => (
     <>
     <h1>My Favorite Friends</h1>
     {isLoading && (<p>...Loading</p>)}  
     <StyledFriendsList>
-      {friends.map(friend => <Friend key={uuidv1()} friend={friend} />)}
+      {friends.map(friend => 
+        <Friend 
+          key={uuidv1()} 
+          friend={friend}
+          deleteFriend={deleteFriend}
+        />)}
     </StyledFriendsList>
     </>
   );
