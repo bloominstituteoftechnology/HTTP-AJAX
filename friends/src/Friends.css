@@ -1,0 +1,16 @@
+.friends {
+    width: 75%;
+    margin: 15px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .friend {
+    width: 25%;
+    border: 1px solid grey;
+    box-shadow: 2px 2px 2px lightgrey;
+    margin: 15px 0;
+    padding: 15px;
+    list-style-type: none;
+  }
