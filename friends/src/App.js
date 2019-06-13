@@ -3,7 +3,7 @@ import "./App.css";
 import FriendList from "./Component/friendsList";
 import Form from "./Component/form";
 import Friend from "./Component/friend";
-import { Route } from "react-router-dom";
+import { Route , Switch, Redirect} from "react-router-dom";
 import axios from "axios";
 class App extends React.Component {
   state = {
@@ -11,7 +11,8 @@ class App extends React.Component {
     errorMessage: "",
     newName: "",
     newAge: "",
-    newEmail: ""
+    newEmail: "",
+    added:false
   };
   getFriends = async () => {
     try {
@@ -22,11 +23,11 @@ class App extends React.Component {
         errorMessage: err.message
       });
     }
+    console.log(this.state.friends);
   };
-  postFriend = async e => {
+  postFriend = async (e,b) => {
     try {
       e.preventDefault();
-      console.log(this.state.newEmail, this.state.newAge);
       await axios.post("http://localhost:5000/friends", {
         name: this.state.newName,
         age: this.state.newAge,
@@ -39,11 +40,16 @@ class App extends React.Component {
       });
     }
   };
-  updateFriend = async id => {
+  updateFriend = async(e, id) => {
+    e.preventDefault()
     try {
       await axios.put(
         `http://localhost:5000/friends/${id}`,
-        this.state.newFriend
+        {
+          name: this.state.newName,
+          age: this.state.newAge,
+          email: this.state.newEmail
+        }
       );
       return this.getFriends();
     } catch (err) {
@@ -63,63 +69,70 @@ class App extends React.Component {
     }
   };
   onChangeHandler = (e, text) => {
-    text === "name" && this.setState({ newName: e });
+    text === "name"  && this.setState({ newName: e });
     text === "age" && this.setState({ newAge: e });
     text === "email" && this.setState({ newEmail: e });
   };
 
   componentDidMount() {
     this.getFriends();
-  
+    
   }
-
   render() {
     return (
       <div className="App">
+      <Switch>
+      <Route
+      exact
+      path="/"
+      render={props => (
+
+        <FriendList
+          data={this.state.friends}
+          delete={this.deleteFriend}
+          {...props}
+        />
+      )}
+    />
+    <Route
+    path="/add"
+    render={props => (
+      this.state.added ? <Redirect to='/' /> :
+      <Form
+        inputValue={this.onChangeHandler}
+        submit={this.postFriend}
+        {...props}
+      />
+    )}
+  /> 
       <Route
           exact
-          path="/friends/:id"
+          path="/:id"
           render={props => (
             <Friend
+              data={this.state.friends}
+              get={this.getFriends}
               update={this.updateFriend}
               delete={this.deleteFriend}
               {...props}
             />
           )}
         />
+    
         <Route
-          exact
-          path="/"
-          render={props => (
-            <FriendList
-              data={this.state.friends}
-              delete={this.deleteFriend}
-              {...props}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/friends/:id/update"
+          path="/:id/update"
           render={props => (
             <Form
+               data={this.state.friends}
+               get={this.getFriends}
               inputValue={this.onChangeHandler}
               submit={this.updateFriend}
               {...props}
             />
           )}
         />
-        <Route
-          exact
-          path="/friends/add"
-          render={props => (
-            <Form
-              inputValue={this.onChangeHandler}
-              submit={this.postFriend}
-              {...props}
-            />
-          )}
-        /> 
+       
+        </Switch>
       </div>
     );
   }
