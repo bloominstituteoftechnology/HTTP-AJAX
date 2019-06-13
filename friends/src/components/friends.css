@@ -1,0 +1,26 @@
+.friendsList{
+    margin: 0 auto;
+    /* width: 900px; */
+}
+
+.friendCard{
+    margin: 20px auto;
+    width: 30%;
+    border: 1px solid black;
+    background-color: grey;
+    border-radius: 80px;
+}
+
+button{
+    border-radius: 10px;
+    background: white;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+input{
+    margin-left: 5px;
+    border-radius: 10px;
+    padding: 5px;
+}
