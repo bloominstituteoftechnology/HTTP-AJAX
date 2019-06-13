@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./App.css";
+import {React.R}
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class App extends React.Component {
       friends: [],
       errorMessage: "",
       newFriendName: "",
-      newFriendAge: null,
+      newFriendAge: "",
       newFriendEmail: "",
       spinner: false
     };
@@ -66,7 +67,7 @@ class App extends React.Component {
 
   deleteFriend = id => {
     axios
-      .delete(`http://localhost:5000/${id}`)
+      .delete(`http://localhost:5000/friends/${id}`)
       .then(() => this.fetchFriends())
       .catch(() =>
         this.setState({ errorMessage: "Friend could not be deleted" })
