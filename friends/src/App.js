@@ -60,6 +60,10 @@ class App extends React.Component {
       .delete(`http://localhost:5000/friends/${id}`)
       .then(res => {
         console.log(res);
+        this.setState({
+          friends: res.data
+        });
+        this.props.history.push("/friends");
       })
       .catch(err => {
         console.log(err);
@@ -70,13 +74,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <NavBar />
-        <Route exact path="/" component={Home} />
+        <Route path="/" component={Home} />
 
         <Route
           path="/friends"
           render={props => (
             <FriendsList
               {...props}
+              deleteFriend={this.deleteFriend}
               friends={this.state.friends}
               changeHandler={this.changeHandler}
               addFriend={this.addFriend}

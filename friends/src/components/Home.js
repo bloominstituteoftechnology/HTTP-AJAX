@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Home = props => {
   return (
-    <div>
-      <h1>You're Home!</h1>
+    <div className="home-container">
+      <h1>Welcome to Your Friends, Friend!</h1>
     </div>
   );
 };
