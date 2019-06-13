@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
@@ -30,16 +30,39 @@ const StyledButton = styled.button`
   border-radius: .4rem;
 `
 
-export default () => (
-  <div>
-    <h1>Add New Friend</h1>
-    <StyledForm>
-      <StyledInput type='text' placeholder='Name'/>
-      <StyledInput type='number' placeholder='Number'/>
-      <StyledInput type='email' placeholder='Email'/>
-      <StyledButton>
-        Add Friend
-      </StyledButton>
-    </StyledForm>
-  </div>
-)
+export default class NewFriendForm extends Component {
+
+  newNameInput = React.createRef();
+
+  newAgeInput = React.createRef();
+
+  newEmailInput = React.createRef();
+
+  addNewFriend = (e) => {
+    e.preventDefault()
+    const friend = {
+      name: this.newNameInput.current.value,
+      age: this.newAgeInput.current.value,
+      email: this.newEmailInput.current.value
+    };
+    this.props.addNewFriend(friend);
+  } 
+
+  render() {
+    return (
+      <div>
+        {this.props.isLoading && (<p>...Loading</p>)}  
+        <h1>Add New Friend</h1>
+        <StyledForm onSubmit={this.addNewFriend}>
+          <StyledInput type='text' ref={this.newNameInput} placeholder='Name'/>
+          <StyledInput type='number' ref={this.newAgeInput} placeholder='Number'/>
+          <StyledInput type='email' ref={this.newEmailInput} placeholder='Email'/>
+          <StyledButton onClick={this.addNewFriend}>
+            Add Friend
+          </StyledButton>
+        </StyledForm>
+      </div>
+    );
+  }
+}
+

@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { withRouter, Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import FriendsList from './FriendsList';
 import NewFriendForm from './NewFriendForm';
 
-export default class FriendsContainer extends Component {
+const url = 'http://localhost:5000/friends/';
+const StyledNavLinks = styled(NavLink)`
+  padding: 1rem 2rem;
+  margin: .5rem;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: rgb(161,21,29);
+`;
+
+class FriendsContainer extends Component {
   constructor(props) {
     super(props)
   
@@ -16,8 +26,8 @@ export default class FriendsContainer extends Component {
   }
 
   fetchFriends = () => {
-    this.setState({isLoading: true})
-    axios.get('http://localhost:5000/friends/')
+    this.setState({ isLoading: true })
+    axios.get(url)
       .then(response => {
         this.setState({
           friends: response.data,
@@ -29,20 +39,26 @@ export default class FriendsContainer extends Component {
       .finally(()=> this.setState({isLoading: false}))
   }
 
+  addNewFriend = ({name, age, email}) => {
+    this.setState({ isLoading: true })
+    const newFriend = {
+      name,
+      age,
+      email,
+    };
+    axios.post(url, newFriend)
+      .then(() => {
+        this.fetchFriends()
+        this.props.history.push('/friends')
+      })
+  }
+
   componentDidMount() {
     this.fetchFriends();
   }
 
   render() {
     const { friends, isLoading } = this.state;
-    const StyledNavLinks = styled(NavLink)`
-      padding: 1rem 2rem;
-      margin: .5rem;
-      display: inline-block;
-      text-decoration: none;
-      color: white;
-      background: rgb(161,21,29);
-    `;
     return (
       <div>
         <StyledNavLinks to='/'>Home</StyledNavLinks>
@@ -55,16 +71,24 @@ export default class FriendsContainer extends Component {
           render={(props) => 
             <FriendsList {...props} 
               friends={friends} 
-              isLoading={isLoading} 
+              isLoading={isLoading}
+              addNewFriend={this.addNewFriend}
             />
           }
         />
         <Route
           exact
           path='/add-friend'
-          component={NewFriendForm}
+          render={(props) => 
+            <NewFriendForm {...props} 
+              isLoading={isLoading}
+              addNewFriend={this.addNewFriend}
+            />
+          }
         />
       </div>
     )
   }
 }
+
+export default withRouter(FriendsContainer)
