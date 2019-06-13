@@ -32,33 +32,54 @@ const StyledButton = styled.button`
 
 export default class NewFriendForm extends Component {
 
-  newNameInput = React.createRef();
-
-  newAgeInput = React.createRef();
-
-  newEmailInput = React.createRef();
+  state = {
+    name: '',
+    age: '',
+    email: '',
+  }
 
   addNewFriend = (e) => {
     e.preventDefault()
-    const friend = {
-      name: this.newNameInput.current.value,
-      age: this.newAgeInput.current.value,
-      email: this.newEmailInput.current.value
-    };
-    this.props.addNewFriend(friend);
-  } 
+    this.props.addNewFriend(this.state);
+  }
+
+  updateFriend = id => event => {
+    event.preventDefault()
+    this.props.updateFriend(this.state, id);
+  }
+
+  handleChange = input => event => {
+    this.setState({
+      [input]: event.target.value 
+    })
+  }
+
+  componentDidMount () {
+    const id = this.props.match.params.id;
+    let friend;
+    if (id) {
+      friend = this.props.friends.filter(friend => friend.id === Number(id))[0];
+    }
+
+    if (friend) this.setState({
+      name: friend.name,
+      age: friend.age,
+      email: friend.email
+    })
+  }
 
   render() {
+    const id = this.props.match.params.id;
     return (
       <div>
-        {this.props.isLoading && (<p>...Loading</p>)}  
-        <h1>Add New Friend</h1>
+        {this.props.isLoading && (<p>...Loading</p>)}
+        <h1>{id ? 'Update Friend' : 'Add New Friend'}</h1>
         <StyledForm onSubmit={this.addNewFriend}>
-          <StyledInput type='text' ref={this.newNameInput} placeholder='Name'/>
-          <StyledInput type='number' ref={this.newAgeInput} placeholder='Number'/>
-          <StyledInput type='email' ref={this.newEmailInput} placeholder='Email'/>
-          <StyledButton onClick={this.addNewFriend}>
-            Add Friend
+          <StyledInput type='text' value={this.state.name} onChange={this.handleChange('name')} placeholder='Name'/>
+          <StyledInput type='number' value={this.state.age} onChange={this.handleChange('age')} placeholder='Number'/>
+          <StyledInput type='email' value={this.state.email} onChange={this.handleChange('email')} placeholder='Email'/>
+          <StyledButton onClick={id ? this.updateFriend(id) : this.addNewFriend}>
+            {id ? 'Update Friend' : 'Add New Friend'}
           </StyledButton>
         </StyledForm>
       </div>

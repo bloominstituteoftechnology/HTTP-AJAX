@@ -53,12 +53,30 @@ class FriendsContainer extends Component {
       })
   }
 
+  updateFriend = ({name, age, email}, id) => {
+    this.setState({ isLoading: true })
+    const friendToUpdate = {
+      name,
+      age,
+      email,
+    };
+    axios.put(`${url}/${id}`, friendToUpdate)
+      .then(() => {
+        this.fetchFriends()
+        this.props.history.push('/friends')
+      })
+  }
+
   deleteFriend = (id) => {
     axios.delete(`${url}/${id}`)
       .then(() => {
         this.fetchFriends()
         this.props.history.push('/friends')
       })
+  }
+
+  fetchOneFriend = () => {
+    
   }
 
   componentDidMount() {
@@ -71,7 +89,7 @@ class FriendsContainer extends Component {
       <div>
         <StyledNavLinks to='/friends'>Friends</StyledNavLinks>
         <StyledNavLinks to='/add-friend'>Add New Friend</StyledNavLinks>
-        
+
         <Route
           exact
           path={['/','/friends']}
@@ -90,6 +108,18 @@ class FriendsContainer extends Component {
             <NewFriendForm {...props} 
               isLoading={isLoading}
               addNewFriend={this.addNewFriend}
+            />
+          }
+        />
+        <Route
+          exact
+          path='/friends/:id'
+          render={(props) => 
+            <NewFriendForm {...props} 
+              isLoading={isLoading}
+              friends={friends}
+              addNewFriend={this.addNewFriend}
+              updateFriend={this.updateFriend}
             />
           }
         />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledFriend = styled.div`
@@ -63,5 +64,9 @@ export default ({ friend, deleteFriend }) => (
     <StyledAge>{friend.age} years</StyledAge>
     <StyledEmail>{friend.email}</StyledEmail>
     <StyledButton onClick={() => deleteFriend(friend.id)}>Delete</StyledButton>
+    <Link to={`/friends/${friend.id}`}>
+      <StyledButton>Update</StyledButton> 
+    </Link>
+
   </StyledFriend>
 );
