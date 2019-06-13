@@ -1,0 +1,162 @@
+.App {
+    width: 100%;
+}
+
+.App h1 {
+    font-size: 5rem;
+    font-family: 'Poiret One', cursive;
+    color: #C2D3CD;
+    text-align: center;
+    width: 40%;
+    padding: 10px 0;
+    border: 2px solid #C2D3CD;
+    margin: 50px auto;
+}
+
+.friends-list {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.individual-friend {
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #F8F1FF;
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.individual-friend .fa-user {
+    font-size: 4rem;
+    width: 7.5rem;
+    height: 7.5rem;;
+    padding: 10px;
+    border: 1px solid #F8F1FF;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.individual-friend .delete-button {
+    width: 2.5rem;
+    border: none;
+    background-color: #534D56;
+    color: #F8F1FF;
+    position: absolute;
+    right: 10px;
+}
+
+.friend-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.friend-age {
+    padding: 5px 0;
+    font-size: 1.2rem;
+}
+
+.friend-email {
+    padding: 10px 0;
+}
+
+.individual-friend .edit-button {
+    width: 5rem;
+    padding: 5px;
+    border: 1px solid #F8F1FF;
+    margin: 10px auto;
+    background-color: #534D56;
+    color: #F8F1FF;
+    font-size: 1.2rem;
+}
+
+.form-container {
+    width: 50rem;
+    padding: 20px 0;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #656176;
+}
+
+.form-title {
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    margin: 5px 0;
+    height: 3rem;;
+    padding: 0 5px;
+    border: 1px solid #F8F1FF;
+    color: #F8F1FF;
+    background-color: #656176;
+}
+
+.form input::placeholder {
+    color: #F8F1FF;
+}
+
+.form button {
+    height: 3rem;
+    border: 1px solid #12685E;
+    margin: 20px 0;
+    background-color: #1B998B;
+    color: #F8F1FF;
+}
+
+.hide {
+    display: none;
+}
+
+.editform-container {
+    width: 90%;
+    background-color: #656176;
+    border: 1px solid #4a4757;
+    position: absolute;
+    top: 23rem;
+    left: 1.2rem;
+    z-index: 1;
+}
+
+.editform {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.editform input {
+    margin: 5px 0;
+    height: 3rem;
+    padding: 0 5px;
+    border: 1px solid #F8F1FF;
+    color: #F8F1FF;
+    background-color: #656176;
+}
+
+.editform input::placeholder {
+    color: #F8F1FF;
+}
+
+.editform button {
+    height: 3rem;
+    border: 1px solid #12685E;
+    margin: 10px 0;
+    background-color: #1B998B;
+    color: #F8F1FF;
+    font-size: 1.2rem;
+}
