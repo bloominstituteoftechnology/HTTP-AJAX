@@ -37,7 +37,7 @@ const StyledEmail = styled.p`
 
 const StyledButton = styled.button`
   padding: .75rem 1.5rem;
-  background: rgb(161, 21, 29);
+  background: ${props => props.update ? 'rgb(0, 49, 116)' : "rgb(161, 21, 29)"};
   color: white;
   cursor: pointer;
   box-shadow: 0 0 20px rgba(0,0,0, .5);
@@ -63,10 +63,9 @@ export default ({ friend, deleteFriend }) => (
     <StyledName>{friend.name}</StyledName>
     <StyledAge>{friend.age} years</StyledAge>
     <StyledEmail>{friend.email}</StyledEmail>
-    <StyledButton onClick={() => deleteFriend(friend.id)}>Delete</StyledButton>
     <Link to={`/friends/${friend.id}`}>
-      <StyledButton>Update</StyledButton> 
+      <StyledButton update>Update</StyledButton> 
     </Link>
-
+    <StyledButton onClick={() => deleteFriend(friend.id)}>Delete</StyledButton>
   </StyledFriend>
 );
