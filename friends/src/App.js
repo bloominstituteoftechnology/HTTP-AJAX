@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./App.css";
-import {React.R}
+/* import {Router, Link, Route} from "react-router-dom"; */
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +13,9 @@ class App extends React.Component {
       newFriendName: "",
       newFriendAge: "",
       newFriendEmail: "",
-      spinner: false
+      spinner: false,
+      modifyActive: false,
+      modifyId: null
     };
   }
 
@@ -74,7 +76,36 @@ class App extends React.Component {
       );
   };
 
-  modifyFriend = id => {};
+  modifyFriend = () => {
+    debugger;
+    const modifiedFriend = {
+      name: this.state.newFriendName,
+      age: this.state.newFriendAge,
+      email: this.state.newFriendEmail
+    };
+    axios
+      .put(
+        `http://localhost:5000/friends/${this.state.modifyId}`,
+        modifiedFriend
+      )
+      .catch(() =>
+        this.setState({ errorMessage: "Friend could not be modified" })
+      );
+    this.setState({ modifyActive: false });
+  };
+
+  activateModify = id => {
+    const toModifyFriend = this.state.friends.find(el => {
+      return el.id === id;
+    });
+    this.setState({
+      modifyActive: true,
+      modifyId: id,
+      newFriendName: toModifyFriend.name,
+      newFriendAge: toModifyFriend.age,
+      newFriendEmail: toModifyFriend.email
+    });
+  };
 
   render() {
     return (
@@ -92,35 +123,65 @@ class App extends React.Component {
                 <button onClick={() => this.deleteFriend(friend.id)}>
                   Delete
                 </button>
-                <button onClick={() => this.modifyFriend(friend.id)}>
+                <button onClick={() => this.activateModify(friend.id)}>
                   Modify
                 </button>
               </span>
             </div>
           ))}
         </div>
-        <br />
-        <form onSubmit={this.submitFriend}>
-          <input
-            onChange={this.changeNewFriendName}
-            value={this.state.newFriendName}
-            placeholder="Name"
-            type="text"
-          />
-          <input
-            onChange={this.changeNewFriendAge}
-            value={this.state.newFriendAge}
-            placeholder="Age"
-            type="number"
-          />
-          <input
-            onChange={this.changeNewFriendEmail}
-            value={this.state.changeNewFriendEmail}
-            placeholder="Email"
-            type="text"
-          />
-          <input type="submit" value="Add new friend" />
-        </form>
+        {this.state.modifyActive ? (
+          <div>
+            <br />
+            <form onSubmit={this.modifyFriend}>
+              <input
+                onChange={this.changeNewFriendName}
+                value={this.state.newFriendName}
+                placeholder="Name"
+                type="text"
+              />
+              <input
+                onChange={this.changeNewFriendAge}
+                value={this.state.newFriendAge}
+                placeholder="Age"
+                type="number"
+              />
+              <input
+                onChange={this.changeNewFriendEmail}
+                value={this.state.newFriendEmail}
+                placeholder="Email"
+                type="text"
+              />
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+        )
+        :
+          <div>
+            <br />
+            <form onSubmit={this.submitFriend}>
+              <input
+                onChange={this.changeNewFriendName}
+                value={this.state.newFriendName}
+                placeholder="Name"
+                type="text"
+              />
+              <input
+                onChange={this.changeNewFriendAge}
+                value={this.state.newFriendAge}
+                placeholder="Age"
+                type="number"
+              />
+              <input
+                onChange={this.changeNewFriendEmail}
+                value={this.state.newFriendEmail}
+                placeholder="Email"
+                type="text"
+              />
+              <input type="submit" value="Add new friend" />
+            </form>
+          </div>
+        }
       </div>
     );
   }
