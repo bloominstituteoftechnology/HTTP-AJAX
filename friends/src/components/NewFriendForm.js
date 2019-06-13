@@ -75,9 +75,24 @@ export default class NewFriendForm extends Component {
         {this.props.isLoading && (<p>...Loading</p>)}
         <h1>{id ? 'Update Friend' : 'Add New Friend'}</h1>
         <StyledForm onSubmit={this.addNewFriend}>
-          <StyledInput type='text' value={this.state.name} onChange={this.handleChange('name')} placeholder='Name'/>
-          <StyledInput type='number' value={this.state.age} onChange={this.handleChange('age')} placeholder='Number'/>
-          <StyledInput type='email' value={this.state.email} onChange={this.handleChange('email')} placeholder='Email'/>
+          <StyledInput 
+            type='text' 
+            value={this.state.name} 
+            onChange={this.handleChange('name')} 
+            placeholder='Name'
+          />
+          <StyledInput 
+            type='number' 
+            value={this.state.age} 
+            onChange={this.handleChange('age')} 
+            placeholder='Age'
+          />
+          <StyledInput 
+            type='email' 
+            value={this.state.email} 
+            onChange={this.handleChange('email')} 
+            placeholder='Email'
+          />
           <StyledButton onClick={id ? this.updateFriend(id) : this.addNewFriend}>
             {id ? 'Update Friend' : 'Add New Friend'}
           </StyledButton>
