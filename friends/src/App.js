@@ -28,14 +28,42 @@ class App extends React.Component {
       });
   }
 
-  addFriend = e => {
-    e.preventDefault();
+  addFriend = friend => {
     console.log("You just added a friend dawg!");
+    axios
+      .post("http://localhost:5000/friends", friend)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          friends: res.data
+        });
+        this.props.history.push("/friends");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
-  changeHandler = e => {
-    e.preventDefault();
-    console.log("Ready to handle some changes?!");
+  updateFriend = (id, updatedFriend) => {
+    axios
+      .put(`http://localhost:5000/friends/${id}`, updatedFriend)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  deleteFriend = id => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -55,11 +83,17 @@ class App extends React.Component {
             />
           )}
         />
-
-        <FriendForm
-          changeHandler={this.changeHandler}
-          addFriend={this.addFriend}
-          friends={this.state.friends}
+        <Route
+          path="/add-friend"
+          render={props => (
+            <FriendForm
+              {...props}
+              updateFriend={this.updateFriend}
+              changeHandler={this.changeHandler}
+              addFriend={this.addFriend}
+              friends={this.state.friends}
+            />
+          )}
         />
       </div>
     );

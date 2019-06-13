@@ -9,7 +9,15 @@ body {
   width: 300px;
   padding: 60px 40px;
   margin: 10px;
-  box-shadow: 5px 10px 15px rgba(109, 109, 109, 0.3);
+  box-shadow: 0 10px 15px rgba(136, 136, 136, 0.1);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.friend-icon i {
+  font-size: 2rem;
 }
 
 h1,
@@ -38,26 +46,36 @@ h4 {
 .friend-form {
   width: 800px;
   margin: 80px auto;
-  padding: 20px 0 40px 0;
+  padding: 40px 0;
   background-color: white;
-  box-shadow: 5px 10px 15px rgba(109, 109, 109, 0.3);
+  box-shadow: 0 10px 15px rgba(136, 136, 136, 0.1);
   text-align: center;
+  font-size: 2rem;
 }
 
 .friend-form input {
   width: 60%;
-  padding: 40px;
+  padding: 30px;
   margin: 20px;
   font-size: 1.5rem;
+  font-weight: bold;
+  border: 0.5px solid rgba(173, 216, 230, 0.466);
+  border-radius: 10px;
 }
 
 .friend-form button {
   width: 60%;
   padding: 20px;
+  margin-top: 20px;
   background: lightskyblue;
   border-radius: 15px;
   border: none;
-  box-shadow: 5px 5px 10px rgba(109, 109, 109, 0.3);
+  box-shadow: 0 5px 10px rgba(136, 136, 136, 0.2);
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgb(0, 52, 163);
+  cursor: pointer;
 }
 
 .nav-bar {
@@ -75,4 +93,13 @@ h4 {
   margin: 0 60px;
   font-size: 1.3rem;
   font-weight: bold;
+}
+
+nav .active {
+  text-decoration: underline;
+  color: rgb(194, 214, 251);
+}
+
+a:hover {
+  color: rgb(194, 214, 251);
 }
