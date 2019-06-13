@@ -7,6 +7,7 @@ import FriendForm from './components/FriendForm';
 function App() {
   const [friends, setFriends] = useState([]);
   const [friendForm, setFriendForm] = useState({name: '', age: '', email: ''});
+  const [update, setUpdate] = useState({state: false, id: 0});
   const baseUrl = 'http://localhost:5000/friends';
 
   const friendInputChange = target => {
@@ -15,13 +16,27 @@ function App() {
     setFriendForm({...newForm });
   }
 
-  const CreateFriend = async e => {
-    e.preventDefault();
+  const CreateFriend = async () => {
     const { name, email, age } = friendForm;
     const body = {name, age: parseInt(age), email}
     const req = await Axios.post(baseUrl, body)
     setFriends(req.data)
     setFriendForm({name: '', age: '', email: ''});
+  }
+  const updateFriend = async id => {
+    const { name, email, age } = friendForm;
+    const body = {name, age: parseInt(age), email}
+    const req = await Axios.put(`${baseUrl}/${id}`, body)
+    setFriends(req.data)
+    setFriendForm({name: '', age: '', email: ''});
+    setUpdate({state: false, id: 0})
+  }
+
+  const editFriend = id => {
+    const edFriend = friends.filter(friend => friend.id === id)
+    const { name, age, email } = edFriend[0];
+    setFriendForm({name, age, email})
+    setUpdate({state: true, id});
   }
 
   const deleteFriend = async id => {
@@ -45,11 +60,19 @@ function App() {
 
   return (
     <div className="App">
-      <FriendList friends={friends} deleteFriend={deleteFriend}/>
+      <FriendList 
+      friends={friends}
+      deleteFriend={deleteFriend}
+      editFriend={editFriend}
+      />
       <FriendForm 
       friendInputChange={friendInputChange}
       createFriend={CreateFriend}
-      friendForm={friendForm} />
+      friendForm={friendForm}
+      updateFriend={updateFriend}
+      updateState={update.state}
+      updateId={update.id}
+      />
     </div>
   );
 }
