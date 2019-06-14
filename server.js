@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
+const pullRequest = console.log("PR enabled");
 let nextId = 7;
 
 function getNewId() {
