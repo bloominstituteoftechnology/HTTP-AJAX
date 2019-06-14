@@ -8,37 +8,39 @@ export default class Friends extends React.Component {
       friends: [],
       newFriend: {
         name: "",
-        age: 0,
+        age: "",
         email: ""
       }
     };
   }
 
   handleAgeChange = e => {
-    this.setState({ newFriend: { age: e.target.value } });
+    this.setState({ newFriend: { ...this.state.newFriend, age: e.target.value } });
   };
 
 
-    handleEmailChange = e => {
-    this.setState({ newFriend: { email: e.target.value } });
+  handleEmailChange = e => {
+    this.setState({ newFriend: { ...this.state.newFriend, email: e.target.value } });
   };
 
   handleNameChange = e => {
-    this.setState({ newFriend: { name: e.target.value } });
+    this.setState({ newFriend: { ...this.state.newFriend,  name: e.target.value } });
   };
 
 
 
   handleSubmit = e => {
     e.preventDefault();
-
+    const friend=this.state.newFriend;
     const addFriend = {
       newFriend: this.state.newFriend
     };
-
-    axios
-      .post("http://localhost:5000/friends", addFriend.newFriend)
-      .then(result => console.log(result.data));
+    if (friend.age&&friend.name&&friend.email){
+      axios
+        .post("http://localhost:5000/friends", addFriend.newFriend)
+        .then(result => console.log(result.data));
+      this.setState({newFriend: {age: "", name: "", email: ""}})
+    }else{ alert("bro, fill out the entire form")};
   };
   
   handleDelete = e => {
@@ -69,15 +71,15 @@ export default class Friends extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             New friend's name:<br />
-            <input type="text" name="name" onChange={this.handleNameChange} />
+            <input value={this.state.newFriend.name} type="text" name="name" onChange={this.handleNameChange} />
           </label><br /> 
           <label>
             Age:<br />
-            <input type="text" name="age" onChange={this.handleAgeChange} />
+            <input value={this.state.newFriend.age} type="text" name="age" onChange={this.handleAgeChange} />
           </label><br />
           <label>
             Email:<br />
-            <input type="text" name="email" onChange={this.handleEmailChange} />
+            <input value={this.state.newFriend.email} type="text" name="email" onChange={this.handleEmailChange} />
           </label><br />
           <button type="submit">Submit</button>
         </form>
