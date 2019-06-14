@@ -43,8 +43,9 @@ export default class Friends extends React.Component {
     }else{ alert("bro, fill out the entire form")};
   };
   
-  handleDelete = e => {
-    
+  handleDelete = (id,e) => {
+    axios.delete(`http://localhost:5000/friends/${id}`).then(res=>this.setState({friends: res.data}));
+    //this.setState({friend: })
   }
 
   componentDidMount() {
@@ -65,7 +66,7 @@ export default class Friends extends React.Component {
     return (
       <div>
         {this.state.friends.map(friend => (
-          <div>{friend.name + ", " + friend.age}<br/>{friend.email}<br/><button type="button">Delete</button><button type="button">Change</button></div>
+          <div>{friend.name + ", " + friend.age}<br/>{friend.email}<br/><button type="button" onClick={(e)=>this.handleDelete(friend.id,e)}>Delete</button><button type="button">Change</button></div>
         ))}
         <div><br />
         <form onSubmit={this.handleSubmit}>
