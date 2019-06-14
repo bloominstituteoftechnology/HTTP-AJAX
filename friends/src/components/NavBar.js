@@ -5,10 +5,7 @@ const NavBar = props => {
   return (
     <div className="nav-bar">
       <nav>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        <NavLink to="/friends">Friends List</NavLink>
+        <NavLink to="/">Friends List</NavLink>
         <NavLink to="/add-friend">Add A Friend</NavLink>
       </nav>
     </div>

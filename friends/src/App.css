@@ -115,7 +115,7 @@ nav .active {
   color: rgb(194, 214, 251);
 }
 
-a:hover {
+nav a:hover {
   color: rgb(194, 214, 251);
 }
 
@@ -131,11 +131,15 @@ a:hover {
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: flex-end;
-  height: 10%;
+  height: 40px;
 }
 
 .delete {
   color: rgb(197, 11, 11);
+}
+
+.delete i:hover {
+  color: red;
 }
 
 .friend-icon-top {
@@ -145,4 +149,13 @@ a:hover {
 .edit-delete-button-holder i {
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+.edit a:hover {
+  color: #247fe7;
+}
+
+.edit a {
+  text-decoration: none;
+  color: black;
 }

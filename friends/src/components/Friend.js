@@ -1,22 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Friend = props => {
   console.log(props);
+
   return (
     <div className="friend-card">
       <div className="friend-icon">
         <div className="friend-icon-top">
-          <i class="fas fa-user fa-xs" />
+          <i className="fas fa-user fa-xs" />
         </div>
 
         <div className="edit-delete-button-holder">
           <div className="edit">
-            <i class="fas fa-edit" />
+            <Link to="/update-friend">
+              <i
+                onClick={e => props.setUpdateForm(e, props.friends)}
+                className="fas fa-edit"
+              />
+            </Link>
           </div>
           <div className="delete">
             <i
               onClick={() => props.deleteFriend(props.friends.id)}
-              class="fas fa-trash-alt"
+              className="fas fa-trash-alt"
             />
           </div>
         </div>

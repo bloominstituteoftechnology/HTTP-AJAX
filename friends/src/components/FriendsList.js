@@ -8,6 +8,9 @@ const FriendsList = props => {
       {props.friends.map(friend => {
         return (
           <Friend
+            {...props}
+            setUpdateForm={props.setUpdateForm}
+            updateFriend={props.updateFriend}
             deleteFriend={props.deleteFriend}
             key={friend.id}
             friends={friend}

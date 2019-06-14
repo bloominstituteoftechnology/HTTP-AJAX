@@ -1,18 +1,14 @@
 import React from "react";
 
-class FriendForm extends React.Component {
+class UpdateFriendForm extends React.Component {
   state = {
-    friend: {
-      id: Date.now(),
-      name: "",
-      age: "",
-      email: ""
-    }
+    friend: this.props.activeFriend
   };
 
-  addFriend = e => {
+  updateFriend = e => {
     e.preventDefault();
-    this.props.addFriend(this.state.friend);
+
+    this.props.updateFriend(this.state.friend);
     this.setState({
       friend: {
         name: "",
@@ -23,19 +19,21 @@ class FriendForm extends React.Component {
   };
 
   handleChange = e => {
-    this.setState({
+    e.persist();
+    this.setState(prevState => ({
       friend: {
-        ...this.state.friend,
+        ...prevState.friend,
         [e.target.name]: e.target.value
       }
-    });
+    }));
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="friend-form">
-        <h2>Add A New Friend</h2>
-        <form onSubmit={this.addFriend}>
+        <h2>Update A Friend</h2>
+        <form onSubmit={this.updateFriend}>
           <input
             placeholder="Friend's Name"
             name="name"
@@ -43,6 +41,7 @@ class FriendForm extends React.Component {
             onChange={this.handleChange}
             type="text"
           />
+
           <input
             placeholder="Age"
             name="age"
@@ -64,4 +63,4 @@ class FriendForm extends React.Component {
   }
 }
 
-export default FriendForm;
+export default UpdateFriendForm;
