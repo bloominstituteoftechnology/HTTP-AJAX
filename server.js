@@ -54,7 +54,10 @@ app.use(bodyParser.json());
 app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
-
+app.get('/friends/:id', (req, res) => {
+  res.json(friends.filter(x => x.id == req.params.id)[0]);
+  console.log(req.params);
+})
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
