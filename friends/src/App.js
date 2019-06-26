@@ -3,11 +3,19 @@ import './App.css';
 import FriendList from './components/FriendList';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import FriendForm from './components/FriendForm';
 
 class App extends Component {
   state = {
-    friends: []
+    friends: [],
+    friend: {
+      id: Date.now(),
+      name: "",
+      age: "",
+      email: ""
+    }
   }
+  
 
 
   componentDidMount() {
@@ -17,6 +25,18 @@ class App extends Component {
       .catch(err => console.log('Error:', err));
   }
 
+  changeHandler = event => {
+    this.setState( (event.target.placeholder === "name" ) ? { friend: { name: event.target.value } } : null )
+  }
+
+  addFriend = event => {
+    event.preventDefault();
+    let newfriend =  this.state.friend;
+    console.log(newfriend);
+    this.setState( { friends: [...this.state.friends, newfriend], friend: "" } )
+  }
+
+
   render() {
     return (
       <div>
@@ -24,8 +44,22 @@ class App extends Component {
           exact 
           path="/" 
           render={ (props) =>
-          <FriendList {...props} data={this.state.friends} /> }
+            <FriendList 
+              {...props} 
+              data={this.state.friends} 
+            /> }
         />
+        <Route 
+          path="/"
+          render={ (props) =>
+            <FriendForm 
+              {...props} 
+              data={this.state.friends} 
+              friend={this.state.friend}
+              changeHandler={this.changeHandler}
+              addFriend={this.addFriend}
+            /> }
+         />
       </div>
     );
   }
