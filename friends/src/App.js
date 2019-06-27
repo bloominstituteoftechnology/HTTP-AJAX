@@ -34,7 +34,14 @@ class App extends Component {
     event.preventDefault();
     let newfriend =  this.state.friend;
     console.log(newfriend);
-    this.setState( { friends: [...this.state.friends, newfriend], friend: "" } )
+    this.setState( { 
+      friends: [...this.state.friends, newfriend], 
+      friend: {
+        id: Date.now(),
+        name: "",
+        age: "",
+        email: "" } 
+      })
   }
 
 
@@ -51,7 +58,7 @@ class App extends Component {
             /> }
         />
         <Route 
-          path="/"
+          path="/addfriend"
           render={ (props) =>
             <FriendForm 
               {...props} 
