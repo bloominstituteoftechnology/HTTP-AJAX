@@ -26,7 +26,8 @@ class App extends Component {
   }
 
   changeHandler = event => {
-    this.setState( (event.target.placeholder === "name" ) ? { friend: { name: event.target.value } } : null )
+    event.preventDefault();
+    this.setState( { friend: { ...this.state.friend, [event.target.name]: event.target.value } } )
   }
 
   addFriend = event => {
