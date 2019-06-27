@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendList from './components/FriendList';
-import { Route } from 'react-router-dom';
+import { Route, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import FriendForm from './components/FriendForm';
 
@@ -34,6 +34,17 @@ class App extends Component {
     event.preventDefault();
     let newfriend =  this.state.friend;
     console.log(newfriend);
+
+    axios.post("http://localhost:5000/friends", newfriend)
+      .then((response)) => {
+
+        this.setState( { friends: response.data } )
+      }
+      .catch((err) => {
+        console.log("Error:", err);
+      })
+    
+
     this.setState( { 
       friends: [...this.state.friends, newfriend], 
       friend: {
@@ -58,6 +69,7 @@ class App extends Component {
             /> }
         />
         <Route 
+          exact
           path="/addfriend"
           render={ (props) =>
             <FriendForm 
@@ -68,6 +80,7 @@ class App extends Component {
               addFriend={this.addFriend}
             /> }
          />
+         <Link className="mainadd" to="/addfriend">Add a friend!</Link>
       </div>
     );
   }
