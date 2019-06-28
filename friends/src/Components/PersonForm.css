@@ -1,0 +1,17 @@
+.newPerson{
+    background-color:burlywood;
+    padding:4%;
+
+}
+.formLabel{
+    color:white;
+
+}
+.submit{
+    margin:2%;
+    font-size:35px;
+    font-family:Arial, Helvetica, sans-serif;
+    box-shadow: 3px 3px 3px 3px black;
+    background-color:gainsboro;
+    border-radius:5px;
+}

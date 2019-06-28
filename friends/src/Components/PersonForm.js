@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form,FormGroup,Label,Input,Button} from 'reactstrap';
-//import './PersonForm.css';
+import './PersonForm.css';
 
 class FriendForm extends React.Component{
     render(){
