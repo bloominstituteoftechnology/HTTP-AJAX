@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import FriendList from './components/FriendList';
-import { Route, Link, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 import FriendForm from './components/FriendForm';
+import UpdateFriend from './components/UpdateFriend'
 
 class App extends Component {
   state = {
@@ -12,7 +13,8 @@ class App extends Component {
       id: Date.now(),
       name: "",
       age: "",
-      email: ""
+      email: "",
+      errorMessage: null
     }
   }
   
@@ -36,22 +38,21 @@ class App extends Component {
     console.log(newfriend);
 
     axios.post("http://localhost:5000/friends", newfriend)
-      .then((response)) => {
+      .then(response => {
 
-        this.setState( { friends: response.data } )
-      }
-      .catch((err) => {
-        console.log("Error:", err);
+        this.setState( { friends: response.data,
+          friend: {
+            id: Date.now(),
+            name: "",
+            age: "",
+            email: "",
+            errorMessage: null
+          } 
+        })
       })
-    
 
-    this.setState( { 
-      friends: [...this.state.friends, newfriend], 
-      friend: {
-        id: Date.now(),
-        name: "",
-        age: "",
-        email: "" } 
+      .catch(err => {
+        console.log(err);
       })
   }
 
@@ -80,7 +81,17 @@ class App extends Component {
               addFriend={this.addFriend}
             /> }
          />
-         <Link className="mainadd" to="/addfriend">Add a friend!</Link>
+         <Route 
+          path="/updatefriend/:id"
+          render={ (props) =>
+            <UpdateFriend 
+              {...props} 
+              data={this.state.friends} 
+              friend={this.state.friend}
+              changeHandler={this.changeHandler}
+              addFriend={this.addFriend}
+            /> }
+         />
       </div>
     );
   }
