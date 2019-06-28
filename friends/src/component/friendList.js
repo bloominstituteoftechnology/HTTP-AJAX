@@ -5,30 +5,18 @@ import FriendCard from './friendCard';
 class FriendList extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            friends: []
-        }
     }
 
-    componentDidMount(){
-        axios.get('http://localhost:5000/friends')
-            .then(response => {
-                this.setState({
-                    friends: response.data
-                })
-            })
-            .catch(err => {
-                console.log("Error: ", err);
-            })
-        
-    }
+    
+
+    
 
     render(){
         return <div>
             <h3>FriendList</h3>
             {
-                this.state.friends.length > 0 ? this.state.friends.map( friend => (
-                    <FriendCard friend={friend} />
+                this.props.friends.length > 0 ? this.props.friends.map( friend => (
+                    <FriendCard friend={friend} key={friend.name} deleteItem={this.props.deleteItem} updateFriend={this.props.updateFriend} />
                 ))
                 : 
                 <h1>Loading</h1>
