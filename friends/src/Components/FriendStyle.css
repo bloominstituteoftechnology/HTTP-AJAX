@@ -1,0 +1,22 @@
+.whole-list{
+    background-color:grey;
+    width: 100%;
+}
+.friends{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    margin-top:15px;
+  
+    height: 55px;
+    font-size: 20px;
+    
+}
+.friends:hover{
+    background-color: rgba(169, 169, 169, 0.397);
+}
+.title{
+    
+    margin-left:40%;
+    font-size:25px;
+}
