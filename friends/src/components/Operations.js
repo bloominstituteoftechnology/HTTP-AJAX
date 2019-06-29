@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 function Operations() {
   return (
     <div className="operations-content">
-      <Link className="app-button" to="/displayPanel">
+      <Link className="app-button" to="/displayPanel/add">
         Add
       </Link>
-      <div className="app-button">Modify</div>
-      <div className="app-button">Remove</div>
+      <Link className="app-button" to="/displayPanel/mod">
+        Modify
+      </Link>
+      <Link className="app-button" to="/displayPanel/del">
+        Remove
+      </Link>
     </div>
   );
 }

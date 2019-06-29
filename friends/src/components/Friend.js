@@ -26,6 +26,7 @@ class Friend extends React.Component {
         }))
       )
       .catch(error => console.error(error));
+      console.log("selected friend is " + this.state.selectedFriend);
   };
 
   componentWillReceiveProps(newProps) {
@@ -38,6 +39,7 @@ class Friend extends React.Component {
     if (!this.state.selectedFriend) {
       return <div>Loading friend information...</div>;
     }
+    console.log("params id is " + this.props.match.params.id);
     const { name, age, email } = this.state.selectedFriend;
     return (
       <div className="friend-display-card">

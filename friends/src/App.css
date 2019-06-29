@@ -7,18 +7,18 @@
   display: flex;
   width: 95%;
   height: 10%;
-  border: 2px solid gray;
   margin-left: 2%;
   justify-content: space-evenly;
   align-items: center;
+  border-bottom: 2px solid gray;
 }
 
 .main-content {
   display: flex;
   width: 95%;
   margin-left: 2%;
-  border: 1px solid red;
-  margin-top: 1%;
+  margin-top: 2%;
+  flex-wrap: wrap;
 }
 
 .friend-card {
@@ -61,6 +61,7 @@ li {
   color: white;
   margin-top: 5%;
   cursor: pointer;
+  text-decoration: none;
 }
 .operations-content {
   width: 30%;
@@ -68,12 +69,29 @@ li {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border: 1px solid green;
   margin-left: 35%;
 }
 .display-panel {
   width: 40%;
-  border: 1px solid blue;
   margin-left: 33%;
   margin-top: 2%;
+}
+
+.app-input {
+  height: 25px;
+  width: 200px;
+}
+.input-container {
+  display: flex;
+  margin: 5% 0% 2% 2%;
+  justify-content: left;
+  align-items: center;
+}
+
+.label-text {
+  width: 15%;
+}
+
+.warning-msg {
+  color: red;
 }
