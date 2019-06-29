@@ -60,9 +60,10 @@ li {
   height: 20px;
   color: white;
   margin-top: 5%;
+  cursor: pointer;
 }
 .operations-content {
-  width: 25%;
+  width: 30%;
   height: 5%;
   display: flex;
   justify-content: space-evenly;
