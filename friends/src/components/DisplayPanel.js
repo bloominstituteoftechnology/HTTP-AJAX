@@ -15,6 +15,9 @@ class DisplayPanel extends React.Component {
   componentWillMount() {
     console.log("component will receive new props");
     if (this.props.selectedId !== undefined && this.props.selectedId !== null) {
+      console.log(
+        "----------------***----------------->>" + this.props.selectedId.id
+      );
       this.setState({
         newFriend: {
           id: this.props.selectedId.id,
@@ -29,14 +32,15 @@ class DisplayPanel extends React.Component {
     console.log("---------what is clicked?" + this.props.match.params.type);
     console.log("------selected Friend " + this.state.newFriend);
     let operation = this.props.match.params.type;
+    let history = this.props.history;
     if (operation === "add") {
       console.log("--------------in Add");
-      this.props.addItem(e, this.state.newFriend);
+      this.props.addItem(e, this.state.newFriend, history);
     } else if (operation === "mod") {
       console.log("*************** in modify");
-      this.props.updateItem(e, this.state.newFriend);
+      this.props.updateItem(e, this.state.newFriend, history);
     } else if (operation === "del") {
-      this.props.deleteItem(e, this.state.newFriend.id);
+      this.props.deleteItem(e, this.state.newFriend.id, history);
     }
     this.setState({
       newFriend: {
@@ -50,20 +54,23 @@ class DisplayPanel extends React.Component {
 
   changeHandler = ev => {
     ev.persist();
-    console.log(ev.target.name);
-    console.log(ev.target.value);
-    console.log("!!!!!!!!!!!!!!!!!!!!" + this.props.length);
+    let id = 0;
+    if (this.props.match.params.type === "add") {
+      id = this.props.length;
+    } else {
+      id = this.props.selectedId.id;
+    }
     this.setState(prevState => ({
       newFriend: {
         ...prevState.newFriend,
-        id: this.props.length,
+        id: id,
         [ev.target.name]: ev.target.value
       }
     }));
   };
 
   render() {
-    console.log("---------in render " + this.state.newFriend.name);
+    console.log("---------in render " + this.state.newFriend.id);
     let warningMsg = "";
     if (this.props.match.params.type === "del") {
       warningMsg = "This friend will be removed on clicking submit.";
