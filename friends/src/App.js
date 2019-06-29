@@ -1,18 +1,25 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
+import FriendsList from "./components/FriendsList";
+import Friend from "./components/Friend";
+import Header from "./components/Header";
+import Operations from "./components/Operations";
+import { Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {
     friends: []
   };
-  componentDidMount() {
+  componentWillMount() {
     console.log("inside CDM");
     axios
       .get("http://localhost:5000/friends")
       .then(res => {
         console.log(res.data);
-        this.setState.friends = res.data;
+        this.setState({
+          friends: res.data
+        });
       })
       .catch(err => {
         console.log(err);
@@ -23,7 +30,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
+                <Header />
+        <Route
+          path="/"
+          render={props => (
+            <FriendsList {...props} friends={this.state.friends} />
+          )}
+        />
+        <Operations />
+        <Route exact path="/friends/:id" component={Friend} />
       </div>
     );
   }
