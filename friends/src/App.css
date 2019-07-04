@@ -1,0 +1,93 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.friend-card {
+  display : inline-block;
+  background-color: rgb(182, 228, 218);
+  border: 0;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.24);
+  padding: 1rem;
+ /* cursor: pointer; */
+  position: relative;
+  margin: 1.5rem;
+  width : 400px;
+  text-align: left;
+}
+
+.form-div{
+    background: #13232f;
+    padding : 40px;
+    max-width:500px;
+    margin : 30px auto;
+    border-radius: 6px;
+    box-shadow:0 4px 10px 4px #13232f;
+    font-family: 'Titillium Web', sans-serif;
+    color : white;
+}
+
+input {
+   margin : 10px;
+   padding : 8px;
+   width : 300px;
+   font-size : 16px;
+}
+
+button {
+  border: 0;      
+    padding : 5px;
+    font-size:1rem;
+    letter-spacing : .1em;
+    background : #1ab188;
+    color : white;
+    transition:all.5s ease;
+    display : block;
+    width : 200px;
+    margin-top: 40px;
+    margin-left: 160px;
+    border-radius: 5px;
+}
+
+.home-div {  
+  color : #1ab188;
+  font-size : 50px; 
+}
+
+.wrapper-div{
+  display: inline-flex;
+}
+
+.close-div {
+  margin-left : 380px;
+  cursor: pointer;
+}
