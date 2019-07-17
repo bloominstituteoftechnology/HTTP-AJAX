@@ -1,0 +1,21 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.individual-friend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 700px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+h3 {
+  margin: 0 5px;
+}
