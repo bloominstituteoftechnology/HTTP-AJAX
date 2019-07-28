@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.App h1,
+h2 {
+  background: #4867b0;
+  color: white;
+  width: 40%;
+  margin: 20px auto;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+.App h2 {
+  width: 90%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.App .subheader {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.App .subheader h2 {
+  width: 40%;
+  font-size: 18px;
+  padding: 20px 0;
+}
+
+.App .subheader button {
+  width: 100%;
+  margin: 15px auto;
+  background: #4867b0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px 5px;
+  margin: 20px 0;
+}
+
+.app-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.friend-container-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.friend-container-wrapper .friend-container {
+  width: 45%;
+  background: #f6f8fa;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.delete-button {
+  text-align: left;
+  padding: 5px 0 0 5px;
+  color: red;
+  cursor: pointer;
+}
+.new-friend-form {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  background: #f6f8fa;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.new-friend-form h2 {
+  margin: 20px auto;
+}
+
+.new-friend-form form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.new-friend-form form * {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.new-friend-form button {
+  width: 45%;
+  margin: 15px auto;
+  background: #4867b0;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 5px;
+}
