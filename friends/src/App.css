@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+  background: #222;
+
+}
+
+.friends-list {
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.App-header {
+  background-color: #222;
+  
+  color: white;
+}
+
+
+.friend {
+  display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  background: lightblue;
+  width: 30%;
+  margin: 10px;
+  padding: 0 5%;
+  border-radius: 50%; 
+}
