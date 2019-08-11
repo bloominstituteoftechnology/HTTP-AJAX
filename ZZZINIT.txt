@@ -1,0 +1,12 @@
+#### Planning
+
+# Too much time was taken trying to get "Bootstrap" to work and the day was partially squandered.
+    In response, This is the game plan to fix the functionality of the site and bring it up to where it needs to be.
+
+# Insight
+    Using the Previous project Movies as a template I am going to be doing the following.
+
+    #Create a Components Folder
+            #Create Friendslist.js
+            #Create Some sort of Form
+            
