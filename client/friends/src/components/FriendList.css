@@ -1,0 +1,26 @@
+.friendsContainer {
+  
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.friendListGroup {
+  width: 50%;
+ 
+  
+  
+}
+
+.friends {
+ 
+  border: 3px solid goldenrod;
+  box-shadow: 5px 10px 8px #888888;
+  margin: 20px;
+  font-size: 1.8rem;
+  
+}
