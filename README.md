@@ -3,7 +3,7 @@
 Topics:
 
 * `axios` package
-* AJAX
+* AJAX 
 * Promises
 
 ## Instructions
