@@ -1,2 +1,7 @@
 /node_modules
 .DS_Store
+friends/README.md
+friends/yarn.lock
+friends/.gitignore
+.gitignore
+.gitignore
