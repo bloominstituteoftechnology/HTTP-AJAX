@@ -1,0 +1,30 @@
+.friend {
+
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 30px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 20px;
+
+  position: relative;
+
+  .close {
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+
+  }
+
+  button {
+
+    cursor: pointer;
+
+  }
+
+}
