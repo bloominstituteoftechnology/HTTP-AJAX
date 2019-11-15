@@ -1,0 +1,18 @@
+### MVP
+* 
+* [x] Part 1 through 5
+* [x] 6: Inside your React application, create a component to display the list of friends coming from the server.
+* [x] 7: Add a form to gather information about a new friend.
+* [x] 8: Add a button to save the new friend by making a POST request to the same endpoint listed above.
+* [x] 9: Each friend should have the 3 properties:
+
+### Stretch Goals
+
+* [x] Separate the list of friends and the new friend form into different components, and use the appropriate React Router to build routes for the proper aspects of your components to be revealed separately.
+
+* [x] Implement Update and Delete functionality.
+- for update pass the friend id as a URL parameter, including the information about the friend inside the body.
+- for delete pass the friend id as a URL parameter. 
+* [ ] Style the friends list, the input field, and make everything look nice
+ 
+* [ ] Expand the number of properties that you put on each friend object.
