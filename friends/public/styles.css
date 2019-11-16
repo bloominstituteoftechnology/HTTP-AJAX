@@ -1,0 +1,73 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: #455a64;
+  font-family: monospace;
+  background: url(https://images.pexels.com/photos/1183021/pexels-photo-1183021.jpeg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.brand-logo {
+  margin-left: 2rem;
+}
+
+.nav-link {
+  font-size: 1.6rem;
+  margin: 0 2rem;
+}
+
+h2 {
+  color: #cfd8dc;
+}
+
+h3 {
+  color: #cfd8dc;
+}
+
+.card {
+  padding: 2rem;
+  background-color: #cfd8dc;
+  opacity: 70%;
+  color: #455a64;
+}
+
+.card h3 {
+  color: #455a64;
+}
+
+.card-content {
+  font-size: 1.6rem;
+}
+
+/* label color */
+.input-field label {
+  color: #000;
+}
+/* label focus color */
+.input-field input[type="text"]:focus + label {
+  color: #000;
+}
+/* label underline focus color */
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type="text"].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type="text"].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
+}
