@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.cardWrapper {
+  border: 1px solid gray;
+  max-width: 250px;
+  margin: 2rem auto;
+  box-shadow: 0 10px 6px -6px #777;
+}
+.cardWrapper:hover {
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.buttonArea {
+  margin-bottom: 1.5rem;
+}
+.buttonArea button:first-child {
+  margin-right: 1rem;
+}
+
+.mainInput {
+  margin: 2rem 0;
+}
+.editInput {
+  margin: 1rem 0;
+}
+
+button, input {
+  font-size: 1rem;
+}
+button:hover, input:hover {
+  box-shadow: 0 10px 6px -6px #777;
+}
