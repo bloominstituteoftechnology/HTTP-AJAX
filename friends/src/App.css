@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: black
+}
+
+.App {
+  width: 900px;
+  margin: auto;
+  background: white;
+  text-align: center;
+}
+
+h3 {
+  padding-top: 15px;
+}
+
+h4 {
+  margin: 0;
+  margin-bottom: 10px;
+  position: relative;
+  bottom: 20px;
+}
+
+h6 {
+  margin: 5px;
+  position: relative;
+  bottom: 20px;
+}
+
+.friends {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+
+}
+
+.friend {
+  border: solid black 1px;
+  padding: 20px;
+  width: 50%;
+  height: 100px;
+}
+
+.add-friend {
+  height: 45px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.add-friend input {
+  height: 100%;
+  font-size: 16px;
+  padding-left: 5px;
+  border: solid black 1px;
+  margin-right: 10px;
+}
+
+.add-friend button {
+  width: 100px;
+  background-color: white;
+  border: solid black 1px;
+  height: 100%;
+  position: relative;
+  bottom: 1px;
+}
+
+.add-friend button:hover {
+  background: black;
+  color: white;
+}
+
+.buttons {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 195px;
+  bottom: 15px;
+}
+
+.buttons img {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
