@@ -1,0 +1,19 @@
+.App {
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 725px;
+}
+
+.friend-list {
+  width: 400px;
+  margin: 0 auto;
+  float: right;
+}
+
+.friend-input {
+  width: 350px;
+  margin: 0 auto;
+  float: left;
+  position: fixed;
+  margin-top: 1em;
+}
