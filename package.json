@@ -9,7 +9,9 @@
     "express": "^4.16.2",
     "nodemon": "^1.14.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint-plugin-react": "^7.10.0"
+  },
   "scripts": {
     "start": "nodemon server.js"
   },
