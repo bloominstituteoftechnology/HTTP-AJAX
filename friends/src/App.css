@@ -1,0 +1,60 @@
+html {
+  border: 20px solid #0a0d47;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  background: tan;
+}
+
+.App {
+  text-align: center;
+  padding-top: 50px;
+  width: 100%;
+}
+
+h3 {
+  text-align: center;
+}
+
+.friend-contianer {
+  border: 10px solid teal;
+  opacity: .7;
+  width: 350px;
+  margin: 20px 10px;
+}
+
+.friendList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+button {
+  height: 50px;
+  width: 150px;
+  font-size: 18px;
+  margin: 10px;
+  color: firebrick;
+}
+
+.addFriend-button {
+  display: block;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.af-input {
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 150px;
+}
+
+.af-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
