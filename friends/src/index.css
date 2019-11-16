@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.main-container{
+	text-align: center;
+	/*border: 1px solid gray;*/
+	margin: 3% 10%;
+	
+}
+
+.friend-link{
+	text-decoration: none;
+	color: teal;
+}
+
+.friend-link:hover{
+	color: chocolate;
+}
+
+.form-div{
+	display: flex;
+}
+
+
+.input-field{
+	height: 30px;
+	width: 300px;
+	border: 1px solid chocolate;
+	border-radius: 2px;
+	margin-top: 2%;
+	text-align: center;
+
+}
+
+.main-container{
+	color: teal;
+}
+
+p{
+	font-size: 1.6rem;
+}
+
+.btn-style{
+	height: 30px;
+        width: 100px;
+	color: white;
+	background-color: teal;
+        border: 1px solid teal;
+        border-radius: 2px;
+        margin-top: 2%;
+	margin-bottom: 3%;
+}
+
+.btn-style:hover{
+	background-color: white;
+	color: black;
+}
+
+.delete-btn{
+	width: 70px;
+	height: 30px;
+	margin-bottom: 5%;
+	color: white;
+	border-radius: 20px;
+	margin-left: 10px;
+	background-color: chocolate;
+        border: 1px solid chocolate;
+}
+
+.delete-btn:hover{
+        background-color: white;
+        color: black;
+}
+
+.list-container{	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	 border: 1px solid gray;
+	 width: 80%;
+	 padding: 5%;
+	 margin: 0 auto;
+	}
