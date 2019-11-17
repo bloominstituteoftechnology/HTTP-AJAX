@@ -1,0 +1,71 @@
+{"friends":[{
+    "id": 1,
+    "first_name": "Phedra",
+    "last_name": "Kuhn",
+    "email": "pkuhn0@prlog.org",
+    "gender": "Female",
+    "ip_address": "74.222.113.93"
+}, {
+    "id": 2,
+    "first_name": "Corie",
+    "last_name": "Soppeth",
+    "email": "csoppeth1@google.ca",
+    "gender": "Female",
+    "ip_address": "4.129.147.232"
+}, {
+    "id": 3,
+    "first_name": "Allayne",
+    "last_name": "Klosser",
+    "email": "aklosser2@opensource.org",
+    "gender": "Male",
+    "ip_address": "206.99.72.9"
+}, {
+    "id": 4,
+    "first_name": "Emlyn",
+    "last_name": "Birchwood",
+    "email": "ebirchwood3@reuters.com",
+    "gender": "Female",
+    "ip_address": "162.216.16.23"
+}, {
+    "id": 5,
+    "first_name": "Deva",
+    "last_name": "Aikenhead",
+    "email": "daikenhead4@51.la",
+    "gender": "Female",
+    "ip_address": "48.203.36.123"
+}, {
+    "id": 6,
+    "first_name": "Onofredo",
+    "last_name": "Spacy",
+    "email": "ospacy5@lulu.com",
+    "gender": "Male",
+    "ip_address": "109.208.53.190"
+}, {
+    "id": 7,
+    "first_name": "Erick",
+    "last_name": "Suddards",
+    "email": "esuddards6@studiopress.com",
+    "gender": "Male",
+    "ip_address": "147.16.18.189"
+}, {
+    "id": 8,
+    "first_name": "Tanya",
+    "last_name": "Lawn",
+    "email": "tlawn7@a8.net",
+    "gender": "Female",
+    "ip_address": "95.144.197.157"
+}, {
+    "id": 9,
+    "first_name": "Martha",
+    "last_name": "Seeney",
+    "email": "mseeney8@twitpic.com",
+    "gender": "Female",
+    "ip_address": "125.242.30.108"
+}, {
+    "id": 10,
+    "first_name": "Tiebold",
+    "last_name": "Derobert",
+    "email": "tderobert9@indiatimes.com",
+    "gender": "Male",
+    "ip_address": "20.104.46.185"
+}]}
