@@ -1,17 +1,24 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.11.3"
+  },
   "description": "",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "concurrently": "^4.0.1",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "nodemon": "^1.14.11"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon server.js"
+    "build": "yarn --cwd ./friends build",
+    "postinstall": "yarn --cwd ./friends install && yarn --cwd ./friends build",
+    "start": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"yarn --cwd ./friends start\""
   },
   "author": "Lambda School",
   "license": "ISC"
