@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.friend-wrapper {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.friend-info {
+  padding: 10px;
+}
+
+.add-friend-form {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  padding: 20px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.add-friend-form input {
+  font-size: 18px;
+}
+
+.add-friend-submit {
+  padding: 5px;
+  border: 1px solid gray;
+  width: 100px;
+  text-align: center;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: lightgray;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-friend-submit.delete-warn {
+  background: darkred;
+  color: white;
+}
+.add-friend-submit-container {
+  display: flex;
+  justify-content: space-between;
+}
