@@ -1,7 +1,7 @@
 # HTTP/AJAX
-
+About to start
 Topics:
-
+ABOUT TO DIVE IN AND REFACTOR/OPTIMIZE/STRETCH
 * `axios` package
 * AJAX
 * Promises
