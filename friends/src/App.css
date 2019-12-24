@@ -1,0 +1,340 @@
+body {
+  background-color: #222222;
+}
+
+.app {
+  text-align: center;
+  font-family: 'Noto Sans', sans-serif;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 0 auto;
+}
+
+.app-header {
+  font-family: 'Fjalla One', sans-serif;
+  color: #dddddd;
+
+  width: 70%;
+  font-size: 40px;
+}
+
+.app-header h1{
+  margin: 20px;
+  text-transform: uppercase;
+}
+
+.app-header p {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.friends {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.friends p {
+  width: 100%;
+}
+
+.friend-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
+  margin: 10px;
+  width: 270px;
+  padding: 15px 10px;
+}
+
+
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 15px;
+  height: 60px;
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.friend-card p {
+  margin: 0;
+  padding: 5px;
+}
+
+.friend-card .delete-button {
+  align-self: flex-end;
+  color: white;
+  cursor: pointer;
+}
+
+.friend-card .edit-button {
+  align-self: flex-end;
+  color: white;
+  cursor: pointer;
+}
+
+form {
+  max-width: 205px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 3px;
+  color: #dddddd;
+}
+
+form label {
+  margin: 5px;
+  width: 100%;
+}
+
+form input{
+  margin: 0 15px;
+  padding: 2px;
+  border: none;
+  border-bottom: 1px solid #424B54;
+  color: #94999f;
+  background: transparent;
+  text-align: center;
+}
+
+form input:focus {
+  outline: none;
+}
+
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+select {
+    margin: 15px 15px 0;
+    padding: 2px;
+    border: none;
+    border: 1px solid #676e76;
+    color: #222222;
+    background: transparent;
+    background: #676e76;
+    text-align: center;
+    border-radius: 3px;
+}
+
+select:focus {
+  outline: 1px solid #676e76;
+}
+
+
+form button {
+  align-self: center;
+  width: 90%;
+  border-radius: 5px;
+  /* border: 1px solid #424B54;
+  background: #676e76; */
+  border: none;
+  background: #118892;
+  color: white;
+  padding: 7px 5px;
+  margin: 30px;
+  cursor: pointer;
+}
+
+form button:focus {
+  outline: 1px solid #94999f;
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+
+}
+
+.add-friend p{
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #dddddd;
+  font-family: 'Fjalla One', sans-serif;
+  text-transform: uppercase;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-around;
+  width: 80%;
+  margin-top: -30px;
+}
+
+.undo-button {
+  border-radius: 5px;
+  background: #118892;
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  width: 160px;
+}
+
+.undo-button i{
+  margin: 0 10px 0 0;
+}
+
+.add-button {
+  border-radius: 5px;
+  /* border: 1px solid #424B54;
+  background: #676e76; */
+  background: #118892;
+  /* background: #1b81e5; */
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  width: 160px;
+}
+
+.add-button i{
+  margin: 0 10px 0 0;
+}
+
+.burn-it {
+
+  border-radius: 5px;
+  /* border: 1px solid #424B54;
+  background: #676e76; */
+  background: #B11C1E;
+  /* background: #C80A01; */
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.burn-it i{
+  margin: 0 10px 0 0;
+}
+
+.back-button {
+  align-self: flex-start;
+  /* border-radius: 5px; */
+  /* border: 1px solid #424B54; */
+  /* background: #676e76; */
+  color: #dddddd;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.back-button i{
+  margin: 0 10px 0 0;
+}
+
+.friend-container .six {
+  background: #971463;
+  background: #C71585;
+}
+
+.friend-container .five {
+
+    background: #118892;
+    /* background: 	#1E90FF; */
+    /* background: 	#00CED1; */
+}
+
+.friend-container .four {
+  background: #B11C1E;
+  background: #C80A01;
+}
+
+.friend-container .three {
+  background: #086F48;
+  background: 	#228B22;
+}
+
+.friend-container .two {
+  background: #B74C1C;
+  background: #FF4500;
+
+}
+.friend-container .one {
+  background: #552C6C;
+  background: #800080;
+
+}
+/* .friend-container .six {
+
+  background: #12C9FD;
+}
+
+.friend-container .five {
+  background: #703798;
+}
+
+.friend-container .four {
+  background: #1282CE;
+}
+
+.friend-container .three {
+background: #03E06F;
+
+}
+,
+.friend-container .two {
+  background: #D55500;
+}
+.friend-container .one {
+  background: #C80A01;
+} */
+
+/* .friend-card {
+  background: #2E373C;
+}
+
+.one .avatar {
+  background: #FA3443;
+}
+.two .avatar {
+  background: #FF8D37;
+}
+.three .avatar {
+  background: #703798;
+}
+.four .avatar {
+  background: yellow;
+}
+.five .avatar {
+  background: #06AEED;
+}
+.six .avatar {
+  background: #03E06F;
+} */
+
+.loading {
+  width: 90%;
+  margin: 30% auto;
+  color: white;
+  text-align: center;
+}
