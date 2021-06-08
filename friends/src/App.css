@@ -1,0 +1,138 @@
+.App {
+    text-align: center;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.friends-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2000px;
+    width: 60%;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.title {
+    display: inline-block;
+    width: 50%;
+    padding-top: 4px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgba(132, 203, 221, 0.521);
+    box-shadow: 3px 5px 10px 2px #888888;
+}
+
+.add-friend-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+}
+
+.update-friend-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border: 2px solid blue; */
+}
+
+.friend-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.friends-list {
+    width: 50%;
+}
+
+.delete {
+    
+    display: flex;
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid black;
+    width: 34px;
+    padding-left: 8px;
+    left: 90%;
+    top: -100px;
+}
+
+.friend-list {
+    width: 100%;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(216, 223, 231, 0.5);
+    box-shadow: 1px 1px 6px 1px #888888;
+    transition: transform 0.3s linear;
+    /* transform: rotate(-2deg); */
+}
+
+.friend-list:hover {
+    transform: scale(1.2) rotate(-5deg) translate(50px,30px);
+    background-color: rgb(216, 223, 231);
+}
+
+
+
+.friend-selected {
+    background-color: rgb(216, 223, 231);
+}
+
+h3 {
+    text-align: center;
+}
+
+.submit-button {
+    margin-top: 10px;
+    border-radius: 10px;
+    height: 28px;
+    font-weight: bold;
+}
+
+.add-input {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: rgba(132, 203, 221, 0.521);
+    box-shadow: 3px 5px 10px 2px #888888;
+}
+
+.add-text {
+    font-weight: bold;
+}
+
+.friend-header {
+    margin-left: 5%;
+}
+
+.update-form {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.both-friends-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
