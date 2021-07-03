@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.Card {
+  margin: 1%;
+}
+
+.friend {
+  margin-top: 25px;
+}
+
+.Form {
+  margin: 3% auto;
+}
+
+.Form--label {
+  float: left;
+}
+
+.Form--bottom {
+  margin: 25px auto;
+}
