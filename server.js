@@ -55,13 +55,18 @@ app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
 
+app.get('/friend/:id', (req, res) => {
+  const friend = friends.filter(friend => friend.id.toString() === req.params.id)[0];
+	res.status(200).json(friend);
+});
+
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
   res.status(201).json(friends);
 });
 
-app.put('/friends/:id', (req, res) => {
+app.put('/friend/:id', (req, res) => {
   const { id } = req.params;
   let friendIndex = friends.findIndex(friend => friend.id == id);
 
@@ -75,11 +80,13 @@ app.put('/friends/:id', (req, res) => {
   }
 });
 
-app.delete('/friends/:id', (req, res) => {
+app.delete('/friend/:id', (req, res) => {
 	friends = friends.filter(friend => friend.id != req.params.id);
 	res.status(200).json(friends);
 });
 
 app.listen(5000, () => {
-  console.log('server listening on port 5000');
+  console.log('Hi server listening on port 5000');
 });
+
+/* Wladimir Fraga */
