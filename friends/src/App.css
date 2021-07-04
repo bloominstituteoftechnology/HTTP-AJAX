@@ -1,0 +1,20 @@
+#root{
+  background: #eee;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  margin-right: 10px;
+}
+
+.App {
+  max-width: 880px;
+  height: 80%;
+  border-radius: 5px;
+  margin: 25px auto;
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+  background: white;
+  border: 1px solid black;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}

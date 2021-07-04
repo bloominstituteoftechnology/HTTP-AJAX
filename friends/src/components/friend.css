@@ -1,0 +1,114 @@
+ .friend-list {
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .friend-list .friend-display{
+   width: 100%;
+   height: 50px;
+   border: 1px solid black;
+ }
+
+ .friend-list .friend-display a{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-decoration: none;
+   color: black;
+ }
+
+ .friend-list .friend-display a:hover{
+   background: black;
+   color: white;
+ }
+
+ .friend-list a {
+   text-decoration: none;
+   color: black;
+   width: 80%;
+ }
+
+ .friend-list .add-friend-btn{
+   margin-top: 25px;
+   width: 100%;
+   height: 50px;
+   border: 1px solid black;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: white;
+   color: black;
+  }
+
+  .friend-list .add-friend-btn:hover{
+   background: black;
+   color: white;
+  }
+
+
+ form{
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-y: scroll;
+ }
+
+ form label{
+   margin: 15px 0;
+   font-size: 2rem;
+ }
+
+ form input{
+   width: 60%;
+   height: 50px;
+   border-radius: 5px;
+   font-size: 2rem;
+   text-align: center;
+ }
+
+ form button{
+   margin-top: 25px;
+   width: 60%;
+   height: 50px;
+   cursor: pointer;
+   background: white;
+   font-size: 2rem;
+ }
+
+ form button:hover{
+   border: 1px solid lightgreen;
+   background: lightgreen;
+ }
+
+ form button.btn-delete:hover{
+   background: red;
+   border: 1px solid red;
+ }
+
+ form a{
+   width: 60%;
+   text-decoration: none;
+   color: black;
+ }
+
+ form .btn-return{
+   margin-top: 25px;
+   width: 100%;
+   height: 50px;
+   border: 1px solid black;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: white;
+   color: black;
+ }
+
+ form .btn-return:hover{
+   background: black;
+   color: white;
+ }
