@@ -1,0 +1,46 @@
+.friend-card {
+    width: 46%;
+    margin: 2%;
+    padding: 10px;
+    background: rgba(112, 128, 144, 0.2);
+    border-radius: 4px;
+}
+
+.friend-card p {
+    margin: 5px 0;
+    padding: 0;
+}
+
+.friend-card h3 {
+    margin-top: 0;
+}
+
+.friend-card button {
+    padding: 5px;
+    border-radius: 4px;
+    background: rgba(112, 128, 144, 0.45);
+    color: white;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.friend-card button:hover {
+    cursor: pointer;
+    background: rgba(112, 128, 144, 0.25);
+}
+
+.friend-card button:active {
+    box-shadow: inset 2px 2px rgba(112, 128, 144, 0.45);
+}
+
+.friend-card .delete-button {
+    float: right;
+    background: none;
+    color: lightcoral;
+}
+
+.friend-card .delete-button:hover {
+    background: lightcoral;
+    color: white;
+}
