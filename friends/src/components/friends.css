@@ -1,0 +1,74 @@
+.container .custom-title {
+    background: #395A93;
+    color: white;
+    padding-top: 20px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container .custom-form {
+    background: #395A93;
+    padding: 20px 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.container .custom-form input{
+    border: 1px solid green;
+    margin: 0 15px;
+    height: 25px;
+    width: 170px;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+.container .custom-form button{
+    background: #395A93;
+    color: white;
+    border-radius: 5px;
+    font-weight: lighter;
+    letter-spacing: .5px;
+    margin: 0 15px;
+}
+
+.container .custom-form button:hover{
+    background: rgb(84, 133, 216);
+}
+
+.container .friend-grid {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    background: #E9EBEE;
+}
+
+.container .friend-grid li {
+    max-width: 800px;
+    border: 1px solid lightgray;
+    width: 100%;
+    margin: 15px auto 0;
+    border-radius: 5px;
+    background: white;
+}
+
+.container .friend-grid li:hover {
+    box-shadow: 1px 1px #888888;
+}
+
+.container .friend-grid li div{
+    text-align: start;
+    letter-spacing: .5px;
+    font-weight: lighter;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.container .friend-grid li div:hover{
+    font-size: 15px;
+}
+
