@@ -1,0 +1,122 @@
+html {
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
+  background-color: lightseagreen;
+  box-sizing: border-box;
+}
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;  
+}
+
+
+h1 {
+  font-size: 6.5rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.form {
+  margin: 0 auto;
+  display: flex;  
+  flex-flow: column wrap;
+  align-items: center;
+  width: 25%;
+  padding: 0 30%;
+}
+
+.form h3 {
+  font-size: 2.4rem;
+  text-decoration: underline;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.form input {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 15px;
+  width: 50%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+.cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 0 75px;  
+}
+
+.contact-card {
+  border: 1px solid greenyellow;
+  width: 40%;
+  height: 100px;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 10px;
+  margin: 20px;
+  background-image: url('https://images.pexels.com/photos/1250260/pexels-photo-1250260.jpeg?cs=srgb&dl=blurred-background-close-up-colors-1250260.jpg&fm=jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  border-radius: 5px;
+  opacity: .9;
+  transition: 1s background-image;
+  cursor: pointer;
+}
+
+.contact-card:hover {
+  background-image: url('https://images.pexels.com/photos/414586/pexels-photo-414586.jpeg?cs=srgb&dl=background-image-beautiful-blur-414586.jpg&fm=jpg');
+
+}
+
+.contact-card h2 {
+  font-size: 3rem;
+  margin: 0;
+  transition: 1s font-size;
+}
+
+
+.contact-card p {
+  margin: 5px;
+  font-size: 1.6rem;
+}
+
+.contact-card .delete {
+  color: white;
+  font-size: 2rem;
+  text-align: end;
+  padding-bottom: 20px;
+  margin-left: 10px;
+  transition: .5s font-size;
+  width: 60px;
+  height: 60px;
+}
+
+.contact-card .delete:hover {
+  color: white;
+  font-size: 5rem;
+}
+
+.contact-card .edit {
+  border: 1px solid black;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  font-size: 1.1rem;
+  width: 10%;
+  border-radius: 5px;
+  margin-left: 10%;
+  text-decoration: none;
+}
