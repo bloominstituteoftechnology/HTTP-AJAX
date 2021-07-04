@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.friend-list{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  border:1px solid black;
+}
+.friend-card{
+  border:1px solid black;
+  margin:5px; 
+  width:300px;
+}
