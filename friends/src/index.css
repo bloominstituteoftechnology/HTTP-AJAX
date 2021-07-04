@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: rgb(156, 189, 228);
+}
+.dataContainer-style{
+  
+  border: 2px solid brown;
+display: flex;
+margin: 0 auto;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+ height: 150px;
+ width: 500px;
+ margin-bottom:6px;
+  margin-top:6px;
+  background: white;
+  text-decoration: none;
+  outline: 0px;
+  color:black;
+}
+.dataContainerTwo-style{
+  
+  border: 2px solid brown;
+display: flex;
+margin: 0 auto;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+ height: 150px;
+ width: 500px;
+ margin-bottom:6px;
+  margin-top:6px;
+  background: white;
+}
+.name-style{
+  font-size: 50px;
+  color: rgb(214, 81, 19);
+display:flex;
+justify-content: center;
+
+}
+.age-style{
+  display:flex;
+justify-content: center;
+
+}
+.email-style{
+  display:flex;
+justify-content: center;
+text-decoration: underline;
+color:gray;
+font-weight:bold;
+padding-bottom:10px;
+}
+.container-style{
+  display: flex;
+  margin:10px;
+  justify-content: space-around;
+}
+.input-style{
+  margin-right: 6px;
+  
+}
+.inputTwo-style{
+  margin-right: 6px;
+  
+}
+.inputThree-style{
+  margin-right: 6px;
+  
+}
+.buttonFriends-style{
+ 
+  display:flex;
+  background:rgb(145, 240, 243);
+margin: 0 auto;
+justify-content: center;
+  width:150px;
+  height: 30px;
+  color:  rgb(214, 81, 19);
+  border: 2px solid brown;
+  border-radius: 20px;
+  font-size: 20px;
+  margin-right:5px;
+ 
+
+}
+.friendForm-style{
+  width: 500px;
+  margin:0 auto;
+  padding-bottom:30px;
+}
+.buttonContainer-style{
+  display: flex;
+  margin:0 auto;
+  width: 200px;
+  margin-top: 7px;
+}
