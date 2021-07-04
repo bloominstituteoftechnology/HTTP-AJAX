@@ -1,0 +1,89 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.delete-button{
+  font-weight: bold;
+  cursor: pointer;
+  justify-self: flex-start;
+}
+
+.friends-list{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 25px;
+  
+  flex-wrap: wrap;
+}
+.friends-list h1 {
+  cursor: pointer;
+}
+
+.friend-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+
+}
+header h1 {
+  padding: 0;
+ margin-bottom: 0;
+}
+header h3{
+  padding: unset;
+  margin: unset;
+}
+
+.here {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.here:hover{
+  color: rgb(146, 0, 0);
+}
+
+.active{
+  text-decoration: none;
+  color: rgb(146, 0, 0)
+}
+
+.friend-card{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 5px solid rgb(0, 210, 218);
+  border-radius: 20px;
+  box-shadow:  -2px 2px 6px -1px rgba(0,0,0,0.75);
+  height: 250px;
+  width: 195px;
+  z-index: 10;
+}
+
