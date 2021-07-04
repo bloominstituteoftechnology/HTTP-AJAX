@@ -1,0 +1,52 @@
+.friend-card {
+    width: 40%;
+    height: 200px;
+    border: 1px solid lightgray;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    box-shadow: 2px 3px 4px gray;
+    background: white;
+}
+
+.friend-title {
+    text-align: center;
+    font-size: 24px;
+    color: #4A2B2B;
+    text-shadow: .5px  .5px .5px;
+}
+
+.friend-info {
+    padding-left: 40px;
+    font-size: 16px;
+    line-height: 1.5;
+    width: 70%;
+}
+
+.friend-email {
+    color: blue;
+    text-decoration: underline;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-bottom: 60px;
+    margin-left: 35%;
+}
+
+input {
+    height: 24px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+button {
+    height: 24px;
+    font-size: 14px;
+    width: 50%;
+    border-radius: 5px;
+    margin-left: 25%;
+}
