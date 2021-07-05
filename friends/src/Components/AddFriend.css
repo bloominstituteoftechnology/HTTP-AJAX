@@ -1,0 +1,32 @@
+.AddFriend {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 50%;
+    max-width: 400px;
+    min-width: 300px;
+    margin: 20px auto;
+    padding: 20px 0;
+    background-color: #42C654;
+}
+
+.Field {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.Field__Title {
+    width: 15%;
+    text-align: left;
+}
+
+.Field__Input {
+    width: 75%;
+}
+
+.Field__Button {
+    margin: 10px auto;
+    width: 90%;
+}
