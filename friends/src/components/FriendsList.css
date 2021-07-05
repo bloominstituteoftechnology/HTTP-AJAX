@@ -1,0 +1,20 @@
+.card-container {
+    width: 300px;
+    height: 350px;
+    margin: 10px 10px;
+    display: inline-block;
+    align-items: flex-end;
+}
+
+.user-icon {
+    width: 35px;
+    height: 35px;
+}
+
+.link-icon {
+    color: lightgray;
+}
+
+.link-icon:hover {
+    cursor: pointer;
+}
