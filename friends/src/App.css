@@ -1,0 +1,15 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-self: center;
+  margin: 0% 20%;
+}
+.cards{
+  width: 80%;
+  margin: 5% 10%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+} 
