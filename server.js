@@ -51,6 +51,12 @@ let friends = [
 app.use(cors());
 app.use(bodyParser.json());
 
+
+
+//  '/friends is the route being requested' - a string
+// the rest is a callback
+
+
 app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
