@@ -1,10 +1,10 @@
 # HTTP/AJAX
 
-Topics:
+Topics: 
 
 * `axios` package
 * AJAX
-* Promises
+* Promise s
 
 ## Instructions
 
