@@ -1,0 +1,25 @@
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import Friend from './Friend.js';
+
+const AllTheRosses = styled.div`
+    width: 620px;
+    margin:0 47%;
+`;
+
+
+const FriendList = (props) =>{
+    
+    return (
+        <AllTheRosses>
+            {
+                props.friends.map((ross) => {
+                    return <Friend key={ross.id} ross={ross} handleDelete={props.handleDelete} handleEdit={props.handleEdit}/>
+                })
+            }
+        </AllTheRosses>
+    )
+        
+}
+
+export default FriendList;
