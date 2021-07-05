@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.friends li{
+  margin-bottom: 10px;
+
+}
+
+.friendsList{
+  display:flex;
+  flex-direction: column;
+  border: 2px solid navy;
+  width:100%;
+}
+
+.friendsList h1{
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.container{
+display:flex;
+flex-direction: column;
+align-items:center;
+
+}
+
+.friendsForm input{
+  border: 1px solid black;
+  margin-bottom: 10px;
+  height:20px;
+ 
+}
+
+.form{
+  display:flex;
+  flex-direction: column;
+  width: 400px;
+  
+}
