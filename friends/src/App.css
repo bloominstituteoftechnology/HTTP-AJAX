@@ -1,0 +1,131 @@
+.App {
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background-image: url('https://images.pexels.com/photos/862848/pexels-photo-862848.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 50%;
+}
+
+.friends a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friend {
+  border-top: 1px solid lightgrey;
+  margin: 5px 0;
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+  width: 60%;
+}
+
+.add-friend input {
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.add-friend button {
+  height: 30px;
+  width: 50%;
+  border: 1px solid grey;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+
+.add-friend button:hover {
+  background-color: black;
+  color: white;
+}
+
+.add {
+  width: 60%;
+}
+
+.add-button {
+  width: 100%;
+  border: 1px solid black;
+  height: 40px;
+  margin: 40px 0;
+  border-radius: 20px;
+}
+
+.add-button:hover {
+  color: white;
+  background-color: black;
+}
+
+.friend-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 15px;
+  border: 2px solid black;
+  background-color: white;
+}
+
+.friend-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.friend-page input {
+  height: 40px;
+  margin: 5px 0;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.friend-page button {
+  width: 80%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.submit {
+  background-color: blue;
+  color: white;
+  margin-top: 15px;
+}
+
+.submit:hover {
+  background-color: white;
+  color: blue;
+}
+
+.delete {
+  background-color: crimson;
+  color: black;
+  margin-top: 5px;
+}
+
+.delete:hover {
+  color: crimson;
+  background-color: white;
+}
