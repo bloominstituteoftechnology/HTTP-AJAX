@@ -1,0 +1,163 @@
+.App {
+  text-align: center;
+}
+
+nav {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-decoration: none;
+  border-top: 1px solid #141414;
+  border-bottom: 1px solid #141414;
+
+}
+
+.navLink {
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.navLink:hover {
+  font-weight: bold;
+}
+
+.friend-container {
+  width: 600px;
+  background-color: #f6f6f6;
+  color: #141414;
+  margin: 0 auto;
+  padding: 20px 0;
+  border: 1px solid #323232;
+  margin-bottom: 10px;
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.friend-label-container {
+  width: 30%;
+  /* border: 1px solid red; */
+}
+
+.friend-info-content {
+  width: 60%;
+  /* border: 1px solid red; */
+  text-align: left;
+}
+
+.friend-option-container {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  justify-content: space-around;
+}
+
+.friend-option-btn {
+  background-color: lightgray;
+}
+
+.friend-option-btn:hover {
+  cursor: pointer;
+}
+
+.infoFriendment {
+  margin: 15px 0;
+  width: 100%;
+}
+
+.friend-container span {
+  font-weight: 800;
+}
+
+a {
+  text-decoration: none;
+  color: #141414;
+}
+
+.addFriend-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.addFriend-container .inputFields {
+  margin-bottom: 20px;
+  width: 400px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.friendInfo-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ageInput-container {
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  align-items: center;
+}
+
+.slider-input {
+  margin-bottom: 20px;
+  width: 300px;
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.slider-value-container {
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  /* font-weight: bold; */
+  background-color: #fff;
+}
+
+.button-container button{
+  margin: 0 20px;
+  width: 150px;
+  padding: 10px 5px;
+}
+
+.button-container button:hover {
+  cursor: pointer;
+}
+
+.addFriend-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.normal {
+  display: block;
+  width: 220px;
+}
+
+.normal button {
+  width: 200px;
+  padding: 5px 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background-color: rgb(21, 23, 49);
+  color: #f6f6f6;
+  font-weight: bold;
+}
+
+.normal button:hover {
+  cursor: pointer;
+  width: 220px;
+}
+
+.active {
+  display: none;
+}
+
+.friendsList-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
