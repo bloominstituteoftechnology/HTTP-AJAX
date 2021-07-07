@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.friend-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
