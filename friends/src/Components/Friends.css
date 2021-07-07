@@ -1,0 +1,38 @@
+/* Style for each friend line */
+.friend {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    width: 600px;
+}
+.addFriend {
+    width: 600px;
+}
+
+fieldset {
+    margin-bottom: 25px;
+}
+
+.friendName {
+    width: 150px;
+    cursor: pointer;
+}
+
+.friendAge {
+    width: 50px;
+    cursor: pointer;
+}
+
+.friendEmail{
+    width: 350px;
+    cursor: pointer;
+}
+
+input {
+    margin: 0px 15px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
