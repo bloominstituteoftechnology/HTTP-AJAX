@@ -1,0 +1,12 @@
+.App{
+  align: center;
+  text-align: center;
+  margin-right: 12%;
+  margin-left: 12%;
+}
+
+h1{
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: 100;
+  font-size: 45px;
+}
