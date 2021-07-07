@@ -1,0 +1,38 @@
+.friendInputs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.friendInputs input {
+  z-index: 4;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 1px #ff3366;
+  padding: 0.5rem 0.5rem;
+  background: #2ec4b6;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+
+.friendInputs input::placeholder {
+  color: white;
+  font-weight: bold;
+}
+
+.friendForm button {
+  border-radius: 4px;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  z-index: 4;
+  background: #ff3366;
+  color: white;
+  font-weight: bold;
+}
+
+.friendForm button:hover {
+  cursor: pointer;
+  background: #ff8fab;
+}
