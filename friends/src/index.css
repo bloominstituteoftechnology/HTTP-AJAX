@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.heading {
+  color: white;
+  background-color: darkslategrey;
+  padding: 30px;
+  font-weight: 100;
+  font-family: 'Lobster', cursive;
+  font-size: 3em;
+  width: 100%;
+}
+
+.friends-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-link {
+  width: 200px;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 10px;
+  margin: 15px;
+  border: 1px solid gray;
+  cursor: pointer;
+  color: darkslategrey;
+}
+
+.add-friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid gray;
+  padding: 5px 0 30px 0;
+}
+
+.add-friend input {
+  width: 300px;
+  height: 30px;
+  font-size: 1em;
+  margin: 5px;
+  padding-left: 5px;
+}
+
+.friends {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.friend-card {
+  width: 50%;
+  box-shadow: 5px 5px 8px 5px gray;
+  border-radius: 8px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0px;
+}
+
+.friend-card h3 {
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+  width: 80%;
+}
+
+.delete {
+  color: tomato;
+  background-color: white;
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 1em;
+}
