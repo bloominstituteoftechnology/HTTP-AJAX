@@ -1,0 +1,26 @@
+input::placeholder {
+    text-Align: center;
+}
+
+input {
+    border-radius: 10px;
+    width: 200px;
+    border: 2px solid #b78338;
+}
+
+button {
+    border-radius: 20px;
+    width: 100px;
+    margin-Left: 20px;
+    background-color: #b78338;
+    color: white;
+    border: 2px solid white;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: white;
+    color:  #b78338;
+    border:  2px solid #b78338;
+}
+
