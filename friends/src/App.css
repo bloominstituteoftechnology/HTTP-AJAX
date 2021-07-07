@@ -1,0 +1,180 @@
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  border: 10px solid black;
+  box-shadow: 1px 1px 10px black;
+  border-radius: 10px;
+  text-shadow: 3px 3px 0px white;
+}
+
+h1 {
+  font-weight: bold;
+  text-shadow: 2px 2px 5px white;
+  font-size: 6rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+  font-weight: normal;
+  text-shadow: 1px 1px 1px black;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.friends-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: baseline;
+  background: darkgray;
+  color: white;
+  padding: 0 0 30px;
+}
+
+.friends-list-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  background: whitesmoke;
+  color: black;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.friends-list-title h1 {
+  font-weight: bold;
+  text-shadow: 5px 5px 0px white;
+  font-size: 6rem;
+  color: black;
+  padding: 20px 0;
+}
+
+.friends-list h3 {
+  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px black;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: black;
+}
+
+.form-page {
+  background: whitesmoke;
+  padding-top: 30px;
+}
+
+.form-page h2 {
+  text-align: center;
+}
+
+.form {
+  font-size: 3rem;
+  padding: 35px 20px 20px;
+  background: whitesmoke;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* border: 1px solid black; */
+}
+
+.input-item {
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-item label {
+  margin-right: 15px;
+  text-shadow: 0.5px 0.5px 1px black;
+}
+
+.input-item input {
+  width: 200px;
+  border: 1px solid black;
+  padding-left: 10px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.age-input input {
+  width: 70px;
+}
+
+.email-input input {
+  width: 330px;
+}
+
+.add-btn {
+  width: 20%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 20%;
+  text-align: center;
+  margin-top: 30px;
+  margin: 20px auto 10px;
+}
+
+.add-btn button,
+.edit-btn button,
+.delete-btn button {
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 5px 30px;
+  font-size: 2.4rem;
+  background: black;
+  color: white;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px black;
+  box-shadow: 1px 1px 10px black;
+}
+
+.delete-btn button {
+  background: whitesmoke;
+  color: red;
+  text-shadow: 1px 1px 0px black;
+}
+
+.add-nav {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.add-nav button {
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 5px 30px;
+  font-size: 2.4rem;
+  background: white;
+  color: black;
+  cursor: pointer;
+  text-shadow: 1px 1px 0px black;
+  box-shadow: 1px 1px 10px black;
+}
+
+.friend-card {
+  background: whitesmoke;
+  color: black;
+  padding: 20px 0 30px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.friend-info {
+  line-height: 60px;
+  text-shadow: 3px 3px 0px white;
+}
+
+.friend-info h1 {
+  padding: 15px 0;
+  text-shadow: 3px 3px 0px white;
+}
