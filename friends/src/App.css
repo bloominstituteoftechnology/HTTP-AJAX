@@ -1,0 +1,61 @@
+* {
+  background-color: paleturquoise
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto; 
+}
+
+button {
+  background-color: white
+}
+
+input[type=submit] {
+  width: 10%;
+  height: 25px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+input {
+  background-color: white;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  margin: 0 auto;
+}
+
+label {
+  margin-right: 5%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+
+input[type=submit] {
+  width: 25%;
+  margin: 2% auto;
+}
+
+.friendslist {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  cursor: pointer;
+
+}
+
+.friend-card {
+  width: 30%;
+}
