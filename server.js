@@ -55,6 +55,19 @@ app.get('/friends', (req, res) => {
   res.status(200).json(friends);
 });
 
+app.get('/friends/:id', (req, res) => {
+  const { id } = req.params;
+  let friendIndex = friends.findIndex(friend => friend.id == id);
+
+  if (friendIndex >= 0) {
+    res.status(200).json(friends[friendIndex]);
+  } else {
+    res
+      .status(404)
+      .json({ message: `The friend with id ${id} does not exist.` });
+  }
+})
+
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
