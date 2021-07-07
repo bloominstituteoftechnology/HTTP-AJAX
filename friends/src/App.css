@@ -1,0 +1,32 @@
+.App {
+  margin: 10px 0 0 15px;
+  max-width: 300px;
+}
+
+.friend-list {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  /* flex-direction: column; */
+  /* border:solid 1px black; */
+}
+.friend:hover {
+ color: red;
+ font-size: 40px;
+ /* border:1px solid blue; */
+}
+
+.friend-list .friend {
+  /* display: flex;
+  justify-content: center;
+  align-content: flex-start; */
+  border:1px solid green;
+  background: gray;
+}
+
+input {
+  margin-top: 10px;
+}
+button {
+  margin-top: 10px;
+}
