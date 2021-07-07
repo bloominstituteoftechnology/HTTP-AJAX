@@ -1,0 +1,67 @@
+h1 {
+    font-family: 'Arial Narrow';
+    font-size: 4rem;
+    margin: 30px 0 20px 0;
+}
+
+.friend-card-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.friend-card {
+    padding: 10px;
+    background: rgba(201, 155, 71, 0.932);
+    margin: 10px 5px;
+    border-radius: 10px;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    width: 43%;
+}
+
+.friend-card:hover {
+    font-weight: bold;
+    cursor: default;
+}
+
+.new-friend-form {
+    display: flex;
+    flex-flow: column nowrap;
+    background: rgb(64, 137, 211);
+    padding: 5px;
+    max-width: 40%;
+    margin: 40px auto;
+    border-radius: 10px;
+}
+
+.new-friend-form input {
+    width: 80%;
+    margin: 5px auto;
+    padding: 7px;
+}
+
+.new-friend-form button {
+    font-size: 1.2rem;
+    padding: 5px;
+    width: 30%;
+    margin: 5px auto;
+    border-radius: 10px;
+}
+
+.new-friend-form button:hover {
+    cursor: pointer;
+    background-color: rgb(235, 235, 235);
+}
+
+h4 {
+    font-size: 2rem;
+    margin: 12px 0; 
+}
+
+input {
+    font-size: 1.6rem;
+    height: 25px;
+}
