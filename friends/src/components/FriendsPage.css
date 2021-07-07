@@ -1,0 +1,14 @@
+.row{
+    margin-top: 30px;
+}
+
+.col-sm-4 {
+    margin-bottom: 20px;
+}
+
+.custom-display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: start;
+}
