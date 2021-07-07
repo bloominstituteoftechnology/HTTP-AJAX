@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.friend-card {
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid salmon;
+  background-color: blanchedalmond;
+}
