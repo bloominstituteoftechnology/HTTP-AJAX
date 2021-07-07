@@ -1,0 +1,108 @@
+.App {
+  text-align: center;
+}
+
+.List{ 
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.friend{
+  border: 1px solid green;
+  margin-top: 20px;
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+.friend button{
+  height: 30px;
+}
+.friend .card{
+  border: 1px dashed lightgray;
+  padding: 0 10%;;
+  /* text-align: left; */
+  width: 470px;
+  margin-right: 50px;
+}
+.form{
+  margin: 40px 0 20px;
+}
+.App .nav{
+  
+  
+  display:flex;
+  justify-content: center;
+  text-align: center;
+  
+}
+.App .nav a{
+  width: 300px;
+  height: 30px;
+  margin: 30px 30px 0;
+  color: black;
+  text-decoration: none;
+  padding: 1%;
+  border: 1px solid black;
+}
+.App .nav a:hover{
+  background: black;
+  color: white;
+}
+.form{
+  width: 30%;
+  margin: 60px auto;
+}
+.form form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+}
+.form form input{
+  border: 2px solid black;
+  background: green;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.form button{
+    background: white;
+    width: 300px;
+    height: 30px;
+    margin: 30px 30px 0;
+    color: black;
+    text-decoration: none;
+    padding: 1%;
+    border: 2px solid black;
+    font-weight: bold;
+}
+.form button:hover{
+  background: black;
+    color: white;
+}
+.App h4{
+  text-decoration: underline;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.App p{
+  margin-top: 5px;
+}
+.info{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+h1{
+  margin-bottom: 0;
+  border-bottom: 1px solid gray;
+}
