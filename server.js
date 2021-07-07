@@ -15,36 +15,43 @@ let friends = [
     name: 'Ben',
     age: 30,
     email: 'ben@lambdaschool.com',
+    gender: 'Male',
+
   },
   {
     id: 2,
     name: 'Austen',
     age: 32,
     email: 'austen@lambdaschool.com',
+    gender: "Male"
   },
   {
     id: 3,
     name: 'Ryan',
     age: 35,
     email: 'ryan@lambdaschool.com',
+    gender: "Male",
   },
   {
     id: 4,
     name: 'Sean',
     age: 35,
     email: 'sean@lambdaschool.com',
+    gender: "Male", 
   },
   {
     id: 5,
     name: 'Michelle',
     age: 67,
     email: 'michelle@gmail.com',
+    gender: 'Female',
   },
   {
     id: 6,
     name: 'Luis',
     age: 47,
     email: 'luis@lambdaschool.com',
+    gender: 'Female', 
   },
 ];
 
@@ -76,8 +83,10 @@ app.put('/friends/:id', (req, res) => {
 });
 
 app.delete('/friends/:id', (req, res) => {
-	friends = friends.filter(friend => friend.id != req.params.id);
-	res.status(200).json(friends);
+  console.log(req.params.id)
+  friends = friends.filter(friend => friend.id != req.params.id);
+  console.log(friends)
+  res.status(200).json(friends);
 });
 
 app.listen(5000, () => {
