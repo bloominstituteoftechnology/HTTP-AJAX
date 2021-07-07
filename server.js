@@ -15,36 +15,42 @@ let friends = [
     name: 'Ben',
     age: 30,
     email: 'ben@lambdaschool.com',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum libero obcaecati ipsam perferendis rem corporis accusantium mollitia saepe porro! Impedit deleniti praesentium necessitatibus nostrum, commodi excepturi, placeat molestiae enim ea ratione in repellat atque! Accusamus expedita obcaecati provident beatae quasi voluptates repellendus harum dolores itaque ducimus, incidunt quisquam. Numquam, quam.',
   },
   {
     id: 2,
     name: 'Austen',
     age: 32,
     email: 'austen@lambdaschool.com',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum libero obcaecati ipsam perferendis rem corporis accusantium mollitia saepe porro! Impedit deleniti praesentium necessitatibus nostrum, commodi excepturi, placeat molestiae enim ea ratione in repellat atque! Accusamus expedita obcaecati provident beatae quasi voluptates repellendus harum dolores itaque ducimus, incidunt quisquam. Numquam, quam.',
   },
   {
     id: 3,
     name: 'Ryan',
     age: 35,
     email: 'ryan@lambdaschool.com',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum libero obcaecati ipsam perferendis rem corporis accusantium mollitia saepe porro! Impedit deleniti praesentium necessitatibus nostrum, commodi excepturi, placeat molestiae enim ea ratione in repellat atque! Accusamus expedita obcaecati provident beatae quasi voluptates repellendus harum dolores itaque ducimus, incidunt quisquam. Numquam, quam.',
   },
   {
     id: 4,
     name: 'Sean',
     age: 35,
     email: 'sean@lambdaschool.com',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum libero obcaecati ipsam perferendis rem corporis accusantium mollitia saepe porro! Impedit deleniti praesentium necessitatibus nostrum, commodi excepturi, placeat molestiae enim ea ratione in repellat atque! Accusamus expedita obcaecati provident beatae quasi voluptates repellendus harum dolores itaque ducimus, incidunt quisquam. Numquam, quam.',
   },
   {
     id: 5,
     name: 'Michelle',
     age: 67,
     email: 'michelle@gmail.com',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum libero obcaecati ipsam perferendis rem corporis accusantium mollitia saepe porro! Impedit deleniti praesentium necessitatibus nostrum, commodi excepturi, placeat molestiae enim ea ratione in repellat atque! Accusamus expedita obcaecati provident beatae quasi voluptates repellendus harum dolores itaque ducimus, incidunt quisquam. Numquam, quam.',
   },
   {
     id: 6,
     name: 'Luis',
     age: 47,
     email: 'luis@lambdaschool.com',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum libero obcaecati ipsam perferendis rem corporis accusantium mollitia saepe porro! Impedit deleniti praesentium necessitatibus nostrum, commodi excepturi, placeat molestiae enim ea ratione in repellat atque! Accusamus expedita obcaecati provident beatae quasi voluptates repellendus harum dolores itaque ducimus, incidunt quisquam. Numquam, quam.',
   },
 ];
 
