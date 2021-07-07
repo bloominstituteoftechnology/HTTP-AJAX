@@ -15,36 +15,48 @@ let friends = [
     name: 'Ben',
     age: 30,
     email: 'ben@lambdaschool.com',
+    likes: 'dogs, cats, horses',
+    pronoun: 'He'
   },
   {
     id: 2,
     name: 'Austen',
     age: 32,
     email: 'austen@lambdaschool.com',
+    likes: 'teaching, singing, poetry',
+    pronoun: 'He'
   },
   {
     id: 3,
     name: 'Ryan',
     age: 35,
     email: 'ryan@lambdaschool.com',
+    likes: 'JS, React, making videos',
+    pronoun: 'He'
   },
   {
     id: 4,
     name: 'Sean',
     age: 35,
     email: 'sean@lambdaschool.com',
+    likes: 'skateboarding, biking, watching football',
+    pronoun: 'He'
   },
   {
     id: 5,
     name: 'Michelle',
     age: 67,
     email: 'michelle@gmail.com',
+    likes: 'video games, running, sudoku',
+    pronoun: 'She'
   },
   {
     id: 6,
     name: 'Luis',
     age: 47,
     email: 'luis@lambdaschool.com',
+    likes: 'back-end dev, teaching, sledding',
+    pronoun: 'He'
   },
 ];
 
