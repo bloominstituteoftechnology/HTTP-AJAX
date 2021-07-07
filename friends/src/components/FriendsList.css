@@ -1,0 +1,151 @@
+.friends-list {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 1000px;
+  flex-wrap: wrap;
+}
+
+.my-friends {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 630px;
+}
+
+.friend {
+  text-align: left;
+  margin: 0 40px 15px 0;
+  cursor: pointer;
+  border-bottom: 3px solid #fabb1d;
+  padding: 20px 0;
+  padding-left: 15px;
+  width: 250px;
+  position: relative;
+  height: 167px;
+}
+
+.friend h2 {
+  margin-top: 30px;
+}
+
+.friend:hover {
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+
+.friend:hover .fa-times {
+  color: #e82328;
+  transition: 0.3s;
+}
+
+.friend:hover .fa-user-edit {
+  color: #08b1e6;
+  transition: 0.3s;
+}
+
+.fa-times {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  color: #ccc;
+}
+
+.fa-user-edit {
+  color: #888;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.add-friend {
+  background: #eee;
+  width: 250px;
+  padding: 30px 20px;
+  margin-right: 60px;
+  margin-top: 40px;
+  /* margin-left: 20px; */
+}
+
+button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 18px;
+  background: #08b1e6;
+  color: white;
+  margin: 10px auto 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #06c5ff;
+}
+
+input {
+  border: none;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 5px 0;
+}
+
+h2,
+h4 {
+  margin: 0;
+}
+
+h4 {
+  margin-bottom: 15px;
+}
+
+.edit-mode {
+  width: 250px;
+  padding-bottom: 20px;
+  /* height: 155px; */
+}
+
+.edit-mode input {
+  border: 1px solid #eee;
+  width: 80%;
+  margin-bottom: 5px;
+}
+
+.accept {
+  color: #5cb85c;
+  background: none;
+  padding: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.accept:hover {
+  color: #3f863f;
+  background: none;
+}
+
+.cancel {
+  color: #e82328;
+  background: none;
+  padding: 0;
+  margin-top: 15px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.cancel:hover {
+  color: #aa2025;
+  background: none;
+}
+
+.fa-pencil-alt {
+  font-size: 12px;
+  padding-left: 3px;
+  color: #999;
+}
