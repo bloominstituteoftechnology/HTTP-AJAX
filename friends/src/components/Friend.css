@@ -1,0 +1,12 @@
+.singleFriend{
+    border: 2px solid black;
+    width: 300px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #abcfd8;
+}
+
+.singleFriend li{
+    padding-top: 5px;
+}
+
