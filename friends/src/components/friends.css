@@ -1,0 +1,9 @@
+.container{
+display: flex;}
+
+.getList {
+    border: 2px solid rgb(76, 50, 50);
+    width: 20%;
+   margin-top: 50px;
+    margin-left: 10px;
+}

@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.app {
+  display: flex;
+}
+
+form{
+  display: flex;
+  margin-left: 20px;
+}
+
+.button{
+
+  height: 40px;
+}
