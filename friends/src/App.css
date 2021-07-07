@@ -1,0 +1,113 @@
+* {
+  /*border: 1px solid black;*/
+}
+
+body {
+  background: lightgray;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  width: 350px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 40px;
+}
+
+.header a:hover {
+  color: darkblue;
+}
+
+form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+form input {
+  box-sizing: border-box;
+  width: 200px;
+  height: 50px;
+  padding: 0 15px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  padding: 0;
+  margin-top: 10px;
+  color: white;
+  background: blue;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.friends {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.friend-card {
+  width: 100px;
+  text-align: center;
+  margin: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+  text-decoration: none;
+}
+
+.friend-card:hover {
+  box-shadow: 4px 4px black;
+}
+
+.friend-card a {
+  text-decoration: none;
+}
+
+.friend-card a:visited {
+  color: inherit;
+}
+
+.friend {
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  background: white;
+}
+
+.friendDetail {
+  margin: 5px 0;
+}
