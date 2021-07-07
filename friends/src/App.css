@@ -1,0 +1,65 @@
+body {
+  background-color: #696969; 
+}
+
+h1 {
+  text-align: center; 
+  color: white; 
+  font-weight: bold; 
+  margin-top: 40px; 
+}
+
+.friendsList {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+}
+
+.friend {
+  background-color: white; 
+  text-align: center; 
+  padding: 40px; 
+  margin: 20px; 
+  color: black; 
+  border-radius: 10px; 
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5); 
+}
+
+.friend h3 {
+  font-size: 30px; 
+}
+
+
+.form {
+  background-color: white; 
+  padding: 20px; 
+  text-align: center; 
+  margin: 0 auto; 
+  border-radius: 10px; 
+}
+
+.form p {
+font-weight: bold; 
+}
+
+.form input {
+  margin-right: 20px; 
+  text-align: center; 
+  font-size: 16px; 
+  border-radius: 3px; 
+  padding: 5px; 
+}
+
+.form button {
+    background-color: white; 
+    color: black; 
+    padding: 15px; 
+    font-size: 16px;
+    border-radius: 7px; 
+    font-weight: bold;  
+}
+
+.form button:hover {
+  background-color: black; 
+  color: white; 
+}
