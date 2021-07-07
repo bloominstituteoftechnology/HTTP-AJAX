@@ -1,0 +1,34 @@
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friends{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.name {
+  font-size: 24px;  
+  cursor: pointer;
+}
+
+.form{
+  margin-top: 25px;
+}
+
+.form-name{
+  font-size: 24px; 
+  display: flex;
+  justify-content: center;
+}
+
