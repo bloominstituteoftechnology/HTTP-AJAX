@@ -1,0 +1,8 @@
+.App {
+    margin: 0 auto;
+    width: 25%;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
