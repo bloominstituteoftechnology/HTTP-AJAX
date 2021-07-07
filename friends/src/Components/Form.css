@@ -1,0 +1,12 @@
+form {
+  border: 2px solid grey;
+  max-width: 785px;
+  margin: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  margin-right: 10px;
+}
