@@ -6,7 +6,9 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "create-react-app": "^1.5.2",
     "express": "^4.16.2",
+    "friends": "^1.0.0-alpha.1",
     "nodemon": "^1.14.11"
   },
   "devDependencies": {},
