@@ -1,0 +1,46 @@
+.friends-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 30px;
+    margin: 0 auto;
+}
+
+.friends-card {
+    color: #000;
+    font-size: 12px;
+    width: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #d2d2d2;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    /* box-shadow: 8px 6px 3px 0px rgba(51, 2, 51, 1); */
+}
+
+.btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-link {
+    margin: 10px;
+}
+
+.update-freind {
+    border-radius: 4px;
+}
+
+
+/* .update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

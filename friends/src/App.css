@@ -1,0 +1,28 @@
+.nav-menu {
+    width: 100%;
+}
+
+.friends-nav {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.friends-nav a {
+    text-decoration: none;
+    margin: 20px;
+    color: #000;
+    font-weight: 500;
+}
+
+.friends-nav a:hover {
+    color: #d87093;
+}
+
+li {
+    list-style: none;
+}
