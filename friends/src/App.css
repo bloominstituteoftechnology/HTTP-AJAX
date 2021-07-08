@@ -1,0 +1,33 @@
+.App {
+  text-align: left;
+}
+
+.friendsWrapper {
+  /* border: 1px solid salmon ; */
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-grow: 1; */
+  justify-content: space-between;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.friendWrap {
+  /* border: 1px solid lawngreen; */
+  /* flex-grow: 1; */
+  margin: 11px;
+  background-color: slategray;
+  padding: 9px;
+  width: 30%;
+  color: darkorange;
+  border-radius: 8px;
+}
+
+body {
+  background: linear-gradient(to right, #684ff1 , #4f6ef62a);
+}
+
+label {
+  margin: 0 20px;
+}
