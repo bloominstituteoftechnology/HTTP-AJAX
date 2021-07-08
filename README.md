@@ -21,7 +21,7 @@ Topics:
     * for `update` pass the friend id as a URL parameter, and the information you want to update about the friend inside the body. You can build a new form in the UI for this, or, if you set it up correctly, reuse the form you made for the `POST` request.
     * for `delete`, add a `delete` button, or an `x` icon to each friend that will delete the friend when you click it. In the request url, pass the friend id as a URL parameter.
 
-For reference, 
+For reference,
 ```js
 {
   name: should be a string,
@@ -38,3 +38,5 @@ For reference,
 1.  Style the friends list, the input field, and make everything look nice.
 1.  Expand the number of properties that you put on each friend object.
 1.  Feel free to remove the dummy data on the server or modify it in any way.
+
+##Initial Commit
