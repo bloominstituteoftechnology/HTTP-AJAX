@@ -26,7 +26,7 @@ For reference,
 {
   name: should be a string,
   age: should be a number,
-  email: should be a string,
+  email: should be a string
 }
 ```
 

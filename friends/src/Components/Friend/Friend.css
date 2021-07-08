@@ -1,0 +1,29 @@
+.button{
+  border-radius: 2px;
+  border: 1px solid lightgray;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+.button:focus{
+  outline: 0;
+}
+.buttonContainer{
+  max-width: 200px;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.friendFieldContainer{
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+  margin: 10px auto ;
+}
+.updateField{
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+}

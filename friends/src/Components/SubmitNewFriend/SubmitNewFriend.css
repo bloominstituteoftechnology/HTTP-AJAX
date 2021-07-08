@@ -1,0 +1,16 @@
+.fieldContainer{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 0 auto;
+}
+.input{
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.formContainer{
+  margin: 20px 0;
+}
