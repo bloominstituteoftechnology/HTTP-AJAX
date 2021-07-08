@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+  width: 100%;
+  margin-left: 60px;
+  
+}
+
+.friend-wrapper{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-wrapper {
+  margin-top: 80px; 
+  border: 1px solid lightgray;
+  padding: 30px;
+  height: 220px;
+}
+
+input{
+  width: 60%;
+  height: 30px;
+  padding-left: 10px;
+  margin: 10px 0;
+}
+button{
+  width: 50%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #333;
+  margin-top: 20px;
+}

@@ -1,6 +1,6 @@
 # HTTP/AJAX
 
-Topics:
+Topics: 
 
 * `axios` package
 * AJAX
