@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+
+}
+.App {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 60px 40px;
+  padding: 10px;
+  border: solid darkSlateGray 1px;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 1px rgb(2, 34, 44);
+  background-color: darkturquoise;
+}
+
+.input {
+  display: inline;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  border: solid darkslategrey 2px;
+  border-radius: 10px;
+}
