@@ -1,0 +1,43 @@
+/* FriendForm.css */
+
+.App-form {
+    margin-top: 50px;
+    background-color: whitesmoke;
+    height: 500px;
+    box-shadow: 5px 5px #888888;
+}
+
+form {
+    width: 100%;
+}
+
+input {
+    height: 30px;
+    width: 30%;
+    margin-top: 10px;
+}
+
+.inputdiv {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+.age-field {
+    margin-left: 15px;
+}
+
+.inputdiv h3 {
+    padding-right: 20px;
+}
+
+button {
+    margin-top: 20px;
+    height: 30px;
+    width: 30%;
+    margin-left: 65px;
+}
+
+.App-form h1 {
+    font-size: 32px;
+}

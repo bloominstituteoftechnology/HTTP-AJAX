@@ -1,0 +1,53 @@
+/* FriendList.css */
+
+.friendlist-container {
+    padding-top: 50px;
+    height: 800px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.friend-card {
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 20px;
+    height: 300px;
+    width: 30%;
+    box-shadow: 5px 5px #888888;
+}
+
+.friend-card-header {
+    margin-right: 10px;
+    height: 50px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.friend-card-header h2 {
+    padding-top: 10px;
+}
+
+.friendlist-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+    height: 50px;
+    color: white;
+}
+
+
+.friendlist-delete {
+    text-align: center;
+    width: 40%;
+    background: lightcoral;
+}
+
+.friendlist-detail {
+    text-align: center;
+    width: 40%;
+    background: lightskyblue;
+}
